@@ -1,0 +1,11 @@
+# Accessibility toolbar
+
+git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
+jupyter nbextension install --user  accessibility_toolbar
+rm -r accessibility_toolbar
+
+#jupyter nbextension enable accessibility_toolbar/main
+#jupyter nbextension disable accessibility_toolbar/main
+
+
+
