@@ -17,3 +17,11 @@ rm -r accessibility_toolbar
 
 
 
+# Graffiti
+## The pypi package lags the repo
+git clone https://github.com/willkessler/jupytergraffiti.git
+jupyter nbextension install --user jupytergraffiti/jupytergraffiti/graffiti_extension
+rm -r accessibility_toolbar
+
+#jupyter nbextension enable graffiti_extension/main --user
+#jupyter nbextension disable graffiti_extension/main --user
