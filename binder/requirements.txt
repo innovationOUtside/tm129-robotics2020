@@ -12,6 +12,7 @@ numpy #requirement of: jyro
 #For generating interactive web demos
 nbinteract
 voila
+git+https://github.com/willkessler/jupytergraffiti.git
 
 # Useful for plotting and analysis
 pandas
