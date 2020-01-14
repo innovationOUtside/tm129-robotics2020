@@ -3,8 +3,8 @@ jupytext
 jupyter-server-proxy
 
 #Updates
-ipywidgets
-nbconvert
+ipywidgets>=7.5.0
+nbconvert~=5.5.0
 
 #Simulator package requirements
 numpy #requirement of: jyro
