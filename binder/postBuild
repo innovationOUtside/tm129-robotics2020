@@ -1,3 +1,11 @@
+
+
+# nbextensions
+jupyter contrib nbextension install --user
+jupyter nbextensions_configurator enable --user
+
+
+
 # Accessibility toolbar
 
 git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git

@@ -19,5 +19,8 @@ pandas
 matplotlib
 plotly
 
+# Notebook extensions
+jupyter_contrib_nbextensions
+
 #Robot simulator demos
 jyro
