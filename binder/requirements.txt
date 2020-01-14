@@ -1,0 +1,18 @@
+#Utilities
+jupytext
+jupyter-server-proxy
+
+#Simulator package requirements
+numpy #requirement of: jyro
+
+#For generating interactive web demos
+nbinteract
+voila
+
+# Useful for plotting and analysis
+pandas
+matplotlib
+plotly
+
+#Robot simulator demos
+jyro
