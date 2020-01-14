@@ -2,6 +2,10 @@
 jupytext
 jupyter-server-proxy
 
+#Updates
+ipywidgets
+nbconvert
+
 #Simulator package requirements
 numpy #requirement of: jyro
 
