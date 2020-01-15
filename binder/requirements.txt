@@ -3,6 +3,7 @@ jupytext
 jupyter-server-proxy
 nbzip
 #jupyter-archive
+nbresuse
 
 #Updates
 ipywidgets>=7.5.0
