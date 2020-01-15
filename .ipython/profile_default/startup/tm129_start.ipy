@@ -1,3 +1,5 @@
 # Commands to run in every notebook
 %load_ext pycodestyle_magic
-#%flake8_on
+#%flake8_on --ignore D100
+#Run the following in a notebook code cell to add this %flake_on command to the startup file
+#!echo "\n%flake8_on --ignore D100\n" >> ~/.ipython/profile_default/startup/tm129_start.ipy

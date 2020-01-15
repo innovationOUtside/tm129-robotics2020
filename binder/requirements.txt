@@ -18,6 +18,8 @@ flake8-docstrings
 flake8-builtins
 ## Provide additional conventions for pandas code
 pandas-vet
+## Autorepair
+autopep8
 
 #Updates
 ipywidgets>=7.5.0
