@@ -1,0 +1,3 @@
+# Commands to run in every notebook
+%load_ext pycodestyle_magic
+#%flake8_on

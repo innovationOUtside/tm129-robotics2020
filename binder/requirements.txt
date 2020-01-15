@@ -6,6 +6,19 @@ nbzip
 nbresuse
 git+https://github.com/NII-cloud-operation/Jupyter-multi_outputs
 
+
+#Linting
+flake8
+pycodestyle
+pycodestyle_magic
+## Install additional style convention rules
+pep8-naming
+flake8-bugbear
+flake8-docstrings
+flake8-builtins
+## Provide additional conventions for pandas code
+pandas-vet
+
 #Updates
 ipywidgets>=7.5.0
 nbconvert~=5.5.0
