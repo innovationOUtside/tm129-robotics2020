@@ -29,3 +29,8 @@ rm -r jupytergraffiti
 #jupyter nbextension enable graffiti_extension/main --$INSTALL_PREFIX
 #jupyter nbextension disable graffiti_extension/main --$INSTALL_PREFIX
 
+
+#nbzip
+jupyter serverextension enable --py nbzip --$INSTALL_PREFIX
+jupyter nbextension install --py nbzip --$INSTALL_PREFIX
+jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
