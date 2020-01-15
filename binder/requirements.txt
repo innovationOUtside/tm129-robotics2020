@@ -1,6 +1,8 @@
 #Utilities
 jupytext
 jupyter-server-proxy
+nbzip
+#jupyter-archive
 
 #Updates
 ipywidgets>=7.5.0
