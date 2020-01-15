@@ -34,3 +34,8 @@ rm -r jupytergraffiti
 jupyter serverextension enable --py nbzip --$INSTALL_PREFIX
 jupyter nbextension install --py nbzip --$INSTALL_PREFIX
 jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
+
+
+#multi-ouptuts
+jupyter nbextension install --py lc_multi_outputs --$INSTALL_PREFIX
+jupyter nbextension enable --py lc_multi_outputs --$INSTALL_PREFIX

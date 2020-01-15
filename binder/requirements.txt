@@ -4,6 +4,7 @@ jupyter-server-proxy
 nbzip
 #jupyter-archive
 nbresuse
+git+https://github.com/NII-cloud-operation/Jupyter-multi_outputs
 
 #Updates
 ipywidgets>=7.5.0
