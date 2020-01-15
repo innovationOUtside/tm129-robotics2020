@@ -1,0 +1,26 @@
+#https://github.com/machine-learning-apps/repo2docker-action
+
+#For adding secrets:
+# - from main page of repo, click  Settings
+# - from left sidebar, click Secrets
+# - enter secret name and value
+
+Click Add secret.
+name: Build Notebook Container
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: checkout files in repo
+      uses: actions/checkout@master
+
+    - name: try-local-build
+      uses: ouseful-PR/repo2docker-action@master #forked and tweaked
+      with:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        IMAGE_NAME: "ousefuldemos/tm129-robotics2020"
