@@ -5,7 +5,6 @@
 # - from left sidebar, click Secrets
 # - enter secret name and value
 
-Click Add secret.
 name: Build Notebook Container
 on:
   release:
