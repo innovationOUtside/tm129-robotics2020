@@ -1,27 +1,31 @@
 
 
+INSTALL_PREFIX=user
+
+
 # nbextensions
-jupyter contrib nbextension install --user
-jupyter nbextensions_configurator enable --user
+jupyter contrib nbextension install --$INSTALL_PREFIX
+jupyter nbextensions_configurator enable --$INSTALL_PREFIX
 
 
 
 # Accessibility toolbar
 
 git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
-jupyter nbextension install --user accessibility_toolbar
+jupyter nbextension install --$INSTALL_PREFIX accessibility_toolbar
 rm -r accessibility_toolbar
 
-#jupyter nbextension enable accessibility_toolbar/main --user
-#jupyter nbextension disable accessibility_toolbar/main --user
+#jupyter nbextension enable accessibility_toolbar/main --$INSTALL_PREFIX
+#jupyter nbextension disable accessibility_toolbar/main --$INSTALL_PREFIX
 
 
 
 # Graffiti
 ## The pypi package lags the repo
 git clone https://github.com/willkessler/jupytergraffiti.git
-jupyter nbextension install --user jupytergraffiti/jupytergraffiti/graffiti_extension
+jupyter nbextension install --$INSTALL_PREFIX jupytergraffiti/jupytergraffiti/graffiti_extension
 rm -r jupytergraffiti
 
-#jupyter nbextension enable graffiti_extension/main --user
-#jupyter nbextension disable graffiti_extension/main --user
+#jupyter nbextension enable graffiti_extension/main --$INSTALL_PREFIX
+#jupyter nbextension disable graffiti_extension/main --$INSTALL_PREFIX
+
