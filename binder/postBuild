@@ -1,41 +1,56 @@
 
 
+# Install and enable extensions
+
 INSTALL_PREFIX=user
 
 
-# nbextensions
+## nbextensions
+### The official unofficial extensions distribution
 jupyter contrib nbextension install --$INSTALL_PREFIX
 jupyter nbextensions_configurator enable --$INSTALL_PREFIX
+## By default, the majority of extensions are disabled by default
+### Nicer code warning / error message display
+jupyter nbextension enable skip-traceback/main --$INSTALL_PREFIX
+### Collapsible headings can help in notebook user interaction design
+jupyter nbextension enable collapsible_headings/main --$INSTALL_PREFIX
+### Codefolding may be useful
+jupyter nbextension enable codefolding/main --$INSTALL_PREFIX
+### Allow users to highlight elements
+jupyter nbextension enable highlighter/highlighter --$INSTALL_PREFIX
 
-
-
-# Accessibility toolbar
-
+## Accessibility toolbar
+### This seems to be a bit buggy at the moment, but useful nevertheless
 git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
 jupyter nbextension install --$INSTALL_PREFIX accessibility_toolbar
+### Tidy up
 rm -r accessibility_toolbar
-
 #jupyter nbextension enable accessibility_toolbar/main --$INSTALL_PREFIX
 #jupyter nbextension disable accessibility_toolbar/main --$INSTALL_PREFIX
 
 
 
-# Graffiti
-## The pypi package lags the repo
+## Graffiti
+### Support for interactive intra-notebook tutorials
+### The pypi package lags the repo
 git clone https://github.com/willkessler/jupytergraffiti.git
 jupyter nbextension install --$INSTALL_PREFIX jupytergraffiti/jupytergraffiti/graffiti_extension
+### Tidy up
 rm -r jupytergraffiti
-
 #jupyter nbextension enable graffiti_extension/main --$INSTALL_PREFIX
 #jupyter nbextension disable graffiti_extension/main --$INSTALL_PREFIX
 
 
-#nbzip
+## nbzip
+### Zip and export all notebooks
 jupyter serverextension enable --py nbzip --$INSTALL_PREFIX
 jupyter nbextension install --py nbzip --$INSTALL_PREFIX
 jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 
 
-#multi-ouptuts
+## multi-outputs
+### Cell status indicators.
+### There's also a tool so save cell output for diffing but this may be overcomplicated.
+### Consider forking to support disabling the pinned cell output features
 jupyter nbextension install --py lc_multi_outputs --$INSTALL_PREFIX
 jupyter nbextension enable --py lc_multi_outputs --$INSTALL_PREFIX
