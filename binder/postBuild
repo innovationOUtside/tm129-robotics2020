@@ -19,6 +19,10 @@ jupyter nbextension enable codefolding/main --$INSTALL_PREFIX
 ### Allow users to highlight elements
 jupyter nbextension enable highlighter/highlighter --$INSTALL_PREFIX
 
+## nbgitipuller
+### This allows us to easily pull in files from Github
+jupyter serverextension enable nbgitpuller --$INSTALL_PREFIX
+
 ## Accessibility toolbar
 ### This seems to be a bit buggy at the moment, but useful nevertheless
 git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
