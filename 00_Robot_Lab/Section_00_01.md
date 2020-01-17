@@ -438,20 +438,23 @@ If you have changed the notebook since it was last autosaved, you will see a sta
 `Last Checkpoint: Last Friday at 12:18 AM
 (unsaved changes)`
 
-If you watch for at most a couple of minutes, you'll note that it soon changes to the following:
-
-Last Checkpoint: Last Friday at 12:18 AM
-(autosaved)
-
 The `(unsaved changes)` phrase is akin to the `*` indicator you often see next to a filename in a document editor that shows the file has changed since it was last saved.
 
-But what are 'Checkpoints'. If you use a keyboard shortcut to manually save the file, or you save a notebook document from the notebook `File` menu, you are actually issuing a `Save and Checkpoint` command. This saves the file in the same way that the autosave function does, but it *also*
+If you watch for at most a couple of minutes, you'll note that it soon changes to something with the following form:
 
-TO DO
+`Last Checkpoint: Last Friday at 12:18 AM
+(autosaved)`
 
-You can change the period using magic (yes, really! That's what it's called...). For example, run the following statement in a notebook code cell and it will change the autosave period *for that notebook only* to 60 seconds:
+You can change the autosave period using magic (yes, really! That's what it's called...). For example, run the following statement in a notebook code cell and it will change the autosave period *for that notebook only* to 60 seconds:
 
 `%autosave 60`
 
 The autosave time can also be set using the `AutoSaveTime` notebook extension which can be enabled from the `nbextensions configurator` [[direct link](/nbextensions/?nbextension=autosavetime/main)].
 
+As well as allowing your notebooks to be automatically saved, you can also "checkpoint" them.
+
+When you use a keyboard shortcut to manually save the file, or you save a notebook document from the notebook `File` menu, you are actually issuing a `Save and Checkpoint` command. This saves in the same way that the autosave function does, but it *also* generates a checkpointed (backed up) version of the file in the hidden `.ipynb_checkpoints` folder.
+
+What this means is that if you work on a file, allowing it to be autosaved, and realise that you have made some terrible mistakes in it, you can revert the notebook to a previously checkpointed (manually saved) version.
+
+Note that this will throw away all changes made to the autosaved version of the notebook since the last manual (checkpointing) save, so use this command with care.
