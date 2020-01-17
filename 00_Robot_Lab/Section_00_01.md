@@ -327,37 +327,32 @@ Once downloaded, you will be prompted for a method of starting the container. Se
 
 ![](../images/00_01_ContainDS_standard_run.png)
 
-The container will now be launched and a log trace displayed. Copy the value of the notebook token listed in the log trace, and click on the `Web` button to open the notebook server in your browser.
+The container will now be launched and a log trace displayed.
 
-![](../images/00_01_ContainDS_tm129_running.png)
+At this point, you need to `STOP` the container and remove it:
 
-Paste in the token in the field at the *top* of the login page to access the notebook server (your browser will remembers the tken value, so accessing the server from the same browser should not require you to enter the token again.
+![](../images/00_01_containds_stopRemove.png)
 
-![](../images/00_01_notebook_token.png)
+Now create a running version of the container from the *local* Docker image. This will allow you to share a local directory into the container as well as clicking through directly to the notebook homep[age in your browser.
 
-Alternatively, you may enter the token in the form at the *bottom* of the page and take the opportunity to set your own password on the notebook sever. (This will allow you to more easily access it from other browsers, for example.)
 
-Your files __will__ persist inside the container, but __will not__ be shared to the desktop.
+### Running the RoboLab Environment from a Local Docker Image
 
-If you need to access the token again, you can do so from by selecting the container in ContainDS and then clicking the `Exec` button. This will open a console with a command line prompt running *inside* the container.
+From the new button, select the `Docker` tab and then the `Local Images` tab:
 
-![](../images/00_01_containds_exec_nblist.png)
+![](../images/00_01_ContainDS_local.png)
 
-Run the command:
+`SELECT` the local copy of the `tm129-robotics2020` container which will open the container workspace configuration page:
 
-`jupyter notebook list`
+![](../images/00_01_local_workspace.png)
 
-to display the token associated with the notebook server running inside the container.
+Set the path to the directory on your host computer that you want to share into the container. This will create a `notebooks` directory in that directory that will be mapped onto the `notebooks` directory visible from the notebook homepage.
 
-Alternatively, you can can run a command to ind the token from a command prompt/terminal running on your host computer desktop. Check the name of the container (by default, this will probably be `tm129-robotics2020`):
+When you `CREATE` the container, it will run automatically. Clicking the `WEB` link should take you to the notebook home page in your browser.
 
-![](../images/00_01_containds_container_name.png)
+![](../images/00_01_simple_nb_home.png)
 
-and then (using your container name) run the command:
-
-`docker exec -it tm129-robotics2020 jupyter notebook list`
-
-Again, the server token value should be displayed.
+When you save your notebooks, they will be saved into the shared directory on your own computer.
 
 
 ### Using ContainDS to Build and Run a RoboLab Container from Scratch
@@ -370,7 +365,7 @@ Enter the name of the source repository:
 
 `innovationOUtside/tm129-robotics2020`
 
-and clicck the `LAUNCH` button.
+and click the `LAUNCH` button.
 
 ![](../images/00_01_ContainDS_binderhub.png)
 
@@ -382,7 +377,7 @@ Click on the `WEB` link and you should be taken directly to the notebook homepag
 
 ![](../images/00_01_containds_built_container.png)
 
-As with the prebuilt container launched using ContainDS, your files __will__ persist inside the container, but __will not__ be shared to the desktop.
+`STOP` and remove the container, and then run it from a Local Docker Image; this will allow you to share a local directory into the container and directly click through to the notebook server homepage in your browser. 
 
 
 ### Running the RoboLab Virtual Environment from the Command Line
