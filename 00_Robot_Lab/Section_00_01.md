@@ -32,19 +32,19 @@ Jupyter notebooks are are widely used interactive environment for writing "liter
 
 The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user-enabled extensions that can be used to customise your notebook environment.
 
-![](../images/00_01_jupyter_nb_homepage.png)
+![Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing.](../images/00_01_jupyter_nb_homepage.png)
 
 Clicking on a file of an appropriate type will open it as am interactive Jupyter notebook.
 
 Notebooks are structured using the notion of different sorts of "cell". For example, *markdown cells* are used to contain explanatory text written using the simple text based markdown script. Executable *code cells* can be used to declare executable Python code, the outputs of which can be displayed as *code cell outputs*.
 
-![](../images/00_01_jupyter_nb_example.png)
+![Example of a Jupyter notebook showing markdown (text), code cells and code cell output.](../images/00_01_jupyter_nb_example.png)
 
 Markdown and code cells can be edited and saved interactively via the notebook's browser interface.
 
 As well as the notebook environment, a more complex "lab" or "integrated development" style interface, *Jupyterlab*, is also available.
 
-![](../images/00_01_jupyterlab_example.png)
+![Example of the JupyterLab user interface, showing the file navigator, an open notebook, a torn off cell output and the JupyterLab Launcher.](../images/00_01_jupyterlab_example.png)
 
 Whilst you are welcome to make use of this environment, we will tend to stick to the simple notebook interface for the module activities.
 
@@ -55,7 +55,7 @@ A wide range of notebook extensions are installed in the RoboLab environment, al
 
 You can enable and disable extensions, as well as further configuring certain extensions, via the extensions configurator. This can be accessed from the notebook homepage or from the `nbextensions config` option in the `Edit` menu of an opened notebook.
 
-![](../images/00_01_nbextension_config.png)
+![Screenshot of Jupyter nbextensions configurator page, showing conficuration panel for a selected extension.](../images/00_01_nbextension_config.png)
 
 You are welcome to explore the available extensions, or even add further ones of your own, to personalise your notebook environment, but we will not discuss them further here.
 
@@ -66,23 +66,23 @@ You are welcome to explore the available extensions, or even add further ones of
 
 The `Jyro` simulated robot will be the focus of many of the programming activities. `Jyro` is based on a Pioneer 3-DX differential drive robot.
 
-![](../images/00_01_pioneer_3_cc_via_ros_org.jpg)
+![Photograph of a Pioneer 3-DX two wheeled differential drive robot with several ultrasound sensores arranged in a row at the front and front side of the robot.](../images/00_01_pioneer_3_cc_via_ros_org.jpg)
 
 The `Jyro` simulator offers a two dimensional (2D) plan view of the environment, viewed from directly above, and a three dimensional(3D) robot's eye view.
 
-![](../images/00_01_Jyro_sim.png)
+![Screenshot of the Jyro simualtor showing the plan 2D view highlighting the simulated robot and the field of view of its ultrasound and light sensors, sever static objects and a light that has been detected. The simulator window also shows a 3d view of the world from the robot's forward facing camera showing the walls around the edge of simulated world, a static object and a spherical light source.](../images/00_01_Jyro_sim.png)
 
 A series of buttons along the bottom of the simulator can be used to start, pause and stop the execution of the robot's control program, as well as resetting the environment back to its initial state.
 
 In the 2D plan view, the orientation of the red simulated robot is denoted by a black arrow that points towards the front of the robot.
 
-![](../images/00_01_Jyro_base.png)
+![Plan view, looking down, of the Jyto simulator, with a black arrow legend that indicates the front of the robot.](../images/00_01_Jyro_base.png)
 
 The robot has two wheels, one each side, although these are not shown.
 
 The robot can also be configured with a range of sensors, as well as a gripper. These are visually represented on the 2D robot graphic when they are added to the robot.
 
-![](../images/00_01_Jyro_sensors.png)
+![A plan view of a cofigured Jyro robot showing the range of each of the sixteen directional sensors arranged around the edge of the robot, the presence of a camera ad a pair of grippers and two light sensors, one on each side of the front of the robot.](../images/00_01_Jyro_sensors.png)
 
 The forward facing light sensors, which have a configurable maximum range are indicated by the two yellow dots at the front of the robot, one on either side.
 
@@ -138,7 +138,7 @@ All of the styles are saved into local storage when refreshing the page. This me
 ### Enabling the Accessibility Extension
 The accessibility is __disabled__ in the RoboLab environment by default. To use the accessibility extension, you need to enable it first. You can do this from the `nbextensions` tab on the notebook homepage: check the `Accessibility toolbar` extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.
 
-![](../images/00_01_nb_extensions_accessibility.png)
+![Screenshot of the nbextensions confgurator showing the location of the Accessibility Toolbar.](../images/00_01_nb_extensions_accessibility.png)
 
 Check the [accessibility toolbar documentation](https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar#toolbar-summary) for more information.
 
@@ -149,7 +149,7 @@ The Module Team welcome feedback on these features.
  
 If you wish to change the font and interface colours used in RoboLab to improve readability, the accessibility toolbar allows you to select the font style, size and colour. You can also modify the line spacing and spacing between individual characters.
 
-![](../images/00_01_accessibility_display.png)
+![Screenshot of the colours and fonts menu dropped down from the text / A button in the group of Accessibility Toolbar buttons.](../images/00_01_accessibility_display.png)
  
 The font style applies to *all* text elements within the notebook itself. This includes the contents of markdown (text) cells, code cells and code cell outputs.
 
@@ -162,11 +162,11 @@ You can also save a style you have defined from the `Add new style...` option in
 
 The Jupyter notebook interface supports a wide range of pre-defined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the `Keyboard shortcuts` item from the notebook `Help` menu or via the `ESC-h` keyboard shortcut.
 
-![](../images/00_01_jupyter_nb_shortcuts.png)
+![Screenshot of the Jupyter keyboard shortcuts help page previewing the Command Mode cell options.](../images/00_01_jupyter_nb_shortcuts.png)
 
 You can also add additional shortcuts and/or edit exist shortcuts via the `Edit Keyboard shortcuts` menu item.
 
-![](../images/00_01_jupyter_nb_edit_shortcuts.png)
+![Screenshot of the Jupyter keyboard shortcuts help page previewing the Edit Command Mode cell options.](../images/00_01_jupyter_nb_edit_shortcuts.png)
 
 __TO DO: is Jyro keyboard accessible??__
 
@@ -325,25 +325,25 @@ The ContainDS application is a desktop application. Run it as you would any othe
 
 Open the ContainDS application, select the `Docker` tab and search for `tm129`. Select the `tm129-robotics2020` image.
 
-![](../images/00_01_ContainDS_tm129_download.png)
+![Screenshot of the ContainDS Docker image selection tab showing how to select the TM129 image.](../images/00_01_ContainDS_tm129_download.png)
 
 If you have not previously downloaded the image, ContainDS will download it for you:
 
-![](../images/00_01_ContainDS_tm129_downloading.png)
+![Screenshot showing the ContainDS Docker image download progress display indicating the percentage completion of one of the layers in the current download.](../images/00_01_ContainDS_tm129_downloading.png)
 
 Do not be concerned if the download percentage indicator sometimes goes down as well as up — the downloader is actually downloading multiple items at once. (The container image is made up from several layers, each of which is downloaded separately, before they are combined in the final image.)
 
-When everything had downloded, you may find your computer appears to be doing nothing for a minute or two. *Don't Panic!* The downloaded layers are all compressed files, and it may take some time for your computer to unzip them all.
+When everything had downloded, you may find your computer appears to be doing nothing for a minute or two, or even appears to get stuck just short of a 100% complete donwload. *Don't Panic!* The downloaded layers are all compressed files, and it may take some time for your computer to unzip them all.
 
 Once downloaded, you will be prompted for a method of starting the container. Select "Standard":
 
-![](../images/00_01_ContainDS_standard_run.png)
+![Screenshot showing the ContainDS dialogue for how to start a Docker container, with three buttons displayed: force a Jupyter start command ("Force Jupyter"), let the container run from its own start command ("Standard", shown as the option to select) or "Cancel".](../images/00_01_ContainDS_standard_run.png)
 
 The container will now be launched and a log trace displayed.
 
 At this point, you need to `STOP` the container and remove it:
 
-![](../images/00_01_containds_stopRemove.png)
+![Screenshot showing a ContainDS running container with the run log displayed and a dialogue raised by clicking the container close button offering tow buttons, one with the option to "Cancel", the other with the option to "Remove", which is to say, stop and remove, the running container.](../images/00_01_containds_stopRemove.png)
 
 Now create a running version of the container from the *local* Docker image. This will allow you to share a local directory into the container as well as clicking through directly to the notebook homep[age in your browser.
 
@@ -352,17 +352,17 @@ Now create a running version of the container from the *local* Docker image. Thi
 
 Click on the `+NEW` button and then select the `Docker` tab and then the `Local Images` tab:
 
-![](../images/00_01_ContainDS_local.png)
+![Screenshot of ContainDS "Local Images" tab on ContainDS Docker tab page showing selection of TM129 image.](../images/00_01_ContainDS_local.png)
 
 `SELECT` the local copy of the `tm129-robotics2020` container which will open the container workspace configuration page:
 
-![](../images/00_01_local_workspace.png)
+![Screenshot of ContainDS container workspace configuration page reached by selecting a local container image from "Local Images" tab on ContainDS Docker tab page.](../images/00_01_local_workspace.png)
 
 Set the path to the directory on your host computer that you want to share into the container. This will create a `notebooks` directory in that directory that will be mapped onto the `notebooks` directory visible from the notebook homepage.
 
-When you `CREATE` the container, it will run automatically. Clicking the `WEB` link should take you to the notebook home page in your browser.
+When you `CREATE` the container, it will run automatically. Clicking the `WEB` link should take you to the notebook home page in your browser. *(Note that the file listing in the screenshot may differ from the file listing you see.)*
 
-![](../images/00_01_simple_nb_home.png)
+![Screenshot of Jupyter notebook homepage](../images/00_01_simple_nb_home.png)
 
 When you save your notebooks, they will be saved into the shared directory on your own computer.
 
@@ -379,7 +379,7 @@ Enter the name of the source repository:
 
 and click the `LAUNCH` button.
 
-![](../images/00_01_ContainDS_binderhub.png)
+![Screenshot of ContainDS application showing the Binder build configuration screen and temporary build process containers in container sidebar.](../images/00_01_ContainDS_binderhub.png)
 
 As the image is built, you will see several temporary containers being created and destroed along the way. Note that the build process may take some time (up to 10 minutes or more).
 
@@ -387,7 +387,7 @@ Once the image has been built, a running container will be launched from it.
 
 Click on the `WEB` link and you should be taken directly to the notebook homepage in your browser without needing to provide any notebook server token yourself.
 
-![](../images/00_01_containds_built_container.png)
+![Screenshot of ContainDS application showing location of WEB button to laucnh notebook in browser.](../images/00_01_containds_built_container.png)
 
 `STOP` and remove the container, and then run it from a Local Docker Image; this will allow you to share a local directory into the container and directly click through to the notebook server homepage in your browser. 
 
