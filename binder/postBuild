@@ -1,4 +1,6 @@
 
+# Copy in a datestamp for start of postBuild activity
+echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
 
 # Install and enable extensions
 
@@ -58,3 +60,7 @@ jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 ### Consider forking to support disabling the pinned cell output features
 jupyter nbextension install --py lc_multi_outputs --$INSTALL_PREFIX
 jupyter nbextension enable --py lc_multi_outputs --$INSTALL_PREFIX
+
+# Copy in a datestamp of end of build - checks we got this far as well!
+echo "postBuild end time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
+
