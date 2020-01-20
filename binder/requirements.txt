@@ -39,6 +39,8 @@ plotly
 
 # Notebook extensions
 jupyter_contrib_nbextensions
+jupyter-wysiwyg
+
 
 #Robot simulator demos
 jyro
