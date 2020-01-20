@@ -255,6 +255,14 @@ If you want to save any of the notebooks used there, you will have to download t
 You can also upload your own notebooks from the notebook homepage either individually, or as a zip file. If you upload a zip file, you will need to unzip it. You can do this from a notebook command cell using the `unzip` shell command or [using Python code](https://thispointer.com/python-how-to-unzip-a-file-extract-single-multiple-or-all-files-from-a-zip-archive/). More details can be found in the __TO DO?? - see the `RoboLab Environment FAQ`__
 
 
+### Running RoboLab On Your Own Computer - Computer Requirements
+
+To run RoboLab on your computer, we suggest you install the prebuilt RoboLab computing environment. Using this environment has the advantage that the module team knows exactly what's inside it and how to help fix things if they appear to go wrong.
+
+The downside is that the environment is quite large in terms of memory requirements: you will need at least 5GB of free memory to install it the environment, as well as its dependencies.
+
+The underlying Docker application, which provides the virtualisation tools used to run the environment, is also happiest on computers with at least 4GB of RAM available.
+
 ### Downloading and Installing RoboLab
 
 RoboLab runs in a simple virtual machine known as a Docker container.
@@ -311,7 +319,7 @@ The ContainDS application is a desktop application. Run it as you would any othe
 - MacOS: the application will be installed into your `Applications` folder. You can launch it from there, or add the application icon the Dock to make it easier to find and launch. See also: [MacOS documentation - using the Dock](https://support.apple.com/en-gb/guide/mac-help/mh35859/mac).
 
 
-### Using ContainDS to Run the Prebuilt RoboLab Container
+### Using ContainDS to Install the Prebuilt RoboLab Container Image
 
 *Note that in this approach, you will __not__ be able to synchronise files inside the container with a persistent directory on your desktop.*
 
@@ -322,6 +330,10 @@ Open the ContainDS application, select the `Docker` tab and search for `tm129`. 
 If you have not previously downloaded the image, ContainDS will download it for you:
 
 ![](../images/00_01_ContainDS_tm129_downloading.png)
+
+Do not be concerned if the download percentage indicator sometimes goes down as well as up — the downloader is actually downloading multiple items at once. (The container image is made up from several layers, each of which is downloaded separately, before they are combined in the final image.)
+
+When everything had downloded, you may find your computer appears to be doing nothing for a minute or two. *Don't Panic!* The downloaded layers are all compressed files, and it may take some time for your computer to unzip them all.
 
 Once downloaded, you will be prompted for a method of starting the container. Select "Standard":
 
@@ -338,7 +350,7 @@ Now create a running version of the container from the *local* Docker image. Thi
 
 ### Running the RoboLab Environment from a Local Docker Image
 
-From the new button, select the `Docker` tab and then the `Local Images` tab:
+Click on the `+NEW` button and then select the `Docker` tab and then the `Local Images` tab:
 
 ![](../images/00_01_ContainDS_local.png)
 
@@ -393,6 +405,8 @@ This will serve the container on [`http://localhost:8897`](`http://localhost:889
 On Windows, I think you need to try something like the following [UNTESTED]:
 
 `docker run --name tm129test --rm -d -p 8897:8888 -v c:\tm129share\notebooks:c:\home\jovyan\notebooks ousefuldemos/tm351-binderised:latest`
+
+In Windows, you cannot mount on to a non-empty directory inside the container. You can, however, define and automaticaly create your own directory. For it to be visible to the notebook server homepage, the shared directory needs to be mounted along the `/home/jovyan/' directory path. For example, `-v c:\tm129share\notebooks:c:\home\jovyan\mySharedDirectory`.
 
 In order to access the notebook server via your browser, you will need to find the token used to access the notebook server. Run the command-line command:
 
