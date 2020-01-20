@@ -4,7 +4,7 @@ echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
 
 # Install and enable extensions
 
-INSTALL_PREFIX=user
+INSTALL_PREFIX=sys-prefix  #user
 
 
 ## nbextensions
