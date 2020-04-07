@@ -32,12 +32,12 @@ Whilst the original `ev3devsim` simulator runs without any software requirements
 
 The current robot simulator allows robots to be configured using various components on specific input and output ports:
 
-- `OUTPUT_B`: left motor (state can be running or blank, not ramping, holding, overloaded, or stalled; stop action is ignored and the robot always stops instantly; `SpeedPercent`, `SpeedNativeUnits`, `SpeedRPS`, `SpeedRPM`, `SpeedDPS`, `SpeedDPM` are all defined, as are `MotorSet`, `MoveTank` and `MoveSteering` motor groups);
+- `OUTPUT_B`: left motor (state can be running or blank, not ramping, holding, overloaded, or stalled; stop action is ignored and the robot always stops instantly; `SpeedPercent`, `SpeedNativeUnits`, `SpeedRPS`, `SpeedRPM`, `SpeedDPS`, `SpeedDPM` are all defined, as are [`MotorSet`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#motor-set), [`MoveTank`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#move-tank) and [`MoveSteering`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#move-steering) motor groups);
 - `OUTPUT C`: right motor;
-- `INPUT 1`: ultrasonic sensor (readings provided for angles of incidence up to 50 degrees; slow update rate of an actual ultrasonic sensor is simulated with reading updates approximately every 0.1s);
-- `INPUT 2`: left color sensor(raw values ranges between 0 to 255; ambient_light_intensity will always return 0; color and color_name may not give the same value as the actual sensor);
+- `INPUT 1`: [ultrasonic sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#ultrasonic-sensor) (readings provided for angles of incidence up to 50 degrees; slow update rate of an actual ultrasonic sensor is simulated with reading updates approximately every 0.1s);
+- `INPUT 2`: left [color sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#color-sensor) (raw values ranges between 0 to 255; ambient_light_intensity will always return 0; color and color_name may not give the same value as the actual sensor);
 - `INPUT 3`: right color sensor;
-- `INPUT 4`: gyro sensor.
+- `INPUT 4`: [gyro sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#gyro-sensor).
 
 The simulated world can be loaded with a selection of predefined background layouts, or uploaded custom layouts, can be used as the basis of specific robot programming tasks or challenges. (Layouts are sized 2362 by 1143 pixels, which corresponds to the size of a First Lego League / World Robot Olympiad (WRO) field mat, with 1 pixel representing 1mm.)
 
