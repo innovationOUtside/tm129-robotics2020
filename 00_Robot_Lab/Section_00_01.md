@@ -38,16 +38,42 @@ Clicking on a file of an appropriate type will open it as am interactive Jupyter
 
 Notebooks are structured using the notion of different sorts of "cell". For example, *markdown cells* are used to contain explanatory text written using the simple text based markdown script. Executable *code cells* can be used to declare executable Python code, the outputs of which can be displayed as *code cell outputs*.
 
-![Example of a Jupyter notebook showing markdown (text), code cells and code cell output.](../images/00_01_jupyter_nb_example.png)
+![Screenshot of notebook fragment showing a markdown cell containing text and a styled list, a code cell containing a code fragment, the code cell print display and the code cell output.](../images/notebook_markdown_and_code_cell.png)
+
+As well as supporting general computation, code cells are also used to create and display a simulator output:
+
+![Example of a Jupyter notebook showing markdown (text), simulator display code cell and embedded simulator display.](../images/nbev3devsim_in_notebook_annotated.png)
+
+In addition, code cells can contain code that is "downloaded" to the simulator when the code cell is run:
+
+![Example of a Jupyter notebook showing markdown (text) and code cell with magic invocation to send code to simulator.](../images/nbev3devsim_example_code_cell_annotated.png)
 
 Markdown and code cells can be edited and saved interactively via the notebook's browser interface.
 
 As well as the notebook environment, a more complex "lab" or "integrated development" style interface, *Jupyterlab*, is also available.
 
+The following shows a JupyterLab set up based around the simple `Jyro` robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the "torn off" simulator output window display mode shown below.
+
 ![Example of the JupyterLab user interface, showing the file navigator, an open notebook, a torn off cell output and the JupyterLab Launcher.](../images/00_01_jupyterlab_example.png)
 
-Whilst you are welcome to make use of this environment, we will tend to stick to the simple notebook interface for the module activities.
+Whilst you are welcome to make use of the JupyterLab environment, we will tend to stick to the simple notebook interface for the module activities.
 
+
+The following cell contains Python code that can be executed by "running" the code cell. The code can produce two sorts of output:
+
+- display items rendered as the programme executes via `display()` or `print()` commands in the code;
+- a "cell output" value that displays the return value (if any) from the last statement in the cell.
+
+The code in the cell can be executed using the "Run" button in the notebook toolbar, as well as via keyboard shortcuts.
+
+(We will explore the mechanics of using the notebooks in more detail later on.)
+
+```python
+print("hello world...")
+
+my_variable = "value of my variable"
+my_variable
+```
 
 ### Notebook Extensions
 
