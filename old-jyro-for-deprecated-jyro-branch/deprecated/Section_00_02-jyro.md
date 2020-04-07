@@ -48,7 +48,7 @@ __TO DO: contextualise the robot with a photo and descrioption of a small hobby 
 ?? something about the actual pioneer robot ??
 
 
-![figure ../tm129-19J-images/tm129_rob_p1_f005.jpg](../tm129-19J-images/tm129_rob_p1_f005.jpg)
+![figure ../tm129-19J-images/tm129_rob_p1_f005.jpg](../images/tm129_rob_p1_f005.jpg)
 
 
 Figure 2.2 A LEGO Mindstorms robot buggy
@@ -59,7 +59,7 @@ Simon simulates simple robots such as ones that can be built with LEGO Mindstorm
 The robot in Figure 2.2 is built around the LEGO Mindstorms RCX ‘brick’ which is shown in more detail in Figure 2.3. Inside the RCX brick there is a microprocessor and other circuitry. Think of it as a small computer. Built into the brick are three ‘sensor input ports’ labelled 1, 2 and 3, and three ‘actuator output ports’ labelled A, B and C, which are capable of powering motors. 
 
 
-![figure ../tm129-19J-images/tm129_rob_p1_f021.jpg](../tm129-19J-images/tm129_rob_p1_f021.jpg)
+![figure ../tm129-19J-images/tm129_rob_p1_f021.jpg](../images/tm129_rob_p1_f021.jpg)
 
 
 Figure 2.3 The RCX controller ‘brick’
@@ -79,7 +79,7 @@ Although I have described the simulated robot in terms of a simple Lego robot, s
 
 Open the program `Move_a_robot` by using the menu option `File &gt; Open...`,<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+O</p></div> navigating to the folder `week-1`, selecting `Move_a_robot` and clicking `Open`.
 
-Run the program using the `Run &gt; Run` menu item;<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F5</p></div> alternatively click on the Run  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f024.jpg](../tm129-19J-images/tm129_rob_p1_f024.jpg)  button in the toolbar (Figure 2.4). Observe what happens to the robot in the `Simulator` window.
+Run the program using the `Run &gt; Run` menu item;<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F5</p></div> alternatively click on the Run  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f024.jpg](../images/tm129_rob_p1_f024.jpg)  button in the toolbar (Figure 2.4). Observe what happens to the robot in the `Simulator` window.
 
 You should see the robot move forwards, up the screen. Keep this program open as you will need to refer to it in the next section.
 
@@ -207,7 +207,7 @@ def avoidObstacle(robot):
 robot.brain = avoidObstacle
 ```
 
-![figure ../tm129-19J-images/tm129_rob_p1_f022.small.jpg](../tm129-19J-images/tm129_rob_p1_f022.small.jpg)
+![figure ../tm129-19J-images/tm129_rob_p1_f022.small.jpg](../images/tm129_rob_p1_f022.small.jpg)
 
 
 Figure 2.4 The RobotLab simulator toolbar buttons
@@ -244,7 +244,7 @@ When you first start RobotLab, it will be in ‘simulation mode’. However, Rob
 
 It is possible to operate the simulated robot in ‘show trail’ or ‘pen-down’ mode. This enables you to see the path the robot follows.
 
-Choose the `Simulator &gt; Show trail` menu item<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Alt, S, T</p></div> or click on the Show trail  ![inlinefigure ../tm129-19J-images/tm129_rob_p5_f014.jpg](../tm129-19J-images/tm129_rob_p5_f014.jpg)  button in the toolbar. Run the program again to see the robot’s trail.
+Choose the `Simulator &gt; Show trail` menu item<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Alt, S, T</p></div> or click on the Show trail  ![inlinefigure ../tm129-19J-images/tm129_rob_p5_f014.jpg](../images/tm129_rob_p5_f014.jpg)  button in the toolbar. Run the program again to see the robot’s trail.
 
 ---
 
@@ -259,7 +259,7 @@ If you don’t already have the `Move_a_robot` program open, reopen it now.
 The `Move_a_robot` program is displayed in the `Program` window as follows:
 
 
-![figure ../tm129-19J-images/tm129_rob_p1_f023.jpg](../tm129-19J-images/tm129_rob_p1_f023.jpg)
+![figure ../tm129-19J-images/tm129_rob_p1_f023.jpg](../images/tm129_rob_p1_f023.jpg)
 
 
 Figure 2.5 Listing: `Move_a_robot`
