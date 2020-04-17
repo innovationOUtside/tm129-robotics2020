@@ -8,80 +8,65 @@ In this section you will run some other RoboLab programs. The purpose is for you
 
 This activity demonstrates how to keep a robot inside a particular area bounded by a boxed area marked out on the floor of the world. 
 
-Open the program `Stay_inside` by using the menu option `File &gt; Open...`<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+O</p></div>, navigating to the folder `week-1` and selecting `Stay_inside`. A screen similar to Figure 3.1 should appear.
+Load the simulator package and then load and display the simulator widget:
 
+```python
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+```
 
-![figure ../tm129-19J-images/tm129_rob_p1_f10a.small.png](../tm129-19J-images/tm129_rob_p1_f10a.small.png)
+```python
+roboSim = eds.Ev3DevWidget()
+display(roboSim)
+```
 
+Select the `Loop` background which loads the robot in to the centre of a large rectangle drawn with thick black lines. 
 
-Figure 3.1 The `Stay_inside` program in RobotLab
+The following `Stay_inside` program causes the robot moves forwards until its light sensor detects the black contour, at which point the robot reverses direction. When it encounters the contour again it changes direction. In this way the robot shuttles backwards and forwards inside the contour indefinitely.
 
+Run the code cell to load the program into the simulator, then click on the simulator *Run* button; hhen you are ready to stop the program, click on the simulator *Stop* button.
 
-On the right the `Simulator` window shows the robot in the centre of a large rectangle drawn with thick black lines. The program is listed below in the text.
+```python
+%%sim_magic_preloaded roboSim
 
- Click on the Run button  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f024.jpg](../tm129-19J-images/tm129_rob_p1_f024.jpg) <div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F5</p></div> in the toolbar to run the program (or use the `Run &gt; Run` menu item). When you are ready to stop the program, click on the Stop  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f026.jpg](../tm129-19J-images/tm129_rob_p1_f026.jpg) <div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F8</p></div> button in the toolbar (see Figure 3.1) (or use the `Run &gt; Stop` menu). 
+# Stay inside
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
-The idea behind the `Stay_inside` program is that the robot moves forwards until its light sensor detects the black contour, and then the robot reverses direction. When it encounters the contour again it changes direction. In this way the robot shuttles backwards and forwards inside the contour indefinitely.
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 100:
+        tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
 
-The program code is shown below.
+At the start of the program, a `#` sign identifies the line as a comment line, in this case giving a very concise statement of the objective of the programme. Comments are "free text" areas that are not exeucted as lines of Python code. As such, they can be used to provide annotations or explanations of particular parts of the programme, or "comment out" lines of code that are unnecessary.
 
+The program starts by using a "tank drive" to drive the robot forwards at about half it's full speed (the left wheel and the right wheen are both powered on at 50% of their maximum speed).
 
-![figure ../tm129-19J-images/tm129_rob_p1_f027.jpg](../tm129-19J-images/tm129_rob_p1_f027.jpg)
+The `while True:` command means *do everything that follows for ever (or until the user stops the program)*. The `:` is *required* and it defines what to do if the tested condition evaluates as true.
 
+The next line is indented, and starts the definition of a code block, each line of which will be executed in turn. The lines of code that define the code block are indented to the same level. If the condition evaulated by the `while` statement was not true, then the code block would not be executed.
 
-Figure 3.2 Listing: `Stay_inside`
+The `print('Light_left: ' + str(colorLeft.reflected_light_intensity))` command prints the current value of the left light sensor, which is reading the "reflected light intensity" to the output display window. As you will see later, this value can also be viewed via a dynamically updated chart, as well as analysed "offline" in the Python notebook when the simulation run has finished.
 
+The next line in the code block, `if colorLeft.reflected_light_intensity < 40:`, compares a specific sensor reading, interpreted in a particular way, to a particular value (100). If the value is below that threshold, as it is when the robot is over the black like, the programme moves on to a new code block defined by lines of code that are further indented.
 
-comment :  STAY_INSIDE
+On the first line of code in that new code block, the robot drives *backwards* at half speed for 2 rotations of the wheels (`tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)`). (According to the [documentation](https://python-ev3dev.readthedocs.io/en/ev3dev-stretch/motors.html#ev3dev2.motor.MoveTank.on_for_rotations), *"if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn"*).
 
-output left_motor on A
+After the robot moves backwards, there is a comment line suggesting what the next executed line of code does (`# drive in a turn for 2 rotations of the outer motor`) and then the robot turns on the spot (`tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)`).
 
-output right_motor on C
+Finally, the robot is set to drive forwards again (`tank_drive.on(SpeedPercent(50), SpeedPercent(50))`) and the sequence is repeated, with the programme control flow looping back to the while statement and then working through each step in turn again. While the sensor reading is above 100, the robot keeps going. Every time it "sees" the black contour it reverses the direction of the motors, and then turns ebfore driving forwards again. In this way the simulated robot shuttles backwards and forwards, staying inside the area defined by the contour.
 
-sensor light_sensor on 2 is light as percent
-
-main
-
-      comment :  set motors going forward
-
-      forward [left_motor right_motor]
-
-      on [left_motor right_motor]
-
-      forever
-
-            comment :  wait for light_sensor to 'see' black line
-
-            if light_sensor &lt; 40
-
-                  then
-
-                        comment :  change direction and keep going
-
-                        reverse [left_motor right_motor]
-
-                        wait 100
-
- The start of the program is similar to `Move_a_robot`, but a light sensor is now configured by the `sensor` command. The declaration `sensor light_sensor on 2 is light as percent` tells RobotLab that the robot has a light sensor attached to input 2, giving values between 0% (black) and 100% (white). The light sensor is shown as a small blue square on the simulated robot.
-
-The `forever` command means ‘do everything that follows for ever (or until the user stops the program)’. So the program looks at the light sensor and if it reads less than 40%, which is what happens when the robot reaches the black contour, the direction of the motors is reversed and the robot goes in the opposite direction. 
-
-The expression `wait 100` is an example of a *delay*, which is used extensively in robotics. Here the delay means that the robot will be left driving for one second (100 × 1/100 second = 1 second), sufficient time for it to get clear of the line before the program resumes checking the light sensor. Can you see why this delay might be necessary?
-
- Remember that the computer ‘thinks’ much faster than a robot moves. Reversing the direction of the motors should make the robot go backwards, but if there were no delay before the light sensor took another reading, the robot’s light sensor might still be over the black line. In this case the light reading would still be less than 40% and the program would immediately reverse the direction of the motors again to make them go forwards; and once more, before the robot could move, the motors would be switched back. This would continue indefinitely, leaving the robot stuck, apparently not moving. 
-
-After the robot moves backwards for 100 × 1/100 seconds, the sequence is repeated. While the sensor reading is above 40% the robot keeps going. Every time it ‘sees’ the black contour it reverses the direction of the motors. In this way the simulated robot shuttles backwards and forwards, staying inside the area defined by the contour.
-<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Note-->
-You will see later that RobotLab has two apparently similar commands, `backward` and `reverse`, with rather different meanings. The `backward` command means ‘go backwards’ and the `reverse` command means ‘go in the opposite direction’. You can experiment with these commands later.
-</div>
 How do you think the simulated robot in this activity compares with a real robot?
-
----
 
 
 ### Viewing the stay inside test on a real robot
+
+<br/><br/>
+<div class='alert-danger'>TO DO: the programmes should work on an EV3 running [`python-ev3dev`](https://python-ev3dev.readthedocs.io/). A [Visual Studio Code extension for browsing ev3dev devices](https://github.com/ev3dev/vscode-ev3dev-browser) seems to provide an environment for running the `python-ev3dev` code on a real robot which is perhaps something worth exploring. *Note that VS Code can also run notebooks, although I'm not sure if the simulation widget will run in that environment.*</div>
+<br/><br/>
 
 The following video clip shows a simple Lego robot executing the `Stay_inside` program discussed above. 
 <!--MEDIACONTENT--><!--ENDMEDIACONTENT-->
@@ -89,13 +74,79 @@ You will notice that the real robot does not shuttle backwards and forwards as p
 
 In other words, real robots may have sloppy and relatively unpredictable mechanisms so that the same control commands from the same initial position may result in a variety of outcomes. For this reason, the RobotLab simulator has a noise feature that allows you to set random variations to the motor speeds and sensor readings. This ‘noise’ makes the simulated robot behave more realistically. It will be used in later Robot Lab sessions. 
 
----
 
+
+
+## Using Less Magic...
+
+In the previous program, the `tank_drive` and `tank_turn` elements are predefined by our use of the `%%sim_magic_preloaded` magic. This really is a bit like magic, because it allows us to write Python code that would not ordinarliy be valid code. The magic itself defines some essential Python code that is *prepended* (that is, added to the start of) out programme code before it is downloaded to the simulated robot.
+
+The following code cell uses a slightly less powerful magic, `%%sim_magic_imports`, that still masks some of the complexity in creating a valid Python programme although in this case it does require you to define the `tank_turn` and `tank_move` statements in turns of slightly lower level building blocks.
+
+As with the `Move_a_robot` programme, the `MoveSteering` and `MoveTank` commands are commands provided the `ev3dev` Python package and then configured to use particular outputs on the (simulated) robot (`OUTPUT_B` and `OUTPUT_C`).
+
+In addition, the light sensor is defined using the `ColorSensor` command to confgure the sensor attached to `INPUT_2` as a colour sensor. The light sensor is shown as small white circle contained within a grey square on the simulated robot.
+
+```python
+%%sim_magic_imports roboSim
+
+# Stay inside
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+
+colorLeft = ColorSensor(INPUT_2)
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 100:
+        tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
+
+<!-- #region -->
+## A Complete Python Programme
+
+
+The following code cell shows a fully defined Pyhton program. In this case, a series of "package import" statements appear at the start of the programme. Python packages are code libraries written to support particular activities.
+
+The core Python language includes a variety of packages that are distributed as part of the Python language, but additional packages can be written using core Python langauge elements, *or* Python commands imported from other additional packages, to build every moe powerful commands.
+
+In particular, the Python `ev3dev` package provides a range of language constructs that allow us to write a Python programme that can work with a Lego EV3 brick running the `ev3dev` operating system, or our `nbev3devsim` simulated robot.
+
+As you can see from the code cell below, which uses the minimal `%%sim_magic` magic to download just the contents of the cell to the simulator, in this case we `import` the custom elements we need `from` the `ev3dev` Python package that we then make use of in our programme. 
+<!-- #endregion -->
+
+```python
+%%sim_magic roboSim
+
+# Stay inside
+from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+from ev3dev2.sensor.lego import ColorSensor
+
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+colorLeft = ColorSensor(INPUT_2)
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 100:
+        tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
 
 ## 3.2 Activity: Investigating sensors
 
 
-In this activity you will experiment with a light sensor. The robot will use the light sensor to turn away from a light.
+In this activity you will experiment with a light sensor.
 
 
 This is similar to the Lego light sensor in Figure 3.3.
@@ -122,9 +173,66 @@ The simulated robot over a white background across which are drawn four broad gr
 
 The program code is:
 
+```javascript
+speechSynthesisInstance.cancel();
+```
 
 ![figure ../tm129-19J-images/tm129_rob_p1_f031.jpg](../tm129-19J-images/tm129_rob_p1_f031.jpg)
 
+```python
+%%sim_magic roboSim
+# Sensor_sim
+from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+from ev3dev2.sensor.lego import ColorSensor
+
+#import playsound
+
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#prev = colorLeft.reflected_light_intensity
+while True:
+    print('Colour: ' + str(colorLeft.reflected_light_intensity ))
+
+    #if prev!=colorLeft.reflected_light_intensity:
+        #Note that the simulator continues as the utterance is made
+        # and multiple utterances may be queued up.
+    #    playsound.say("Changed...")
+    #prev = colorLeft.reflected_light_intensity
+```
+
+```python
+#roboSim.results_log
+import pandas as pd
+
+def get_dataframe_from_datalog(datalog):
+    """Generate a datafrome from simulator datalog."""
+    df = pd.DataFrame(datalog)
+    if not df.empty:
+        df = df.melt(id_vars='index').dropna()
+        df['index'] = pd.to_timedelta(df['index']-df['index'].min())
+    return df
+
+df = get_dataframe_from_datalog(roboSim.results_log)
+df.head()
+```
+
+```python
+import seaborn as sns
+ax = sns.lineplot(x="index", y="value", hue='variable', data=df)
+```
+
+```python
+import matplotlib.pyplot as plt
+
+g = sns.FacetGrid(df, row="variable", height=5, aspect=2, sharey=False)
+g = g.map(plt.plot, "index", "value", marker=".");
+```
 
 Figure 3.5 Listing: `Sensor_sim`
 
@@ -213,6 +321,14 @@ Open the program `I_can_count`. This program has the following code.
 
 ![figure ../tm129-19J-images/tm129_rob_p1_f034.jpg](../tm129-19J-images/tm129_rob_p1_f034.jpg)
 
+```python
+%%sim_magic roboSim
+# I can count...
+import playsound
+
+for i in range(5):
+    playsound.say(str(i))
+```
 
 Figure 3.7 Listing: `I_can_count`
 
