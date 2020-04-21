@@ -1,41 +1,14 @@
- number of sample programs that you will use in your Robot Lab sessions. You will need to save these in a folder of your hard drive. You may already have a folder called `TM129` for your work on this module. I suggest you create a subfolder called `RobotLab samples` for the sample files that you are about to download. You may of course choose a different location, but you will need to find these files again as you work in future Robot Lab Sessions. 
-<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Saving your work-->
-As you work through future Robot Lab Sessions, you will often edit and extend my sample programs. I suggest you always save new work under a new file name so that you can go back to the original sample file. If you find you have inadvertently overwritten a sample file, you can download it again.
-</div>
-1. 
-Find the RobotLab sample programs in the Study resources section of the module website.
-
-
-2. 
-Save the zip file to a folder of your choice by right-clicking and choosing `Save Link As…` or `Save Target As…`.
-
-
-3. 
-Extract the files and folders in this zip. You should see a number of subfolders called `week-1`, `week-2`, etc.
-
-
-4. 
-You can now delete the zip file but you may wish to keep it in case you wish to restore one or more sample files.
-
-
----
-
-
 ## 1.6 Activity: The RoboLab Notebook Editable Text Environment
 
 
 In this short activity I will show you how to organise your RoboLab work environment. You won’t run any robot programs until the next activity.
 
-TO DO - this is a 101 in using the environment. We're in an md doc running in notebook, so can use this part of the doc interactively.
+---
+<div class='alert-danger'>TO DO - this is a 101 in using the environment. We're in an md doc running in notebook, so can use this part of the doc interactively. The workflow / layout may change, but that needs front-end js/ts/css dev and debug skills I donlt have (atm...). I'm working on MVP workflow atm, which may suck, but should work.</div>
 
 
-If you clicked on the the link to this document from the notebook homepage in a the RoboLab environment, it will have opened within the notebook user interface as an interactive notebook document.
+If you clicked on the the link to this document from a Jupyter notebook server homepage in the RoboLab environment, it will have opened within the notebook user interface as an interactive notebook document.
 
-```python
-!cat $CONDA_DIR/image_build.txt
-```
 
 ### A first look
 
@@ -179,7 +152,7 @@ A checkbox option in the extension's configuration panel optionally allows you t
 ### WYSIWYG "Text Editor" View
 If you really cannot get to grips with writing raw markdown, a WYSIWG editor is available.
 
-Enable the [`jupyter_wysiwyg`](/nbextensions/nbextension=jupyter_wysiwyg/index) extension from the notebook configuration menu. (You may find that access to it is disabled at first; at the top of the extensions configurator page, uncheck the *disable configuration for nbextensions without explicit compatibility* option.)
+Enable the [`jupyter_wysiwyg`](/nbextensions/nbextension=jupyter_wysiwyg/index) extension from the `nbextensions` notebook configuration tab on the notebook server homepage. (You may find that access to the *WYSIWYG text editor* extension is disabled at first; at the top of the extensions configurator page, uncheck the *disable configuration for nbextensions without explicit compatibility* option.)
 
 Save and reload your notebook. When you double click on a markdown cell to edit it, you should now see two buttons have appeared on the left-hand side of the cell, one with a `Rich Text Editing` tooltip when you hover over it, the other with a `Run Cell` tooltip.
 
@@ -188,7 +161,13 @@ The `Run Cell` button provides a convenient additional way of rendereing a markd
 The `Rich Text Editing` button provides a way of launching the rich text editor. This editor allows you to style your text, and immediately see the result, as you type. You can still see the raw mark-up text by rendering the cell and then double clicking on it to take it into the edit mode. However, you may find that the marked up text is not quite as clean as mark-up text: HTML tags are used to style the text and any previous markdown annotations will be converted to theitr HTML equivalents.
 
 
-## Creating New Markdown Text Cells
+## Creating New Cells
+
+To create a new cell in a notebook, click on the `+` button in the notebook toolbar. A new cell will be created directly below the current selected cell.
+
+By default, a new cell is created as a code cell. To convert the cell to a *markdown* cell type, change the cell type using the cell type drop-down list in the notebook toolbar from `Code` to `Markdown`.
+
+A keyboard shortcut — `ESC-M` (that is, the escape key followed by the letter `m`) — also converts a selected cell in *Edit mode* to the *markdown* cell type.
 
 
 ## Code Cells
@@ -205,20 +184,20 @@ When a cell has successfully completed executing, the run status indicator is co
 
 When a code cell is running, or waiting to run, it is highlighted with a light blue colour on the left hand side. A * character also indicates the status of the running cell.
 
-![Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator.](../images/00_01_cell_run_status_running.png)
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_status_running.png" width=400 />
 
 If you run all the cells in a notebook, all the cells yet to be run, as well as the running cell, are highlighted with a blue run status indicator and the * cell run number.
 
-![Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator.](../images/00_01_cell_run_status.png)
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_status.png" width=400 />
 
 
 If an error is raised that causes a code cell not to execute correctly, the run status indicator is coloured pink and an error message is show beneath the the cell in the code cell display area.
 
-![Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator.](../images/00_01_cell_run_error.png)
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_error.png" width=800/>
 
 Clicking on the arrow will at the end of the error messge will reveal the full error message.
 
-![Screenshot of notebook showing a code cell execution error with expanded error message.](../images/00_01_cell_run_error_message.png.png)
+<img alt="Screenshot of notebook showing a code cell execution error with expanded error message." src="../images/00_01_cell_run_error_message.png" width=800 />
 
 
 Run the following cells to see the indicators in action.
@@ -241,163 +220,97 @@ print("hello again"
 
 ### Displaying Code Line Numbers
 
-Sometimes it can be useful to display line numbers in a code cell to more easily reference or refer to a particular
+Sometimes it can be useful to display line numbers in a code cell to more easily reference or refer to a particular line of code. Line numbers can be toggled on and off within a particular code cell using the keyboard shortcut `ESC-L` (that is, *escape* and *l*).
+
+When a notebook is saved, the  line number toggled display settings are also saved.
+
+```python
+# Example of code cell line numbering
+
+# This is actually line 3...
+```
+
+Click in the above code cell to select it and practice toggling the line numbers on and off.
 
 
 ### Code Style
 
-To make code as readable as possible, the PEP8 style guide provides guidance on how to lay out your code. Code style guidance includes things like:
+To make code as readable as possible, the [Pyhton PEP8 style guide](https://www.python.org/dev/peps/pep-0008/) provides guidance on how to lay out your code so that it is easier to read. Code style guidance includes things like:
 
- - this 
- - that
+ - use of white space within lines and between lines
+ - naming conventions for function and variable names 
+ - maximum line lengths to maintain readability
+ 
+Throughout the notebooks, we have tried to use good practice, although PEP8 standards have not necessarily always been enforced. Various tools are available for warning about breaches of PEP8 style guidelines or even automatically formatting code so that it is style compliant, but these are disabled by default in these notebooks.
+
+*See [Notebook Code Linting](https://github.com/innovationOUtside/TM351_forum_examples/blob/master/Notebook%20Code%20Linting.ipynb) for more information about automatically linting code in Jupyter notebooks.*
 
 
 ## Creating New Code Cells
 
+Single click on this markdown cell to ensure that it has the focus and then create a new code cell by clicking on the `+` button in the notebook toolbar. A new cell will be created directly below the currently selected cell, whatever type of cell it is. By default, newly created cells are created as code cells. The cursor focus is automatically moved to the new cell, so once it is created you can immediately start typing code into it.
+
+__DO:__ *Click on the `+` button in the notebook toolbar to create a new code cell, entry `print('hello world')` and run the cell to execute the code and see the result.*
+
+Feel free to create and run your own notebook code cells to try out your own code examples. Remember, the notebooks *are yours*. So make full use of them...
+
+
+## How the simulator relates to the notebooks
+
+The simulator we are using is created as an interactive `ipywidget` that is embedded within a Jupyter notebook. In the current iteration, the layout is not ideal, but we are working on improving on it.
+
+The simulator runs as a Javascript programme in the browser tab associated with the notebook the simulator is embedded in. The simulator has various settings that can be configured within the simulator UI, or from the notebook commands that invoke it.
+
+*TO DO: there may also be magicked UIs for various settings; still to be decided.*
+
+
+Run the following code cell to load in an instance of the simulator and embed it within this notebook:
+
 ```python
-## Activity — Creating and Editing Your Own Markdown Cells
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+
+roboSim = eds.Ev3DevWidget()
+display(roboSim)
 ```
 
-## Activity — Highlighting Markdown Text
+Code is "downloaded" from a code cell in the notebook to the simulator by running the code cell with some special IPython *magic* in the first line of the cell.
+
+Run the following code cell to download the code to the simulator. Then click the *Run* button in the simulator to run the downloaded code there.
 
 ```python
-## Activity — Creating New Raw NBConvert Commentary Cells
+%%sim_magic_preloaded roboSim
+
+# Stay inside
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
 ```
 
-## Activity — Creating and Running Your Own Code Cells
+Only a single instance of the simulator should be embedded in any given notebook, although you may have different notebooks open each running their own embedded simulator. (It is generally not advisable to have multiple copies of *the same notebook* open in multiple windows. As the notebooks autosave, you may find that work you have created and saved from one notebook gets overwritten by an earlier version of the notebook in a different browser tab or window.
 
 
-The RobotLab program has two important windows – the `Simulator` window on the right and the `Program editor` window on the left. The `Program editor` window contains three different areas or ‘panes’.
-
- On the left of the `Program editor` is the `Command` pane which lists all the RobotLab commands. There are three different tabs which simply list the commands in different ways. The `Basic` tab has the most commonly used commands. The `By name` tab lists the full list in alphabetic order and is more convenient if you use the keyboard rather than the mouse. Try clicking the tabs<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Use the Tab and Shift+Tab keys to cycle among tabs</p></div> now; return to the `Basic` tab when you have finished.
-<!--ITQ-->
-
-#### Question
-
-What does the `By type` tab do?
-
-
-#### Answer
-
-The `By type` tab lists the full set of RobotLab commands, but grouped into similar types of command rather than in alphabetical order.
-<!--ENDITQ-->
-Below the `Command` pane is the `Key-Value` pane. This is used to change the detail of commands in programs. More on this later.
-
-To the right of the `Command` pane is a pane which lists the currently loaded program. We will also look at this in more detail later.
-
-On the far right is the `Simulator` window, which should currently show a view of a yellow robot seen from above.
-
----
-
----
-
-<!-- #region -->
 ### Alternative RoboLab User Environments
 
+The original `ev3devsim` simulator ran solely within a web browser (that is, it did not require any support from Jupyter tools). The embedded simulator has been extended and whilst many of the extensions could be integrated back into the original standalone simulator, they have not currently been so.
 
-__If we move to JupyterLab, or Voilà, there is more scope for controlling the layout of the RoboLab environment. For the initial treatment, let's just work with notebooks and focus on the code elements and see how well that works.__
+Withing the Jupyter ecosystem, using tools such as JupyterLab, or Voilà interactive dashboards/applications, there is more scope for controlling the layout of the RoboLab environment. For the initial treatment, however, we are just working with Jupyter notebooks.
 
-Below the `Program` window there are other minimised windows: `Controls`, `Data log`, and so on. The purpose of all these windows will be explained later.
-
- All these different windows can be closed, restored to view, maximised, minimised and moved around the screen. Try clicking<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Press Alt+Minus and then pick menu items</p></div> the different windows’ Restore  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f017.jpg](../tm129-19J-images/tm129_rob_p1_f017.jpg)  and Close  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f018.jpg](../tm129-19J-images/tm129_rob_p1_f018.jpg)  buttons, and dragging the windows around the screen until the layout looks completely different. 
-
----
-
----
-<!-- #endregion -->
-
-### Restoring the default window layout of RobotLab
-
-It is easy to get the default window configuration back. Simply click on `Window` in the `menu` bar,<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: To select menu items, press Alt, then cursor keys to select and press Enter, or press underlined letters</p></div> then the `Default layout` option, as illustrated in Figure 1.5. Alternatively, click on the Default layout  ![inlinefigure ../tm129-19J-images/tm129_rob_p1_f08a.gif](../tm129-19J-images/tm129_rob_p1_f08a.gif)  button in the toolbar.
+One advantage of using Jupyter notebooks is that we can retrieve logged data from sensors mounted on the robot in the simulator back into the notebook environment and then use the full range of Python charting and analysis tools to expore the data.
 
 
-![figure ../tm129-19J-images/tm129_rob_p1_f019.jpg](../tm129-19J-images/tm129_rob_p1_f019.jpg)
+### Configuring the Simulator Layout
+
+The simulator environment includes a range of user controls that can be used to configure the layout and view of the simulator user interface, as well as controlling operations performed within it. These include positioning the simulated robot, loading in different simulator backgrounds, loading obstacles into the simulated world, displaying status messages from the robot and dynamically charting logged sensor readings, as well as many other features.
+
+You will be introduced to these in more detail as and when they are required.
 
 
-Figure 1.5 Restoring the Default layout
+## Creating and Saving Your Own Code
 
+The activities hve been created within Jupyter notebooks using the embedded simulator. In many activities, you will have the opportunity to create and run your own programmes to run within the simulator, as well as within the notebook's own Python coding environment.
 
-The RobotLab Window menu containing the items: 
+Saving a notebook will save your code and any currently displayed cell outputs (the notebooks also autosave regularly), so you can close the notebook, shutdown the associated notebook process, and then restart the notebook and return to it later. 
 
- Default layout (highlighted) 
+Although the current simulator view, any other displayed widgets, and the internal state of the simulator and the notebook's own Python environment, are not saved, rerunning the code cells that create them will generate them afresh.
 
- Restore layout 
-
- Save layout 
-
- ------------- 
-
- 1 Simulator 
-
- 2 Program editor 
-
- 3 Controls 
-
- 4 Data log 
-
- 5 MindScript 
-
- 6 Variables 
-
- 7 Messages
-
-You can also restore and close different windows using the RobotLab `Window` menu in Figure 1.5. Try this now.
-
-It is useful to know how to control the windows in RobotLab. Otherwise you may lose or gain windows at inopportune times, and risk getting frustrated. 
-<!--ITQ-->
-
-#### Question
-
-If you have a layout that you find useful and would like to use it again, what would you do?
-
-
-#### Answer
-
-You can use the RobotLab `Window &gt; Save layout` menu to save the layout you have currently displayed. Then, next time you start RobotLab, use the `Window &gt; Restore layout` menu items to get it back.
-<!--ENDITQ-->
-When you have finished, click again on `Default layout` and you are ready to continue.
-
----
-
-
-## 1.7 Activity: Opening a program
-
-<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Instructions in detail-->
-In this activity I will show you how to open a RobotLab program, giving instructions in some detail. In later activities, I will simply ask you to open a particular example program and assume you can remember how to do it. You may need to refer back to this activity if you can’t quite remember what to do.
-</div><div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Windows XP in figures-->
-In these instructions, I will be illustrating what you see with screen dumps that were taken on a computer running Windows XP. If you are running a different version of the operating system the details of what you see are likely to look slightly different. I hope you will still be able to follow these instructions. If you get into difficulty, try asking for advice on the module Technical Help forum.
-</div>
-Click the RobotLab `File` menu and then choose `Open...`.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+O</p></div> This will open the standard Windows file dialog.
-
-Navigate to the folder `week-1` of the RobotLab sample programs you downloaded earlier. You should see the following list of programs.
-
-
-![figure ../tm129-19J-images/tm129_rob_p1_f09a.small.png](../tm129-19J-images/tm129_rob_p1_f09a.small.png)
-
-
-Figure 1.6 The Windows file `Open...` dialog with sample files in `week-1` shown
-
-
-Select the file `Move_a_robot` and click the `Open` button.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Enter</p></div>
-
-
-![The RobotLab environment, described in the text.](../tm129-19J-images/tm129_rob_p1_f07a.small.png)
-
-
-Figure 1.7 RobotLab with the `Move_a_robot` program loaded
-
-
-This will open the program `Move_a_robot` (Figure 1.7). 
-
-That’s it! You are ready to run your first robot program – but I won’t tell you how to do that until the next activity.
-
-To open a different program, you can simply choose `File &gt; Open...` again.
-
-To exit from RobotLab, just choose `File &gt; Exit`.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Alt+F4 will exit RobotLab at any time</p></div>
-
-If you have made changes to your program, RobotLab will first prompt to save your work; for now, just choose No.
-
+As well as using the provided notebooks, you are also encouraged to create and save your own notebooks and use the simulator for your own exercises.

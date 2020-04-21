@@ -52,7 +52,7 @@ Markdown and code cells can be edited and saved interactively via the notebook's
 
 As well as the notebook environment, a more complex "lab" or "integrated development" style interface, *Jupyterlab*, is also available.
 
-The following shows a JupyterLab set up based around the simple `Jyro` robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the "torn off" simulator output window display mode shown below.
+The following shows a JupyterLab set up based around another notebook based simulator, the  `Jyro` robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the "torn off" simulator output window display mode shown below.
 
 ![Example of the JupyterLab user interface, showing the file navigator, an open notebook, a torn off cell output and the JupyterLab Launcher.](../images/00_01_jupyterlab_example.png)
 

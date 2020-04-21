@@ -17,7 +17,7 @@ The [`nbev3devsim`](https://github.com/innovationOUtside/nbev3devsim) package bu
 
 
 <br/><br/><div style='alert-warning'>Screenshots should show different layouts; eg with chart showing sensor traces and logs in message window; simpler output</div><br/>
-![Screenshot of nbev3devsim simulator embedded in a Jupyter notebook showing the simualr run and stop buttons, the simulator word canvas, a sensor log chart display and the simulator output message window](../images/nbev3devsim_in_notebook.png)
+![Screenshot of nbev3devsim simulator embedded in a Jupyter notebook showing the simulator run and stop buttons, the simulator word canvas, a sensor log chart display and the simulator output message window](../images/nbev3devsim_in_notebook.png)
 
 
 The following screenshot shows a notebook code cell that includes a `%%sim_magic` IPython magic invocation so that the contents of the cell are downloaded to the simulator when the cell is run:
