@@ -1,5 +1,19 @@
 # 4 RobotLab’s simulator remote control
 
+The original RobotLab simulator included a simple remote control for controlling a real, as well as simulated, robot in a direct, user-controlled interactive way.
+
+The remote control activities provided a way of developing familiarity with how to control the robot prior to moving on to programmatic control.
+
+Neither the current version of the `nbev3devsim` simulator, nor the original `ev3devsim` on which it was based, support a direct remote control interface.
+
+Whilst future versions of the simulator may be extended to include remote control operation, the following activity descriptions from the original RobotLab activities, are retained here for historical interest only.
+
+
+---
+
+# NOTES BELOW OF HISTORICAL INTEREST ONLY
+
+---
 
 
 ## 4.1 Activity: Remote control
