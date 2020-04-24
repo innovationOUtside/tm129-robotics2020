@@ -21,6 +21,10 @@ pandas-vet
 ## Autorepair
 autopep8
 
+
+#Simulator
+git+https://github.com/innovationOUtside/nbev3devsim.git
+
 #Updates
 ipywidgets>=7.5.0
 nbconvert~=5.5.0
@@ -41,6 +45,11 @@ plotly
 jupyter_contrib_nbextensions
 jupyter-wysiwyg
 
+#Python tutor
+nbtutor
+
+# Drawing
+drawSvg
 
 #Robot simulator demos
 jyro
