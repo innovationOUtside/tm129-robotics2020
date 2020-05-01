@@ -19,11 +19,13 @@ After studying RoboLab you should be able to:
 
 * manipulate simple programs in RoboLab (e.g. modify the programs to give different behaviours and write your own simple robot control programs).
 
-If you already know something about computer programming or robotics you will have the opportunity to go further than this. 
+If you already know something about computer programming or robotics we will also provide you with links to various extension activities that you can use to develop your skill further.
+
+Note that the purpose of these activities is *not* to teach you how to write code in the Python programming language specifically, nor to provide you with an introductory course in computer programming in general. Instead, the intention is show you how we can use building blocks of code to programme a simple simulated robot in order to perform a range of simple tasks. The *programming* task is often more to do with decomposing a problem into simple steps we know how to do than it is writing syntactically correct Python code. So if something new appears in one of the programmes we provide you with in an unexplained way, *DON'T PANIC*. Accept it as a black box that does *something*, and go with it; a fuller explanation will often appear later.
 
 The lab sessions each week consist of exercises using a simulated robot. The simulated robot is based on a small mobile robot with a number of sensors. Robots like this are available at low cost and many are within the reach of amateur enthusiasts.
 
-RoboLab is accessed using a Jupyter environment presented via a web browser. Many activities are presented through interactive Jupyter notebooks and make use of a simple graphical robot simulator.
+RoboLab itself is accessed using a Jupyter environment presented via a web browser. Many activities are presented through interactive Jupyter notebooks and make use of a simple graphical robot simulator.
 
 
 ### The Jupyer Notebook Environment
@@ -90,3 +92,10 @@ You are welcome to explore the available extensions, or even add further ones of
 
 
 
+
+
+## Addendum
+
+At the end of some notebooks, there may be an *Addendum* section. These sections are *optional* as far as the module goes, and you are not necessarily expected to, let alone required to, study them, read through them, or even glance at them at all.
+
+In particular, the addendum sections provide additional context or explanation not directly relevant to the module but which may be of interest to the more curious or technically minded amongst you. In some cases, the sections are there to explore in a little more detail how a particular activity or notebook feature works behind the scenes; in other cases, they may hint at other ways in which what you have learned may be applied to other contexts not directly associated with programming robots.
