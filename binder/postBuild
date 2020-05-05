@@ -16,8 +16,8 @@ jupyter nbextensions_configurator enable --$INSTALL_PREFIX
 jupyter nbextension enable skip-traceback/main --$INSTALL_PREFIX
 ### Collapsible headings can help in notebook user interaction design
 jupyter nbextension enable collapsible_headings/main --$INSTALL_PREFIX
-### Codefolding may be useful
-jupyter nbextension enable codefolding/main --$INSTALL_PREFIX
+### Codefolding may be useful BUT it interferes with nbtutor...
+#jupyter nbextension enable codefolding/main --$INSTALL_PREFIX
 ### Allow users to highlight elements
 jupyter nbextension enable highlighter/highlighter --$INSTALL_PREFIX
 
@@ -55,6 +55,9 @@ jupyter serverextension enable --py nbzip --$INSTALL_PREFIX
 jupyter nbextension install --py nbzip --$INSTALL_PREFIX
 jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 
+## nbtutor
+jupyter nbextension install --py nbtutor --$INSTALL_PREFIX
+jupyter nbextension enable --py nbtutor --$INSTALL_PREFIX
 
 ## multi-outputs
 ### Cell status indicators.

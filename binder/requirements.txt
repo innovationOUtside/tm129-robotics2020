@@ -21,13 +21,15 @@ pandas-vet
 ## Autorepair
 autopep8
 
-
 #Simulator
 git+https://github.com/innovationOUtside/nbev3devsim.git
 
+#Tutor
+nbtutor
+
 #Updates
 ipywidgets>=7.5.0
-nbconvert~=5.5.0
+nbconvert>=5.5.0
 
 #Simulator package requirements
 numpy #requirement of: jyro
@@ -40,6 +42,7 @@ voila
 pandas
 matplotlib
 plotly
+seaborn
 
 # Notebook extensions
 jupyter_contrib_nbextensions
@@ -52,4 +55,5 @@ nbtutor
 drawSvg
 
 #Robot simulator demos
+git+https://github.com/innovationOUtside/nbev3devsim.git
 jyro
