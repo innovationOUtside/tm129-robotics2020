@@ -53,6 +53,9 @@ jupyter serverextension enable --py nbzip --$INSTALL_PREFIX
 jupyter nbextension install --py nbzip --$INSTALL_PREFIX
 jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 
+## nbtutor
+jupyter nbextension install --py nbtutor --$INSTALL_PREFIX
+jupyter nbextension enable --py nbtutor --$INSTALL_PREFIX
 
 ## multi-outputs
 ### Cell status indicators.
