@@ -33,4 +33,4 @@ Any files in the local `TM129` directory on your host computer should appear in 
 
 ## Teaching Materials
 
-The repository also contains drafts of the practical activity teaching materials. These materials are "unpublished" and *©The Open University, 2020*; they are posted here purely to support commentary and review during development. The initial draft of the materials is essentially a recasting of the original materials and activities into a form that uses a new user environment (*Jupyter notebooks*) and new simulation environment (`Jyro`).
+The repository also contains drafts of the practical activity teaching materials. These materials are "unpublished" and *©The Open University, 2020*; they are posted here purely to support commentary and review during development. The initial draft of the materials is essentially a recasting of the original materials and activities into a form that uses a new user environment (*Jupyter notebooks*) and new simulation environment ([`nbev3devsim`](https://github.com/innovationOUtside/nbev3devsim), based on [`ev3devsim`](https://github.com/QuirkyCort/ev3dev-sim)).
