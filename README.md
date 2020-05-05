@@ -13,7 +13,7 @@ You can explore the contents of this repository via interactive Jupyter notebook
 
 To run the environment on your own computer, you need to do the following:
 
-- install Docker
+- install Docker onto your computer; you can download the installation files from the Docker website: [Get Docker](https://docs.docker.com/get-docker/)
 
 - open a terminal / command prompt in your desktop; from the command prompt, do the following:
   - create a working directory / folder to work in by entering the command: `mkdir TM129`;
