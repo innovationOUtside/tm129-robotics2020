@@ -34,7 +34,9 @@ rm -r accessibility_toolbar
 #jupyter nbextension enable accessibility_toolbar/main --$INSTALL_PREFIX
 #jupyter nbextension disable accessibility_toolbar/main --$INSTALL_PREFIX
 
-
+#nbtutor
+jupyter nbextension install --overwrite --py nbtutor
+jupyter nbextension enable --py nbtutor
 
 ## Graffiti
 ### Support for interactive intra-notebook tutorials

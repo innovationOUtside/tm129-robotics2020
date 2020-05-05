@@ -21,6 +21,9 @@ pandas-vet
 ## Autorepair
 autopep8
 
+#Simulator
+git+https://github.com/innovationOUtside/nbev3devsim.git
+
 #Tutor
 nbtutor
 
@@ -45,6 +48,11 @@ seaborn
 jupyter_contrib_nbextensions
 jupyter-wysiwyg
 
+#Python tutor
+nbtutor
+
+# Drawing
+drawSvg
 
 #Robot simulator demos
 git+https://github.com/innovationOUtside/nbev3devsim.git

@@ -1,3 +1,6 @@
 #Utilities
 zip # Handy if students need to zip files themselves for download / export
 unzip #This should already be installed
+
+# Drawing
+libcairo2
