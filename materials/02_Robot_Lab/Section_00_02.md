@@ -1,23 +1,87 @@
+```python
+# Run this cell to set up the robot simulator environment
+
+#Load the nbtutor extension
+%load_ext nbtutor
+
+#Reset the notebook style
+from IPython.core.display import display, HTML
+
+display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
+
+
+#Launch the simulator
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+
+roboSim = eds.Ev3DevWidget()
+display(roboSim)
+roboSim.element.dialog();
+```
+
 # 3 Branches
 
 
-So far we have concentrated on sequential programs. A sequential program will always behave in the same way, but to be useful a robot program will often need to make decisions and behave differently in different circumstances. To do this, the program has to have alternative *branches*. Python provides an `if...then...else` statement to do just that, and you will see how it is used in the following activities. 
+So far we have concentrated mainly on sequential programs, where the flow of control proceeds through the program statements in linear sequence, except when it encounters loop element where the control flow is redirected back "up" the program to the start of a loop block.
+
+In the previous notebook, you saw how the conditional `if..` statement could be used to optionally pass control to a set of instructions in the sequential programme *if* a particular condition was met.
+
+The `if...` statement fits the the sequential program model by redirecting control flow, albeit briefly, to a set of "extra" commands if the conditional test evaluates true.
+
+A sequential program will always follow the same sequentially order path. But to be useful, a robot program will often need to make decisions and behave differently in different circumstances. To do this, the program has to have alternative *branches* in the programme flow where we can follow different courses of actions depending on some conditional test.
+
+Python provides an `if..else..` statement to do just that, and you will see how it is used in the following activities.
+
+*In other programming languages, this may often be referred to as an `if...then...else...` construct. In Python, the "then" is assumed.*
 
 
 ## 3.1 Activity: Detecting black and grey
 
 
-Open the `Branch` program. Run the program several times with the robot moved to different starting positions. 
+Load the *Grey and black* background into the simulator.
 
+Download the programme to the simulator and then run it several times with the robot moved to different starting positions.
 
-![figure ../tm129-19J-images/tm129_rob_p3_f010.small.png](../tm129-19J-images/tm129_rob_p3_f010.small.png)
+What does the programme cause the robot to do?
 
+```python
+%%sim_magic_preloaded roboSim
 
-Figure 3.1 The branch program
+import playsound
 
+# Configure a light sensor
+colorLeft = ColorSensor(INPUT_2)
 
-The program ‘Branch’ loaded into RobotLab. The Program Editor contains the listing below. The Simulator window shows the robot positioned beneath and facing two broad horizontal lines across the top. The first line is divided into three areas: from left to right, these are pale grey, black and mid grey. Above this is a second line which is all black.
-<!--ITQ-->
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+
+#Check the light sensor reading
+while sensor_value == 255:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity
+    # and display it
+    print(sensor_value)
+
+# When the reading is below 255
+# we have started to see something.
+# Drive onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.1)
+
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+# and display it
+print(sensor_value)
+
+# Now make a decision about what we see
+if sensor_value < 128:
+    playsound.say("I see black")
+else:
+    playsound.say("I see grey")
+```
 
 #### Question
 
@@ -26,233 +90,133 @@ What does the robot do?
 
 #### Answer
 
-The robot (Simon) moves forward over the white background until it reaches the grey or black area. If the background is black, Simon says ‘black’; otherwise, Simon says ‘grey’. 
-<!--ENDITQ-->
+*Click the arrow in the sidebar to reveal the answer.*
 
-![figure ../tm129-19J-images/tm129_rob_p3_f011.png](../tm129-19J-images/tm129_rob_p3_f011.png)
 
+The robot moves forward over the white background until it reaches the grey or black area. If the background is black, the robot says *black*; otherwise, it says *grey*. 
 
-Figure 3.2 Flowchart for the branch program
+The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 255). When the light sensor reading goes below the white background value of 255, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
 
 
-The flowchart shows that the program branches to give two alternative paths of execution. In one of these, Simon will say ‘black’ and in the other Simon will say ‘grey’. To decide which branch is taken, a *condition* is checked; in this case the condition is whether the light sensor reading is less than 30. 
+### Working through the programme flow
 
-The flowchart (Figure 3.2) shows that the program branches to give two alternative paths of execution. In one of these, Simon will say ‘black’ and in the other Simon will say ‘grey’. To decide which branch is taken, a *condition* is checked; in this case the condition is whether the light sensor reading is less than 30. 
+The following flow chart shows how the flow of control passes through the programme.
 
+![](https://mermaid.ink/img/eyJjb2RlIjoiXG5ncmFwaCBURFxuICAgIEEoU3RhcnQpIC0tPiBCW01vdmUgZm9yd2FyZHNdXG4gICAgQiAtLT4gQ3tMaWdodCA9PSAyNTV9XG4gICAgQyAtLT4gfFllc3wgRFtEaXNwbGF5IHJlYWRpbmddXG4gICAgRCAtLT4gQ1xuICAgIEMgLS0-IHxOb3wgRVtEcml2ZSBmb3J3YXJkPGJyLz5hIHNob3J0IHdheV1cbiAgICBFIC0tPiBGe0xpZ2h0IDwgMTI4P31cbiAgICBGIC0tPiB8WWVzfCBHW1NheSAnYmxhY2snXVxuICAgIEYgLS0-IHxOb3wgSFtTYXkgJ2dyZXknXVxuICAgIEcgLS0-IEkoRW5kKVxuICAgIEggLS0-IElcbiAgICBcbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
-![figure ../tm129-19J-images/tm129_rob_p3_f012.png](../tm129-19J-images/tm129_rob_p3_f012.png)
+Although the `while` command does appear to offer some sort of branch like behaviour, will still think of it as a sequential style operator becuase the flow of control keeps trying to move in the same forwards direction.
 
+In the branching `if..else..` operator, the program control flow takes one of two different "forward flowing" paths depending on whether the conditional statement evaluated as part of the `if..` statement evaluates true or false.
 
-Figure 3.3 Listing: Branch
+If it evaluates `True`, then the statements in the first "if" block of code are evaluate; if the condition evaluates `False`, then the statements in the `else` block are evaluated. In both cases, contorl then flows forwards to the next statement after the `if..else..` block.
 
+<!-- #raw -->
+# Mermaind.js code
 
-comment : if-then-else branching program
+graph TD
+    A(Start) --> B[Move forwards]
+    B --> C{Light == 255}
+    C --> |Yes| D[Display reading]
+    D --> C
+    C --> |No| E[Drive forward<br/>a short way]
+    E --> F{Light < 128?}
+    F --> |Yes| G[Say 'black']
+    F --> |No| H[Say 'grey']
+    G --> I(End)
+    H --> I
+    
+<!-- #endraw -->
 
-output left_motor on A
+## Activity: Stepping Through An `if..else...` Statement
 
-output right_motor on C
 
-sensor light_sensor on 2 is light as percent
+In this activity we will look at another program to explore how `if...else..` works in more detail. 
 
-const say_black = 25
+Inspect the code in the following cell? If you run the code cell, what do you think will happen?
 
-const say_grey = 26
 
-const say_light_grey = 27
+*Double click this cell to edit it and make your prediction here.*
 
-const say_dark_grey = 28
 
-main
+Once you have made your prediction, run the following cell, and in the markdown cell beneath it, record what happened and how it compared to your prediction.
 
-      comment Add statements here...
+*You may find it informative to use `nbtutor` to step through each line of code in turn to see how the programme flow progresses. To do this, uncomment the `%%nbtutor` magic in the first line of the code cell by deleting the `#` at the start of the line before running the code cell.*
 
-      forward [left_motor right_motor]
+```python
+#%%nbtutor --reset --force
+x = 1
 
-      on [left_motor right_motor]
+if x == 1:
+    print("x equals 1")
+else:
+    print("x does not equal 1")
+    
+print("All done...")
+```
 
-      while light_sensor &gt; 90
+*Double click this cell to edit it and record here what happened when you ran the code in the above cell. Did its behaviour match your prediction?*
 
-            comment (keep moving).
 
-      if light_sensor &lt; 30
+What do you think will happen when you run the following code cell?
 
-            then
+Run the cell and use *nbtutor* to step through the programme. How does the programme flow differ from the case where `x` had the value `1`? 
 
-                  comment Add statements here...
+```python
+%%nbtutor --reset --force
+x = 2
 
-                  send say_black
+if x == 1:
+    print("x equals 1")
+else:
+    print("x does not equal 1")
 
-            else
+print("All done...")
+```
 
-                  comment Add statements here...
+### Discussion
 
-                  send say_grey
+Click the arrow in the sidebar to reveal my observations.
 
-      off [left_motor right_motor]
 
-Turning to the code, you can see the `if…then…else` statement. It has two branches: one hanging from `then`, the other hanging from `else`. The condition (here `light_sensor &lt; 30`) is used to decide which branch to take. If the condition is *true* then the `then` branch is taken, the `send say_black` statement is executed and we hear ‘black’. Otherwise, (i.e. if the condition is *false*), the `else` branch is taken, the `send say_grey` statement is executed and we hear ‘grey’. 
+In the cell where `x=1`, I predicted that the program would print the message *'x equals 1'* and then the messge *'All done...'*.
 
-Note that, whichever branch is taken, execution continues with the statement following the `if…then…else` statement. Here it is simply an `off` statement to ensure that the motors are turned off. It can sometimes be useful to hide the detail in the `if…then…else` statement so that you can see the overall shape of the program. <div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Cursor key Left/Right or use -/+/* on numeric keypad to collapse, expand, or expand all</p></div>Click on [-] besides `if` to hide the detail; click again on [+] to reveal the detail. 
+Viewing the trace, I could see how the programme started by initialising the `x` variable to the value `1`, then checked whether `x==1` (that is, whether `x` was equal to `1`); becuase it was, the programme then moved onto the `print("x equals 1")` statement and printed the first message, then programme flow continued to the first instruction after the `if...else...` block, which was the statement that printed the *'All done...'* message.
 
+When I ran the programme with a value of `x` other then `1`, the control passed from the `if...` statement, where the conditional test evaluated as `False`, to the first line in the `else..` block, which printed the message *'x does not equal '*, before moving on to the first line after the `if..else..` block as before.
 
-## 3.2 Activity: A program with two branches
 
+## An `if..` without an `else...`
 
-In this activity we will look at another program to explore how `if…then…else` works in more detail. 
 
-Open the `Two_branches` program. The program is shown below. 
+It is sometimes useful to have just a single branch to the `if` statement. Python provides a simple `if...` statement for this purpose.
 
+Run the following code cell as it stands, with the `x` variable taking the intial value `1` (`x=1`). Can you predict what will happen?
 
-![figure ../tm129-19J-images/tm129_rob_p3_f013.png](../tm129-19J-images/tm129_rob_p3_f013.png)
+```python
+#%%nbtutor --reset --force
+x = 1
 
+print("Are you ready?")
 
-Figure 3.4 Listing: Two_branches
+if x == 1:
+    print("x equals 1")
 
+print("All done...")
+```
 
-comment : Program with two branches
+Try to predict what will happen if you change the initial value and run the cell again. Was your prediction correct?
 
-output left_motor on A
+Uncomment the *%%nbtutor* magic and run the code cell using different values of `x`, observing how the program flow progresses in each case.
 
-output right_motor on C
 
-var x = 1
+### Discussion
 
-main
+*Click on the arrow in the sidebar to reveal my observations.*
 
-    comment : begin the main program =========
 
-    send x
+With the initial value of the variable `x` set to `1` (`x = 1`) the program displayed the messages *Are you ready?*, *x equals 1* and *All done* as the `if ...` statement evaluated the `x == 1` test condition as `True` and passed control *into* the `if..` block.
 
-    wait 100
-
-    comment : the if-then-else statement follows ==
-
-    if x = 1
-
-        then
-
-            comment :  x equals 1 is true
-
-            forward [left_motor right_motor]
-
-        else
-
-            comment : x equals 1 is false
-
-            backward [left_motor right_motor]
-
-    comment :  the rest of the program ==========
-
-    on [left_motor right_motor] for 200
-
-    comment :  end of program ================
-<!--ITQ-->
-
-#### Question
-
-Can you predict what the robot will do when this program is run? 
-
-Run the program to confirm your prediction; then see my answer. 
-
-
-#### Answer
-
-This program will drive the robot a short distance. However, the direction in which it moves can be either forward or backward. The decision about direction is made by checking the value of a variable. If the variable is equal to 1 then the motors are set in the forward direction; otherwise, they are set in the backward direction. Then the motors are turned on for two seconds, making the robot move. A more detailed explanation is given below these questions.
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Which branch of the `if…then…else` statement is executed when the program is run? 
-
-
-#### Answer
-
-Single-step through the program to confirm your prediction. Click the single-step  ![inlinefigure ../tm129-19J-images/tm129_rob_p4_f012.gif](../tm129-19J-images/tm129_rob_p4_f012.gif)  button in the toolbar, or use the `Run &gt; Step` menu or its shortcut.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F6</p></div>
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Change the initial value of `x` to 0. Which branch will now be executed? How will the robot behave? 
-
-
-#### Answer
-
-You change the initial value of `x` by selecting that `var x = 1` statement, and then changing the initial value to 0. Single-step through the program to see which execution path is taken and how the robot behaves (see the description that follows). You may find it useful to open the `Variables` window to check the value of `x` just before the `if` statement is executed. 
-<!--ENDITQ-->
-This program will drive the robot a short distance. However, the direction in which it moves can be either forward or backward. The decision about direction is made by checking the value of a variable. If the variable is equal to 1, the motors are set in the forward direction; otherwise, they are set in the backward direction. Then the motors are turned on for two seconds, making the robot move.
-
-In more detail, the program works as follows. The initial few statements configure the robot and also declare a variable `x` and set its initial value. The first few lines of the `main` part of the program use `send` to make RobotLab speak the current value of `x`. The `if…then…else` statement follows. If `x` is equal to 1, then the statements following `then` are executed and the motors are set to run forward. If the test `x = 1` is not true (that is, `x` has some value other than 1), the statements following `else` are executed and the motors are set to run backward. Finally, execution continues with the statements following the `if…then…else` construct and the motors are turned on for two seconds, driving the robot.
-
-
-## 3.3 Activity: A program with an optional branch
-
-
-It is sometimes useful to have just a single branch to the `if` statement. RobotLab provides an `if…then` statement for this purpose. Open the `One_branch` program; it is shown below. 
-
-
-![figure ../tm129-19J-images/tm129_rob_p3_f014.png](../tm129-19J-images/tm129_rob_p3_f014.png)
-
-
-Figure 3.5 Listing: One_branch
-
-
-comment : Program with optional branch
-
-output left_motor on A
-
-output right_motor on C
-
-var x = 1
-
-main
-
-    comment : begin the main program =========
-
-    send x
-
-    wait 100
-
-    comment : the if-then statement follows ======
-
-    if x = 1
-
-        then
-
-            forward [left_motor]
-
-            backward [right_motor]
-
-            on [left_motor right_motor] for 20
-
-    comment :  the rest of the program ==========
-
-    forward [left_motor right_motor]
-
-    on [left_motor right_motor] for 200
-
-    comment :  end of program ================
-<!--ITQ-->
-
-#### Question
-
-Can you predict what the robot will do when this program is run? 
-
-
-#### Answer
-
-Run or single-step the program to confirm your prediction; then see my discussion below. 
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Change the initial value of `x`. How will the robot behave? 
-
-
-#### Answer
-
-Run or single-step the program to confirm your prediction. 
-<!--ENDITQ-->
-In this case the robot always drives forward for two seconds. However, if the variable `x` is equal to 1, the robot will spin by a small amount first and therefore head in a different direction. This extra step is the `then` branch of the `if` statement. It will be executed only if the condition `x = 1` is true; otherwise it will be skipped and execution will continue following the entire `if…then` statement. 
+When `x` was initialised to a different value, for example as `x = 2`, only the messages *Are you ready?* and *All done* were displayed as the `if..` conditional test failed and redirected control flow to the first statement *after* the `if..` block.
 
 
 ## 3.4 Activity: Combining loops and branching statements 

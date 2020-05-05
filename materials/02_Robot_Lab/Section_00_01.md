@@ -275,9 +275,9 @@ print('All done...')
 ```
 
 <!-- #region -->
-### Conditional Tests Using the Branch Construct, `if`...
+### Conditional Tests Using the Conditional Construct, `if`...
 
-In the previous programme, you may have noticed another new statement, an `if` statement. This is another sort of conditional statement, often referred to as a *branch*. The `if` statement will test a logical condition and if it evaluates as `True` programme flow will pass to any statements contained within the `if` statement block.
+In the previous programme, you may have noticed another new statement, an `if` statement. This is another sort of conditional statement. The `if` statement will test a logical condition and if it evaluates as `True` programme flow will pass to any statements contained within the `if` statement block.
 
 ```python
 if LOGICAL_TEST_STATEMENT:
@@ -567,7 +567,7 @@ In this notebook, you have seen how we can control the way in which programme st
 Regarding the programme control flow, you have seen how:
 
 - the `for..in..` loop allows a the programme to work through a set of statements in the loop body once for each item in a list of values or "iterator" construct;
-- the `if...` branch command checks a logical condition once and once only; if the tested condition evaluates true, control passes inside the block, and then continues after the if block. If the condition evaluates as false, control passes immediately to the statement after the if block;
+- the `if...` conditional command checks a logical condition once and once only; if the tested condition evaluates true, control passes inside the block, and then continues after the if block. If the condition evaluates as false, control passes immediately to the statement after the if block;
 - the `while...` loop allows us to repeatedly test a condition, and if it is found to be true, pass control to a sequnece of instructions inside the while block. Once those instructions have been executed, control is passed back the top of the while loop and the test condition is evaluated again. If the while condition evaluates as false, control passes to the first statement after the while block.
 
 Control flow in `for` and `while` loops can also be interrupted using `continue` and `break` statements.
