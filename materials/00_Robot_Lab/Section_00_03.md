@@ -50,7 +50,7 @@ Run the code cell to load the program into the simulator, then click on the simu
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Stay inside
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
@@ -115,7 +115,7 @@ In addition, the light sensor is defined using the `ColorSensor` command to conf
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_imports roboSim
+%%sim_magic_imports
 
 # Stay inside
 tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
@@ -148,7 +148,7 @@ As you can see from the code cell below, which uses the minimal `%%sim_magic` ma
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 
 # Stay inside
 from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
@@ -199,7 +199,7 @@ Here's the complete programme:
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # Sensor_sim
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -220,7 +220,7 @@ We can also use the `%%sim_magic_preloaded SIMULATOR` magic to preload the drive
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # Sensor_sim preloaded
 
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
@@ -396,7 +396,7 @@ Run the following code cell to download the programme to simulator and then run 
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # Say hello
 import playsound
 
@@ -495,7 +495,7 @@ Run the following code cell to download the programme to the simulator and then 
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # I can count...
 import playsound
 
@@ -531,7 +531,7 @@ Run the cell to download the programme to the simulator, and then run it in the 
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # Count from 1 to 5 inclusive
 
 # ADD YOUR CODE HERE
@@ -560,7 +560,7 @@ We can now create a programme that counts fom one to five inclusive:
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # I can count from one to five inclusive...
 import playsound
 
@@ -578,7 +578,7 @@ To count from ten to one hundred in tens, we need to add an additional step valu
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic roboSim
+%%sim_magic
 # I can count from ten to one hundred in tens...
 import playsound
 
@@ -601,7 +601,7 @@ Reset the robot location in the simulator, run the following cell to download th
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # Onto a band...
 import playsound
 
@@ -644,7 +644,7 @@ Reset the robot location, donwload the program to the simulator and run it there
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # On and off band...
 import playsound
 
@@ -678,7 +678,7 @@ To detect when the robot has left a band, we can check to see if it was on a ban
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # On and off band...
 import playsound
 
@@ -715,7 +715,7 @@ Reset the location of the robot, download your program to the simulator and run 
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # Count the bands aloud
 
 # Import necessary package(s)
@@ -759,7 +759,7 @@ Note that we could make out output display message a little bit more elaborate b
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 # Count the bands aloud
 
 # Import necessary package(s)

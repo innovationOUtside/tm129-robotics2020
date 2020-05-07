@@ -45,7 +45,7 @@ Download the programme to the simulator and then run it several times with the r
 What does the programme cause the robot to do?
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 import playsound
 

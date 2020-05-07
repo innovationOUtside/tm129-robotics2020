@@ -24,7 +24,7 @@ roboSim.element.dialog();
 Various elements of the code in the following code cell may be familiar to you from the previous notebook: it's code for a programme that is intended to cause the robot to traverse a square path in the simulator, and and that should allow the simulated robot to draw something approximating a square if you check the *pen down* setting when the program runs.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Try to draw a square
 
@@ -124,7 +124,7 @@ In the following code cell, I have replaced the literal values "inside" the prog
 If you download and run the programme, it should behave as before.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Try to draw a square
 STEERING = -100
@@ -197,7 +197,7 @@ The challenge is to get the robot to go round the outside of the solid grey squa
 *Hint: you may find it useful to use the previous programme for traversing a square, or create your own programme using a for loop and sone or more "constants".*
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # YOUR CODE HERE
 ```
@@ -210,7 +210,7 @@ The challenge is to get the robot to go round the outside of the solid grey squa
 I tried to simplify the programme by using a `for` loop to generate each side and turn. I used "constants" to define the motor speeds and the number of wheel rotations required when driving in a straight line for the edges, and durig the turns.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 SIDES = 4
 
@@ -330,7 +330,7 @@ counter, previous
 Load the *Grey bands* background in to the simulator, and download and run the following programme, which you may recall from tje previous notebook. Observe the values of that are displayed in the simulator output window.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 from ev3dev2.sensor import INPUT_2
 
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))

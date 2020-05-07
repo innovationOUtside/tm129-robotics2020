@@ -78,7 +78,7 @@ First, we use some IPython "magic" (and yes, it really is called that!), at the 
 
 The magic incantation takes the form:
 
-`%%sim_magic roboSim`
+`%%sim_magic`
 
 and it __MUST__ appear as the first line of a code cell. In the above example, `roboSim` is the name of the variable associated with our simulator instance.
 
@@ -167,7 +167,7 @@ The line number specified will be one less than the line number displayed in the
 To write programme code that can be passed to the simulator and executed within it to control the simulated robot, 
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 print('hello world')
 ```
 
@@ -215,7 +215,7 @@ Lines prefixed by a `#` are *comments* that are not executed as programme code b
 The following programme turns the left and right motors on at three quarters of their full speed, waits for a short period (1 second), then the programe ends and the motors are automatically switched off.
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 
 # Import statements
 from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
@@ -272,7 +272,8 @@ The following example shows how we can drive the tank:
 <!-- #endregion -->
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
+
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 
 # Sequential program
@@ -315,7 +316,7 @@ Check the *pen down* checkbox so that you can see the trace of where the robot h
 <!-- #endregion -->
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 
 # Try motors with difference speeds
@@ -365,7 +366,7 @@ The following code cell provides code for exploring the use of the `.on_for_rota
 <!-- #endregion -->
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
 
 tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
@@ -429,7 +430,7 @@ Running the following code cell provides a demonstration:
 <!-- #endregion -->
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent 
 from ev3dev2.motor import OUTPUT_B, OUTPUT_C
 
@@ -461,7 +462,7 @@ __DOUBLE CLICK THIS CELL TO EDIT IT.__
 *When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
 
 tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
@@ -521,7 +522,7 @@ If you run the following programme in the simulator, you will find that it drive
 *TO DO - simple diagram showing angles and their names, eg ninety degrees.*
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Set the left and right motors in a forward direction
 # and run for 1 rotation
@@ -551,7 +552,7 @@ Modify the programme in your newly created cell so that the robot turns through 
 You may find that using the pen trace helps you see how far the robot has turned.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Set the left and right motors in a forward direction
 # and run for 1 rotation
@@ -568,7 +569,7 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 1)
 *Click the arrow in the sidebar to reveal the settings I used.*
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Set the left and right motors in a forward direction
 # and run for 1 rotation
@@ -768,7 +769,7 @@ Run the programme in the sinulator to find out.
 When I ran my version of the programme (see below) the robot drew two sides of a square as an L shape and had made the turn ready to start a third edge.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Draw a square
 
@@ -819,7 +820,7 @@ Increasing the length of the side of the square can also help reveal when the an
 Here is my programme. On multiple runs, it seems to overshoot the turn slightly.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Draw a square
 
@@ -894,7 +895,7 @@ Surely there's a better way..?
 The following might be useful as a redux later on to this activity; it uses the gyro to perform the turn with quite a nice graceful turn.
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 from ev3dev2.sensor import INPUT_4
 from ev3dev2.sensor.lego import GyroSensor

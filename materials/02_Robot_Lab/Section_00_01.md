@@ -235,7 +235,7 @@ Look through the code in the code cell below and predict what you think the robo
 *DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the programme.*
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 
 # Draw something...
 for count in range(3):
@@ -507,7 +507,7 @@ In the simulator, load in the *Grey bands* background and reset the trace. (You 
 Run the following code cell to download the programme to the simulator and then run it in the simulator, observing the behaviour of the robot.
 
 ```python
-%%sim_magic_preloaded roboSim
+%%sim_magic_preloaded
 from ev3dev2.sensor import INPUT_2
 
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
@@ -545,7 +545,7 @@ The following programme, for example, when downloaded to the simulator, will cau
 Can you get the robot to count to 10, rather than 5?
 
 ```python
-%%sim_magic roboSim
+%%sim_magic
 
 #Counting robot...
 import playsound
