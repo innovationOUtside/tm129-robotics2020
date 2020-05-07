@@ -68,8 +68,8 @@ while sensor_value == 255:
 
 # When the reading is below 255
 # we have started to see something.
-# Drive onto the band to get a good reading
-tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.1)
+# Drive a little way onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
 
 #Check the sensor reading
 sensor_value = colorLeft.reflected_light_intensity
@@ -95,7 +95,7 @@ What does the robot do?
 
 The robot moves forward over the white background until it reaches the grey or black area. If the background is black, the robot says *black*; otherwise, it says *grey*. 
 
-The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 255). When the light sensor reading goes below the white background value of 255, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
+The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 255). When the light sensor reading goes below the white background value of 255, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
 
 
 ### Working through the programme flow
