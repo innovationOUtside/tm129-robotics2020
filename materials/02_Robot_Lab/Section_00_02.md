@@ -222,354 +222,304 @@ When `x` was initialised to a different value, for example as `x = 2`, only the 
 ## 3.4 Activity: Combining loops and branching statements 
 
 
-It is important to be clear that the condition in a branching statement (`if…then` or `if…then…else`) is checked only when execution reaches that part of the program. In the examples above, you stepped through the programs and saw that execution passed through the `if` statement only once. When creating useful robot programs, we often want conditions to be checked repeatedly. For example the robot may need to repeatedly check that it has not bumped into an obstacle, or whether it has found a bright or dark area. 
+It is important to be clear that the condition in a branching statement (`if...` or `if...else...`) is checked only when execution reaches that part of the program.
 
-To do this, we can combine loops and branching statements in a program. 
+In the examples above, you stepped through the programs and saw that execution passed through the `if` statement only once. When creating useful robot programs, we often want conditions to be checked repeatedly. For example the robot may need to repeatedly check that it has not bumped into an obstacle, or whether it has found a bright or dark area. 
 
-Open the `Stay_inside` program; it is shown below. 
+You have already seen how the `while...` loop tests a condition at the start of a loop and and then passes control to the statements inside the loop before looping back to test the `while...` condition again.
 
+You may also recall from an earlier notebook that we also used an `if...` statment to return the control flow back to the top of a loop before all the statements in the loop body had been executed, or break out of a loop early and pass control to the first statement after the loop block.
 
-![figure ../tm129-19J-images/tm129_rob_p1_f027.jpg](../tm129-19J-images/tm129_rob_p1_f027.jpg)
+This ability to combine loop and branching statements is very powerful and even a very simple programme can produce quite a complex robot behaviour.
 
+For example, can you predict what the following programme will cause the robot to do when it is downloaded and run in the simulator?
 
-Figure 3.6 Listing: Stay_inside
-
-
-comment :  STAY_INSIDE
-
-output left_motor on A
-
-output right_motor on C
-
-sensor light_sensor on 2 is light as percent
-
-main
-
-      comment :  set motors going forward
-
-      forward [left_motor right_motor]
-
-      on [left_motor right_motor]
-
-      forever
-
-            comment :  wait for light_sensor to 'see' black line
-
-            if light_sensor &lt; 40
-
-                  then
-
-                        comment :  change direction and keep going
-
-                        reverse [left_motor right_motor]
-
-                        wait 100
-<!--ITQ-->
-
-#### Question
-
-Can you predict what the robot will do when this program is run? 
+__Before you run the programme, load in the *Loop* background to the simulator.__
 
 
-#### Answer
+*Double click this cell to edit it and record your prediction.*
 
-Run the program to confirm your prediction. 
-<!--ENDITQ-->
-The robot will remain inside the black oval, reversing direction each time it encounters a black line. The program is constructed from an `if` statement inside a `forever` loop. The `if` statement checks the light sensor reading; when this is low (which it will be when the black line is reached) the motor direction is reversed. 
+```python
+%%sim_magic_preloaded
 
-The `forever` loop is a loop that will run indefinitely. In this case it is useful because we want the robot to continue behaving in the same way. In other circumstances, we might want the loop to continue only while some condition holds true; in such cases a `while` statement is more useful. Note that the `while` statement includes its own conditional test. 
+tank_drive.on(SpeedPercent(30), SpeedPercent(30))
 
+while True:
+    if colorLeft.reflected_light_intensity < 100:
+        tank_drive.on_for_rotations(SpeedPercent(-30),
+                                    SpeedPercent(-30), 2)
+
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(30), SpeedPercent(30))
+
+```
+
+Download the program to the simulator and run it there to check your prediction. After a minute or two, stop the programme from executing.
+
+How does the behaviour of the programme lead to the robot's emergent behaviour in the simulator?
+
+
+#### Discussion
+
+*Click on the arrow in the sidebar to reveal my observations*
+
+
+When the program runs, the robot will explore the inside of the black oval, remaining inside it and reversing direction each time it encounters the black line.
+
+The program is constructed from an `if` statement inside a `forever` loop. The `if` statement checks the light sensor reading; when this is low (which it will be when the black line is reached) the motor direction is reversed. 
+
+The `while True:`  loop is a so-called *infinite loop* that will run indefinitely. In this case it is useful because we want the robot to continue to keep on behaving in the same way as the prigramme runs.
+
+In other circumstances, we might want the loop to continue only while some condition holds true. In such cases, using the `while` statement to test the truth of a conitional statement is more useful.
+
+
+## Multiple Conditions Using `if..elif..else..`
+
+The `if...else..` statement allows us to creating a branching control flow statement that performs on conditional test and then chooses between two alternative outcomes depending on the result of the test.
+
+Python also supports a yet more complex branch construction in the form of an `if..elif..else..` statement that allows us to make multiple conditional tests. Run the following code cell and then use `nbtutor` to explore the flow through the programme. 
+
+```python
+%%nbtutor --reset --force
+
+days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+                'Friday', 'Saturday', 'Sunday']
+
+for day in days_of_week:
+    print(f'Today is {day}...')
+    
+    if day == 'Wednesday':
+        print('...half day closing')
+    elif day in ['Saturday', 'Sunday']:
+        print('...the weekend')
+    else:
+        print('...a weekday')
+        
+print("And that's all the days of the week."")
+```
+
+We can also have multiple `elif` statements between the opening `if..` and the closing `else`.
+
+Read through the code in the following and try to work out what the program will do and how the control flow will pass though the program as it executes.
+
+```python
+# TO DO
+# need a simple toolbar buttom to toggle the notebook display?
+from IPython.display import HTML
+display(HTML("<style>#notebook-container { width:100% !important; float:left !important;}</style>"))
+display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
+
+```
+
+```python
+%%nbtutor --reset --force
+
+days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+                'Friday', 'Saturday', 'Sunday']
+
+for day in days_of_week:
+    print(f'Today is {day}...')
+    
+    if day == 'Monday':
+        print("...I don't like Mondays...")
+    elif day == 'Tuesday':
+        print('...Ruby Tuesday')
+    elif day == 'Friday':
+        print("...Friday I'm In Love")
+    else:
+        print("...I don't know a song title for that day")
+    
+```
+
+Now run the previous code cell and step through its execution using *nbtutor*; observe how the control flow steps increasing through the stack of `..elif..` tests as the `for..` loop iterates through the items in the `days_of_week` list. 
+
+
+Note that there is no requirement that you test the same variable in each step. The different steps could test a different variable or range of variables.
+
+For example, in the following programme, we might decide what to take out with us on a walk based on a variety of conditions:
+
+```python
+raining = False
+temperature = 'warm'
+
+if raining:
+    print("Wear boots")
+elif temperature == 'warm':
+    print("Wear sandals")
+else:
+    print("Wear shoes")
+```
+
+<!-- #region -->
+Also note that there is an *order* in which we test the various conditions as the control passes through the `if..elif..` conditional tests. We can use this as an informal way of prioritising one behaviout over another:
+
+```python
+if this_really_important_thing:
+    ...
+elif this_less_important_thing:
+    ...
+elif this minor_thing:
+    ...
+else:
+    ...
+```
+<!-- #endregion -->
 
 ## 3.5 Challenge: Three shades of grey
 
 
-The program `Branch` (in Section 3.1) showed how an `if…then…else` statement could be used to decide between black and grey areas. The background actually contains three different shades: black, dark grey, and light grey. Can you construct a program that will report which the robot encounters? 
+The program at the start of this notebook (in Section 3.1) showed how an `if...else...` statement could be used to decide between black and grey areas. The background (loaded into the simulator as the *Grey and black* background) actually contains three different shades: black, dark grey, and light grey. Can you construct a program that will report which the robot encounters? 
 
-Use the program `Branch` as a starting point. You will need to extend the code to decide between three alternatives.
-
-To help make the program more readable, it already defines constants for the `send` command to speak the correct colours. These four constants are: `say_black`, `say_grey`, `say_light_grey` and `say_dark_grey`, with the values 25, 26, 27 and 28 respectively. Thus, for example, `send say_black` is the same as `send 25`. The robot sends the requisite code back to RobotLab, which triggers the corresponding audio file.
-<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Note-->
-Some programming languages have statements that let the programmer choose between more than two alternative branches. Branching statements in RobotLab are restricted to `if…then…else` and `if…then`, so combinations of `if…then…else` are needed to create more than two paths. 
-</div><!--ITQ-->
-
-#### Question
-
-Would you like a hint? 
-
-
-#### Answer
-
-The current program has a condition (`light_sensor &lt; 30`) that determines if black is discovered. If the colour isn’t black, it is assumed to be grey. How could you decide whether the colour was light or dark grey? 
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Would you like another hint? 
-
-
-#### Answer
-
-You will need to combine `if…then…else` statements (try *nesting* them, that is, placing a second `if…then…else` statement in either the `then` or `else` branch of the first) to create three alternative paths. 
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Would you like an answer? 
-
-
-#### Answer
-
+A copy of the original program is provided below as a starting point. You will need to extend the code so that it can decide between three grey alternatives as well as the black band and say which band it saw.
 
 ```python
+%%sim_magic_preloaded
 
- if light_sensor &lt; 30 
+# Use this programme with the "Grey and black" background
 
- then 
+import playsound
 
- send say_black 
+# Configure a light sensor
+colorLeft = ColorSensor(INPUT_2)
 
- else 
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
- if light sensor &lt; 60 
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
 
- then 
+#Check the light sensor reading
+while sensor_value == 255:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity
+    # and display it
+    print(sensor_value)
 
- send say_dark_grey 
+# When the reading is below 255
+# we have started to see something.
+# Drive a little way onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
 
- else 
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+# and display it
+print(sensor_value)
 
- send say_light_grey 
+# Now make a decision about what we see
+if sensor_value < 128:
+    playsound.say("I see black")
+else:
+    playsound.say("I see grey")
+```
 
+When you have modified the code, run the cell to download it to the simulator, ensure the *Grey and black* background is loaded, and then run the programme in the simulator for various starting positions of the robot. Does it behave as you intended?
+
+
+#### Hint: click the arrow in the sidebar to reveal a hint
+
+
+The original program uses an `if..else..` condition to distinguish between black and grey reflected light readings. An `..elif..` statement lets you test alternative values within the same `if..else..` block.
+
+To identify the values to use in the condition statements, inspect the simulator output window messages to see what sensor values are reported when the robot goes over different bands.
+
+
+#### Worked Answer
+Click the arrow in the sidebar to display a worked answer.
+
+<!-- #region -->
+The robot sees the following values over each of the grey bands:
+
+- light grey: 221
+- medium grey: 211
+- dark grey: 128
+- black: 0
+
+If we assume those sensor readings are reliable, and the same value is alsway reported for each of those bands, we can make the make the following decisions:
+
+```python
+if sensor_value == 220: 
+    print('light grey')
+elif sensor_value == 211: 
+    print('medium grey')
+elif sensor_value == 128: 
+    print('dark grey')
+else:
+    print('black')
+```
+<!-- #endregion -->
+
+```python
+%%sim_magic_preloaded
+
+# Use this programme with the "Grey and black" background
+
+import playsound
+
+# Configure a light sensor
+colorLeft = ColorSensor(INPUT_2)
+
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+
+#Check the light sensor reading
+while sensor_value == 255:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity
+    # and display it
+    print(sensor_value)
+
+# When the reading is below 255
+# we have started to see something.
+# Drive onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
+
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+# and display it
+print(sensor_value)
+
+# Now make a decision about what we see
+if sensor_value == 220: 
+    playsound.say("I see light grey")
+elif sensor_value == 211: 
+    playsound.say("I see medium grey")
+elif sensor_value == 128: 
+    playsound.say("I see dark grey")
+else:
+    playsound.say("I see black")
 ```
 
 
-Other solutions are possible. 
-<!--ENDITQ--><div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
-<!--Heading: 
-            Tip-->
-When building programs containing `if…then…else` statements, you must be careful to drag new statements to the correct places. RobotLab will add comments ‘Add statements here…’ to act as targets for the `then` and `else` branches. If you want to add a statement to follow the whole `if…then…else` construct, you should drop the new statement over the `if` part. It may be easier to see what you are doing if you collapse the `if…then…else` statement by <div style="background:lightblue"><p>Keyboard: Cursor key Left/Right or use -/+/* on numeric keypad to collapse, expand, or expand all</p></div>clicking [-] by the `if` part; click on [+] to expand it again.
-</div>
+Other solutions are possible.
 
-## 3.6 Activity: Robots that can speak
+One thing you might notice is that sometimes the robot gives the wrong answer, for example if the sensor is not completely over the band and gives a reading that does not exactly match a value you used in your conditional tests.
+
+You will see how to address this sensitivity in the next notebook.
 
 
-In Robot Lab Session 1 you looked at a program that could count up to 20. In this activity you are going to see how to make a program that can count up to 100.
+## Summary
 
-The program you saw in Robot Lab Session 1 had a separate sound file for each of the numbers 1 to 20. The range of values that can be sent in messages is limited and only values between 0 and 127 are available for playing sound files. So if we used one hundred of these for numbers there would only be twenty-seven ‘slots’ left for other sounds, and this is not enough for our requirements.
+In this notebook, you have seen how `if..` statements can be used to make a variety of decisions and trigger a range of different actions based on one or more tested conditions. In particular:
 
-Therefore, the difference between this program and the previous counting program is that there will not be a separate sound file for each message.
-<!--ITQ-->
-
-#### Question
-
-What do you think is the minimum number of sound files needed to have a robot that counts to 100?
+- a simple `if..` statement lets a perform one or more actions once and once only if a single conditional test evaluates true;
+- an `if..else..` statement allows us to *branch* between two possible futures based on the whether a single conditional test evaluates as true; if it is true, do one action, if not, do the other;
+- an `if..elif..else..` construction lets us run mutliple different conditional tests. If the first test is true, do one thing, otherwise test the next thing, and if that is true, do something, otherwise, do another test, and so on. If all the other `elif..` tests evaluate false, do the final `else` condition.
 
 
-#### Answer
+## Addendum
 
-I hope you saw that the answer was less than 100! For numbers such as ‘thirty-two’ and ‘thirty-three’ we can combine pairs of files: ‘thirty’ with ‘two’ and with ‘three’. See below to find the exact number required.
-<!--ENDITQ-->
-It seems essential to have separate sound files for zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen and twenty. After this, we can start to double up: twenty and the numbers one to nine can be used in pairs to make twenty-one, twenty-two, …, twenty-nine. Similar considerations apply to thirty, forty, fifty, sixty, seventy, eighty and ninety. To finish off, we would also need the word ‘hundred’.
+The IPython interpreter that underpins code execution in Jupyter notebooks has a range of display functions that are capable of embedding and playing a wide variety of media, include audio and video files.
 
-It turns out, then, that we need only 29 sound files to count from 0 to 100. The counting program uses the files listed in Table 3.1.
-<table xmlns:str="http://exslt.org/strings">
-<caption>Table 3.1 RobotLab messages and corresponding sound files</caption>
-<tbody>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 0 zero.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 15 fifteen.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 1 one.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 16 sixteen.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 2 two.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 17 seventeen.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 3 three.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 18 eighteen.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 4 four.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 19 nineteen.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 5 five.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 20 twenty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 6 six.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 30 thirty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 7 seven.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 40 forty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 8 eight.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 50 fifty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 9 nine.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 60 sixty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 10 ten.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 70 seventy.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 11 eleven.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 80 eighty.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 12 twelve.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 90 ninety.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 13 thirteen.wav
-</td>
-<td class="highlight_" rowspan="" colspan="">
- 100 hundred.wav
-</td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan="">
- 14 fourteen.wav
-</td>
-<td class="highlight_" rowspan="" colspan=""></td>
-</tr>
-</tbody>
-</table>
+For example, if you run the following code cell, you can embed a Youtube video given the unique video identifier which you will find in every Youtube video URL / web address:
 
-A full listing of the sound message files in RobotLab is given in the Appendix (The RobotLab send codes). 
+```python
+from IPython.lib.display import YouTubeVideo
+YouTubeVideo('mGgMZpGYiy8')
+```
 
-So, for example, `send 14` results in the program saying ‘fourteen’, while `send 90` followed by `send 6` results in the program saying ‘ninety-six’. 
-
-When numbers are sent, RobotLab begins playing them and immediately moves on to the next line of the program. The program works much faster than the time it takes to speak, so if two numbers are sent consecutively, the second will overtake the first and will result in garbled or lost words. For this reason it is usually necessary to add a `wait` command after a `send` command. 
-
-Run the program `I_can_count_to_100`. Have a look at the program code (Figure 3.7 below) and see if you can work out what is going on. 
-
-
-![figure ../tm129-19J-images/tm129_rob_p3_f018.gif](../tm129-19J-images/tm129_rob_p3_f018.gif)
-
-
-Figure 3.7 Listing: I_can_count_to_100
-
-
-comment I_CAN_COUNT_TO_100
-
-var N = 1
-
-var N_divided_by_10 = 0
-
-var large_part = 0
-
-var small_part = 0
-
-main
-
-      wait 100
-
-      while N &lt; 101
-
-            comment Add statements here...
-
-            if N &lt; 21
-
-                  then
-
-                        comment Add statements here...
-
-                        send N
-
-                        wait 80
-
-                  else
-
-                        comment Add statements here...
-
-                        set N_divided_by_10 = N / 10
-
-                        set large_part = (n_divided_by_10 * 10)
-
-                        set small_part = N - large_part
-
-                        send large_part
-
-                        wait 80
-
-                        wait 40
-
-                        if small_part &gt; 0
-
-                              then
-
-                                    comment Add statements here...
-
-                                    send small_part
-
-                        wait 80
-
-            set N = N + 1
-
-      send 82
-
-In this section you have seen how a robot can be made to ‘speak’ using different combinations of words. In principle, a robot could be given a very large vocabulary, and could say almost anything. Of course, this does not mean it understands what it says!
-
+What, me, dodgy goth? Goth hippy groover, more like...;-)
