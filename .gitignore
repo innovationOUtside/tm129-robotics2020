@@ -5,3 +5,5 @@ tm129-19J-robotlab
 .ipython
 .cache
 .md
+nbtutor/
+*/*Robot*/backgrounds/
