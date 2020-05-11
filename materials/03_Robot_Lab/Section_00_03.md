@@ -38,6 +38,15 @@ A 'thought experiment' suggests that the vehicle in figure (a) will move away fr
 
 In order to detect different values from the light sensors on the right and left hand side of the robot, we need to reconfigure the robot so that the sensors are placed further apart than they are in the default robot configuration.
 
+In the simulator, select the *Radial grey* background and check the *Pen down* checkbox.
+
+You may notice that the simulator's left and right light sensors appear to be further apart than they have been previously.
+
+This has been done via a change to the robot configuration setting update that is applied automatically when the *Radial grey* background is loaded.
+
+
+#### Manually Changing the Robot Configuration Settings
+
 You can increase the spacing between the sensors by:
 
 - clicking the *Configure Robot* button in the simulator to pop=up a window containing the robot configuration settings;
@@ -48,7 +57,7 @@ You can increase the spacing between the sensors by:
 If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
 
 
-In the simulator, select the *Radial grey* background and check the *Pen down* checkbox.
+#### Exploring the *Radial Grey* World
 
 Run the following code cell to download the programme to the simulator and then run it in the simulator. For now, don't pay too much atttention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
 
@@ -170,7 +179,7 @@ while ((colorLeft.reflected_light_intensity>5)
  
 ```
 
-When the programme runs this time, the robot veers *towards* the light. If it starts below the centre line, the robot turns to its left and up towards the light. If it starts above the light, the robot turns to its right, and  curves down towards the light.
+When the programme runs this time, the robot arcs *towards* the light: if it starts below the centre line, the robot turns to its left and up towards the light; if it starts above the light, the robot turns to its right, and  curves down towards the light.
 
 
 
@@ -202,53 +211,83 @@ As before, the sensor value reports a higher reading the brighter the background
 <!-- #endregion -->
 
 <!-- #region -->
-### TO DO
+### Looking at the Data
 
 
-?? ultrasound example?
+To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. The following programme streams the necessary data elements to the simulator output window.
 
-Datalog - eg chart the light sensor values?
-print('Colour: ' + str(colorLeft.reflected_light_intensity ))
+Run the program and observe the behvavior of the traces.
 
-
-
-
-
-Run the program. As you do so, note what happens. (If you have printed this document, use the second column of Table 4.2 to record your results.)
-
-Try dragging Simon to different starting positions in the environment to explore its behaviour. You may want to leave Simon running for a while to be sure how it behaves. Use the `Show trail` button to record its behaviour. Remember that you can use the `Simulator &gt; Zoom in` and `Zoom out` features.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+NumPlus and Ctrl+NumMinus</p></div>
-<!--ITQ-->
-
-#### Question
-
-Did the Braitenberg_A robot avoid the light? Explain why.
+How do the traces differ in value?
 <!-- #endregion -->
 
-#### Answer
+```python
+%%sim_magic_preloaded
 
-The Braitenberg_A robot vehicle avoids the light. The power delivered to the wheels is proportional to the light received by the motor on the same side of the vehicle. If the left sensor receives more light than the right sensor, then the left wheel turns faster than the right, and the robot will turn right, away from the light.
-<!--ENDITQ--><!--ITQ-->
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
 
-#### Question
+while ((colorLeft.reflected_light_intensity>5) 
+       and (colorLeft.reflected_light_intensity)>5):
+    
+    intensity_left = colorLeft.reflected_light_intensity
+    intensity_right = colorRight.reflected_light_intensity
+    intensity_left_pc = 100.0 * (intensity_left / 255.0)
+    intensity_right_pc = 100.0 * (intensity_right / 255.0)
+    
+    left_motor_speed = SpeedPercent(intensity_right_pc)
+    right_motor_speed = SpeedPercent(intensity_left_pc)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity ))
+    print('Light_right: ' + str(colorRight.reflected_light_intensity ))
+```
 
-Was the Braitenberg_B robot attracted to the light? Explain why.
+By inspection of the traces, you should notice that one of them is always slightly higher than the other.
+
+```python
+
+#Grab the logged data into a pandas dataframe
+df = eds.get_dataframe_from_datalog(roboSim.results_log)
+
+#Preview the first few rows of the dataset
+df.head()
+```
+
+```python
+import seaborn as sns
+ax = sns.lineplot(x="index", y="value", hue='variable', data=df)
+```
+
+<!-- #region -->
+# Using Ultrasound
 
 
-#### Answer
+We can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.
 
-The Braitenberg_B robot vehicle is attracted to the light. The power delivered to the wheels is proportional to the light received by the motor on the opposite side of the vehicle. If the left sensor receives more light than the right sensor, then the right wheel turns faster than the left, and the robot will turn left, towards the light.
-<!--ENDITQ--><!--ITQ-->
+Load in the *Obstacles Test* background, run the following code cell to download the programme to the simulator, and then run it in the simulator.
 
-#### Question
+By observing what happens when you start the robot in different positions, what do you think the robot is doing?
+<!-- #endregion -->
 
-Did the modified version of the robot stay at the brightest part of the environment? Explain why it behaved as it did.
+```python
+%%sim_magic_preloaded
+import time
+ultrasonic = UltrasonicSensor(INPUT_1)
 
+u = ultrasonic.distance_centimeters
+print('Ultrasonic: ' + str(u))
+time.sleep(1)
+while  u > 1:
+    u = ultrasonic.distance_centimeters
+    print('Ultrasonic: ' + str(u))
+    u = min(100, u)
+    left_motor_speed = SpeedPercent(u)
+    right_motor_speed = SpeedPercent(u)
+    tank_drive.on(left_motor_speed, right_motor_speed)
 
-#### Answer
+```
 
-No. The Braitenberg_B robot vehicle is attracted to the light. However, it speeds up as it approaches the brightest part of the environment and, as a result, overshoots.
-<!--ENDITQ-->
-This activity illustrates the important idea developed in Study week 2 that a robot may have a behaviour in its environment that was not programmed in. Nowhere in the RobotLab program is there an explicit goal of ‘avoid light’.
+## Summary
 
-The idea of building robots with desirable emergent behaviour that does not need explicit programming is very attractive. At the moment, however, the question of how to produce complex behaviours systematically is unresolved.
-
+In this notebook you have experimented with some simple Braitenberg vehicles, seeing how a reactive control strategy based on some simple sensor inputs can lead to different emergent behabviours in the robot. In some cases, we might be tempted to call such behaviours "intelligent", or to ascribe certain *desires* to the robot (such as '*it __wants__ to this*) but that is not really the case: the robot is simply reacting to particular inputs in a particular way.
