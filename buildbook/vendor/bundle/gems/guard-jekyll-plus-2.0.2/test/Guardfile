@@ -1,0 +1,7 @@
+# A sample Guardfile
+# More info at https://github.com/guard/guard#readme
+
+ignore(/^_site/)
+guard 'jekyll_plus', config: ['_config.yml', '_override.yml'], serve: true do
+  watch(/.*/)
+end
