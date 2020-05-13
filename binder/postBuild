@@ -29,6 +29,7 @@ jupyter serverextension enable nbgitpuller --$INSTALL_PREFIX
 ### This seems to be a bit buggy at the moment, but useful nevertheless
 git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
 jupyter nbextension install --$INSTALL_PREFIX accessibility_toolbar
+
 ### Tidy up
 rm -r accessibility_toolbar
 #jupyter nbextension enable accessibility_toolbar/main --$INSTALL_PREFIX
@@ -56,8 +57,8 @@ jupyter nbextension install --py nbzip --$INSTALL_PREFIX
 jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 
 ## nbtutor
-jupyter nbextension install --py nbtutor --$INSTALL_PREFIX
-jupyter nbextension enable --py nbtutor --$INSTALL_PREFIX
+jupyter nbextension install --py nbtutor --user
+jupyter nbextension enable --py nbtutor --user
 
 ## multi-outputs
 ### Cell status indicators.
