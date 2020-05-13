@@ -54,7 +54,7 @@ jobs:
         git config --global user.name "$GITHUB_ACTOR"
         git checkout -b jupyterbook
         git merge master --allow-unrelated-histories
-        (test -d buildbook && echo "Book dir (buildbook) already created") || jupyter-book create buildbook --config _config.yml --toc toc.yml --overwrite 
+        (test -d buildbook && echo "Book dir (buildbook) already created") || jupyter-book create buildbook --config _config.yml --content-folder content --toc toc.yml --overwrite 
         #Perhaps provide a config setting to allow execution or not?
         jupyter-book build --execute --overwrite buildbook
     - uses: actions/cache@v1
