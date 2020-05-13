@@ -6,6 +6,7 @@ nbzip
 nbresuse
 git+https://github.com/NII-cloud-operation/Jupyter-multi_outputs
 nbgitpuller
+tqdm
 
 #Linting
 flake8
@@ -51,9 +52,16 @@ jupyter-wysiwyg
 #Python tutor
 nbtutor
 
+# Rules based systems
+durable_rules
+chatterbot==1.0.4
+
 # Drawing
+noisify
 drawSvg
 
 #Robot simulator demos
 git+https://github.com/innovationOUtside/nbev3devsim.git
 jyro
+
+
