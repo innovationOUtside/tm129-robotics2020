@@ -4,8 +4,6 @@
 
 
 <!-- #region -->
-## The `nbev3devsim` Simulator
-
 
 The `nbev3devsim` simulator is arranged slightly differently to the original `ev3devsim` simulator in order to develop a workflow that more naturally suits notebook style working.
 
@@ -16,53 +14,20 @@ Rather than saving programmes to separate files, each individual robot simulator
 
 ![Screenshot of ev3devsim simulator showing a simulator world canvas, programming area and outpur trace window. SUJECT TO CHANGE](../images/nbev3devsim_overview.png)
 
-Program files can be saved from, and loaded into the the program editor.
 
-A range of predefined worlds can be loaded into the simulator, as image files, from a drop down menu.
+An expanded range of predefined worlds is available that can be loaded into the simulator, as image files, from a drop down menu. (Source code for generating the background image files is also available in a notebook in the `backgrounds/` directory.) When some worlds are loaded in, the robot's initial (default) location in that world is also specified; other robot settings, such as the positioning of the sensors, may also be initialised when a particular backgound is loaded. 
 
-Obstacles can be added to a world using a configuration file opened by clicking the `Obstacles` button.
+As in `ev3devsim`, obstacles can be added to a world using a configuration file opened by clicking the `Obstacles` button. The simulated robot is also still configured via a configuration menu.
 
-The robot can be configured via a configuration menu.
+The simulated robot can be dragged and placed on the simulated background and moved to a specifed location via the `Move` button (the target co-ordinates are updated when the robot is dragged to a new location). A new `Reset` button wil move the robot back to it's default location in the world.
 
-The robot can be moved to a specifed location  y speficifying target location oc-ordinates and clicking `Move`. [TO DO - would be useful to be able to recenter the robot as well as  drag, drop, rotate it.]
+__[TO DO - would also be useful to be able to rotate the robot?]__
 
-
-?? something about the actual ev3 robot and ev3dev py library ??
-
-
-![figure ../tm129-19J-images/tm129_rob_p1_f005.jpg](../tm129-19J-images/tm129_rob_p1_f005.jpg)
-
-
-Figure 2.2 A LEGO Mindstorms robot buggy
-
-
-Simon simulates simple robots such as ones that can be built with LEGO Mindstorms (Figure 2.2). In fact, RobotLab was originally designed to work with LEGO Mindstorms RCX robots. Robots as simple as this are very useful for getting hands-on experience with robotics, but naturally they have some limitations compared with more sophisticated (and complex) robot systems. Some of the features of RobotLab and Simon will make more sense if you know a little bit about a simple robot system such as the LEGO Mindstorms RCX kit.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Note: LEGO’s more recent Mindstorms NXT kits differ from the RCX version described here</p></div>
-
-The robot in Figure 2.2 is built around the LEGO Mindstorms RCX ‘brick’ which is shown in more detail in Figure 2.3. Inside the RCX brick there is a microprocessor and other circuitry. Think of it as a small computer. Built into the brick are three ‘sensor input ports’ labelled 1, 2 and 3, and three ‘actuator output ports’ labelled A, B and C, which are capable of powering motors. 
-
-
-![figure ../tm129-19J-images/tm129_rob_p1_f021.jpg](../tm129-19J-images/tm129_rob_p1_f021.jpg)
-
-
-Figure 2.3 The RCX controller ‘brick’
-
-
-The RCX controller ‘brick’, seen from above. This is a large piece of yellow Lego, about 8 x 14 studs in size. At the centre is a control panel with a small LCD screen surrounded by four buttons: these are labelled On-Off, Run, Prgm (Program) and View. Above the control panel are three sensor input ports, labelled 1, 2, 3. These take the form of 2 × 2 studs which are partly metallic. Below the control panel are three actuator output ports, labelled A, B, C. These also are 2 × 2 studs which are partly metallic. 
-
- The *ports* are interfaces to the external world. Sensors can be attached to the input ports, allowing information about the environment to enter the computer. Motors and other actuators can be attached to the output ports, and the brick can switch them on and off and control their direction and power. 
-
-RobotLab assumes that the simulated robot works like an RCX brick. This means that RobotLab needs to know what kinds of sensors and actuators are being used, and how the (simulated) RCX is ‘configured’. You will see how this is done later.
-
-Although I have described the simulated robot in terms of a simple Lego robot, similar considerations would apply to other robotics systems. The control subsystem of any robot is usually flexible and designed to be configured with a variety of sensors and actuators. 
 
 
 ## 2.1 Activity: Running a program
 
-TO DO - NEED A BETTER WAY OF RUNNING CODE.
-
-Copy and paste the following code into the `ev3devsim` program editor and click the `Run` button in the simulator. You should see the robot moved forwards for three seconds.
-
-*Note that the movement may be a little jerky; do not worry about this; remember, the simulator is very crude.*
+QUIck demo - get a feel for the simulator, even the `ev3devsim` one? Or maybe provide this via simple static demos as standalone HTML files? Or actually demo `nbev3devsim` here?
 
 <!-- #raw -->
 # Move robot forward
@@ -88,11 +53,9 @@ TO DO - LINE NUMBER OPTIONS IN EDITOR?
 
 ### Show trail mode
 
-TO DO - this would be really useful... Not currently available.
-
 It is possible to operate the simulated robot in ‘show trail’ or ‘pen-down’ mode. This enables you to see the path the robot follows.
 
-ChCheck the `Show trail`  button in the toolbar. Run the program again to see the robot’s trail.
+Check the `Show trail`  button in the simulator. Run the program again to see the robot’s trail.
 
 TO DO - keyboard shortcuts would be useful.
 
@@ -102,7 +65,10 @@ TO DO - a simulator run status indicator would be useful.
 ## 2.2 The Program window
 
 
-So far we have taken a very quick look at the `Program editor` and `Simulator` windows. In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the `Program` window as it relates to the `Move_a_robot` program, to see the essential elements of the program and why the robot behaves as it does.
+So far we have taken a very quick look at how to download programmes from a notebook code cell and run them in the simulator.
+
+
+ the `Program editor` and `Simulator` windows. In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the `Program` window as it relates to the `Move_a_robot` program, to see the essential elements of the program and why the robot behaves as it does.
 
 If you don’t already have the `move_a_robot.py` program open, reopen it now.
 

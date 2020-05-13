@@ -45,6 +45,36 @@ The physical EV3 controller is capable of supporting four motor outputs referred
 THe EV3 brick also support four input ports to which four different, independent sensors can be attached. These range from touch sensors, to light sensors, infrared sensors, ultrasonic sensors and even gyroscopes. 
 
 
+The `ev3devsim` simulator this simulates simple robots such as ones that can be built with LEGO Mindstorms.
+
+
+__TO DO: this all needs updating, eg with image assets from T176 presentation.__
+
+
+ In fact, RobotLab was originally designed to work with LEGO Mindstorms RCX robots. Robots as simple as this are very useful for getting hands-on experience with robotics, but naturally they have some limitations compared with more sophisticated (and complex) robot systems. Some of the features of RobotLab and Simon will make more sense if you know a little bit about a simple robot system such as the LEGO Mindstorms RCX kit.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Note: LEGO’s more recent Mindstorms NXT kits differ from the RCX version described here</p></div>
+
+The robot in Figure 2.2 is built around the LEGO Mindstorms RCX ‘brick’ which is shown in more detail in Figure 2.3. Inside the RCX brick there is a microprocessor and other circuitry. Think of it as a small computer. Built into the brick are three ‘sensor input ports’ labelled 1, 2 and 3, and three ‘actuator output ports’ labelled A, B and C, which are capable of powering motors. 
+
+
+![figure ../tm129-19J-images/tm129_rob_p1_f021.jpg](../tm129-19J-images/tm129_rob_p1_f021.jpg)
+
+
+Figure 2.3 The RCX controller ‘brick’
+
+
+The RCX controller ‘brick’, seen from above. This is a large piece of yellow Lego, about 8 x 14 studs in size. At the centre is a control panel with a small LCD screen surrounded by four buttons: these are labelled On-Off, Run, Prgm (Program) and View. Above the control panel are three sensor input ports, labelled 1, 2, 3. These take the form of 2 × 2 studs which are partly metallic. Below the control panel are three actuator output ports, labelled A, B, C. These also are 2 × 2 studs which are partly metallic. 
+
+ The *ports* are interfaces to the external world. Sensors can be attached to the input ports, allowing information about the environment to enter the computer. Motors and other actuators can be attached to the output ports, and the brick can switch them on and off and control their direction and power. 
+
+RobotLab assumes that the simulated robot works like an RCX brick. This means that RobotLab needs to know what kinds of sensors and actuators are being used, and how the (simulated) RCX is ‘configured’. You will see how this is done later.
+
+Although I have described the simulated robot in terms of a simple Lego robot, similar considerations would apply to other robotics systems. The control subsystem of any robot is usually flexible and designed to be configured with a variety of sensors and actuators. 
+
+
+![figure ../tm129-19J-images/tm129_rob_p1_f005.jpg](../images/nogbad_ev3.jpg)
+
+[Credit: Nigel Gibson / @nogbad]
+
 ### Simulator Overview
 The `ev3devsim` simulator allows robots to be configured using various components on specific input and output ports:
 
