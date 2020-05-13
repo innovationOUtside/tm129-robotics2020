@@ -1,39 +1,20 @@
 # 2 The RoboLab simulated on-screen robot (`nbev3devsim`)
 
-Welcome to `ev3devsim`, the on-screen robot simulator we'll be using as part of RoboLab.
 
-The simulator implements a version of the `ev3dev` Python package that can be use to control a Lego EV3 controlled robot. (Lego EV3 educational robots are widely used in all levels of education. For example, they are used in the Open University residential school course TM??? ??NAME.)
 
-The physical EV3 controller is capabale of supporting for motor outputs referred to as `OUTPUT A`, `OUTPUT B`, `OUTPUT C` and `OUTPUT D`. In the simulator, we define a simple two wheeled differential drive robout using two motors configured as follows:
-
-- `OUTPUT B`: left motor;
-- `OUTPUT C`: right motor.
-
-The simulated robot also supports a range of sensors:
-
-- an ultrasonic sensor (`UltrasonicSensor`) that can be used to detect obstacles ahead [TO DO - CHECK] of the sensor. "In an actual ultrasonic sensor, if the angle of incident is too steep, the sound gets reflected away from the sensor resulting in no reading. We try to replicate this by providing readings only if the angle of incident is no more than 50 degrees. The slow update rate of an actual ultrasonic sensor is simulated; readings are only updated around 10 times per sec." <- from the docs
-- one or more downward facing light / colour sensors (`ColorSensor`) that can be used to sense coloured readings on the world canvas directly below the sensor; sensors give readings of between 0..255.
-- a gyroscope sensor (`GyroSensor`) that measures the angle of the robot; the angle is measure in ??. A gyro reading of 0 corresponds to ??
-
-The sensors are available on predefined sensor inut ports. The ultorasonic and color sensors are mounted at default positions on the robot, although the position can be reconfigured using the robot configuration file:
-
-- `INPUT 1` : ultrasonic sensor; by default, this is mounted *front and center* on the robot;
-- `INPUT 2` : color sensor by default, mounted *front and left* on the robot;
-- `INPUT 3` : color sensor; by default, mounted *front and right* on the robot;
-- `INPUT 4` : gyro sensor; fixed location in the center of the robot.
-
-Note that obstacles do not, in fact, impede the progress of the simulated robot [TO DO - they should do eg in a simple fashion by just stopping any forward progress or rotation where the robot collides with an obstacle.]. We have tried to keep the simulator as simple as possible so the world physics is *very* crude indeed!
 
 <!-- #region -->
-## The `ev3devsim` Simulator
+## The `nbev3devsim` Simulator
 
 
-Out of the can, the `ev3devsim` simulator is arranged as a simulator world canvas, a programming editor area and an input trace window.
+The `nbev3devsim` simulator is arranged slightly differently to the original `ev3devsim` simulator in order to develop a workflow that more naturally suits notebook style working.
+
+Rather than saving programmes to separate files, each individual robot simulator programme is defined within its own notebook code cell, and can then be "downloaded" to the simulated robot. This means you can keep track of a how a programme develops by writing each version of a programme in its own code cell. 
 
 
 <div class='alert-danger'>Layout is subject to change...</div>
 
-![Screenshot of ev3devsim simulator showing a simulator world canvas, programming area and outpur trace window. SUJECT TO CHANGE](../images/00_01_EV3DEV_Python_Simulator.png)
+![Screenshot of ev3devsim simulator showing a simulator world canvas, programming area and outpur trace window. SUJECT TO CHANGE](../images/nbev3devsim_overview.png)
 
 Program files can be saved from, and loaded into the the program editor.
 
@@ -45,48 +26,6 @@ The robot can be configured via a configuration menu.
 
 The robot can be moved to a specifed location  y speficifying target location oc-ordinates and clicking `Move`. [TO DO - would be useful to be able to recenter the robot as well as  drag, drop, rotate it.]
 
-
-<!-- #endregion -->
-
-<!-- #region -->
-### Robot Configuration
-
-![Example of ev3devsim robot configuration window. SUBJECT TO CHANGE](../images/00_01_EV3DEV_Python_Simulator-config_robot.png)
-
-The robot configuration file is a JSON (Javascript Object Notation) object definition:
-
-```javascript
-{
-  "wheeldiameter": 28,
-  "wheelSpacing": 90,
-  "back": -60,
-  "weight": "medium",
-  "sensor1": {
-    "x": -10,
-    "y": 15
-  },
-  "sensor2": {
-    "x": 10,
-    "y": 15
-  },
-  "ultrasonic": {
-    "x": 0,
-    "y": 10,
-    "angle": 0
-  }
-}
-```
-
-The configuration file supports the following settings:
-
-- `wheeldiameter`: the diameter of the robot's wheels;
-- `wheelSpacing`: the distance between the robot's wheels; essentially, this defines the "width" of the robot;
-- `back`: the distance to the back of the robot from the front; essentially, this defines the "height" of the robot;
-- `weight`: the weight of the robot; TO DO - does this affect physics at all?
-- `sensor1`: the physical location on the robot of the color sensor on `INPUT 2`;
-- `sensor2`: the physical location on the robot of the color sensor on `INPUT 3`;
-- `ultrasonic`: the orientation and physical location on the robot of the ultrasonic sensor on `INPUT 1`
-<!-- #endregion -->
 
 ?? something about the actual ev3 robot and ev3dev py library ??
 
