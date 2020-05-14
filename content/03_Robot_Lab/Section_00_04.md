@@ -116,36 +116,85 @@ The structure of the human brain is completely different from the structure of a
 
 One way of *explicitly* trying to encode knowledge is to use a *rule based system*.
 
-```python
 
-roboSim.js_init("""
-alert(typeof(element.outf))""")
-```
+## Eliza
 
-```python
-class CollabSim(eds.Ev3DevWidget):
-     def responder(self, obj):
-        """ Callback function that tries to respond to widget."""
-        response = f'pingpongBONG {obj}'
-        self.set_element("response", response)
-roboSim = CollabSim()
+Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* programme is often referred to as one of the first great milestones in computational natural language interaction. You can see a copy of the original paper [here](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf), which includes examples of the code used to programme the original Eliza engine. Eliza has been reimplemented several times, such as in the Lisp language by Peter Norvig's for his textbook *Paradigms of Artificial Intelligence Programming*, as well as in Python reimplementation of Norvig's code by Daniel Connelly ([*Paip-python: Peter Norvig's Paradigms of AI Programming implemented in Python*](http://dhconnelly.com/paip-python/)). 
 
-```
+An version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
+
+You can try it out for yourself by running the following code cell and starting your converation with a *Hello*; end the conversation by starting your response with *Goodbye*):
 
 ```python
-a_string = "Four score and seven years ago..."
-value_round_trip_report(a_string)
-zz
+import eliza
+eliza.hello_doctor()
 ```
+
+<!-- #region -->
+If you [look at the rules file](eliza.json), you will see that it contains a series of rules that have the form:
+
+```
+CONDITION: [
+    POSSIBLE_RESPONSE_1,
+    POSSIBLE_RESPONSE_2,
+    ...
+    ]
+```
+
+or more completely:
+
+```
+"?*x KEYPHRASE ?*y": [
+        "RESPONSE_1 ?y?",
+        "RESPONSE_2 ?y?",
+        ...
+        ]
+```
+
+For example:
+
+```python
+    "?*x I want ?*y": [
+        "What would it mean if you got ?y?",
+        "Why do you want ?y?",
+        "Suppose you got ?y soon."
+        ]
+```
+
+The `?*x` and `?*y` elements in the condition part of the rule are pattern matching operators that capture arbirtary text before and after the provided `KEYPHRASE`. A rule matches a provided input if the `KEYPHRASE` is contained in the text given to Eliza. The pattern matched content in the text can then be extracted from the input and used in the output response given by Eliza. 
+<!-- #endregion -->
+
+<!-- #region -->
+### Optional Activity
+
+If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and edit it to contain your own rules, you can run Eliza using your ruleset by running the command: `eliza.hello_doctor('dr_me.json')`.
+
+You can also provide a set of custom default responses that Eliza will select between if no rules match by passing in them into the `hello_doctor()` function via the `default=` parameter. For example:
+
+```python
+eliza.hello_doctor('dr_me.json',
+                   default = ["Very interesting",
+                              "I am not sure I understand you fully"]
+                  )
+```
+
+<!-- #endregion -->
 
 ### *Durable Rules Engine*
 
-The [*Durable RUles Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
+The [*Durable Rules Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
 
 To say that the framework is *polyglot* means that we can write programmes for the same framework using different ployglot languages, specifically Python, Node.js (a flavour of Javascript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
 
 Note that the *Durable Rules Engine* is *not* available directly within our robot simulator programmes.
 
+```python
+#%pip install git+https://github.com/innovationOUtside/durable_rules_magic.git
+```
+
+```python
+One popular way of using rule based systems to reason about the wotk
+```
 
 ![figure ../tm129-19J-images/tm129_rob_pa4_f5_1.png](../tm129-19J-images/tm129_rob_pa4_f5_1.png)
 
@@ -229,6 +278,20 @@ The program then calls the `speak` macro and the system says ‘prepare to test 
 
 
 ```python
+# Clear the state associated with a ruleset
+def _delete_state(rs):
+    try:
+        delete_state(rs)
+    except:
+        pass
+
+_delete_state(RULESET)
+assert_fact(RULESET, { 'subject': 'Kermit',
+                       'predicate': 'eats',
+                       'object': 'flies' });
+```
+
+```python
 from durable.lang import ruleset, when_all, m, assert_fact, retract_fact, delete_state, count, cap, c
 import uuid
 
@@ -276,20 +339,6 @@ with ruleset(RULESET):
     @when_all(+m.subject)
     def output(c):
         print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
-```
-
-```python
-# Clear the state associated with a ruleset
-def _delete_state(rs):
-    try:
-        delete_state(rs)
-    except:
-        pass
-
-_delete_state(RULESET)
-assert_fact(RULESET, { 'subject': 'Kermit',
-                       'predicate': 'eats',
-                       'object': 'flies' });
 ```
 
 ```python
@@ -399,7 +448,9 @@ James : is : student
 Jane : is : course manager
 ```
 
-```python
+```python3
+# "Two rulesets with the same name cannot exist in the same process"
+from durable.lang import *
 with ruleset('animals'):
     @when_all(c.first << (m.predicate == 'eats') & (m.object == 'flies'),
               (m.predicate == 'lives') & (m.object == 'water') & (m.subject == c.first.subject))
@@ -500,6 +551,9 @@ If you found the program hard to follow run it again in single-step mode. To do 
 
 Open and run the program `Tiggy_is_happy`. In the `Simulator` window you will be given the following two options:
 
+```python
+
+```
 
 ![figure ../tm129-19J-images/tm129_rob_p4_f013.jpg](../tm129-19J-images/tm129_rob_p4_f013.jpg)
 
@@ -1017,3 +1071,27 @@ When Simon has deduced the person, the food and the room, `uncertainty_remains` 
 # 4.5 Challenge: A better sleuth
 
 Suggest how Simon might finish off sleuth games sooner. Then modify the code to achieve this (this second part of the challenge is optional). 
+
+
+## Round Tripping 
+
+The original RobotLab activities include examples of round-tripping, with the simulated robot passing state out to a remote application, which then returned a response to the simulated robot. I'm pretty sure we can do the same, either with a predefined application or a userdefined function. THe latter would be best becuase then we could have an activity to write a helper application in notebook python that is called on by the simulated robot.
+
+At the moment, I have managed to send a message to Py from the simulator via messages sent to the simulator output window. THere is a callback that sends messages back from Py to the sim outpur window, but as yet the robot py code running in the simulator is oblivious to returned messages. (I need half a day, perhaps, a day, to actually get code into the simulator so the programme code can access it.)
+
+The following recipe shows how to overwrite the default collaborative `responder()` function with a custom one.
+
+```python
+class CollabSim(eds.Ev3DevWidget):
+     def responder(self, obj):
+        """ Callback function that tries to respond to widget."""
+        # obj is the message sent from the simulator
+        #Generate a response
+        response = f'pingpongBONG {obj}'
+        #Send the response back to the simulator
+        #At the moment, this is simply echoed in the simulator output window
+        self.set_element("response", response)
+
+# We now create an instance of the simulator with the custom collaborative callback function
+roboSim = CollabSim()
+```

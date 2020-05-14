@@ -1,53 +1,20 @@
 ```python
-# %load ../../_load_nbev3devwidget_requirements.py
-from nbev3devsim import ev3devsim_nb as eds
-
-#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
-#Load and initialise the jquery.dialogextend package
-import jp_proxy_widget
-cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
-cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
-module_id = "dialogExtend"
-
-
-# Load the module using a widget (any widget -- the module loads to the global jQuery object).
-loader = jp_proxy_widget.JSProxyWidget()
-
-# Configure the module to be loaded.
-loader.require_js(module_id, cdn_url)
-
-# Load the module
-loader.js_init("""
-    element.requirejs([module_identifier], function(module_value) {
-        //element.html("loaded " + module_identifier + " : " + module_value);
-    });
-""", module_identifier=module_id)
-loader
-
-# I think we need to wait for this to load
-# else we may get an error in next cell from dialogExtend not being available?
+#Testing  - can we load from a package?
+#import _load_nbev3devwidget_requirements
+##import _load_nbev3devwidget
 ```
 
 ```python
-import _load_nbev3devwidget_requirements
-import _load_nbev3devwidget
+#import _load_nbev3devwidget
 ```
 
 ```python
-import _load_nbev3devwidget
+#from IPython.display import Javascript
+#Javascript('$( "#notebook-container" ).resizable({ghost: false})')
 ```
 
 ```python
-from IPython.display import Javascript
-Javascript('$( "#notebook-container" ).resizable({ghost: false})')
-
-
-
-```
-
-```python
-%load_ext nbtutor
-%load_ext nbev3devsim
+# If the above doesn't work, old skool is below...
 ```
 
 ```python
@@ -83,11 +50,7 @@ loader
 ```
 
 ```python
-#Load the nbtutor extension
-%load_ext nbtutor
-
 from nbev3devsim import ev3devsim_nb as eds
-
 
 #Reset the notebook style
 from IPython.core.display import display, HTML, Javascript
@@ -101,7 +64,7 @@ from nbev3devsim import ev3devsim_nb as eds
 
 roboSim = eds.Ev3DevWidget()
 
-#roboSim.element.dialog();
+roboSim.element.dialog();
 
 
 roboSim.js_init("""
@@ -118,6 +81,11 @@ display(roboSim)
 //This allows us to resize this view
 //Click on the right hand edge to drag
 $( "#notebook-container" ).resizable({ghost: false})
+```
+
+```python
+%load_ext nbtutor
+%load_ext nbev3devsim
 ```
 
 # 4 Emergent behaviour: Braitenberg’s vehicles
@@ -157,6 +125,14 @@ You can increase the spacing between the sensors by:
 
 If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
 
+```python
+# Linting is all a bit broken at the moment
+# May or may not be ready in time...
+
+#%load_ext pycodestyle_magic
+#%pycodestyle_on
+#%flake8_off --ignore D100
+```
 
 #### Exploring the *Radial Grey* World
 
@@ -165,17 +141,6 @@ Run the following code cell to download the programme to the simulator and then 
 Observe what happens paying particularly close attention to the trajectory the robot follows.
 
 Enter a new starting location in the simulator, changing the original *Y* value from `400` to the new value `600`. Click the *Move* button to move the robot to that location and run the simulator again. How does the robot move this time? 
-
-```python
-%load_ext pycodestyle_magic
-%pycodestyle_on
-%flake8_off --ignore D100
-```
-
-```python
-print('asa')
-print(1)
-```
 
 ```python
 %%sim_magic_preloaded
@@ -357,8 +322,9 @@ while ((colorLeft.reflected_light_intensity>5)
 
 By inspection of the traces, you should notice that one of them is always slightly higher than the other.
 
-```python
+We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchroised datalog.
 
+```python
 #Grab the logged data into a pandas dataframe
 df = eds.get_dataframe_from_datalog(roboSim.results_log)
 
@@ -366,9 +332,17 @@ df = eds.get_dataframe_from_datalog(roboSim.results_log)
 df.head()
 ```
 
+Plot the data from the dataframe using the `seaborn` scientific charting package:
+
 ```python
 import seaborn as sns
-ax = sns.lineplot(x="index", y="value", hue='variable', data=df)
+
+# A line plot is a sensible chart type to use
+# to plot the time series data
+ax = sns.lineplot(x="index",
+                  y="value",
+                  hue='variable',
+                  data=df)
 ```
 
 <!-- #region -->
@@ -379,7 +353,7 @@ We can also create a Braitenberg vehicle that uses a single distance sensor to m
 
 Load in the *Obstacles Test* background, run the following code cell to download the programme to the simulator, and then run it in the simulator.
 
-By observing what happens when you start the robot in different positions, what do you think the robot is doing?
+Record your observations of the the behaviour of the robot when the programme is run in the simulator with the robot starting in different positions. Based on your observations, what do sort of behaviour does the robot appear to be performing?
 <!-- #endregion -->
 
 ```python
@@ -399,6 +373,22 @@ while  u > 1:
     tank_drive.on(left_motor_speed, right_motor_speed)
 
 ```
+
+*Record your observations here about what the robot appears to be doing when the program is run in the simulator with the rovot starting in different positions.*
+
+
+*Based solely on your observations, what sort of behaviour does the robot appear to be performing?*
+
+
+*With reference to the programme, what actions is the robot actually performing?*
+
+
+### Answer
+*Click the arrow in the sidebar to reveal my answer.*
+
+
+__TO DO__
+
 
 ## Summary
 
