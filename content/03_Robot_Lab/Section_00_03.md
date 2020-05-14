@@ -1,16 +1,16 @@
 ```python
 #Testing  - can we load from a package?
-import _load_nbev3devwidget_requirements
+#import _load_nbev3devwidget_requirements
+##import _load_nbev3devwidget
+```
+
+```python
 #import _load_nbev3devwidget
 ```
 
 ```python
-import _load_nbev3devwidget
-```
-
-```python
-from IPython.display import Javascript
-Javascript('$( "#notebook-container" ).resizable({ghost: false})')
+#from IPython.display import Javascript
+#Javascript('$( "#notebook-container" ).resizable({ghost: false})')
 ```
 
 ```python
@@ -322,8 +322,9 @@ while ((colorLeft.reflected_light_intensity>5)
 
 By inspection of the traces, you should notice that one of them is always slightly higher than the other.
 
-```python
+We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchroised datalog.
 
+```python
 #Grab the logged data into a pandas dataframe
 df = eds.get_dataframe_from_datalog(roboSim.results_log)
 
@@ -331,9 +332,17 @@ df = eds.get_dataframe_from_datalog(roboSim.results_log)
 df.head()
 ```
 
+Plot the data from the dataframe using the `seaborn` scientific charting package:
+
 ```python
 import seaborn as sns
-ax = sns.lineplot(x="index", y="value", hue='variable', data=df)
+
+# A line plot is a sensible chart type to use
+# to plot the time series data
+ax = sns.lineplot(x="index",
+                  y="value",
+                  hue='variable',
+                  data=df)
 ```
 
 <!-- #region -->
@@ -344,7 +353,7 @@ We can also create a Braitenberg vehicle that uses a single distance sensor to m
 
 Load in the *Obstacles Test* background, run the following code cell to download the programme to the simulator, and then run it in the simulator.
 
-By observing what happens when you start the robot in different positions, what do you think the robot is doing?
+Record your observations of the the behaviour of the robot when the programme is run in the simulator with the robot starting in different positions. Based on your observations, what do sort of behaviour does the robot appear to be performing?
 <!-- #endregion -->
 
 ```python
@@ -364,6 +373,22 @@ while  u > 1:
     tank_drive.on(left_motor_speed, right_motor_speed)
 
 ```
+
+*Record your observations here about what the robot appears to be doing when the program is run in the simulator with the rovot starting in different positions.*
+
+
+*Based solely on your observations, what sort of behaviour does the robot appear to be performing?*
+
+
+*With reference to the programme, what actions is the robot actually performing?*
+
+
+### Answer
+*Click the arrow in the sidebar to reveal my answer.*
+
+
+__TO DO__
+
 
 ## Summary
 
