@@ -1,10 +1,9 @@
 name: Jupyter Book Publish
 # ish via https://github.com/atrisovic/weather-panel.github.io/blob/master/.github/workflows/pythonpackage.yml#L10
-# Relies on the presence of a jupyterbook branch, as set up in the setup.yml workflow
+
 on:
-  push:
-    branches:
-    - master
+  release:
+    types: [published]
 
 # The intended workflow is:
 # - spot a checkin to master
