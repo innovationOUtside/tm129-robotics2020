@@ -54,6 +54,7 @@ nbtutor
 
 # Rules based systems
 durable_rules
+git+https://github.com/innovationOUtside/durable_rules_magic.git
 chatterbot==1.0.4
 
 # Drawing
