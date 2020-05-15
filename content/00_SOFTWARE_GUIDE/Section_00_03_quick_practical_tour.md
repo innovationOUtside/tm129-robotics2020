@@ -12,6 +12,75 @@ jupyter:
     name: python3
 ---
 
+```python
+from nbev3devsim import ev3devsim_nb as eds
+import jp_proxy_widget
+
+#Load the nbtutor extension
+%load_ext nbtutor
+
+#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
+#Load and initialise the jquery.dialogextend package
+
+cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
+cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
+module_id = "dialogExtend"
+
+# Load the module using a widget (any widget -- the module loads to the global jQuery object).
+loader = jp_proxy_widget.JSProxyWidget()
+
+# Configure the module to be loaded.
+loader.require_js(module_id, cdn_url)
+
+# Load the module
+loader.js_init("""
+    element.requirejs([module_identifier], function(module_value) {
+        //element.html("loaded " + module_identifier + " : " + module_value);
+    });
+""", module_identifier=module_id)
+loader
+
+```
+
+```python
+from nbev3devsim import ev3devsim_nb as eds
+
+#Reset the notebook style
+from IPython.core.display import display, HTML, Javascript
+
+#display(HTML("<style>#notebook-container { resize:vertical; border: 5px solid;  width: 300px; resize: horizontal; overflow: auto; float:left !important;}</style>"))
+display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
+
+#Launch the simulator
+from nbev3devsim import ev3devsim_nb as eds
+%reload_ext nbev3devsim
+
+roboSim = eds.Ev3DevWidget()
+
+roboSim.element.dialog();
+
+
+roboSim.js_init("""
+element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
+        "maximizable" : true,
+        "dblclick" : "maximize",
+        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
+""")
+
+display(roboSim)
+```
+
+```javascript
+//This allows us to resize this view
+//Click on the right hand edge to drag
+$( "#notebook-container" ).resizable({ghost: false})
+```
+
+```python
+%load_ext nbtutor
+%load_ext nbev3devsim
+```
+
 <!-- #region hideCode=true hidePrompt=true -->
 # 3 Some features of RoboLab
 <!-- #endregion -->
@@ -20,15 +89,6 @@ jupyter:
 In this section you will run some other RoboLab programs. The purpose is for you to observe what happens, to see some of the features of RoboLab, and to begin to see how other behaviours are controlled by the programs. This section is intended to give you an overview, and you are certainly not expected to remember the details.
 <!-- #endregion -->
 
-```python
-print('h')
-```
-
-```python
-#%pip install jupyter_contrib_nbextensions
-!jupyter contrib nbextension install --user
-```
-
 <!-- #region hideCode=true hidePrompt=true -->
 ## 3.1 Activity: Keeping a robot in an area
 
@@ -36,10 +96,6 @@ This activity demonstrates how to keep a robot inside a particular area bounded 
 
 Load the simulator package and then load and display the simulator widget:
 <!-- #endregion -->
-
-```python
-%pip install --upgrade jupyter_contrib_nbextensions
-```
 
 <!-- #region hideCode=true hidePrompt=true -->
 Select the `Loop` background which loads the robot in to the centre of a large rectangle drawn with thick black lines. 
@@ -57,7 +113,7 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
     print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 100:
+    if colorLeft.reflected_light_intensity < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
         # drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
@@ -127,7 +183,7 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
     print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 100:
+    if colorLeft.reflected_light_intensity < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
         # drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
@@ -163,7 +219,7 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
     print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 100:
+    if colorLeft.reflected_light_intensity < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
         # drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
@@ -252,13 +308,13 @@ Do you notice anything strange about the sensor values, particularly when the ro
 <!-- #region hideCode=true hidePrompt=true -->
 I get the following readings for the reflected light intensity readings from the light sensor:
 
-- white background: `255`
-- light grey band: `220`
-- medium grey band: `211`
-- dark grey band: `128`
+- white background: `100`
+- light grey band: `~86`
+- medium grey band: `~82`
+- dark grey band: `~50`
 - black band: `0`
 
-There is some "noise" in the form of intermediate values as the robot goes into and leaves the band. This is becuase the sensor has a "width" so it may be averaging readings where part of the sensor is over the white background and part of it is over the coloured band.
+There is some "noise" in the form of intermediate values as the robot goes into and leaves the band. This is because the sensor has a "width" so it may be averaging readings where part of the sensor is over the white background and part of it is over the coloured band.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -287,18 +343,18 @@ From the chart, can you read off the values for each band?
 <!-- #region hideCode=true hidePrompt=true -->
 The following diagram shows the result of showing the real time data logging chart:
 
-![The simulator Data log window, with a graph showing sensor data. The graph has a vertical axis with a scale that runs from 0 to 250, and a horizontal axis that runs from 0 to 400. A line chart is plotted showing successive sensor readings. Reading the graph from left (the first sensor reading) to right (the last sensor reading), the line is horizontal at a y-value of 255 until an x value of about 100, followed by a drop to about 220 until about x=145, at which point it climbs steeply back up to y=255, remaining at that level until about x=190. There is a further sharp drop to about (x, y) equal to (190, 210), then back up to to 255 at about x=225, until another edge at about x=280 down to (280, 130); the chart then goes back up from about (320, 130) to (321, 255), then down to y=0 at about x=360, staying then until x is almost 410, at which point the line climbs back up to 255 , satys there for a short while, and the trace ends.](../images/Section_00_03_-_charting.png)
+![The simulator Data log window, with a graph showing sensor data. The graph has a vertical axis with a scale that runs from 0 to 250, and a horizontal axis that runs from 0 to 400. A line chart is plotted showing successive sensor readings. Reading the graph from left (the first sensor reading) to right (the last sensor reading), the line is horizontal at a y-value of 255 until an x value of about 100, followed by a drop to about 220 until about x=145, at which point it climbs steeply back up to y=255, remaining at that level until about x=190. There is a further sharp drop to about (x, y) equal to (190, 210), then back up to to 255 at about x=225, until another edge at about x=280 down to (280, 130); the chart then goes back up from about (320, 130) to (321, 255), then down to y=0 at about x=360, staying then until x is almost 410, at which point the line climbs back up to 255 , stays there for a short while, and the trace ends.](../images/Section_00_03_-_charting.png)
 
 
 As the robot progresses across the bands, the bars that it encounters get progressively darker, so the sensor readings reduce. Between the bands, as the robot crosses the white background, the sensor reading go back up to their initial, maximum reading.
 
-If you hover your cursor over the chart, all the recorded trace values at that x-position on the chart are displayed. These are the values that were revorded and displayed, taken from the midpoint of the chart, when I ran the experiment.
+If you hover your cursor over the chart, all the recorded trace values at that x-position on the chart are displayed. These are the values that were recorded and displayed, taken from the midpoint of the chart, when I ran the experiment.
 
 
-- white background: `255`
-- light grey band: `220`
-- medium grey band: `211`
-- dark grey band: `128`
+- white background: `100`
+- light grey band: `86.27451`
+- medium grey band: `82.7451`
+- dark grey band: `50.19608`
 - black band: `0`
 
 *(You may have noticed that the simulation running in a slightly more "stuttery" way than when the chart is not displayed as your computer has to do more work in terms of dynamically updating the chart.)*
@@ -375,7 +431,7 @@ g = g.map(plt.plot, "index", "value", marker="x");
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
-Starting from the left-hand side, each blue `x` point represents a sensor reading. The white background from the grey bars environment shows as 255 and the solid black line shows as 0.
+Starting from the left-hand side, each blue `x` point represents a sensor reading. The white background in the grey bars environment shows as 100 and the solid black line shows as 0.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -595,7 +651,7 @@ for i in range(start_value, end_value, step_value):
 
 One of the ways we can use the `playsound.say()` function is to count out the bands as we come across them. To do this, we need to identify when we cross from the white background onto a band.
 
-We can detect the edge og a band by noticing when the sensor value goes from white (a reading of $255$) to a lower value. The following program will detect such a transition and say that it has crossed onto a band, also displaying a print message to announce the fact too.
+We can detect the edge of a band by noticing when the sensor value goes from white (a reading of $100$) to a lower value. The following program will detect such a transition and say that it has crossed onto a band, also displaying a print message to announce the fact too.
 
 Reset the robot location in the simulator, run the following cell to download the program to the simulator, and then run it in the simulator. Does it behave as you expected?
 <!-- #endregion -->
@@ -614,7 +670,7 @@ while True:
     #Uncomment the following line if you want to see the trace of sensor values
     #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
     current_value = colorLeft.reflected_light_intensity
-    if previous_value==255 and current_value < 255:
+    if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("New band")
 
@@ -624,7 +680,7 @@ while True:
 <!-- #region hideCode=true hidePrompt=true -->
 The programme starts by turning the motors on to drive the robot forward (`tank_drive.on(SpeedPercent(50), SpeedPercent(50))`) and then taking a sample of the light sensor reading (`previous_value = colorLeft.reflected_light_intensity`).
 
-The `while True:` statement creates a loop that repeats until the programme in the simulator is manually stopped. Inside the loop, a new sample is taken of the light sensor reading (`current_value = colorLeft.reflected_light_intensity`). If the robot was on the white background on the previous iteration (`previous_value==255`) and on a band in this iteration ( and then compared to the previous value (`current_value < 255`) then declare that the robot has moved onto a band, via the output display window (`print('Onto a band...')`) and audibly (`playsound.say("New band")`).
+The `while True:` statement creates a loop that repeats until the programme in the simulator is manually stopped. Inside the loop, a new sample is taken of the light sensor reading (`current_value = colorLeft.reflected_light_intensity`). If the robot was on the white background on the previous iteration (`previous_value==100`) and on a band in this iteration ( and then compared to the previous value (`current_value < 100`) then declare that the robot has moved onto a band, via the output display window (`print('Onto a band...')`) and audibly (`playsound.say("New band")`).
 
 The previous value variable is then updated to the current value (`previous_value = current_value`) and the programme goes round the loop again.
 <!-- #endregion -->
@@ -657,7 +713,7 @@ while True:
     #Uncomment the following line if you want to see the trace of sensor values
     #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
     current_value = colorLeft.reflected_light_intensity
-    if previous_value==255 and current_value < 255:
+    if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("On")
     
@@ -674,7 +730,7 @@ while True:
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
-To detect when the robot has left a band, we can check to see if it was on a band on the previous iteration of the `while True:` loop (`previous_value < 255`) and back on the white background on the current iteration (`current_value == 255`).
+To detect when the robot has left a band, we can check to see if it was on a band on the previous iteration of the `while True:` loop (`previous_value < 100`) and back on the white background on the current iteration (`current_value == 100`).
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
@@ -691,11 +747,11 @@ while True:
     #Uncomment the following line if you want to see the trace of sensor values
     #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
     current_value = colorLeft.reflected_light_intensity
-    if previous_value==255 and current_value < 255:
+    if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("On")
     
-    if previous_value < 255 and current_value == 255:
+    if previous_value < 100 and current_value == 100:
         print('Off a band...')
         playsound.say("Off")
     
@@ -781,7 +837,7 @@ while True:
     current_value = colorLeft.reflected_light_intensity
     
     # Test when the robot has entered a band
-    if previous_value==255 and current_value < 255:
+    if previous_value==100 and current_value < 100:
         # When on a new band:
         # - increase the count
         count = count + 1
