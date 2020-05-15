@@ -516,7 +516,7 @@ colorLeft = ColorSensor(INPUT_2)
 
 sensor_value = colorLeft.reflected_light_intensity
 
-while sensor_value > 250:
+while sensor_value > 99:
     print(sensor_value)
     sensor_value = colorLeft.reflected_light_intensity
 
@@ -528,7 +528,7 @@ When you run the programme in the simulator, the robot should drive forwards unt
 
 *Although the robot will stop, by default, when the programme ends, becuase the simulator run stops at the end of the programme, it is often good practice to explicitly turn the motors off yourself. By doing this,  you know for sure what state the motors are in at the end of the programme. In the above example, what would happen if, for some reason, the motor off command was omitted and the simulator carried on running even as the programme execution had completed?*
 
-The programme works by checking the value from one of the robot's sensors, a downward facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a "reflected light" sensor, which relates to the colour of the background canvas over which the robot is travelling. The simulator output display window shows the sensor value, starting at `255` when the robot is on the plain white background. This value is above the conditionally tested threshold value of `250` used in the original programme's `while` statement, and so the programme continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of 240 when I ran the programme.
+The programme works by checking the value from one of the robot's sensors, a downward facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a "reflected light" sensor, a percentage value which relates to the colour of the background canvas over which the robot is travelling. The simulator output display window shows the sensor value, starting at `100` when the robot is on the plain white background. This value is above the conditionally tested threshold value of `99` used in the original programme's `while` statement, and so the programme continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of just over 87 when I ran the programme.
 
 *Rather than testing and reporting the `colorLeft.reflected_light_intensity` value directly, the programme is constructed as it is because the sensor value may change in going from the `while` programme step to the `print()` step. Even though computers may step between lines of code very quickly, they still take a finite time to do so.*
 

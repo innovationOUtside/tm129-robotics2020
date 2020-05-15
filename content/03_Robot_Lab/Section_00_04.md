@@ -28,11 +28,6 @@ loader
 ```
 
 ```python
-!touch _load_requirements.py
-!touch _load_nbev3devwidget.py
-```
-
-```python
 # Run this cell to set up the robot simulator environment
 
 #Load the nbtutor extension
@@ -71,10 +66,6 @@ import ev3dev2_glue as g
 print(g.showme())
 ```
 
-```python
-
-```
-
 ```javascript
 //This allows us to resize this view
 //Click on the right hand edge to drag
@@ -95,13 +86,11 @@ while ((colorLeft.reflected_light_intensity>5)
     
     intensity_left = colorLeft.reflected_light_intensity
     intensity_right = colorRight.reflected_light_intensity
-    intensity_left_pc = 100.0 * (intensity_left / 255.0)
-    intensity_right_pc = 100.0 * (intensity_right / 255.0)
 
-    print(intensity_left_pc, intensity_right_pc)
+    print(intensity_left, intensity_right)
     
-    left_motor_speed = SpeedPercent(intensity_left_pc)
-    right_motor_speed = SpeedPercent(intensity_right_pc)
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
  
@@ -174,15 +163,16 @@ If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and ed
 You can also provide a set of custom default responses that Eliza will select between if no rules match by passing in them into the `hello_doctor()` function via the `default=` parameter. For example:
 
 ```python
-eliza.hello_doctor('dr_me.json',
+eliza.hello_doctor('doolittle.json',
                    default = ["Very interesting",
                               "I am not sure I understand you fully"]
                   )
 ```
 
+If you come up with an interesting script, please fee free to share it in the module forums.
 <!-- #endregion -->
 
-### *Durable Rules Engine*
+### Durable Rules Engine
 
 The [*Durable Rules Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
 
@@ -279,10 +269,6 @@ with ruleset(RULESET_1):
     def output(c):
         print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
      
-```
-
-```python
-when_all??
 ```
 
 We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules...
@@ -468,9 +454,21 @@ with ruleset(RULESET):
 Kermit : eats : worms
 ```
 
+## More General Forms of Rules
+
+So far we have focused on reasoning about "facts" in the form of statements with the form  *subject predicate object*.
+
+But this actally represents a more complicated form of reasoning than the rules engine actually employs because the *atomic* smallest possible facts are not the *subject predicate object* triples at all, they are the individual properties: `{subject: SUBJECT}`, `{'predicate': PREDICATE}` and `{object: OBJECT}`.
+
+
+
 ### Facts versus Events
 
-Facts persist, events are retracted once they have been evaluated. This then means we can also start counting over multiple events.
+Facts persist, events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
+
+For example, imagine a case where we want to avoid an obstacle. We might have a rule of the form:
+
+__TO DO__
 
 
 ### How might rules be useful in a robot context?
@@ -483,9 +481,9 @@ Facts persist, events are retracted once they have been evaluated. This then mea
 Can we find a way of getting the robot to post a message to Python, and Python to respond with a message back to the robot that the robot can respond to? 
 
 
-The original RobotLab activities include examples of round-tripping, with the simulated robot passing state out to a remote application, which then returned a response to the simulated robot. I'm pretty sure we can do the same, either with a predefined application or a userdefined function. THe latter would be best becuase then we could have an activity to write a helper application in notebook python that is called on by the simulated robot.
+The original RobotLab activities include examples of round-tripping, with the simulated robot passing state out to a remote application, which then returned a response to the simulated robot. I'm pretty sure we can do the same, either with a predefined application or a user defined function. The latter would be best because then we could have an activity to write a helper application in notebook python that is called on by the simulated robot.
 
-At the moment, I have managed to send a message to Py from the simulator via messages sent to the simulator output window. THere is a callback that sends messages back from Py to the sim outpur window, but as yet the robot py code running in the simulator is oblivious to returned messages. (I need half a day, perhaps, a day, to actually get code into the simulator so the programme code can access it.)
+At the moment, I have managed to send a message to Py from the simulator via messages sent to the simulator output window. There is a callback that sends messages back from Py to the sim output window, but as yet the robot py code running in the simulator is oblivious to returned messages. (I need half a day, perhaps, a day, to actually get code into the simulator so the programme code can access it.)
 
 The following recipe shows how to overwrite the default collaborative `responder()` function with a custom one.
 

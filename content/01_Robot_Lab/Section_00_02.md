@@ -327,7 +327,7 @@ counter, previous
 
 ## Updating Variables from Sensor Values
 
-Load the *Grey bands* background in to the simulator, and download and run the following programme, which you may recall from tje previous notebook. Observe the values of that are displayed in the simulator output window.
+Load the *Grey bands* background in to the simulator, and download and run the following programme, which you may recall from the previous notebook. Observe the values of that are displayed in the simulator output window.
 
 ```python
 %%sim_magic_preloaded
@@ -339,7 +339,7 @@ colorLeft = ColorSensor(INPUT_2)
 
 sensor_value = colorLeft.reflected_light_intensity
 
-while sensor_value > 250:
+while sensor_value > 99:
     print(sensor_value)
     sensor_value = colorLeft.reflected_light_intensity
 

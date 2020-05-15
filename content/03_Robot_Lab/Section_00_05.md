@@ -1,13 +1,31 @@
 ```python
-# Run this cell to set up the robot simulator environment
+#Requirement for styling simulator widget toolbar
+import _load_nbev3devwidget_requirements
+```
 
+```python
+#Style notebook
+from IPython.display import Javascript
+Javascript('$( "#notebook-container" ).resizable({ghost: false})')
+
+# Load nbev3devsim simulator
+from _load_nbev3devwidget import roboSim
+
+#Load nbev3devsim magic
+%load_ext nbev3devsim
+
+#Load the nbtutor extension
+%load_ext nbtutor
+```
+
+```python
 #Load the nbtutor extension
 %load_ext nbtutor
 
 #Reset the notebook style
 from IPython.core.display import display, HTML
 
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
+display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
 
 
 #Launch the simulator
@@ -15,20 +33,34 @@ from nbev3devsim import ev3devsim_nb as eds
 %load_ext nbev3devsim
 
 roboSim = eds.Ev3DevWidget()
+
+roboSim.set_element("response", '')
+             
 display(roboSim)
 roboSim.element.dialog();
+
+
+roboSim.js_init("""
+element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
+        "maximizable" : true,
+        "dblclick" : "maximize",
+        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
+""")
 ```
 
 # 5 Functions
 
 <!-- #region -->
+__TO DO: this needs to be earlier, before rules?__ 
+
+
 Many of the programmes we have used so far have been quite short programmes with little, if any, reused code.
 
 As programmes get larger, it is often convenient to encapsulate several lines of code within a *function*. The multiple lines of code within the function can then be called conveniently from a single statement whenever they are needed.
 
 Functions are very powerful, and if you have studied other programming courses, you may well be familiar with them.
 
-For our purposes, the following provides a very quick review of some of the key behaviours of Pyhton functions. It should be enough to get you started writing your own functions, without creating too many bad habits along the way.
+For our purposes, the following provides a very quick review of some of the key behaviours of Pyhton functions. Remember, this isn't a Python programming module *per se*; rather, it's a module where we explore how to use Python to get things done. What follows should be enough to get you started writing your own functions, without creating too many bad habits along the way.
 
 To see how we can create our own functions, let's consider a really simple example, a function that just prints out the word *Hello*.
 
@@ -44,15 +76,17 @@ Here are some of the rules relating to the sytactic defintion of a Python functi
 - the `FUNCTION_NAME` __MUST NOT__ contain any spaces or punctuation other than underscore (`_`) characters;
 - the function name __MUST__ be followed by a pair of brackets (`()`), that may contain something (we'll see what later), followed by a colon (`:`);
 - the body of the function __MUST__ be indented using space or tab characters. The level of indentation of the firxt line sets the effective "left-hand margin" for the remaining lines of code in the function;
-- the body of the function must include __AT LEAST__ one valid statement / line of code __EXCLUDING__ comments.
+- the body of the function must include __AT LEAST__ one valid statement / line of code __EXCLUDING__ comments. If you don't want the function to do anything, but need it as a placeholder, use `pass` as the single line of required code in the function body.
 
-It is also good practice to 
+It is also good practice to annotate your function with a so-called "docstring" (*documentation string*) providing a concise, imperative description of what the function does.
 
 ```python
 def FUNCTION_NAME():
     """"Docstring contain a concise summary of the function behaviour."""
      ONE_OR_MORE_LINES_OF_CODE
 ```
+
+Run the following code cell to define a simple function that prints the message *'hello'*:
 <!-- #endregion -->
 
 ```python
@@ -60,278 +94,237 @@ def sayHello():
     print('Hello')
 ```
 
-The function ....
+When we *call* the function, the code contained within the function body is executed.
+
+Run the following cell to call the function:
 
 ```python
 sayHello()
 ```
 
-Add an argument:
+Functions can contain multiple lines of code, which means they can provide a convenient way of calling multiple lines of code from a single line of code.
+
+Functions can also be used to perform actions over one or more arguments passed into the function. For example, if you want to say hello to a specific person by name, we can pass their name into the function as an argument, and then use that argument within the body of the function.
+
+We'll use a Python *f*-string as a convenient way of passing the variable value, by reference, into a string:
 
 ```python
 def sayHelloName(name):
+    """Print a welcome messge."""
     print(f"Hello, {name}")
 ```
 
-```python
-sayHelloName()
-```
+Let's call that function to see how it behaves:
 
 ```python
 sayHelloName("Sam")
 ```
 
+What happens if we forget to provide a name?
+
+```python
+sayHelloName()
+```
+
+Oops... We have defined the argument as a *positional* argument that is REQUIRED if the function is to be called without raising an error.
+
+If we want to make the argument optional, we need to provide a default value:
+
+```python
+def sayHelloName(name='there'):
+    """Print a message to welcome someone by name."""
+    print(f"Hello, {name}")
+    
+sayHelloName()
+```
+
+If we want to have different behaviours depending on whether a value is passed for the name, we can set a default such as `None` and then use a conditional statement to determine what to do based on the value that is presented:
+
+```python
+def sayHelloName(name=None):
+    """Print a message to welcome someone optionally by name."""
+    if name:
+        print(f"Hello, {name}")
+    else:
+        print("Hi there!")
+
+sayHelloName()
+```
+
+Sometimes, we may want to get one or more values returned back from a function. We can do that using the `return` statement. The `return` statement essentially does two things when it is called: firstly, it terminates the function's execution at that point; secondly, it optionally returns a value to the part of the program that called the function.
+
+Run the following code cell to define a function that constructs a welcome message, displays the message *and returns it*:
+
 ```python
 def sayAndReturnHelloName(name):
+    """Print a welcome message and return it."""
     message = f"Hello, {name}"
-    print(message)
+    print("Printing:", message)
     return message
 ```
+
+What do you think will happen when we call the function?
+
+
+*Write your prediction about what you think will happen when the function is run here __before__ you run the code cell to call it.*
 
 ```python
 sayAndReturnHelloName('Sam')
 ```
 
+Did you get the response you expected?
+
+In the first case, a message was *printed* out in the cells print area. In the second case, the message was returned as the value returned by the function. As the function appeared on the last line of the code cell, its value was *displayed* as the cell output.
+
+As you might expect, we can set a variable to the value returned from a function:
+
 ```python
-_
+message = sayAndReturnHelloName('Sam')
 ```
+
+If we view the value of that variable by running the following cell, what do you think you will see? Will the message be printed as well as displayed? 
+
+
+*Write your prediction about what you think will happen when the function is run here __before__ you run the code cell to call it.*
 
 ```python
 message
 ```
 
+Only the value returned from the function is displayed. The function is not called again, and so there is no instruction to *print* the message.
+
+To return multiple values, we do that from a single return statement:
+
+```python
+def sayAndReturnHelloName(name):
+    """Print a welcome message and return it."""
+    message = f"Hello, {name}"
+    print("Printing:", message)
+    return (name, message)
+
+sayAndReturnHelloName('Sam')
+```
+
+Finally, we can have multiple return statements in a function, but only one of them can be called from a single invocation of the function:
+
+```python
+def sayHelloName(name=None):
+    """Print a message to welcome someone optionally by name."""
+    if name:
+        print(f"Hello, {name}")
+        return (name, message)
+    else:
+        print("Hi there!")
+    return
+
+print(sayHelloName(), 'and', sayHelloName("Sam"))
+```
+
+<!-- #region -->
+Generally, it is *not* good practice to return different sorts of object from different parts of the same function.
+
+
+There is quite a lot more to know about functions, particularly in respect of how variables inside the function relate to variables defined outside the function, a topic referred to as *variable scope*. But for a treatment of that, you will need to refer to a module with a heavier emphasis on teaching programming.
+<!-- #endregion -->
+
 ## Using Functions in Robot Control Programs
 
-We’ll start by considering the simple program we first wrote to make the robot trace out a square. The first thing to do was to write the motor commands needed to drive forward along one edge of the square and then turn through 90°. 
+We’ll start by considering the simple program we wrote to make the robot trace out a square.
 
+If you recall, our first version of this explicitly coded each turn and edge movement, and then we used a loop to repeat the same action several times.
 
-![figure ../tm129-19J-images/tm129_rob_p4_f020.png](../tm129-19J-images/tm129_rob_p4_f020.png)
+Move the robot to the bottom left corner of the simulator window, run the following code cell to download the programme to the simulator and then run the programme in the simulator.
 
+Tweak the parameter settings until the robot approximately traces out the shape of a square.
 
-Figure 7.1 Listing
+```python
+%%sim_magic_preloaded
 
+SIDES = 4
 
-comment Macro Square
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 0.826
+TURN_SPEED = 40
 
-output left_motor on A
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 4
 
-output right_motor on C
+for side in range(SIDES):
+    #Go straight
+    # Set the left and right motors in a forward direction
+    # and run for 1 rotation
+    tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                                STRAIGHT_SPEED_PC,
+                                STRAIGHT_ROTATIONS)
 
-main
+    #Turn
+    # Set the robot to turn on the spot
+    # and run for a certain number of rotations *of the wheels*
+    tank_turn.on_for_rotations(STEERING,
+                               SpeedPercent(TURN_SPEED),
+                               TURN_ROTATIONS)
+```
 
-      comment : drive along side and then turn
+We could can extract this code into a function that allows us to draw a square whenever we want. By adding an option `side_length` parameter we can change the side length as required.
 
-      forward [left_motor right_motor]
+Download the following programme to the simulator and run it there.
 
-      on [left_motor right_motor] for 200
+Can you modify the programme to draw a third square with a size somewhere between the size of the first two squares?
 
-      backward [right_motor]
+```python
+%%sim_magic_preloaded
 
-      on [left_motor right_motor] for 103
+SIDES = 4
 
-      comment --- end of program
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 0.826
+TURN_SPEED = 40
 
-This set of statements carries out a useful single job – to drive along a side and then turn through a right angle. The macro construct lets us give this group of statements a name and then call the macro by name wherever we want to. The listing below shows what this looks like.
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 6
 
+def draw_square(side=STRAIGHT_ROTATIONS):
+    """Draw square of specified side length."""
+    for side in range(SIDES):
+        #Go straight
+        # Set the left and right motors in a forward direction
+        # and run for 1 rotation
+        tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                                    STRAIGHT_SPEED_PC,
+                                    #Use provided side length
+                                    side)
 
-![figure ../tm129-19J-images/tm129_rob_p4_f021.png](../tm129-19J-images/tm129_rob_p4_f021.png)
+        #Turn
+        # Set the robot to turn on the spot
+        # and run for a certain number of rotations *of the wheels*
+        tank_turn.on_for_rotations(STEERING,
+                                   SpeedPercent(TURN_SPEED),
+                                   TURN_ROTATIONS)
+        
+        
+# Call the function to draw a small size square
+draw_square(4)
 
+# And an even smaller square
+draw_square(2)
+```
 
-Figure 7.2 Listing: macro_square
+### Optional Activity
 
+Copy the code used to define the `draw_square() function, and modify it so that it takes a second "turn" parameter that replaces the `TURN_ROTATIONS` value.
 
-comment Macro Square
+Use the `turn` parameter to tune how far the robot turns at each corner.
 
-output left_motor on A
+Then see if you can use a `for..in range(N)` loop to call the square drawing function several times.
 
-output right_motor on C
+Can you further modify the program so that the side length is increased each time the function is called by the loop?
 
-macro driveSide
+Share your programmes in the module forum.
 
-      comment : drive along side and then turn
-
-      forward [left_motor right_motor]
-
-      on [left_motor right_motor] for 200
-
-      backward [right_motor]
-
-      on [left_motor right_motor] for 103
-
-main
-
-      comment do four sides
-
-      repeat 4
-
-            call driveSide
-
-      comment --- end of program
-
-I’ve given the macro the name `driveSide`. You are free to choose any name you want (subject to the usual rules for RobotLab identifiers) when you write a macro; try to choose a meaningful name that helps anyone reading the program know what the macro does. The definition of the macro occurs just once, before the `main` part of the program. Inside the main program, you can invoke or call the macro wherever you want, using the `call` statement. Here I’ve only used it once, but often a macro will be called in several places. Notice that the main part of the program is now very simple to understand.
-
-
-## 5.1 Activity: Creating a function
-
-
-In this activity you will use RobotLab to create the program `macro_square` that was used as an example at the beginning of this section.
-
-Start by creating a new program using the New program  ![inlinefigure ../tm129-19J-images/tm129_rob_p4_f022.gif](../tm129-19J-images/tm129_rob_p4_f022.gif)  toolbar button or `File &gt; New` command. <div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+N</p></div>
-
-We add the macro definition by dragging a `macro` statement from the command list. (This statement isn’t in the `Basic` list, so you will have to switch to the `By type` or `By name` lists to find it.) Note that the macro definition must be placed *before* the `main` statement.
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f023.jpg](../tm129-19J-images/tm129_rob_p4_f023.jpg)
-
-The new macro will be shown as `macroOne(param1, param2)`. As is usual with RobotLab, the names are default placeholders and we will change them to something meaningful. Inside the brackets are default *parameters*, `param1` and `param2`. A parameter is a way of passing data into the macro. For this example, we won’t be using parameters, but we’ll discuss them in more detail later, in Section 7.2.
-
-With the new macro `macroOne` highlighted in the `Program` window, we can change its details in the `Key–Value` pane. Change the name `macroOne` to `driveSide`. Since we won’t use parameters for this example, simply delete `param1, param2`, as shown below. 
-
-
-![figure ../tm129-19J-images/tm129_rob_pa4_f7_2b.png](../tm129-19J-images/tm129_rob_pa4_f7_2b.png)
-
-Now we need to define what the macro does. Add suitable motor statements to make Simon drive forward and turn through 90°. Take care when dragging in these statements that they are indented correctly so that RobotLab understands that these statements belong to the macro and not the main sequence. Your macro should look like the following.
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f025.png](../tm129-19J-images/tm129_rob_p4_f025.png)
-
-
-Figure 7.3 Listing: macro_square; driveSide
-
-
-macro driveSide
-
-      comment : drive along side and then turn
-
-      forward [left_motor right_motor]
-
-      on [left_motor right_motor] for 200
-
-      backward [right_motor]
-
-      on [left_motor right_motor] for 103
-
-When you have input the macro, you may find it helps to minimise it so that statements can be easily added to the `main` part of the program. Do this by clicking on the box containing the minimise [-] icon:<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Left cursor key or NumMinus</p></div>
-
-Now you are ready to input the main part of the program.
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f026.png](../tm129-19J-images/tm129_rob_p4_f026.png)
-
-
-Figure 7.4 Listing: macro_square; main program
-
-
-comment Macro Square
-
-output left_motor on A
-
-output right_motor on C
-
-[+] macro driveSide
-
-main
-
-      comment do four sides
-
-      repeat 4
-
-            call driveSide
-
-      comment --- end of program
-
-To call or *invoke* the macro, we use the `call` command. Drag a `call` command into the body of a `repeat` loop, as shown above. 
-
-When you drag a new `call` command into your program, it will be created with default names. Use the `Key–Value` window to change the name of the macro being called to `driveSide`. To make sure you don’t make any typing slips, use the Expression builder.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Ctrl+Enter</p></div> Click the  ![inlinefigure ../tm129-19J-images/tm129_rob_p2_f036a.gif](../tm129-19J-images/tm129_rob_p2_f036a.gif)  button to open the Expression builder, delete the current name, find `driveSide` in the list and drag it into the expression.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Use Tab and cursor keys to select; press Space to add; press Enter to finish</p></div> Click `OK` when you have finished.
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f028.png](../tm129-19J-images/tm129_rob_p4_f028.png)
-
-Finally, delete the parameters since you are not using any here.
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f029.png](../tm129-19J-images/tm129_rob_p4_f029.png)
-
-Run your program. Does it do what you expect? Make sure you can follow the path of execution in the program. Turn on the trace (use `Run &gt; Trace`) and use `Pause` ![inlinefigure ../tm129-19J-images/tm129_rob_rl_pause.gif](../tm129-19J-images/tm129_rob_rl_pause.gif)  and `Step` ![inlinefigure ../tm129-19J-images/tm129_rob_p4_f012.gif](../tm129-19J-images/tm129_rob_p4_f012.gif)  to follow the way the macro is called in the main program, the body of the macro is executed, and then control returns to the main program.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: F7, F6</p></div>
-
-My version of the program code is given in the program `macro_square` in the `week-4` folder. Try running that if you have problems. 
-
-Notice in passing that my program doesn’t use named constants such as `turnTime` and `forwardTime`. Previously I suggested that using named constants rather than literal numeric values was good practice, so why haven’t I followed my own advice? Using named constants is particularly useful when the same value is used in many places, as when we had several `on…for` statements used to rotate Simon by the same amount. But with the `driveSide` macro, each literal number occurs in a single place only, so there is less need for a named constant.
-
-
-## 5.2 Activity: Creating a function with a parameter
-
-
-In this activity, we’ll modify the program you have just written so that it can draw rectangles with two long sides and two short sides. To do this, we’ll change the definition of `driveSide` so that it can draw sides of different length.
-
-Open the `macro_square` program you wrote in the previous activity. Use `File &gt; Save As…` to save a new copy of this called `macro_rect`;<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Alt, F, A</p></div> we’ll work on this version and leave the original `macro_square` unchanged.
-
-Highlight the `macro` statement that defines `driveSide`. We will leave the name of the macro unchanged, but now we want to add a parameter to control how long the side will be. We will call this `forwardTime`. Click in the `params` field and type `forwardTime`; press Enter when done. 
-
-Now change the literal number in the `on…for` statement to use the new parameter `forwardTime`.
-
-The macro definition should now be as follows:
-
-
-![figure ../tm129-19J-images/tm129_rob_p4_f030_from_au.png](../tm129-19J-images/tm129_rob_p4_f030_from_au.png)
-
-
-Figure 7.5 Listing: macro_rect; driveSide
-
-
-macro driveSide(forwardTime)
-
-      comment : drive along side and then turn
-
-      forward [left_motor right_motor]
-
-      on [left_motor right_motor] for forwardTime
-
-      backward [right_motor]
-
-      on [left_motor right_motor] for 103
-
-[+] main
-
-We must also change the call to supply a value for the time. Highlight the `call driveSide` statement and enter 200 in the `params` field. This should now appear as:
-
-`call driveSide(200)`
-
-Test the program so far – it should draw a square. Notice that `forwardTime` in the `driveSide` macro will take on the value of whatever value is used in the `call` statement. 
-
-As yet, the program only draws squares. Modify it so that it draws a rectangle with long and short sides. 
-<!--ITQ-->
-
-#### Question
-
-Would you like a hint?
-
-
-#### Answer
-
-You will need two calls to `driveSide` with different values of the parameter.
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-Would you like to see my code?
-
-
-#### Answer
-
-You will need to change the loop as follows
-
-`      repeat 2`
-
-`            call driveSide(300)`
-
-`            call driveSide(100)`
-
-My version of the program code is given in the program `Macro_rect_solution` in the `week-4` folder. Try running that if you have problems. 
-<!--ENDITQ-->
 
 ## 5.3 Functions: a summary
-
 
 You have seen that a RobotLab *macro* is a named sequence of commands that can be ‘called’ or invoked from anywhere in the main program or from another macro. Macros offer four advantages:
 

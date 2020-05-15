@@ -148,18 +148,16 @@ Enter a new starting location in the simulator, changing the original *Y* value 
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
-while ((colorLeft.reflected_light_intensity>5) 
-       and (colorLeft.reflected_light_intensity)>5):
+while ((colorLeft.reflected_light_intensity>0.05) 
+       and (colorRight.reflected_light_intensity)>5):
     
     intensity_left = colorLeft.reflected_light_intensity
     intensity_right = colorRight.reflected_light_intensity
-    intensity_left_pc = 100.0 * (intensity_left / 255.0)
-    intensity_right_pc = 100.0 * (intensity_right / 255.0)
     
-    print(intensity_left_pc, intensity_right_pc)
+    print(intensity_left, intensity_right)
     
-    left_motor_speed = SpeedPercent(intensity_left_pc)
-    right_motor_speed = SpeedPercent(intensity_right_pc)
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
  
@@ -192,20 +190,12 @@ while ((colorLeft.reflected_light_intensity>5)
 
 Inside the `while..` block is the "intelligence" of the programme.
 
-It starts with the sampling of the sensor values, which are then scaled from their `0..255` range to a percentage range, `0..100`:
-
-```python
-    intensity_left = colorLeft.reflected_light_intensity
-    intensity_right = colorRight.reflected_light_intensity
-    intensity_left_pc = 100.0 * (intensity_left / 255.0)
-    intensity_right_pc = 100.0 * (intensity_right / 255.0)
-```
 
 The values are displayed in the simulator output window using a `print()` statement, and are then used to set the motor speeds:
 
 ```python
-    left_motor_speed = SpeedPercent(intensity_left_pc)
-    right_motor_speed = SpeedPercent(intensity_right_pc)
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
 ```
@@ -240,17 +230,15 @@ colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
 while ((colorLeft.reflected_light_intensity>5) 
-       and (colorLeft.reflected_light_intensity)>5):
+       and (colorRight.reflected_light_intensity)>5):
     
     intensity_left = colorLeft.reflected_light_intensity
     intensity_right = colorRight.reflected_light_intensity
-    intensity_left_pc = 100.0 * (intensity_left / 255.0)
-    intensity_right_pc = 100.0 * (intensity_right / 255.0)
     
-    print(intensity_left_pc, intensity_right_pc)
+    print(intensity_left, intensity_right)
     
-    left_motor_speed = SpeedPercent(intensity_right_pc)
-    right_motor_speed = SpeedPercent(intensity_left_pc)
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
  
@@ -276,8 +264,8 @@ How is the robot's behaviour explained by the programme this time?
 The sensor values are mapped onto motor speeds with the following lines of code:
 
 ```python
-    left_motor_speed = SpeedPercent(intensity_right_pc)
-    right_motor_speed = SpeedPercent(intensity_left_pc)
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
 ```
@@ -309,15 +297,13 @@ while ((colorLeft.reflected_light_intensity>5)
     
     intensity_left = colorLeft.reflected_light_intensity
     intensity_right = colorRight.reflected_light_intensity
-    intensity_left_pc = 100.0 * (intensity_left / 255.0)
-    intensity_right_pc = 100.0 * (intensity_right / 255.0)
     
-    left_motor_speed = SpeedPercent(intensity_right_pc)
-    right_motor_speed = SpeedPercent(intensity_left_pc)
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
     
     tank_drive.on(left_motor_speed, right_motor_speed)
-    print('Light_left: ' + str(colorLeft.reflected_light_intensity ))
-    print('Light_right: ' + str(colorRight.reflected_light_intensity ))
+    print('Light_left: ' + str(intensity_left ))
+    print('Light_right: ' + str(intensity_right))
 ```
 
 By inspection of the traces, you should notice that one of them is always slightly higher than the other.
