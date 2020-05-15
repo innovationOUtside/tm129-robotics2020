@@ -1,22 +1,69 @@
 ```python
-# Run this cell to set up the robot simulator environment
+from nbev3devsim import ev3devsim_nb as eds
+import jp_proxy_widget
 
 #Load the nbtutor extension
 %load_ext nbtutor
 
+#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
+#Load and initialise the jquery.dialogextend package
+
+cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
+cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
+module_id = "dialogExtend"
+
+# Load the module using a widget (any widget -- the module loads to the global jQuery object).
+loader = jp_proxy_widget.JSProxyWidget()
+
+# Configure the module to be loaded.
+loader.require_js(module_id, cdn_url)
+
+# Load the module
+loader.js_init("""
+    element.requirejs([module_identifier], function(module_value) {
+        //element.html("loaded " + module_identifier + " : " + module_value);
+    });
+""", module_identifier=module_id)
+loader
+```
+
+```python
+from nbev3devsim import ev3devsim_nb as eds
+
 #Reset the notebook style
-from IPython.core.display import display, HTML
+from IPython.core.display import display, HTML, Javascript
 
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
-
+#display(HTML("<style>#notebook-container { resize:vertical; border: 5px solid;  width: 300px; resize: horizontal; overflow: auto; float:left !important;}</style>"))
+display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
 
 #Launch the simulator
 from nbev3devsim import ev3devsim_nb as eds
-%load_ext nbev3devsim
+%reload_ext nbev3devsim
 
 roboSim = eds.Ev3DevWidget()
-display(roboSim)
+
 roboSim.element.dialog();
+
+
+roboSim.js_init("""
+element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
+        "maximizable" : true,
+        "dblclick" : "maximize",
+        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
+""")
+
+display(roboSim)
+```
+
+```javascript
+//This allows us to resize this view
+//Click on the right hand edge to drag
+$( "#notebook-container" ).resizable({ghost: false})
+```
+
+```python
+%load_ext nbtutor
+%load_ext nbev3devsim
 ```
 
 # 3 Branches
@@ -59,14 +106,14 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 sensor_value = colorLeft.reflected_light_intensity
 
 #Check the light sensor reading
-while sensor_value == 255:
+while sensor_value == 100:
     # Whilst we are on the white background
     # update the reading
     sensor_value = colorLeft.reflected_light_intensity
     # and display it
     print(sensor_value)
 
-# When the reading is below 255
+# When the reading is below 100
 # we have started to see something.
 # Drive a little way onto the band to get a good reading
 tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
@@ -77,7 +124,7 @@ sensor_value = colorLeft.reflected_light_intensity
 print(sensor_value)
 
 # Now make a decision about what we see
-if sensor_value < 128:
+if sensor_value < 50:
     playsound.say("I see black")
 else:
     playsound.say("I see grey")
@@ -95,7 +142,7 @@ What does the robot do?
 
 The robot moves forward over the white background until it reaches the grey or black area. If the background is black, the robot says *black*; otherwise, it says *grey*. 
 
-The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 255). When the light sensor reading goes below the white background value of 255, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
+The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 100). When the light sensor reading goes below the white background value of 100, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
 
 
 ### Working through the programme flow
@@ -111,15 +158,15 @@ In the branching `if..else..` operator, the program control flow takes one of tw
 If it evaluates `True`, then the statements in the first "if" block of code are evaluate; if the condition evaluates `False`, then the statements in the `else` block are evaluated. In both cases, contorl then flows forwards to the next statement after the `if..else..` block.
 
 <!-- #raw -->
-# Mermaind.js code
+# Mermaid.js code
 
 graph TD
     A(Start) --> B[Move forwards]
-    B --> C{Light == 255}
+    B --> C{Light == 100}
     C --> |Yes| D[Display reading]
     D --> C
     C --> |No| E[Drive forward<br/>a short way]
-    E --> F{Light < 128?}
+    E --> F{Light < 50?}
     F --> |Yes| G[Say 'black']
     F --> |No| H[Say 'grey']
     G --> I(End)
@@ -389,14 +436,14 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 sensor_value = colorLeft.reflected_light_intensity
 
 #Check the light sensor reading
-while sensor_value == 255:
+while sensor_value == 100:
     # Whilst we are on the white background
     # update the reading
     sensor_value = colorLeft.reflected_light_intensity
     # and display it
     print(sensor_value)
 
-# When the reading is below 255
+# When the reading is below 100
 # we have started to see something.
 # Drive a little way onto the band to get a good reading
 tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
@@ -407,7 +454,7 @@ sensor_value = colorLeft.reflected_light_intensity
 print(sensor_value)
 
 # Now make a decision about what we see
-if sensor_value < 128:
+if sensor_value < 50:
     playsound.say("I see black")
 else:
     playsound.say("I see grey")
@@ -430,23 +477,33 @@ Click the arrow in the sidebar to display a worked answer.
 <!-- #region -->
 The robot sees the following values over each of the grey bands:
 
-- light grey: 221
-- medium grey: 211
-- dark grey: 128
+- light grey: ~86
+- medium grey: ~82
+- dark grey: ~50
 - black: 0
+
+Generally, when we see lots of decimal places, we assume that the chances of ever seeing exactly the same sequence of numbers may be unlikely, so rather than testing for an exact match, we use one or more threshold tests to see if the number lies within a particular *range* of values, or is above a certain minimum value.
 
 If we assume those sensor readings are reliable, and the same value is alsway reported for each of those bands, we can make the make the following decisions:
 
 ```python
-if sensor_value == 220: 
+if sensor_value > 86: 
     print('light grey')
-elif sensor_value == 211: 
+elif sensor_value > 82: 
     print('medium grey')
-elif sensor_value == 128: 
+elif sensor_value > 50: 
     print('dark grey')
 else:
     print('black')
 ```
+
+We can make the test even more reliable by setting the threshold test values to values that are halfway between the expected values for a particular band. For example, 84, rather than 82, for distinguishing between light and medium grey; 66 rather than 82 for distinguishing between dark and medium grey; and 25 rather than 50 for distinguising between black and dark grey.
+
+__TO DO: an activity with noise values around the sensor would be useful here._
+
+This means that if there is a slight error in the reading, our thresholded test is like to make the right decision about which side of the threshold value the (noisy) reading actually falls on.
+
+__ TO DO - a diagram to illustrate this would be useful. __
 <!-- #endregion -->
 
 ```python
@@ -466,14 +523,14 @@ tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 sensor_value = colorLeft.reflected_light_intensity
 
 #Check the light sensor reading
-while sensor_value == 255:
+while sensor_value == 100:
     # Whilst we are on the white background
     # update the reading
     sensor_value = colorLeft.reflected_light_intensity
     # and display it
     print(sensor_value)
 
-# When the reading is below 255
+# When the reading is below 100
 # we have started to see something.
 # Drive onto the band to get a good reading
 tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
@@ -484,11 +541,11 @@ sensor_value = colorLeft.reflected_light_intensity
 print(sensor_value)
 
 # Now make a decision about what we see
-if sensor_value == 220: 
+if sensor_value >  86: 
     playsound.say("I see light grey")
-elif sensor_value == 211: 
+elif sensor_value > 82: 
     playsound.say("I see medium grey")
-elif sensor_value == 128: 
+elif sensor_value > 50: 
     playsound.say("I see dark grey")
 else:
     playsound.say("I see black")

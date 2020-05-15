@@ -27,6 +27,7 @@ git+https://github.com/innovationOUtside/nbev3devsim.git
 
 #Tutor
 nbtutor
+RISE
 
 #Updates
 ipywidgets>=7.5.0

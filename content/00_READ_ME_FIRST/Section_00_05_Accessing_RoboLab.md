@@ -2,7 +2,7 @@
 
 RoboLab is an example of an `Open Computing Lab (OCL)` environment configured specifically to support your TM129 activities.
 
-The `Open Computing Lab` approach is being trialled on several Open University modules and aims to provide a common approach to delivering complex software and computing envronments on personal computers as well as via remotely hosted onlineservers.
+The `Open Computing Lab` approach is being trialled on several Open University modules and aims to provide a common approach to delivering complex software and computing envronments on personal computers as well as via remotely hosted online servers.
 
 There are several ways in which you can access the RoboLab OCL environment:
 
