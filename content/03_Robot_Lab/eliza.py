@@ -55,9 +55,17 @@ Intelligence Programming" by Peter Norvig.
 import random
 import string
 
+## TH - outputter
+def output_response(r, aloud=False):
+    """Return actual response."""
+    print(r)
+    if aloud:
+        speaker.say(r)
+
+
 ## Talking to the computer
 
-def interact(prompt, rules, default_responses):
+def interact(prompt, rules, default_responses, aloud=False):
     """Have a conversation with a user."""
     # Read a line, process it, and print the results until no input remains.
     while True:
@@ -73,9 +81,10 @@ def interact(prompt, rules, default_responses):
             
         #Stopping condition
         if _input.startswith('GOODBYE'):
-            print("Oh, okay. It was nice talking to you. Goodbye.")
+            output_response("Oh, okay. It was nice talking to you. Goodbye.", aloud)
             break
-        print(respond(rules, _input, default_responses))
+        output_response(respond(rules, _input, default_responses), aloud)
+            
 
 
 def respond(rules, input, default_responses):
@@ -261,7 +270,7 @@ def remove_punct(string):
             .replace(';', '')
             .replace('!', ''))
 
-default_responses = [
+DEFAULT_RESPONSES = [
     "Very interesting",
     "I am not sure I understand you fully",
     "What does that suggest to you?",
@@ -270,11 +279,12 @@ default_responses = [
     "Do you feel strongly about discussing such things?",
     ]
 
-
 # TH
-def hello_doctor(rules_file='eliza.json', default=None):
+def hello_doctor(rules_file='eliza.json', default=None, aloud=False):
     if default is not None:
         default_responses = default
+    else:
+        default_responses = DEFAULT_RESPONSES
     with open(rules_file, 'r') as f:
         rules = json.load(f)
     rules_list = []
@@ -282,4 +292,56 @@ def hello_doctor(rules_file='eliza.json', default=None):
         pattern = remove_punct(str(pattern.upper())) # kill unicode
         transforms = [str(t).upper() for t in transforms]
         rules_list.append((pattern, transforms))
-    interact('ELIZA> ', rules_list, list(map(str.upper, default_responses)))
+    interact('ELIZA> ', rules_list, list(map(str.upper, default_responses)), aloud)
+
+
+from IPython.display import Javascript, display
+
+class ElizaSpeech():
+    def __init__(self, voice=None):
+        self.voice = voice
+
+    def set_voice(self, voicenum):
+        """Set voice number."""
+        self.voice = voicenum
+
+    def say(self, txt, showtext = True):
+        """Speak an utterance."""
+        js = f'''
+        var utterance = new SpeechSynthesisUtterance("{txt}");
+        '''
+        if self.voice:
+            js = js + f'''
+            utterance.voice = window.speechSynthesis.getVoices()[{self.voice}];
+            '''
+        js = js + 'speechSynthesis.speak(utterance);'
+        display(Javascript(js))
+        
+        
+    def _get_voices(self):
+        """Show a list of supported voices."""
+        # via https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices
+        js = '''
+        var voices =  window.speechSynthesis.getVoices();
+    var voicelist = '';
+   for(var i = 0; i < voices.length; i++) {
+   voicelist = voicelist+i+': '+ voices[i].name + ' ('+ voices[i].lang +')';
+    if(voices[i].default) {
+      voicelist += ' -- DEFAULT';
+    }
+   voicelist = voicelist + '*'
+  }
+
+IPython.notebook.kernel.execute("_browser_voicelist = '"+ voicelist+"'");
+        '''
+        display(Javascript(js))
+        
+    def show_voices(self):
+        self.voicelist = _browser_voicelist
+        
+        outlist = '\n'.join([s.strip() for s in _browser_voicelist.split('*')])
+        print(outlist)
+        #return self.voicelist
+
+# Need to be a bit cleverer about selecting speaker: Google UK English Female 
+speaker = ElizaSpeech(49)

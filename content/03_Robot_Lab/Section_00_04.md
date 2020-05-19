@@ -112,12 +112,14 @@ Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* programme is 
 
 A version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
-You can try it out for yourself by running the following code cell and starting your converation with a *Hello*; end the conversation by starting your response with *Goodbye*):
+You can try it out for yourself by running the following code cell and starting your conversation with a *Hello*; end the conversation by starting your response with *Goodbye*):
 
 ```python
 import eliza
 eliza.hello_doctor()
 ```
+
+If you want to hear Eliza speak the responses aloud to you, start the programme by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
 
 <!-- #region -->
 If you [look at the rules file](eliza.json), you will see that it contains a series of rules that have the form:
