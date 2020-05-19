@@ -7,3 +7,4 @@ tm129-19J-robotlab
 .md
 nbtutor/
 */*Robot*/backgrounds/
+*.pyc
