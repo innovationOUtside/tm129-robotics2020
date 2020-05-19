@@ -588,12 +588,27 @@ The robot simulator speech action is built up from a Javascript function that bu
 speechSynthesis.speak(new SpeechSynthesisUtterance("hello"))
 ```
 
-We can also use the Python `pyttxsx` package to create speech utterances, which we can call directly from a notebook code cell if we create a building block around it:
+We can also create a simple wrapper around a Javascript call that we can use in a Jupyter notebook context to speak, via the browser, from a Python statement:
+
+```python
+from IPython.display import Javascript
+
+class Speech():
+    def say(self, txt):
+        display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{txt}"))'))
+
+speaker = Speech()
+speaker.say('hello')
+```
+
+The Python `pyttxsx` package is capable of creating speech utterances which can be called directly from a notebook code cell, although access to audio drivers is not directly available in this virtual environment, so the package as it currently stands is mute.
+
+However, as a guide, if we create a building block around the package:
 
 ```python
 import pyttsx3
 
-class Speech():
+class NativeSpeech():
     def __init__(self):
         self.engine = pyttsx3.init()
     def say(self, txt):
@@ -604,12 +619,14 @@ class Speech():
         
 ```
 
+we could then trigger utterances with calls of the form `NativeSpeech().say('hello')`.
+
 As before, there may be a brief delay between running the code cell and hearing the speech utterance.
 
 Run the following code cell to hear Python speak to you:
 
 ```python
-speaker = Speech()
+speaker = NativeSpeech()
 speaker.say('hello')
 speaker.say(1)
 speaker.say("2.5")

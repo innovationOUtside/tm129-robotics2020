@@ -1,75 +1,21 @@
 ```python
-from nbev3devsim import ev3devsim_nb as eds
-
-#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
-#Load and initialise the jquery.dialogextend package
-import jp_proxy_widget
-cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
-cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
-module_id = "dialogExtend"
-
-
-# Load the module using a widget (any widget -- the module loads to the global jQuery object).
-loader = jp_proxy_widget.JSProxyWidget()
-
-# Configure the module to be loaded.
-loader.require_js(module_id, cdn_url)
-
-# Load the module
-loader.js_init("""
-    element.requirejs([module_identifier], function(module_value) {
-        //element.html("loaded " + module_identifier + " : " + module_value);
-    });
-""", module_identifier=module_id)
-loader
-
-# I think we need to wait for this to load
-# else we may get an error in next cell from dialogExtend not being available?
-```
-
-```python
-# Run this cell to set up the robot simulator environment
-
-#Load the nbtutor extension
-%load_ext nbtutor
-
-#Reset the notebook style
-from IPython.core.display import display, HTML
-
-display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
-
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
-%load_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-
-roboSim.set_element("response", '')
-             
-display(roboSim)
-roboSim.element.dialog();
-
-
-roboSim.js_init("""
-element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
-        "maximizable" : true,
-        "dblclick" : "maximize",
-        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
-""")
-```
-
-```python
-%%sim_magic
-import ev3dev2_glue as g
-
-print(g.showme())
+%%capture
+import sys
+sys.path.insert(0,'..')
+import _load_nbev3devwidget_requirements
 ```
 
 ```javascript
 //This allows us to resize this view
 //Click on the right hand edge to drag
 $( "#notebook-container" ).resizable({ghost: false})
+```
+
+```python
+from _load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
 ```
 
 # 4 Reasoning and the sense–think–act model
@@ -112,12 +58,14 @@ Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* programme is 
 
 A version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
-You can try it out for yourself by running the following code cell and starting your converation with a *Hello*; end the conversation by starting your response with *Goodbye*):
+You can try it out for yourself by running the following code cell and starting your conversation with a *Hello*; end the conversation by starting your response with *Goodbye*):
 
 ```python
 import eliza
 eliza.hello_doctor()
 ```
+
+If you want to hear Eliza speak the responses aloud to you, start the programme by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
 
 <!-- #region -->
 If you [look at the rules file](eliza.json), you will see that it contains a series of rules that have the form:
@@ -411,6 +359,106 @@ Hopefully, from these examples and the earlier Eliza example, you have a feeling
 
 eg from example on druable rules README
 
+
+We can define a really simple Python speech class that allows us to speak from code contained in a notebook using the browser's Javascript speech engine:
+
+```python
+from IPython.display import Javascript
+
+class Speech():
+    def say(self, txt):
+        display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{txt}"))'))
+        
+speaker = Speech()
+speaker.say('hello')
+```
+
+Building on the simple speech class for taling via the browser, I have created a class that keeps track of how many messages have been posted and returns a visual count of utterances, alongside a transcript of the utterance.
+
+```python
+from IPython.display import Javascript
+
+class Speech():
+    def __init__(self, voice=None, reset=True):
+        if reset:
+            self.count = 1
+        self.voice = voice
+        self._get_voices()
+        self.voicelist = ''
+
+    def set_voice(self, voicenum):
+        """Set voice number."""
+        self.voice = voicenum
+
+    def say(self, txt, showtext = True):
+        """Speak an utterance."""
+        js = f'''
+        var utterance = new SpeechSynthesisUtterance("{txt}");
+        '''
+        if self.voice:
+            js = js + f'''
+            utterance.voice = window.speechSynthesis.getVoices()[{self.voice}];
+            '''
+        js = js + 'speechSynthesis.speak(utterance);'
+        display(Javascript(js))
+        
+        if showtext:
+            print(f'{self.count}: {txt}')
+        self.count = self.count +1
+        
+    def reset_count(self):
+        """Reset the counter."""
+        self.count = 1
+        
+    def _get_voices(self):
+        """Show a list of supported voices."""
+        # via https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices
+        js = '''
+        var voices =  window.speechSynthesis.getVoices();
+    var voicelist = '';
+   for(var i = 0; i < voices.length; i++) {
+   voicelist = voicelist+i+': '+ voices[i].name + ' ('+ voices[i].lang +')';
+    if(voices[i].default) {
+      voicelist += ' -- DEFAULT';
+    }
+   voicelist = voicelist + '*'
+  }
+
+IPython.notebook.kernel.execute("_browser_voicelist = '"+ voicelist+"'");
+        '''
+        display(Javascript(js))
+        
+    def show_voices(self):
+        self.voicelist = _browser_voicelist
+        
+        outlist = '\n'.join([s.strip() for s in _browser_voicelist.split('*')])
+        print(outlist)
+        #return self.voicelist
+    
+```
+
+```python
+speaker = Speech()
+
+#speaker.set_voice(49)
+speaker.say('hello how are you')
+```
+
+We can also show the list of voices.
+
+```python
+speaker.show_voices()
+```
+
+You can use the folowing command to reset the message count:
+
+```python
+speaker.reset_count()
+speaker.say('hello again')
+```
+
+Now we can listen to the rules as they are fired, as well as seeing a report that shows the order in which they were fired.
+
 ```python
 RULESET = new_ruleset()
 with ruleset(RULESET):
@@ -423,10 +471,12 @@ with ruleset(RULESET):
               Subject('lives', 'land') & (m.subject == c.first.subject))
     def chameleon(c):
         c.assert_fact(SPO(c.first.subject, 'is', 'chameleon'))
-
+        
     @when_all(Subject('eats', 'worms'))
     def bird(c):
+        speaker.say(f'if {c.m.subject} eats worms')
         Set(c, '? : is : bird')
+        speaker.say(f'{c.m.subject} is a bird')
 
     @when_all(Subject('is', 'frog'))
     def green(c):
@@ -438,15 +488,19 @@ with ruleset(RULESET):
 
     @when_all(Subject('is', 'bird'))
     def black(c):
+        speaker.say(f'if {c.m.subject} is a bird')
         Set(c, '? :is : black')
+        speaker.say(f'{c.m.subject} is black')
         
     @when_all(Subject("is", "bird"))
     def can_fly(c):
+        speaker.say(f'if {c.m.subject} is a bird')
         Set(c, '? : can : fly' )
+        speaker.say(f'{c.m.subject} can fly')
 
     @when_all(+m.subject)
     def output(c):
-        print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+        print('\nFact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
 ```
 
 ```python
@@ -466,20 +520,67 @@ But this actally represents a more complicated form of reasoning than the rules 
 
 Facts persist, events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
 
-For example, imagine a case where we want to avoid an obstacle. We might have a rule of the form:
+For example, imagine a case where we want to avoid a red line, because red lines indicate danger.
 
-__TO DO__
 
+```python
+from durable.lang import post
+
+RULESET = new_ruleset()
+with ruleset(RULESET):
+    # this rule will trigger as soon as three events match the condition
+    @when_all(m.color=='red')
+    def see_red(c):
+        speaker.say(f'I see red')
+        c.assert_fact({'status': 'danger'})
+        
+    @when_all(m.color!='red')
+    def not_red(c):
+        speaker.say(f'I see {c.m.color}')
+        c.assert_fact({'status': 'safe'})
+
+    @when_all( m.status == 'danger')
+    def dangerous(c):
+        speaker.say(f'That is dangerous.')
+        c.retract_fact({'status': 'danger'})
+        
+    @when_all( m.status == 'safe')
+    def safe(c):
+        speaker.say(f'That is safe.')
+        c.retract_fact({'status': 'safe'})
+          
+
+```
+
+```python
+post(RULESET, {'color': 'red' });
+```
+
+```python
+post(RULESET, {'color': 'green' });
+```
+
+```python
+post(RULESET, {'color': 'red' });
+post(RULESET, {'color': 'green' });
+```
 
 ### How might rules be useful in a robot context?
 
-?? could we use a variant of eliza code in simulator under skulpt to provide simple rules handling there?
+Although we can easily create our own `if...` statements in the programme downloaded to the simulator, and control the robot's behaviour that way, it may more convenient to develop, and test, a large and possibly complex rule based set of behaviours using a framework such as a *Durable Rules*.
+
+This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook's Python context, passing them as events to the Durable Rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.
+
+We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule based system, in a later notebook.
+
+<!-- #region -->
+### Addendum - Using Python to Respond to and Control Events in the Simulator
 
 
-### Using Python to Respond to and Control Events in the Simulator
+__THESE ARE JUST MY WORKING NOTES AS I TRY TO FIGURE STUFF OUT...__
 
 Can we find a way of getting the robot to post a message to Python, and Python to respond with a message back to the robot that the robot can respond to? 
-
+<!-- #endregion -->
 
 The original RobotLab activities include examples of round-tripping, with the simulated robot passing state out to a remote application, which then returned a response to the simulated robot. I'm pretty sure we can do the same, either with a predefined application or a user defined function. The latter would be best because then we could have an activity to write a helper application in notebook python that is called on by the simulated robot.
 

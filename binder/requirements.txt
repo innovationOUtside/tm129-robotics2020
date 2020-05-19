@@ -25,6 +25,9 @@ autopep8
 #Simulator
 git+https://github.com/innovationOUtside/nbev3devsim.git
 
+#Audio
+#pyttsx3 # not trivially in Docker
+
 #Tutor
 nbtutor
 RISE
@@ -45,6 +48,7 @@ pandas
 matplotlib
 plotly
 seaborn
+cufflinks #plotly support for pandas dataframes
 
 # Notebook extensions
 jupyter_contrib_nbextensions
@@ -61,6 +65,7 @@ chatterbot==1.0.4
 # Drawing
 noisify
 drawSvg
+git+https://github.com/innovationOUtside/flowchart_js_jp_proxy_widget.git
 
 #Robot simulator demos
 git+https://github.com/innovationOUtside/nbev3devsim.git
