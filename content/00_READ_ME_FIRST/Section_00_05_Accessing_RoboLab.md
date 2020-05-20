@@ -23,6 +23,16 @@ If you want to save any of the notebooks used there, you will have to download t
 
 You can also upload your own notebooks from the notebook homepage either individually, or as a zip file. If you upload a zip file, you will need to unzip it. You can do this from a notebook command cell using the `unzip` shell command or [using Python code](https://thispointer.com/python-how-to-unzip-a-file-extract-single-multiple-or-all-files-from-a-zip-archive/). More details can be found in the __TO DO?? - see the `RoboLab Environment FAQ`__
 
+#### Persisting Files on MyBinder
+
+The environment launched from MyBinder is ephemeral - it is created on demand when you click a `launch binder` button and is destroyed after a short period of inactivity.
+
+To save your work when working on MyBinder, there are two approaches you can take.
+
+##### Using Notebook Storage
+
+##### Downloading and Uploading Files
+
 
 ### Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements
 
@@ -87,7 +97,7 @@ Open a command prompt and run the following commands [UNTESTED]:
 - check the current directory path: `cd`. Assuming it returns something like `C:\\users\YOURUSER\TM129`, start the container by running the command: `docker run --name tm129test --rm -d -p 8897:8888 -v //C/users/YOURUSER/TM129/notebooks:/home/jovyan/notebooks  ousefuldemos/tm351-binderised:latest`
 
 __TO DO: does this require the notebooks dir to be available? If so: `mkdir notebooks` before the `docker run...` command.__
-In Windows, you cannot mount on to a non-empty directory inside the container. You can, however, define and automaticaly create your own directory. For it to be visible to the notebook server homepage, the shared directory needs to be mounted along the `/home/jovyan/' directory path. For example, `-v c:\tm129share\notebooks:c:\home\jovyan\mySharedDirectory`.
+In Windows, you cannot mount on to a non-empty directory inside the container. You can, however, define and automaticaly create your own directory. For it to be visible to the notebook server homepage, the shared directory needs to be mounted along the `/home/jovyan/'` directory path. For example, `-v c:\tm129share\notebooks:c:\home\jovyan\mySharedDirectory`.
 
 #### Once the Docker Container is running...
 
@@ -124,6 +134,7 @@ The run command will create a notebooks directory in the directory you issued th
 
 Files that exist outside the `/home/joyan/notebooks` directory path in the container (which is to say, outside the `notebooks` directory viewable from the notebook server homepage, *will not be shared to your local desktop*.
 
+TO DO - files are shipped with the container; to copy them into the shared folder so they appear on your desktop, you will need to rename the ?? folder to ??. SCREENSHOT / instruction
 
 #### Running an Open Computing Lab Environment via the ContainDS Application
 

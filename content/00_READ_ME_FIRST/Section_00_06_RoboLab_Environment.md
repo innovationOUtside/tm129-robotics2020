@@ -12,7 +12,13 @@ If you clicked on the the link to this document from a Jupyter notebook server h
 
 ### A first look
 
-To start RoboLab, launch the ContainDS application.
+Launch the RoboLab environment. If you are running RoboLab on your own computer, rather than access it remotely, start the RoboLab environment either from the command line or using ContainDS and then access it from your browser at the location [`http://localhost:8129`](http://localhost:8129) or [`http://127.0.0.1:8129`](`http://127.0.0.1:8129`).
+
+#### Running RoboLab From the Command Line
+
+TO DO
+
+#### Running RoboLab From ContainDS
 
 If RoboLab is running, you should see it in the side bar, with its status indicator highlighted green. 
 
@@ -29,7 +35,6 @@ With the container running, click on the `WEB` button to open the notebook serve
 When RobotLab starts, the notebook server homepage will look something like the following (the actual file listing may differ).
 
 ![Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing.](../images/00_01_jupyter_nb_homepage.png)
-
 
 If you click on a folder link, you will be presented with a list of the files contained in that folder, as you might expect. Click on the directory path links to navigate your way back up the directory listing tree.
 
