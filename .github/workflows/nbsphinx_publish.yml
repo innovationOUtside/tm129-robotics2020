@@ -12,11 +12,11 @@ jobs:
 
     steps:
       - name: Check build branch exists
-      uses: peterjgrainger/action-create-branch@v2.0.0
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        branch: build
+        uses: peterjgrainger/action-create-branch@v2.0.0
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: build
       - uses: actions/checkout@v2
       - run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
