@@ -41,12 +41,7 @@ motor_pair.on_for_seconds(steering=0, speed=50, seconds=3)
 <!-- #endraw -->
 
 <!-- #region -->
-TO DO - WE MAY NOT NEED THIS IF WE WORK IN THE NOTEBOOK VIA A WIDGET
 
-
-Save the programme with a meaningful file name (for example, `move_a_robot.py`) and clear the programme editor by deleting all the contents from it. If you `Run` the (non-existent) programme, the robot should not move.
-
-Load the file you saved back into the programme window, and run it again. This time the robot should move for 3 seconds again.
 
 TO DO - LINE NUMBER OPTIONS IN EDITOR?
 <!-- #endregion -->
@@ -67,12 +62,8 @@ TO DO - a simulator run status indicator would be useful.
 
 So far we have taken a very quick look at how to download programmes from a notebook code cell and run them in the simulator.
 
+In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the program to see what form it takes and why the robot behaves as it does.
 
- the `Program editor` and `Simulator` windows. In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the `Program` window as it relates to the `Move_a_robot` program, to see the essential elements of the program and why the robot behaves as it does.
-
-If you don’t already have the `move_a_robot.py` program open, reopen it now.
-
-The `move_a_robot.py` program is displayed in the `Program` window as follows:
 
 <!-- #region -->
 ```python
