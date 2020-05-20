@@ -1,0 +1,116 @@
+name: "nbsphinx publisher"
+# via: https://github.com/s-weigand/nbsphinx/blob/gh-action-ci-switch/.github/workflows/test.yml
+on:
+  push:
+    branches:
+      - master
+jobs:
+          
+  nbsphinx-publish:
+    if: (contains(github.event.commits[0].message, '--publish'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check build branch exists
+      uses: peterjgrainger/action-create-branch@v2.0.0
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        branch: build
+      - uses: actions/checkout@v2
+      - run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Setup conda
+        uses: s-weigand/setup-conda@v1
+        with:
+          activate-conda: false
+          conda-channels: conda-forge
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      # Should probably let the use provide and environment.yaml file
+      # For cache to work we need to work in an env; else pkgs in non-cacheable /usr/share/miniconda
+      - uses: actions/cache@v1
+        with:
+          path: /home/runner/.conda/pkgs
+          key: ${{ runner.os }}-conda-${{ hashFiles('**/environment.y*ml') }}
+          restore-keys: |
+            ${{ runner.os }}-conda-
+           
+      - name: Install dependencies
+        run: |
+          echo $(conda info)
+          conda install -y pandoc librsvg tectonic
+          python -m pip install sphinx
+          python -m pip install nbsphinx
+          python -m pip install jupytext
+          (test -f requirements.txt && python -m pip install -r requirements.txt) || echo "No other requirements." 
+      #- name: Show installed dependencies
+      #  if: always()
+      #  run: |
+      #    python --version
+      #    python -c "import nbsphinx; print('nbsphinx.__version__==', nbsphinx.__version__)"
+      #    pandoc -v
+      #    pip freeze
+
+      - name: Use build branch context
+        run: |
+          sudo chown -R $(whoami):$(whoami) .
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --global user.name "$GITHUB_ACTOR"
+          git checkout build
+          # And bring down changes from master
+          git merge --allow-unrelated-histories
+      - name: Build docs HTML
+        run: python -m sphinx . ./_build/html/ -b html
+
+      - name: Deploy HTML site to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/html
+
+      - name: Build docs LaTeX
+        run: python -m sphinx . ./_build/latex/ -b latex
+      - name: Build docs ePub
+        continue-on-error: true
+        run: python -m sphinx . ./_build/epub/ -b epub
+      - name: Cache Tectonic (latex / PDF) Packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-packages
+      - name: Build PDF from LaTeX
+        continue-on-error: true
+        run: tectonic ./_build/latex/nbsphinx.tex
+
+      - name: Create _artifacts folder
+        run: |
+          mkdir - p _artifacts
+          ( test -f ./_build/latex/nbsphinx.pdf && cp ./_build/latex/nbsphinx.pdf _artifacts) || echo "No PDF found."
+          ( test -f ./_build/epub/sphinx.epub && cp ./_build/epub/sphinx.epub _artifacts) || echo "No EPUB found."
+      - name: Upload _artifacts folder
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: docs
+          path: ./_artifacts
+
+      - name: Commits for build branch
+        run: |       
+          git add --all --force _build
+          git commit -a --allow-empty-message -m 'Push build branch'
+ 
+      - name: Push changes to build branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: build
+          force: true
