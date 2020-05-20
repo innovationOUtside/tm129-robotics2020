@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1 Introduction to loops and branches</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># Run this cell to set up the robot simulator environment
+
+#Reset the notebook style
+from IPython.core.display import display, HTML
+
+display(HTML(&quot;&lt;style&gt;#notebook-container { width:50% !important; float:left !important;}&lt;/style&gt;&quot;))
+
+
+#Launch the simulator
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+
+roboSim = eds.Ev3DevWidget()
+display(roboSim)
+roboSim.element.dialog();
+</pre></div>
+</div>
+</div>
+<div class="section" id="1-Introduction-to-loops-and-branches">
+<h1>1 Introduction to loops and branches</h1>
+<p>Loops and branches are powerful constructs in programming, and they are used extensively in almost all computer programs. In this lab session, I will introduce the different loop and branch statements provided by RoboLab. You will have an opportunity to see how they are used by working through the activities. We end the session with a number of challenges for you to attempt. These will give you practice in selecting and using different RobotLab statements.</p>
+</div>
+<div class="section" id="2-Loops">
+<h1>2 Loops</h1>
+<div class="section" id="2.1-An-introduction-to-loops-in-computer-programs">
+<h2>2.1 An introduction to loops in computer programs</h2>
+<p>To illustrate the idea of a loop it is helpful to use a swimming analogy. Suppose you want to swim 20 lengths of a swimming pool. The chances are you will want to monitor your progress by keeping count of the number of lengths you complete. So, at the start, your personal counter (you) will be set to ‘0’. After one length of the pool you add 1 to your counter. You also ask yourself ‘have I done 20 lengths yet?’ If the answer is ‘no’, you ‘loop back’ to swim another length. On completion of the
+second length you add 1 to your counter and ask yourself the question again. If the answer is ‘no’ you loop back and repeat the process once more. You keep going like this until the answer to the question is ‘yes’, at which point you will have completed 20 lengths of the pool and the loop will end:</p>
+<p><a class="reference external" href="https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9"><img alt="image0" src="../../_images/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" /></a><span class="link-target"> [https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9]</span></p>
+Mermaid code https://mermaid-js.github.io/mermaid-live-editor/
+The mermaid editor is supposed to encode/decode base 64 strings
+but I can't get my own encoder/decoder to work to encode/decode things the same way?
+
+graph LR
+    A(Start) --> B[Set the count to 0]
+    B --> C[Swim a length]
+    C --> D[Add 1 to the count]
+    D --> E{Is the<br/>count less<br/>than 20?}
+    E --> |Yes| C
+    E --> |No| F(End)
+
+Long description:
+
+A flow chart for a person swimming 20 lengths of a pool. The flow chart starts with n oval shape labelled ‘Start’. From here there are sequences of boxes connected by arrows: first ‘set the count to zero’, then ‘swim a length’ and last ‘add 1 to the count’. From this box an arrow leads to a decision diamond labelled ‘is the count less than 20?’ Two arrows lead from this, one labelled ‘yes’, the other ‘no’. The ‘yes’ branch leads back to rejoin the box ‘swim a length’. The ‘no’ branch leads directly to an oval shape labelled ‘end’. There is thus a loop in the chart which includes the steps ‘swim a length’ and ‘add 1 to the count’ and ends with the decision ‘is the count less than 20?’<p>As another example, consider a person ironing clothes. The loop starts with the person looking in the basket. Then a decision has to be made: are there any clothes left? If there are, the person must go round the loop: take out an item and iron it, put it on the pile of ironed clothes, and look in the basket again. When there are no clothes left in the basket the loop ends.</p>
+<p><a class="reference external" href="https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9"><img alt="image0" src="../../_images/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" /></a><span class="link-target"> [https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9]</span></p>
+Mermaid drawing (this is far from ideal...Maybe better to use draw.io?)
+
+graph LR
+    A(Start) --> B{Any clothes<br>left in<br/>basket?}
+    B --> |Yes| C[Take out<br/>item and<br/>iron]
+    C --> D[Put it on pile<br/>of ironed<br/>clothes]
+    D --> B
+    B --> |No| E(End)
+
+Long desc:
+
+A flow chart for a person ironing clothes. This starts with an oval ‘start’. An arrow leads to a decision diamond ‘any clothes left in the basket?’ Two arrows lead from this, one labelled ‘yes’, the other ‘no’. The ‘yes’ branch continues in turn to two boxes ‘take out item and iron it’ and ‘put it on the ironed pile of clothes’; an arrow leads back from this box to rejoin the decision ‘any clothes left in the basket?’ The ‘no’ branch leads directly to an oval ‘end’. There is thus a loop in the chart which begins with the decision ‘any clothes left in the basket?’ and includes the steps ‘take out item and iron it’ and ‘put it on the ironed pile of clothes’.<p>As you have seen, a sequential computer program is a sequence of lines of encoded commands, to be executed one after the other.</p>
+<p>For example, the program to move a robot around a square course consisted of the following sequence of instructions repeated four times:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw side</span>
+<span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">SIDE_SPEED</span><span class="p">,</span> <span class="n">SIDE_SPEED</span><span class="p">,</span> <span class="n">SIDE_TIME</span><span class="p">)</span>
+
+<span class="c1"># Turn ninety degrees</span>
+<span class="n">tank_turn</span><span class="o">.</span><span class="n">on_for_rotations</span><span class="p">(</span><span class="n">STEERING</span><span class="p">,</span> <span class="n">TURN_SPEED</span><span class="p">,</span> <span class="n">TURN_ROTATIONS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>How much easier it would be just to give these commands once, and tell the computer to loop back to the start, repeating until the instructions have been executed four times?</p>
+<p><a class="reference external" href="https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9"><img alt="image0" src="../../_images/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" /></a><span class="link-target"> [https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9]</span></p>
+graph TD
+    A(Start) --> B[Set counter to 0]
+    B --> C[# Draw side<br/>...code...]
+    C --> D[# Turn ninety degrees<br/>...code...]
+    D --> E[Add 1 to counter]
+    E --> F{Is the counter < 4}
+    F --> |Yes| C
+    F --> |No| G(End)
+
+Long desc:
+
+A flow chart for a robot program with a loop. This starts with an oval ‘start’. An arrow leads first to a box ‘set a counter to 0’ and then to a sequence of further boxes: ‘# Draw side’ with an implication of the code associated with that, ‘# Turn ninety degrees’, agin with a hint regarding the presnce of code associated with that activity, and lastly ‘add 1 to the counter’. The arrow from this box leads to a decision diamond ‘is the counter < 4?’ Two arrows lead from this, one labelled ‘yes’, the other ‘no’. The ‘yes’ branch loops back to rejoin the sequence at ‘# Draw side code’. The ‘no’ branch leads directly to an oval ‘end’. There is thus a loop in the chart which includes the sequence of motor control commands, incrementing the counter and ends with the decision ‘is the counter &lt; 4?’.<p>Python gives you two main ways of implementing loops:</p>
+<ul class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop;</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">...</span></code> loop.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop checks the status of an <em>iterator</em>, which is capable of returning items from a list of values, one at a time. If the list is empty, the looping ends. If the iterator is not empty, the programme flow passes to the first instruction inside the <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> code block, otherwise it passes to the next instruction at the same block (indentation) level as the <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> statement.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop tests the truth value of a statement. If the statement evaulates as <code class="docutils literal notranslate"><span class="pre">True</span></code>, the programme flow passes into the body of the loop, otherwise it proceeds to the next statement at the same block (indentation) level as the <code class="docutils literal notranslate"><span class="pre">while...</span></code> statement.</p>
+<p>Let’s see how each of these constructs works in turn, first using a simple, pure Python example, then in the context of our simulated robot.</p>
+</div>
+<div class="section" id="Using-a-for...in...-loop">
+<h2>Using a <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop</h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop takes each item from a list of items (or a more general Python <em>iterator</em> object), one at a time, then enters the loop, until the list (or iterator) is empty.</p>
+<p>In “pseudo-code” (that is, a human readable set of instructions that look like a form of stylised code), the <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop behaves as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">each</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">items</span><span class="p">,</span> <span class="n">do</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">instructions</span>
+
+  <span class="p">{</span>
+
+  <span class="n">instruction</span> <span class="mi">1</span>
+
+  <span class="n">instruction</span> <span class="mi">2</span>
+
+  <span class="n">instruction</span> <span class="mi">3</span>
+
+  <span class="n">etc</span><span class="o">.</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that any of the instructions inside the loop may make use of the current value of the item that has just been retrieved from the list.</p>
+<p>When the loop has finished, the value of the last item retrieved from the list will continue to be available.</p>
+<p>Run the following code cell to see how the <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop retrieves one item at a time from a list of items (line 1), enters the code block within the loop starting at line 2, executes each line 2-3 in turn, then returns to line 1 to get the next item from the list.</p>
+<p>When all the items have been retrieved from the list, the programme flow moves on to next item at the same indentation as the <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop, which is to say line 4:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>for item in [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;fish&#39;]:
+    print(item)
+    print(&#39; and &#39;)
+
+print(&#39;All done...&#39;)
+</pre></div>
+</div>
+</div>
+<p>It is also worth noting that the value of the <code class="docutils literal notranslate"><span class="pre">item</span></code> variable is the value of the last item to be retrieved from the list, as you can see if you display the value by running the following code cell:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>item
+</pre></div>
+</div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> extension to step thrhough the programme exectution to see what exactly is going on.</p>
+<p>Run the following code cell to load in the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> magic:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%load_ext nbtutor
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code> cell block magic can be used to prefix Python code (but <em>not</em> code intended for the simulator) we want to step through.</p>
+<p><strong>TO DO: the ``nbtutor`` display is low contrast and perhaps inaccessible. I started a</strong><a class="reference external" href="https://github.com/lgpage/nbtutor/issues/37">related issue</a><span class="link-target"> [https://github.com/lgpage/nbtutor/issues/37]</span><strong>but this needs addressing somewhere.</strong></p>
+<p>One thing to note about the notebook environment is that if we have already created any Python variables in the current notebook, they will be displayed by default in the <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code> visualisation.</p>
+<p>We can limit the variables that are displayed by <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> by calling the magic using the command <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span> <span class="pre">--reset</span> <span class="pre">--force</span></code>.</p>
+<p>Run the following code cell to invoke the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> widget, and then use the <code class="docutils literal notranslate"><span class="pre">Next</span></code> button in the <em>cell toolbar</em> that is created to step through each line of code in turn.</p>
+<p>Observe the progress of the control flow through the code via the two differently coloured arrows that show the next line to be executed (red line) and the previous line to be executed (green arrow). Also notice how the statement previously executed may update the value of <code class="docutils literal notranslate"><span class="pre">item</span></code> variable as a consequence of its execution.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%nbtutor --reset --force
+for item in [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;fish&#39;]:
+    print(item)
+    print(&#39; and &#39;)
+
+print(&#39;All done...&#39;)
+</pre></div>
+</div>
+</div>
+<p>Did you notice how the program flow repeatedly went from the last line of the code inside the <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> block back up to the <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> statement, before going from the <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> statement to the final <code class="docutils literal notranslate"><span class="pre">print('All</span> <span class="pre">done..')</span></code> statement when the loop had iterated through all the items in the list?</p>
+<p>Close the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> cell toolbar view by clicking on the notebook toolbar <code class="docutils literal notranslate"><span class="pre">View</span></code> menu option, selecting <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">Toolbar</span></code> and then <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="section" id="Activity">
+<h3>Activity</h3>
+<p>See if you can write a simple programme that loops through a list of days of the week, print out a message of the form ‘day 1 is Monday’ followed by “day 2 is Tuesday’, and so on.</p>
+<p><em>Hint: Python f-strings (“formatted strings” or “formatted string literals”) provide a convenient way of getting the value of a variable into a string. For example, if you have a variable ``day_of_week = “Monday”``, we can display a message using the construction ``print(f”Today is {day_of_week}”)``. The ``f”…”`` construction denotes the f-string. The curly brace brackets (``{..}``) contain the name of a variable whose value you want to substitute into the string. Note that f-strings are not
+available in the simulator’s Python implementation.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+<div class="section" id="Answer">
+<h4>Answer</h4>
+<p><em>Click on the arrow in the sidebar to reveal my answer</em></p>
+<p>First I created a counter value, then I created a list containing the days of the week. Using a <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> loop, I iterated through the list. Inside the loop, I incremented a counter, then displayed the required message.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>counter = 0
+
+for day in [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;,
+            &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Sunday&#39;]:
+
+    counter += 1
+    print(f&quot;Day {counter} is {day}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-a-for..in..-Loop-in-a-Robot-Control-Program">
+<h3>Using a <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> Loop in a Robot Control Program</h3>
+<p>Loops are very useful when it comes to executing repetitive tasks.</p>
+<p>You may remember from the programme we use to draw a square that there was a lot of repeated code, with the same code used to draw a single side and then turn through a right angle repeated four times each. At the time, you may have tought “there must be a better way than this?” and the use of a loop provides just such a better way.</p>
+<p>Look through the code in the code cell below and predict what you think the robot will do when it runs that programme.</p>
+<p><em>DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the programme.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+
+# Draw something...
+for count in range(3):
+
+    #Go straight
+    # Set the left and right motors in a forward direction
+    # and run for 1 rotation
+    tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+    #Turn
+    # Set the robot to turn on the spot
+    # and run for a certain number of rotations *of the wheels*
+    tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+
+</pre></div>
+</div>
+</div>
+<p>Now run the code cell to download the programme to the robot. With the pen trace enabled, run the programme in the simulator and observe what happens. Was your predcition correct?</p>
+<p>Modify the programme (if necessary…) so that the robot will trace out something close to a square (don’t spend too much time trying to make it perfect: that may not be possible!). Clear the trace in the simulator, reset the robot location, and download and run the programme again to check your programme modification worked.</p>
+</div>
+<div class="section" id="Returning-to-the-top-of-a-loop-early">
+<h3>Returning to the top of a loop early</h3>
+<p>Sometimes we may want to to return to the top of a loop from within a loop code block <em>before</em> we have executed all the lines in the looped block. We can do this using the <code class="docutils literal notranslate"><span class="pre">continue</span></code> instruction.</p>
+<p>Run the following code cell and step through each line of code a line at a time using the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> <em>Next</em> button. Watch the programme flow particularly closely when the <code class="docutils literal notranslate"><span class="pre">item</span></code> variable takes the value <code class="docutils literal notranslate"><span class="pre">three</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%nbtutor --reset --force
+for item in [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;fish&#39;]:
+    print(item)
+    if item==&#39;three&#39;:
+        continue
+    print(&#39; and &#39;)
+
+print(&#39;All done...&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Conditional-Tests-Using-the-Conditional-Construct,-if…">
+<h3>Conditional Tests Using the Conditional Construct, <code class="docutils literal notranslate"><span class="pre">if</span></code>…</h3>
+<p>In the previous programme, you may have noticed another new statement, an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement. This is another sort of conditional statement. The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement will test a logical condition and if it evaluates as <code class="docutils literal notranslate"><span class="pre">True</span></code> programme flow will pass to any statements contained within the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement block.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">LOGICAL_TEST_STATEMENT</span><span class="p">:</span>
+    <span class="c1">#if the LOGICAL_TEST_STATEMENT evaluates as True</span>
+    <span class="c1"># run the following command</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The statement was True...&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This will always be printed...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In and of itself, the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is tested once and once only. <em>If</em> the conditional test pass, control flows into the body of the <em>if</em> statement and then on to the next statement after the <em>if</em> construct. If the conditional test evaluates as false, control passes immediately to the next statement <em>after</em> the if block.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, the <code class="docutils literal notranslate"><span class="pre">==</span></code> sign is used to test whether the value of the thing on the left is the same as the value of the thing on the right.</p>
+<p>So the following is <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>1 == 1
+</pre></div>
+</div>
+</div>
+<p>because numeric <code class="docutils literal notranslate"><span class="pre">1</span></code> does indeed equal numeric <code class="docutils literal notranslate"><span class="pre">1</span></code>; but the following evaluates as <code class="docutils literal notranslate"><span class="pre">False</span></code> because numeric <code class="docutils literal notranslate"><span class="pre">1</span></code> <em>does not</em> equal the string <code class="docutils literal notranslate"><span class="pre">one</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>1 == &#39;one&#39;
+</pre></div>
+</div>
+</div>
+<p>The following is also <code class="docutils literal notranslate"><span class="pre">False</span></code> because the <em>numeric</em> value <code class="docutils literal notranslate"><span class="pre">1</span></code> is <em>not</em> the same as the <em>string</em> value <code class="docutils literal notranslate"><span class="pre">'1'</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>1 == &#39;1&#39;
+</pre></div>
+</div>
+</div>
+<p>However, the following string values <em>are</em> equivalent even though we used different string delimiters (single quotes in the first case, double quotes in the second) to create them:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;1&#39; == &quot;1&quot;
+</pre></div>
+</div>
+</div>
+<p>Try experimenting with you own equivalent, or unequivalent, statements in the code cell below.</p>
+<p><em>Feel free to create more code cells if you want to keep a record of things you have tried. Or comment out each line after you have tried it if you want to try mutliple statements in the same code cell.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># TRY SOME EQUIVALENT AND UNEQUIVALENT STATEMENTS OF YOUR OWN HERE
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Activity</h3>
+<p>Suppose Wednesday is early closing day. Building on elements from your earlier programme that displays the days of the week, modify the programme to use a <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement so that it prints out the message <em>I could go shopping on DAY afternoon</em> for every day except Wednesday.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># YOUR ANSWER HERE
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Answer</h4>
+<p><em>Click on the arrow in the sidebar to reveal my answer.</em></p>
+<p>I used a simple <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to check if it was Wednesday, and if it was, the <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement passed the programme control flow back to the top of the loop <em>before</em> the programme had a chance to print out that day of the week.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>for day in [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;,
+            &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Sunday&#39;]:
+
+    if day==&#39;Wednesday&#39;:
+        continue
+    print(f&quot;I could go shopping on {day} afternoon.&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Escaping-from-a-Loop-Early">
+<h3>Escaping from a Loop Early</h3>
+<p>As well as returning back to the top of a loop early using a <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement, we may sometimes want to escape from a loop altogether before the loop would normally finish. We can achieve this using the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement, which breaks the control flow oout of a loop when it is encountered.</p>
+<p>Run the following code cell, stepping through it a line at a time, again paying particulalry close attention when the <code class="docutils literal notranslate"><span class="pre">item</span></code> variable has the value <code class="docutils literal notranslate"><span class="pre">three</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%nbtutor
+for item in [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;fish&#39;]:
+    print(item)
+    if item==&#39;three&#39;:
+        break
+    print(&#39; and &#39;)
+
+print(&#39;All done...&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Activity---Escape-from-a-for...in...-loop">
+<h3>Activity - Escape from a <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop</h3>
+<p>Suppose we get weekends off. Using a <code class="docutils literal notranslate"><span class="pre">break</span></code> construct inside a <code class="docutils literal notranslate"><span class="pre">for..in...</span></code> loop, create a simple programme that takes a list containing the days of the week in order <em>Monday</em>…<em>Sunday</em> and displays the message <em>DAY is a workday…</em> for days Monday to Friday, but then breaks out of the loop when it realises it is Friday.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Answer</h4>
+<p><em>Click on the arrow in the sidebar to reveal my answer.</em></p>
+<p>In this case, I display the print message before I break out of the loop using the <code class="docutils literal notranslate"><span class="pre">break</span></code> statement:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>for day in [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;,
+            &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Sunday&#39;]:
+    print(f&quot;{day} is a workday.&quot;)
+    if day==&#39;Friday&#39;:
+        break
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-a-while...-loop">
+<h2>Using a <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop</h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop tests the truth of a statement on each iteration of the loop. In “pseudo code”, the bevaiour can be described as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">do</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">instructions</span> <span class="k">while</span> <span class="n">a</span> <span class="n">condition</span> <span class="n">holds</span>
+
+ <span class="p">{</span>
+
+ <span class="n">instruction</span> <span class="mi">1</span>
+
+ <span class="n">instruction</span> <span class="mi">2</span>
+
+ <span class="n">instruction</span> <span class="mi">3</span>
+
+ <span class="n">instruction</span> <span class="mi">4</span>
+
+ <span class="n">instruction</span> <span class="mi">5</span>
+
+ <span class="n">etc</span>
+
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>In some respects the <code class="docutils literal notranslate"><span class="pre">while</span></code> resembles an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement in that if (while) the tested condition is true, control passes into the body of the while statment block, and if it evaluates false, control passes immediately to the next statement after the while block. However, <em>unlike</em> the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, when all the statements inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> block have been executed, in sequential order, control does not then flow to the next statement after the while block, it passes back to the top of
+the while loop and the condition is re-evaluated.</p>
+<p>In this way, the programme can keep repeating the lines of code inside the while block until some condition is met, or some condition fails.</p>
+<p>Note that if the conditionally tested value changes to a value that would cause the condition to evaluate as false whilst the programme flow is inside the while block, the statements insde the while block will continue to execute in sequential order. Control only passes from the while statement to the statement after the while block at the point when control passes to the while statement and its condition is tested and found to evaluate as false.</p>
+<p>Let’s see an example of how to use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to help us keep track of whether we have counted up to a particular number yet as you will see if you run the programme in the following code cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%nbtutor --reset --force</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1">#Display the final value of counter</span>
+<span class="n">counter</span>
+</pre></div>
+</div>
+<p>Uncomment the <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code>cell magic by deleting the <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol at the start of the first line and run the previous cell again to step through the code as it executes a line at a time.</p>
+<p>Observe how the program flow repeatedly moves from the last line of the code inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> block back up to the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement, before going from the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement to the final <code class="docutils literal notranslate"><span class="pre">counter</span></code> statement when the conditional tests eventually evaluate as false.</p>
+<div class="section" id="Activity---Use-a-while-Loop">
+<h3>Activity - Use a <code class="docutils literal notranslate"><span class="pre">while</span></code> Loop</h3>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">random</span></code> functon from the <code class="docutils literal notranslate"><span class="pre">random</span></code> package is capabale of generating a random number between 0 and 1, as you will see if you run the following cell repeatedly. (The package is only imported once despite multiple calls to it.)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import random
+
+random.random()
+</pre></div>
+</div>
+</div>
+<p>We can think of this as a coin toss, where we toss “heads” for values greater than or equal to 0.5, or tails for a random value between 0 and 1 that is less than 0.5.</p>
+<p>Write a simple while loop that tests a simulated coin toss for as long as it tosses the equivalent of “heads”, printing “heads” for each successful toss.</p>
+<p>Run the code cell several times to see what happens.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># Add your code here
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>Answer</h4>
+<p><em>Click on the arrow in the sidebar to reveal my answer.</em></p>
+<p>To test the coin toss, we are looking for a random value of greater than or equal to 0.5, which is to say, a value of <code class="docutils literal notranslate"><span class="pre">random.random()</span> <span class="pre">&gt;=</span> <span class="pre">0.5</span></code>.</p>
+<p>We can use this as a conditional test in a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. In the body of the loop, we print “heads” to show we are in the loop.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>while random.random() &gt;= 0.5:
+    print(&quot;heads&quot;)
+</pre></div>
+</div>
+</div>
+<p>Running the cell multiple times, sometimes nothing is printed (if the “coin” flips as “tails”, that is, the first random value is <em>less than</em> 0.5); at other times, we may get one or more “heads” displayed. (The most I saw in several attempts was eight heads in a row!)</p>
+</div>
+</div>
+<div class="section" id="Infinite-Loops">
+<h3>Infinite Loops</h3>
+<p>We can create a special sort loop known as an <em>infinite loop</em> using the <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> construction, where the statement <code class="docutils literal notranslate"><span class="pre">True</span></code> <em>always</em> evaluates as <code class="docutils literal notranslate"><span class="pre">True</span></code> and so the loop repeats until the program is forced to stop or the flow is forced out of the loop and onto the next instruction using a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement.</p>
+<p>The following code cell demonstrates how to escape an otherwise infinite loop by using a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement. Run the cell to see how it works. (Uncomment the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> magic to step through it a line at a time as it executes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>#%%nbtutor --reset --force
+counter = 0
+
+while True:
+    counter = counter + 1
+    print(counter)
+    if counter == 5:
+        break
+
+print(f&quot;We escaped at counter=={counter}&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-a-while-loop-in-the-simulator">
+<h3>Using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop in the simulator</h3>
+<p>Being able to loop <em>whilst</em> a particular condition is holds allows us to perform actions <em>until</em> that condition no londer holds.</p>
+<p>This may be particularly useful in a robot programming context, as the following simple example demonstrates.</p>
+<p>In the simulator, load in the <em>Grey bands</em> background and reset the trace. (You can also disable the <em>pen down</em> control: we don’t need to keep track of where the robot has travelled for this activity.)</p>
+<p>Run the following code cell to download the programme to the simulator and then run it in the simulator, observing the behaviour of the robot.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+from ev3dev2.sensor import INPUT_2
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+colorLeft = ColorSensor(INPUT_2)
+
+sensor_value = colorLeft.reflected_light_intensity
+
+while sensor_value &gt; 99:
+    print(sensor_value)
+    sensor_value = colorLeft.reflected_light_intensity
+
+print(&quot;I now see {}&quot;.format( colorLeft.reflected_light_intensity))
+tank_drive.off()
+</pre></div>
+</div>
+</div>
+<p>When you run the programme in the simulator, the robot should drive forwards until it encounters the first, light grey line, and then it should stop.</p>
+<p><em>Although the robot will stop, by default, when the programme ends, becuase the simulator run stops at the end of the programme, it is often good practice to explicitly turn the motors off yourself. By doing this, you know for sure what state the motors are in at the end of the programme. In the above example, what would happen if, for some reason, the motor off command was omitted and the simulator carried on running even as the programme execution had completed?</em></p>
+<p>The programme works by checking the value from one of the robot’s sensors, a downward facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a “reflected light” sensor, a percentage value which relates to the colour of the background canvas over which the robot is travelling. The simulator output display window shows the sensor value, starting at <code class="docutils literal notranslate"><span class="pre">100</span></code> when the robot is on the plain white background. This value is above the conditionally tested
+threshold value of <code class="docutils literal notranslate"><span class="pre">99</span></code> used in the original programme’s <code class="docutils literal notranslate"><span class="pre">while</span></code> statement, and so the programme continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of just over 87 when I ran the programme.</p>
+<p><em>Rather than testing and reporting the ``colorLeft.reflected_light_intensity`` value directly, the programme is constructed as it is because the sensor value may change in going from the ``while`` programme step to the ``print()`` step. Even though computers may step between lines of code very quickly, they still take a finite time to do so.</em></p>
+<p>Try modifying the numerical value used in the <code class="docutils literal notranslate"><span class="pre">while</span></code> conditional test and downloading and running the modified programme. Can you get the robot to stop as soomn as it encounters the second medium grey band? On the third, dark grey line? On the final, black line?</p>
+</div>
+</div>
+<div class="section" id="Activity:-Changing-a-loop-variable-count-up-to-10">
+<h2>Activity: Changing a loop variable count up to 10</h2>
+<p>As well as programming the siunulated robot to respond to a sensor value, we can also get it to count aloud.</p>
+<p>The following programme, for example, when downloaded to the simulator, will cause the robot (?!) to count aloud.</p>
+<p>Can you get the robot to count to 10, rather than 5?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic
+
+#Counting robot...
+import playsound
+
+count = 1
+
+while count &lt; 5:
+    # The playsound.say() function expects a string...
+    playsound.say(str(count))
+    count = count + 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Summary">
+<h2>Summary</h2>
+<p>In this notebook, you have seen how we can control the way in which programme statements are executed in a programme by using various programme flow control constructs and how we can use the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> extension to step through and monitor the flow of simple Python programmes executing in the notebook’s Python environment (unfortunately, it does not allow us to step through code we download into the simulator).</p>
+<p>Regarding the programme control flow, you have seen how:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> loop allows a the programme to work through a set of statements in the loop body once for each item in a list of values or “iterator” construct;</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">if...</span></code> conditional command checks a logical condition once and once only; if the tested condition evaluates true, control passes inside the block, and then continues after the if block. If the condition evaluates as false, control passes immediately to the statement after the if block;</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop allows us to repeatedly test a condition, and if it is found to be true, pass control to a sequnece of instructions inside the while block. Once those instructions have been executed, control is passed back the top of the while loop and the test condition is evaluated again. If the while condition evaluates as false, control passes to the first statement after the while block.</p></li>
+</ul>
+<p>Control flow in <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code> loops can also be interrupted using <code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code> statements.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code> prematurely forces the flow of control back to the top of the loop, rather than requiring all the instructions in the loop to execute and then passing control back to the top of the loop;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code> prematurely forces the flow of control out of the loop to the next statement after the loop block, rather than requiring control to be passed following the failure of the conditional test at the top of the loop.</p></li>
+</ul>
+<p>Control flow instructions are part of the core Python language and are used in a similar way inside in the simulator and the “native” notebook Python environment.</p>
+</div>
+<div class="section" id="Addendum">
+<h2>Addendum</h2>
+<p>The robot simulator speech action is built up from a Javascript function that builds on a built-in browser function for creating speech utterances. We can force the Jupyter notebook to run Javascript code in the browser from a code cell using the <code class="docutils literal notranslate"><span class="pre">%%javascript</span></code> cell magic. This means we can get the browser to “speak” by callng the browser speech functions via Javascript directly.</p>
+<p><em>Note that there may be a brief delay between running the code cell and hearing the speech utterance.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-javascript notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="nx">javascript</span>
+<span class="nx">speechSynthesis</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="k">new</span> <span class="nx">SpeechSynthesisUtterance</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>We can also create a simple wrapper around a Javascript call that we can use in a Jupyter notebook context to speak, via the browser, from a Python statement:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from IPython.display import Javascript
+
+class Speech():
+    def say(self, txt):
+        display(Javascript(f&#39;speechSynthesis.speak(new SpeechSynthesisUtterance(&quot;{txt}&quot;))&#39;))
+
+speaker = Speech()
+speaker.say(&#39;hello&#39;)
+</pre></div>
+</div>
+</div>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">pyttxsx</span></code> package is capable of creating speech utterances which can be called directly from a notebook code cell, although access to audio drivers is not directly available in this virtual environment, so the package as it currently stands is mute.</p>
+<p>However, as a guide, if we create a building block around the package:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import pyttsx3
+
+class NativeSpeech():
+    def __init__(self):
+        self.engine = pyttsx3.init()
+    def say(self, txt):
+        if isinstance(txt, int) or isinstance(txt, float):
+            txt = str(txt)
+        self.engine.say(txt)
+        self.engine.runAndWait()
+</pre></div>
+</div>
+</div>
+<p>we could then trigger utterances with calls of the form <code class="docutils literal notranslate"><span class="pre">NativeSpeech().say('hello')</span></code>.</p>
+<p>As before, there may be a brief delay between running the code cell and hearing the speech utterance.</p>
+<p>Run the following code cell to hear Python speak to you:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>speaker = NativeSpeech()
+speaker.say(&#39;hello&#39;)
+speaker.say(1)
+speaker.say(&quot;2.5&quot;)
+speaker.say(2.5)
+speaker.say(&#39;goodbye&#39;)
+</pre></div>
+</div>
+</div>
+<p>We can also create a simple Python programm to count aloud up to 10, for example by using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>n = 1
+
+while n &lt;= 10:
+    speaker.say(n)
+    n = n + 1
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

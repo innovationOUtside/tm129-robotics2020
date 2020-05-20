@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1 Introduction</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="1-Introduction">
+<h1>1 Introduction</h1>
+<p>In this RoboLab Session you will explore a range of simulator environments and sensor and motor drive noise settings, as well as modifying the robot configuration by changing the height of the simulated light sensor.</p>
+<p>Through your experiments, you will investigate the way the sensors behave and how this information can be used to control the robot.</p>
+<div class="section" id="1.1-Activity:-The-Simulator-Environment-as-a-Laboratory">
+<h2>1.1 Activity: The Simulator Environment as a Laboratory</h2>
+<p>Let’s just recap on how we might be able to use the simulator as an experimental laboratory.</p>
+<p>When the robot simulator widget is displayed, a blank background image is displayed by default. You can configure the simulator to use different background images by selecting the desired background from the dropdown list in the simulator.</p>
+<p>Background images can also be loaded from a file. If you create your own background images they should be PNG or JPG images 2362 pixels wide and 1143 pixels high. Python code for generating some of the background images using the Python PIL package can be found in the notebook <code class="docutils literal notranslate"><span class="pre">`backgrounds/Background</span> <span class="pre">Image</span> <span class="pre">Generator.ipynb</span></code> &lt;../backgrounds/Background%20Image%20Generator.ipynb&gt;`__.</p>
+<p>Loading in a background from the default list may also determine the starting location and orientation of the simulated robot, and even the configuration of the robot and and obstacles present in the world.</p>
+<p>At the current time, robot configuration updates <em>cannot</em> be associated automatically with uploaded simulator backgrounds. However, it is possible to update both the robot and obstacle configuations via pop-up dialogues that can be opened using the simulator <em>Configure Robot</em> and <em>Obstacles…</em> buttons.</p>
+<p>More generally, the RoboLab simulator provides controls for:</p>
+<ul class="simple">
+<li><p>load background</p></li>
+<li><p>configure robot</p></li>
+<li><p>configure obstacles</p></li>
+<li><p>pen up / pen down</p></li>
+<li><p>clear trace (that is, clear pen trace)</p></li>
+<li><p>show chart</p>
+<ul>
+<li><p>select trace(s) (ultrasonic, color, Light_left, Light_right, gyro))</p></li>
+</ul>
+</li>
+<li><p>clear chart</p></li>
+<li><p>set light sensor noise value [TO DO: at the moment this is one slider for all sensors, rather than a per input basis;]</p></li>
+<li><p>set motor/wheel noise value [TO DO: at the moment this is one slider for all motors, rather than one per output;]</p></li>
+<li><p>set the <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> co-ordinates and the <span class="math notranslate nohighlight">\(Angle\)</span> / orientation of robot; reset reset the robot position to this calues via the <em>Move</em> button; the <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> values are updated when the robot is dragged across the canvas; the <em>Reset</em> button resets the robot’s location and orientation to the default for that background (if set).</p></li>
+</ul>
+<p><em>TO DO: need some way of adding keyboard shortcuts to simulator items.</em></p>
+<p><em>TO DO: slow down the frame rate; show clock / counter; zoom in / out on canvas or stop robot going off the edge of the world; show robot motor status and sensor values; show robot current location; support measuring on canvas (I think that may still be there from original ev3devsim).</em></p>
+<p><em>TO DO: should we provide a simple drawing tool on the canvas so students can modify a blank canvas, and perhaps save it? eg http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/</em></p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

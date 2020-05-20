@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1.4 Writing Style Compliant Code</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="1.4-Writing-Style-Compliant-Code">
+<h1>1.4 Writing Style Compliant Code</h1>
+<p><strong>NOTE TO CRITICAL READERS: THIS IS INTENDED AS GENERIC TO JUPYTER ENVTS AND AIMS TO NUDGE STUDENTS TOWARDS GOOD CODE STYLE PRACTICE IF THEY WANT NUDGING.</strong></p>
+<p>Whilst this is not specifically a programming course, this may well be the first time you have done any sort of programming at all, let alone any programming in Python.</p>
+<p>The style of programming we are teaching is geared towards helping you understand how we might be able to control robots through programme code, rather than formally teaching you programming in general, or Python coding in particular.</p>
+<p>However, we will try to to demonstrate code examples that are well written and that comply with the popular <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 — Style Guide for Python Code</a><span class="link-target"> [https://www.python.org/dev/peps/pep-0008/]</span>. This guide sets out a set of stylistic convention for writing clear Python code.</p>
+<p>There are many tools available that can be used to support code authors and we have installed some of them into the RoboLab environment.</p>
+<p>One particular tool is know as a “linter”. When you run a code cell, this tool can post warnings about where the code diverges from PEP-8 guidelines.</p>
+<p>Error codes are described via the following links:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">E*</span></code>, <code class="docutils literal notranslate"><span class="pre">W*</span></code>: <a class="reference external" href="https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes">show code lookups</a><span class="link-target"> [https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes]</span>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D*</span></code>: <a class="reference external" href="http://www.pydocstyle.org/en/2.1.1/error_codes.html">show code lookups</a><span class="link-target"> [http://www.pydocstyle.org/en/2.1.1/error_codes.html]</span>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F*</span></code>: <a class="reference external" href="http://flake8.pycqa.org/en/3.7.9/user/error-codes.html">show code lookups</a><span class="link-target"> [http://flake8.pycqa.org/en/3.7.9/user/error-codes.html]</span>.</p></li>
+</ul>
+<p>The linter can be enabled in a notebook by running the following magic:</p>
+<p><code class="docutils literal notranslate"><span class="pre">%flake8_on</span> <span class="pre">--ignore</span> <span class="pre">D100</span></code></p>
+<p><strong>TO DO: flake seems to be broken atm tho pycodestyle ok; also note probably only works with native code cells, not magic ones, though I may be able to fix that by tweaking magic to ignore the ``%%sim_magic`` call…</strong></p>
+<p>When you run a code cell, if the linter detects a difference from the style guide, it will display a warning of the form:</p>
+<p>TO DO</p>
+<p>??show line numbers ??fix ??rerun</p>
+<p>Another useful extension that is installed, but not enabled, is the <code class="docutils literal notranslate"><span class="pre">Autopep8</span></code> extension. You can enable the extension from the <code class="docutils literal notranslate"><span class="pre">nbextensions</span> <span class="pre">Configurator</span></code> [<a class="reference external" href="/nbextensions/?nbextension=code_prettify/autopep8">direct link</a>]. Enabling this extension provides a “hammer” toolbar button that you can use to prettify your code in accord with some PEP-8 recommendations at least. Simply select a code select, and hit the button; it will prettify the code, if it can, in a more PEP-8 compliant way.
+(But it won’t change the way your code executes, so it won’t tend to fix bugs in your code for you…)</p>
+<p>One way of using the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> linter and <code class="docutils literal notranslate"><span class="pre">Autopep8</span></code> button together is to let the linter raise a warning (if you do make an error), use the button to try to fix the code, then run the cell again to invoke the linter and see if the warning(s) were addressed. If they were, <em>inspect the fixed code to see what change the ``Autopep8`` tool made</em> (<code class="docutils literal notranslate"><span class="pre">CTRL-z</span></code> (Win), <code class="docutils literal notranslate"><span class="pre">CMD-z</span></code> (Mac) will undo the last cell edit; <code class="docutils literal notranslate"><span class="pre">SHIFT-CTRL-z</span></code> (Win), <code class="docutils literal notranslate"><span class="pre">SHFT-CMD-z</span></code> (Mac) will then redo it).</p>
+<p>Tools are also available to support writing markdown text in markdoan cells. For example, enabling the <code class="docutils literal notranslate"><span class="pre">livemdpreview</span></code> extension will display an inline live preview of the rendered markdown directly beneath a markdown cell as you edit it [<a class="reference external" href="/nbextensions/?nbextension=livemdpreview/livemdpreview">direct link</a>].</p>
+<p>Spell checkers are also available, either as the <code class="docutils literal notranslate"><span class="pre">spellchecker</span></code> notebook extension [<a class="reference external" href="https://hub.gke.mybinder.org/user/innovationoutsi-29-robotics2020-o5z3lwky/nbextensions/?nbextension=spellchecker/main">direct link</a><span class="link-target"> [https://hub.gke.mybinder.org/user/innovationoutsi-29-robotics2020-o5z3lwky/nbextensions/?nbextension=spellchecker/main]</span>) or via the Accessibility toolbar.</p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

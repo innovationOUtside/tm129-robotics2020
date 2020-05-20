@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1.3 Accessibility</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="1.3-Accessibility">
+<h1>1.3 Accessibility</h1>
+<p>We have tried our best to make RoboLab accessible to all students, whatever their particular needs.</p>
+<p><strong>TO DO - I havenlt test accessibility toolbar in conjucntion with the simulator; they may or may not play well together…</strong></p>
+<p>The Jupyter environment includes an <a class="reference external" href="https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar">accessibility toolbar extension</a><span class="link-target"> [https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar]</span> that allows you to control the presentation style of the Jupyter notebook; for example, you can change the font style, size and spacing, the notebook background colour, and so on. Several predefined custom themes are available [BROKEN] and you can also define your own. The extension also supports voice control [BROKEN].</p>
+<p><strong>TO DO: there is also a</strong><a class="reference external" href="https://github.com/dunovank/jupyter-themes">jupyter-themes</a><span class="link-target"> [https://github.com/dunovank/jupyter-themes]</span><strong>extension that we could pre-install, perhaps with one or more OU custome themes? This may be in addtion to, or in place of, the accessibility toolbar. There are also simple tricks and tools for speaking out code cell contents, such as the</strong><a class="reference external" href="https://github.com/jameslmartin/jupyter-a11y">jupyter-a11y</a><span class="link-target"> [https://github.com/jameslmartin/jupyter-a11y]</span><strong>extension.</strong></p>
+<p>All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibilty extension.</p>
+<div class="section" id="Enabling-the-Accessibility-Extension">
+<h2>Enabling the Accessibility Extension</h2>
+<p>The accessibility is <strong>disabled</strong> in the RoboLab environment by default. To use the accessibility extension, you need to enable it first. You can do this from the <code class="docutils literal notranslate"><span class="pre">nbextensions</span></code> tab on the notebook homepage: check the <code class="docutils literal notranslate"><span class="pre">Accessibility</span> <span class="pre">toolbar</span></code> extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.</p>
+<p><img alt="Screenshot of the nbextensions confgurator showing the location of the Accessibility Toolbar." src="../../_images/00_01_nb_extensions_accessibility.png" /></p>
+<p>Check the <a class="reference external" href="https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar#toolbar-summary">accessibility toolbar documentation</a><span class="link-target"> [https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar#toolbar-summary]</span> for more information.</p>
+<p>The Module Team welcome feedback on these features.</p>
+</div>
+<div class="section" id="Colours-and-fonts">
+<h2>Colours and fonts</h2>
+<p>If you wish to change the font and interface colours used in RoboLab to improve readability, the accessibility toolbar allows you to select the font style, size and colour. You can also modify the line spacing and spacing between individual characters.</p>
+<p><img alt="Screenshot of the colours and fonts menu dropped down from the text / A button in the group of Accessibility Toolbar buttons." src="../../_images/00_01_accessibility_display.png" /></p>
+<p>The font style applies to <em>all</em> text elements within the notebook itself. This includes the contents of markdown (text) cells, code cells and code cell outputs.</p>
+<p>The toolbar can also be used to control the notebook’s background colour and the cell background colour.</p>
+<p>You can also save a style you have defined from the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">new</span> <span class="pre">style...</span></code> option in <code class="docutils literal notranslate"><span class="pre">Predefined</span> <span class="pre">styles</span></code> menu. Once saved, it will be added to the menu list so you can apply it as required.</p>
+</div>
+<div class="section" id="Keyboard-interface">
+<h2>Keyboard interface</h2>
+<p>The Jupyter notebook interface supports a wide range of pre-defined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the <code class="docutils literal notranslate"><span class="pre">Keyboard</span> <span class="pre">shortcuts</span></code> item from the notebook <code class="docutils literal notranslate"><span class="pre">Help</span></code> menu or via the <code class="docutils literal notranslate"><span class="pre">ESC-h</span></code> keyboard shortcut.</p>
+<p><img alt="Screenshot of the Jupyter keyboard shortcuts help page previewing the Command Mode cell options." src="../../_images/00_01_jupyter_nb_shortcuts.png" /></p>
+<p>You can also add additional shortcuts and/or edit exist shortcuts via the <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Keyboard</span> <span class="pre">shortcuts</span></code> menu item.</p>
+<p><img alt="Screenshot of the Jupyter keyboard shortcuts help page previewing the Edit Command Mode cell options." src="../../_images/00_01_jupyter_nb_edit_shortcuts.png" /></p>
+<p><strong>TO DO: is Jyro keyboard accessible??</strong></p>
+<p><strong>TO DO: what’s best way of tabbing through the notebook? Or should notebook keyboard shortcuts be used? Are any potentially useufl navigation style keyboard shortcuts missing?</strong></p>
+</div>
+<div class="section" id="Magnification">
+<h2>Magnification</h2>
+<p>The apparent size of the notebook contents in general and the Jyro simulator in particular can be zoomed using standard browser magnification tools. <strong>TO DO: check this works for Jyro</strong></p>
+<p>Alternatively, use operating systems tools such as <em>Windows Magnify</em> or the MacOS <em>Zoom Window</em>, or other assistive software.</p>
+</div>
+<div class="section" id="Other-assistive-software">
+<h2>Other assistive software</h2>
+<p><strong>TO DO: to what extent will screen readers and dictation systems operate features of RoboLab??</strong></p>
+<p>Please contact the Module Team if you discover that the material does not work with a particular screen reader or dictation system that you would typically expect to be able to use.</p>
+</div>
+<div class="section" id="Audio">
+<h2>Audio</h2>
+<p>Some RoboLab programs ‘speak’. Where the speech is generated as a part of a program flow, a visual display of the spoken phrase will also typically be displayed at the time the phrase is spoken.</p>
+<p>__TO DO: need to make sure we do this; a custom widget might help that maps to both audio and a text display widget._</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

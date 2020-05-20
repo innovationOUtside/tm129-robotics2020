@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>4 Reasoning and the sense–think–act model</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%capture
+import sys
+sys.path.insert(0,&#39;..&#39;)
+import _load_nbev3devwidget_requirements
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-javascript notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="nx">javascript</span>
+<span class="c1">//This allows us to resize this view</span>
+<span class="c1">//Click on the right hand edge to drag</span>
+<span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#notebook-container&quot;</span> <span class="p">).</span><span class="nx">resizable</span><span class="p">({</span><span class="nx">ghost</span><span class="o">:</span> <span class="kc">false</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from _load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+</pre></div>
+</div>
+</div>
+<div class="section" id="4-Reasoning-and-the-sense–think–act-model">
+<h1>4 Reasoning and the sense–think–act model</h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity&gt;5)
+       and (colorLeft.reflected_light_intensity)&gt;5):
+
+    intensity_left = colorLeft.reflected_light_intensity
+    intensity_right = colorRight.reflected_light_intensity
+
+    print(intensity_left, intensity_right)
+
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
+
+    tank_drive.on(left_motor_speed, right_motor_speed)
+</pre></div>
+</div>
+</div>
+<div class="section" id="4.1-Representing-and-using-knowledge">
+<h2>4.1 Representing and using knowledge</h2>
+<p>Artificial intelligence and robotics have the major problem of <em>representing</em> facts and knowledge inside machines. We have a vast amount of knowledge in our brains. This knowledge is distributed over the brain, rather than each fact being neatly stored in a single memory unit.</p>
+<p>The structure of the human brain is completely different from the structure of a robot’s or a real computer’s “brain”, and roboticists have found it very difficult to implant a wide range of experiences (real-world data) into robot brains. Significant progress has been made in Artificial Intelligence (AI) and Machine Learning (ML) approaches to machine vision in recent years by using ever more computational resources. Ever larger and more complex natural language processing (NLP) models are also
+proving effective in parsing natural language statements and generating natural language texts.</p>
+<p>One way of <em>explicitly</em> trying to encode knowledge is to use a <em>rule based system</em>.</p>
+</div>
+<div class="section" id="Eliza">
+<h2>Eliza</h2>
+<p>Athough written fifty or so years ago, Joseph Weizenbaum’s <em>Eliza</em> programme is often referred to as one of the first great milestones in computational natural language interaction. You can see a copy of the original paper <a class="reference external" href="https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf">here</a><span class="link-target"> [https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf]</span>, which includes examples of the code used to programme the original Eliza engine. Eliza has been reimplemented several times, such as in the Lisp language by Peter Norvig’s for his textbook <em>Paradigms
+of Artificial Intelligence Programming</em>, as well as in Python reimplementation of Norvig’s code by Daniel Connelly (<a class="reference external" href="http://dhconnelly.com/paip-python/">Paip-python: Peter Norvig’s Paradigms of AI Programming implemented in Python</a><span class="link-target"> [http://dhconnelly.com/paip-python/]</span>).</p>
+<p>A version of Connelly’s code, updated to run in the version of Python used in these notebooks, is contained in the file <a class="reference external" href="eliza.py">eliza.py</a>.</p>
+<p>You can try it out for yourself by running the following code cell and starting your conversation with a <em>Hello</em>; end the conversation by starting your response with <em>Goodbye</em>):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import eliza
+eliza.hello_doctor()
+</pre></div>
+</div>
+</div>
+<p>If you want to hear Eliza speak the responses aloud to you, start the programme by passing in the parameter <code class="docutils literal notranslate"><span class="pre">aloud=True</span></code> in the following way: <code class="docutils literal notranslate"><span class="pre">eliza.hello_doctor(aloud=True)</span></code>.</p>
+<p>If you <a class="reference external" href="eliza.json">look at the rules file</a>, you will see that it contains a series of rules that have the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONDITION</span><span class="p">:</span> <span class="p">[</span>
+    <span class="n">POSSIBLE_RESPONSE_1</span><span class="p">,</span>
+    <span class="n">POSSIBLE_RESPONSE_2</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>or more completely:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;?*x KEYPHRASE ?*y&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;RESPONSE_1 ?y?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RESPONSE_2 ?y?&quot;</span><span class="p">,</span>
+        <span class="o">...</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;?*x I want ?*y&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;What would it mean if you got ?y?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Why do you want ?y?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Suppose you got ?y soon.&quot;</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">?*x</span></code> and <code class="docutils literal notranslate"><span class="pre">?*y</span></code> elements in the condition part of the rule are pattern matching operators that capture arbirtary text before and after the provided <code class="docutils literal notranslate"><span class="pre">KEYPHRASE</span></code>. A rule matches a provided input if the <code class="docutils literal notranslate"><span class="pre">KEYPHRASE</span></code> is contained in the text given to Eliza. The pattern matched content in the text can then be extracted from the input and used in the output response given by Eliza.</p>
+<p>A rule matching engine, written in Python, takes the user input, tries to match it with one of the rules and then generates a response. If you are interested in how it works, Connelly provided a commentary <a class="reference external" href="https://dhconnelly.com/paip-python/docs/paip/eliza.html">here</a><span class="link-target"> [https://dhconnelly.com/paip-python/docs/paip/eliza.html]</span> that explains how his version of the Eliza program works.</p>
+<div class="section" id="Optional-Activity">
+<h3>Optional Activity</h3>
+<p>If you make a copy of the <code class="docutils literal notranslate"><span class="pre">eliza.json</span></code> file, for example, as <code class="docutils literal notranslate"><span class="pre">dr_me.json</span></code> and edit it to contain your own rules, you can run Eliza using your ruleset by running the command: <code class="docutils literal notranslate"><span class="pre">eliza.hello_doctor('dr_me.json')</span></code>.</p>
+<p>You can also provide a set of custom default responses that Eliza will select between if no rules match by passing in them into the <code class="docutils literal notranslate"><span class="pre">hello_doctor()</span></code> function via the <code class="docutils literal notranslate"><span class="pre">default=</span></code> parameter. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eliza</span><span class="o">.</span><span class="n">hello_doctor</span><span class="p">(</span><span class="s1">&#39;doolittle.json&#39;</span><span class="p">,</span>
+                   <span class="n">default</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Very interesting&quot;</span><span class="p">,</span>
+                              <span class="s2">&quot;I am not sure I understand you fully&quot;</span><span class="p">]</span>
+                  <span class="p">)</span>
+</pre></div>
+</div>
+<p>If you come up with an interesting script, please fee free to share it in the module forums.</p>
+<p>### Durable Rules Engine</p>
+<p>The <a class="reference external" href="https://github.com/jruizgit/rules">Durable Rules Engine</a><span class="link-target"> [https://github.com/jruizgit/rules]</span> is a <em>polyglot</em> framework for creating rule based systems capable of reasonng over large collections of factual statements.</p>
+<p>To say that the framework is <em>polyglot</em> means that we can write programmes for the same framework using different ployglot languages, specifically Python, Node.js (a flavour of Javascript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.</p>
+<p>Note that the <em>Durable Rules Engine</em> is <em>not</em> available directly within our robot simulator programmes.</p>
+<p>The engine iself is rather more powerful than the engine used in the Eliza program example and can accept a wide range of rule definitions. It also makes use of a knowledge base of asserted facts (as well as ephemeral events) that are reasoned against using the rules.</p>
+<p>To see how this more comprehensive version of a rule based system works, let’s consider the example of reasoning over a set of “facts” that are asserted as <em>subject predicate object</em> statements. Separate rules parse one or more of these statements and then try to general additional statements as a logical consequence.</p>
+<p>Facts might take the form <em>Sam is a student</em> where <em>Sam</em> is the subject of the statement, <em>student</em> is the object of the statement, and <em>is a</em> is a <em>predicate</em> that defines some sort of relationship between the subject and the object.</p>
+<p>Rules test statements, and if they match the rule codition, the rule asserts another fact.</p>
+<p>For example, <em>if Sam is a student, then Sam can use the module forums</em>.</p>
+<p>Let’s see how that works in practice. Note that the following treatment uses a simplification of the syntax used by default in the durable rules framework. (There is just too much clutter in the original syntax to see what’s going on!)</p>
+<p>Let’s import the packages we need and enable some magic…</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>#%pip install  --upgrade git+https://github.com/innovationOUtside/durable_rules_magic.git
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from durable.lang import ruleset, when_all, assert_fact, c, m
+from durable_rules_tools.rules_utils import new_ruleset, SPO, Set, Subject
+%reload_ext durable_rules_tools
+</pre></div>
+</div>
+</div>
+<p>The ruleset definition syntax is little bewildering (the <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> statements are known as Python <em>decorators</em>; but that’s all you need to know in case you want to look them up them further, and further investigation is definitely <em>not required</em> and <em>not expected</em> of you for the purposes of this module.)</p>
+<p>So take a deep breath, and let’s dive in, using a slightly simpler, and more generalised, statement of the same rule we considered above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if ?PERSON is student
+    then ?PERSON can use forums
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">?PERSON</span></code> is a variable representing the subject, <em>forums</em> is the object, and <em>can use</em> is the predicate.</p>
+<p>We can encode this a formal rule as follows (remember, you don’t need to understand what the <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> decorator is or how it works, just regard it as “syntactic sugar” intended to make the rule a but more readable than it might otherwise have to be; go with the flow and tried to read the rule as some sort of structured pattern you can recognise).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@when_all</span><span class="p">(</span><span class="n">Subject</span><span class="p">(</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">cm_forum_use</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">Set</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;? : can use : forums&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>The rule has the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@CONDITION</span>
+<span class="k">def</span> <span class="nf">RULENAME</span><span class="p">(</span><span class="n">TESTED_ASSERTION</span><span class="p">):</span>
+    <span class="n">ACTION</span>
+</pre></div>
+</div>
+<p>If you defocus your eyes, you can perhaps see how those elements might relate to a rule that coould perhaps be more logically presented as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RULENAME</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">TESTED_ASSERTION</span> <span class="n">meets</span> <span class="n">CONDITION</span>
+  <span class="n">then</span> <span class="n">ACTION</span>
+</pre></div>
+</div>
+<p>The rule is used in the code cell below without further explanation, other than the commentary provided in the cell itself. What is important is that you see (if you close you eyes and squint hard enough!) the logical “shape” of the rule. The actual symbols used, and their placement, is “just syntax”.</p>
+<p>Run the following cell to define a new ruleset:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># Get a unique identifier for the ruleset
+RULESET_1 = new_ruleset()
+
+# Add rules to the ruleset
+with ruleset(RULESET_1):
+
+    # Rule condition (the &quot;if&quot; part)
+    @when_all(Subject(&quot;is&quot;, &quot;student&quot;))
+    # Rule body (the &quot;then&quot; part)
+    # - cm_forum_use is can be viewed as the name of the rule
+    # - c is an assertion that is being tested by the rule
+    def cm_forum_use(c):
+        # This is what we actually do when the rule condition is satisfied
+        # The ? in the first position says:
+        #   &quot;&quot;&quot;use the original value in this position (i.e. the subject)
+        #      from the tested statement when creating the asserted statement&quot;&quot;&quot;
+        Set(c, &#39;? : can use : forums&#39; )
+
+    #A &quot;utility&quot; rule that displays all asserted facts
+    @when_all(+m.subject)
+    def output(c):
+        print(&#39;Fact: {0} {1} {2}&#39;.format(c.m.subject, c.m.predicate, c.m.object))
+</pre></div>
+</div>
+</div>
+<p>We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules…</p>
+<p>Facts are asserted in the form: <code class="docutils literal notranslate"><span class="pre">subject</span> <span class="pre">:</span> <span class="pre">predicate</span> <span class="pre">:</span> <span class="pre">object</span></code>.</p>
+<p>We assert facts in the context of a particular ruleset via a cell block magic, <code class="docutils literal notranslate"><span class="pre">%%assert_facts</span> <span class="pre">-r</span> <span class="pre">RULESET_NAME</span></code>.</p>
+<p>Run the following cell to assert some facts against the <code class="docutils literal notranslate"><span class="pre">RULESET_1</span></code> ruleset:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET_1
+Sam : is : student
+Jo : is : course manager
+</pre></div>
+</div>
+</div>
+<p>We can’t easily add rules to a pre-exsiting ruleset, so let’s create another ruleset, building on the first, that contains another rule:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>RULESET_2 = new_ruleset()
+with ruleset(RULESET_2):
+
+    @when_all(Subject(&quot;is&quot;, &quot;course manager&quot;))
+    def cm_forum_use(c):
+        Set(c, &#39;? : can read : forum discussions&#39; )
+
+
+    # -- PREVIOUS RULES --
+
+    @when_all(Subject(&quot;is&quot;, &quot;student&quot;))
+    def cm_forum_use(c):
+        Set(c, &#39;? : can use : forums&#39; )
+
+    @when_all(+m.subject)
+    def output(c):
+        print(&#39;Fact: {0} {1} {2}&#39;.format(c.m.subject, c.m.predicate, c.m.object))
+</pre></div>
+</div>
+</div>
+<p>Let’s test our assertions again:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET_2
+Sam : is : student
+Jo : is : course manager
+</pre></div>
+</div>
+</div>
+<p>So, course managers can <em>read</em> forum discussions, but students can <em>use</em> forums. What might that entail?</p>
+<p>In the following set, we define two rules that test the same condition, but with different actions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>RULESET_3 = new_ruleset()
+with ruleset(RULESET_3):
+
+    @when_all(Subject(&quot;can use&quot;, &quot;forums&quot;))
+    def forum_read(c):
+        Set(c, &#39;? : can read : forum discussions&#39; )
+
+    @when_all(Subject(&quot;can use&quot;, &quot;forums&quot;))
+    def forum_post(c):
+        Set(c, &#39;? : can post to : forum discussions&#39; )
+
+
+    # -- PREVIOUS RULES --
+    @when_all(Subject(&quot;is&quot;, &quot;course manager&quot;))
+    def cm_forum_use(c):
+        Set(c, &#39;? : can read : forum discussions&#39; )
+
+    @when_all(Subject(&quot;is&quot;, &quot;student&quot;))
+    def student_forum_use(c):
+        Set(c, &#39;? : can use : forums&#39; )
+
+    @when_all(+m.subject)
+    def output(c):
+        print(&#39;Fact: {0} {1} {2}&#39;.format(c.m.subject, c.m.predicate, c.m.object))
+</pre></div>
+</div>
+</div>
+<p>What can we determine now?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET_3
+Sam : is : student
+Jo : is : course manager
+</pre></div>
+</div>
+</div>
+<p>At the next level of complexity, we might want to draw some conclusions about multiple facts. Suppose, for example, that we wish to identify people who have “engaged” with the forums. We might define such people as people who have read a forum post and who have posted to a forum.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET_3
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+</pre></div>
+</div>
+</div>
+<p>The rules we have seen so far test just a single condition, so how do we test <em>two</em> conditions?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if ?PERSON has read forum post AND ?PERSON has posted to forum
+then ?PERSON has engaged with forum
+</pre></div>
+</div>
+<p>This is where things start getting trickier, and where we shall finish our quick introduction to creating rules with the <em>durable rules</em> framework. Briefly, we create a temporary reference when a fact matches a condition, and then compare those temporary references to see whether the same fact satisfied both conditions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>RULESET_4 = new_ruleset()
+with ruleset(RULESET_4):
+
+    @when_all(c.first &lt;&lt; Subject(&#39;has read&#39;, &#39;forum post&#39;),
+              c.second &lt;&lt; Subject(&#39;has posted to&#39;, &#39;forum&#39;) &amp; (m.subject == c.first.subject))
+    def forum_discussions(c):
+        c.assert_fact({ &#39;subject&#39;: c.first.subject,
+                       &#39;predicate&#39;: &#39;has engaged with&#39;,
+                       &#39;object&#39;: &#39;forum&#39; })
+
+    @when_all(+m.subject)
+    def output(c):
+        print(&#39;Fact: {0} {1} {2}&#39;.format(c.m.subject, c.m.predicate, c.m.object))
+</pre></div>
+</div>
+</div>
+<p>Let’s now test the following assertions to see who has been identified as engaging with the forums:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET_4
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+</pre></div>
+</div>
+</div>
+<p>Hopefully, from these examples and the earlier Eliza example, you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier presented facts) using quite simple rules. But while each rule in and of itself might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.</p>
+<p>### Trying out another ruleset</p>
+<p>eg from example on druable rules README</p>
+<p>We can define a really simple Python speech class that allows us to speak from code contained in a notebook using the browser’s Javascript speech engine:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from IPython.display import Javascript
+
+class Speech():
+    def say(self, txt):
+        display(Javascript(f&#39;speechSynthesis.speak(new SpeechSynthesisUtterance(&quot;{txt}&quot;))&#39;))
+
+speaker = Speech()
+speaker.say(&#39;hello&#39;)
+</pre></div>
+</div>
+</div>
+<p>Building on the simple speech class for taling via the browser, I have created a class that keeps track of how many messages have been posted and returns a visual count of utterances, alongside a transcript of the utterance.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from IPython.display import Javascript
+
+class Speech():
+    def __init__(self, voice=None, reset=True):
+        if reset:
+            self.count = 1
+        self.voice = voice
+        self._get_voices()
+        self.voicelist = &#39;&#39;
+
+    def set_voice(self, voicenum):
+        &quot;&quot;&quot;Set voice number.&quot;&quot;&quot;
+        self.voice = voicenum
+
+    def say(self, txt, showtext = True):
+        &quot;&quot;&quot;Speak an utterance.&quot;&quot;&quot;
+        js = f&#39;&#39;&#39;
+        var utterance = new SpeechSynthesisUtterance(&quot;{txt}&quot;);
+        &#39;&#39;&#39;
+        if self.voice:
+            js = js + f&#39;&#39;&#39;
+            utterance.voice = window.speechSynthesis.getVoices()[{self.voice}];
+            &#39;&#39;&#39;
+        js = js + &#39;speechSynthesis.speak(utterance);&#39;
+        display(Javascript(js))
+
+        if showtext:
+            print(f&#39;{self.count}: {txt}&#39;)
+        self.count = self.count +1
+
+    def reset_count(self):
+        &quot;&quot;&quot;Reset the counter.&quot;&quot;&quot;
+        self.count = 1
+
+    def _get_voices(self):
+        &quot;&quot;&quot;Show a list of supported voices.&quot;&quot;&quot;
+        # via https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices
+        js = &#39;&#39;&#39;
+        var voices =  window.speechSynthesis.getVoices();
+    var voicelist = &#39;&#39;;
+   for(var i = 0; i &lt; voices.length; i++) {
+   voicelist = voicelist+i+&#39;: &#39;+ voices[i].name + &#39; (&#39;+ voices[i].lang +&#39;)&#39;;
+    if(voices[i].default) {
+      voicelist += &#39; -- DEFAULT&#39;;
+    }
+   voicelist = voicelist + &#39;*&#39;
+  }
+
+IPython.notebook.kernel.execute(&quot;_browser_voicelist = &#39;&quot;+ voicelist+&quot;&#39;&quot;);
+        &#39;&#39;&#39;
+        display(Javascript(js))
+
+    def show_voices(self):
+        self.voicelist = _browser_voicelist
+
+        outlist = &#39;\n&#39;.join([s.strip() for s in _browser_voicelist.split(&#39;*&#39;)])
+        print(outlist)
+        #return self.voicelist
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>speaker = Speech()
+
+#speaker.set_voice(49)
+speaker.say(&#39;hello how are you&#39;)
+</pre></div>
+</div>
+</div>
+<p>We can also show the list of voices.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>speaker.show_voices()
+</pre></div>
+</div>
+</div>
+<p>You can use the folowing command to reset the message count:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>speaker.reset_count()
+speaker.say(&#39;hello again&#39;)
+</pre></div>
+</div>
+</div>
+<p>Now we can listen to the rules as they are fired, as well as seeing a report that shows the order in which they were fired.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>RULESET = new_ruleset()
+with ruleset(RULESET):
+    @when_all(c.first &lt;&lt; Subject(&#39;eats&#39;, &#39;flies&#39;),
+              Subject(&#39;lives&#39;, &#39;water&#39;) &amp; (m.subject == c.first.subject))
+    def frog(c):
+        c.assert_fact(SPO(c.first.subject, &#39;is&#39;, &#39;frog&#39;))
+
+    @when_all(c.first &lt;&lt; Subject(&#39;eats&#39;, &#39;flies&#39;),
+              Subject(&#39;lives&#39;, &#39;land&#39;) &amp; (m.subject == c.first.subject))
+    def chameleon(c):
+        c.assert_fact(SPO(c.first.subject, &#39;is&#39;, &#39;chameleon&#39;))
+
+    @when_all(Subject(&#39;eats&#39;, &#39;worms&#39;))
+    def bird(c):
+        speaker.say(f&#39;if {c.m.subject} eats worms&#39;)
+        Set(c, &#39;? : is : bird&#39;)
+        speaker.say(f&#39;{c.m.subject} is a bird&#39;)
+
+    @when_all(Subject(&#39;is&#39;, &#39;frog&#39;))
+    def green(c):
+        Set(c, &#39;? : is : green&#39;)
+
+    @when_all(Subject(&#39;is&#39;, &#39;chameleon&#39;))
+    def grey(c):
+        Set(c, &#39;? : is : grey&#39;)
+
+    @when_all(Subject(&#39;is&#39;, &#39;bird&#39;))
+    def black(c):
+        speaker.say(f&#39;if {c.m.subject} is a bird&#39;)
+        Set(c, &#39;? :is : black&#39;)
+        speaker.say(f&#39;{c.m.subject} is black&#39;)
+
+    @when_all(Subject(&quot;is&quot;, &quot;bird&quot;))
+    def can_fly(c):
+        speaker.say(f&#39;if {c.m.subject} is a bird&#39;)
+        Set(c, &#39;? : can : fly&#39; )
+        speaker.say(f&#39;{c.m.subject} can fly&#39;)
+
+    @when_all(+m.subject)
+    def output(c):
+        print(&#39;\nFact: {0} {1} {2}&#39;.format(c.m.subject, c.m.predicate, c.m.object))
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%assert_facts -r RULESET
+Kermit : eats : worms
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="More-General-Forms-of-Rules">
+<h2>More General Forms of Rules</h2>
+<p>So far we have focused on reasoning about “facts” in the form of statements with the form <em>subject predicate object</em>.</p>
+<p>But this actally represents a more complicated form of reasoning than the rules engine actually employs because the <em>atomic</em> smallest possible facts are not the <em>subject predicate object</em> triples at all, they are the individual properties: <code class="docutils literal notranslate"><span class="pre">{subject:</span> <span class="pre">SUBJECT}</span></code>, <code class="docutils literal notranslate"><span class="pre">{'predicate':</span> <span class="pre">PREDICATE}</span></code> and <code class="docutils literal notranslate"><span class="pre">{object:</span> <span class="pre">OBJECT}</span></code>.</p>
+<div class="section" id="Facts-versus-Events">
+<h3>Facts versus Events</h3>
+<p>Facts persist, events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.</p>
+<p>For example, imagine a case where we want to avoid a red line, because red lines indicate danger.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from durable.lang import post
+
+RULESET = new_ruleset()
+with ruleset(RULESET):
+    # this rule will trigger as soon as three events match the condition
+    @when_all(m.color==&#39;red&#39;)
+    def see_red(c):
+        speaker.say(f&#39;I see red&#39;)
+        c.assert_fact({&#39;status&#39;: &#39;danger&#39;})
+
+    @when_all(m.color!=&#39;red&#39;)
+    def not_red(c):
+        speaker.say(f&#39;I see {c.m.color}&#39;)
+        c.assert_fact({&#39;status&#39;: &#39;safe&#39;})
+
+    @when_all( m.status == &#39;danger&#39;)
+    def dangerous(c):
+        speaker.say(f&#39;That is dangerous.&#39;)
+        c.retract_fact({&#39;status&#39;: &#39;danger&#39;})
+
+    @when_all( m.status == &#39;safe&#39;)
+    def safe(c):
+        speaker.say(f&#39;That is safe.&#39;)
+        c.retract_fact({&#39;status&#39;: &#39;safe&#39;})
+
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>post(RULESET, {&#39;color&#39;: &#39;red&#39; });
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>post(RULESET, {&#39;color&#39;: &#39;green&#39; });
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>post(RULESET, {&#39;color&#39;: &#39;red&#39; });
+post(RULESET, {&#39;color&#39;: &#39;green&#39; });
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="How-might-rules-be-useful-in-a-robot-context?">
+<h3>How might rules be useful in a robot context?</h3>
+<p>Although we can easily create our own <code class="docutils literal notranslate"><span class="pre">if...</span></code> statements in the programme downloaded to the simulator, and control the robot’s behaviour that way, it may more convenient to develop, and test, a large and possibly complex rule based set of behaviours using a framework such as a <em>Durable Rules</em>.</p>
+<p>This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook’s Python context, passing them as events to the Durable Rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.</p>
+<p>We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule based system, in a later notebook.</p>
+</div>
+<div class="section" id="Addendum---Using-Python-to-Respond-to-and-Control-Events-in-the-Simulator">
+<h3>Addendum - Using Python to Respond to and Control Events in the Simulator</h3>
+<p><strong>THESE ARE JUST MY WORKING NOTES AS I TRY TO FIGURE STUFF OUT…</strong></p>
+<p>Can we find a way of getting the robot to post a message to Python, and Python to respond with a message back to the robot that the robot can respond to?</p>
+<p>The original RobotLab activities include examples of round-tripping, with the simulated robot passing state out to a remote application, which then returned a response to the simulated robot. I’m pretty sure we can do the same, either with a predefined application or a user defined function. The latter would be best because then we could have an activity to write a helper application in notebook python that is called on by the simulated robot.</p>
+<p>At the moment, I have managed to send a message to Py from the simulator via messages sent to the simulator output window. There is a callback that sends messages back from Py to the sim output window, but as yet the robot py code running in the simulator is oblivious to returned messages. (I need half a day, perhaps, a day, to actually get code into the simulator so the programme code can access it.)</p>
+<p>The following recipe shows how to overwrite the default collaborative <code class="docutils literal notranslate"><span class="pre">responder()</span></code> function with a custom one.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>class CollabSim(eds.Ev3DevWidget):
+     def responder(self, obj):
+        &quot;&quot;&quot; Callback function that tries to respond to widget.&quot;&quot;&quot;
+        # obj is the message sent from the simulator
+        #Generate a response
+        response = f&#39;pingpongBONG {obj}&#39;
+        #Send the response back to the simulator
+        #At the moment, this is simply echoed in the simulator output window
+        self.set_element(&quot;response&quot;, response)
+
+# We now create an instance of the simulator with the custom collaborative callback function
+roboSim = CollabSim()
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

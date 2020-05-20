@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>TM129 Robotics Practical Activities</title>
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tm129-robotics-practical-activities">
+<h1>TM129 Robotics Practical Activities</h1>
+<p>A website version of the Open University TM129 Robotics practical activities generated
+from the original Jupyter notebook style materials.</p>
+<p>Note that these materials <em>do not</em> support interactive use that are associated with the course.</p>
+</div>
+<div class="section" id="contents">
+<h1>Contents:</h1>
+<div class="section" id="notes-for-tutors">
+<h2>NOTES FOR TUTORS</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml#The-Jupyter-Notebook-Environment">The Jupyter Notebook Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml#Using-Notebooks-to-Support-Learning">Using Notebooks to Support Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml#Using-Notebooks-to-Support-Direct-Teaching-/-Tutorials">Using Notebooks to Support Direct Teaching / Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml#What-Next?">What Next?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="read-me-first">
+<h2>READ ME FIRST</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section.xhtml">Developer Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section.xhtml#ev3devsim-Hacking"><code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Hacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_01_Introduction.xhtml">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_02_Workload.xhtml">1.2 Workload</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_02_Workload.xhtml#Assessment">Assessment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml">1.3 Accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Enabling-the-Accessibility-Extension">Enabling the Accessibility Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Colours-and-fonts">Colours and fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Keyboard-interface">Keyboard interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Magnification">Magnification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Other-assistive-software">Other assistive software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml#Audio">Audio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_04_Writing_Code.xhtml">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml">1.5 Gaining Access to the RoboLab Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Accessing-RoboLab-Online---MyBinder-/-BinderHub">Accessing RoboLab Online - MyBinder / BinderHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Running-An-Open-Computing-Lab-Environment-On-Your-Own-Computer---Computer-Requirements">Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Downloading-and-Installing-Your-Open-Computing-Lab-Environment">Downloading and Installing Your Open Computing Lab Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Download-and-Install-Docker">Download and Install Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Running-an-Open-Computing-Lab-Environment-Via-Docker">Running an Open Computing Lab Environment Via Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Sharing-Files-into-the-Container">Sharing Files into the Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Using-ContainDS-to-Install-the-Prebuilt-Open-Computing-Lab-Container-Image">Using ContainDS to Install the Prebuilt Open Computing Lab Container Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Using-ContainDS-To-Run-the-Open-Computing-Lab-Environment-from-a-Local-Docker-Image">Using ContainDS To Run the Open Computing Lab Environment from a Local Docker Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Using-ContainDS-to-Build-and-Run-a-RoboLab-Container-from-Scratch">Using ContainDS to Build and Run a RoboLab Container from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Obtaining-the-RoboLab-Instructional-Materials">Obtaining the RoboLab Instructional Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml#Saving-and-Checkpointing-Your-Work">Saving and Checkpointing Your Work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml">1.6 Activity: The RoboLab Notebook Editable Text Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#A-first-look">A first look</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Previewing-Formatted-Markdown">Previewing Formatted Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Markdown-Examples">Markdown Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Previewing-Style-Markup">Previewing Style Markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#WYSIWYG-“Text-Editor”-View">WYSIWYG “Text Editor” View</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Code-Cells">Code Cells</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Displaying-Code-Line-Numbers">Displaying Code Line Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Code-Style">Code Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Alternative-RoboLab-User-Environments">Alternative RoboLab User Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Configuring-the-Simulator-Layout">Configuring the Simulator Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="software-guide">
+<h2>SOFTWARE GUIDE</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml">1 Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#1.1-Introduction-to-the-TM129-Virtual-Robotics-Lab--RoboLab">1.1 Introduction to the TM129 Virtual Robotics Lab: RoboLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#Addendum">Addendum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#2.1-Activity--Running-a-program">2.1 Activity: Running a program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#2.2-The-Program-window">2.2 The Program window</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml">3 Some features of RoboLab</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.1-Activity--Keeping-a-robot-in-an-area">3.1 Activity: Keeping a robot in an area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Using-Less-Magic…">Using Less Magic…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#A-Complete-Python-Programme">A Complete Python Programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.2-Activity--Investigating-sensors">3.2 Activity: Investigating sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity---Viewing-the-Logged-Data---The-Simulator-Datalog-Chart-Display">Activity - Viewing the Logged Data - The Simulator Datalog Chart Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Viewing-the-Logged-Data---Uploading-the-Logged-Data-to-the-Notebook">Viewing the Logged Data - Uploading the Logged Data to the Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Robots-that-speak">Robots that speak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Robots-That-Count">Robots That Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Announcing-Bands-As-The-Robot-Encounters-Them">Announcing Bands As The Robot Encounters Them</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.1-Activity--Remote-control">4.1 Activity: Remote control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.2-Activity--More-remote-control">4.2 Activity: More remote control</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="session-01-robolab">
+<h2>Session 01 — RoboLab</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml">1 An introduction to programming robots</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#1.1-Some-basics-of-computer-programming">1.1 Some basics of computer programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#Getting-Started-With-the-Simulator">Getting Started With the Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#1.2-An-introduction-to-sequential-programming">1.2 An introduction to sequential programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#1.3-Writing-Programs-for-Use-in-the-RoboLab-Simulator">1.3 Writing Programs for Use in the RoboLab Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#NN-TO-DO-Activity--Creating-and-editing-your-own-programs">NN TO DO Activity: Creating and editing your own programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#1.5-Activity--Working-with-comments">1.5 Activity: Working with comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#1.6-Activity--Completing-the-square">1.6 Activity: Completing the square</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_01.xhtml#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml">2 Constants and variables in programs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#2.1-An-introduction-to-constants-in-computer-programs">2.1 An introduction to constants in computer programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#2.2-Activity--Working-with-constants-and-variables">2.2 Activity: Working with constants and variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#Activity--Robo-Lab-challenge">Activity: Robo Lab challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#2.4-Activity--Working-with-variables">2.4 Activity: Working with variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#Updating-Variables-from-Sensor-Values">Updating Variables from Sensor Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/01_Robot_Lab/Section_00_02.xhtml#Summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="session-02-robolab">
+<h2>Session 02 — RoboLab</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#2-Loops">2 Loops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#2.1-An-introduction-to-loops-in-computer-programs">2.1 An introduction to loops in computer programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-for...in...-loop">Using a <code class="docutils literal notranslate"><span class="pre">for...in...</span></code> loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-while...-loop">Using a <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#Activity--Changing-a-loop-variable-count-up-to-10">Activity: Changing a loop variable count up to 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#Summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_01.xhtml#Addendum">Addendum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml">3 Branches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#3.1-Activity--Detecting-black-and-grey">3.1 Activity: Detecting black and grey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#Activity--Stepping-Through-An-if..else...-Statement">Activity: Stepping Through An <code class="docutils literal notranslate"><span class="pre">if..else...</span></code> Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#An-if..-without-an-else...">An <code class="docutils literal notranslate"><span class="pre">if..</span></code> without an <code class="docutils literal notranslate"><span class="pre">else...</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#3.4-Activity--Combining-loops-and-branching-statements">3.4 Activity: Combining loops and branching statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#Multiple-Conditions-Using-if..elif..else..">Multiple Conditions Using <code class="docutils literal notranslate"><span class="pre">if..elif..else..</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#3.5-Challenge--Three-shades-of-grey">3.5 Challenge: Three shades of grey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#Summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_02.xhtml#Addendum">Addendum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/02_Robot_Lab/Section_00_03.xhtml">3 Robot Lab challenges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_03.xhtml#Challenge--Moving-Simon-forwards">Challenge: Moving Simon forwards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_03.xhtml#Challenge--Traversing-a-triangle">Challenge: Traversing a triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_03.xhtml#Challenge--Making-a-countdown-program">Challenge: Making a countdown program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_03.xhtml#Challenge--Traversing-a-hook">Challenge: Traversing a hook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/02_Robot_Lab/Section_00_04.xhtml">4 Optional challenges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/02_Robot_Lab/Section_00_04.xhtml#Challenge--Traversing-a-multi-square">Challenge: Traversing a multi-square</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="session-03-robolab">
+<h2>Session 03 — RoboLab</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_01.xhtml">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_02.xhtml">2 Dead reckoning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_02.xhtml#2.1-Activity--Dead-reckoning">2.1 Activity: Dead reckoning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_02.xhtml#2.2-Challenge--Reaching-the-moon-base">2.2 Challenge: Reaching the moon base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_02.xhtml#2.3-Activity--Dead-reckoning-with-noise">2.3 Activity: Dead reckoning with noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_02.xhtml#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_03.xhtml">4 Emergent behaviour: Braitenberg’s vehicles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_03.xhtml#4.1-Activity--Testing-Braitenberg’s-vehicles">4.1 Activity: Testing Braitenberg’s vehicles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_03.xhtml#Using-Ultrasound">Using Ultrasound</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_03.xhtml#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_04.xhtml">4 Reasoning and the sense–think–act model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_04.xhtml#4.1-Representing-and-using-knowledge">4.1 Representing and using knowledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_04.xhtml#Eliza">Eliza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_04.xhtml#More-General-Forms-of-Rules">More General Forms of Rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/03_Robot_Lab/Section_00_05.xhtml">5 Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_05.xhtml#Using-Functions-in-Robot-Control-Programs">Using Functions in Robot Control Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content/03_Robot_Lab/Section_00_05.xhtml#5.3-Functions--a-summary">5.3 Functions: a summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="session-04-robolab">
+<h2>Session 04 — RoboLab</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="content/04_Robot_Lab/Section_00_01.xhtml">1 Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/04_Robot_Lab/Section_00_01.xhtml#1.1-Activity--The-Simulator-Environment-as-a-Laboratory">1.1 Activity: The Simulator Environment as a Laboratory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/04_Robot_Lab/Section_00_02.xhtml">2 Line followers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/04_Robot_Lab/Section_00_02.xhtml#2.1-Challenge--Writing-an-edge-follower-program">2.1 Challenge: Writing an edge-follower program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="content/04_Robot_Lab/Section_00_04.xhtml">4 The design engineer as detective</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="content/04_Robot_Lab/Section_00_04.xhtml#Following-the-Design-Cycle">Following the Design Cycle</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>Developer Notes</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="Developer-Notes">
+<h1>Developer Notes</h1>
+<p>Key things to be aware of when developing on this project.</p>
+<div class="section" id="ev3devsim-Hacking">
+<h2><code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Hacking</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> code runs under skulpt. To develop on the following packages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ev3dev2/*</span></code> packages;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ev3dev2_glue.js</span></code></p></li>
+</ul>
+<p>the packages new to be built into the Skulpt distribution used by <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>. When updating those files, you need to:</p>
+<ul class="simple">
+<li><p>copy the updated files into a Skulpt repo <code class="docutils literal notranslate"><span class="pre">src/lib/</span></code> directory;</p></li>
+<li><p>in the Skulpt repo root directory, run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">dist</span></code>;</p></li>
+<li><p>grab the <code class="docutils literal notranslate"><span class="pre">skulpt-stdlib.js</span></code>, <code class="docutils literal notranslate"><span class="pre">skulpt.min.js</span></code> and <code class="docutils literal notranslate"><span class="pre">skulpt.min.js.map</span></code> files and copy them into <code class="docutils literal notranslate"><span class="pre">nbev3devsim/js/</span></code>.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

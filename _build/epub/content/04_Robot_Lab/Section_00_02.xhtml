@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>2 Line followers</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="2-Line-followers">
+<h1>2 Line followers</h1>
+<p>In this section you will investigate how a robot can be made to follow a desired path as it navigates its environment.</p>
+<p>When humans navigate around a house or a supermarket, most use the information provided by their eyes to control their movements. Many simple robots do not have complex vision systems like this and have to rely on much simpler sensors. One of the most commonly used methods for navigation by robots with simple light sensors is to follow a line.</p>
+<p>The idea behind <em>line following</em> is that the environment has been adapted by the creation of a marked path that the robot can follow. For example, it could be a black line on a white background, or a wire embedded in the floor creating a magnetic field.</p>
+<p>You will experiment with a number of robot navigation systems using the following strategy. In the first instance, instead of trying to follow a black line on a white background, we will instead follow the <em>edge</em> of a line that represents the sharp transition between black and white (or dark and light).</p>
+<p>The basic idea is that, as the robot moves forwards, the light sensor tells it if it should move towards the edge or away from it. For example, if the light sensor picks up a light background, the robot needs to turn (say to the right) until it detects the dark line. Once the light sensor detects it is over the dark line, the robot should start moving forwards whislt also turning back to the left to find the edge of the line again. In this way, the robot would “edge” forwards as it follows the
+<em>right hand</em> edge of the black line.</p>
+<p>The behaviour of the sensors and the interpretation of the data they provide is very important when creating line-following robots and we will look at these aspects in some detail.</p>
+<div class="section" id="2.1-Challenge:-Writing-an-edge-follower-program">
+<h2>2.1 Challenge: Writing an edge-follower program</h2>
+<p>The challenge is to write a RoboLab program to make the robot follow the line until it reaches the red bar. Make sure you still have the <em>Lollipop</em> background loaded in to the simulator. Before you can do the programming you will need to collect some data to calibrate the sensor responses to the various colours.</p>
+<p>One approach to keeping the robot on track is to get it to read the light sensor. If the light sensor shows grey, the robot needs to turn back towards the edge of the line, that is, turn to its right. If it shows black then the robot is already over the black line and needs to turn back to the left to find the edge again.</p>
+<p>(TO DO - FIX - The following image is rotated 90 degrees counter-clockwise compared to the bacground in the simulator.)</p>
+<p><img alt="The image used as a background for the line-follower program. This has a grey background on which is a lollipop shape, drawn hanging downward as a black outline. The robot starts at the stick, must follow the line across the screen to the left, around the head of the lollipop and back up the stick. The start/end is marked by a transverse broad red line; a transverse yellow line occurs mid way along the straight path. The yellow line is drawn behind the black lollipop so the black line is unbroken at this point; the red line is drawn across the end of the black line." src="content/04_Robot_Lab/../images/tm129_rob_p6_f006.jpg" /></p>
+<p>The challenge is complicated by the presence of a yellow line, which the robot must ignore.</p>
+<p>### Calibrating the Required Sensor Readings</p>
+<p>You first need to record the light sensor readings associated with each of the coloured bands on the chart, as well as for the black line and the grey background.</p>
+<p>The backgound colours are represented as 3-tuple RGB (red-green-blue values). Each component is in the range 0..255 with a higher value showing an increased intensity of that component. A pure red color is</p>
+<div class="section" id="Activity">
+<h3>Activity</h3>
+<p>explore colors</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from PIL import Image, ImageDraw
+Image.new(&#39;RGB&#39;, (50, 50), (0,255,0))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Taking-readings">
+<h3>Taking readings</h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">reflected</span> <span class="pre">light</span></code> reading in the simulator is actually recorded as the value of the first RGB component.</p>
+<p>[TO DO - would the max value across all three channels make more sense? Or the median? Or the mean?]</p>
+<p>Drag the robot around the screen, dropping it so the left light sensor is directly over the area you want to record the sensor reading for. When you drop the robot, the light sensor reading should be updated in the simulator “Sensor readings” area.</p>
+<p>light sensorWhen the blue light sensor on Simon’s ‘nose’ is placed over an object, the control panel shows the light sensor reading for that object. Colours are made up of different amounts of red, blue and green. The simulator adds the red, green and blue values, and takes an average (i.e. it divides the total by three). For example, ‘yellow’ has red = 100%, green = 100%, and blue = 0%, so Simon sees this colour as 200/3 = 66 as a whole number (the simulator ‘rounds down’). Drag Simon over the
+background image and fill in a table like Table 2.1.</p>
+<table xmlns:str="http://exslt.org/strings"><caption><p>Table 2.1 Light sensor readings</p>
+</caption><tbody><tr><td class="highlight_" rowspan colspan><p>grey:</p>
+</td><td class="highlight_" rowspan colspan><p>______ %</p>
+</td></tr><tr><td class="highlight_" rowspan colspan><p>yellow:</p>
+</td><td class="highlight_" rowspan colspan><p>______ %</p>
+</td></tr><tr><td class="highlight_" rowspan colspan><p>red:</p>
+</td><td class="highlight_" rowspan colspan><p>______ %</p>
+</td></tr><tr><td class="highlight_" rowspan colspan><p>black:</p>
+</td><td class="highlight_" rowspan colspan><p>______ %</p>
+</td></tr></tbody></table><p>Spend five to ten minutes writing a program to get Simon to navigate from its starting position along the black line and to stop at the red bar. Good luck!</p>
+<p>Open <code class="docutils literal notranslate"><span class="pre">Line_follower</span></code> to see my version of the program code.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

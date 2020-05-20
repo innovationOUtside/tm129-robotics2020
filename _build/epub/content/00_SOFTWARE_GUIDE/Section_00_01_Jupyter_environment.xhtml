@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1 Getting started</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="1-Getting-started">
+<h1>1 Getting started</h1>
+<p>In which we introduce the working environment for the TM129 Robotics Block practical activities.</p>
+<p><em>As I edit this, as a direct revision of the original, it’s a very “flat” document. A lot of the things could be made more interactive. eg an interactive tour of elements of the notebook or a Graffiti interaction, rather than a static, linear, screenshot enhanced narration. Middle ground would be a screencast. But could we also instrument that somehow? Certainly, we could capture the visual recording using browser automation.</em></p>
+<div class="section" id="1.1-Introduction-to-the-TM129-Virtual-Robotics-Lab:-RoboLab">
+<h2>1.1 Introduction to the TM129 Virtual Robotics Lab: RoboLab</h2>
+<p>The <em>TM129 Virtual Robotics Lab</em>, or “RoboLab” for short, is a self-contained, virtualised computing environment. This environment enables you to experiment with, and program, simple simulated robots using the Python programming language. The same environment can be used on different computing platforms (Windows, MacOS, Linux) either running locally on your own computer or via a remote external server accessed over the internet.</p>
+<p>You will use RoboLab in a practical session during each study week of this part of the module.</p>
+<p>After studying RoboLab you should be able to:</p>
+<ul class="simple">
+<li><p>understand the basics of computer programs (e.g. explain what is meant by a sequential computer program, the terms ‘constant’ and ‘variable’, and explain and illustrate the terms ‘branch’ and ‘loop’)</p></li>
+<li><p>use programs in RoboLab (e.g. run example programs in RoboLab and say what a simple robot control program will do)</p></li>
+<li><p>manipulate simple programs in RoboLab (e.g. modify the programs to give different behaviours and write your own simple robot control programs).</p></li>
+</ul>
+<p>If you already know something about computer programming or robotics we will also provide you with links to various extension activities that you can use to develop your skill further.</p>
+<p>Note that the purpose of these activities is <em>not</em> to teach you how to write code in the Python programming language specifically, nor to provide you with an introductory course in computer programming in general. Instead, the intention is show you how we can use building blocks of code to programme a simple simulated robot in order to perform a range of simple tasks. The <em>programming</em> task is often more to do with decomposing a problem into simple steps we know how to do than it is writing
+syntactically correct Python code. So if something new appears in one of the programmes we provide you with in an unexplained way, <em>DON’T PANIC</em>. Accept it as a black box that does <em>something</em>, and go with it; a fuller explanation will often appear later.</p>
+<p>The lab sessions each week consist of exercises using a simulated robot. The simulated robot is based on a small mobile robot with a number of sensors. Robots like this are available at low cost and many are within the reach of amateur enthusiasts.</p>
+<p>RoboLab itself is accessed using a Jupyter environment presented via a web browser. Many activities are presented through interactive Jupyter notebooks and make use of a simple graphical robot simulator.</p>
+<div class="section" id="The-Jupyer-Notebook-Environment">
+<h3>The Jupyer Notebook Environment</h3>
+<p>Jupyter notebooks are are widely used interactive environment for writing “literate” programming scripts in a web browser. Originally developed to support computational data science projects, they are increasingly used as more general computational notebooks that can blend explanatory text with executable code and graphical, or even interactive, code outputs.</p>
+<p>The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user-enabled extensions that can be used to customise your notebook environment.</p>
+<p><img alt="Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing." src="../../_images/00_01_jupyter_nb_homepage1.png" /></p>
+<p>Clicking on a file of an appropriate type will open it as an interactive Jupyter notebook.</p>
+<p>Notebooks are structured using the notion of different sorts of “cell”. For example, <em>markdown cells</em> are used to contain explanatory text written using the simple text based markdown script. Executable <em>code cells</em> can be used to declare executable Python code, the outputs of which can be displayed as <em>code cell outputs</em>.</p>
+<p><img alt="Screenshot of notebook fragment showing a markdown cell containing text and a styled list, a code cell containing a code fragment, the code cell print display and the code cell output." src="../../_images/notebook_markdown_and_code_cell.png" /></p>
+<p>As well as supporting general computation, code cells are also used to create and display a simulator output:</p>
+<p><img alt="Example of a Jupyter notebook showing markdown (text), simulator display code cell and embedded simulator display." src="../../_images/nbev3devsim_in_notebook_annotated.png" /></p>
+<p>In addition, code cells can contain code that is “downloaded” to the simulator when the code cell is run:</p>
+<p><img alt="Example of a Jupyter notebook showing markdown (text) and code cell with magic invocation to send code to simulator." src="../../_images/nbev3devsim_example_code_cell_annotated.png" /></p>
+<p>Markdown and code cells can be edited and saved interactively via the notebook’s browser interface.</p>
+<p>As well as the notebook environment, a more complex “lab” or “integrated development” style interface, <em>Jupyterlab</em>, is also available.</p>
+<p>The following shows a JupyterLab set up based around another notebook based simulator, the <code class="docutils literal notranslate"><span class="pre">Jyro</span></code> robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the “torn off” simulator output window display mode shown below.</p>
+<p><img alt="Example of the JupyterLab user interface, showing the file navigator, an open notebook, a torn off cell output and the JupyterLab Launcher." src="../../_images/00_01_jupyterlab_example.png" /></p>
+<p>Whilst you are welcome to make use of the JupyterLab environment, we will tend to stick to the simple notebook interface for the module activities.</p>
+<p>The following cell contains Python code that can be executed by “running” the code cell. The code can produce two sorts of output:</p>
+<ul class="simple">
+<li><p>display items rendered as the programme executes via <code class="docutils literal notranslate"><span class="pre">display()</span></code> or <code class="docutils literal notranslate"><span class="pre">print()</span></code> commands in the code;</p></li>
+<li><p>a “cell output” value that displays the return value (if any) from the last statement in the cell.</p></li>
+</ul>
+<p>The code in the cell can be executed using the “Run” button in the notebook toolbar, as well as via keyboard shortcuts.</p>
+<p>(We will explore the mechanics of using the notebooks in more detail later on.)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>print(&quot;hello world...&quot;)
+
+my_variable = &quot;value of my variable&quot;
+my_variable
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Notebook-Extensions">
+<h3>Notebook Extensions</h3>
+<p>A wide range of notebook extensions are installed in the RoboLab environment, although the majority have not been pre-enabled.</p>
+<p>You can enable and disable extensions, as well as further configuring certain extensions, via the extensions configurator. This can be accessed from the notebook homepage or from the <code class="docutils literal notranslate"><span class="pre">nbextensions</span> <span class="pre">config</span></code> option in the <code class="docutils literal notranslate"><span class="pre">Edit</span></code> menu of an opened notebook.</p>
+<p><img alt="Screenshot of Jupyter nbextensions configurator page, showing conficuration panel for a selected extension." src="../../_images/00_01_nbextension_config.png" /></p>
+<p>You are welcome to explore the available extensions, or even add further ones of your own, to personalise your notebook environment, but we will not discuss them further here.</p>
+<p><em>You may want to share details of any extensions you find particularly useful in your module or tutor group forums.</em></p>
+</div>
+</div>
+<div class="section" id="Addendum">
+<h2>Addendum</h2>
+<p>At the end of some notebooks, there may be an <em>Addendum</em> section. These sections are <em>optional</em> as far as the module goes, and you are not necessarily expected to, let alone required to, study them, read through them, or even glance at them at all.</p>
+<p>In particular, the addendum sections provide additional context or explanation not directly relevant to the module but which may be of interest to the more curious or technically minded amongst you. In some cases, the sections are there to explore in a little more detail how a particular activity or notebook feature works behind the scenes; in other cases, they may hint at other ways in which what you have learned may be applied to other contexts not directly associated with programming robots.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

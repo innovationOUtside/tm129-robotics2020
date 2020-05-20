@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>2 The RoboLab simulated on-screen robot (nbev3devsim)</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="2-The-RoboLab-simulated-on-screen-robot-(nbev3devsim)">
+<h1>2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator is arranged slightly differently to the original <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> simulator in order to develop a workflow that more naturally suits notebook style working.</p>
+<p>Rather than saving programmes to separate files, each individual robot simulator programme is defined within its own notebook code cell, and can then be “downloaded” to the simulated robot. This means you can keep track of a how a programme develops by writing each version of a programme in its own code cell.</p>
+<div class="alert-danger"><p>Layout is subject to change…</p>
+</div><p><img alt="Screenshot of ev3devsim simulator showing a simulator world canvas, programming area and outpur trace window. SUJECT TO CHANGE" src="../../_images/nbev3devsim_overview.png" /></p>
+<p>An expanded range of predefined worlds is available that can be loaded into the simulator, as image files, from a drop down menu. (Source code for generating the background image files is also available in a notebook in the <code class="docutils literal notranslate"><span class="pre">backgrounds/</span></code> directory.) When some worlds are loaded in, the robot’s initial (default) location in that world is also specified; other robot settings, such as the positioning of the sensors, may also be initialised when a particular backgound is loaded.</p>
+<p>As in <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code>, obstacles can be added to a world using a configuration file opened by clicking the <code class="docutils literal notranslate"><span class="pre">Obstacles</span></code> button. The simulated robot is also still configured via a configuration menu.</p>
+<p>The simulated robot can be dragged and placed on the simulated background and moved to a specifed location via the <code class="docutils literal notranslate"><span class="pre">Move</span></code> button (the target co-ordinates are updated when the robot is dragged to a new location). A new <code class="docutils literal notranslate"><span class="pre">Reset</span></code> button wil move the robot back to it’s default location in the world.</p>
+<p><strong>[TO DO - would also be useful to be able to rotate the robot?]</strong></p>
+<div class="section" id="2.1-Activity:-Running-a-program">
+<h2>2.1 Activity: Running a program</h2>
+<p>QUIck demo - get a feel for the simulator, even the <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> one? Or maybe provide this via simple static demos as standalone HTML files? Or actually demo <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> here?</p>
+<!-- #raw --></div>
+</div>
+<div class="section" id="Move-robot-forward">
+<h1>Move robot forward</h1>
+<p>from ev3dev2.motor import MoveSteering, OUTPUT_B, OUTPUT_C</p>
+<p>motor_pair = MoveSteering(OUTPUT_B, OUTPUT_C)</p>
+</div>
+<div class="section" id="Move-robot-forward-for-3-seconds">
+<h1>Move robot forward for 3 seconds</h1>
+<p>motor_pair.on_for_seconds(steering=0, speed=50, seconds=3)</p>
+<!-- #region --><p>TO DO - WE MAY NOT NEED THIS IF WE WORK IN THE NOTEBOOK VIA A WIDGET</p>
+<p>Save the programme with a meaningful file name (for example, <code class="docutils literal notranslate"><span class="pre">move_a_robot.py</span></code>) and clear the programme editor by deleting all the contents from it. If you <code class="docutils literal notranslate"><span class="pre">Run</span></code> the (non-existent) programme, the robot should not move.</p>
+<p>Load the file you saved back into the programme window, and run it again. This time the robot should move for 3 seconds again.</p>
+<p>TO DO - LINE NUMBER OPTIONS IN EDITOR?</p>
+<p>It is possible to operate the simulated robot in ‘show trail’ or ‘pen-down’ mode. This enables you to see the path the robot follows.</p>
+<p>Check the <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">trail</span></code> button in the simulator. Run the program again to see the robot’s trail.</p>
+<p>TO DO - keyboard shortcuts would be useful.</p>
+<p>TO DO - a simulator run status indicator would be useful.</p>
+<div class="section" id="2.2-The-Program-window">
+<h2>2.2 The Program window</h2>
+<p>So far we have taken a very quick look at how to download programmes from a notebook code cell and run them in the simulator.</p>
+<p>the <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">editor</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> windows. In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the <code class="docutils literal notranslate"><span class="pre">Program</span></code> window as it relates to the <code class="docutils literal notranslate"><span class="pre">Move_a_robot</span></code> program, to see the essential elements of the program and why the robot behaves as it does.</p>
+<p>If you don’t already have the <code class="docutils literal notranslate"><span class="pre">move_a_robot.py</span></code> program open, reopen it now.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">move_a_robot.py</span></code> program is displayed in the <code class="docutils literal notranslate"><span class="pre">Program</span></code> window as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move robot forward</span>
+
+
+<span class="kn">from</span> <span class="nn">ev3dev2.motor</span> <span class="kn">import</span> <span class="n">MoveSteering</span><span class="p">,</span> <span class="n">OUTPUT_B</span><span class="p">,</span> <span class="n">OUTPUT_C</span>
+
+<span class="n">motor_pair</span> <span class="o">=</span> <span class="n">MoveSteering</span><span class="p">(</span><span class="n">OUTPUT_B</span><span class="p">,</span> <span class="n">OUTPUT_C</span><span class="p">)</span>
+
+<span class="c1"># Move robot forward for 3 seconds</span>
+<span class="n">motor_pair</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">steering</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The program may look a bit cryptic to start with, but it is built up from some very simple steps.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">#</span></code> character at the start of a line is a <em>line comment</em> marker that tells the simulator to ignore the rest of the line. This provides a way of putting non-program text into programs to make the program more readable. The first comment just gives a title describing the program.</p>
+<p>The next line, starting <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">ev3dev2.motor</span> <span class="pre">import</span></code> tells the programme to <em>import</em> some items <em>from</em> the <code class="docutils literal notranslate"><span class="pre">ev3dev2.motor</span></code> Python package. The import statement commands make additional commands available to our programme that are not defined as part of the basic Python language. In this case, the items define the various motor output ports and a simple programme command that can turn the motors on for a specified time.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">OUTPUT_B</span></code> and <code class="docutils literal notranslate"><span class="pre">OUTPUT_C</span></code> items represent fixed constant identifier labels. The underlying simulator predefines these values so that they refer to the simulated motor outputs used by the simulator.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">motor_pair</span> <span class="pre">=</span> <span class="pre">MoveSteering(OUTPUT_B,</span> <span class="pre">OUTPUT_C)</span></code> line associates a <code class="docutils literal notranslate"><span class="pre">motor_pair</span></code> name or label (also known as an <em>identifier</em>) with a control block that implements a steering wheel style controller (<code class="docutils literal notranslate"><span class="pre">MoveSteering</span></code>); this steering controller uses the two motors on the specified outputs to steer the robot. The controller expects two values passed to it in the form <code class="docutils literal notranslate"><span class="pre">MoveSteering(LEFT_WHEEL_OUTPUT,</span> <span class="pre">RIGHT_WHEEL_OUTPUT)</span></code>. These two values are then used to <em>configure</em> the output ports used by
+the steering block so that they can deliver power to the motors.</p>
+<p>Once configured, the <code class="docutils literal notranslate"><span class="pre">motor_pair</span></code> can be told to turn on the motors for a specified period of time (<code class="docutils literal notranslate"><span class="pre">motor_pair.on_for_seconds</span></code>).</p>
+<p>Note that you can use the underscore character as part of a name to make things clearer, but you must not use spaces or other punctuation when creating an identifier. For example, <code class="docutils literal notranslate"><span class="pre">motor_pair</span></code> can be recognised as a single name, but <code class="docutils literal notranslate"><span class="pre">motor</span> <span class="pre">pair</span></code> would be treated as two names (<code class="docutils literal notranslate"><span class="pre">motor</span></code> and <code class="docutils literal notranslate"><span class="pre">pair</span></code>) and result in an error. You are free to make up names as you wish as long as they meet these simple rules. However, some names are already reserved for use as program commands and you must also
+avoid these names.</p>
+<p>When telling the steering controller to turn on the motors for a specified time, we need to provide it with three essential pieces of information:</p>
+<ul class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">steering</span></code> value, which might be though of as a “steering wheel” angle in degrees for the robot; the 0 degrees angle means drive straight ahead;</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">speed</span></code> value, which is the speed at which the wheels turn;</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">seconds</span></code> duration which specifies how long the simulated motors powering the wheels should be turned on for.</p></li>
+</ul>
+<p>All three values are required to move the robot.</p>
+<p>To see all of this working, run the program again.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

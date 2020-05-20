@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Getting-Started">
+<h1>Getting Started</h1>
+<p>Welcome to the TM129 Robotics block practical activities.</p>
+<p>The practical activities are delivered through a new environment, <em>RoboLab</em>, that replaces the <em>RobotLab</em> application used in presentations priort to 20J. <em>RoboLab</em> is an example of an <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span> <span class="pre">(OCL)</span></code> environment configured specifically to support the TM129 Robotics activities.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span></code> approach is being trialled on several Open University modules and aims to provide a common approach to delivering complex software and computing envronments on personal computers as well as via remotely hosted online servers.</p>
+<p>To install the environment, use the installation instructions that are provided for students.</p>
+<div class="section" id="The-Jupyter-Notebook-Environment">
+<h2>The Jupyter Notebook Environment</h2>
+<p>The teaching and learning materials used to support the activities are provided as Jupyter notebooks.</p>
+<p>Jupyter notebooks have been used deliver practical activities in <em>TM351 Data Management and Analysis</em>, the OU produced FutureLearn/OpenLearn unit <em>Learn to Code for Data Analysis</em>, materials which are also used in <em>S818 Space Science</em>, and to support a brief, optional set of activities in TM112.</p>
+<p>They will also be used in several courses currently in production including <em>M269 Algorithms</em>, <em>TM358 Machine Learning</em> and <em>M348 Linear Models</em>.</p>
+<p>Originally developed to support computational research activities, Jupyter notebooks provide a cell based web-based read-write-execute document editor that blends rich text, executable code and code outputs.</p>
+<p>Within text areas, code can by highlighted in a language sensitive way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sayHello</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Code is executed in a “kernel” shell environment running on a backend server.</p>
+<p>Kernels for a <a class="reference external" href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">wide variety of programming languages</a><span class="link-target"> [https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]</span> are available; in TM129, we will be using a full Python kernel, as well as a simple in-browser Skulpt Python environment that runs code inside a simple in-browser 2D robot simulator.</p>
+<p>When a code cell is run, outputs can be printed or displayed, and any value returned by the last object in the cell object will be displayed as cell output.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHello():
+    print(&#39;Hello World&#39;)
+    return &quot;done...&quot;
+
+sayHello()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-Notebooks-to-Support-Learning">
+<h2>Using Notebooks to Support Learning</h2>
+<p>The read-write-execute nature of Jupyter notebooks provides us with a medium that can be used to develop a wide range of active learning materials. Students are encouraged to take ownership of the notebooks, use them as guided materials, as well as in a curiosity driven, exploratory way, and annotate them as they would print materials.</p>
+<p>For example, students can:</p>
+<ul class="simple">
+<li><p>run simple interactive applications in the notebook;</p></li>
+</ul>
+<ul class="simple">
+<li><p>run provided code examples and inspect code outputs;</p></li>
+</ul>
+<ul class="simple">
+<li><p>edit and run their own code and produce their own code outputs;</p></li>
+</ul>
+<ul class="simple">
+<li><p>edit the course text, from fixing minor typos as they work through the materials, to annotating the materials with their own comments and clarifications;</p></li>
+</ul>
+<ul class="simple">
+<li><p>add predictions about what they expect a code fragment to do when it is executed, record their observations when it does, and reflect on how well their predictions matched their observations, and what they learned as a result.</p></li>
+</ul>
+</div>
+<div class="section" id="Using-Notebooks-to-Support-Direct-Teaching-/-Tutorials">
+<h2>Using Notebooks to Support Direct Teaching / Tutorials</h2>
+<p>The Jupyter notebook environment we have provided includes a slideshow extension, <a class="reference external" href="https://rise.readthedocs.io/en/stable/">RISE</a><span class="link-target"> [https://rise.readthedocs.io/en/stable/]</span>, that allows you to turn individual Jupyter notebooks into interactive slideshow presentations.</p>
+<p>As with the notebooks themselves, each slide includes editable text and code cells, can display interactive applications, and can be used to execute code fragments and displaying the resulting code output (including error messages…).</p>
+<p>Notebooks are configured as slides through the addition of cell tags that control whether, and how, each cell in the notebook is to be treated in presentation mode.</p>
+<p>Several of the notebooks, including this one, have been marked up as presentations. To run the slideshow, click once on the top cell in the notebook to select it as the starting point from the presentation, then click on the <em>Enter/Exit RISE Slideshow</em> icon (it looks like a bar chart) on the notebook toolbar.</p>
+<p>Slides themselves are interactive in other ways.</p>
+<p>For example, this notebook supports the presentation <a class="reference external" href="https://rise.readthedocs.io/en/stable/customize.html#enable-chalkboard-capabilities">chalkboard</a><span class="link-target"> [https://rise.readthedocs.io/en/stable/customize.html#enable-chalkboard-capabilities]</span> which allows you to draw on the slide directly.</p>
+<p>(Click the pens in the bottom left corner of the slide to toggle the chalkboard mode.)</p>
+</div>
+<div class="section" id="What-Next?">
+<h2>What Next?</h2>
+<p>If you are not familiar with Jupyter notebooks, please spend some time familiarising yourself with them.</p>
+<p>We believe they provide a powerful tool to support teaching and learning and it’s still early days for us in finding out how to make most effective use of them.</p>
+<p>If you have any ideas anout how we can imporve our current use of the notebooks, or make more effective use of them, please let us know.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

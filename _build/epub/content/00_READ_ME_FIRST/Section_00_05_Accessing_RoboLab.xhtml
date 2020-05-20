@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>1.5 Gaining Access to the RoboLab Environment</title>
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="1.5-Gaining-Access-to-the-RoboLab-Environment">
+<h1>1.5 Gaining Access to the RoboLab Environment</h1>
+<p>RoboLab is an example of an <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span> <span class="pre">(OCL)</span></code> environment configured specifically to support your TM129 activities.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span></code> approach is being trialled on several Open University modules and aims to provide a common approach to delivering complex software and computing envronments on personal computers as well as via remotely hosted online servers.</p>
+<p>There are several ways in which you can access the RoboLab OCL environment:</p>
+<ul class="simple">
+<li><p><em>as a “temporary” online service using MyBinder</em></p></li>
+<li><p><em>via the OU hosted JupyterHub environment WHICH DOESN’T EXIST YET</em></p></li>
+<li><p><em>locally on your own computer</em></p></li>
+</ul>
+<p>The current recommended approach is <strong>download Docker to your own computer and launch the environment from the command line</strong>.</p>
+<div class="section" id="Accessing-RoboLab-Online---MyBinder-/-BinderHub">
+<h2>Accessing RoboLab Online - MyBinder / BinderHub</h2>
+<p>You can run the RoboLab environment online using the MyBinder service <a class="reference external" href="https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master"><img alt="Binder" src="../../_images/badge_logo.svg" /></a><span class="link-target"> [https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master]</span>.</p>
+<p>If you want to save any of the notebooks used there, you will have to download them as follows:</p>
+<ul class="simple">
+<li><p>as a single notebook from the notebook page <code class="docutils literal notranslate"><span class="pre">File</span></code> menu;</p></li>
+<li><p>as a zipped archive file of all notebooks using the the download button on the notebook homepage.</p></li>
+</ul>
+<p>You can also upload your own notebooks from the notebook homepage either individually, or as a zip file. If you upload a zip file, you will need to unzip it. You can do this from a notebook command cell using the <code class="docutils literal notranslate"><span class="pre">unzip</span></code> shell command or <a class="reference external" href="https://thispointer.com/python-how-to-unzip-a-file-extract-single-multiple-or-all-files-from-a-zip-archive/">using Python code</a><span class="link-target"> [https://thispointer.com/python-how-to-unzip-a-file-extract-single-multiple-or-all-files-from-a-zip-archive/]</span>. More details can be found in the <strong>TO DO?? - see the ``RoboLab Environment FAQ``</strong></p>
+</div>
+<div class="section" id="Running-An-Open-Computing-Lab-Environment-On-Your-Own-Computer---Computer-Requirements">
+<h2>Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements</h2>
+<p>To run an Open Computing Lab environment on your computer, we suggest you install the prebuilt OCL environment developed for your module. For TM129, this is the prebuilr RoboLab environment. Using this environment has the advantage that the module team knows exactly what’s inside it and how to help fix things if they appear to go wrong.</p>
+<p>The downside is that the environment is quite large in terms of memory requirements: you will need at least 5GB of free memory to install it the environment, as well as its dependencies.</p>
+<p>The underlying Docker application, which provides the virtualisation tools used to run the environment, is also happiest on computers with at least 4GB of RAM available.</p>
+</div>
+<div class="section" id="Downloading-and-Installing-Your-Open-Computing-Lab-Environment">
+<h2>Downloading and Installing Your Open Computing Lab Environment</h2>
+<p>Open Computing Lab environments run in a simple virtual machine known as a Docker container.</p>
+<p>To run an Open Computing Lab environment on your own computer, you will need to download and install the <em>Docker</em> application. Optionally, you may also choose the download the <em>ContainDS</em> application, which provides a graphical user interface for managing a Docker containers. If you do not download <em>ContainDS</em>, you can still control your Docker containers using command line commands issued from a terminal or command prompt.</p>
+</div>
+<div class="section" id="Download-and-Install-Docker">
+<h2>Download and Install Docker</h2>
+<p>Docker is the virtualisation platform that runs the RoboLab environment. You should download and install the latest version of Docker from the <a class="reference external" href="https://www.docker.com/products/docker-desktop">Docker website</a><span class="link-target"> [https://www.docker.com/products/docker-desktop]</span>, following the instructions for your particular operating system:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop for Windows</a><span class="link-target"> [https://docs.docker.com/docker-for-windows/install/]</span> (<a class="reference external" href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">direct download link</a><span class="link-target"> [https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe]</span>): <em>requires Windows 10 64-bit: Pro, Enterprise, or Education</em></p>
+<ul>
+<li><p>if your Windows machine does not meet the requirements for installing <em>Docker Desktop for Windows</em>, you should still be able to run Docker using the <a class="reference external" href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker Toolbox on Windows</a><span class="link-target"> [https://docs.docker.com/toolbox/toolbox_install_windows/]</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://docs.docker.com/docker-for-mac/install/">Docker Desktop for Mac</a><span class="link-target"> [https://docs.docker.com/docker-for-mac/install/]</span> (<a class="reference external" href="https://download.docker.com/mac/stable/Docker.dmg">direct download link</a><span class="link-target"> [https://download.docker.com/mac/stable/Docker.dmg]</span>): <em>requires macOS 10.12 or newer, hardware from 2010 or newer</em>)</p>
+<ul>
+<li><p>for older Macs that do not meet the requirements for installing <em>Docker Desktop for Mac</em>, you may still be able to run Docker using the <a class="reference external" href="https://docs.docker.com/toolbox/toolbox_install_mac/">Docker Toolbox on Mac OS</a><span class="link-target"> [https://docs.docker.com/toolbox/toolbox_install_mac/]</span></p></li>
+</ul>
+</li>
+<li><p><em>Linux</em>: you may find that Docker is already installed on your Linux computer (in a terminal, run the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">--version</span></code> to check). If it isn’t available, you should install the latest version of the <em>Docker Engne - Community Edition</em> from the Docker repository. Find your flavour of Linux on the <a class="reference external" href="https://docs.docker.com/install/">Docker Engine overview</a><span class="link-target"> [https://docs.docker.com/install/]</span> page and follow the links to install the package on your particular operating system.</p></li>
+</ul>
+<p>Locate the folder containing the downloaded installer: your browser may have a <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder or it may have saved the downloaded file to the <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">Documents</span></code> or <code class="docutils literal notranslate"><span class="pre">Desktop</span></code> folder. Inside the download folder, find the downloaded installer file and double-click it to run it.</p>
+<p><strong>TO DO - could we get any security warnings?? If so, what, and how do we resolve them??</strong></p>
+<p><strong>TO DO: There may be issues on Windows around things like virtualisation settings (HyperV and Docker don’t necessarily play nice). Please add any issues / problems relating specifically to getting Docker and the Docker container working to</strong><a class="reference external" href="https://github.com/innovationOUtside/tm129-robotics2020/issues/7">this tracking issue</a><span class="link-target"> [https://github.com/innovationOUtside/tm129-robotics2020/issues/7]</span><strong>.</strong></p>
+<p>If you saved the installer earlier, you may now delete it since it is no longer required.</p>
+<p>Docker runs as an application service and it should automatically start and run in the background.</p>
+</div>
+<div class="section" id="Running-an-Open-Computing-Lab-Environment-Via-Docker">
+<h2>Running an Open Computing Lab Environment Via Docker</h2>
+<p>There are two recommended ways you can run your Open Computing Lab environment:</p>
+<ul class="simple">
+<li><p>by issuing commands on the command line from a terminal / command prompt <strong>[CURRENTLY RECOMMENDED ROUTE]</strong>;</p></li>
+<li><p>using a Docker container management application suchs as <em>ContainDS</em>.</p></li>
+</ul>
+<div class="section" id="Running-an-Open-Computing-Lab-Environment-from-the-Command-Line">
+<h3>Running an Open Computing Lab Environment from the Command Line</h3>
+<p>It is quite possible to launch the RoboLab virtual environment from a terminal / command prompt and then access the actual environment via your browser in the normal way, although it is slightly more fiddly than using ContainDS.</p>
+<div class="section" id="On-a-Mac-/-Linux-Machine:">
+<h4>On a Mac / Linux Machine:</h4>
+<p>Open a terminal. From the command prompt, do the following:</p>
+<ul class="simple">
+<li><p>create a working directory / folder to work in by entering the command: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">TM129</span></code>;</p></li>
+<li><p>change directory into that directory by running the command: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">TM129</span></code>;</p></li>
+<li><p>start the container by running the command: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">tm129test</span> <span class="pre">-p</span> <span class="pre">8129:8888</span> <span class="pre">-v</span> <span class="pre">$PWD:/home/jovyan/notebooks</span> <span class="pre">-e</span> <span class="pre">JUPYTER_TOKEN=&quot;letmein&quot;</span> <span class="pre">ousefuldemos/tm129-robotics2020:latest</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="On-Windows:">
+<h4>On Windows:</h4>
+<p>Open a command prompt and run the following commands [UNTESTED]:</p>
+<ul class="simple">
+<li><p>create a working directory / folder to work in by entering the command: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">TM129</span></code>;</p></li>
+<li><p>change directory into that directory by running the command: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">TM129</span></code>;</p></li>
+<li><p>check the current directory path: <code class="docutils literal notranslate"><span class="pre">cd</span></code>. Assuming it returns something like <code class="docutils literal notranslate"><span class="pre">C:\\users\YOURUSER\TM129</span></code>, start the container by running the command: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">tm129test</span> <span class="pre">--rm</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">8897:8888</span> <span class="pre">-v</span> <span class="pre">//C/users/YOURUSER/TM129/notebooks:/home/jovyan/notebooks</span>&#160; <span class="pre">ousefuldemos/tm351-binderised:latest</span></code></p></li>
+</ul>
+<p><strong>TO DO: does this require the notebooks dir to be available? If so: ``mkdir notebooks`` before the ``docker run…`` command.</strong> In Windows, you cannot mount on to a non-empty directory inside the container. You can, however, define and automaticaly create your own directory. For it to be visible to the notebook server homepage, the shared directory needs to be mounted along the <code class="docutils literal notranslate"><span class="pre">/home/jovyan/'</span> <span class="pre">directory</span> <span class="pre">path.</span> <span class="pre">For</span> <span class="pre">example,</span></code>-v
+c:<span class="math">\tm`129share:nbsphinx-math:</span>notebooks`:c:<span class="math">\home</span><span class="math">\jovyan</span><span class="math">\mySharedDirectory</span>`.</p>
+</div>
+</div>
+<div class="section" id="Once-the-Docker-Container-is-running…">
+<h3>Once the Docker Container is running…</h3>
+<p>When you run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">...</span></code> command, several things will happen:</p>
+<ul class="simple">
+<li><p>first, docker will download the container image from DockerHub (this may take some time but only happens the first time you try to run the container);</p></li>
+<li><p>then, docker will launch the container and a Jupyter notebook server will start running inside it.</p></li>
+</ul>
+<p>When the container is running, go to <code class="docutils literal notranslate"><span class="pre">localhost:8129</span></code> in your browser (if that doesn’t work, try <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8129</span></code>) and you should see a running notebook server there.</p>
+<p>Use the token <code class="docutils literal notranslate"><span class="pre">letmein</span></code> to access the server (you should only need to do this once).</p>
+<p><img alt="image0" src="../../_images/Jupyter_Notebook_token.png" /></p>
+<div class="section" id="What-to-do-if-the-Token-isn’t-set-or-doesn’t-work">
+<h4>What to do if the Token isn’t set or doesn’t work</h4>
+<p>As a simple security measure, the notebook server requires a token or password the first time the server is accessed from a particular web browser.</p>
+<p>If the token you have tried does not work, or if you did not start the container with the <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">JUPYTER_TOKEN=&quot;letmein&quot;</span></code> environmental variable setting, you will need to find the token used to access the notebook server. Run the command-line command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">tm129test</span> <span class="pre">jupyter</span> <span class="pre">notebook</span> <span class="pre">list</span></code></p>
+<p>This will display something along the lines of:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Currently</span> <span class="pre">running</span> <span class="pre">servers:</span> <span class="pre">http://0.0.0.0:8888/?token=dca25d6755dbd2a1c9b346dca3b8c839e44c9271e20bc416</span> <span class="pre">::</span> <span class="pre">/home/jovyan</span></code></p>
+<p>Use the token value (in the above example, <code class="docutils literal notranslate"><span class="pre">dca25d6755dbd2a1c9b346dca3b8c839e44c9271e20bc416</span></code>) to log in to the server.</p>
+</div>
+</div>
+</div>
+<div class="section" id="Sharing-Files-into-the-Container">
+<h2>Sharing Files into the Container</h2>
+<p>Any files in the local <code class="docutils literal notranslate"><span class="pre">TM129</span></code> directory on your host computer should appear in the notebooks folder in the notebook homepage directory listing.</p>
+<p>The run command will create a notebooks directory in the directory you issued the run command from, and then share it into the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder that you can see from the notebook server homepage. OpenRefine projects are also shared between your local machine and the container.</p>
+<p>Files that exist outside the <code class="docutils literal notranslate"><span class="pre">/home/joyan/notebooks</span></code> directory path in the container (which is to say, outside the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory viewable from the notebook server homepage, <em>will not be shared to your local desktop</em>.</p>
+<div class="section" id="Running-an-Open-Computing-Lab-Environment-via-the-ContainDS-Application">
+<h3>Running an Open Computing Lab Environment via the ContainDS Application</h3>
+<p><strong>TO DO: ContainDS has moved on since this guidance was originally written. If the instructions are wrong / don’t work, please comment back to</strong><a class="reference external" href="https://github.com/innovationOUtside/tm129-robotics2020/issues/6">this issue</a><span class="link-target"> [https://github.com/innovationOUtside/tm129-robotics2020/issues/6]</span><strong>.</strong></p>
+<p><em>ContainDS</em> is a cross-platform (MacOS, Windows) desktop application that simplifies the launching and management of Docker containers in general, and Docker containers that incorporate Jupyter notebook servers in particular.</p>
+<p><em>You can also launch and use the RobotLab environment from the command-line on any platform (</em><strong>TO DO?? - see the ``RoboLab Environment FAQ``</strong><em>). It’s just that ContainDS makes life much easier…</em></p>
+<p>Download and install the latest version of the ContainDS application directly from the <a class="reference external" href="https://containds.com/">ContainDS website</a><span class="link-target"> [https://containds.com/]</span>:</p>
+<ul class="simple">
+<li><p><strong>Windows</strong> — use <em>one</em> of the following:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">`exe</span></code> installer &lt;<a class="reference external" href="http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/exe">http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/exe</a>&gt;`__</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">`msi</span></code> installer &lt;<a class="reference external" href="http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/msi">http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/msi</a>&gt;`__</p></li>
+</ul>
+</li>
+<li><p><strong>MacOS</strong> — use <em>one</em> of the following:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">`pkg</span></code> installer &lt;<a class="reference external" href="http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/pkg">http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/pkg</a>&gt;`__</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">`dmg</span></code> installer &lt;%60http://containdsreleases.s3-website.us-east-2.amazonaws.com/latest/dmg%60&gt;`__</p></li>
+<li><p><strong>Linux</strong>: <em>not currently available</em> <strong>TO DO: Kitematic might be a GUI fall back; or command line, which might make sense anyway.</strong></p></li>
+</ul>
+</li>
+</ul>
+<p>Alternatively, you may save the installer to your computer by right-clicking the appropriate link and choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Link</span> <span class="pre">As…</span></code> or <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Target</span> <span class="pre">As…</span></code>.</p>
+<p>Locate the folder containing the downloaded installer: your browser may have a <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder, or it may have saved the downloaded file to the <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">Documents</span></code> or <code class="docutils literal notranslate"><span class="pre">Desktop</span></code> folder. Inside the download folder, find the downloaded installer file and double-click it to run it.</p>
+<p><strong>TO DO - could we get any security warnings?? If so, what, and how do we resolve them??</strong></p>
+<p>If you saved the installer earlier, you may now delete it since it is no longer required.</p>
+<p>The ContainDS application is a desktop application. Run it as you would any other application:</p>
+<ul class="simple">
+<li><p>Windows: launch the application <strong>TO DO: how??</strong></p></li>
+<li><p>MacOS: the application will be installed into your <code class="docutils literal notranslate"><span class="pre">Applications</span></code> folder. You can launch it from there, or add the application icon the Dock to make it easier to find and launch. See also: <a class="reference external" href="https://support.apple.com/en-gb/guide/mac-help/mh35859/mac">MacOS documentation - using the Dock</a><span class="link-target"> [https://support.apple.com/en-gb/guide/mac-help/mh35859/mac]</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="Using-ContainDS-to-Install-the-Prebuilt-Open-Computing-Lab-Container-Image">
+<h2>Using ContainDS to Install the Prebuilt Open Computing Lab Container Image</h2>
+<p><em>Note that in this approach, you will</em><strong>not</strong><em>be able to synchronise files inside the container with a persistent directory on your desktop.</em></p>
+<p>Open the ContainDS application, select the <code class="docutils literal notranslate"><span class="pre">Docker</span></code> tab and search for <code class="docutils literal notranslate"><span class="pre">tm129</span></code>. Select the <code class="docutils literal notranslate"><span class="pre">tm129-robotics2020</span></code> image.</p>
+<p><img alt="Screenshot of the ContainDS Docker image selection tab showing how to select the TM129 image." src="../../_images/00_01_ContainDS_tm129_download.png" /></p>
+<p>If you have not previously downloaded the image, ContainDS will download it for you:</p>
+<p><img alt="Screenshot showing the ContainDS Docker image download progress display indicating the percentage completion of one of the layers in the current download." src="../../_images/00_01_ContainDS_tm129_downloading.png" /></p>
+<p>Do not be concerned if the download percentage indicator sometimes goes down as well as up — the downloader is actually downloading multiple items at once. (The container image is made up from several layers, each of which is downloaded separately, before they are combined in the final image.)</p>
+<p>When everything had downloded, you may find your computer appears to be doing nothing for a minute or two, or even appears to get stuck just short of a 100% complete donwload. <em>Don’t Panic!</em> The downloaded layers are all compressed files, and it may take some time for your computer to unzip them all.</p>
+<p>Once downloaded, you will be prompted for a method of starting the container. Select “Standard”:</p>
+<p><img alt="Screenshot showing the ContainDS dialogue for how to start a Docker container, with three buttons displayed: force a Jupyter start command (“Force Jupyter”), let the container run from its own start command (“Standard”, shown as the option to select) or “Cancel”." src="../../_images/00_01_ContainDS_standard_run.png" /></p>
+<p>The container will now be launched and a log trace displayed.</p>
+<p>At this point, you need to <code class="docutils literal notranslate"><span class="pre">STOP</span></code> the container and remove it:</p>
+<p><img alt="Screenshot showing a ContainDS running container with the run log displayed and a dialogue raised by clicking the container close button offering tow buttons, one with the option to “Cancel”, the other with the option to “Remove”, which is to say, stop and remove, the running container." src="../../_images/00_01_containds_stopRemove.png" /></p>
+<p>Now create a running version of the container from the <em>local</em> Docker image. This will allow you to share a local directory into the container as well as clicking through directly to the notebook homep[age in your browser.</p>
+</div>
+<div class="section" id="Using-ContainDS-To-Run-the-Open-Computing-Lab-Environment-from-a-Local-Docker-Image">
+<h2>Using ContainDS To Run the Open Computing Lab Environment from a Local Docker Image</h2>
+<p>Click on the <code class="docutils literal notranslate"><span class="pre">+NEW</span></code> button and then select the <code class="docutils literal notranslate"><span class="pre">Docker</span></code> tab and then the <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">Images</span></code> tab:</p>
+<p><img alt="Screenshot of ContainDS “Local Images” tab on ContainDS Docker tab page showing selection of TM129 image." src="../../_images/00_01_ContainDS_local.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> the local copy of the <code class="docutils literal notranslate"><span class="pre">tm129-robotics2020</span></code> container which will open the container workspace configuration page:</p>
+<p><img alt="Screenshot of ContainDS container workspace configuration page reached by selecting a local container image from “Local Images” tab on ContainDS Docker tab page." src="../../_images/00_01_local_workspace.png" /></p>
+<p>Set the path to the directory on your host computer that you want to share into the container. This will create a <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory in that directory that will be mapped onto the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory visible from the notebook homepage.</p>
+<p>When you <code class="docutils literal notranslate"><span class="pre">CREATE</span></code> the container, it will run automatically. Clicking the <code class="docutils literal notranslate"><span class="pre">WEB</span></code> link should take you to the notebook home page in your browser. <em>(Note that the file listing in the screenshot may differ from the file listing you see.)</em></p>
+<p><img alt="Screenshot of Jupyter notebook homepage" src="../../_images/00_01_simple_nb_home.png" /></p>
+<p>When you save your notebooks, they will be saved into the shared directory on your own computer.</p>
+</div>
+<div class="section" id="Using-ContainDS-to-Build-and-Run-a-RoboLab-Container-from-Scratch">
+<h2>Using ContainDS to Build and Run a RoboLab Container from Scratch</h2>
+<p>As well as running the prebuilt RoboLab container, ContainDS can also build the container image, and then launch an image from it, from scratch. (The image only needs to be built once.)</p>
+<p>Launch the ContainDS application, and then select the <code class="docutils literal notranslate"><span class="pre">Binder</span></code> tab.</p>
+<p>Enter the name of the source repository:</p>
+<p><code class="docutils literal notranslate"><span class="pre">innovationOUtside/tm129-robotics2020</span></code></p>
+<p>and click the <code class="docutils literal notranslate"><span class="pre">LAUNCH</span></code> button.</p>
+<p><img alt="Screenshot of ContainDS application showing the Binder build configuration screen and temporary build process containers in container sidebar." src="../../_images/00_01_ContainDS_binderhub.png" /></p>
+<p>As the image is built, you will see several temporary containers being created and destroed along the way. Note that the build process may take some time (up to 10 minutes or more).</p>
+<p>Once the image has been built, a running container will be launched from it.</p>
+<p>Click on the <code class="docutils literal notranslate"><span class="pre">WEB</span></code> link and you should be taken directly to the notebook homepage in your browser without needing to provide any notebook server token yourself.</p>
+<p><img alt="Screenshot of ContainDS application showing location of WEB button to launch notebook in browser." src="../../_images/00_01_containds_built_container.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">STOP</span></code> and remove the container, and then run it from a Local Docker Image; this will allow you to share a local directory into the container and directly click through to the notebook server homepage in your browser.</p>
+</div>
+<div class="section" id="Obtaining-the-RoboLab-Instructional-Materials">
+<h2>Obtaining the RoboLab Instructional Materials</h2>
+<p>We have provided a complete set of interactive instructional materials for working through the RoboLab activities in the RoboLab environment when run as a standalone container. However, if you share a local directory into the container using ContainDS, this will overwrite all those files.</p>
+<p>If you need to download the materials separately, they can be downloaded from:</p>
+<ul class="simple">
+<li><p>[TEMPORARY]: the <a class="reference external" href="https://github.com/innovationOUtside/tm129-robotics2020">innovationOUtside/tm129-robotics2020</a><span class="link-target"> [https://github.com/innovationOUtside/tm129-robotics2020]</span> repository;</p></li>
+<li><p>the Resources area of the VLE???? <strong>TO DO</strong></p></li>
+</ul>
+<p>The contents of the repository can also be , it’s easier to use the <code class="docutils literal notranslate"><span class="pre">nbgitpuller</span></code> application. From your notebook homepagem for example at <code class="docutils literal notranslate"><span class="pre">http://localhost:32796/tree</span></code> (your port number may well be different to <code class="docutils literal notranslate"><span class="pre">32796</span></code>…) change the path from <code class="docutils literal notranslate"><span class="pre">tree</span></code> to:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git-pull?repo=https%3A%2F%2Fgithub.com%2FinnovationOUtside%2Ftm129-robotics2020&amp;urlpath=tree%2Ftm129-robotics2020%2F&amp;depth=1</span></code></p>
+<p>to give a URL of the form:</p>
+<p><code class="docutils literal notranslate"><span class="pre">http://localhost:YOUR_PORT_NUMBER/git-pull?repo=https%3A%2F%2Fgithub.com%2FinnovationOUtside%2Ftm129-robotics2020&amp;urlpath=tree%2Ftm129-robotics2020%2F&amp;depth=1</span></code></p>
+<p>Entering this URL will download the contents of the repository, making them available via the notebook server homepage and saving them to you local, shared directory if you are working with a local, shared workspace.</p>
+<p>The materials are presented as a set of Jupyter notebooks. They include written guidance and example code that you can edit and execute. You can also add text cells to keep your own commentary and notes inside the notebook, as well as code cells in which you can write and run your own robot programming code.</p>
+<p>You will probably want to keep copies of your annotated and executed notebooks as you work through them.</p>
+</div>
+<div class="section" id="Saving-and-Checkpointing-Your-Work">
+<h2>Saving and Checkpointing Your Work</h2>
+<p>Within the notebook environment, the file will be saved automatically every 120 seconds (which is to say, every two minutes).</p>
+<p>If you have changed the notebook since it was last autosaved, you will see a statement like the following next to the notebook filename at the top of the notebook:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Checkpoint:</span> <span class="pre">Last</span> <span class="pre">Friday</span> <span class="pre">at</span> <span class="pre">12:18</span> <span class="pre">AM</span> <span class="pre">(unsaved</span> <span class="pre">changes)</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">(unsaved</span> <span class="pre">changes)</span></code> phrase is akin to the <code class="docutils literal notranslate"><span class="pre">*</span></code> indicator you often see next to a filename in a document editor that shows the file has changed since it was last saved.</p>
+<p>If you watch for at most a couple of minutes, you’ll note that it soon changes to something with the following form:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Checkpoint:</span> <span class="pre">Last</span> <span class="pre">Friday</span> <span class="pre">at</span> <span class="pre">12:18</span> <span class="pre">AM</span> <span class="pre">(autosaved)</span></code></p>
+<p>You can change the autosave period using magic (yes, really! That’s what it’s called…). For example, run the following statement in a notebook code cell and it will change the autosave period <em>for that notebook only</em> to 60 seconds:</p>
+<p><code class="docutils literal notranslate"><span class="pre">%autosave</span> <span class="pre">60</span></code></p>
+<p>The autosave time can also be set using the <code class="docutils literal notranslate"><span class="pre">AutoSaveTime</span></code> notebook extension which can be enabled from the <code class="docutils literal notranslate"><span class="pre">nbextensions</span> <span class="pre">configurator</span></code> [<a class="reference external" href="/nbextensions/?nbextension=autosavetime/main">direct link</a>].</p>
+<p>As well as allowing your notebooks to be automatically saved, you can also “checkpoint” them.</p>
+<p>When you use a keyboard shortcut to manually save the file, or you save a notebook document from the notebook <code class="docutils literal notranslate"><span class="pre">File</span></code> menu, you are actually issuing a <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">Checkpoint</span></code> command. This saves in the same way that the autosave function does, but it <em>also</em> generates a checkpointed (backed up) version of the file in the hidden <code class="docutils literal notranslate"><span class="pre">.ipynb_checkpoints</span></code> folder.</p>
+<p>What this means is that if you work on a file, allowing it to be autosaved, and realise that you have made some terrible mistakes in it, you can revert the notebook to a previously checkpointed (manually saved) version.</p>
+<p>Note that this will throw away all changes made to the autosaved version of the notebook since the last manual (checkpointing) save, so use this command with care.</p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
