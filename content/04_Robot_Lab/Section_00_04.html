@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>4 The design engineer as detective &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="2 Line followers" href="Section_00_02.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="4-The-design-engineer-as-detective">
+<h1>4 The design engineer as detective<a class="headerlink" href="#4-The-design-engineer-as-detective" title="Permalink to this headline">¶</a></h1>
+<p>If you have never before experienced a disappointment when building systems, welcome to the world of engineering design!</p>
+<p>Design is characterised by defining <em>requirements</em>, translating these into a <em>specification</em>, generating a possible solution to the specified problem and <em>evaluating</em> the outcome. If the “solution” is not satisfactory, it is necessary to go back and try to formulate another possible solution. This is called the <em>design cycle</em> .</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># TO DO - this will be provided by installed / importable package
+# Maybe also some magic
+
+fcode=&#39;&#39;&#39;
+st=&gt;start: Start
+e=&gt;end: End
+op1=&gt;operation: Generate
+op2=&gt;parallel: Evaluate
+st(right)-&gt;op1(right)-&gt;op2
+op2(path1, top)-&gt;op1
+op2(path2, right)-&gt;e
+&#39;&#39;&#39;
+
+#Original alt text.
+# Could we generate something like this from the flow chart specification?
+alt_txt = &quot;&quot;&quot;
+A diagram of the design cycle, drawn as a simple flow chart.
+This starts in an oval labelled ‘Start’ and finishes in another oval labelled ‘End’.
+From ‘Start’ an arrow leads to a box labelled ‘Generate’;
+from here an arrow leads to a box ‘Evaluate’.
+From ‘Evaluate’ there are two arrows:
+one leads directly to the ‘End’, the other loops back to ‘Generate’.
+Thus there are two paths in the diagram,
+one straight from Start to Generate to Evaluate to End,
+the other that forms a loop around Generate and Evaluate.&quot;&quot;&quot;
+
+import jp_proxy_widget
+import uuid
+class FlowchartWidget(jp_proxy_widget.JSProxyWidget):
+    def __init__(self, *pargs, **kwargs):
+        super(FlowchartWidget, self).__init__(*pargs, **kwargs)
+        e = self.element
+
+        e.empty()
+        self.load_js_files([&quot;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js&quot;,
+                            &#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.13.0/flowchart.js&#39;])
+
+    def charter(self, chart, embed=False):
+        uid = uuid.uuid4()
+        self.element.html(f&#39;&lt;div id=&quot;{uid}&quot;&gt;&lt;/div&gt;&#39;)
+        self.set_element(&quot;chartdef&quot;, chart)
+        self.js_init(f&quot;chart = flowchart.parse(element.chartdef); chart.drawSVG(&#39;{uid}&#39;);&quot;)
+        if embed:
+            return self
+
+testEmbed = FlowchartWidget()
+testEmbed.charter(fcode)
+testEmbed
+
+</pre></div>
+</div>
+</div>
+<p>During the design cycle, candidate soluions are generated and evaluated. If the design fails to meet expectations, then a new up or updated design must be generated. If the evaluation of the design is satisfactory, then the design can be accepted and the process may end.</p>
+<p>In a continuous improvement design cycle, the the design may be used but it may also be reconsidered. If an improvement is found the new design may be both adopted and passed back round the cycle for further reconsideration.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import sys
+sys.path.insert(0,&#39;..&#39;)
+import _load_nbev3devwidget_requirements
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>from _load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-javascript notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="nx">javascript</span>
+<span class="c1">//This allows us to resize this view</span>
+<span class="c1">//Click on the right hand edge to drag</span>
+<span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#notebook-container&quot;</span> <span class="p">).</span><span class="nx">resizable</span><span class="p">({</span><span class="nx">ghost</span><span class="o">:</span> <span class="kc">false</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p><em>Note that things have moved on in the simulator. We can now specify a background and robot configuration as parameters to the magic ( TO DO - NOT YET AVAILABLE IN ALL MAGICS).</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded --background Lollipop -r Small_Robot
+import ev3dev2_glue as glue
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+print(colorLeft.reflected_light_intensity)
+while (colorLeft.reflected_light_intensity &lt; 30 or colorLeft.reflected_light_intensity &gt; 35):
+
+    intensity_left = colorLeft.reflected_light_intensity
+    #intensity_right = colorRight.reflected_light_intensity
+
+    print(intensity_left)
+
+    print(&#39;gs&#39;,glue.pyState())
+    if intensity_left &lt; 50:
+        left_motor_speed = SpeedPercent(0)
+        right_motor_speed = SpeedPercent(20)
+    else:
+        left_motor_speed = SpeedPercent(20)
+        right_motor_speed = SpeedPercent(0)
+    tank_drive.on(left_motor_speed, right_motor_speed)
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="Following-the-Design-Cycle">
+<h2>Following the Design Cycle<a class="headerlink" href="#Following-the-Design-Cycle" title="Permalink to this headline">¶</a></h2>
+<p>In the current example, the system was specified according to the requirement that the robot would go all the way round the track and stop at the red bar. I generated a solution based on my ‘model’ of the system. When I ran it, my evaluation was that the system did not work! (Even if it had worked first time, it’s possible that the solution was not very good either in terms of the way the robot behaved, or in terms of how the programme was written.)</p>
+<p>Under these circumstances, the design engineer looks for reasons why things went wrong, using all the available information. Sometimes this involves devising experiments. It’s rather like being a detective, trying to piece together the solution.</p>
+<p>One of the main assumptions underlying my first program was that the colours could be separated by thresholds. I decided to test this assumption to try to find out what Simon really ‘sees’.</p>
+<p>The following program drives the robot forward a short way, far enough from it to cross the black line. Download and run the programme so that</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+import time
+tank_drive.on(SpeedPercent(20), SpeedPercent(20))
+
+for i in range(60):
+
+    print(&#39;Colour: &#39; + str(colorLeft.reflected_light_intensity ))
+    time.sleep(0.02)
+</pre></div>
+</div>
+</div>
+<p>Grab the data from the datalog:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span># Get the data
+#eds.sim_get_data(roboSim)
+data = roboSim.results_log
+df = eds.get_dataframe_from_datalog(data)
+# TO DO - should we simplify this so if no data is passed we pull it from self?
+
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>df[&#39;time&#39;] = df[&#39;index&#39;].dt.total_seconds()
+</pre></div>
+</div>
+</div>
+<p>Now lets plot each of those data points:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import matplotlib.pyplot as plt
+import seaborn as sns
+
+g = sns.FacetGrid(df, row=&quot;variable&quot;,
+                  height=5, aspect=2, sharey=False)
+g = g.map(plt.plot, &quot;time&quot;, &quot;value&quot;, marker=&quot;.&quot;);
+
+# This is rather obscure and relates to the structure
+# of the chart object.
+ax1= g.axes[0][0]
+ax1.axhline(y=10, ls=&#39;--&#39;);
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">cufflinks</span></code> packages adds support for plotting charts using the <code class="docutils literal notranslate"><span class="pre">plotly</span></code> package directly from <em>pandas</em> datadrames.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>import cufflinks as cf
+cf.go_offline()
+</pre></div>
+</div>
+</div>
+<p>We can now create a plotly chart using <em>markers</em> to identify each sensor reading sample point as well as a <em>line</em> that connects them. A horizontal band, identified by the <code class="docutils literal notranslate"><span class="pre">hband=[(MIN_Y,</span> <span class="pre">MAX_Y)]</span></code> parameter adds a horizontal band to the chart corresponding to the thresholded range I was using to identify whether the robot had encountered the red line:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>df.iplot( x = &#39;time&#39;, y = &#39;value&#39;,
+         mode=&#39;markers+lines&#39;, hspan=[(30,35)])
+</pre></div>
+</div>
+</div>
+<p>Here’s a screenshot of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:</p>
+<p><img alt="image0" src="../../_images/plotly_sensor_false_positive.png" /></p>
+<p><strong>TO DO: should long desc text only be for partially sighted students, or does it actually make things easier for all students? Here’s an example of using a long desc style description in the main body of the teaching material.</strong></p>
+<p>The vertical scale shows sensor values on a vertical y-axis scale ranging 0-85 or so (the actual readings in principle range form 0..100 per cent). The horizontal scale is a time base showing a time of 0 to 2 seconds, with a plot every 0.02s (that is, about every fiftieth of a second. The sensor readings are also joined to form a line. The line starts with high values, starting at a y value of just over 80. There is then an abrupt fall in the values until they reach a low point of 0 for 3
+samples, followed by a return to the high values around 80. On the diagram, I have marked a horizontal band highlighting values between</p>
+<p>This chart helps to explain why my original program did not work as intended. On the right of the black line, in the transition from black to grey, the simulated robot has recorded a value of about 34, within the thresholded band value I was using to identify the red line.</p>
+<p>The sensor value is calculated as some function of the value of several pixels in view of the sensor at any one time and it just so happens that the calculation may return a reading I had associated with the red line.</p>
+<p>In fact, the <code class="docutils literal notranslate"><span class="pre">.reflected_light()</span></code> mode is <em>not</em> a good indicator of colour at all. What happens if you run the robot over the <em>Coloured_bands</em> background, for example, logging the reflected light sensor data as you so so? (Either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.)</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p6_f014.jpg" src="content/04_Robot_Lab/../images/tm129_rob_p6_f014.jpg" /></p>
+<p>A diagram which shows the graph previously described, below which a diagram shows the black line (actually shown as dark grey) highly enlarged. A series of circles is also shown starting on the pale grey background and continuing across the black line and then back on to the grey. These represent the position of the sensor each time a reading is taken, and an arrow leads from each circle indicating a sensor reading to the corresponding point plotted on the graph. Most of these circles are wholly
+on either the grey or the black line and produce a correspondingly high (80-95) or a low (20-30) reading. However, one circle straddles the edge of the line, so half of the interior is black and the other half grey. This produces an intermediate sensor value of 50.</p>
+<p>This is a tough lesson. What ought to be easily classified as either a black or white sensor reading is ambiguously somewhere in the middle. The value of 50% is exactly in the range that the program interprets as red. The assumption underlying the program that a sensor reading of 50% indicates red is clearly incorrect, and another approach is required.</p>
+<p>We note that if a sampled data point falls between the values I used for my threshold settings that were intended to identify the red line, then the robot would have a “false positive” match and stop before it was supposed to.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="Section_00_02.html" title="Previous document">2 Line followers</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_05.html">5 Functions</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4 The design engineer as detective</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Following-the-Design-Cycle">Following the Design Cycle</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Section_00_02.html" title="previous chapter">2 Line followers</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/04_Robot_Lab/Section_00_04.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

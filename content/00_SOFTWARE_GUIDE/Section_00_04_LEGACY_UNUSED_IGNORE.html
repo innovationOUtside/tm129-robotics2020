@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>4 RobotLab’s simulator remote control &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1 An introduction to programming robots" href="../01_Robot_Lab/Section_00_01.html" />
+    <link rel="prev" title="3 Some features of RoboLab" href="Section_00_03_quick_practical_tour.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="4-RobotLab’s-simulator-remote-control">
+<h1>4 RobotLab’s simulator remote control<a class="headerlink" href="#4-RobotLab’s-simulator-remote-control" title="Permalink to this headline">¶</a></h1>
+<p>The original RobotLab simulator included a simple remote control for controlling a real, as well as simulated, robot in a direct, user-controlled interactive way.</p>
+<p>The remote control activities provided a way of developing familiarity with how to control the robot prior to moving on to programmatic control.</p>
+<p>Neither the current version of the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator, nor the original <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> on which it was based, support a direct remote control interface.</p>
+<p>Whilst future versions of the simulator may be extended to include remote control operation, the following activity descriptions from the original RobotLab activities, are retained here for historical interest only.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">
+<h1>NOTES BELOW OF HISTORICAL INTEREST ONLY<a class="headerlink" href="#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="4.1-Activity:-Remote-control">
+<h2>4.1 Activity: Remote control<a class="headerlink" href="#4.1-Activity:-Remote-control" title="Permalink to this headline">¶</a></h2>
+<p>The RobotLab environment allows you to write programs that an autonomous robot will run. As you have seen, RobotLab also provides a simulated robot that appears in the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> window so that you can test out your programs. Some (real) robots can be controlled by a human using a remote control. In a similar fashion, RobotLab also provides a remote control unit that you can use to control the (simulated) robot directly.</p>
+<p>Start RobotLab. (If you already have a program loaded, choose <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&amp;gt;</span> <span class="pre">New</span></code>.) In this activity, you are not going to program the robot, so you can close or minimise the <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">editor</span></code> window. (Do you remember how to do this? If not, refer back to Section 1.6.) Open the <code class="docutils literal notranslate"><span class="pre">Controls</span></code> window either by clicking on its restore icon or by choosing <code class="docutils literal notranslate"><span class="pre">Window</span> <span class="pre">&amp;gt;</span> <span class="pre">Controls</span></code>.</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Alt, W, 3</p>
+</p></div><p>The <code class="docutils literal notranslate"><span class="pre">Controls</span></code> window is shown in Figure 4.1. This control panel, also called the <em>simulator remote control unit</em>, can be repositioned on any part of the screen. Click and drag on the <code class="docutils literal notranslate"><span class="pre">Controls</span></code> window title to move it to a convenient position beside the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> window.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f040.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040.jpg" /></p>
+<p>Figure 4.1 The RobotLab simulator remote control unit</p>
+<p>The RobotLab controls window. This is divided into three areas: top left are the direction controls, bottom left are the simulator clock controls, and to the right are the input and output monitors. The direction controls and output monitors will be described in following figures. The clock controls are two buttons representing a clock with ‘play’ and ‘stop’ icons superimposed. The input monitors are three boxes labelled 1, 2, 3. These can either contain numbers representing sensor readings from
+0 to 100, or for touch sensors a shape that turns dark when the sensor is pressed.</p>
+<p>To use the simulator remote control unit, you need to have the simulator clock running. You can set it running by using the <code class="docutils literal notranslate"><span class="pre">Simulator</span> <span class="pre">&amp;gt;</span> <span class="pre">Start</span> <span class="pre">clock</span></code> menu,</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Ctrl+Home</p>
+</p></div><p>or more easily from the <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">clock</span></code> <img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f041.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f041.jpg" /> button on the remote control unit at the bottom left of the <code class="docutils literal notranslate"><span class="pre">Controls</span></code> window. Click on this button now.</p>
+<p>The clock remains running until you switch it off using the <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">clock</span></code> menu or <img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f042.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f042.jpg" /> button.</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Ctrl+End</p>
+</p></div><p>Leave it on for the duration of this exercise.</p>
+<p>At the top of the remote control are several direction buttons (Figure 4.2).</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Shortcuts are given in Table 4.1</p>
+</p></div><p>You click on the forward arrow to switch both motors on and drive the simulated robot forwards. You click on the backward arrow to drive it backwards, etc. And you click on the black square in the centre of the direction controls to turn both motors off and stop the robot.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f043.png" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f043.png" /></p>
+<p>Figure 4.2 The direction of the wheels set by the controller</p>
+<p>The direction controls. There are nine buttons laid out in a 3 x 3 grid, each with an arrow pointing in the relevant direction. The directions of each button and their keyboard shortcuts are given in the text below.</p>
+<p>Now click on the forward arrow to drive the robot forwards, and then click on the stop button to stop the robot. Next click on the down arrow to drive the robot backwards, and then stop the robot again.</p>
+<p>The remote control unit also displays information about the robot’s inputs and outputs. The bottom half of this display shows what is happening to the motors. Above the motor labels A, B and C are several indicators. The top indicators, solid black dots or crosses in a circle, show whether the motor is turned on or off, respectively (Figure 4.3).</p>
+<p>The second indicators, up or down arrows, show whether the motor is switched to a forwards or backwards direction.</p>
+<p>The sliders give the power level for each motor, which ultimately corresponds to the speed with which the motor turns. Leave these at their maximum levels for now.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f044.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f044.jpg" /></p>
+<p>Figure 4.3 Controlling the simulated motor power</p>
+<p>The output controls and monitor used to control motor power. There are three identical outputs, labelled A, B &amp; C. Above each label is a slider for setting the power from 0 to 8. Above this is an arrow the faces up or down for indicating forward of backward direction. Finally, at the top is an indicator indicating whether the motor is on or off.</p>
+<p>By looking at the motor indicators, can you see how the robot is managing to turn? Try driving the robot forwards, backwards and turning in different directions.</p>
+<p>In order to turn the robot, <em>differential</em> or <em>skid</em> steering is used.</p>
+<p>For example, click on one of the curved arrows to rotate the robot about its centre. To turn the robot clockwise about its centre, the left motor (A) is switched on in a forwards direction, and the right motor (C) is switched on in a backwards direction.</p>
+<div class="section" id="Question">
+<h3>Question<a class="headerlink" href="#Question" title="Permalink to this headline">¶</a></h3>
+<p>How would you control the motors to turn the robot anticlockwise about its centre?</p>
+</div>
+<div class="section" id="Answer">
+<h3>Answer<a class="headerlink" href="#Answer" title="Permalink to this headline">¶</a></h3>
+<p>The right motor needs to run forwards and the left motor to run backwards. The robot can also turn clockwise or anticlockwise by switching on either motor A or motor C and leaving the other motor switched off.</p>
+</div>
+<div class="section" id="id1">
+<h3>Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>How would you control the motors to make a slow, gradual turn to one side?</p>
+</div>
+<div class="section" id="id2">
+<h3>Answer<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>If the motors run at different speeds, the robot will make a gradual turn. A slow turn (right forwards, left forwards, right backward or left backwards) can be obtained by switching on both motors either forwards or backwards, but running them at different power levels (i.e. at different speeds) using the slider controls. Click on the forward arrow, then experiment by reducing the power levels for motors A and C to 75% and 50% respectively.</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Ctrl+NumPlus or Ctrl+NumMinus</p>
+</p></div><p>If you lose sight of the robot in the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> window, you can zoom the view of the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> window in or out. Choose <code class="docutils literal notranslate"><span class="pre">Simulator</span> <span class="pre">&amp;gt;</span> <span class="pre">Zoom</span> <span class="pre">in</span></code> or <code class="docutils literal notranslate"><span class="pre">Simulator</span> <span class="pre">&amp;gt;</span> <span class="pre">Zoom</span> <span class="pre">out</span></code>, or click on the zoom <img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f045.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f045.jpg" /> buttons on the toolbar.</p>
+<p>If you happen to leave the robot moving for a long time and can’t find it again, you can reset the simulator by choosing <code class="docutils literal notranslate"><span class="pre">Simulator</span> <span class="pre">&amp;gt;</span> <span class="pre">Reset</span></code>.</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Shift+Ctrl+Home</p>
+</p></div><p>If all else fails, just close RobotLab and reopen it.</p>
+<p>To move the robot, left-click and hold down the cursor on the robot itself, and drag and drop it within the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> window. You can also rotate the robot by right-clicking on it and dragging it with the mouse.</p>
+</div>
+</div>
+<div class="section" id="4.2-Activity:-More-remote-control">
+<h2>4.2 Activity: More remote control<a class="headerlink" href="#4.2-Activity:-More-remote-control" title="Permalink to this headline">¶</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Controls</span></code> window there is also a set of indicators for each sensor (1, 2, 3) (Figure 4.4). The indicators show the readings provided by sensors connected to the relevant input ports.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f040.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040.jpg" /></p>
+<p>Figure 4.4 The RobotLab simulator remote control unit</p>
+<p>The RobotLab controls window. This is divided into three areas: top left are the direction controls, bottom left are the simulator clock controls, and to the right are the input and output monitors. The direction controls and output monitors will be described in following figures. The clock controls are two buttons representing a clock with ‘play’ and ‘stop’ icons superimposed. The input monitors are three boxes labelled 1, 2, 3. These can either contain numbers representing sensor readings from
+0 to 100, or for touch sensors a shape that turns dark when the sensor is pressed.</p>
+<p>Open the <code class="docutils literal notranslate"><span class="pre">Controller_test</span></code> program and run it. The robot will not move – the program doesn’t turn the robot’s motors on. Instead, use the controller to drive the robot to go forwards over the grey areas, and note the change in light sensor value. The light sensor is shown by the small blue square on the simulated robot and is connected to input port 2.</p>
+<p>Try driving the robot over one of the red blocks. You should find that it stops. This is because red is set to ‘solid’, simulating an obstacle in front of the robot. See what happens to the touch sensors when they touch the red area. The touch sensors are shown as small green squares on the robot and are connected to input ports 1 and 3.</p>
+<hr class="docutils" />
+<p>Rerun the <code class="docutils literal notranslate"><span class="pre">Controller_test</span></code> program in <code class="docutils literal notranslate"><span class="pre">show-trail</span></code> mode. Choose the <code class="docutils literal notranslate"><span class="pre">Simulator</span> <span class="pre">&amp;gt;</span> <span class="pre">Show</span> <span class="pre">trail</span></code> menu item</p>
+<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Keyboard: Alt, S, T</p>
+</p></div><p>or click on the Show trail <img alt="inlinefigure ../tm129-19J-images/tm129_rob_p5_f014.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p5_f014.jpg" /> button in the toolbar. Run the program again to see the robot’s trail.</p>
+<p>Drive the robot over the grey areas, and one and half times round the red blocks as shown. It’s more tricky than it looks. My attempt is shown in Figure 4.5.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f046.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f046.jpg" /></p>
+<p>Figure 4.5 Negotiating the red blocks in pen-down mode</p>
+<p>A screen shot of RobotLab showing the simulator window with a trace left by the robot as it was driven around the red blocks. The red blocks are arranged at the four corners of a square. In the centre between the blocks is a vertical grey strip divided into four areas of different intensity ranging from pale grey at the top to black at the bottom. The track superimposed shows a straight line up from the start position over the grey strip followed by a couple of laps around the outside of the
+four red blocks. Each lap is a rough square with rounded corners, although the sides are far from straight and there are wild wobbles in a couple of places.</p>
+<p>You may find it easier to control the robot using the keyboard rather than the mouse. RobotLab uses the keys on the numeric keypad of your computer keyboard as short-cuts for the direction buttons in the remote control window; they are laid out in the same pattern.</p>
+<table xmlns:str="http://exslt.org/strings"><caption><p>Table 4.1 Remote control short-cut keys</p>
+</caption><tbody><tr><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f11a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f11a.gif" /></p>
+<p>Veer left</p>
+<p>Ctrl+7</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f12a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f12a.gif" /></p>
+<p>Forward</p>
+<p>Ctrl+8</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f13a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f13a.gif" /></p>
+<p>Veer right</p>
+<p>Ctrl+9</p>
+</td></tr><tr><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f14a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f14a.gif" /></p>
+<p>Spin left</p>
+<p>Ctrl+4</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f15a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f15a.gif" /></p>
+<p>Stop</p>
+<p>Ctrl+5</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f16a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f16a.gif" /></p>
+<p>Spin right</p>
+<p>Ctrl+6</p>
+</td></tr><tr><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f17a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f17a.gif" /></p>
+<p>Back left</p>
+<p>Ctrl+1</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f18a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f18a.gif" /></p>
+<p>Backward</p>
+<p>Ctrl+2</p>
+</td><td class="highlight_" rowspan colspan><p><img alt="inlinefigure ../tm129-19J-images/tm129_rob_p1_f19a.gif" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f19a.gif" /></p>
+<p>Back right</p>
+<p>Ctrl+3</p>
+</td></tr></tbody></table><p>This is the end of Robot Lab Session 1.</p>
+<hr class="docutils" />
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="Section_00_03_quick_practical_tour.html" title="Previous document">3 Some features of RoboLab</a>
+        </li>
+        <li>
+          <a href="../01_Robot_Lab/Section_00_01.html" title="Next document">1 An introduction to programming robots</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#4.1-Activity:-Remote-control">4.1 Activity: Remote control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#4.2-Activity:-More-remote-control">4.2 Activity: More remote control</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_05.html">5 Functions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_04.html">4 The design engineer as detective</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Section_00_03_quick_practical_tour.html" title="previous chapter">3 Some features of RoboLab</a></li>
+      <li>Next: <a href="../01_Robot_Lab/Section_00_01.html" title="next chapter">1 An introduction to programming robots</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Developer Notes" href="../00_READ_ME_FIRST/Section.html" />
+    <link rel="prev" title="TM129 Robotics Practical Activities" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Getting-Started">
+<h1>Getting Started<a class="headerlink" href="#Getting-Started" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the TM129 Robotics block practical activities.</p>
+<p>The practical activities are delivered through a new environment, <em>RoboLab</em>, that replaces the <em>RobotLab</em> application used in presentations priort to 20J. <em>RoboLab</em> is an example of an <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span> <span class="pre">(OCL)</span></code> environment configured specifically to support the TM129 Robotics activities.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Computing</span> <span class="pre">Lab</span></code> approach is being trialled on several Open University modules and aims to provide a common approach to delivering complex software and computing envronments on personal computers as well as via remotely hosted online servers.</p>
+<p>To install the environment, use the installation instructions that are provided for students.</p>
+<div class="section" id="The-Jupyter-Notebook-Environment">
+<h2>The Jupyter Notebook Environment<a class="headerlink" href="#The-Jupyter-Notebook-Environment" title="Permalink to this headline">¶</a></h2>
+<p>The teaching and learning materials used to support the activities are provided as Jupyter notebooks.</p>
+<p>Jupyter notebooks have been used deliver practical activities in <em>TM351 Data Management and Analysis</em>, the OU produced FutureLearn/OpenLearn unit <em>Learn to Code for Data Analysis</em>, materials which are also used in <em>S818 Space Science</em>, and to support a brief, optional set of activities in TM112.</p>
+<p>They will also be used in several courses currently in production including <em>M269 Algorithms</em>, <em>TM358 Machine Learning</em> and <em>M348 Linear Models</em>.</p>
+<p>Originally developed to support computational research activities, Jupyter notebooks provide a cell based web-based read-write-execute document editor that blends rich text, executable code and code outputs.</p>
+<p>Within text areas, code can by highlighted in a language sensitive way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sayHello</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Code is executed in a “kernel” shell environment running on a backend server.</p>
+<p>Kernels for a <a class="reference external" href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">wide variety of programming languages</a> are available; in TM129, we will be using a full Python kernel, as well as a simple in-browser Skulpt Python environment that runs code inside a simple in-browser 2D robot simulator.</p>
+<p>When a code cell is run, outputs can be printed or displayed, and any value returned by the last object in the cell object will be displayed as cell output.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHello():
+    print(&#39;Hello World&#39;)
+    return &quot;done...&quot;
+
+sayHello()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-Notebooks-to-Support-Learning">
+<h2>Using Notebooks to Support Learning<a class="headerlink" href="#Using-Notebooks-to-Support-Learning" title="Permalink to this headline">¶</a></h2>
+<p>The read-write-execute nature of Jupyter notebooks provides us with a medium that can be used to develop a wide range of active learning materials. Students are encouraged to take ownership of the notebooks, use them as guided materials, as well as in a curiosity driven, exploratory way, and annotate them as they would print materials.</p>
+<p>For example, students can:</p>
+<ul class="simple">
+<li><p>run simple interactive applications in the notebook;</p></li>
+</ul>
+<ul class="simple">
+<li><p>run provided code examples and inspect code outputs;</p></li>
+</ul>
+<ul class="simple">
+<li><p>edit and run their own code and produce their own code outputs;</p></li>
+</ul>
+<ul class="simple">
+<li><p>edit the course text, from fixing minor typos as they work through the materials, to annotating the materials with their own comments and clarifications;</p></li>
+</ul>
+<ul class="simple">
+<li><p>add predictions about what they expect a code fragment to do when it is executed, record their observations when it does, and reflect on how well their predictions matched their observations, and what they learned as a result.</p></li>
+</ul>
+</div>
+<div class="section" id="Using-Notebooks-to-Support-Direct-Teaching-/-Tutorials">
+<h2>Using Notebooks to Support Direct Teaching / Tutorials<a class="headerlink" href="#Using-Notebooks-to-Support-Direct-Teaching-/-Tutorials" title="Permalink to this headline">¶</a></h2>
+<p>The Jupyter notebook environment we have provided includes a slideshow extension, <a class="reference external" href="https://rise.readthedocs.io/en/stable/">RISE</a>, that allows you to turn individual Jupyter notebooks into interactive slideshow presentations.</p>
+<p>As with the notebooks themselves, each slide includes editable text and code cells, can display interactive applications, and can be used to execute code fragments and displaying the resulting code output (including error messages…).</p>
+<p>Notebooks are configured as slides through the addition of cell tags that control whether, and how, each cell in the notebook is to be treated in presentation mode.</p>
+<p>Several of the notebooks, including this one, have been marked up as presentations. To run the slideshow, click once on the top cell in the notebook to select it as the starting point from the presentation, then click on the <em>Enter/Exit RISE Slideshow</em> icon (it looks like a bar chart) on the notebook toolbar.</p>
+<p>Slides themselves are interactive in other ways.</p>
+<p>For example, this notebook supports the presentation <a class="reference external" href="https://rise.readthedocs.io/en/stable/customize.html#enable-chalkboard-capabilities">chalkboard</a> which allows you to draw on the slide directly.</p>
+<p>(Click the pens in the bottom left corner of the slide to toggle the chalkboard mode.)</p>
+</div>
+<div class="section" id="What-Next?">
+<h2>What Next?<a class="headerlink" href="#What-Next?" title="Permalink to this headline">¶</a></h2>
+<p>If you are not familiar with Jupyter notebooks, please spend some time familiarising yourself with them.</p>
+<p>We believe they provide a powerful tool to support teaching and learning and it’s still early days for us in finding out how to make most effective use of them.</p>
+<p>If you have any ideas anout how we can imporve our current use of the notebooks, or make more effective use of them, please let us know.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="../../index.html" title="Previous document">TM129 Robotics Practical Activities</a>
+        </li>
+        <li>
+          <a href="../00_READ_ME_FIRST/Section.html" title="Next document">Developer Notes</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#The-Jupyter-Notebook-Environment">The Jupyter Notebook Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-Notebooks-to-Support-Learning">Using Notebooks to Support Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-Notebooks-to-Support-Direct-Teaching-/-Tutorials">Using Notebooks to Support Direct Teaching / Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#What-Next?">What Next?</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_05.html">5 Functions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_04.html">4 The design engineer as detective</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../../index.html" title="previous chapter">TM129 Robotics Practical Activities</a></li>
+      <li>Next: <a href="../00_READ_ME_FIRST/Section.html" title="next chapter">Developer Notes</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/00_NOTES_FOR_TUTORS/GETTING_STARTED.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

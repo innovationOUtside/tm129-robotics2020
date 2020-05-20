@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>5 Functions &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1 Introduction" href="../04_Robot_Lab/Section_00_01.html" />
+    <link rel="prev" title="4 Reasoning and the sense–think–act model" href="Section_00_04.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>#Requirement for styling simulator widget toolbar
+import _load_nbev3devwidget_requirements
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>#Style notebook
+from IPython.display import Javascript
+Javascript(&#39;$( &quot;#notebook-container&quot; ).resizable({ghost: false})&#39;)
+
+# Load nbev3devsim simulator
+from _load_nbev3devwidget import roboSim
+
+#Load nbev3devsim magic
+%load_ext nbev3devsim
+
+#Load the nbtutor extension
+%load_ext nbtutor
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>#Load the nbtutor extension
+%load_ext nbtutor
+
+#Reset the notebook style
+from IPython.core.display import display, HTML
+
+display(HTML(&quot;&lt;style&gt;#notebook-container { width:50%; float:left !important;}&lt;/style&gt;&quot;))
+
+
+#Launch the simulator
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+
+roboSim = eds.Ev3DevWidget()
+
+roboSim.set_element(&quot;response&quot;, &#39;&#39;)
+
+display(roboSim)
+roboSim.element.dialog();
+
+
+roboSim.js_init(&quot;&quot;&quot;
+element.dialog({ &quot;title&quot; : &quot;Robot Simulator&quot; }).dialogExtend({
+        &quot;maximizable&quot; : true,
+        &quot;dblclick&quot; : &quot;maximize&quot;,
+        &quot;icons&quot; : { &quot;maximize&quot; : &quot;ui-icon-arrow-4-diag&quot; }});
+&quot;&quot;&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="5-Functions">
+<h1>5 Functions<a class="headerlink" href="#5-Functions" title="Permalink to this headline">¶</a></h1>
+<p><strong>TO DO: this needs to be earlier, before rules?</strong></p>
+<p>Many of the programmes we have used so far have been quite short programmes with little, if any, reused code.</p>
+<p>As programmes get larger, it is often convenient to encapsulate several lines of code within a <em>function</em>. The multiple lines of code within the function can then be called conveniently from a single statement whenever they are needed.</p>
+<p>Functions are very powerful, and if you have studied other programming courses, you may well be familiar with them.</p>
+<p>For our purposes, the following provides a very quick review of some of the key behaviours of Pyhton functions. Remember, this isn’t a Python programming module <em>per se</em>; rather, it’s a module where we explore how to use Python to get things done. What follows should be enough to get you started writing your own functions, without creating too many bad habits along the way.</p>
+<p>To see how we can create our own functions, let’s consider a really simple example, a function that just prints out the word <em>Hello</em>.</p>
+<p>The function definition has a very specific syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FUNCTION_NAME</span><span class="p">():</span>
+     <span class="n">ONE_OR_MORE_LINES_OF_CODE</span>
+</pre></div>
+</div>
+<p>Here are some of the rules relating to the sytactic defintion of a Python function:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">FUNCTION_NAME</span></code> <strong>MUST NOT</strong> contain any spaces or punctuation other than underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) characters;</p></li>
+<li><p>the function name <strong>MUST</strong> be followed by a pair of brackets (<code class="docutils literal notranslate"><span class="pre">()</span></code>), that may contain something (we’ll see what later), followed by a colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>);</p></li>
+<li><p>the body of the function <strong>MUST</strong> be indented using space or tab characters. The level of indentation of the firxt line sets the effective “left-hand margin” for the remaining lines of code in the function;</p></li>
+<li><p>the body of the function must include <strong>AT LEAST</strong> one valid statement / line of code <strong>EXCLUDING</strong> comments. If you don’t want the function to do anything, but need it as a placeholder, use <code class="docutils literal notranslate"><span class="pre">pass</span></code> as the single line of required code in the function body.</p></li>
+</ul>
+<p>It is also good practice to annotate your function with a so-called “docstring” (<em>documentation string</em>) providing a concise, imperative description of what the function does.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FUNCTION_NAME</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;&quot;Docstring contain a concise summary of the function behaviour.&quot;&quot;&quot;</span>
+     <span class="n">ONE_OR_MORE_LINES_OF_CODE</span>
+</pre></div>
+</div>
+<p>Run the following code cell to define a simple function that prints the message <em>‘hello’</em>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHello():
+    print(&#39;Hello&#39;)
+</pre></div>
+</div>
+</div>
+<p>When we <em>call</em> the function, the code contained within the function body is executed.</p>
+<p>Run the following cell to call the function:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>sayHello()
+</pre></div>
+</div>
+</div>
+<p>Functions can contain multiple lines of code, which means they can provide a convenient way of calling multiple lines of code from a single line of code.</p>
+<p>Functions can also be used to perform actions over one or more arguments passed into the function. For example, if you want to say hello to a specific person by name, we can pass their name into the function as an argument, and then use that argument within the body of the function.</p>
+<p>We’ll use a Python <em>f</em>-string as a convenient way of passing the variable value, by reference, into a string:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHelloName(name):
+    &quot;&quot;&quot;Print a welcome messge.&quot;&quot;&quot;
+    print(f&quot;Hello, {name}&quot;)
+</pre></div>
+</div>
+</div>
+<p>Let’s call that function to see how it behaves:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>sayHelloName(&quot;Sam&quot;)
+</pre></div>
+</div>
+</div>
+<p>What happens if we forget to provide a name?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>sayHelloName()
+</pre></div>
+</div>
+</div>
+<p>Oops… We have defined the argument as a <em>positional</em> argument that is REQUIRED if the function is to be called without raising an error.</p>
+<p>If we want to make the argument optional, we need to provide a default value:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHelloName(name=&#39;there&#39;):
+    &quot;&quot;&quot;Print a message to welcome someone by name.&quot;&quot;&quot;
+    print(f&quot;Hello, {name}&quot;)
+
+sayHelloName()
+</pre></div>
+</div>
+</div>
+<p>If we want to have different behaviours depending on whether a value is passed for the name, we can set a default such as <code class="docutils literal notranslate"><span class="pre">None</span></code> and then use a conditional statement to determine what to do based on the value that is presented:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHelloName(name=None):
+    &quot;&quot;&quot;Print a message to welcome someone optionally by name.&quot;&quot;&quot;
+    if name:
+        print(f&quot;Hello, {name}&quot;)
+    else:
+        print(&quot;Hi there!&quot;)
+
+sayHelloName()
+</pre></div>
+</div>
+</div>
+<p>Sometimes, we may want to get one or more values returned back from a function. We can do that using the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. The <code class="docutils literal notranslate"><span class="pre">return</span></code> statement essentially does two things when it is called: firstly, it terminates the function’s execution at that point; secondly, it optionally returns a value to the part of the program that called the function.</p>
+<p>Run the following code cell to define a function that constructs a welcome message, displays the message <em>and returns it</em>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayAndReturnHelloName(name):
+    &quot;&quot;&quot;Print a welcome message and return it.&quot;&quot;&quot;
+    message = f&quot;Hello, {name}&quot;
+    print(&quot;Printing:&quot;, message)
+    return message
+</pre></div>
+</div>
+</div>
+<p>What do you think will happen when we call the function?</p>
+<p><em>Write your prediction about what you think will happen when the function is run here</em><strong>before</strong><em>you run the code cell to call it.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>sayAndReturnHelloName(&#39;Sam&#39;)
+</pre></div>
+</div>
+</div>
+<p>Did you get the response you expected?</p>
+<p>In the first case, a message was <em>printed</em> out in the cells print area. In the second case, the message was returned as the value returned by the function. As the function appeared on the last line of the code cell, its value was <em>displayed</em> as the cell output.</p>
+<p>As you might expect, we can set a variable to the value returned from a function:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>message = sayAndReturnHelloName(&#39;Sam&#39;)
+</pre></div>
+</div>
+</div>
+<p>If we view the value of that variable by running the following cell, what do you think you will see? Will the message be printed as well as displayed?</p>
+<p><em>Write your prediction about what you think will happen when the function is run here</em><strong>before</strong><em>you run the code cell to call it.</em></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>message
+</pre></div>
+</div>
+</div>
+<p>Only the value returned from the function is displayed. The function is not called again, and so there is no instruction to <em>print</em> the message.</p>
+<p>To return multiple values, we do that from a single return statement:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayAndReturnHelloName(name):
+    &quot;&quot;&quot;Print a welcome message and return it.&quot;&quot;&quot;
+    message = f&quot;Hello, {name}&quot;
+    print(&quot;Printing:&quot;, message)
+    return (name, message)
+
+sayAndReturnHelloName(&#39;Sam&#39;)
+</pre></div>
+</div>
+</div>
+<p>Finally, we can have multiple return statements in a function, but only one of them can be called from a single invocation of the function:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>def sayHelloName(name=None):
+    &quot;&quot;&quot;Print a message to welcome someone optionally by name.&quot;&quot;&quot;
+    if name:
+        print(f&quot;Hello, {name}&quot;)
+        return (name, message)
+    else:
+        print(&quot;Hi there!&quot;)
+    return
+
+print(sayHelloName(), &#39;and&#39;, sayHelloName(&quot;Sam&quot;))
+</pre></div>
+</div>
+</div>
+<p>Generally, it is <em>not</em> good practice to return different sorts of object from different parts of the same function.</p>
+<p>There is quite a lot more to know about functions, particularly in respect of how variables inside the function relate to variables defined outside the function, a topic referred to as <em>variable scope</em>. But for a treatment of that, you will need to refer to a module with a heavier emphasis on teaching programming.</p>
+<div class="section" id="Using-Functions-in-Robot-Control-Programs">
+<h2>Using Functions in Robot Control Programs<a class="headerlink" href="#Using-Functions-in-Robot-Control-Programs" title="Permalink to this headline">¶</a></h2>
+<p>We’ll start by considering the simple program we wrote to make the robot trace out a square.</p>
+<p>If you recall, our first version of this explicitly coded each turn and edge movement, and then we used a loop to repeat the same action several times.</p>
+<p>Move the robot to the bottom left corner of the simulator window, run the following code cell to download the programme to the simulator and then run the programme in the simulator.</p>
+<p>Tweak the parameter settings until the robot approximately traces out the shape of a square.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+
+SIDES = 4
+
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 0.826
+TURN_SPEED = 40
+
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 4
+
+for side in range(SIDES):
+    #Go straight
+    # Set the left and right motors in a forward direction
+    # and run for 1 rotation
+    tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                                STRAIGHT_SPEED_PC,
+                                STRAIGHT_ROTATIONS)
+
+    #Turn
+    # Set the robot to turn on the spot
+    # and run for a certain number of rotations *of the wheels*
+    tank_turn.on_for_rotations(STEERING,
+                               SpeedPercent(TURN_SPEED),
+                               TURN_ROTATIONS)
+</pre></div>
+</div>
+</div>
+<p>We could can extract this code into a function that allows us to draw a square whenever we want. By adding an option <code class="docutils literal notranslate"><span class="pre">side_length</span></code> parameter we can change the side length as required.</p>
+<p>Download the following programme to the simulator and run it there.</p>
+<p>Can you modify the programme to draw a third square with a size somewhere between the size of the first two squares?</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>%%sim_magic_preloaded
+
+SIDES = 4
+
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 0.826
+TURN_SPEED = 40
+
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 6
+
+def draw_square(side=STRAIGHT_ROTATIONS):
+    &quot;&quot;&quot;Draw square of specified side length.&quot;&quot;&quot;
+    for side in range(SIDES):
+        #Go straight
+        # Set the left and right motors in a forward direction
+        # and run for 1 rotation
+        tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                                    STRAIGHT_SPEED_PC,
+                                    #Use provided side length
+                                    side)
+
+        #Turn
+        # Set the robot to turn on the spot
+        # and run for a certain number of rotations *of the wheels*
+        tank_turn.on_for_rotations(STEERING,
+                                   SpeedPercent(TURN_SPEED),
+                                   TURN_ROTATIONS)
+
+
+# Call the function to draw a small size square
+draw_square(4)
+
+# And an even smaller square
+draw_square(2)
+</pre></div>
+</div>
+</div>
+<div class="section" id="Optional-Activity">
+<h3>Optional Activity<a class="headerlink" href="#Optional-Activity" title="Permalink to this headline">¶</a></h3>
+<p>Copy the code used to define the <code class="docutils literal notranslate"><span class="pre">draw_square()</span> <span class="pre">function,</span> <span class="pre">and</span> <span class="pre">modify</span> <span class="pre">it</span> <span class="pre">so</span> <span class="pre">that</span> <span class="pre">it</span> <span class="pre">takes</span> <span class="pre">a</span> <span class="pre">second</span> <span class="pre">&quot;turn&quot;</span> <span class="pre">parameter</span> <span class="pre">that</span> <span class="pre">replaces</span> <span class="pre">the</span></code>TURN_ROTATIONS` value.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">turn</span></code> parameter to tune how far the robot turns at each corner.</p>
+<p>Then see if you can use a <code class="docutils literal notranslate"><span class="pre">for..in</span> <span class="pre">range(N)</span></code> loop to call the square drawing function several times.</p>
+<p>Can you further modify the program so that the side length is increased each time the function is called by the loop?</p>
+<p>Share your programmes in the module forum.</p>
+</div>
+</div>
+<div class="section" id="5.3-Functions:-a-summary">
+<h2>5.3 Functions: a summary<a class="headerlink" href="#5.3-Functions:-a-summary" title="Permalink to this headline">¶</a></h2>
+<p>You have seen that a RobotLab <em>macro</em> is a named sequence of commands that can be ‘called’ or invoked from anywhere in the main program or from another macro. Macros offer four advantages:</p>
+<ul class="simple">
+<li><p>they allow a piece of program functionality to be ‘encapsulated’ in a clear and detached way</p></li>
+<li><p>they allow the functionality to be used many times from anywhere in the program</p></li>
+<li><p>they simplify the program, making it easier to understand</p></li>
+<li><p>they make programs less prone to error.</p></li>
+</ul>
+<p>Other programming languages have similar features to macros that offer additional benefits. Depending on the language, these may be known as <em>functions</em>, <em>methods</em>, <em>procedures</em> or <em>subroutines</em>.</p>
+<p>This is the end of Robot Lab Session 4.</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="Section_00_04.html" title="Previous document">4 Reasoning and the sense–think–act model</a>
+        </li>
+        <li>
+          <a href="../04_Robot_Lab/Section_00_01.html" title="Next document">1 Introduction</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5 Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Using-Functions-in-Robot-Control-Programs">Using Functions in Robot Control Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#5.3-Functions:-a-summary">5.3 Functions: a summary</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_04.html">4 The design engineer as detective</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Section_00_04.html" title="previous chapter">4 Reasoning and the sense–think–act model</a></li>
+      <li>Next: <a href="../04_Robot_Lab/Section_00_01.html" title="next chapter">1 Introduction</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/03_Robot_Lab/Section_00_05.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

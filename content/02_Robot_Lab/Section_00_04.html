@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>4 Optional challenges &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1 Introduction" href="../03_Robot_Lab/Section_00_01.html" />
+    <link rel="prev" title="3 Robot Lab challenges" href="Section_00_03.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="4-Optional-challenges">
+<h1>4 Optional challenges<a class="headerlink" href="#4-Optional-challenges" title="Permalink to this headline">¶</a></h1>
+<p>These challenges are more difficult, so we’ve made them optional. If you want more programming experience before tackling these challenges you can always come back to this section later in the block.</p>
+<hr class="docutils" />
+<div class="section" id="Challenge:-Traversing-a-multi-square">
+<h2>Challenge: Traversing a multi-square<a class="headerlink" href="#Challenge:-Traversing-a-multi-square" title="Permalink to this headline">¶</a></h2>
+<p>Write a RoboLab program to make the simulated robot trace out the following path:</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p3_f023.gif" src="../../_images/tm129_rob_p3_f023.gif" /></p>
+<p>A geometric shape. This is a complex path traced out by repeatedly moving forward and turning to the right. The path crosses over itself, forming a square loop at one end; this is then repeated until the path joins up with the beginning again. Overall the net effect is to produce a pattern that can be seen as five identical squares; one is placed centrally and the other four placed at each corner, diagonally outside so only the corner of each surrounding square meets a corner of the central
+square.</p>
+<div class="section" id="HINT:-click-the-arrow-in-the-sidebar-to-reveal-a-hint">
+<h3>HINT: click the arrow in the sidebar to reveal a hint<a class="headerlink" href="#HINT:-click-the-arrow-in-the-sidebar-to-reveal-a-hint" title="Permalink to this headline">¶</a></h3>
+<p>You can repeat the path of the ‘Traversing a hook’ challenge in notebook ??.</p>
+<div class="section" id="Challenge:-Making-a-Spirograph-drawing">
+<h4>Challenge: Making a Spirograph drawing<a class="headerlink" href="#Challenge:-Making-a-Spirograph-drawing" title="Permalink to this headline">¶</a></h4>
+<p>When you were a child you might have played with Spirograph, in which case you might recognise the pattern below which is constructed from multiple rotated triangles overlaid on top of each other: <em>did RobotLab have pen up/pen down commands?</em></p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p3_f024.gif" src="../../_images/tm129_rob_p3_f024.gif" /></p>
+<p>A Spirograph pattern. This is a series of about 30 lines, inscribed across a circle but not through the centre; the overall pattern is of a rosette with many triangular petals surrounding an inner circle.</p>
+<p>Write a RoboLab program to make the simulated robot leave this trail.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>HINT: click the arrow in the sidebar to reveal a hint<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> or <code class="docutils literal notranslate"><span class="pre">while..</span></code> loops is the key here…</p>
+<div class="section" id="Challenge:-Writing-a-script-‘A’-character">
+<h4>Challenge: Writing a script ‘A’ character<a class="headerlink" href="#Challenge:-Writing-a-script-‘A’-character" title="Permalink to this headline">¶</a></h4>
+<p>Make the simulated robot trace out the letter A in script form as illustrated below, and to say ‘A’:</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p3_f025.gif" src="../../_images/tm129_rob_p3_f025.gif" /></p>
+<p>A pattern that looks like a capital letter A, hand drawn without lifting pen from paper. This could be done by starting at the base of the left limb, drawing up to the point, down the right limb, and then in a sweeping curve up and left to a point to the left of the letter, and finally straight across to form the cross bar.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>HINT: click the arrow in the sidebar to reveal a hint<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>You should be able to do the straight lines easily enough. For the turn, explore various <code class="docutils literal notranslate"><span class="pre">tank_turn</span></code> settings…</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="Section_00_03.html" title="Previous document">3 Robot Lab challenges</a>
+        </li>
+        <li>
+          <a href="../03_Robot_Lab/Section_00_01.html" title="Next document">1 Introduction</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4 Optional challenges</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Challenge:-Traversing-a-multi-square">Challenge: Traversing a multi-square</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_05.html">5 Functions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_04.html">4 The design engineer as detective</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Section_00_03.html" title="previous chapter">3 Robot Lab challenges</a></li>
+      <li>Next: <a href="../03_Robot_Lab/Section_00_01.html" title="next chapter">1 Introduction</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/02_Robot_Lab/Section_00_04.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

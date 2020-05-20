@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>1.3 Accessibility &#8212; TM129 Robotics Practical Activities  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.4 Writing Style Compliant Code" href="Section_00_04_Writing_Code.html" />
+    <link rel="prev" title="1.2 Workload" href="Section_00_02_Workload.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="1.3-Accessibility">
+<h1>1.3 Accessibility<a class="headerlink" href="#1.3-Accessibility" title="Permalink to this headline">¶</a></h1>
+<p>We have tried our best to make RoboLab accessible to all students, whatever their particular needs.</p>
+<p><strong>TO DO - I havenlt test accessibility toolbar in conjucntion with the simulator; they may or may not play well together…</strong></p>
+<p>The Jupyter environment includes an <a class="reference external" href="https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar">accessibility toolbar extension</a> that allows you to control the presentation style of the Jupyter notebook; for example, you can change the font style, size and spacing, the notebook background colour, and so on. Several predefined custom themes are available [BROKEN] and you can also define your own. The extension also supports voice control [BROKEN].</p>
+<p><strong>TO DO: there is also a</strong><a class="reference external" href="https://github.com/dunovank/jupyter-themes">jupyter-themes</a><strong>extension that we could pre-install, perhaps with one or more OU custome themes? This may be in addtion to, or in place of, the accessibility toolbar. There are also simple tricks and tools for speaking out code cell contents, such as the</strong><a class="reference external" href="https://github.com/jameslmartin/jupyter-a11y">jupyter-a11y</a><strong>extension.</strong></p>
+<p>All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibilty extension.</p>
+<div class="section" id="Enabling-the-Accessibility-Extension">
+<h2>Enabling the Accessibility Extension<a class="headerlink" href="#Enabling-the-Accessibility-Extension" title="Permalink to this headline">¶</a></h2>
+<p>The accessibility is <strong>disabled</strong> in the RoboLab environment by default. To use the accessibility extension, you need to enable it first. You can do this from the <code class="docutils literal notranslate"><span class="pre">nbextensions</span></code> tab on the notebook homepage: check the <code class="docutils literal notranslate"><span class="pre">Accessibility</span> <span class="pre">toolbar</span></code> extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.</p>
+<p><img alt="Screenshot of the nbextensions confgurator showing the location of the Accessibility Toolbar." src="../../_images/00_01_nb_extensions_accessibility.png" /></p>
+<p>Check the <a class="reference external" href="https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar#toolbar-summary">accessibility toolbar documentation</a> for more information.</p>
+<p>The Module Team welcome feedback on these features.</p>
+</div>
+<div class="section" id="Colours-and-fonts">
+<h2>Colours and fonts<a class="headerlink" href="#Colours-and-fonts" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to change the font and interface colours used in RoboLab to improve readability, the accessibility toolbar allows you to select the font style, size and colour. You can also modify the line spacing and spacing between individual characters.</p>
+<p><img alt="Screenshot of the colours and fonts menu dropped down from the text / A button in the group of Accessibility Toolbar buttons." src="../../_images/00_01_accessibility_display.png" /></p>
+<p>The font style applies to <em>all</em> text elements within the notebook itself. This includes the contents of markdown (text) cells, code cells and code cell outputs.</p>
+<p>The toolbar can also be used to control the notebook’s background colour and the cell background colour.</p>
+<p>You can also save a style you have defined from the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">new</span> <span class="pre">style...</span></code> option in <code class="docutils literal notranslate"><span class="pre">Predefined</span> <span class="pre">styles</span></code> menu. Once saved, it will be added to the menu list so you can apply it as required.</p>
+</div>
+<div class="section" id="Keyboard-interface">
+<h2>Keyboard interface<a class="headerlink" href="#Keyboard-interface" title="Permalink to this headline">¶</a></h2>
+<p>The Jupyter notebook interface supports a wide range of pre-defined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the <code class="docutils literal notranslate"><span class="pre">Keyboard</span> <span class="pre">shortcuts</span></code> item from the notebook <code class="docutils literal notranslate"><span class="pre">Help</span></code> menu or via the <code class="docutils literal notranslate"><span class="pre">ESC-h</span></code> keyboard shortcut.</p>
+<p><img alt="Screenshot of the Jupyter keyboard shortcuts help page previewing the Command Mode cell options." src="../../_images/00_01_jupyter_nb_shortcuts.png" /></p>
+<p>You can also add additional shortcuts and/or edit exist shortcuts via the <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Keyboard</span> <span class="pre">shortcuts</span></code> menu item.</p>
+<p><img alt="Screenshot of the Jupyter keyboard shortcuts help page previewing the Edit Command Mode cell options." src="../../_images/00_01_jupyter_nb_edit_shortcuts.png" /></p>
+<p><strong>TO DO: is Jyro keyboard accessible??</strong></p>
+<p><strong>TO DO: what’s best way of tabbing through the notebook? Or should notebook keyboard shortcuts be used? Are any potentially useufl navigation style keyboard shortcuts missing?</strong></p>
+</div>
+<div class="section" id="Magnification">
+<h2>Magnification<a class="headerlink" href="#Magnification" title="Permalink to this headline">¶</a></h2>
+<p>The apparent size of the notebook contents in general and the Jyro simulator in particular can be zoomed using standard browser magnification tools. <strong>TO DO: check this works for Jyro</strong></p>
+<p>Alternatively, use operating systems tools such as <em>Windows Magnify</em> or the MacOS <em>Zoom Window</em>, or other assistive software.</p>
+</div>
+<div class="section" id="Other-assistive-software">
+<h2>Other assistive software<a class="headerlink" href="#Other-assistive-software" title="Permalink to this headline">¶</a></h2>
+<p><strong>TO DO: to what extent will screen readers and dictation systems operate features of RoboLab??</strong></p>
+<p>Please contact the Module Team if you discover that the material does not work with a particular screen reader or dictation system that you would typically expect to be able to use.</p>
+</div>
+<div class="section" id="Audio">
+<h2>Audio<a class="headerlink" href="#Audio" title="Permalink to this headline">¶</a></h2>
+<p>Some RoboLab programs ‘speak’. Where the speech is generated as a part of a program flow, a visual display of the spoken phrase will also typically be displayed at the time the phrase is spoken.</p>
+<p>__TO DO: need to make sure we do this; a custom widget might help that maps to both audio and a text display widget._</p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="Section_00_02_Workload.html" title="Previous document">1.2 Workload</a>
+        </li>
+        <li>
+          <a href="Section_00_04_Writing_Code.html" title="Next document">1.4 Writing Style Compliant Code</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">TM129 Robotics Practical Activities</a></h1>
+
+
+
+<p class="blurb">Documentation...</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">Getting Started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Section.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_01_Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_02_Workload.html">1.2 Workload</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.3 Accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Enabling-the-Accessibility-Extension">Enabling the Accessibility Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Colours-and-fonts">Colours and fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Keyboard-interface">Keyboard interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Magnification">Magnification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Other-assistive-software">Other assistive software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Audio">Audio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html">2 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward">Move robot forward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.html#Move-robot-forward-for-3-seconds">Move robot forward for 3 seconds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html">The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#The-EV3-“Brick”">The EV3 “Brick”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_02.html">2 Dead reckoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html">4 Emergent behaviour: Braitenberg’s vehicles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_03.html#Using-Ultrasound">Using Ultrasound</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_04.html">4 Reasoning and the sense–think–act model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_Robot_Lab/Section_00_05.html">5 Functions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_01.html">1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_02.html">2 Line followers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_Robot_Lab/Section_00_04.html">4 The design engineer as detective</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Section_00_02_Workload.html" title="previous chapter">1.2 Workload</a></li>
+      <li>Next: <a href="Section_00_04_Writing_Code.html" title="next chapter">1.4 Writing Style Compliant Code</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;The Open University, 2020.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/content/00_READ_ME_FIRST/Section_00_03_Accessibility.md"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
