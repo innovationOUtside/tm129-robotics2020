@@ -1,80 +1,7 @@
 ```python
-#Testing  - can we load from a package?
-#import _load_nbev3devwidget_requirements
-##import _load_nbev3devwidget
-```
-
-```python
-#import _load_nbev3devwidget
-```
-
-```python
-#from IPython.display import Javascript
-#Javascript('$( "#notebook-container" ).resizable({ghost: false})')
-```
-
-```python
-# If the above doesn't work, old skool is below...
-```
-
-```python
-from nbev3devsim import ev3devsim_nb as eds
-import jp_proxy_widget
-
-#Load the nbtutor extension
-%load_ext nbtutor
-
-#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
-#Load and initialise the jquery.dialogextend package
-
-cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
-cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
-module_id = "dialogExtend"
-
-# Load the module using a widget (any widget -- the module loads to the global jQuery object).
-loader = jp_proxy_widget.JSProxyWidget()
-
-# Configure the module to be loaded.
-loader.require_js(module_id, cdn_url)
-
-# Load the module
-loader.js_init("""
-    element.requirejs([module_identifier], function(module_value) {
-        //element.html("loaded " + module_identifier + " : " + module_value);
-    });
-""", module_identifier=module_id)
-loader
-
-# I think we need to wait for this to load
-# else we may get an error in next cell from dialogExtend not being available?
-```
-
-```python
-from nbev3devsim import ev3devsim_nb as eds
-
-#Reset the notebook style
-from IPython.core.display import display, HTML, Javascript
-
-#display(HTML("<style>#notebook-container { resize:vertical; border: 5px solid;  width: 300px; resize: horizontal; overflow: auto; float:left !important;}</style>"))
-display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
-%reload_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-
-roboSim.element.dialog();
-
-
-roboSim.js_init("""
-element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
-        "maximizable" : true,
-        "dblclick" : "maximize",
-        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
-""")
-
-display(roboSim)
+import sys
+sys.path.insert(0,'..')
+import _load_nbev3devwidget_requirements;
 ```
 
 ```javascript
@@ -84,8 +11,14 @@ $( "#notebook-container" ).resizable({ghost: false})
 ```
 
 ```python
-%load_ext nbtutor
+from _load_nbev3devwidget import roboSim, eds
+
 %load_ext nbev3devsim
+%load_ext nbtutor
+```
+
+```python
+display(roboSim)
 ```
 
 # 4 Emergent behaviour: Braitenberg’s vehicles
@@ -118,7 +51,7 @@ This has been done via a change to the robot configuration setting update that i
 
 You can increase the spacing between the sensors by:
 
-- clicking the *Configure Robot* button in the simulator to pop=up a window containing the robot configuration settings;
+- clicking the *Configure Robot* button in the simulator to pop-up a window containing the robot configuration settings;
 - in the robot configuration settings window, scroll down to the `"sensor1"` parameters and change the `"x"` value from the default value of `-20` to the new value `-60`;
 - for `"sensor2"`, change the `"x"` value from its default value of `20` the new value `60`;
 - click the *Apply* button.
@@ -136,7 +69,7 @@ If you look at the robot in the simulator, you should notice that the two light 
 
 #### Exploring the *Radial Grey* World
 
-Run the following code cell to download the programme to the simulator and then run it in the simulator. For now, don't pay too much atttention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
+Run the following code cell to download the programme to the simulator and then run it in the simulator. For now, don't pay too much attention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
 
 Observe what happens paying particularly close attention to the trajectory the robot follows.
 
@@ -181,7 +114,7 @@ colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 ```
 
-Then we have a `while..` loop that ensures the programme keeps running unitl either the left or the right sensor value sees a particularly dark value:
+Then we have a `while..` loop that ensures the programme keeps running until either the left or the right sensor value sees a particularly dark value:
 
 ```python
 while ((colorLeft.reflected_light_intensity>5) 
@@ -281,7 +214,7 @@ As before, the sensor value reports a higher reading the brighter the background
 
 To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. The following programme streams the necessary data elements to the simulator output window.
 
-Run the program and observe the behvavior of the traces.
+Run the program and observe the behavior of the traces.
 
 How do the traces differ in value?
 <!-- #endregion -->
@@ -308,7 +241,7 @@ while ((colorLeft.reflected_light_intensity>5)
 
 By inspection of the traces, you should notice that one of them is always slightly higher than the other.
 
-We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchroised datalog.
+We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchronised datalog.
 
 ```python
 #Grab the logged data into a pandas dataframe

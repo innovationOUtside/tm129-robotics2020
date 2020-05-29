@@ -1,51 +1,20 @@
 ```python
-#Requirement for styling simulator widget toolbar
-import _load_nbev3devwidget_requirements
+import sys
+sys.path.insert(0,'..')
+import _load_nbev3devwidget_requirements;
+```
+
+```javascript
+//This allows us to resize this view
+//Click on the right hand edge to drag
+$( "#notebook-container" ).resizable({ghost: false})
 ```
 
 ```python
-#Style notebook
-from IPython.display import Javascript
-Javascript('$( "#notebook-container" ).resizable({ghost: false})')
+from _load_nbev3devwidget import roboSim, eds
 
-# Load nbev3devsim simulator
-from _load_nbev3devwidget import roboSim
-
-#Load nbev3devsim magic
 %load_ext nbev3devsim
-
-#Load the nbtutor extension
 %load_ext nbtutor
-```
-
-```python
-#Load the nbtutor extension
-%load_ext nbtutor
-
-#Reset the notebook style
-from IPython.core.display import display, HTML
-
-display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
-
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
-%load_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-
-roboSim.set_element("response", '')
-             
-display(roboSim)
-roboSim.element.dialog();
-
-
-roboSim.js_init("""
-element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
-        "maximizable" : true,
-        "dblclick" : "maximize",
-        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
-""")
 ```
 
 # 5 Functions

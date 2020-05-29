@@ -1,15 +1,5 @@
 # 1 An introduction to programming robots
 
-```python
-from IPython.core.display import display, HTML
-
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
-
-```
-
-```python
-#%pip install --upgrade git+https://github.com/innovationOUtside/nbev3devsim.git@draggable-robot
-```
 
 The objective of RoboLab Session 2 is to explain the basics of robot computer programming and show you how to use some of the elementary features of the RoboLab simulator.
 
@@ -117,8 +107,11 @@ Whilst they run on the same physical computer, these programmes actually run in 
 The simulator we will be using must be loaded into each notebook that wants to use it once per notebook. In addition, __only one instance of the simulator per notebook is allowed__. Any more than that and things don't work at all.
 
 
-<div class='alert-danger'>I'm working on a minimum viable model at the moment, with as few instructions about workflow as I can get away with in the hope that I can iterate a few times, improve the UI, workflow etc, maybe even radically change things. A lot can happen in Jupyter land in 6-8 weeks!<br/><br/>
-The single simulator instance is becuase atm the simulator is embedded into the notebook with a hard coded HTML element id; multiple elements w/ same id break things. It may be a quick fix, it may not; if it's quick, it may be fixable over a coffee. If it's not, it could take an afternoon, and then testing time. So that's parked for now...</div>
+<div class='alert-danger'>The simulator UI and load process has moved on since this material was drafted; when the first complete draft is finished, and the simulator a bit more stable, I need to go round the materials again to bring the earlier materials up to date. The code activities should work, the UI instruction could well be outdated; it mays also be possible to streamline or even improve activities based on what the simulator can do now compared to what it could do when this early material was first drafted.</div>
+
+To provide you with a peak behind the scenes about how the original notebook environment is converted to the customised RoboLab layout, the following cells contain code that build up the environment.
+
+*A simpler recipe for loading the simulator into the notebook environment will be used for the remaining notebooks.*
 
 The following cell will load in the Python package that makes the simulator available, along with some IPython magic that allows us to interact with the simulator.
 <!-- #endregion -->
@@ -145,10 +138,21 @@ display(roboSim)
 roboSim.element.dialog();
 ```
 
-At the moment, things are a little clunky in terms of how we actually get code into the simulator and run it.
-Using the `move selected cells up` and `move selected cells down` up and down arrow buttons in the notebook toolbar, I suggest you move the simulator display so that it is *above* the code cell you are currently using to programme the robot.
+If you run the following code cell, which actually executes some Javascript code in the web browser, we make the notebook area draggable. Click on the right hand side of the notebook display area, and you should be able to drag it left and right to resize the notebook display area:
 
-You can then run the notebook code cell to download the programme to the simulator, and press the simulator *Run* button to exectute the programme in the simulator and watch the result.
+```javascript
+//This allows us to resize this view
+//Click on the right hand edge to drag
+$( "#notebook-container" ).resizable({ghost: false})
+```
+
+To get code into the simulator, we run a code cell prefixed with a particular IPython cell magic to download the code in the code cell to the simulator.
+
+You can also get code into the simulator by highlighting and copying the code (without the IPython magic line) and then clicking the *Paste* button in the simulator.
+
+You can also preview the code available in the simulator by clicking the simulator *Show Code* button.
+
+To execute the programme on the simulated robot, click the *Run* button in the simulator and watch the result.
 
 
 
@@ -156,20 +160,24 @@ You can then run the notebook code cell to download the programme to the simulat
 
 If you make an error in a programme sent to the simulator, when you try to run the program in the simulator, a message will be displayed in the simulator console.
 
-??Missing image?
-<img src='../../images/Section_00_01_-_Jupyter_Notebook_error.png' width=500 alt='' />
+<img src='../images/Section_00_01_Jupyter_Notebook_error.png' width=500 alt='' />
 
 The line number specified will be one less than the line number displayed in the associated code cell if you enable line number display within the cell.
+
+__TO DO: this needs addressing if we have preloaded some packages as inserts into the code. The code preview window in the simulator may help here: need line numbers and code styling there?__ 
 
 
 ### Passing Code into the Simulator
 
-To write programme code that can be passed to the simulator and executed within it to control the simulated robot, 
+To write programme code that can be passed to the simulator and executed within it to control the simulated robot, we add code to a code cell with some IPyhton magic in the first line:
 
 ```python
 %%sim_magic
 print('hello world')
 ```
+
+Then the code cell is run, the code is downloaded to the simultor. The code can then be executed in the simulator by pressing the *Run* button __in the simulator__.
+
 
 ## 1.2 An introduction to sequential programming
 

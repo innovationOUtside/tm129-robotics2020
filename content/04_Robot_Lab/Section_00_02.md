@@ -12,6 +12,15 @@ The basic idea is that, as the robot moves forwards, the light sensor tells it i
 
 The behaviour of the sensors and the interpretation of the data they provide is very important when creating line-following robots and we will look at these aspects in some detail.
 
+```python
+import sys
+sys.path.insert(0,'..')
+
+from _load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
 
 ## 2.1 Challenge: Writing an edge-follower program
 
@@ -44,7 +53,7 @@ Image.new('RGB', (50, 50), (0,255,0))
 
 ### Taking readings
 
-The `reflected light` reading in the simulator is actually recorded as the value of the first RGB component.
+The `reflected light` reading in the simulator is actually recorded as the value of the first RGB component, which is to say, the *red* component.
 
 [TO DO - would the max value across all three channels make more sense? Or the median? Or the mean?] 
 
@@ -92,6 +101,36 @@ ______ %
 Spend five to ten minutes writing a program to get Simon to navigate from its starting position along the black line and to stop at the red bar. Good luck!
 
 Open `Line_follower` to see my version of the program code.
+
+
+## Testing the Line Follower Against Other Lines
+
+Use the `Line_Following_Test` background:
+
+```python
+%%sim_magic_preloaded -b Line_Following_Test
+
+#Default programme from ev3devsim
+from ev3dev2.motor import MoveSteering, OUTPUT_B, OUTPUT_C
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+from ev3dev2.sensor.lego import ColorSensor, GyroSensor, UltrasonicSensor
+
+steering_drive = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+gyro = GyroSensor(INPUT_4)
+ultrasonic = UltrasonicSensor(INPUT_1)
+
+GAIN = 0.5
+
+while True:
+    print('Gyro: ' + str(gyro.angle_and_rate))
+    print('Ultrasonic: ' + str(ultrasonic.distance_centimeters))
+    error = colorLeft.reflected_light_intensity - colorRight.reflected_light_intensity
+    correction = error * GAIN
+    steering_drive.on(correction, 20)
+```
 
 ```python
 
