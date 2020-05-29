@@ -102,3 +102,18 @@ All three values are required to move the robot.
 
 To see all of this working, run the program again.
 <!-- #endregion -->
+
+#### Manually Changing the Robot Configuration Settings
+
+The physical configuration of the robot is defined via a simple robot configuration file. You can edit this file by clicking the *Configure Robot* button in the simulator to pop-up a window containing the robot configuration settings.
+
+For example, to increase the spacing between the sensors by:
+
+- clicking the *Configure Robot* button in the simulator to open the robot configuration settings editor;
+- in the robot configuration settings editor, scroll down to the `"sensor1"` parameters and change the `"x"` value from the default value of `-20` to the new value `-60`;
+- for `"sensor2"`, change the `"x"` value from its default value of `20` the new value `60`;
+- click the *Apply* button.
+
+If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
+
+To place a light sensor on the mid-line of the robot running from the front to the back, set the `"x"` value of the sensor to `0`.
