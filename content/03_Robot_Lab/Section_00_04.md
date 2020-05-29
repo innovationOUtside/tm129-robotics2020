@@ -1,5 +1,4 @@
 ```python
-%%capture
 import sys
 sys.path.insert(0,'..')
 import _load_nbev3devwidget_requirements

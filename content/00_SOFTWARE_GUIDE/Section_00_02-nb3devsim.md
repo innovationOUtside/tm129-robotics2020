@@ -41,12 +41,7 @@ motor_pair.on_for_seconds(steering=0, speed=50, seconds=3)
 <!-- #endraw -->
 
 <!-- #region -->
-TO DO - WE MAY NOT NEED THIS IF WE WORK IN THE NOTEBOOK VIA A WIDGET
 
-
-Save the programme with a meaningful file name (for example, `move_a_robot.py`) and clear the programme editor by deleting all the contents from it. If you `Run` the (non-existent) programme, the robot should not move.
-
-Load the file you saved back into the programme window, and run it again. This time the robot should move for 3 seconds again.
 
 TO DO - LINE NUMBER OPTIONS IN EDITOR?
 <!-- #endregion -->
@@ -67,12 +62,8 @@ TO DO - a simulator run status indicator would be useful.
 
 So far we have taken a very quick look at how to download programmes from a notebook code cell and run them in the simulator.
 
+In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the program to see what form it takes and why the robot behaves as it does.
 
- the `Program editor` and `Simulator` windows. In RoboLab Session 2 there will be a much more detailed discussion of computer programs and the principles behind how they work, and the contents of these windows will become clearer. For now let’s look again at the `Program` window as it relates to the `Move_a_robot` program, to see the essential elements of the program and why the robot behaves as it does.
-
-If you don’t already have the `move_a_robot.py` program open, reopen it now.
-
-The `move_a_robot.py` program is displayed in the `Program` window as follows:
 
 <!-- #region -->
 ```python
@@ -111,3 +102,18 @@ All three values are required to move the robot.
 
 To see all of this working, run the program again.
 <!-- #endregion -->
+
+#### Manually Changing the Robot Configuration Settings
+
+The physical configuration of the robot is defined via a simple robot configuration file. You can edit this file by clicking the *Configure Robot* button in the simulator to pop-up a window containing the robot configuration settings.
+
+For example, to increase the spacing between the sensors by:
+
+- clicking the *Configure Robot* button in the simulator to open the robot configuration settings editor;
+- in the robot configuration settings editor, scroll down to the `"sensor1"` parameters and change the `"x"` value from the default value of `-20` to the new value `-60`;
+- for `"sensor2"`, change the `"x"` value from its default value of `20` the new value `60`;
+- click the *Apply* button.
+
+If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
+
+To place a light sensor on the mid-line of the robot running from the front to the back, set the `"x"` value of the sensor to `0`.

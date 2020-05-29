@@ -1,19 +1,20 @@
 ```python
-# Run this cell to set up the robot simulator environment
+import sys
+sys.path.insert(0,'..')
+import _load_nbev3devwidget_requirements;
+```
 
-#Reset the notebook style
-from IPython.core.display import display, HTML
+```javascript
+//This allows us to resize this view
+//Click on the right hand edge to drag
+$( "#notebook-container" ).resizable({ghost: false})
+```
 
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
+```python
+from _load_nbev3devwidget import roboSim, eds
 
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
 %load_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
-roboSim.element.dialog();
+%load_ext nbtutor
 ```
 
 # 1 Introduction to loops and branches
@@ -235,7 +236,7 @@ Look through the code in the code cell below and predict what you think the robo
 *DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the programme.*
 
 ```python
-%%sim_magic_preloaded
+%%sim_magic_preloaded -p
 
 # Draw something...
 for count in range(3):

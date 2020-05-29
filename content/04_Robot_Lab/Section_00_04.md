@@ -64,20 +64,11 @@ In a continuous improvement design cycle, the the design may be used but it may 
 ```python
 import sys
 sys.path.insert(0,'..')
-import _load_nbev3devwidget_requirements
-```
 
-```python
 from _load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 %load_ext nbtutor
-```
-
-```javascript
-//This allows us to resize this view
-//Click on the right hand edge to drag
-$( "#notebook-container" ).resizable({ghost: false})
 ```
 
 *Note that things have moved on in the simulator. We can now specify a background and robot configuration as parameters to the magic ( TO DO - NOT YET AVAILABLE IN ALL MAGICS).*
@@ -145,7 +136,7 @@ df.head()
 df['time'] = df['index'].dt.total_seconds()
 ```
 
-Now lets plot each of those data points:
+Now let's plot each of those data points:
 
 ```python
 import matplotlib.pyplot as plt
@@ -160,6 +151,8 @@ g = g.map(plt.plot, "time", "value", marker=".");
 ax1= g.axes[0][0]
 ax1.axhline(y=10, ls='--');
 ```
+
+*TO DO - I think plotly now has native support for pandas...*
 
 The `cufflinks` packages adds support for plotting charts using the `plotly` package directly from *pandas* datadrames.
 
@@ -184,6 +177,7 @@ __TO DO: should long desc text only be for partially sighted students, or does i
 
 The vertical scale shows sensor values on a vertical y-axis scale ranging 0-85 or so (the actual readings in principle range form 0..100 per cent). The horizontal scale is a time base showing a time of 0 to 2 seconds, with a plot every 0.02s (that is, about every fiftieth of a second. The sensor readings are also joined to form a line. The line starts with high values, starting at a y value of just over 80. There is then an abrupt fall in the values until they reach a low point of 0 for 3 samples, followed by a return to the high values around 80. On the diagram, I have marked a horizontal band highlighting values between
 
+**TO DO - the sensor definition has been changed since this chart was first created. Need to revise it with current config and check we still get same sort of result. Also make a point about seeing in red and what we miss otherwise, eg red vs blue.**
 
 This chart helps to explain why my original program did not work as intended. On the right of the black line, in the transition from black to grey, the simulated robot has recorded a value of about 34, within the thresholded band value I was using to identify the red line.
 

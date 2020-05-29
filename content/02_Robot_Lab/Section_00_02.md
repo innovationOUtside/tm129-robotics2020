@@ -2,9 +2,6 @@
 from nbev3devsim import ev3devsim_nb as eds
 import jp_proxy_widget
 
-#Load the nbtutor extension
-%load_ext nbtutor
-
 #https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
 #Load and initialise the jquery.dialogextend package
 

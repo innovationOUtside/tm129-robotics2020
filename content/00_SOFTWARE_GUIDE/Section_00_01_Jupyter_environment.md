@@ -52,6 +52,10 @@ In addition, code cells can contain code that is "downloaded" to the simulator w
 
 Markdown and code cells can be edited and saved interactively via the notebook's browser interface.
 
+For an interactive tour of the notebook environment, from a notebook *Help* menu select the *User Interface Tour* option. (Press the `Escape` key on your keyboard to cut the tour short.)
+
+![](../images/Jupyter_Notebook_tour.png)
+
 As well as the notebook environment, a more complex "lab" or "integrated development" style interface, *Jupyterlab*, is also available.
 
 The following shows a JupyterLab set up based around another notebook based simulator, the  `Jyro` robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the "torn off" simulator output window display mode shown below.
