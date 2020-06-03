@@ -339,7 +339,7 @@ for day in days_of_week:
     else:
         print('...a weekday')
         
-print("And that's all the days of the week."")
+print("And that's all the days of the week.")
 ```
 
 We can also have multiple `elif` statements between the opening `if..` and the closing `else`.
@@ -362,17 +362,19 @@ days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
                 'Friday', 'Saturday', 'Sunday']
 
 for day in days_of_week:
-    print(f'Today is {day}...')
+    message = f'Today is {day}...'
+    print(message)
     
     if day == 'Monday':
-        print("...I don't like Mondays...")
+        feeling = "...I don't like Mondays..."
     elif day == 'Tuesday':
-        print('...Ruby Tuesday')
+        feeling = '...Ruby Tuesday'
     elif day == 'Friday':
-        print("...Friday I'm In Love")
+        feeling = "...Friday I'm In Love"
     else:
-        print("...I don't know a song title for that day")
+        feeling = "...I don't know a song title for that day"
     
+    print(feeling)
 ```
 
 Now run the previous code cell and step through its execution using *nbtutor*; observe how the control flow steps increasing through the stack of `..elif..` tests as the `for..` loop iterates through the items in the `days_of_week` list. 

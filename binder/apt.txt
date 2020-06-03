@@ -4,3 +4,7 @@ unzip #This should already be installed
 
 # Drawing
 libcairo2
+
+# Spellchecker support
+aspell
+hunspell

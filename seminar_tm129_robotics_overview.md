@@ -21,7 +21,7 @@ jupyter:
 
 Tony Hirst
 
-Computing and Communcations
+Computing and Communications, The Open University
 
 `tony.hirst@open.ac.uk`
 
@@ -37,11 +37,11 @@ Computing and Communcations
 
 ### and then:
 
-### simulator package: `nbev3devsim`
+- ### simulator package: `nbev3devsim`
 
-### draft materials : `tm129-robotics2020`
+- ### draft materials : `tm129-robotics2020`
 
-Note: these are works in progress; I try to ensure that the current `master` works, but:
+Note: these are works in progress... I try to ensure that the current `master` works, but:
 
 1. can't guarantee it...
 2. my current WIP may be several days ahead of `master`
@@ -51,7 +51,7 @@ Note: these are works in progress; I try to ensure that the current `master` wor
 ## In The Beginning...
 
 - T184 Robotics and the Meaning of Life (2003-2011)
-  - 10 points, Relevant Knowledge / Technology short course programme
+  - 10 points, Relevant Knowledge / Technology Short Course Programme
   - 50% online VLE teaching material, 50% computer desktop practicals
   
 - TM129 Technologies in Practice (2013-)
@@ -76,31 +76,29 @@ https://github.com/ouseful-demos/jupyter-desktop-server
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-# TM129 Update — Replacing RobotLab
+# TM129 Update, 20J — Replacing RobotLab
+
+This is not the first time RobotLab has been replaced in an OU module...
 
 - T176 Engineering: professions, practice and skills 1
   - week long residential school
   - four day long activities including Robotics
-  - robot activity originally used RobotoLab with Lego Mindostorms RCX robot
-  - revised robot activity uses lego software with Lego EV3 robot
+  - robot activity originally used RobotoLab with Lego Mindstorms RCX robot
+  - revised robot activity uses Lego software with Lego EV3 robot
+  - BUT there was some early prototyping of using the Python wrapper for `ev3dev`...
 
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-## Moving to Python
+## TM129 — Moving to Python
 
-Python wrapper to Lego `ev3dev` Linux operating system
+- Python wrapper to Lego `ev3dev` Linux operating system
+- now also the `ev3devsim` simulator
 
 ![](presentation_images/EV3DEV_Python_Simulator.png)
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "slide"} -->
-## Updated Activity Model
-
-![](presentation_images/tm129_environment.png)
-<!-- #endregion -->
-
-<!-- #region slideshow={"slide_type": "slide"} -->
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## ev3devsim
 
 - runs in the browser
@@ -263,6 +261,7 @@ Pipeline for:
 - the medium is a computational medium and as such is malleable in our hands
   - _"everyone should learn to code..."_
   - custome notebook magics and extensions
+  - third party extensions
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -277,12 +276,40 @@ Pipeline for:
 ![](presentation_images/notebook_tutor_feedback.png)
 <!-- #endregion -->
 
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Third-party extension — `nbtutor`
+
+https://github.com/lgpage/nbtutor
+<!-- #endregion -->
+
+```python hide_input=true
+from IPython.display import Video
+Video('presentation_images/nbtutor_demo.mp4')
+```
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Exploiting the Medium — Accessibility
+
+As a computational medium, we can seek to explore the medium in ways that improve accessibility and explore alternative modalites.
+
+- audio feedback in `nbev3devsim`;
+- `say()` as well as `print()` feedback in `nbev3devsim` code;
+- audio feedback mode in Eliza demos;
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Eliza
+
+![](presentation_images/eliza_transcript.png)
+<!-- #endregion -->
+
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Example Magics
 
 - `nbev3devsim` magic
 - flowchart diagram magic
 - cell difference magic
+- durable_rules magic
 - (TM351 entity relation diagram magic)
 
 <!-- #endregion -->
@@ -305,9 +332,99 @@ Flags (pass the following to force the specified behaviour):
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
+### Reducing Cognitive Load — Hiding Boilerplate
+
+Several package imports and robit configuration declarations are required in order to construct a well-formed `ev3dev-py` programme that can be used to control the simulated robot.
+
+To simplify matters, three magics are constructed that handle the boilerplate to a a greater or lesser extent:
+
+- `%%sim_magic_preloaded`: many `ev3dev-py` boilerplate statements handled for free;
+- `%%sim_magic_imports`: many `ev3dev-py` imports handled behind the scenes;
+- `%%sim_magic`: standalone progrmme: if there's boilerplate required, you need to provide it.
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+#### `%%sim_magic_preloaded`
+
+*Boilerplate enclosed...*
+
+```python
+%%sim_magic_preloaded
+
+# Stay inside
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 40:
+        tank_drive.on_for_rotations(SpeedPercent(-50),
+                                    SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+#### `%%sim_magic_imports`
+
+*Imports enclosed...*
+
+```python
+%%sim_magic_imports
+
+# Stay inside
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+
+colorLeft = ColorSensor(INPUT_2)
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 40:
+        tank_drive.on_for_rotations(SpeedPercent(-50),
+                                    SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+#### `%%sim_magic`
+
+*Standalone programme...*
+
+```python
+%%sim_magic
+
+# Stay inside
+from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+from ev3dev2.sensor.lego import ColorSensor
+
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+colorLeft = ColorSensor(INPUT_2)
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while True:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
+    if colorLeft.reflected_light_intensity < 40:
+        tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
+        # drive in a turn for 2 rotations of the outer motor
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ## `flowchart.js` Widget and Magic
 
-![](flowchart_js_magic.png)
+![](presentation_images/flowchart_js_magic.png)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -316,6 +433,42 @@ Flags (pass the following to force the specified behaviour):
 https://github.com/innovationOUtside/nb_cell_diff
 
 ![](presentation_images/nb_cell_diff.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### `durable_rules` Utility Functions and Magic
+
+https://github.com/innovationOUtside/durable_rules_magic
+
+Rulesets and assertions originally of the form:
+
+```python
+with ruleset('animal'):
+    @when_all(c.first << (m.predicate == 'eats') & (m.object == 'flies'),
+              (m.predicate == 'lives') & (m.object == 'water') & (m.subject == c.first.subject))
+    def frog(c):
+        c.assert_fact({ 'subject': c.first.subject, 'predicate': 'is', 'object': 'frog' })
+        
+assert_fact('animal', { 'subject': 'Kermit', 'predicate': 'eats', 'object': 'flies' })
+```
+
+With some utility functions, ruleset definition becomes:
+
+```python
+RULESET = new_ruleset()
+with ruleset(RULESET):
+    @when_all(c.first << Subject('eats', 'flies'),
+              Subject('lives', 'water') & (m.subject == c.first.subject))
+    def frog(c):
+        c.assert_fact(SPO(c.first.subject, 'is', 'frog')) 
+```
+
+and with some magic, we can simplify assertions:
+
+```python
+%%assert_facts -r RULESET
+Kermit : eats : flies
+```
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -356,13 +509,14 @@ https://github.com/innovationOUtside/nb_extension_empinken
 ## Future Possible Developments (1)
 
 - standalone browser experience
-  - no use of Python shell
-  - copy code to simulator vis JS or copy/paste
+  - remove requirement Python shell (Jupyter-free)
+  - copy code to simulator via JS or copy/paste
+  - publish using Jupyter Book or similar
   - initially, no "extension" activities BUT possibility of using pyodide?
   
 Advantages:
 
-- presented without Jupyter dependency
+- presented without Jupyter dependency or with optional Jupyter dependency
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -371,6 +525,8 @@ Advantages:
 - extend range of how `nbev3devsim` is used in notebook
   - stripped down simulator window output as code cell output?
   - ...
+- make `eliza.py` a package; improve handling of different voices;
+- enable third party [`jupyter-a11y/nbreader`](https://jameslmartin.github.io/jupyter-a11y/) to speak cell contents aloud; make it an extension;
 - improved quality checks / support
   - command-line / interactive spellchecker
   - code quality checks
