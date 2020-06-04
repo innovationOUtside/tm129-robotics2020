@@ -220,6 +220,26 @@ https://github.com/innovationOUtside/Open_Computing_Lab_Guide
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
+## Development Context
+
+```
+# Run command - name container, set port, provide token, set-up (package development) volume mounts
+docker run  --name tm129test 
+            -p 8129:8888
+            -e JUPYTER_TOKEN="letmein"
+            -v $PWD:/home/jovyan/notebooks
+            -v $PWD/../nbev3devsim/:/home/jovyan/nbev3devsim
+            -v $PWD/../playground:/home/jovyan/playground
+            -v $PWD/../nb_extension_twoCol/:/home/jovyan/twoCol
+            -v $PWD/../nb_extension_empinken/:/home/jovyan/empinken
+            ousefuldemos/tm129-robotics2020:latest
+
+docker stop tm129test   #used to stop container
+docker start tm129test  #used to restart container with persisted config options
+```
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "slide"} -->
 ## Building the Tools of Production
 
 - convert original materials to notebooks
@@ -249,9 +269,51 @@ Pipeline for:
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
+### Processing Images — Adding Noise
+
+![](presentation_images/generate_image_noisify.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ### Notebook Quality Checks
 
 ![](presentation_images/simple_nb_viz.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Editing Process
+
+I have absolutely no idea...
+
+![](presentation_images/example_notebook_md.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+![](presentation_images/example_notebook_rendered.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### All Materials On Github
+
+![](presentation_images/github_content.png)
+<!-- #endregion -->
+
+## Track Changes
+
+![](presentation_images/github_diffs.png)
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+## Comment On Changes
+
+![](presentation_images/gituhub_comment_on_diff.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+## Issue Threads
+
+(And *Github Discussions* on the way...)
+
+![](presentation_images/github_repo_issues.png)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
@@ -262,6 +324,12 @@ Pipeline for:
   - _"everyone should learn to code..."_
   - custome notebook magics and extensions
   - third party extensions
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Cell Status Indicators
+
+![](presentation_images/cell_status_indicators.png)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -281,6 +349,11 @@ Pipeline for:
 
 https://github.com/lgpage/nbtutor
 <!-- #endregion -->
+
+```python
+from IPython.display import Video
+Video('presentation_images/nbtutor_demo.mp4')
+```
 
 ```python hide_input=true
 from IPython.display import Video
@@ -475,8 +548,8 @@ Kermit : eats : flies
 ## Example Extensions
 
 - `empinken`
-- *Tensorflow Playground* widget
 - two column code cell
+- *Tensorflow Playground* widget
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
@@ -494,16 +567,110 @@ https://github.com/innovationOUtside/nb_extension_empinken
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "subslide"} -->
+### Two Column Display
+
+![](presentation_images/two_column_display.png)
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
 ### Tensorflow Playgrund Widget (WIP)
 
 ![](presentation_images/tensorflow_playground_widget.png)
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "subslide"} -->
-### Two Column Display
+<!-- #region slideshow={"slide_type": "slide"} -->
+## Opportunity (Cost) In Creating Technology Enhanced Learning Materials
 
-![](presentation_images/two_column_display.png)
+
+Time required for:
+
+- finding resources (*discovery*)
+- evaluating resources (*playing* with them: *open-ended (self / un)directed exploration*)
+- imagining a teaching / learning lines that may be strengthened by resources
+- evolving activity design:
+  - writing materials *(& playing a bit more)*
+  - embedding resources in teaching material *(& playing a bit more)*
+  - testing functionality *(& playing a bit more)*
+  - testing usability *(& playing a bit more)*
+  - testing accessibility *(& playing a bit more)*
+- should solutions be one-off/bespoke or generalisable? 
 <!-- #endregion -->
+
+## Scrollytelling in a Notebook Context?
+
+
+```python
+from IPython.display import Video
+Video('presentation_images/backprop_scrollytelling.mp4')
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### MNIST Example
+
+*Recognition using a pretrained `tensorflow.js` model. Can the Tensorflow Playground produce such models?*
+<!-- #endregion -->
+
+```python
+url = 'https://bensonruan.com/handwritten-digit-recognition-with-tensorflow-js/'
+IFrame(url, height=400, width='100%')
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### An Aside — Producing the Tools of Production
+
+*Making it up as we go along...*
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "-"}
+from IPython.core.magic import register_line_magic
+from IPython.display import IFrame
+
+@register_line_magic
+def iframe_magic(line):
+    "Render URL in IFrame."
+    return IFrame(line, height=500, width='100%')
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Raw Code and Explore the Layers
+
+*Uses tensorflow Python package. Can this export a model that tensorflow.js can use?*
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "-"}
+%iframe_magic https://nbviewer.jupyter.org/urls/gist.githubusercontent.com/awjuliani/acde9d491658265c3fbf6a74b91518e3/raw/3c9dd8048e03a918164e81dacb376a921474def3/Deep%2520Layer%2520Visualization.ipynb
+    
+```
+
+<!-- #region slideshow={"slide_type": "slide"} -->
+### Development Itches Need Scratching...
+
+*The `%iframe_magic` used fixed dimensions...*
+<!-- #endregion -->
+
+```python
+from IPython.core import magic_arguments
+
+@register_line_magic
+@magic_arguments.magic_arguments()
+@magic_arguments.argument('--src', '-s', default='600', help='IFrame src.')
+@magic_arguments.argument('--height', '-h', default='600', help='IFrame height.')
+@magic_arguments.argument('--width', '-w', default='100%', help='IFrame width.')
+def iframe_magic2(line):
+    "Render URL in IFrame."
+    args = magic_arguments.parse_argstring(iframe_magic2, line)
+    return IFrame(args.src, height=args.height, width=args.width)
+```
+
+<!-- #region slideshow={"slide_type": "subslide"} -->
+### Interactively Reviewing the Layers
+
+*Can we supply our own model to this tool? A tensorflow.js one?*
+<!-- #endregion -->
+
+```python slideshow={"slide_type": "-"}
+%iframe_magic2 --src https://tensorspace.org/html/playground/lenet.html -w 50%
+```
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Future Possible Developments (1)
