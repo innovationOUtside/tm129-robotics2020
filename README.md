@@ -21,10 +21,13 @@ To run the environment on your own computer, you need to do the following:
 - open a terminal / command prompt in your desktop; from the command prompt, do the following:
   - create a working directory / folder to work in by entering the command: `mkdir TM129`;
   - change directory into that fold by running the command: `cd TM129`;
-  - launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v "$PWD:/home/jovyan/notebooks"  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+  - *(the quotes round the volume mount cope with spaces in the `$PWD` directory path)*
   - stop (hibernate) the container with the command: `docker stop tm129test`
   - restart the container with the command: `docker restart tm129test`
-  
+ 
+*If you can help me debug the Windows invocation, that would be really useful. Please create a related issue.*
+
 When you run the `docker` command, several things will happen:
  
  - first, docker will download the container image from DockerHub (this may take some time but only happens the first time you try to run the container);
