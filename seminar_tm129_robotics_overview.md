@@ -784,6 +784,18 @@ So for example, I have been exploring adding audio feedback to various things. W
 
 A `say()` function produces an audible message that complements the way a `print()` statement in a simulator code programme displays an output in the simulator output window. (I wonder: would `from IPython.display import say` be useful?)
 
+```pyhton
+from IPython.display import Javascript, display
+
+def say(txt):
+    display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{txt}"))'))
+
+say('hello there')
+# Will probably fall over if there are any double quotes in the string passed into to say()
+# But it's a start...
+
+```
+
 Could / should we extend the cell output display to optionally sound an alert if a code cell fails? (Hmm.. I think I'll add that...)
 <!-- #endregion -->
 
