@@ -65,11 +65,11 @@ Alternatively, if you check a single file from the notebook homepage, you can ch
 
 ### Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements
 
-To run an Open Computing Lab environment on your computer, we suggest you install the prebuilt OCL environment developed for your module. For TM129, this is the prebuilr RoboLab environment. Using this environment has the advantage that the module team knows exactly what's inside it and how to help fix things if they appear to go wrong.
+To run an Open Computing Lab environment on your computer, we suggest you install the prebuilt OCL environment developed for your module. For TM129, this is the prebuilt RoboLab environment. Using this environment has the advantage that the module team knows exactly what's inside it and how to help fix things if they appear to go wrong.
 
-The downside is that the environment is quite large in terms of memory requirements: you will need at least 5GB of free memory to install it the environment, as well as its dependencies.
+The downside is that the environment is quite large in terms of memory requirements: you will need at least 5GB of spare hard drive space on your computer to install it the environment, as well as its dependencies.
 
-The underlying Docker application, which provides the virtualisation tools used to run the environment, is also happiest on computers with at least 4GB of RAM available.
+The underlying Docker application, which provides the virtualisation tools used to run the environment, is also happiest on computers with at least 4GB of RAM available but it should work on 2GB computers __TO DO: check__.
 
 ### Downloading and Installing Your Open Computing Lab Environment
 
