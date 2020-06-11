@@ -1,17 +1,8 @@
 ```python
-# Reset the notebook style
-from IPython.core.display import display, HTML
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
-
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
 %load_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
-roboSim.element.dialog();
+%load_ext nbtutor
 ```
 
 # 2 Constants and variables in programs

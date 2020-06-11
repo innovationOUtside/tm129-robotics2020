@@ -3,10 +3,7 @@
 
 
 ```python
-import sys
-sys.path.insert(0,'..')
-
-from _load_nbev3devwidget import roboSim, eds
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 %load_ext nbtutor

@@ -1,3 +1,10 @@
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
+
 # 6 Simulating raising and lowering the light sensor
 
 

@@ -22,7 +22,7 @@ The Module Team welcome feedback on these features.
 
 
 ### Colours and fonts
- 
+
 If you wish to change the font and interface colours used in RoboLab to improve readability, the accessibility toolbar allows you to select the font style, size and colour. You can also modify the line spacing and spacing between individual characters.
 
 ![Screenshot of the colours and fonts menu dropped down from the text / A button in the group of Accessibility Toolbar buttons.](../images/00_01_accessibility_display.png)
@@ -51,7 +51,7 @@ __TO DO: what's best way of tabbing through the notebook? Or should notebook key
 
 ### Magnification
 
-The apparent size of the notebook contents in general and the Jyro simulator in particular can be zoomed using standard browser magnification tools. __TO DO: check this works for Jyro__
+The apparent size of the notebook contents in general can be zoomed using standard browser magnification tools. 
 
 Alternatively, use operating systems tools such as *Windows Magnify* or the MacOS *Zoom Window*, or other assistive software.
 
@@ -66,5 +66,7 @@ Please contact the Module Team if you discover that the material does not work w
 ### Audio
 
 Some RoboLab programs 'speak'. Where the speech is generated as a part of a program flow, a visual display of the spoken phrase will also typically be displayed at the time the phrase is spoken.
+
+__TO DO: https://github.com/jameslmartin/jupyter-a11y/ accessibility extension which included keyboard shortcuts to read the highlighted cell, cancel reading of the cell, skip the current line of the code cell being read widget. I will update this extension, try it out and if it works okay add it to the environment.
 
 __TO DO: need to make sure we do this; a custom widget might help that maps to both audio and a text display widget._

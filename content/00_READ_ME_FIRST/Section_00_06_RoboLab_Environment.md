@@ -16,7 +16,17 @@ Launch the RoboLab environment. If you are running RoboLab on your own computer,
 
 #### Running RoboLab From the Command Line
 
-TO DO
+Launch the Docker container as described in the *Accessing RoboLab* notebook.
+
+To recap, on a Mac:
+
+`docker run --name tm129test -p 8129:8888 -v "$PWD:/home/jovyan/notebooks" -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+
+__TO DO: not sure if `$PWD` recipe works on Windows?__
+
+And then in your browser go to `http://localhost:8129` and use the token `letmein` to gain access (or use the token to set your own password via the form at the bottom of the page).
+
+__TO DO: should we tweak the login page to force the student to set their own password, or is that too danngerous? Also need to set advice on how to recover a password or token.__
 
 #### Running RoboLab From ContainDS
 
@@ -272,11 +282,9 @@ The simulator runs as a Javascript programme in the browser tab associated with 
 Run the following code cell to load in an instance of the simulator and embed it within this notebook:
 
 ```python
-from nbev3devsim import ev3devsim_nb as eds
-%load_ext nbev3devsim
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
+%load_ext nbev3devsim
 ```
 
 Code is "downloaded" from a code cell in the notebook to the simulator by running the code cell with some special IPython *magic* in the first line of the cell.

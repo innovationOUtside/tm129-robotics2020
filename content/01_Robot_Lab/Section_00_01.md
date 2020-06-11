@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # 1 An introduction to programming robots
 
 
@@ -117,34 +131,13 @@ The following cell will load in the Python package that makes the simulator avai
 <!-- #endregion -->
 
 ```python
-from nbev3devsim import ev3devsim_nb as eds
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
 %load_ext nbev3devsim
 ```
 
-The simulator itself is created as a Jupyter widget, referenced by a variable of our choosing, in the following case, the variable `roboSim`. The `display()` command then renders the widget.
+The simulator itself is created as a Jupyter widget in a free floating, resizable dialog. The simulator can be referenced using the variable `roboSim`.
 
-Run the notebook code cell containing the lines:
-
-```pyhton
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
-```
-
-to create the simulator and embed it in the notebook:
-
-```python
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
-roboSim.element.dialog();
-```
-
-If you run the following code cell, which actually executes some Javascript code in the web browser, we make the notebook area draggable. Click on the right hand side of the notebook display area, and you should be able to drag it left and right to resize the notebook display area:
-
-```javascript
-//This allows us to resize this view
-//Click on the right hand edge to drag
-$( "#notebook-container" ).resizable({ghost: false})
-```
 
 To get code into the simulator, we run a code cell prefixed with a particular IPython cell magic to download the code in the code cell to the simulator.
 
@@ -308,7 +301,7 @@ tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(-50), time_1s)
 tank_drive.on_for_seconds(SpeedPercent(-50), SpeedPercent(-50), time_1s)
 ```
 
-<!-- #region -->
+<!-- #region activity=true -->
 ### Activity - Driving the Motors at Different Speeds
 
 What happens if the motors are turning in the same direction but at different speeds? Explore this situation by running the followng code cell, using different motorspeed values, to the simulator and running the code there.
@@ -323,7 +316,7 @@ Check the *pen down* checkbox so that you can see the trace of where the robot h
 *Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the programme in the simulator.*
 <!-- #endregion -->
 
-```python
+```python activity=true
 %%sim_magic
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 
@@ -341,16 +334,19 @@ tank_drive.on_for_rotations(SpeedPercent(LEFT_MOTOR_SPEED_PC),
                           TIME_IN_S)
 ```
 
+<!-- #region activity=true heading_collapsed=true -->
 #### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
+<!-- #endregion -->
 
-
+<!-- #region activity=true hidden=true -->
 With both motor speeds set in the forward direction, if the left motor speed is slightly faster than the right motor speed, then the robot curves towards the right; if the right motor is slightly faster than the left motor, the robot curves to the left. The greater difference between the speeds, the tighter the curve.
 
 If one of the motors is set at a forward speed and one is in reverse, the robot turns in a tight circle centred on the reverse turning wheel.
 
 If both motors are are going backwards (negative speed), then wuth the `.on_for_seconds()` command, the robot does not move. This seems to be an issue with the simulator.
+<!-- #endregion -->
 
 <!-- #region -->
 ### Turning the Motors on for a Specified Number of Wheel Rotations

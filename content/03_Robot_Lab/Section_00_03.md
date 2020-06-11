@@ -1,25 +1,10 @@
 ```python
-import sys
-sys.path.insert(0,'..')
-import _load_nbev3devwidget_requirements;
-```
-
-```javascript
-//This allows us to resize this view
-//Click on the right hand edge to drag
-$( "#notebook-container" ).resizable({ghost: false})
-```
-
-```python
-from _load_nbev3devwidget import roboSim, eds
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 %load_ext nbtutor
 ```
 
-```python
-display(roboSim)
-```
 
 # 4 Emergent behaviour: Braitenberg’s vehicles
 
