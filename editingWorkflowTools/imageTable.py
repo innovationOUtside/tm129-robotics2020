@@ -63,7 +63,7 @@ biglist[:2]
 
 with open('gallery.md', 'w') as f:
     f.write(tabulate(biglist,
-                     headers=['Path', 'Directory', 'Filename', 'Alt text', 'Image', 'Image Path'],
+                     headers=['Image', 'Image Path', 'Path', 'Directory', 'Filename', 'Alt text', ],
                      tablefmt='github'))
 
 # !head gallery.md
