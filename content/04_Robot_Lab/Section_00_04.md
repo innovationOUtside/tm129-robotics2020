@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # 4 The design engineer as detective
 
 
@@ -62,10 +76,7 @@ During the design cycle, candidate soluions are generated and evaluated. If the 
 In a continuous improvement design cycle, the the design may be used but it may also be reconsidered. If an improvement is found the new design may be both adopted and passed back round the cycle for further reconsideration.
 
 ```python
-import sys
-sys.path.insert(0,'..')
-
-from _load_nbev3devwidget import roboSim, eds
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 %load_ext nbtutor

@@ -1,3 +1,10 @@
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
+
 # 7 The RobotLab Grand Prix challenge
 
 <div xmlns:str="http://exslt.org/strings" style="background:lightgreen">

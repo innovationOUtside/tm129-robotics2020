@@ -1,66 +1,8 @@
 ```python
-from nbev3devsim import ev3devsim_nb as eds
-import jp_proxy_widget
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
-#Load and initialise the jquery.dialogextend package
-
-cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
-cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
-module_id = "dialogExtend"
-
-# Load the module using a widget (any widget -- the module loads to the global jQuery object).
-loader = jp_proxy_widget.JSProxyWidget()
-
-# Configure the module to be loaded.
-loader.require_js(module_id, cdn_url)
-
-# Load the module
-loader.js_init("""
-    element.requirejs([module_identifier], function(module_value) {
-        //element.html("loaded " + module_identifier + " : " + module_value);
-    });
-""", module_identifier=module_id)
-loader
-```
-
-```python
-from nbev3devsim import ev3devsim_nb as eds
-
-#Reset the notebook style
-from IPython.core.display import display, HTML, Javascript
-
-#display(HTML("<style>#notebook-container { resize:vertical; border: 5px solid;  width: 300px; resize: horizontal; overflow: auto; float:left !important;}</style>"))
-display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
-%reload_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-
-roboSim.element.dialog();
-
-
-roboSim.js_init("""
-element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
-        "maximizable" : true,
-        "dblclick" : "maximize",
-        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
-""")
-
-display(roboSim)
-```
-
-```javascript
-//This allows us to resize this view
-//Click on the right hand edge to drag
-$( "#notebook-container" ).resizable({ghost: false})
-```
-
-```python
-%load_ext nbtutor
 %load_ext nbev3devsim
+%load_ext nbtutor
 ```
 
 # 3 Branches

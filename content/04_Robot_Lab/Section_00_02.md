@@ -13,10 +13,7 @@ The basic idea is that, as the robot moves forwards, the light sensor tells it i
 The behaviour of the sensors and the interpretation of the data they provide is very important when creating line-following robots and we will look at these aspects in some detail.
 
 ```python
-import sys
-sys.path.insert(0,'..')
-
-from _load_nbev3devwidget import roboSim, eds
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 %load_ext nbtutor

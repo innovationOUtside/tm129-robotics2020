@@ -1,22 +1,8 @@
 ```python
-# Run this cell to set up the robot simulator environment
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-#Load the nbtutor extension
-%load_ext nbtutor
-
-#Reset the notebook style
-from IPython.core.display import display, HTML
-
-display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
-
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
 %load_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-display(roboSim)
-roboSim.element.dialog();
+%load_ext nbtutor
 ```
 
 # 2 Dead reckoning
