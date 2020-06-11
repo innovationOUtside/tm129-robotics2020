@@ -13,72 +13,10 @@ jupyter:
 ---
 
 ```python
-from nbev3devsim import ev3devsim_nb as eds
-import jp_proxy_widget
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-#Load the nbtutor extension
-%load_ext nbtutor
-
-#https://github.com/AaronWatters/jp_doodle/blob/master/notebooks/misc/JQueryUI%20dialogextend%20plugin%20demo.ipynb
-#Load and initialise the jquery.dialogextend package
-
-cdn_url = "https://cdn.jsdelivr.net/npm/binary-com-jquery-dialogextended@1.0.0/jquery.dialogextend.js"
-cdn_url = eds.get_file_path('js/jquery.dialogextend.js')
-module_id = "dialogExtend"
-
-# Load the module using a widget (any widget -- the module loads to the global jQuery object).
-loader = jp_proxy_widget.JSProxyWidget()
-
-# Configure the module to be loaded.
-loader.require_js(module_id, cdn_url)
-
-# Load the module
-loader.js_init("""
-    element.requirejs([module_identifier], function(module_value) {
-        //element.html("loaded " + module_identifier + " : " + module_value);
-    });
-""", module_identifier=module_id)
-loader
-
-```
-
-```python
-from nbev3devsim import ev3devsim_nb as eds
-
-#Reset the notebook style
-from IPython.core.display import display, HTML, Javascript
-
-#display(HTML("<style>#notebook-container { resize:vertical; border: 5px solid;  width: 300px; resize: horizontal; overflow: auto; float:left !important;}</style>"))
-display(HTML("<style>#notebook-container { width:50%; float:left !important;}</style>"))
-
-#Launch the simulator
-from nbev3devsim import ev3devsim_nb as eds
-%reload_ext nbev3devsim
-
-roboSim = eds.Ev3DevWidget()
-
-roboSim.element.dialog();
-
-
-roboSim.js_init("""
-element.dialog({ "title" : "Robot Simulator" }).dialogExtend({
-        "maximizable" : true,
-        "dblclick" : "maximize",
-        "icons" : { "maximize" : "ui-icon-arrow-4-diag" }});
-""")
-
-display(roboSim)
-```
-
-```javascript
-//This allows us to resize this view
-//Click on the right hand edge to drag
-$( "#notebook-container" ).resizable({ghost: false})
-```
-
-```python
-%load_ext nbtutor
 %load_ext nbev3devsim
+%load_ext nbtutor
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -102,72 +40,116 @@ Select the `Loop` background which loads the robot in to the centre of a large r
 
 The following `Stay_inside` program causes the robot moves forwards until its light sensor detects the black contour, at which point the robot reverses direction. When it encounters the contour again it changes direction. In this way the robot shuttles backwards and forwards inside the contour indefinitely.
 
-Run the code cell to load the program into the simulator, then click on the simulator *Run* button; hhen you are ready to stop the program, click on the simulator *Stop* button.
+Run the code cell to load the program into the simulator, then click on the simulator *Run* button; when you are ready to stop the program, click on the simulator *Stop* button.
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded
+%%sim_magic_preloaded --background Loop
 
-# Stay inside
+# Program to stay inside a bounded area
+
+# Start to drive forwards
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
-    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 40:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity_pc))
+
+    if colorLeft.reflected_light_intensity_pc < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
-        # drive in a turn for 2 rotations of the outer motor
+
+        # Drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+
+        # Drive forwards again
         tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
-At the start of the program, a `#` sign identifies the line as a comment line, in this case giving a very concise statement of the objective of the programme. Comments are "free text" areas that are not exeucted as lines of Python code. As such, they can be used to provide annotations or explanations of particular parts of the programme, or "comment out" lines of code that are unnecessary.
+At the start of the program is some so-called *IPython magic* which is prefixed by one (`%`) or two (`%%`) signs. The `%%` prefixed magic is a cell magic that is used to modify the behaviour of the contents of the whole cell.
 
-The program starts by using a "tank drive" to drive the robot forwards at about half it's full speed (the left wheel and the right wheen are both powered on at 50% of their maximum speed).
+```python
+%%sim_magic_preloaded
+```
+
+In this case, the magic identifies the cell as one which is being used to download code to the simulator, as well as optionally configure it. 
+
+The next two lines are comments:
+
+```python
+# Program to stay inside a bounded area
+
+# Start to drive forwards
+```
+
+For these lines, a `#` ("hash" or, in American English, a "pound") sign identifies the line as a comment line; in this case, the first line gives a very concise statement of the objective of the programme, the second describes what an actual line of code is intended to do. Comments are "free text" areas that are not executed as lines of Python code. As such, they can be used to provide annotations or explanations of particular parts of the programme, or "comment out" lines of code that are unnecessary.
+
+The control program properly starts by using a "tank drive" to drive the robot forwards at about half its full speed (the left wheel and the right when are both powered on at 20% of their maximum speed).
+
+```python
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+```
 
 The `while True:` command means *do everything that follows for ever (or until the user stops the program)*. The `:` is *required* and it defines what to do if the tested condition evaluates as true.
 
-The next line is indented, and starts the definition of a code block, each line of which will be executed in turn. The lines of code that define the code block are indented to the same level. If the condition evaulated by the `while` statement was not true, then the code block would not be executed.
+The next line is indented, and starts the definition of a code block, each line of which will be executed in turn. The lines of code that define the code block are indented to the same level. If the condition evaluated by the `while` statement was not true, then the code block would not be executed.
 
-The `print('Light_left: ' + str(colorLeft.reflected_light_intensity))` command prints the current value of the left light sensor, which is reading the "reflected light intensity" to the output display window. As you will see later, this value can also be viewed via a dynamically updated chart, as well as analysed "offline" in the Python notebook when the simulation run has finished.
+The `print('Light_left: ' + str(colorLeft.reflected_light_intensity_pc))` command prints the current value of the left light sensor, which is reading the "reflected light intensity", as a percentage, to the output display window. As you will see later, this value can also be viewed via a dynamically updated chart, as well as analysed "offline" in the Python notebook when the simulation run has finished.
 
-The next line in the code block, `if colorLeft.reflected_light_intensity < 40:`, compares a specific sensor reading, interpreted in a particular way, to a particular value (100). If the value is below that threshold, as it is when the robot is over the black like, the programme moves on to a new code block defined by lines of code that are further indented.
+The next line in the code block, `if colorLeft.reflected_light_intensity_pc < 40:`, compares a specific sensor reading, interpreted in a particular way, to a particular value (100). If the value is below that threshold, as it is when the robot is over the black like, the programme moves on to a new code block defined by lines of code that are further indented.
 
-On the first line of code in that new code block, the robot drives *backwards* at half speed for 2 rotations of the wheels (`tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)`). (According to the [documentation](https://python-ev3dev.readthedocs.io/en/ev3dev-stretch/motors.html#ev3dev2.motor.MoveTank.on_for_rotations), *if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn*).
+Following the `if` statement, we start another new code block with another level of indentation. On the first line of code in that new code block, the robot drives *backwards* at half speed for 2 rotations of the wheels (`tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)`). (According to the [documentation](https://python-ev3dev.readthedocs.io/en/ev3dev-stretch/motors.html#ev3dev2.motor.MoveTank.on_for_rotations), *if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn*).
 
-After the robot moves backwards, there is a comment line suggesting what the next executed line of code does (`# drive in a turn for 2 rotations of the outer motor`) and then the robot turns on the spot (`tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)`).
+After the robot moves backwards, there is a comment line suggesting what the next executed line of code does (`# Drive in a turn for 2 rotations of the outer motor`) and then the robot turns on the spot (`tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)`).
 
-Finally, the robot is set to drive forwards again (`tank_drive.on(SpeedPercent(50), SpeedPercent(50))`) and the sequence is repeated, with the programme control flow looping back to the while statement and then working through each step in turn again. While the sensor reading is above 100, the robot keeps going. Every time it "sees" the black contour it reverses the direction of the motors, and then turns ebfore driving forwards again. In this way the simulated robot shuttles backwards and forwards, staying inside the area defined by the contour.
+Finally, there is another code explaining comment — `# Drive forwards again` — and then robot is set to drive forwards again: `tank_drive.on(SpeedPercent(50), SpeedPercent(50))`)
+
+The control flow initiation by the `while` loop then causes the sequence to repeat, with the programme control flow looping back to the while statement to check the sensor reading, and then working through each step in turn again. While the sensor reading is above 100, the robot keeps going. Every time it "sees" the black contour it reverses the direction of the motors, and then turns before driving forwards again. In this way the simulated robot shuttles backwards and forwards, staying inside the area defined by the contour.
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+### Activity - Simulated vs. Real Robots
 
 How do you think the simulated robot in this activity compares with a real robot?
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Double click this cell to edit it and enter your thoughts here, then "Run" this cell to return it to the styled / rendered HTML view.*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+#### My thoughts on how a real robot might compare
+
+*Click the arrow in the sidebar to reveal my answer.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+The following video clip shows a simple Lego robot executing the `Stay_inside` program discussed above.
+
+A the real robot may not shuttle backwards and forwards as precisely as the simulated robot. Real robots are "noisy", but not just in terms of the sound they make. There is also "noise" in their mechanical gearing and control: the motors don't go at precisely the expected speed, the gears may not mesh perfectly, the wheels may slip or skid, and the sensors do not give instantaneous or perfect readings.
+
+In other words, real robots may have sloppy and relatively unpredictable mechanisms so that the same control commands from the same initial position may result in a variety of outcomes. For this reason, the RoboLab simulator has a noise feature that allows you to set random variations to the motor speeds and sensor readings. This "noise" makes the simulated robot behave more realistically. It will be used in later RoboLab sessions. 
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
 ### Viewing the stay inside test on a real robot
 
+__TO DO: should we try to have a video of an EV3 executing the same programe (ideally), or an equivalent one?__
+
 <br/><br/>
 <div class='alert-danger'>TO DO: the programmes should work on an EV3 running [`python-ev3dev`](https://python-ev3dev.readthedocs.io/). A [Visual Studio Code extension for browsing ev3dev devices](https://github.com/ev3dev/vscode-ev3dev-browser) seems to provide an environment for running the `python-ev3dev` code on a real robot which is perhaps something worth exploring. *Note that VS Code can also run notebooks, although I'm not sure if the simulation widget will run in that environment.*</div>
 <br/><br/>
-
-The following video clip shows a simple Lego robot executing the `Stay_inside` program discussed above. 
-<!--MEDIACONTENT--><!--ENDMEDIACONTENT-->
-You will notice that the real robot does not shuttle backwards and forwards as precisely as the simulated robot. Real robots are ‘noisy’, but not just in terms of the sound they make. There is also ‘noise’ in their mechanical gearing and control: the motors don’t go at precisely the expected speed, the gears may not mesh perfectly, the wheels may slip or skid, and the sensors do not give instantaneous or perfect readings.
-
-In other words, real robots may have sloppy and relatively unpredictable mechanisms so that the same control commands from the same initial position may result in a variety of outcomes. For this reason, the RobotLab simulator has a noise feature that allows you to set random variations to the motor speeds and sensor readings. This ‘noise’ makes the simulated robot behave more realistically. It will be used in later Robot Lab sessions. 
-
-
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
 ## Using Less Magic...
 
-In the previous program, the `tank_drive` and `tank_turn` elements are predefined by our use of the `%%sim_magic_preloaded` magic. This really is a bit like magic, because it allows us to write Python code that would not ordinarliy be valid code. The magic itself defines some essential Python code that is *prepended* (that is, added to the start of) out programme code before it is downloaded to the simulated robot.
+In the previous program, the `tank_drive` and `tank_turn` elements are predefined by our use of the `%%sim_magic_preloaded` magic. This really is a bit like magic, because it allows us to write Python code that would not ordinarliy be valid code. In the background, the magic itself defines some essential Python code that is *prepended* (that is, added to the start of) out programme code before it is downloaded to the simulated robot.
 
 The following code cell uses a slightly less powerful magic, `%%sim_magic_imports`, that still masks some of the complexity in creating a valid Python programme although in this case it does require you to define the `tank_turn` and `tank_move` statements in turns of slightly lower level building blocks.
 
 As with the `Move_a_robot` programme, the `MoveSteering` and `MoveTank` commands are commands provided the `ev3dev` Python package and then configured to use particular outputs on the (simulated) robot (`OUTPUT_B` and `OUTPUT_C`).
 
-In addition, the light sensor is defined using the `ColorSensor` command to confgure the sensor attached to `INPUT_2` as a colour sensor. The light sensor is shown as small white circle contained within a grey square on the simulated robot.
+In addition, the light sensor is defined using the `ColorSensor` command to configure the sensor attached to `INPUT_2` as a colour sensor. The light sensor is shown as small white circle contained within a grey square on the simulated robot.
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
@@ -182,21 +164,31 @@ colorLeft = ColorSensor(INPUT_2)
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
-    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 40:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity_pc))
+    if colorLeft.reflected_light_intensity_pc < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
         # drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
         tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 ```
 
+__TO DO: I have some magic, [`nb_cell_diff`](https://github.com/innovationOUtside/nb_cell_diff), that displays the differences between code cells, which could be used to show how the contents of this cell differ from the contents of the previous cell; it doesn't work properly with magicked cells yet, but I'll fix that next time I get a chance to look at that extension's code.__
+
+```python
+# example of differ not quite working yet
+# also need to use the correct cell run index values
+#%pip install git+https://github.com/innovationOUtside/nb_cell_diff.git
+%load_ext nbcelldiff
+%diff_magic --compare 27,28
+```
+
 <!-- #region hideCode=true hidePrompt=true -->
 ## A Complete Python Programme
 
 
-The following code cell shows a fully defined Pyhton program. In this case, a series of "package import" statements appear at the start of the programme. Python packages are code libraries written to support particular activities.
+The following code cell shows a fully defined Python program. In this case, a series of "package import" statements appear at the start of the programme. Python packages are code libraries written to support particular activities.
 
-The core Python language includes a variety of packages that are distributed as part of the Python language, but additional packages can be written using core Python langauge elements, *or* Python commands imported from other additional packages, to build every moe powerful commands.
+The core Python language includes a variety of packages that are distributed as part of the Python language, but additional packages can be written using core Python language elements, *or* Python commands imported from other additional packages, to build ever more powerful commands.
 
 In particular, the Python `ev3dev` package provides a range of language constructs that allow us to write a Python programme that can work with a Lego EV3 brick running the `ev3dev` operating system, or our `nbev3devsim` simulated robot.
 
@@ -218,8 +210,8 @@ colorLeft = ColorSensor(INPUT_2)
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
-    print('Light_left: ' + str(colorLeft.reflected_light_intensity))
-    if colorLeft.reflected_light_intensity < 40:
+    print('Light_left: ' + str(colorLeft.reflected_light_intensity_pc))
+    if colorLeft.reflected_light_intensity_pc < 40:
         tank_drive.on_for_rotations(SpeedPercent(-50), SpeedPercent(-50), 2)
         # drive in a turn for 2 rotations of the outer motor
         tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
@@ -231,31 +223,31 @@ while True:
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
-In this activity you will experiment with a light sensor.
+One of the things that distinguishes robot control programmes from many other sorts of programme is that robots typically have a range of *sensors* available to them, and readings taken from these sensors can be referenced from within the robot control programme.
 
-<br/><div class='alert-success'>To make it easier to see what's going on, click on the code cell that is used to display the simulator and use the notebook toolbar up/down arrows to move the cell down to this part of the notebook, closer to the code cells we will be using to download new programmes into the simulator.</div>
-
-<br/><div class='alert-warning'>We need to think about making a more workable UI, within the constraints of limited time and skill available to spend on that issue right now... Which is to say, suggestions are welcome, but without PRs, they may may well `> /dev/null`...</div>
+In this activity you will experiment with a simulated downward light sensor that can take readings from the simulator world background as it drives over it.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
 This is similar to the Lego light sensor:
 
-TO DO image: *A Lego light sensor. This is a blue Lego brick, 4 x 2 studs in size with a wire emerging from one end. At the other end, two small lenses are visible. One is clear – this is the light sensor itself. Next to it is a red LED which can be used as a light source to illuminate a surface so that the sensor measures light reflected from the surface rather than ambient light levels.*
+
+![*A Lego light sensor. This is a custom packaged sensor with a Technic lego connector on the base. Two small lenses are visible in the front face of the sensor brick. A large clear lens is the light sensor itself. Below it is a lens that can be used as a light source to illuminate a surface. The light sensor then measures light reflected from the surface rather than ambient light levels.](../images/ev3_light_sensor.png)
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
-In the simulator, load in the *Grey bands* backgorund, which displays a white background overlaid by four grey bars of different in intensity, ranging from a pale grey to black.
+In the simulator, load in the *Grey_bands* background, which displays a white background overlaid by four grey bars of different in intensity, ranging from a pale grey to black.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
 The simulated robot drives over the background, logging the light sensor data as it does so.
 
-Here's the complete programme:
+Here's the complete programme. Note that in this case, the magic actually defines which background to load into the simulator.
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic
+%%sim_magic --background Grey_bands
+
 # Sensor_sim
 from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -268,21 +260,22 @@ colorLeft = ColorSensor(INPUT_2)
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
-    print('Colour: ' + str(colorLeft.reflected_light_intensity ))
+    print('Colour: ' + str(colorLeft.reflected_light_intensity_pc ))
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
-We can also use the `%%sim_magic_preloaded SIMULATOR` magic to preload the drive and sensor configurations and references to minimise the clutter in *our* code, whilst remembering that it is still required for the programme to run, and will be loaded in automatically by the magic:
+We can also use the `%%sim_magic_preloaded` magic to preload the drive and sensor configurations and references to minimise the clutter in *our* code, whilst remembering that it is still required for the programme to run, and will be loaded in automatically by the magic:
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded
+%%sim_magic_preloaded --background Grey_bands
+
 # Sensor_sim preloaded
 
 tank_drive.on(SpeedPercent(50), SpeedPercent(50))
 
 while True:
-    print('Colour: ' + str(colorLeft.reflected_light_intensity ))
+    print('Colour: ' + str(colorLeft.reflected_light_intensity_pc ))
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -291,21 +284,31 @@ Download either variant of the program to the simulator and run it, stopping the
 As the programme runs, you should notice that that a sequence of logged data values from the sensor are displayed in the output window. If you scroll up through the display in that window you should notice that the sensor values changed as the robot crossed over each grey line.
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
-### SAQ TO DO
+<!-- #region hideCode=true hidePrompt=true activity=true -->
+### Activity
 
 What value does the sensor give when the robot is placed on the white background? What sensor values are returned for when the light sensor is over the light grey, medium grey, dark grey and black bands?
 
 Do you notice anything strange about the sensor values, particularly when the robot encounters or leaves a particular band?
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region student=true -->
+Double click this cell to edit it and add your recorded sensor values here:
+
+- white background:
+- light grey band: 
+- medium grey band:
+- dark grey band: 
+- black band: 
+<!-- #endregion -->
+
+<!-- #region hideCode=true hidePrompt=true activity=true heading_collapsed=true -->
 #### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 I get the following readings for the reflected light intensity readings from the light sensor:
 
 - white background: `100`
@@ -317,15 +320,16 @@ I get the following readings for the reflected light intensity readings from the
 There is some "noise" in the form of intermediate values as the robot goes into and leaves the band. This is because the sensor has a "width" so it may be averaging readings where part of the sensor is over the white background and part of it is over the coloured band.
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
-## Activity - Viewing the Logged Data - The Simulator Datalog Chart Display
+## Viewing the Logged Data Using a Chart Display
 
-As well as displaying the logged data values using the output display, the print messages are parsed and used to extract data values so that they can be displayed on a dynamically updated line chart.
+As well as taking the sensor readings directly, we can also read them from a chart created in real time from the logged data.
+
+By monitoring the output display for print messages that log sensor outputs using a particular message format, particular messages can be automatically parsed and used to extract data values so that they can be displayed on a dynamically updated line chart.
+
+<!-- #region hideCode=true hidePrompt=true activity=true -->
+### Activity
 
 Enable the data charter by clicking the *Show chart* check box in the simulator and then check the *Colour* trace checkbox.
-
-*TO DO - need a better way to set and handle traces?*
-
 
 Reset the start location of the robot either by dragging it back to the start or clicking the *Move* button to reset the original location for the current simulator setup.
 
@@ -334,13 +338,23 @@ Run the simulator programme again until the robot has crossed over all the lines
 From the chart, can you read off the values for each band?
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region student=true -->
+Double click this cell to edit it and add your recorded sensor values here:
+
+- white background:
+- light grey band: 
+- medium grey band:
+- dark grey band: 
+- black band: 
+<!-- #endregion -->
+
+<!-- #region hideCode=true hidePrompt=true activity=true heading_collapsed=true -->
 ### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 The following diagram shows the result of showing the real time data logging chart:
 
 ![The simulator Data log window, with a graph showing sensor data. The graph has a vertical axis with a scale that runs from 0 to 250, and a horizontal axis that runs from 0 to 400. A line chart is plotted showing successive sensor readings. Reading the graph from left (the first sensor reading) to right (the last sensor reading), the line is horizontal at a y-value of 255 until an x value of about 100, followed by a drop to about 220 until about x=145, at which point it climbs steeply back up to y=255, remaining at that level until about x=190. There is a further sharp drop to about (x, y) equal to (190, 210), then back up to to 255 at about x=225, until another edge at about x=280 down to (280, 130); the chart then goes back up from about (320, 130) to (321, 255), then down to y=0 at about x=360, staying then until x is almost 410, at which point the line climbs back up to 255 , stays there for a short while, and the trace ends.](../images/Section_00_03_-_charting.png)
@@ -359,8 +373,6 @@ If you hover your cursor over the chart, all the recorded trace values at that x
 
 *(You may have noticed that the simulation running in a slightly more "stuttery" way than when the chart is not displayed as your computer has to do more work in terms of dynamically updating the chart.)*
 
-*TO DO - I think the chart may also be checking all the sensor values and perhaps forcing them to be calculated? Need to optimise this to only calculate and plot values that are actually being logged.*
-
 *TO DO - should we experiment with generating text descriptions of charts, eg as per [Automatically Generating Accessible Text Descriptions of Charts](https://blog.ouseful.info/2016/04/29/first-thoughts-on-automatically-generating-accessible-text-descriptions-of-ggplot-charts-in-r/)?*
 <!-- #endregion -->
 
@@ -369,7 +381,7 @@ If you hover your cursor over the chart, all the recorded trace values at that x
 
 As well as inspecting the data log values in the simulator output window and via the embedded datalog chart, we can also export the logged data from the simulator into the Python enviornment used by the notebook. This then allows us to analyse and chart the data within a complete Python environment.
 
-*TO DO - should we have some magic to get data out of the datalog?*
+__TO DO - should we have some magic to get data out of the datalog?__
 
 The following code cell shows how to access the datalog from the simulator in the notebook's Python environment. The *pandas* package is a very powerful package for working with tabular data.
 
@@ -379,19 +391,11 @@ Run the following code cell to grab the data from the datalog as a tabular datas
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-#roboSim.results_log
-import pandas as pd
-
-def get_dataframe_from_datalog(datalog):
-    """Generate a datafrome from simulator datalog."""
-    df = pd.DataFrame(datalog)
-    if not df.empty:
-        df = df.melt(id_vars='index').dropna()
-        df['index'] = pd.to_timedelta(df['index']-df['index'].min())
-    return df
-
 #Grab the logged data into a pandas dataframe
-df = get_dataframe_from_datalog(roboSim.results_log)
+data = roboSim.results_log
+
+#Create a tabular dataframe from the data
+df = eds.get_dataframe_from_datalog(data)
 
 #Preview the first few rows of the dataset
 df.head()
@@ -408,8 +412,22 @@ If we had additional sensors identified using different *variable* values, such 
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
+# Load in the seaborn charting package
 import seaborn as sns
-ax = sns.lineplot(x="index", y="value", hue='variable', data=df)
+
+# Generate a line chart from the datalog dataframe
+ax = sns.lineplot(x="index",
+                  y="value",
+                  # The hue category defines line color
+                  hue='variable',
+                  data=df)
+```
+
+<div class='alert alert-warning'>If you have run the robot programme several times, the datalog will contain data from each of the runs. To ensure the datalog only contains data from a particular run, run the command `roboSim.clear_datalog()` in a notebook code cell before running the programme in the simulator, run the programme in the simulator to collect the data, and then grab them data into a datframe</div> 
+
+```python
+# Running this code cell will clear the robot's datalog
+roboSim.clear_datalog()
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -420,13 +438,21 @@ Note that in passing parameter values to the `lineplot()` function, we can use e
 As well generating charts using just the *seaborn* package, we can build up charts from several layers of data display. The following chart is constructed from a seaborn `FacetGrid` chart, which generates one line chart per sensor (as identifed from the `row="variable"` parameter), and then overplots individual `x` markers, one per datapoint, using the a `matplotlib` plotting function.
 
 <br/>
-<div class="alert-warning"><em>matplotlib</em> is a relatively low level charting library that gives us more control over simple items that make up a chart. The <em>seaborn</em> package is itself built up from simpler <em>matplotlib</em> components.</div>
+<div class="alert-warning"><em>matplotlib</em> is a relatively low level charting library that gives us more control over simple items that make up a chart. The <em>seaborn</em> package is itself built up from simpler <em>matplotlib</em> components and provides "higher level" charting functions that allow us to create different chart types in a natural way from *pandas* dataframes..</div>
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
 import matplotlib.pyplot as plt
 
-g = sns.FacetGrid(df, row="variable", height=5, aspect=2, sharey=False)
+# A FacetGrid is a facetted display arranged in a grid
+g = sns.FacetGrid(df,
+                  row="variable", 
+                  height=5,
+                  # Set the aspect ratio of the grid
+                  aspect=2,
+                  # Declare whether we want common y-axes
+                  sharey=False)
+
 g = g.map(plt.plot, "index", "value", marker="x");
 ```
 
@@ -435,18 +461,9 @@ Starting from the left-hand side, each blue `x` point represents a sensor readin
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
-TO DO - how do we clear the datalog [[related issue](https://github.com/innovationOUtside/nbev3devsim/issues/7)]:
-
-- just on the py side?
-- on the py side and the js side just from the py side?
-- just on the js side from the simulator?
-- on both js and py side from the simulator?
-<!-- #endregion -->
-
-<!-- #region hideCode=true hidePrompt=true -->
 ## Robots that speak
 
-As well as moving about the simulated world, the robot can also affect the state of the world by making a noise it. In particular, we can get the robot to speak by using a function from the `playsound` package (created as a custom package for use in this module in the javascript Skulpt/Pyhton environment): `playsound.say()`.
+As well as moving about the simulated world, the robot can also affect the state of the world by making a noise it. In particular, we can get the robot to speak by using a function from the `playsound` package (created as a custom package for use in this module in the javascript Skulpt/Python environment): `playsound.say()`.
 
 Run the following code cell to download the programme to simulator and then run it in the simulator. Does it say hello?!
 <!-- #endregion -->
@@ -469,16 +486,24 @@ Can you also get the robot to say hello to you using your own personal name?
 <!-- #region hideCode=true hidePrompt=true -->
 ## Robots That Count
 
-That's a good start to gettig the robot to speak, but can we do something more elaborate?
+That's a good start with regards to getting the robot to speak, but can we do something more elaborate?
 
 How about counting up from 1 to 5?
 
-The Python `range()` function can be used to generate a iterator over a series of integers that cover a certain range:
+The Python `range()` function can be used to generate an iterator (a loopy thing...) over a series of integers that cover a certain range:
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
 range(5)
 ```
+
+We can enumerate the contents of an enumerator by casting it to an explicit list of values:
+
+```python
+list(range(5))
+```
+
+<div class='alert alert-warning'>You'll see that by default, the list of values returned from the `range()` starts is the index value `0`. The value `0` is conventionally used to represent the first index value in a series because it quite often makes lots of other things easier...</div>
 
 <!-- #region hideCode=true hidePrompt=true -->
 We can use a `for` loop to iterate through the range, displaying each value within the range using a `print()` statement:
@@ -487,14 +512,6 @@ We can use a `for` loop to iterate through the range, displaying each value with
 ```python hideCode=true hidePrompt=true
 for i in range(5):
     print(i)
-```
-
-<!-- #region hideCode=true hidePrompt=true -->
-We can also inspect the values by casting the range interator to a list:
-<!-- #endregion -->
-
-```python hideCode=true hidePrompt=true
-list(range(0,5))
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -537,7 +554,7 @@ We then add a step of $10$ to get the next value ($10$).
 
 Adding another step of $10$ gives us the next number in the range: $20$.
 
-If we now try to add another $10$, that gives us a total of $30$, which is *outside* the upper range of $N-1$, and so that number os not returned as within the range.
+If we now try to add another $10$, that gives us a total of $30$, which is *outside* the upper range of $N-1$, and so that number is not returned as within the range.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
@@ -545,7 +562,7 @@ Now let's see if we can get our robot to count up to five in the simulator.
 
 Note that the `playsound.say()` function accepts a *string* value, so if we want it to speak a number aloud we must first cast it to a string; for example, `str(5)`.
 
-*TO DO: maybe define a "say_number()" function? Or may say more robust and error trap / cast non-strings to string values? [Related issue](https://github.com/innovationOUtside/nbev3devsim/issues/37).*
+__TO DO: maybe define a "say_number()" function? Or may say more robust and error trap / cast non-strings to string values? [Related issue](https://github.com/innovationOUtside/nbev3devsim/issues/37).__
 
 Run the following code cell to download the programme to the simulator and then run it in the simulator. What happens? Does the robot count up to five? 
 <!-- #endregion -->
@@ -560,62 +577,62 @@ for i in range(5):
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
-Although we set the range value as $5$, remember that ths means the robot will count, by default, from $0$ in steps of $1$ to $N-1$. So the robot will count $0, 1, 2, 3, 4$:
+Although we set the range value as $5$, remember that ths means the robot will count, by default, from $0$ in steps of $1$ to $N-1$. So the robot will count $0, 1, 2, 3, 4$, as we can see if we explicitly enumerate the values created by the `range()` statement:
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
 list(range(5))
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
-### Activity TO DO
+<!-- #region hideCode=true hidePrompt=true activity=true -->
+### Activity
 In the following code cell, create a `range()` statement that will creates a list of numbers from $1$ to $5$ inclusive. Use a `list()` statement to generate a list from the `range()` statement.
 
 Run the code cell to display the result so you can check your answer:
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true
 # Display a list of values [1, 2, 3, 4, 5] created from a single rannge() statement
 
 # YOUR CODE HERE
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 Now create a programme that will cause the simulated robot to count from 1 to 5 inclusive.
 
 Run the cell to download the programme to the simulator, and then run it in the simulator. Does it behave as you expected?
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true
 %%sim_magic
 # Count from 1 to 5 inclusive
 
 # ADD YOUR CODE HERE
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 Can you modify your program so that it counts from ten to one hundred, inclusive, in tens (so, *ten, twenty, ..., one hundred*)?
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true heading_collapsed=true -->
 #### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 We can display a range of values from $1$ to $5$ inclusibe by using a range command of the form `range(M, N)` where `M=1`, the initial value, and $N=5+1$, since the the range spans to a maximum value less than or equal to $N-1$:
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true hidden=true
 list(range(1, 6))
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 We can now create a programme that counts fom one to five inclusive:
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true hidden=true
 %%sim_magic
 # I can count from one to five inclusive...
 import playsound
@@ -629,11 +646,11 @@ for i in range(start_value, end_value):
     playsound.say(str(i))
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 To count from ten to one hundred in tens, we need to add an additional step value as well as the range limit values:
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true hidden=true
 %%sim_magic
 # I can count from ten to one hundred in tens...
 import playsound
@@ -657,19 +674,19 @@ Reset the robot location in the simulator, run the following cell to download th
 <!-- #endregion -->
 
 ```python hideCode=true hidePrompt=true
-%%sim_magic_preloaded
+%%sim_magic_preloaded --background Grey_bands
 # Onto a band...
 import playsound
 
 # Drive the robot slowly
 tank_drive.on(SpeedPercent(10), SpeedPercent(10))
 
-previous_value = colorLeft.reflected_light_intensity
+previous_value = colorLeft.reflected_light_intensity_pc
 
 while True:
     #Uncomment the following line if you want to see the trace of sensor values
-    #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
-    current_value = colorLeft.reflected_light_intensity
+    #print('Colour: ' + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
     if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("New band")
@@ -678,28 +695,30 @@ while True:
 ```
 
 <!-- #region hideCode=true hidePrompt=true -->
-The programme starts by turning the motors on to drive the robot forward (`tank_drive.on(SpeedPercent(50), SpeedPercent(50))`) and then taking a sample of the light sensor reading (`previous_value = colorLeft.reflected_light_intensity`).
+The programme starts by turning the motors on to drive the robot forward (`tank_drive.on(SpeedPercent(50), SpeedPercent(50))`) and then taking a sample of the light sensor reading (`previous_value = colorLeft.reflected_light_intensity_pc`).
 
-The `while True:` statement creates a loop that repeats until the programme in the simulator is manually stopped. Inside the loop, a new sample is taken of the light sensor reading (`current_value = colorLeft.reflected_light_intensity`). If the robot was on the white background on the previous iteration (`previous_value==100`) and on a band in this iteration ( and then compared to the previous value (`current_value < 100`) then declare that the robot has moved onto a band, via the output display window (`print('Onto a band...')`) and audibly (`playsound.say("New band")`).
+The `while True:` statement creates a loop that repeats until the programme in the simulator is manually stopped. Inside the loop, a new sample is taken of the light sensor reading (`current_value = colorLeft.reflected_light_intensity_pc`):
 
-The previous value variable is then updated to the current value (`previous_value = current_value`) and the programme goes round the loop again.
+If the robot was on the white background on the previous iteration (`previous_value==100`) __and__ on a band in this iteration — that is,  `and (current_value < 100)` — then the robot has moved onto a band; declare this via the output display window (`print('Onto a band...')`) and audibly (`playsound.say("New band")`).
+
+The `previous_value` variable is then updated to the current value (`previous_value = current_value`) and the programme goes round the loop again.
 <!-- #endregion -->
 
 <!-- #region hideCode=true hidePrompt=true -->
-You may notice that there is a slight delay between the robot encountering a band and saying that it has done so. This is because it takes some time to create the audio object. If we were to speed up the robot's forward motion, it would quite possibly leave one band and encounter the next before it had finished saying it had entered the first band.
+You may notice that there may be a slight delay between the robot encountering a band and saying that it has done so. This is because it takes some time to create the audio object inside the browser. If we were to speed up the robot's forward motion, it's quite possible that the robot might leave one band and encounter the next before it had finished saying it had entered the first band.
 
-*TO DO: if we queue too many audio messges, things get painful and we need to clear the speech buffer (maybe reload the page?) See [related issue](https://github.com/innovationOUtside/nbev3devsim/issues/8) for how we might start to fx this.*
+*TO DO: if we queue too many audio messages, things get painful and we need to clear the speech buffer (maybe reload the page?) See [related issue](https://github.com/innovationOUtside/nbev3devsim/issues/8) for how we might start to fix this.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 ### Activity - Announce When the Robot Has Left a Band
 
 In the code cell below, the previous robot control program has been modified so that the robot says "on" when it goes onto a band. Modify the programme further so that it also says, "off" when it goes from a band and back onto the white background.
 
-Reset the robot location, donwload the program to the simulator and run it there. Does it behave as you expect?
+Reset the robot location, download the program to the simulator and run it there. Does it behave as you expect?
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true
 %%sim_magic_preloaded
 # On and off band...
 import playsound
@@ -707,12 +726,12 @@ import playsound
 # Drive the robot slowly
 tank_drive.on(SpeedPercent(10), SpeedPercent(10))
 
-previous_value = colorLeft.reflected_light_intensity
+previous_value = colorLeft.reflected_light_intensity_pc
 
 while True:
     #Uncomment the following line if you want to see the trace of sensor values
-    #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
-    current_value = colorLeft.reflected_light_intensity
+    #print('Colour: ' + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
     if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("On")
@@ -723,17 +742,17 @@ while True:
     previous_value = current_value
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 ### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 To detect when the robot has left a band, we can check to see if it was on a band on the previous iteration of the `while True:` loop (`previous_value < 100`) and back on the white background on the current iteration (`current_value == 100`).
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true
 %%sim_magic_preloaded
 # On and off band...
 import playsound
@@ -741,12 +760,12 @@ import playsound
 # Drive the robot slowly
 tank_drive.on(SpeedPercent(10), SpeedPercent(10))
 
-previous_value = colorLeft.reflected_light_intensity
+previous_value = colorLeft.reflected_light_intensity_pc
 
 while True:
     #Uncomment the following line if you want to see the trace of sensor values
-    #print('Colour: ' + str(colorLeft.reflected_light_intensity ))
-    current_value = colorLeft.reflected_light_intensity
+    #print('Colour: ' + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
     if previous_value==100 and current_value < 100:
         print('Onto a band...')
         playsound.say("On")
@@ -758,7 +777,19 @@ while True:
     previous_value = current_value
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+### Creating Your Own Programme From Scratch
+
+You've already seen several robot control programmes in this notebook, and you now you have an opportunity to create your own from scratch.
+
+The following activity includes the skeleton of a programme based on descriptive, non-executed comments that describe what each line of the programme should do.
+
+Using comments in this way provides one way of helping you plan or design a new programme.
+
+As for the lines of code that you will need to write: you have already seen examples of similar lines in the programmes you have already encountered.
+
+Reusing lines of code copied from programmes that have used such lines successfully in previous programmes is a completely valid way of writing your own programmes.
+
+<!-- #region hideCode=true hidePrompt=true activity=true -->
 ### Activity - Count the Bands
 
 Using the previous programmes as inspiration, see if you can write a program that counts each new line as it encounters it, displaying the count to the output window and speaking the count number aloud.
@@ -770,7 +801,7 @@ Reset the location of the robot, download your program to the simulator and run 
 *Another hint: remember, the `playsound()` function must be passed a string, rather than an integer, value.*
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true
 %%sim_magic_preloaded
 # Count the bands aloud
 
@@ -800,21 +831,21 @@ Reset the location of the robot, download your program to the simulator and run 
     
 ```
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true heading_collapsed=true -->
 ### Answer
 
 *Click the arrow in the sidebar to reveal the answer.*
 <!-- #endregion -->
 
-<!-- #region hideCode=true hidePrompt=true -->
+<!-- #region hideCode=true hidePrompt=true activity=true hidden=true -->
 Using the comment skeleton as a plan for the program, we can reuse statements from the previous programmes wwith just a few additions.
 
 In the first case, we need to add a counter (`count = 0`). Inside the loop, when we detect we are on a new band, increase the counter (`count = count + 1`), display it (`print(count)`) and after casting the count to string value, speak it aloud (`playsound.say(str(count))`).
 
-Note that we could make out output display message a little bit more elaborate by constructing an output message string, such as `print("Band count is" + str(count))`. *(Unfortunately, the simulator does not support the rather more elaborate Python "f-string" formatting method.)*
+Note that we could make out output display message a little bit more elaborate by constructing an output message string, such as `print("Band count is" + str(count))`. *(Unfortunately, the simulator does not support the rather more elaborate Python "f-string" formatting method that allows variable substitution within text strings.)*
 <!-- #endregion -->
 
-```python hideCode=true hidePrompt=true
+```python hideCode=true hidePrompt=true activity=true hidden=true
 %%sim_magic_preloaded
 # Count the bands aloud
 
@@ -828,13 +859,13 @@ tank_drive.on(SpeedPercent(10), SpeedPercent(10))
 count = 0
 
 # Initial sensor reading
-previous_value = colorLeft.reflected_light_intensity
+previous_value = colorLeft.reflected_light_intensity_pc
 
 # Create a loop
 while True:
 
     # Check current sensor reading
-    current_value = colorLeft.reflected_light_intensity
+    current_value = colorLeft.reflected_light_intensity_pc
     
     # Test when the robot has entered a band
     if previous_value==100 and current_value < 100:
