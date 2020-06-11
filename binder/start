@@ -1,2 +1,0 @@
-## Run a simple webserver for the Tensorflow playground
-nohup python3 -m http.server 8999 --directory tensorflow_playground &
