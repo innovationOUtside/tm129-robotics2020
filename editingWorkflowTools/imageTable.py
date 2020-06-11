@@ -56,14 +56,14 @@ for subdir, dirs, files in os.walk(rootdir):
         for (src, alt) in _images:
             img_path = os.path.join(subdir, src)
             biglist.append([subdir, file, f'[{fpath}]({fpath})',
-                            img_path.replace(rootdir, ''), alt, f'![{alt}]({img_path})'])
+                            alt, f'![{alt}]({img_path})', img_path.replace(rootdir, '')])
 # -
 
 biglist[:2]
 
 with open('gallery.md', 'w') as f:
     f.write(tabulate(biglist,
-                     headers=['Path', 'Directory', 'Filename', 'Alt text', 'Image'],
+                     headers=['Path', 'Directory', 'Filename', 'Alt text', 'Image', 'Image Path'],
                      tablefmt='github'))
 
 # !head gallery.md
