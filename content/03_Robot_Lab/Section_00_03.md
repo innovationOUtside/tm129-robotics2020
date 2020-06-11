@@ -52,6 +52,16 @@ If you look at the robot in the simulator, you should notice that the two light 
 #%flake8_off --ignore D100
 ```
 
+```python
+# Normal display
+print("hello world")
+```
+
+```python
+# Two column display
+print("hello world")
+```
+
 #### Exploring the *Radial Grey* World
 
 Run the following code cell to download the programme to the simulator and then run it in the simulator. For now, don't pay too much attention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
@@ -61,12 +71,16 @@ Observe what happens paying particularly close attention to the trajectory the r
 Enter a new starting location in the simulator, changing the original *Y* value from `400` to the new value `600`. Click the *Move* button to move the robot to that location and run the simulator again. How does the robot move this time? 
 
 ```python
-%%sim_magic_preloaded
+%%sim_magic_preloaded -b Radial_grey
+
+def reflected_pc(reflected_val):
+    """Return reflected value (range 0..255) as percentage."""
+    return 100.*reflected_val / 255
 
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
-while ((colorLeft.reflected_light_intensity>0.05) 
+while ((colorLeft.reflected_light_intensity>5) 
        and (colorRight.reflected_light_intensity)>5):
     
     intensity_left = colorLeft.reflected_light_intensity
@@ -74,8 +88,8 @@ while ((colorLeft.reflected_light_intensity>0.05)
     
     print(intensity_left, intensity_right)
     
-    left_motor_speed = SpeedPercent(intensity_left)
-    right_motor_speed = SpeedPercent(intensity_right)
+    left_motor_speed = SpeedPercent(reflected_pc(intensity_left))
+    right_motor_speed = SpeedPercent(reflected_pc(intensity_right))
     
     tank_drive.on(left_motor_speed, right_motor_speed)
  
@@ -147,11 +161,11 @@ How does the robot's behaviour with the "cross-wired" sensors and motors compare
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
-while ((colorLeft.reflected_light_intensity>5) 
-       and (colorRight.reflected_light_intensity)>5):
+while ((colorLeft.reflected_light_intensity_pc>5) 
+       and (colorRight.reflected_light_intensity_pc)>5):
     
-    intensity_left = colorLeft.reflected_light_intensity
-    intensity_right = colorRight.reflected_light_intensity
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
     
     print(intensity_left, intensity_right)
     
@@ -172,6 +186,9 @@ How is the robot's behaviour explained by the programme this time?
 
 
 *Double click this cell to edit it and enter your explanation of why the robot behaves as it does.*
+
+
+We could also highlight tutor feedback...
 
 
 #### Answer
@@ -197,12 +214,21 @@ As before, the sensor value reports a higher reading the brighter the background
 ### Looking at the Data
 
 
-To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. The following programme streams the necessary data elements to the simulator output window.
+To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. 
+
+To start with, let's just make sure the datalog is empty:
+<!-- #endregion -->
+
+```python
+# Clear the datalog
+roboSim.clear_datalog()
+```
+
+The following programme streams the necessary data elements to the simulator output window.
 
 Run the program and observe the behavior of the traces.
 
 How do the traces differ in value?
-<!-- #endregion -->
 
 ```python
 %%sim_magic_preloaded
@@ -210,18 +236,20 @@ How do the traces differ in value?
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
-while ((colorLeft.reflected_light_intensity>5) 
-       and (colorLeft.reflected_light_intensity)>5):
+while ((colorLeft.reflected_light_intensity_pc>5) 
+       and (colorLeft.reflected_light_intensity_pc>5)):
     
-    intensity_left = colorLeft.reflected_light_intensity
-    intensity_right = colorRight.reflected_light_intensity
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print('Light_left: ' + str(intensity_left))
+    print('Light_right: ' + str(intensity_right))
     
     left_motor_speed = SpeedPercent(intensity_right)
     right_motor_speed = SpeedPercent(intensity_left)
-    
+   
     tank_drive.on(left_motor_speed, right_motor_speed)
-    print('Light_left: ' + str(intensity_left ))
-    print('Light_right: ' + str(intensity_right))
+
 ```
 
 By inspection of the traces, you should notice that one of them is always slightly higher than the other.
@@ -250,15 +278,17 @@ ax = sns.lineplot(x="index",
 ```
 
 <!-- #region -->
-# Using Ultrasound
+## Using Ultrasound
 
 
 We can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.
+<!-- #endregion -->
+
+### Activity — Using Ultrasound
 
 Load in the *Obstacles Test* background, run the following code cell to download the programme to the simulator, and then run it in the simulator.
 
 Record your observations of the the behaviour of the robot when the programme is run in the simulator with the robot starting in different positions. Based on your observations, what do sort of behaviour does the robot appear to be performing?
-<!-- #endregion -->
 
 ```python
 %%sim_magic_preloaded

@@ -34,6 +34,8 @@ The `Open Computing Lab` approach is being trialled on several Open University m
 To install the environment, use the installation instructions that are provided for students.
 <!-- #endregion -->
 
+<div class='alert alert-danger'>During the production process, and between module presentations, the Docker image used to distribute the robotics activity software may have been updated since you last used it. The online MyBinder run version of the environment will use the latest version of the environment as a matter of course. If you have previously downloaded the Docker container image to your own computer, you should regularly check to see whether it needs updates by running the command: <tt>docker pull ousefuldemos/tm129-robotics2020:latest</tt>.
+
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## The Jupyter Notebook Environment
 
