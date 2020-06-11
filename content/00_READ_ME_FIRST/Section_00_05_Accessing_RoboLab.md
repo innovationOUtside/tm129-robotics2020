@@ -27,11 +27,40 @@ You can also upload your own notebooks from the notebook homepage either individ
 
 The environment launched from MyBinder is ephemeral - it is created on demand when you click a `launch binder` button and is destroyed after a short period of inactivity.
 
-To save your work when working on MyBinder, there are two approaches you can take.
+To save your work when working on MyBinder, there are two approaches you can take:
 
-##### Using Notebook Storage
+- using browser storage;
+- downloading and uploading files.
+
+##### Using Browser Storage
+
+When running a notebook in MyBinder, on the toolbar you will see a group of three icons:
+
+![](../images/browser_storage.png)
+
+The cloud buttons with the up and down arrows can be used to save the current notebook using your web browser's file storage mechanism.
+
+Click the cloud with the down arrow (*Save to browser storage*) to save a copy of the notebook in your browser's file store. Note that you can do this even if the MyBinder session has timed out, as long as you can see the notebook in your browser.
+
+If you create another MyBinder session at a later time, and open a notebook from the notebook home page, if you remember previously having saved that notebook to notebook storage, you can press the cloud button with the up arrow (*Restore from browser storage*) to replace the copy of the notebook provided by MyBinder by default with the copy you previously saved.
+
+This is a little bit clunky, and means you have to remember that you saved a notebook to browser storage, but it works!
+
+Note also that you save the file to the storage associated with a particular browser. If you save a notebook when using a Firefox browser, the files will not be available if you later visit MyBinder using Chrome.
+
+__TO CHECK: does file storage synch across logged in instances of Chrome?__ 
 
 ##### Downloading and Uploading Files
+
+Another way of saving files is to download them to your own computer desktop and then upload then when you want to work on them again. The *Download* button will download the current notebook to you desktop. You can then upload a notebook saved to your desktop using the *Upload* button on the notebook server home page.
+
+![](../images/jupyter_notebook_upload.png)
+
+The "down" arrow button on the top right-hand side notebook homepage will zip and download *all* the files in the notebook listing, including all the files in any subdirectories / subfolders.
+
+Alternatively, if you check a single file from the notebook homepage, you can choose to selectively download just that file by clicking the *Download* button from that is displayed when you check the item.
+
+![](../images/jupyter_select_download.png)
 
 
 ### Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements
