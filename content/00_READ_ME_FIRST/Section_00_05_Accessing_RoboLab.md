@@ -77,7 +77,7 @@ Open Computing Lab environments run in a simple virtual machine known as a Docke
 
 To run an Open Computing Lab environment on your own computer, you will need to download and install the *Docker* application. Optionally, you may also choose the download the *ContainDS* application, which provides a graphical user interface for managing a Docker containers. If you do not download *ContainDS*, you can still control your Docker containers using command line commands issued from a terminal or command prompt.
 
-
+<!-- #region -->
 ### Download and Install Docker
 
 Docker is the virtualisation platform that runs the RoboLab environment. You should download and install the latest version of Docker from the [Docker website](https://www.docker.com/products/docker-desktop), following the instructions for your particular operating system:
@@ -104,6 +104,9 @@ There are two recommended ways you can run your Open Computing Lab environment:
 
 - by issuing commands on the command line from a terminal / command prompt __[CURRENTLY RECOMMENDED ROUTE]__;
 - using a Docker container management application suchs as *ContainDS*.
+
+From a command prompt / terminal, run the command `docker pull ousefuldemos/tm129-robotics2020:latest` to pull down the Docker container image from Docker Hub. If you have previously downloaded the image, this will downloaded any updated version of it.
+
 
 #### Running an Open Computing Lab Environment from the Command Line
 
@@ -195,7 +198,7 @@ The ContainDS application is a desktop application. Run it as you would any othe
 
 - Windows: launch the application __TO DO: how??__
 - MacOS: the application will be installed into your `Applications` folder. You can launch it from there, or add the application icon the Dock to make it easier to find and launch. See also: [MacOS documentation - using the Dock](https://support.apple.com/en-gb/guide/mac-help/mh35859/mac).
-
+<!-- #endregion -->
 
 ### Using ContainDS to Install the Prebuilt Open Computing Lab Container Image
 
