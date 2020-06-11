@@ -203,7 +203,7 @@ Magics also apply at the cell level. When a code cell containing magic is run, t
 - Python wrapper to Lego `ev3dev` Linux operating system
 - now also the `ev3devsim` simulator
 
-![](presentation_images/EV3DEV_Python_Simulator.png)
+![ev3devsim simulator screenshot](presentation_images/EV3DEV_Python_Simulator.png)
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "notes"} -->
@@ -383,7 +383,7 @@ https://github.com/innovationOUtside/Open_Computing_Lab_Guide
 
 -  provide module specific computational environments capable of running:
   - locally on students' own computers;
-  - on OU hosted onlines servers;
+  - on OU hosted online servers;
   - on remote third party servers;
   - on personal home servers (eg Raspberry Pi).
 <!-- #endregion -->
