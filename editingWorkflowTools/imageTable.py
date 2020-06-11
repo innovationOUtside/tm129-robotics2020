@@ -21,6 +21,12 @@ from tabulate import tabulate
 # - grab markdown files in subdir
 # - generate table from images in markdown file
 
+# First, let's create a function that will generate a list of images from a markdown file, given the path to the markdown file.
+#
+# Images in markdown are encoded as `![ALT_TEXT](IMAGE_FILEPATH)` or explicilty in HTML `<img />` tags. Either way, we should be able to parse them out because the approach I'm taking is to parse the markdown to HTML, then extract the `img` tags.
+#
+# The function will return a list of two tuples containing the image path and any alt text.
+
 # +
 import markdown
 from bs4 import BeautifulSoup
@@ -40,31 +46,46 @@ def get_images_from_md(fpath):
 
 # -
 
-# !ls ../content/01_Robot_Lab
+The next step is to iterate through a set of files
 
 # +
 import os
+
+def parse_file_collection(rootdir='.'):
+    """Parse all the markdown files in all the subdirs of a specified directory."""
+    biglist = []
+    for subdir, dirs, files in os.walk(rootdir):
+        if '.ipynb_checkpoints' in subdir:
+            continue
+        for file in [f for f in files if f.endswith('md')]:
+            fpath = os.path.join(subdir, file)
+            _images = get_images_from_md(fpath)
+            for (src, alt) in _images:
+                if alt:
+                    print(alt)
+                img_path = os.path.join(subdir, src)
+                biglist.append([alt, f'![{alt}]({img_path})', img_path.replace(rootdir, ''),
+                                subdir, file, f'[{fpath}]({fpath})'])
+    return biglist
+
+
+# +
 rootdir = '../content'
 
-biglist = []
-for subdir, dirs, files in os.walk(rootdir):
-    if '.ipynb_checkpoints' in subdir:
-        continue
-    for file in [f for f in files if f.endswith('md')]:
-        fpath = os.path.join(subdir, file)
-        _images = get_images_from_md(fpath)
-        for (src, alt) in _images:
-            img_path = os.path.join(subdir, src)
-            biglist.append([f'![{alt}]({img_path})', img_path.replace(rootdir, ''), alt,
-                            subdir, file, f'[{fpath}]({fpath})'])
-# -
-
+biglist = parse_file_collection(rootdir)
 biglist[:2]
 
-with open('gallery.md', 'w') as f:
-    f.write(tabulate(biglist,
-                     headers=['Image', 'Image Path',  'Alt text', 'Path', 'Directory', 'Filename' ],
-                     tablefmt='github'))
+
+# -
+
+def write_gallery_file(biglist, outfilepath='gallery.md', headers=None, typ='github' ):
+    """Generate a gallery file."""
+    with open(outfilepath, 'w') as f:
+        f.write(tabulate(biglist, headers=headers, tablefmt=typ))
+
+
+headers = ['Alt text', 'Image', 'Image Path', 'Path', 'Directory', 'Filename']
+write_gallery_file(biglist, headers=headers)
 
 # !head gallery.md
 
