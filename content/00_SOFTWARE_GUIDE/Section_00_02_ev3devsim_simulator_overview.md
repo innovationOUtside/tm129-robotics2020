@@ -1,8 +1,8 @@
 <!-- #region -->
 
-### The `ev3devsim` Simulator
+### Background: The `ev3devsim` Simulator
 
-An extension of the `ev3devsim` robot simulator will be the focus of many of the programming activities in this block. `ev3devsim` itself was inspired by (`ev3dev`)[`https://www.ev3dev.org/`], *"a Debian Linux-based operating system that runs on several LEGO® MINDSTORMS compatible platforms including the LEGO® MINDSTORMS EV3 and Raspberry Pi-powered BrickPi."* 
+An extension of the `ev3devsim` robot simulator will be the focus of many of the programming activities in this block. `ev3devsim` itself was inspired by (`ev3dev`)[https://www.ev3dev.org/], *"a Debian Linux-based operating system that runs on several LEGO® MINDSTORMS compatible platforms including the LEGO® MINDSTORMS EV3 and Raspberry Pi-powered BrickPi."* 
 
 
 Lego EV3 educational robots are widely used in all levels of education. For example, they are used in the Open University residential school course *T176 Engineering: professions, practice and skills 1*.
@@ -155,6 +155,4 @@ The robot configuration file is a JSON (Javascript Object Notation) object defin
 
 <!-- #endregion -->
 
-<br/><br/><div class='alert-warning'>In `nbev3devsim`, there is the possibility of moving the set up either to a notebook code cell, a to simple `ipywidget` configurator, or via simulator magic parameters. This is currently on the long-list of to do items. The current pop up works fine.</div>
-<!-- #endregion -->
-
+Some simulator parameters are configurable as paramters passed via the magic used to download code to the simulator. You will learn how to use these parameters in later notebooks.

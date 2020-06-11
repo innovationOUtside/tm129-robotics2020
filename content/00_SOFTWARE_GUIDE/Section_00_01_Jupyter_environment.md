@@ -34,6 +34,8 @@ Jupyter notebooks are are widely used interactive environment for writing "liter
 
 The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user-enabled extensions that can be used to customise your notebook environment.
 
+__TO DO: the actual simulator view is a bit different now, so this will need updating.__
+
 ![Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing.](../images/00_01_jupyter_nb_homepage.png)
 
 Clicking on a file of an appropriate type will open it as an interactive Jupyter notebook.

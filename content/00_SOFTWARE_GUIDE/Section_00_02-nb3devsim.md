@@ -4,7 +4,6 @@
 
 
 <!-- #region -->
-
 The `nbev3devsim` simulator is arranged slightly differently to the original `ev3devsim` simulator in order to develop a workflow that more naturally suits notebook style working.
 
 Rather than saving programmes to separate files, each individual robot simulator programme is defined within its own notebook code cell, and can then be "downloaded" to the simulated robot. This means you can keep track of a how a programme develops by writing each version of a programme in its own code cell. 
@@ -22,39 +21,50 @@ As in `ev3devsim`, obstacles can be added to a world using a configuration file 
 The simulated robot can be dragged and placed on the simulated background and moved to a specifed location via the `Move` button (the target co-ordinates are updated when the robot is dragged to a new location). A new `Reset` button wil move the robot back to it's default location in the world.
 
 __[TO DO - would also be useful to be able to rotate the robot?]__
+<!-- #endregion -->
 
+The simulator widget is loaded into the notebook by running the following code cell:
+
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
+
+<div class='alert alert-danger'>A corresponding code cell is typically provided at the start of each robotics activity notebook. Run the cell in each case to load the simulator into the notebook.</div>
 
 
 ## 2.1 Activity: Running a program
 
-QUIck demo - get a feel for the simulator, even the `ev3devsim` one? Or maybe provide this via simple static demos as standalone HTML files? Or actually demo `nbev3devsim` here?
+Run the following code cell to download the programme to the simulator.
 
-<!-- #raw -->
+```python
+%%sim_magic
+
 # Move robot forward
-
 from ev3dev2.motor import MoveSteering, OUTPUT_B, OUTPUT_C
 
 motor_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 
 # Move robot forward for 3 seconds
-motor_pair.on_for_seconds(steering=0, speed=50, seconds=3)
-<!-- #endraw -->
+motor_pair.on_for_seconds(steering=0, speed=20, seconds=3)
+```
 
-<!-- #region -->
+When the cell is run, you should get an audible alert to inform you that the code has been successfully downloaded.
 
+In the simulator, click the *Run* button to run the programme. You should see the robot move forwards slowly for three seconds and then stop.
 
-TO DO - LINE NUMBER OPTIONS IN EDITOR?
-<!-- #endregion -->
 
 ### Show trail mode
 
 It is possible to operate the simulated robot in ‘show trail’ or ‘pen-down’ mode. This enables you to see the path the robot follows.
 
-Check the `Show trail`  button in the simulator. Run the program again to see the robot’s trail.
+Check the `Show trail`  button in the simulator. Run the program again to see the robot’s trail. (You do not need to download the progamme again.)
 
-TO DO - keyboard shortcuts would be useful.
+__TO DO - keyboard shortcuts would be useful.__
 
-TO DO - a simulator run status indicator would be useful.
+__TO DO - a simulator run status indicator would be useful.__
 
 
 ## 2.2 The Program window
@@ -75,7 +85,9 @@ from ev3dev2.motor import MoveSteering, OUTPUT_B, OUTPUT_C
 motor_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 
 # Move robot forward for 3 seconds
-motor_pair.on_for_seconds(steering=0, speed=50, seconds=3)
+motor_pair.on_for_seconds(steering=0,
+                          speed=20,
+                          seconds=3)
 ```
 
 The program may look a bit cryptic to start with, but it is built up from some very simple steps.
@@ -104,6 +116,8 @@ To see all of this working, run the program again.
 <!-- #endregion -->
 
 #### Manually Changing the Robot Configuration Settings
+
+__TO DO: should this be somewhere else? Is it out of place here? Idea is to just mention that is it possible...__
 
 The physical configuration of the robot is defined via a simple robot configuration file. You can edit this file by clicking the *Configure Robot* button in the simulator to pop-up a window containing the robot configuration settings.
 
