@@ -3,6 +3,8 @@ Repo to explore the drafting of updated robotics activities for OU module TM129.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master)
 
+Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=seminar_tm129_robotics_overview.md)
+
 An HTML version of the materials in the repo is available here: [https://innovationoutside.github.io/tm129-robotics2020/](https://innovationoutside.github.io/tm129-robotics2020/). Note that this site may lag the materials in the repo by few days...
 
 This repository defines the computing environment for the practical activities for the 20J update to the OU TM129 robotics block.
@@ -19,11 +21,15 @@ To run the environment on your own computer, you need to do the following:
 - open a terminal / command prompt in your desktop; from the command prompt, do the following:
   - create a working directory / folder to work in by entering the command: `mkdir TM129`;
   - change directory into that fold by running the command: `cd TM129`;
+
   - run the command `docker pull ousefuldemos/tm129-robotics2020:latest` to pull down the Docker container image from Docker Hub; (if you have previously downloaded the image, this will downloaded any updated version of it);
-  - launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+    - *(the quotes round the volume mount cope with spaces in the `$PWD` directory path)*
   - stop (hibernate) the container with the command: `docker stop tm129test`
   - restart the container with the command: `docker restart tm129test`
-  
+ 
+*If you can help me debug the Windows invocation, that would be really useful. Please create a related issue.*
+
 When you run the `docker` command, several things will happen:
  
  - first, docker will download the container image from DockerHub (this may take some time but only happens the first time you try to run the container);
