@@ -116,13 +116,13 @@ How do you think the simulated robot in this activity compares with a real robot
 *Double click this cell to edit it and enter your thoughts here, then "Run" this cell to return it to the styled / rendered HTML view.*
 <!-- #endregion -->
 
-<!-- #region activity=true heading_collapsed=true -->
+<!-- #region activity=true -->
 #### My thoughts on how a real robot might compare
 
 *Click the arrow in the sidebar to reveal my answer.*
 <!-- #endregion -->
 
-<!-- #region activity=true hidden=true -->
+<!-- #region activity=true -->
 The following video clip shows a simple Lego robot executing the `Stay_inside` program discussed above.
 
 A the real robot may not shuttle backwards and forwards as precisely as the simulated robot. Real robots are "noisy", but not just in terms of the sound they make. There is also "noise" in their mechanical gearing and control: the motors don't go at precisely the expected speed, the gears may not mesh perfectly, the wheels may slip or skid, and the sensors do not give instantaneous or perfect readings.
