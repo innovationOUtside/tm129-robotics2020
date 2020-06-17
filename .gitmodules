@@ -1,3 +1,6 @@
 [submodule "userguidegit"]
 	path = userguidegit
 	url = https://github.com/OpenComputingLab/userguide
+[submodule "userguide"]
+	path = userguide
+	url = https://github.com/OpenComputingLab/userguide
