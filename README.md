@@ -23,7 +23,7 @@ To run the environment on your own computer, you need to do the following:
   - change directory into that fold by running the command: `cd TM129`;
 
   - run the command `docker pull ousefuldemos/tm129-robotics2020:latest` to pull down the Docker container image from Docker Hub; (if you have previously downloaded the image, this will downloaded any updated version of it);
-  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v "$PWD:/home/jovyan/notebooks"  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
     - *(the quotes round the volume mount cope with spaces in the `$PWD` directory path)*
   - stop (hibernate) the container with the command: `docker stop tm129test`
   - restart the container with the command: `docker restart tm129test`
