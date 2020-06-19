@@ -64,6 +64,7 @@ nbtutor
 git+https://github.com/innovationOUtside/nb_cell_diff.git
 
 
+nb-extension-tagstyler
 git+https://github.com/innovationOUtside/nb_extension_empinken.git
 #Not yet packaged properly:
 #git+https://github.com/innovationOUtside/nb_extension_twoCol.git
