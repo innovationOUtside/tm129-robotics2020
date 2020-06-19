@@ -23,7 +23,7 @@ To run the environment on your own computer, you need to do the following:
   - change directory into that fold by running the command: `cd TM129`;
 
   - run the command `docker pull ousefuldemos/tm129-robotics2020:latest` to pull down the Docker container image from Docker Hub; (if you have previously downloaded the image, this will downloaded any updated version of it);
-  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+  - on a Mac at least, launch the docker container by running the command: `docker run --name tm129test -p 8129:8888 -v "$PWD:/home/jovyan/notebooks"  -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
     - *(the quotes round the volume mount cope with spaces in the `$PWD` directory path)*
   - stop (hibernate) the container with the command: `docker stop tm129test`
   - restart the container with the command: `docker restart tm129test`
@@ -44,3 +44,7 @@ Any files in the local `TM129` directory on your host computer should appear in 
 ## Teaching Materials
 
 The repository also contains drafts of the practical activity teaching materials. These materials are "unpublished" and *©The Open University, 2020*; they are posted here purely to support commentary and review during development. The initial draft of the materials is essentially a recasting of the original materials and activities into a form that uses a new user environment (*Jupyter notebooks*) and new simulation environment ([`nbev3devsim`](https://github.com/innovationOUtside/nbev3devsim), based on [`ev3devsim`](https://github.com/QuirkyCort/ev3dev-sim)).
+
+## Open Computing Lab
+
+This repo is being developed according to (emerging!) *Open Computing Lab* principles. The `userguide` provides generic instruction on using *Open Computing Lab* environments.

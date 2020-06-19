@@ -205,5 +205,17 @@ A diagram which shows the graph previously described, below which a diagram show
 This is a tough lesson. What ought to be easily classified as either a black or white sensor reading is ambiguously somewhere in the middle. The value of 50% is exactly in the range that the program interprets as red. The assumption underlying the program that a sensor reading of 50% indicates red is clearly incorrect, and another approach is required.
 
 
+```python
+%%sim_magic_preloaded -b Coloured_bands
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+print(colorLeft.reflected_light_intensity)
+tank_drive.on(20, 20)
+while (colorLeft.reflected_light_intensity < 30 or colorLeft.reflected_light_intensity > 35):
+    print(colorLeft.rgb)
+    
+ 
+
+```
 
 We note that if a sampled data point falls between the values I used for my threshold settings that were intended to identify the red line, then the robot would have a "false positive" match and stop before it was supposed to.

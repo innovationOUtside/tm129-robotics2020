@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
@@ -17,6 +31,25 @@ Loops and branches are powerful constructs in programming, and they are used ext
 
 
 To illustrate the idea of a loop it is helpful to use a swimming analogy. Suppose you want to swim 20 lengths of a swimming pool. The chances are you will want to monitor your progress by keeping count of the number of lengths you complete. So, at the start, your personal counter (you) will be set to ‘0’. After one length of the pool you add 1 to your counter. You also ask yourself ‘have I done 20 lengths yet?’ If the answer is ‘no’, you ‘loop back’ to swim another length. On completion of the second length you add 1 to your counter and ask yourself the question again. If the answer is ‘no’ you loop back and repeat the process once more. You keep going like this until the answer to the question is ‘yes’, at which point you will have completed 20 lengths of the pool and the loop will end:
+
+```python
+from jp_flowchartjs.jp_flowchartjs import FlowchartWidget
+```
+
+```python
+%%flowchart_magic
+st=>start: Start
+e=>end: End
+op1=>operation: Set the count to 0
+op2=>operation: Swim a length
+op3=>operation: Add 1 to the count
+cond=>condition: Is the count less than 20?
+st(right)->op1(right)->op2(right)->op3(right)->cond
+cond(no,right)->op2
+cond(yes)->e
+```
+
+<div class='alert alert-warning'><em>An <a href=" https://github.com/adrai/flowchart.js/issues/186">issue</a> has been filed regarding the misaligned return path in he flow diagram.</em></div>
 
 
 ![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblx0QShTdGFydCkgLS0-IEJbU2V0IHRoZSBjb3VudCB0byAwXVxuXHRCIC0tPiBDW1N3aW0gYSBsZW5ndGhdXG5cdEMgLS0-IERbQWRkIDEgdG8gdGhlIGNvdW50XVxuICAgIEQgLS0-IEV7SXMgdGhlPGJyLz5jb3VudCBsZXNzPGJyLz50aGFuIDIwP31cbiAgICBFIC0tPiB8WWVzfCBDXG4gICAgRSAtLT4gfE5vfCBGKEVuZClcblx0XHRcdFx0XHQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
@@ -41,6 +74,18 @@ A flow chart for a person swimming 20 lengths of a pool. The flow chart starts w
 
 As another example, consider a person ironing clothes. The loop starts with the person looking in the basket. Then a decision has to be made: are there any clothes left? If there are, the person must go round the loop: take out an item and iron it, put it on the pile of ironed clothes, and look in the basket again. When there are no clothes left in the basket the loop ends.
 
+```python
+%%flowchart_magic
+st=>start: Start
+e=>end: End
+cond=>condition: Any clothes left in basket?
+op2=>operation: Take out item and iron
+op3=>operation: Put it on pile of ironed clothes
+st(right)->cond
+cond(yes, right)->op2
+op2(right)->op3(top)->cond
+cond(no, bottom)->e
+```
 
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKFN0YXJ0KSAtLT4gQntBbnkgY2xvdGhlczxicj5sZWZ0IGluPGJyLz5iYXNrZXQ_fVxuICAgIEIgLS0-IHxZZXN8IENbVGFrZSBvdXQ8YnIvPml0ZW0gYW5kPGJyLz5pcm9uXVxuICAgIEMgLS0-IERbUHV0IGl0IG9uIHBpbGU8YnIvPm9mIGlyb25lZDxici8-Y2xvdGhlc11cbiAgICBEIC0tPiBCXG4gICAgQiAtLT4gfE5vfCBFKEVuZCkiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKFN0YXJ0KSAtLT4gQntBbnkgY2xvdGhlczxicj5sZWZ0IGluPGJyLz5iYXNrZXQ_fVxuICAgIEIgLS0-IHxZZXN8IENbVGFrZSBvdXQ8YnIvPml0ZW0gYW5kPGJyLz5pcm9uXVxuICAgIEMgLS0-IERbUHV0IGl0IG9uIHBpbGU8YnIvPm9mIGlyb25lZDxici8-Y2xvdGhlc11cbiAgICBEIC0tPiBCXG4gICAgQiAtLT4gfE5vfCBFKEVuZCkiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
 
@@ -74,6 +119,20 @@ tank_turn.on_for_rotations(STEERING, TURN_SPEED, TURN_ROTATIONS)
 <!-- #endregion -->
 
 How much easier it would be just to give these commands once, and tell the computer to loop back to the start, repeating until the instructions have been executed four times?
+
+```python
+%%flowchart_magic
+st=>start: Start
+e=>end: End
+op1=>operation: Set counter to 0
+op2=>operation: draw side code
+op3=>operation: turn right angle code
+op4=>operation: Add 1 to counter
+cond=>condition: Is counter < 4?
+st(right)->op1(right)->op2->op3->cond
+cond(yes, right)->op2
+cond(no, bottom)->e
+```
 
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
@@ -156,11 +215,11 @@ Run the following code cell to load in the `nbtutor` magic:
 %load_ext nbtutor
 ```
 
-<!-- #region -->
 The `%%nbtutor` cell block magic can be used to prefix Python code (but *not* code intended for the simulator) we want to step through.
 
 
-__TO DO: the `nbtutor` display is low contrast and perhaps inaccessible. I started a [related issue](https://github.com/lgpage/nbtutor/issues/37) but this needs addressing somewhere.__
+<div class="alert alert-warning">The <tt>nbtutor</tt> display is low contrast and perhaps inaccessible. See <a href="https://github.com/lgpage/nbtutor/issues/37">related issue</a>.</div>
+
 
 One thing to note about the notebook environment is that if we have already created any Python variables in the current notebook, they will be displayed by default in the `%%nbtutor` visualisation.
 
@@ -169,7 +228,6 @@ We can limit the variables that are displayed by `nbtutor` by calling the magic 
 Run the following code cell to invoke the `nbtutor` widget, and then use the `Next` button in the *cell toolbar* that is created to step through each line of code in turn.
 
 Observe the progress of the control flow through the code via the two differently coloured arrows that show the next line to be executed (red line) and the previous line to be executed (green arrow). Also notice how the statement previously executed may update the value of `item` variable as a consequence of its execution.
-<!-- #endregion -->
 
 ```python
 %%nbtutor --reset --force
@@ -184,25 +242,29 @@ Did you notice how the program flow repeatedly went from the last line of the co
 
 Close the `nbtutor` cell toolbar view by clicking on the notebook toolbar `View` menu option, selecting `Cell Toolbar` and then `None`.
 
-
+<!-- #region activity=true -->
 ### Activity
 
 See if you can write a simple programme that loops through a list of days of the week, print out a message of the form 'day 1 is Monday' followed by "day 2 is Tuesday', and so on.
 
 *Hint: Python f-strings ("formatted strings" or "formatted string literals") provide a convenient way of getting the value of a variable into a string. For example, if you have a variable `day_of_week = "Monday"`, we can display a message using the construction `print(f"Today is {day_of_week}")`. The `f"..."` construction denotes the f-string. The curly brace brackets (`{..}`) contain the name of a variable whose value you want to substitute into the string. Note that f-strings are not available in the simulator's Python implementation.*
+<!-- #endregion -->
 
-```python
+```python activity=true
 # YOUR CODE HERE
 ```
 
+<!-- #region activity=true heading_collapsed=true -->
 #### Answer
 
-*Click on the arrow in the sidebar to reveal my answer*
+*Click on the arrow in the sidebar to reveal my answer.*
+<!-- #endregion -->
 
-
+<!-- #region activity=true hidden=true -->
 First I created a counter value, then I created a list containing the days of the week. Using a `for..in..` loop, I iterated through the list. Inside the loop, I incremented a counter, then displayed the required message.
+<!-- #endregion -->
 
-```python
+```python activity=true hidden=true
 counter = 0
 
 for day in ['Monday', 'Tuesday', 'Wednesday',
@@ -220,8 +282,9 @@ You may remember from the programme we use to draw a square that there was a lot
 
 Look through the code in the code cell below and predict what you think the robot will do when it runs that programme.
 
-
+<!-- #region student=true -->
 *DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the programme.*
+<!-- #endregion -->
 
 ```python
 %%sim_magic_preloaded -p
@@ -317,21 +380,26 @@ Try experimenting with you own equivalent, or unequivalent, statements in the co
 
 ```
 
+<!-- #region activity=true -->
 ### Activity
 
 Suppose Wednesday is early closing day. Building on elements from your earlier programme that displays the days of the week, modify the programme to use a `continue` statement so that it prints out the message *I could go shopping on DAY afternoon* for every day except Wednesday.
+<!-- #endregion -->
 
-```python
+```python activity=true
 # YOUR ANSWER HERE
 ```
 
+<!-- #region activity=true heading_collapsed=true -->
 #### Answer
 *Click on the arrow in the sidebar to reveal my answer.*
+<!-- #endregion -->
 
-
+<!-- #region activity=true hidden=true -->
 I used a simple `if` statement to check if it was Wednesday, and if it was, the `continue` statement passed the programme control flow back to the top of the loop *before* the programme had a chance to print out that day of the week. 
+<!-- #endregion -->
 
-```python
+```python activity=true hidden=true
 for day in ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday', 'Sunday']:
     
@@ -357,21 +425,26 @@ for item in ['one', 'two', 'three', 'fish']:
 print('All done...')
 ```
 
+<!-- #region activity=true -->
 ### Activity  - Escape from a `for...in...` loop
 
 Suppose we get weekends off. Using a `break` construct inside a `for..in...` loop, create a simple programme that takes a list containing the days of the week in order *Monday*...*Sunday* and displays the message *DAY is a workday...* for days Monday to Friday, but then breaks out of the loop when it realises it is Friday.
+<!-- #endregion -->
 
-```python
+```python activity=true
 # YOUR CODE HERE
 ```
 
+<!-- #region activity=true heading_collapsed=true -->
 #### Answer
 *Click on the arrow in the sidebar to reveal my answer.*
+<!-- #endregion -->
 
-
+<!-- #region activity=true hidden=true -->
 In this case, I display the print message before I break out of the loop using the `break` statement:
+<!-- #endregion -->
 
-```python
+```python activity=true hidden=true
 for day in ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday', 'Sunday']:
     print(f"{day} is a workday.")
@@ -429,42 +502,49 @@ Uncomment the `%%nbtutor`cell magic  by deleting the `#` symbol at the start of 
 Observe how the program flow repeatedly moves from the last line of the code inside the `while` block back up to the `while` statement, before going from the `while` statement to the final `counter` statement when the conditional tests eventually evaluate as false.
 
 
-
+<!-- #region activity=true -->
 ### Activity - Use a `while` Loop
 
 The Python `random` functon from the `random` package is capabale of generating a random number between 0 and 1, as you will see if you run the following cell repeatedly. (The package is only imported once despite multiple calls to it.)
+<!-- #endregion -->
 
-```python
+```python activity=true
 import random
 
 random.random()
 ```
 
+<!-- #region activity=true -->
 We can think of this as a coin toss, where we toss "heads" for values greater than or equal to 0.5, or tails for a random value between 0 and 1 that is less than 0.5.
 
 Write a simple while loop that tests a simulated coin toss for as long as it tosses the equivalent of "heads", printing "heads" for each successful toss.
 
 Run the code cell several times to see what happens.
+<!-- #endregion -->
 
-```python
+```python activity=true
 # Add your code here
 ```
 
+<!-- #region activity=true heading_collapsed=true -->
 #### Answer
 *Click on the arrow in the sidebar to reveal my answer.*
+<!-- #endregion -->
 
-
+<!-- #region activity=true hidden=true -->
 To test the coin toss, we are looking for a random value of greater than or equal to 0.5, which is to say, a value of `random.random() >= 0.5`.
 
 We can use this as a conditional test in a `while` loop. In the body of the loop, we print "heads" to show we are in the loop.
+<!-- #endregion -->
 
-```python
+```python activity=true hidden=true
 while random.random() >= 0.5:
     print("heads")
 ```
 
+<!-- #region activity=true hidden=true -->
 Running the cell multiple times, sometimes nothing is printed (if the "coin" flips as "tails", that is, the first random value is *less than* 0.5); at other times, we may get one or more "heads" displayed. (The most I saw in several attempts was eight heads in a row!)
-
+<!-- #endregion -->
 
 ### Infinite Loops
 
@@ -523,17 +603,19 @@ The programme works by checking the value from one of the robot's sensors, a dow
 
 Try modifying the numerical value used in the `while` conditional test and downloading and running the modified programme. Can you get the robot to stop as soomn as it encounters the second medium grey band? On the third, dark grey line? On the final, black line?
 
+<!-- #region activity=true -->
+## Open Activity: Changing a loop variable count up to 10
+<!-- #endregion -->
 
-## Activity: Changing a loop variable count up to 10
-
-
+<!-- #region activity=true -->
 As well as programming the siunulated robot to respond to a sensor value, we can also get it to count aloud.
 
 The following programme, for example, when downloaded to the simulator, will cause the robot (?!) to count aloud.
 
 Can you get the robot to count to 10, rather than 5?
+<!-- #endregion -->
 
-```python
+```python activity=true
 %%sim_magic
 
 #Counting robot...
@@ -568,6 +650,11 @@ Control flow instructions are part of the core Python language and are used in a
 <!-- #endregion -->
 
 ## Addendum
+
+The following content does not form part of the study requirement for this module and you are not required, or even expected, to refer to it.
+
+Specifically, the addendum, provides additional explanatory material that offers an insight into some of the technical issues associated with creating speech actions in a Jupyter notebook context as well as creating speech actions in a pure Python environment.
+
 
 The robot simulator speech action is built up from a Javascript function that builds on a built-in browser function for creating speech utterances. We can force the Jupyter notebook to run Javascript code in the browser from a code cell using the `%%javascript` cell magic. This means we can get the browser to "speak" by callng the browser speech functions via Javascript directly.
 

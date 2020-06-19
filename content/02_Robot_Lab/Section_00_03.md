@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
@@ -17,61 +31,48 @@ The challenges in the next notebook are more difficult and are completely option
 In the meantime, once you have finished RoboLab Session 3 I suggest you take a well-earned break before going back to the website to complete Study week 3.
 
 
-### Challenge: Moving Simon forwards
+### Challenge: Moving The Simulated Robot Forwards
 
-Write a RobotLab program to make the Simon robot move forwards for two seconds.
+Write a program to make the simulated robot move forwards for two seconds, download it to the simulator, and run it to check that it performs as required.
+
+Remember to prefix the code cell with a magic command that will download the code to the simulator.
+
+```python
+
+```
+
+### Challenge: Fitness Training
+
+Write a program to make the simulated robot move forwards a short distance and then reverse to its starting point, repeating this action another 4 times (so five traverses in all). Download the programme to the simulator and run it to check that it performs as required.
+
+Optionally extend your programme so that it speaks a count of how many traverses it has completed so far each time it gets back to the start.
+    
+__TO DO - the original material specified a portfolio activity at this point (draw a triangle); that challenge has been dropped. Do we need a replacement challenge?__
+    
+__TO DO: tutor notes / examples on how to solve these challenges.__
 
 
-### Challenge: Traversing a triangle
-<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
 
-![figure ../tm129-19J-images/tm129_portfolio_activity_32.png](../images/tm129_portfolio_activity_32.png) Please note that you must complete and submit the 'Traversing a triangle' activity as part of your ePortfolio.
-</div>
+```python
 
-Write a program to make the simulated program trace out a triangular path. Run the program in pen-down mode by checking the pen down checkbox in the simulator and grab a screenshot of the code + simulator output.
+```
 
-__TO DO: need some guidance on taking screenshots etc__
-
-
-![An outline triangle.](../images/tm129_rob_p3_f021.gif)
-
----
-
----
-
-<!-- #region -->
 ### Challenge: Making a countdown program
-Write a RoboLab program that counts down from 10 to 0 and finishes by saying ‘OK’.
 
+Write a program to make the simulated robot speak aloud a count down from 10 to 0, finishing by saying "OK". Download your programme to the simulator and run it to check that it performs as required.
 
-#### Question
+```python
 
-Would you like a hint?
-<!-- #endregion -->
+```
 
-#### Answer
+### Challenge: Fitness Training Take 2
 
-The simulator speech engine can only speak "strings" not digits. So you need to pass in numbers as a string, such as `'2'`, *not* as a literal numeric value, such as `3`. 
+In the first fitness training challenge, the robot had to cover the same distance backwards and forwards 5 times.
 
----
+In this challenge, the robot should only do three forwards and backwards traverses, but in a slightly different way. On the first, travel forwards and back a short distance; on the second , travel twice as far forward and back as the first; on the third, travel three times as far forward and back as the first.
 
+Download your programme to the simulator and run it to check that it performs as required.
 
-### Challenge: Traversing a hook
+```python
 
-Write a RoboLab program to make the simulated robot trace out the following path: going up the screen, making three turns to the right and ending up crossing its original path, as shown below.
-
-
-![A shape that looks like a squared-off ‘P’.](../images/tm129_rob_p3_f022.jpg)
-<!--ITQ-->
-
-#### Question
-
-Would you like a hint?
-
-
-#### Answer
-
-It will help to create three constants, `longTime`, `shortTime` and `turnTime`. You could make `longTime` about twice as long as `shortTime`. Use the `tank_drive()` construct for the movement up the screen. Since this is long, use the constant `longTime`. I used the `tank_turn()` command to make the robot turn for a specified number of wheel rotations.
-
----
-
+```
