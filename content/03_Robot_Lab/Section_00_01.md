@@ -1,4 +1,18 @@
-# 1 Introduction
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Introduction
 
 
 Sensors are at the heart of robotics. A machine without sensors cannot be a robot in our terms. The human body is replete with sensors. Our five external senses – sight, hearing, touch, smell and taste – and internal sensing such as balance and proprioception (body awareness) are all marvellously sophisticated.
