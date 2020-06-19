@@ -63,7 +63,7 @@ def output_response(r, aloud=False):
         speaker.say(r)
 
 
-## Talking to the computer
+# # Talking to the computer
 
 def interact(prompt, rules, default_responses, aloud=False):
     """Have a conversation with a user."""
@@ -84,7 +84,7 @@ def interact(prompt, rules, default_responses, aloud=False):
             output_response("Oh, okay. It was nice talking to you. Goodbye.", aloud)
             break
         output_response(respond(rules, _input, default_responses), aloud)
-            
+
 
 
 def respond(rules, input, default_responses):
@@ -117,9 +117,9 @@ def respond(rules, input, default_responses):
             response = response.replace('?' + variable, replacement)
     
     return response
-    
 
-## Pattern matching
+
+# # Pattern matching
 
 def match_pattern(pattern, input, bindings=None):
     """
@@ -212,7 +212,7 @@ def match_variable(var, replacement, bindings):
     return False
 
 
-## Pattern matching utilities
+# # Pattern matching utilities
 
 def contains_tokens(pattern):
     """Test if pattern is a list of subpatterns."""
@@ -240,7 +240,7 @@ def is_segment(pattern):
             and ' ' not in pattern[0])
 
 
-## Translating user input
+# # Translating user input
 
 def replace(word, replacements):
     """Replace word with rep if (word, rep) occurs in replacements."""
