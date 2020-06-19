@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # 2 Line followers
 
 In this section you will investigate how a robot can be made to follow a desired path as it navigates its environment.
@@ -130,5 +144,21 @@ while True:
 ```
 
 ```python
+%%sim_magic_preloaded
 
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+ 
+while ((colorLeft.reflected_light_intensity>5) 
+       and (colorLeft.reflected_light_intensity)>5):
+    
+    intensity_left = colorLeft.reflected_light_intensity
+    intensity_right = colorRight.reflected_light_intensity
+
+    print(intensity_left, intensity_right)
+    
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
 ```
