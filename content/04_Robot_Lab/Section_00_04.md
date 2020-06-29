@@ -12,12 +12,21 @@ jupyter:
     name: python3
 ---
 
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
+
 # 4 The design engineer as detective
 
 
 If you have never before experienced a disappointment when building systems, welcome to the world of engineering design!
 
-Design is characterised by defining *requirements*, translating these into a *specification*, generating a possible solution to the specified problem and *evaluating* the outcome. If the "solution" is not satisfactory, it is necessary to go back and try to formulate another possible solution. This is called the *design cycle* .
+If you struggled to complete the previous challenge, take heart... Solving practical engineering problems often requires several attempts as you come to understand the problem better, and sometimes realise that the problem you first thought you were trying to solve turns out not to be the actual problem at all...
+
+Even if you have identified the problem correctly, designing the solution may not be straightforwards. In many cases, design is characterised by defining *requirements*, translating these into a *specification*, generating a possible solution to the specified problem and *evaluating* the outcome. If the "solution" is not satisfactory, it is necessary to go back and try to formulate another possible solution, or maybe even check that you have This is called the *design cycle* .
 
 ```python
 # TO DO - this will be provided by installed / importable package
@@ -75,97 +84,97 @@ During the design cycle, candidate soluions are generated and evaluated. If the 
 
 In a continuous improvement design cycle, the the design may be used but it may also be reconsidered. If an improvement is found the new design may be both adopted and passed back round the cycle for further reconsideration.
 
+
+### Following the Design Cycle
+
+In the lollipop line following challenge, the system was specified according to the requirement that the robot would go all the way round the track and stop at the red bar. I generated a solution based on my 'model' of the system.
+
+When I first ran the program, my evaluation was that the system did not work: for some reason, the robot kept stopping! (Even if it had worked first time, it's possible that the solution was not very good either in terms of the way the robot behaved, or in terms of how the programme was written.)
+
+Under these circumstances, the design engineer looks for reasons why things went wrong, using all the available information. Sometimes this involves devising experiments. It's rather like being a detective, trying to piece together the solution.
+
+
+Here's the programme I used for the lollipop challenge at first:
+
 ```python
-from nbev3devsim.load_nbev3devwidget import roboSim, eds
-
-%load_ext nbev3devsim
-%load_ext nbtutor
-```
-
-*Note that things have moved on in the simulator. We can now specify a background and robot configuration as parameters to the magic ( TO DO - NOT YET AVAILABLE IN ALL MAGICS).*
-
-```python
-%%sim_magic_preloaded --background Lollipop -r Small_Robot
+%%sim_magic_preloaded --background Lollipop
 import ev3dev2_glue as glue
 
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 print(colorLeft.reflected_light_intensity)
-while (colorLeft.reflected_light_intensity < 30 or colorLeft.reflected_light_intensity > 35):
+while ((colorLeft.full_reflected_light_intensity < 30)
+       or (colorLeft.full_reflected_light_intensity > 40)):
     
-    intensity_left = colorLeft.reflected_light_intensity
+    intensity_left = colorLeft.full_reflected_light_intensity
     #intensity_right = colorRight.reflected_light_intensity
     
     print(intensity_left)
 
-    print('gs',glue.pyState())
     if intensity_left < 50:
         left_motor_speed = SpeedPercent(0)
-        right_motor_speed = SpeedPercent(20)
+        right_motor_speed = SpeedPercent(40)
     else:
-        left_motor_speed = SpeedPercent(20)
+        left_motor_speed = SpeedPercent(40)
         right_motor_speed = SpeedPercent(0)
     tank_drive.on(left_motor_speed, right_motor_speed)
  
 
 ```
 
-### Following the Design Cycle
+One of the main assumptions underlying my first program was that the colours could be separated by thresholds and that I would use a while loop to loop through some edge follower code if I didn't see red.
 
-In the current example, the system was specified according to the requirement that the robot would go all the way round the track and stop at the red bar. I generated a solution based on my 'model' of the system. When I ran it, my evaluation was that the system did not work! (Even if it had worked first time, it's possible that the solution was not very good either in terms of the way the robot behaved, or in terms of how the programme was written.)
+For the stopping decision ("have I seen red?") I checked whether or not the full/tri-band reflected light percentage was between 30% and 40%. This was based on the fact that the red line gives a full reflected light percentage of 33.3%, the solid grey background has a reading of 82.75% and the black background has a reading of 0%.
 
-Under these circumstances, the design engineer looks for reasons why things went wrong, using all the available information. Sometimes this involves devising experiments. It's rather like being a detective, trying to piece together the solution.
+But when I downloaded and ran the programme (which you can try too), the robot kept stopping on the line. So what was going on?
 
-One of the main assumptions underlying my first program was that the colours could be separated by thresholds. I decided to test this assumption to try to find out what Simon really 'sees'.
 
-The following program drives the robot forward a short way, far enough from it to cross the black line. Download and run the programme so that 
+Let's try a simple test programme to get a better idea of what the robot is actually perceiving.
+
+We'll explore the data at leisure in the notebook, so run the following code cell to clear the notebook datalog:
 
 ```python
-%%sim_magic_preloaded 
+# Clear the datalog
+roboSim.clear_datalog()
+```
+
+For our test case, we'll get the robot to turn on the spot so that the sensor crosses over the balck line and the grey background a couple of times. 
+
+Download and run the following programme in the simulator to collect sensor data as the robot spins slowly on the spot for three seconds, grabbing data into the datalog by printing it to the robot display terminal:
+
+```python
+%%sim_magic_preloaded --background Lollipop
 import time
-tank_drive.on(SpeedPercent(20), SpeedPercent(20))
+tank_drive.on(SpeedPercent(10), SpeedPercent(-10))
 
-for i in range(60):
+for i in range(150):
 
-    print('Colour: ' + str(colorLeft.reflected_light_intensity ))
+    print('Colour: ' + str(colorLeft.full_reflected_light_intensity ))
     time.sleep(0.02)
 ```
 
-Grab the data from the datalog:
+We can now grab the data from the datalog and put it into a *pandas* dataframe:
 
 ```python
 # Get the data
-#eds.sim_get_data(roboSim)
 data = roboSim.results_log
-df = eds.get_dataframe_from_datalog(data)
-# TO DO - should we simplify this so if no data is passed we pull it from self?
 
+# View is as a dataframe
+df = eds.get_dataframe_from_datalog(data)
+
+#Preview the data
 df.head()
 ```
+
+The following line converts the time stamp to a time in seconds:
 
 ```python
 df['time'] = df['index'].dt.total_seconds()
 ```
 
-Now let's plot each of those data points:
+The `cufflinks` packages adds support for plotting charts using the `plotly` package directly from *pandas* datadrames. Whilst recent updates to the *plotly* package add native support for plotly charts to pandas plotting, `cufflinks` still has some additioanl nice features that are useful for our purposes.
 
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-g = sns.FacetGrid(df, row="variable",
-                  height=5, aspect=2, sharey=False)
-g = g.map(plt.plot, "time", "value", marker=".");
-
-# This is rather obscure and relates to the structure
-# of the chart object.
-ax1= g.axes[0][0]
-ax1.axhline(y=10, ls='--');
-```
-
-*TO DO - I think plotly now has native support for pandas...*
-
-The `cufflinks` packages adds support for plotting charts using the `plotly` package directly from *pandas* datadrames.
+So let's install the `cufflinks` package:
 
 ```python
 import cufflinks as cf
@@ -176,46 +185,42 @@ We can now create a plotly chart using *markers* to identify each sensor reading
 
 ```python
 df.iplot( x = 'time', y = 'value',
-         mode='markers+lines', hspan=[(30,35)])
+         mode='markers+lines', hspan=[(30,40)])
 ```
 
-Here's a screenshot of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:
+Here's a screenshot of part of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:
 
 ![](../images/plotly_sensor_false_positive.png)
 
 
-__TO DO: should long desc text only be for partially sighted students, or does it actually make things easier for *all* students? Here's an example of using a long desc style description in the main body of the teaching material.__
-
 The vertical scale shows sensor values on a vertical y-axis scale ranging 0-85 or so (the actual readings in principle range form 0..100 per cent). The horizontal scale is a time base showing a time of 0 to 2 seconds, with a plot every 0.02s (that is, about every fiftieth of a second. The sensor readings are also joined to form a line. The line starts with high values, starting at a y value of just over 80. There is then an abrupt fall in the values until they reach a low point of 0 for 3 samples, followed by a return to the high values around 80. On the diagram, I have marked a horizontal band highlighting values between
-
-**TO DO - the sensor definition has been changed since this chart was first created. Need to revise it with current config and check we still get same sort of result. Also make a point about seeing in red and what we miss otherwise, eg red vs blue.**
 
 This chart helps to explain why my original program did not work as intended. On the right of the black line, in the transition from black to grey, the simulated robot has recorded a value of about 34, within the thresholded band value I was using to identify the red line.
 
 The sensor value is calculated as some function of the value of  several pixels in view of the sensor at any one time and it just so happens that the calculation may return a reading I had associated with the red line.
 
-In fact, the `.reflected_light()` mode is *not* a good indicator of colour at all. What happens if you run the robot over the *Coloured_bands* background, for example, logging the reflected light sensor data as you so so? (Either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.)
+If a sampled data point falls between the values I used for my threshold settings that were intended to identify the red line, then the robot would have a "false positive" match and stop before it was supposed to.
 
+In fact, the `.reflected_light` mode in either raw or percentage form or full/triband percentage form, is *not* a good indicator of colour at all.
 
-![figure ../tm129-19J-images/tm129_rob_p6_f014.jpg](../images/tm129_rob_p6_f014.jpg)
+Based on this investigation, I ended up using a different approach to to identfiy the stopping condition (that is, the presence of the red band); originally, I just tested that the red RGB component was set to 255 but then I realised that this could give a false positive if a solid yellow colour was in view of the sensor (the RGB value for yellow is `(255, 255, 0)`). So I then iterated my design again and tested that the red value was 255 and the green component was 0. (I really should extend it again to check that the blue value is also zero.)
 
+However, following the discussion at the end of the last notebook regarding noise, I think I should probably change the exact / equality test on the red value to a threshold test, such as `color_sensor.rgb[0]>250` and that the other values are less than some value (for example, `color_sensor.rgb[1]<15`) to allow for noise in the background or the sensor.
 
-A diagram which shows the graph previously described, below which a diagram shows the black line (actually shown as dark grey) highly enlarged. A series of circles is also shown starting on the pale grey background and continuing across the black line and then back on to the grey. These represent the position of the sensor each time a reading is taken, and an arrow leads from each circle indicating a sensor reading to the corresponding point plotted on the graph. Most of these circles are wholly on either the grey or the black line and produce a correspondingly high (80-95) or a low (20-30) reading. However, one circle straddles the edge of the line, so half of the interior is black and the other half grey. This produces an intermediate sensor value of 50.
+As you can see, designing a programme often requires a continual process of iterative improvement.
 
-This is a tough lesson. What ought to be easily classified as either a black or white sensor reading is ambiguously somewhere in the middle. The value of 50% is exactly in the range that the program interprets as red. The assumption underlying the program that a sensor reading of 50% indicates red is clearly incorrect, and another approach is required.
+<!-- #region activity=true -->
+## Optional Activity
 
+Download and run a programme in the simulator that drives the robot over the *Rainbow_bands* background, logging the reflected light sensor data as it does so.
 
-```python
-%%sim_magic_preloaded -b Coloured_bands
-colorLeft = ColorSensor(INPUT_2)
-colorRight = ColorSensor(INPUT_3)
-print(colorLeft.reflected_light_intensity)
-tank_drive.on(20, 20)
-while (colorLeft.reflected_light_intensity < 30 or colorLeft.reflected_light_intensity > 35):
-    print(colorLeft.rgb)
-    
+Then either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.
+
+Does the reflected light sensor data allow you to reliably identify each colour band?
+<!-- #endregion -->
+
+## Summary
  
+In this notebook you have seen how an investigative process may be required to help us better understand why an assumption we may about how our programme might work helps us better understand what it is actualy doing, or what the robot is actually perceiving.
 
-```
-
-We note that if a sampled data point falls between the values I used for my threshold settings that were intended to identify the red line, then the robot would have a "false positive" match and stop before it was supposed to.
+We have also seen how the process of design is often an iterative one in which we repeatedly refine and improve our programme as we better come to understand the problem domain and what we are actually trying to achieve.
