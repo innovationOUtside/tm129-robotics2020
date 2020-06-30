@@ -230,26 +230,58 @@ The light sensor values identified during the calibration phase helped me decide
 
 ## Coping With Noise
 
-The *Lollipop* background image used for the line following activity was made with a Python drawing package (see the `backgrounds/Background Image Generator.ipynb` notebook), and the colours are all very precise, with no variation. Real images are not like this.
+The *Lollipop* background image used for the line following activity was made with a Python drawing package (see the `backgrounds/Background Image Generator.ipynb` notebook), and the colours are all very precise, with no variation. Many real images are not like this.
 
-The *Noisy_Lollipop* background depicts the same basic environment as the original challenge, but with added noise. (You might get such a result by scanning the original background image using a poor quality scanner at low resolution, for example).
-
-If you were to zoom in to such an image and look at a  highly magnified view of it, you might see something like the following:
+For example, if we scanned the background image using a cheap scanner and you zoomed in to look at a highly magnified view of it, you might see something like the following:
 
 ![figure ../tm129-19J-images/tm129_rob_p6_f009.jpg](../images/tm129_rob_p6_f009.jpg)
 
 Each pixel is visible, but there is considerable variation in colour, for example a black line may appear as many shades of dark grey, and some pixels of the pale grey background may have a noticeable pink, green or blue distortion.
 
+Human vision is very adaptable and can usually overcome these irregularities. If you have normal colour vision you should be able to pick out the red, yellow, black and grey areas in this image easily, but it is much more difficult for a machine to do this. Poor machine vision is a major problem in the development of robots.
+
+
+### Noise from Sensors
+
+In many respects, what the robot sees is like the view a scanner has of the image, except that the robot sensor sees only a tiny part of the image at any particular time.
+
 Even if the background is a "crisp" high resolution, low noise one, such as the original, the sensor itself may perceive something more like the noisy scanned image.
 
 There are several various possible sources of such noise, including electrical noise or a fault in the sensor itself, or "optical noise" arising from shadows, or dust on the sensor. Different random amounts of noise might added separately to each of the sensor's pixel detectors which means that even if the robot is stationary, the values returned by the sensor may vary each time we sample them.
 
-Where the noise is added may be largely irrelevant: if the value returned by the sensor is affected by noise, and we can't reduce that noise, our control strategy needs to be able to cope with it.
+Where the noise is added may be largely irrelevant, for example whether it's noise "in the background" or noise added by the sensor. If the value returned by the sensor is affected by noise, and we can't reduce that noise, our control strategy needs to be able to cope with it.
 
-Human vision is very adaptable and can usually overcome these irregularities. If you have normal colour vision you should be able to pick out the red, yellow, black and grey areas in this image easily, but it is much more difficult for a machine to do this. Poor machine vision is a major problem in the development of robots.
 
-If you try to run the line-follower program using the *Noisy_Lollipop* background, you may find the programme doesn't work depending on how you defined the various thresholded decision points in your programme where the simulated robot takes a particular action based on what it (thinks it) can see.
+## The Light Sensor's Pixelated View of the World
 
+The images that form the different backgrounds in the Simulator window are made up grids of coloured squares called *pixels*. The sensor array view on the simulator shows the pixel values detected by the sensor as coloured squares of of various intensities. The colour value of each pixel is represented by an RGB value. The light sensor view is as circular as it can be given that it's made from squares!
+
+The single value returned by the light sensor is an average of the pixel values captured by the sensor. In the simulator we're using, the final sensor value is formed from the simple average taken over all the pixels in view. In other simulators, or other sensor models, a *weighted sum* may be used where we weight the contribution of the pixels nearer the centre of the sensor more highly than we do the pixels on the edges.
+
+We can increase the number of pixels read by the sensor by tuning the *diameter* of the area sensed. This is analogous to increasing the height off the ground of the light sensor on a real robot.
+
+
+### Adding Sensor Noise
+
+We can model the addition of sensor noise by using the *Light sensor noise* slider in the simulator.
+
+If you add noise using the light sensor noise slider, you should see "speckles" appearing in the sensor array view in the simulator:
+
+![Screenshot of the simulator showing the light sensor noise slider has been increased to a high value; the sensor array displays show lots of differently coloured pixels as a result of noise being added. Reducing the sensor noise level allows the pixel colour values to return the values detected from the background image.](../images/sim_sensor_noise.png)
+
+<!-- #region activity=true -->
+## Activity — Following a Line in the Presence of Sensor Noise
+
+Try rerunning your edge follower programme in the presence of sensor noise.
+
+Make some notes on what the effect (if any) is on the behaviour of your programme for increasing levels of sensor noise.
+
+*Sometimes the addition of small amounts of noise can, perhaps surprisingly, improve the behaviour of a robot...*
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Record your observations here describing how the addition of sensor noise affects the performance of your edge follower programme.*
+<!-- #endregion -->
 
 ## Summary
 
