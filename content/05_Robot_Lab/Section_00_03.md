@@ -11,7 +11,8 @@ jupyter:
     language: python
     name: python3
 ---
-```python
+
+```python pinned_outputs=[]
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
@@ -21,64 +22,116 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 # 3 Runaround
 
 
-In the story ‘Runaround’ in *I, Robot* there is an interaction between the potential due to the instruction given to collect selenium (Second Law: obey a human), and Speedy’s strong self-preservation potential (Third Law: protect its own existence). In this section you are going to see how such conflicting potentials interact in practice.
+In the Asimov short story "Runaround" in *I, Robot* there is an interaction between the potential due to the instruction given to collect selenium (*Second Law: obey a human*), and Speedy's strong self-preservation potential (*Third Law: protect its own existence*). In this section you are going to see how such conflicting potentials interact in practice.
 
-TO DO - use potential field background. I thought I had a programme for this somewhere? Hmm... in the Braitenberg case maybe? So how does that relate to this case? Should we do a finesse and have another layer - eg a light layer, that generates a gradient based layer that is invisible to viewer but visible to robot? Then we could reveal what the world looks like under that illumination?
+One way of modeling a potential map is to think of it in geographical terms, with the potential map represented as a "landscape" over an area. Areas of high potential are represented by high points in the landscape; areas of low potential are represented as valleys. We can take the modeling step one step further, and represent this landscape using a topographical map, where high points are represented by bright colours, and low areas are represented by dark colours.
 
-Open the program `Runaround`. Ensure the robot is running in pen-down mode. You may also want to turn off the program trace by choosing the `Run | Trace` menu option. If this is on, RobotLab highlights the line of code currently being executed, but this can be distracting with a long program like this.
+I was hoping to use a background that is actually generated from topographic map data (that is, geographical height data) from NASA's Shuttle Radar Topography Mission (SRTM) to model the presence of selenium deposits. "High", brightly coloured areas were to be imagined as corresponding to areas nominally rich in selenium; "low" areas correspond to areas nominally low in selenium. But the terrain was never quite as well behaved as I'd hoped it would be for the purposes of this activity, so instead we'll be using the *Radial_red* background and the *Small_Robot_Wide_Eyes* configuration.
 
-<a xmlns:str="http://exslt.org/strings" href="">Figure 3.1</a> illustrates the selenium pool, which is represented by the area coloured bright red in the centre of the image. The area of danger to the robot around the selenium pool is represented by the contour lines centred on the pool. The degree of danger is proportional to the amount of red. This decreases the further you are from the centre of the pool.
+Download and run the following program in pen down mode. What does the robot do?
+
+```python
+%%sim_magic_preloaded -b Radial_red -p -r Small_Robot_Wide_Eyes
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+# The GAIN term "amplifies" the error signal
+GAIN = 30
+
+steering_drive = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+while ((colorLeft.reflected_light_intensity_pc>0.05) 
+       and (colorRight.reflected_light_intensity_pc)>5):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    # Maybe useful for debugging
+    #print(intensity_left, intensity_right)
+    
+    # Calculate an error term that turns us towards selenium
+    error = intensity_right - intensity_left
+    
+    #Amplify the error to generate a steering correction value
+    # The min/max keeps the steering in bounds -100..100
+    correction = min(max(error * GAIN, -100), 100)
+    
+    #Steer the robot accordingly
+    steering_drive.on(correction, 20)
+    
+```
+
+<!-- #region student=true -->
+*Your notes and observations on what happens when the programme is executed.*
+<!-- #endregion -->
+
+The previous programme is based on one of the earlier Braitenberg programmes in which the robot attempts to turn towards the bright light source. This corresponds to the thing "get selenium" instruction.
+
+<!-- #region tags=["alert-success"] -->
+By inspection of the programme, you might be wondering: what happens if we set `error = intensity_left - intensity_right`? Can you make a prediction about that? Is your prediction likely to be affected by the starting point and orientation of the robot? Try it and see!
+<!-- #endregion -->
+
+But what happens if we add a further rule that causes the robot to shy away from the selenium if things are too hot?
+
+Download and the following programme and observe what happens:
+
+```python
+%%sim_magic_preloaded -b Radial_red -p -r Small_Robot_Wide_Eyes
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+# The GAIN term "amplifies" the error signal
+GAIN = 30
+
+steering_drive = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+while ((colorLeft.reflected_light_intensity_pc>0.05) 
+       and (colorRight.reflected_light_intensity_pc)>5):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    # Maybe useful for debugging
+    #print(intensity_left, intensity_right)
+    
+    # Calculate an error term that turns us towards selenium
+    error = intensity_right - intensity_left
+    
+    
+    #If we are too close, override that rule
+    # and turn the other way
+    if (intensity_right>75 or intensity_left>75):
+        error = -2*error
+    
+    
+    # If we are too close to selenium, shy away
+    if (colorLeft.reflected_light_intensity_pc > 65 or
+        colorRight.reflected_light_intensity_pc > 65):
+        error = colorLeft.reflected_light_intensity - colorRight.reflected_light_intensity
+    
+    
+    #Amplify the error to generate a steering correction value
+    # The min/max keeps the steering in bounds -100..100
+    correction = min(max(error * GAIN, -100), 100)
+    
+    #Steer the robot accordingly
+    steering_drive.on(correction, 20)
+
+```
+
+<!-- #region student=true -->
+*Record your observations here.*
+<!-- #endregion -->
+
+When the second program is run, the robot approaches the selenium deposit, then turns away then approaches it again. When I ran the programme, it started to "thrash" the robot didn't seem to know whether to turn left or right. (You may even have started to feel sorry for it...)
+
+What happens if you add some sensor noise using the slider as the programme is running? Does the addition of some some uncertainty in the sensor values help the robot make progress at all?
 
 
-![figure ../tm129-19J-images/tm129_rob_p7_f008.jpg](../tm129-19J-images/tm129_rob_p7_f008.jpg)
+## Summary
 
+Simple programmes can often lead to complex emergent behaviours. Whilst the control behaviours themselves may be simple the way they interact with the environment, which may itself be complex, can lead to a wide range of behaviours that you might never think to predict.
 
-Figure 3.1 The robot moving round the selenium field
-
-
-The simulator background for the ‘Runaround’ program. The background is black with a bright red central patch representing the selenium pool, which grades into black. The robot’s start position was at bottom right and its trail shows that it first headed for the selenium pool. Then, as it approached first it veered away to one side, then curved back again. Its trail gradually settled into a circular path at a more or less constant distance around the pool. The robot appears considerably smaller than the standard configuration; the simulator is showing events at a different scale from normal.
-
-The robot is sent out from the mining centre at the bottom right-hand corner of the image. In the story, the instruction to get selenium was rather casual, so in the program this is represented by the variable `strength_of_command`, which is set to 25%.
-
-This command interacts with the threat to self-preservation potential, which increases as the robot gets closer to the selenium pool. In the simulation, the potentials reach an equilibrium, which results in the robot going round in a circle.
-<!--ITQ-->
-
-#### Question
-
-What would happen if you increase the strength of command slightly, for example from 25% to 30%?
-
-
-#### Answer
-
-Try resetting the variable `strength_of_command` to 30%, and rerun the program. I would expect the robot to get closer to the pool, but eventually circle it at the new equilibrium distance.
-<!--ENDITQ--><!--ITQ-->
-
-#### Question
-
-What would happen if you increase the strength of command greatly?
-
-
-#### Answer
-
-Try resetting the variable `strength_of_command` to 75%, and rerun the program. 
-<!--ENDITQ-->
-Explore the code to see how Asimov’s laws have been modelled. You will see that the program as written doesn’t include Asimov’s First Law (protect human life), so it is not possible to break the impasse in the way that Powell did in Asimov’s story.
-<!--ITQ-->
-
-#### Question
-
-Does the simulated robot obey Asimov’s laws of robotics?
-
-
-#### Answer
-
-My answer would be ‘yes and no!’ 
-
-There is code that models Asimov’s Second and Third Laws and the Second Law has priority over the Third Law, so this certainly complies with Asimov’s Laws, at least in part. There is no mention of the First Law in the code, but it would not be too difficult to extend the code to model the First Law in a similar way to the others. We would have to also invent a ‘human in danger detector’ that could provide potential values to model the strength of the First Law.
-
-However, the robot doesn’t have a positronic brain and it is a long way from the sort of intelligent, adaptable robot that Asimov envisaged. A ‘human in danger’ detector doesn’t sound feasible.
-
-Perhaps the best we can say is that, given the limitations of its sensors and capabilities, this robot’s behaviour is compatible with Asimov’s laws
-
-What do you think? You might like to post your thoughts in the forums.
-<!--ENDITQ-->
+In the example programme in this notebook, you saw how two simple rules — one for turning towards the selenium, another, "higher priority" rule for turning the other way if you get too close — can also interact to create a complex behaviour from two simple sensor inputs.
