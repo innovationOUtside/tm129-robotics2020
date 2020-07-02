@@ -49,7 +49,9 @@ cond(no,right)->op2
 cond(yes)->e
 ```
 
-<div class='alert alert-warning'><em>An <a href=" https://github.com/adrai/flowchart.js/issues/186">issue</a> has been filed regarding the misaligned return path in he flow diagram.</em></div>
+<!-- #region tags=["alert-warning"] -->
+*An [issue](https://github.com/adrai/flowchart.js/issues/186"> has been filed regarding the misaligned return path in the flow diagram.
+<!-- #endregion -->
 
 
 ![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblx0QShTdGFydCkgLS0-IEJbU2V0IHRoZSBjb3VudCB0byAwXVxuXHRCIC0tPiBDW1N3aW0gYSBsZW5ndGhdXG5cdEMgLS0-IERbQWRkIDEgdG8gdGhlIGNvdW50XVxuICAgIEQgLS0-IEV7SXMgdGhlPGJyLz5jb3VudCBsZXNzPGJyLz50aGFuIDIwP31cbiAgICBFIC0tPiB8WWVzfCBDXG4gICAgRSAtLT4gfE5vfCBGKEVuZClcblx0XHRcdFx0XHQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
@@ -218,7 +220,9 @@ Run the following code cell to load in the `nbtutor` magic:
 The `%%nbtutor` cell block magic can be used to prefix Python code (but *not* code intended for the simulator) we want to step through.
 
 
-<div class="alert alert-warning">The <tt>nbtutor</tt> display is low contrast and perhaps inaccessible. See <a href="https://github.com/lgpage/nbtutor/issues/37">related issue</a>.</div>
+<!-- #region tags=["alert-warning"] -->
+The `nbtutor` display is low contrast and perhaps inaccessible. See [related issue](https://github.com/lgpage/nbtutor/issues/37).
+<!-- #endregion -->
 
 
 One thing to note about the notebook environment is that if we have already created any Python variables in the current notebook, they will be displayed by default in the `%%nbtutor` visualisation.
@@ -273,6 +277,14 @@ for day in ['Monday', 'Tuesday', 'Wednesday',
     counter += 1
     print(f"Day {counter} is {day}")
 ```
+
+<!-- #region tags=["alert-danger"] -->
+### Using Loops in Code Intended to be Downloaded and Run in the Simulator
+
+If you use a loop in code you want to download to the simulator, you need to put something in the loop that "uses up" simulator time and that allows its internal clock to proceed or you may find that your simulator Python programme get stuck and hangs the browser.
+
+Turning motors on for a specified time or rotation count, or polling sensors is one way to do this. Another way is to add an excplcit delay into the loop. For example, if you add the line `from time import sleep` to the start of your simulator programme, you can add a step `sleep(0.01)` to pause in the loop for one hundredth of a second. This gives the simulator a chance to model the progress of time in the simulated world, rather than getting stuck in very rapidly iterating loop in the code it's trying to execute.
+<!-- #endregion -->
 
 ### Using a `for..in..` Loop in a Robot Control Program
 
