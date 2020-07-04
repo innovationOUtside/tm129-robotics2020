@@ -5,6 +5,8 @@ Repo to explore the drafting of updated robotics activities for the OU module TM
 
 Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=seminar_tm129_robotics_overview.md)
 
+*(I note in passing the mybinder tab  [here](https://106-92329878-gh.circle-artifacts.com/0/html/link.html) via [here](https://github.com/jupyterhub/nbgitpuller/pull/129#issue-440572061), as well as this [WIP](https://github.com/innovationOUtside/ou-tm129-py/) on packaging py requirements via a py package.)*
+
 An HTML version of the materials in the repo is available here: [https://innovationoutside.github.io/tm129-robotics2020/](https://innovationoutside.github.io/tm129-robotics2020/). Note that this site may lag the materials in the repo by few days...
 
 This repository defines the computing environment for the practical activities for the 20J update to the OU TM129 robotics block.
