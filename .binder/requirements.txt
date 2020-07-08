@@ -75,6 +75,10 @@ durable_rules
 git+https://github.com/innovationOUtside/durable_rules_magic.git
 chatterbot==1.0.4
 
+#NN
+git+https://github.com/innovationOUtside/nb_tensorflow_playground_serverproxy.git
+git+https://github.com/innovationOUtside/nb_tensorspace_server_proxy.git
+
 # Drawing
 noisify
 drawSvg
