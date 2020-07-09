@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-# 2 Multidimensional data
+# 2 Multi-dimensional data and the MLP
 
 The neural network examples in the previous notebook were very impressive, but how do they work?
 
@@ -105,13 +105,13 @@ For example, in the figure below, a neural network that classifies fruit is show
 ](../images/tm129_rob_p8_f004.jpg)
 
 
-## Creating a SImple Neural Netwrok Model  — A Multi-Layer Perceptron (MLP)
+## Creating a SImple Neural Network Model  — A Multi-Layer Perceptron (MLP)
 
 One of the original neural network models, but one that is still relevant today, is known as a multi-layer perceptron or MLP network.
 
 The Python *scikit-learn* (`sklearn`) package supports a range of techniques for creating learned models, including an MLP and we will find it convenient use that package to train a fruit discriminating network for us.
 
-The multi-layer perceptron (MLP) network model has a certain number of input layer nodes, or *neurons*, that accept the input data; some output layer neurons that are used to represent output classes. Connecting the inputer and output layers are one or more layers of inner *hidden* neurons.
+The multi-layer perceptron (MLP) network model has a certain number of input layer nodes, or *neurons*, that accept the input data; some output layer neurons that are used to represent output classes. Connecting the input and output layers are one or more layers of inner *hidden* neurons.
 
 Let's consider how we might configure such a network that will hopefully be able to recognise, and discriminate between, our fruit examples.
 
@@ -119,19 +119,37 @@ On the input side, we need *two* nodes to represent the *long measurement* and t
 
 On the output side, in order to identify which category of fruit a set of input measurements corresponded to, we need... what?
 
+In order to train the network, we need to encode the desired response in a way that the network can represent, and present that as our training value rather than the human understandable label.
+
 The network only deals with numbers, not categorical labels (such as *Banana*, *Pear*, *Orange*, *Strawberry*) so we need to encode these values numerically. In an MLP classifier — that is, an MLP that we want to perform a classification task that assigns each set of inputs to one or more different *categorical* groups, or *classes* — we use one output to represent each separate category.
 
-Four out MLP, we will need *four* outputs, one for each class of fruit. The numbers on the output neurons range from 0 to 1. By convention, we interpret 0 to mean *not recognised* and 1 to mean *recognised*.
+For our MLP, we will need *four* outputs, one for each class of fruit. The numbers on the output neurons range from 0 to 1. By convention, we interpret 0 to mean *not recognised* and 1 to mean *recognised*.
 
-In many cases, each of the actual values of the four outputs are likley to be in the range 0..1, for example `(0.1, 0.9, 0.2, 0.1)`. In these cases, the MLP uses a *winner-takes-all* strategy in which the largest value is rounded up to 1 and the other values are reduced to zero.
+In many cases, each of the actual values of the four outputs are likely to be in the range 0..1, for example `(0.1, 0.9, 0.2, 0.1)`. In these cases, the MLP uses a *winner-takes-all* strategy in which the largest value is rounded up to 1 and the other values are reduced to zero.
 
 In our example of outputs `(0.1, 0.9, 0.2, 0.1)`, the second output would be rounded up to 1, whilst the other three outputs are reduced to 0, giving the output classification `(0, 1, 0, 0)`. The second neuron is said to have "fired" as a a result, and the network recognises that input as being associated with the class represented by the second output neuron.
-
-In order to train the work, we need to encode the desired response in a way that the network can represent, and present that as out training value rather than the human understandable label.
 
 If the second output identifies the *banana* class, then for the input `(9.5, 1.9)` the desired output would be `(0, 1, 0, 0)`. The values `(9.5, 1.9)` and `(0, 1, 0, 0)` could then be used as a "training pair" of known inputs and outputs.
 
 Trying to keep track of which outputs correspond to which categorical label can be a bit fiddly, particularly with large numbers of categories, so it's rather handy that the `sklearn` MLP function just lets us pass in the categorical label values and it works out the output layer mappings for us.
+
+For this reason, as well as the need to generate features derived from the original input image that can be fed into the network, we typically think of the network as part of a wider system. This system takes the original input, passes it thorough a *pre-processor* that transforms the input into a form that can be fed into the network, runs it through the network, and then passes the output through a *post-processor* that turns the output into something human readable:   
+
+```python
+%load_ext blockdiag_magic
+```
+
+```python
+%%blockdiag
+
+A [label = "Pre-processor"];
+B [label = "Neural Network"];
+C [label = "Post-processor"];
+
+A -> B -> C;
+```
+
+## Training a Simple MLP Using `sklearn`
 
 The code below will load a set of training pairs of data based on the fruit measurement data into a *pandas* dataframe.
 
@@ -240,9 +258,13 @@ Our network really isn't very good, is it?!
 
 Let's see if we can improve things by tweaking the network parameters, such as the hidden layer sizes (`h1` and `h2`) and the maximum number of training iterations.
 
-Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and the displays the classification report and confusion matrix as your do so.
+<!-- #region activity=true -->
+### Activity — Interactively Training the Network
 
-```python
+Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and the displays the classification report and confusion matrix as your do so.
+<!-- #endregion -->
+
+```python activity=true
 from ipywidgets import interact
 
 fruit = None
@@ -262,14 +284,21 @@ def trainer(iterations=2000, h1=6, h2=6):
     print(confusion_matrix(df['Fruit'], predictions))
 ```
 
-When you think you have trained your network well, let's see how it does with some new examples. RUn the following code cell to test the network on some previously unseen examples:
+<!-- #region activity=true -->
+When you think you have trained your network well, let's see how it does with some new examples. Run the following code cell to test the network on some previously unseen examples.
+<!-- #endregion -->
 
-```python
+```python activity=true
 fruit.predict([[7.5, 1.0], [2.0, 1.5], [6.0, 2.5], [4.0, 4.0]])
 ```
 
-How did it do? (I'm hoping you could work out which fruit was which from the numbers!)
+<!-- #region activity=true -->
+How did your network do? (I'm hoping you could work out which fruit was which from the numbers!)
+<!-- #endregion -->
 
+<!-- #region student=true -->
+*Record your observations about how effectively the network worked hear, as well as any other reflections you have about how the parameter changes affect the performance of the network.*
+<!-- #endregion -->
 
 ### Visualising the Network Structure
 
@@ -289,45 +318,83 @@ Based on the structure of the weights, does it look like there may be any redund
 
 Note that each time you train the network from scratch, it is seeded with different training results, so even with a fixed architecture you may find that some times it reaches a good solution, but other times it doesn't...
 
-
-### Visualising Boundaries
+<!-- #region activity=true -->
+###  Activity — Visualising Boundaries
 
 The way the MLP works is to try t draw "decision lines" or "boundary lines" that separate each clustered group of values associated with one class from the values associated with other categories.
 
 For a two dimensional feature space as the one we have (the long and the short measurements each represent a separate "feature" of the input training space) we can plot how every point in the plane (within specified bounds) is categorised, and colour it accordingly.
 
-The code I have available for this doesn't (yet!) work with categorical labels used to name the separate categories — it expects numbers instead — so let's create a new netwrok trained on numerical values used to identify the fruits, rather than their names.
+The code I have available for this doesn't (yet!) work with categorical labels used to name the separate categories — it expects numbers instead — so let's create a new network trained on numerical values used to identify the fruits, rather than their names.
 
 Let's prepare the data:
+<!-- #endregion -->
 
-```python
+```python activity=true
 df['FruitNum'] = df['Fruit'].map({'Strawberry': 1, 'Pear': 2, 'Orange': 3, 'Banana': 4})
 df.head(6)
 ```
 
+<!-- #region activity=true -->
 Then create and train a model:
+<!-- #endregion -->
 
-```python
+```python activity=true
 model = MLPClassifier(hidden_layer_sizes=(6, 6), max_iter=2500)
 model.fit(df['Input'].to_list(), df['FruitNum'])
 ```
 
-```python
+```python activity=true
 predictions = model.predict(df['Input'].to_list())
 
 print(classification_report(df['FruitNum'], predictions))
 print(confusion_matrix(df['FruitNum'], predictions))
 ```
 
-And now let's visualise that to see where the decision boundaries are:
+<!-- #region activity=true -->
+And now visualise that to see where the decision boundaries are:
+<!-- #endregion -->
 
-```python
+```python activity=true
 from boundary_models import plot_boundaries
 plot_boundaries(model, df)
 ```
 
-How does it look if you change the model parameters so that the netwrok doesn't perform so well?
+<!-- #region student=true -->
+__Well trained model__
 
+*Record your observations about what you see in the visualisation of the boundaries here.*
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+How does the visualisation look if you change the model parameters so that the network doesn't perform so well? What differences are there compared to the well trained model?
+<!-- #endregion -->
+
+<!-- #region student=true -->
+__Poorly trained model__
+
+*Record your observations about what you see in the visualisation of the boundaries here.*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+## Observations
+
+*Click the arrow in the sidebar to reveal my observations.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+For the well trained model, I see something like the following (the actual boundaries move each time I retrain the network as a result of the initial random starting condition):
+
+![](../images/MLP_good_classifier.png)
+
+The different fruit clusters are clearly separated into different coloured areas, with decision boundaries separating the the different classes of fruit.
+
+In the poorly trained model, the decision lines do not properly separate the different classes of fruit, with many items falling into the wrong grouping.
+
+![](../images/MLP_poor_classifier.png)
+
+Further observations: for a two-dimensional model this sort of visulisation works well, and could even work for a three dimensional model. But with 10, 10 or 100 input dimensions it would be rather hard to visualise. As a minds-eye visualisation tool, however, you may get a "feeling" about what separation in high dimensional space might be like.
+<!-- #endregion -->
 
 ## Summary
 
