@@ -63,6 +63,7 @@ jupyter-wysiwyg
 nbtutor
 git+https://github.com/innovationOUtside/nb_cell_diff.git
 
+git+https://github.com/innovationOUtside/nb_cell_dialog
 
 nb-extension-tagstyler
 git+https://github.com/innovationOUtside/nb_extension_empinken.git
@@ -75,7 +76,20 @@ durable_rules
 git+https://github.com/innovationOUtside/durable_rules_magic.git
 chatterbot==1.0.4
 
+# Neural
+sklearn
+palettable
+git+https://github.com/ouseful-PR/Hand-Written-Digit-Recognition.git
+git+https://github.com/innovationOUtside/nb_tensorflow_playground_serverproxy.git
+git+https://github.com/innovationOUtside/nb_tensorspace_server_proxy.git
+git+https://github.com/innovationOUtside/serverproxy_convnet_mnist.git
+git+https://github.com/innovationOUtside/serverproxy_tfjs_demos.git
+
 # Drawing
+blockdiag
+git+https://github.com/innovationOUtside/ipython_magic_blockdiag.git
+        
+
 noisify
 drawSvg
 git+https://github.com/innovationOUtside/flowchart_js_jp_proxy_widget.git

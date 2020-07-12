@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
@@ -8,182 +22,204 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 # 6 Simulating raising and lowering the light sensor
 
 
-Open the `Sensor_diameter_test` program. This has two sets of four parallel lines. The first group of four lines are colour black and have increasing thickiness. The second group of lines also increase in thikness and are colored red.
+The *Sensor_Diameter_Test* background contains two sets of horizontal parallel lines and two sets of parallel vertical lines. The first group of lines are coloured black and have increasing thickness going up and across the page. The second, lower, group of lines also increase in thickness and are colored red.
 
-TO DO - UPDATE IMAGE
+We will use these different lines as a test bed for evaluating how different "height settings" of the downward facing light sensor affect its performance.
 
 
-![Four black lines, two very thin and the other two fairly broad.](../images/tm129_rob_p6_f015.jpg)
+We will be investigating the data in the notebook, so before we get started, let's just check the datalog is empty.
 
 
-Figure 6.1 The four parallel lines
+Open the *Sensor_Diameter_Test* in the simulator and place the robot at with location and orientation `(420, 915, 90)`:
 
+```python
+%%sim_magic -b Sensor_Diameter_Test -x 420 -y 915 -a 90
+# Set up the environment
+```
 
-Run the following cell to download the programme to the simualator. Enable the chart display and then run the programme in the simulator several times, resetting the chart display between each run. 
+You should see the robot is positioned with its sensors over crossing points of some black lines; a blue circle is also in view in each sensor display that makes the lines look like cross hairs.
 
+Click on the *Configure Robot* button and in the `sensor2` setting set the `diameter` to 30 and click *Apply*. (If the robot is relocated, click the *Move* button to move it back to the original location.)
 
- Upload the data each time by clicking on the Upload  ![inlinefigure ../tm129-19J-images/tm129_rob_p6_f020.gif](../images/tm129_rob_p6_f020.gif) toolbar button (or choose `Connect | Upload data log`), and view it in the Data log window. You will probably find that Simon misses one or both of the thin lines. This is illustrated in the data log in Figure 6.2, where 40 consecutive sensor readings have been logged and downloaded to the computer to draw the graph. The points at 100% represent white and the points at 0% represent black.
+The sensor diameter corresponds to the width of view of the sensor, which we are using to model the height of the sensor: if the sensor has a fixed diameter, then if we lift it up it will see more of the background. 
 
+Increasing the diameter models the effect of raising the senor, and so the display for sensor 2 appears to "zoom out", and the circle looks smaller.
 
-![figure ../tm129-19J-images/tm129_rob_p6_f016.png](../images/tm129_rob_p6_f016.png)
+(Think what happens if you shine a torch against a wall. If we you are far from the wall, you may see a large blurry pool of light on the wall; as you walk towards the wall, the patch of light reduces in diameter and has sharper edges.)
 
+You might also notice that the circle on the robot that identifies the sensor has also got larger.
 
-Figure 6.2 Scanning with Simon may miss lines
+If you change the `sensor2.diameter` to 10 and apply it, you'll notice the sensor as depicted on the robot gets smaller as we model the effect of the lowering the sensor and zooming in on the target.
 
 
-A Data log graph of light sensor readings, with vertical scale 0 to 100 and horizontal showing 40 readings. Most readings form a line at 100, with abrupt dips down to readings of 0. There is a single dip down to 0 for reading 7 and then the readings return to 100. The reading dips to 0 again once at readings 22 and 23, and then again at readings 29, 30 and 31.
+<!-- #region activity=true -->
+### Activity — Exploring the Effect of Rasining and Lowering the Sensor
 
-It is possible for the robot to miss a line because the sensor is not being read continuously. In the above case, when the sensor was over the line, Simon was doing something else (i.e. waiting).
+Set the value for the `sensor1` diameter to 30, and apply it, and leave the `sensor2` diameter value at 10. This will give the robot an eccentric set up, where one light sensor is mounted high and the other is mounted low.
 
-The images that form the different backgrounds in the Simulator window are grids of coloured squares called *pixels*. These can be seen clearly in Figure 3.1. Simon’s light sensor reads the values of the pixels underneath it. We can get it to read a single pixel’s light level, as it does in default mode, or we can get it to look at several pixels at a time and take their *average* light level. When we increase the number of pixels read by the sensor, in RobotLab we increase the *diameter* of the area sensed, although we are actually referring to square arrays of pixels, not circles as ‘diameter’ would imply (Figure 6.3). The larger the diameter, the less realistic this approximation to a square becomes. Deploying Simon’s *spread sensor* in this way is analogous to increasing the height off the ground of the light sensor on a real robot.
+The aim of this activity is to log the light sensor values as the robot drives across the test lines and see how the recorded data values compare. 
 
+Display the the light sensor values directly in the simulator chart display, or grab the data values into the notebook datalog and view them in the notebook. If you do analyse the values in the notebook, you should make sure you clear the datalog before collecting any data from the simulator.
+<!-- #endregion -->
 
-![figure ../tm129-19J-images/tm129_rob_p6_f017.jpg](../images/tm129_rob_p6_f017.jpg)
+```python activity=true
+# Clear the datalog
+roboSim.clear_datalog()
+```
 
+<!-- #region activity=true -->
+Create your own programme to drive the robot horizontally across the vertical bars, logging data from both light sensors as it does so. Drive the robot at least over all the black lines. Experiment with setting different speeds for the robot as it crosses the lines to see what effect, if any, that has on the readings you obtain.
 
-TO DO -  I haven't tried altereing the sensor setting in the ev3devsim yet...  I'm pretty sure it's just a simple setting that needs a slider to control it somewhere...
+The following code cell correctly configures the initial starting point and orientation for the robot at `(200, 645, 0)`. Additionally pass in `-r Sensor_Diameter_Config` if you want to set the sensor diameters automatically
+<!-- #endregion -->
 
-Figure 6.3 The simulated sensor diameters (left to right: 1, 3, 5 and 7 respectively)
+```python student=true
+%%sim_magic_preloaded -b Sensor_Diameter_Test -x 200 -y 645 -a 0
+# YOUR CODE HERE
 
+```
 
-Four diagrams representing different sensor sizes. The smallest is a single square pixel, the next is a 3 × 3 grid of pixels, then 5 × 5 and finally 7 × 7 pixels.
+<!-- #region student=true -->
+*Your observations about the results, including the effect of the speed of the robot on the sensor values recorded. How might this effect the degree to which you can effectively control the robot?*
+<!-- #endregion -->
 
-__TO DO: I'm not sure the ev3devsim sensor is simulated this way?__
+<!-- #region activity=true heading_collapsed=true -->
+### Answer
 
-Like a sensor on a real robot, the simulatoed robot's sensor responds more to the pixels in the middle of its field of view. So we calculate what is called a *weighted average* – the pixels in the middle have a higher weighting than those on the outside. For example, if the diameter is 5 pixels, the sensor returns the sum of the 16 outer pixels plus 8 inner pixels, plus 1 pixel in the middle, weighted 1, 2 and 4 respectively. The weighted average is obtained by dividing the total by (16 × 1) + (8 × 2) + (1 × 4), i.e. 36. A worked example follows.
+*Click the arrow in the sidebar to view my programme and sampled data.*
+<!-- #endregion -->
 
-What happens when the sensor (hence sensed area) straddles two different coloured areas? The 5 × 5 pixel grid in Figure 6.4 straddles an ‘edge’, and contains a mixture of blue and grey pixels. The normal sensor reading for a blue pixel is: 0 (red) + 0 (green) + 100 (blue), divided by 3, which gives 33% (rounded to the nearest whole number). The normal sensor reading for a grey pixel is: 50 (red) + 50 (green) + 50 (blue) divided by 3, which is 50%.
+<!-- #region activity=true hidden=true -->
+As well as viewing the data live by enabling the chart display and selecting the *Left light* and *Right light* traces, I'm also going to grab data into the datalog and then analyse it; so I'll start by clearing the datalog.
+<!-- #endregion -->
 
+```python activity=true hidden=true
+roboSim.clear_datalog()
+```
 
-![figure ../tm129-19J-images/tm129_rob_p6_f018.jpg](../images/tm129_rob_p6_f018.jpg)
+<!-- #region activity=true hidden=true -->
+For my programme, I'm just going to drive the robot forwards, albeit relatively slowly, logging the data in an infinite while loop. As a stopping condition, I'll break out of the while loop if I explicitly see red.
 
+Note that in my stopping condition test, I have grabbed the sensor reading into a variable `sample` and then check it's components. If I test `colorRight.rgb[0]` and then `colorRight.rgb[1]` there's always a chance the `colorRight.rgb` value will have been updated between testing the first component and the second.
+<!-- #endregion -->
 
-Figure 6.4 Calculating the sensor response for 5-pixel diameter
+```python activity=true hidden=true
+%%sim_magic_preloaded -b Sensor_Diameter_Test -x 200 -y 645 -a 0 -r Sensor_Diameter_Config
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
 
+#Start off with a slowish speed of 20
+speed = 20
 
-The grid of values read by a 5 × 5 pixel sensor weighted as described in the text. The background colour in the top left is dark blue, and grey in the bottom right, with the boundary running in a diagonal between bottom left and top right. The weighted readings for each pixel are as follows: 
-<table xmlns:str="http://exslt.org/strings">
-<caption></caption>
-<tbody>
-<tr>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 132 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 66 </td>
-<td class="highlight_" rowspan="" colspan=""> 100 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-</tr>
-<tr>
-<td class="highlight_" rowspan="" colspan=""> 33 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-<td class="highlight_" rowspan="" colspan=""> 50 </td>
-</tr>
-</tbody>
-</table>
+tank_drive.on(SpeedPercent(speed), SpeedPercent(speed))
 
+while True:
+    # Stopping condition on red line
+    sample = colorRight.rgb
+    if (sample[0]==255 and sample[1]<255):
+        break
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print('Light_left: ' + str(intensity_left))
+    print('Light_right: ' + str(intensity_right))
 
-TO DO - I don't think the ev3devsim sensor weights the pixels?
+    
 
-RobotLab uses these values and weights them according to how far they are from the edge. The outer pixels are weighted by a factor of 1, so their values remain the same. Here all the outer pixels are 33 (1 × 33% for blue) or 50 (1 × 50% for grey). The pixels in the next layer in are given a weighting of 2, so their values are doubled. The eight pixels in this layer therefore have a value of 66 (2 × 33% for blue) or 100 ( 2 × 50% for grey). Finally, the central pixel has a weighting of 4. So this gets a weighted value of 132 (4 × 33% for blue). The sum of all these numbers is 1341. This sum is divided by (16 × 1) + (8 × 2) + (1 × 4) = 36 to bring it back to the scale 0–100%, as before. So 1341/36 = 37% is the value the sensor returns for these five pixels (to the nearest whole number).
+```
 
-Open the Configure simulation dialogue by clicking on `Simulator | Configure`. Click on the tab for `Input 2` to select the light sensor and change the diameter to 5 pixels, as shown below.<div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p>Keyboard: Use Tab and cursor keys to select</p></div>
+<!-- #region activity=true hidden=true -->
+I can use the following code to grab the datalog into a dataframe:
+<!-- #endregion -->
 
+```python activity=true hidden=true
+# Get the data
+data = roboSim.results_log
 
-![figure ../tm129-19J-images/tm129_rob_p6_f019.png](../tm129-19J-images/tm129_rob_p6_f019.png)
+# View is as a dataframe
+df = eds.get_dataframe_from_datalog(data)
+df['time'] = df['index'].dt.total_seconds()
+#Preview the data
+df.head()
+```
 
+<!-- #region activity=true hidden=true -->
+Using `seaborn` to display a line chart of the results, I can see that the traces form each sensor seem to differ:
+<!-- #endregion -->
 
-Figure 6.5 Changing the sensor diameter in pixels
+```python activity=true hidden=true
+import seaborn as sns; sns.set()
+ax = sns.lineplot(x="time",
+                  y="value",
+                  hue='variable',
+                  style="variable",
+                  markers=True, dashes=False,
+                  data=df);
 
+# Limit the x axis range ro get a better view of the chart
+ax.set_xlim(1, 6);
+```
 
-The Configure simulation dialogue. The ‘Input 2’ tab is selected and the diameter slider has been moved to read ‘5’.
+<!-- #region activity=true hidden=true -->
+In particular:
 
-Now rerun the program. Upload the data by clicking on the Upload  ![inlinefigure ../tm129-19J-images/tm129_rob_p6_f020.gif](../tm129-19J-images/tm129_rob_p6_f020.gif)  toolbar button or use the `Connect | Upload data log` menu. Open the Data log window to view the data. Your data log should be similar to Figure 6.6. With the sensor now reading a wider spread of pixels, both thin lines are now likely to be seen. (If this appears not to work, make sure you have changed the diameter of Input 2.)
+- the left light sensor (`sensor1`, large diameter, raised high) has "smeared" values does not register a very low value for the black lines;
+- the right light sensor (`sensor2`, small diamter, closer to the background) has much "spikier" values and does see report much lower sensor readings when crossing the black line.
 
+If I speed up the robot, then the right light sensor, which has a small diameter and is close to the ground, may miss the narrower black line altogether as it drives over the the line.
+<!-- #endregion -->
 
-![figure ../tm129-19J-images/tm129_rob_p6_f021.png](../tm129-19J-images/tm129_rob_p6_f021.png)
+## Trading Off Physical Settings and Code Settings
 
+In a real physical robot, we may be able to tune elements of the physical set-up, as well as the code, to get the robot to perform as we require.
 
-Figure 6.6 The lines are more likely to be sensed with a wider sensor spread
+As designers and engineers, it may often be the case that a problem that is hard to solve in one domain, for example, in the creation of a computer control programme, can be simplified by making changes to the physical robot.
 
+On the other hand, we may be able to accommodate fiddly aspects of a robot's physical set-up by simple software fixes.
 
-A Data log graph of light sensor readings, with vertical scale 0 to 100 and horizontal showing 40 readings. Most readings form a line at 100, but there are four dips to lower values. The first dips from 100 to 85, 78 (at reading 4), 85 and then back to 100. The second dips from 100 to 78, 78 (at readings 11 &amp; 12) and then back to 100. The third dip is from 100 to 62, 36, 12 (at reading 21), 32, 85 and back to 100. The final dip is from 100 to 85, 32, 0 (at reading 30) 32, 62 and back to 100. Compared to the previous graph, the dips recording lines are less abrupt, record intermediate values (previously only values of 100 or 0 were recorded), and are registered over a greater number of readings.
+We can model a similar sort of interaction in the simulator by varying elements of the robot configuration as well as programme parameters.
 
-If you are interested, experiment by setting the sensor values to diameters 3, 7, 8 and 11 pixels.
+<!-- #region activity=true -->
+### Open Challenge — Exploring the Effect of the Light Sensor Diameter on the Line Following Behaviour
 
+Using the `Lollopop` background, and the programme you previously created to complete the associated challenge, modify the light sensor setting of the sensor you have used in your programe and rerun the programme.
 
-## 6.1 Activity: Using the spread sensors for a line follower
+Does increasing or decreasing the diameter of the sensor affect the performance of the programme?
 
+Are there any changes you can make in the programme to compensate for changes in the robot's physical sensor configuration?
+<!-- #endregion -->
 
-Open the `Spread_sensor_line_follower` program and run it. You should see Simon going round a track.
+```python student=true
+%%sim_magic_preloaded --background Lollipop
 
-This program exploits the use of a spread sensor, with the diameter set at 11. The sensor readings are 100% for white and a minimum of 30% for black. This gives an effective range of 70%. The relevant part of the program code is as follows:
+# YOUR CODE HERE
+```
 
+<!-- #region student=true -->
+*Your notes and observations here.*
+<!-- #endregion -->
 
-![figure ../tm129-19J-images/tm129_rob_p6_f022.jpg](../tm129-19J-images/tm129_rob_p6_f022.jpg)
+<!-- #region activity=true -->
+### Open Challenge — Making this robot control strategy faster
 
+Can you tune the robot's physical set-up to allow you to write a programme that allows the robot to more quickly complete the *Lollipop* challenge?
+<!-- #endregion -->
 
-Figure 6.7 Listing: Spread_sensor_line_follower: forever loop
+<!-- #region activity=true -->
+### Optional Investigatory Activity — The Effect of Simulated Noise Sensors of Various Diameters
+<!-- #endregion -->
 
+<!-- #region activity=true -->
+You have already seen how sensor noise may affect the performance of a sensor and the performance of a software control programme.
 
-forever
+If you are curious, spend ten or fifteen minutes exploring how the different levels of sensor noise affect the ranges and "stability" of readings you can get for sensors of different diameters / simulated heights about the background.
+<!-- #endregion -->
 
-      comment : control the motors.
+## Summary
 
-      set left_power  = (light_sensor  - 30)/10
+In this notebook, you have seen how experimented with setting the diameter of the light sensor to model raising it or lowering it and changing it's field of view over the background area.
 
-      set right_power = (100 - light_sensor) / 10
+You have seen how this physical setting may influence the performance of the sensor and the ability of the robot to perceive things in its environment that are used in determining the way the robot is controlled. 
 
-      power [left_motor ] left_power
-
-      power [right_motor] right_power
-
-The command `set left_power = (light_sensor – 30)/10` sets the `left_power` variable in a range of 0 to 7, suitable for the `power` command.
-
-The command `set right_power = (100 – light_sensor)/10` also sets the `right_power` variable in a range of 0 to 7.
-
-When `left_power` is 0, `right_power` is 7, and vice versa. Thus, when the sensor reads white, the clockwise-moving robot steers to the right, and when the sensor reads black (corresponding to when the robot is on top of the line), the robot steers away from the line. This keeps the robot on track.
-
-
-## 6.2 Challenge: Making this robot control strategy faster
-
-
-Can you think of a way of making this robot control strategy faster?
-
-
-## 6.3 Simulated noise on the sensors and the motors
-
-
-In robotics, the term *noise* is used to mean any uncertainty in the system. Noise on the sensors, as you have seen, is usually caused by random electrical events. Noise on the motors can be caused by random electrical events in the controller supplying power, or by mechanical events such as wheels slipping and irregular friction.
-
-You can change the noise on both the sensors and the motors using the noise sliders in the simulator widget.
-
-__TO DO: shouls we have separate noise controls for each sensor and motor?__
-
-Apart from noise, sensors and drives may have bias. For example, the Lego light sensors do not all read in exactly the same range. Some are biased to give lower readings and some give higher readings. Similarly, a motor drive might be worn or might stick a bit, making it systematically slower than it should be.
-
-__TO DO: should we have a bias value either applied to all sensors/motors, or separately?__
-
-Experiment by setting the noise values for the sensors and motors of the line-follower program. At what point does it cease to function?
-
+You may also have explored how this setting affects the sensitivity of the sensor relative to a particular level of noise.

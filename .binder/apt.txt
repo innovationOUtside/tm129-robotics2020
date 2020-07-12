@@ -8,3 +8,6 @@ libcairo2
 # Spellchecker support
 aspell
 hunspell
+
+# xkcd chart style
+fonts-humor-sans

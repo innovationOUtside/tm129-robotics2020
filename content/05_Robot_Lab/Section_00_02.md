@@ -12,61 +12,61 @@ jupyter:
     name: python3
 ---
 
-# 2 The RobotLab sensors
-
-In which we explore some of the robot's sensors in more detail...
-
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
-%load_ext nbtutor
 ```
 
-## 2.1 Activity: Configuring sensors
+# 2 The RobotLab sensors
+
+In most of the activities we have completed to date, we have relied in the light sensor to provide sensory input to the robot control programme.
+
+In this notebook, we will review some of the other sensors that are available to us, including a ultrasonic distance sensor, a direction revealing gyroscope and tachometer "sensor" readings that are reported by the motors. 
 
 
-Recall from previous activities [ TO DO — better reference] that the simulated robot is configured with a variety of sensors, including two downward facing light sensors, an ultrasonic sensor and a gyro.
+## 2.1 Available Sensors
 
+Recall from previous activities that the simulated robot is configured with a variety of sensors, including two downward facing light sensors, an ultrasonic sensor and a gyroscope (gyro).
 
-In this activity, we will have a look at how sensors are configured in the simulator.
+In this notebook, we will have a further look at how sensors are configured in the simulator.
 
-[ TO DO - haven't we already done this? What point are we trying to make here? ]
-[ TO DO - the simulator doesnlt currentl have a touch sensor. Do we need one? (we would for T176 activity? Model one as an intersect of an touch sensor area with an object in the obstacle layer?]
+By default, the simulated robot, the light sensors are located at the front of the robot, just to the left and right of the centre line, although we could configure them to be in different locations. The light sensors are also assumed to be facing downwards so that they detect the colour / brightness of the background. You have already explored how we might model raising and lowering the light sensor in a previous activity.
 
-By default, the simulated robot, the light sensors are located at the front of the robot, just to the left and right of the centre line. They are also assumed to be facing downwards so that they detect the colour / brightness of the background.
-
-[TO DO - should we experiment with config? eg a light sensor on midline at front and one at back? Or one by each wheel?]
-
-*To change the configuration of the simulated robot,  See also __03_Robot_Lab/Section_00_03.md__* [TO DO - need better notebook names / references.]
+*To change the configuration of the simulated robot,  also see __03_Robot_Lab/Section_00_03.md__*.
 
 In the Software Guide, I briefly described the Lego Mindstorms EV3 "brick". This is a simple but otherwise typical robot control system: it has input and output *ports* to which different sensors and actuators can be connected:
 
 ![](../images/nogbad_ev3.jpg)
 
-
 The EV3 brick itself contains a microprocessor running Linux and a rechargeable battery pack, four input ports labeled 1..4 for connecting sensors, four output ports labeled A..D for connecting motor outputs, a grey on off button, four cursor control (up-down, left right) buttons surrounding a central select button, and a small display screen.
-
 
 ![](../images/ev3_sensors_motors.png)
 
+The control system needs to know what sensors and actuators actually are connected so that the input and output signals can be interpreted correctly.
 
-The control system needs to know what sensors and actuators actually are connected so that the input and output signals can be interpreted correctly. This is the purpose of the `sensor` and `output` statements are defined in every RoboLab program, although in some of the magics used to download programmes to the robot, those statements are added as default "boilerplate" code when the magic cell is run and before the programme is downloaded to the simulator.
+Motors are confugured relative to specified input ports, convetionally output ports B and C:
+
+`from ev3dev2.motor import OUTPUT_B, OUTPUT_C`
+
+The sensors are configured in a programme by identifyng the physical port they are connected to and the type of sensor they are:
+
+```python
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
+from ev3dev2.sensor.lego import ColorSensor, GyroSensor, UltrasonicSensor
+
+ultrasonic = UltrasonicSensor(INPUT_1)
+colorRight = ColorSensor(INPUT_3)
+colorRight = ColorSensor(INPUT_3)
+gyro = GyroSensor(INPUT_4)
+```
+
+In some of the magics used to download programmes to the robot, these statements are added as default "boilerplate" code when the magic cell is run and before the programme is downloaded to the simulator. So although they may not appear in the code you write, they are required for the programme code to run correctly in the simulator.
+
+*You can always check exactly what code has been downloaded to the simulator by clicking on the `Show Code` button in the simulator.*
 
 
-
-## 2.2 Activity: Testing the ultrasonic sensor
-
-__[TO DO - the original activity tested the touch sensor using a simple forward-bump-reverse program]__
-
-
-In this activity I’m going to illustrate how the ultrasonic sensor can be used in the simulator.
-
-The robot will drive forward, at speed, until it observes an obstacle, at which point it will start to slow down.
-
-Note that the ultrasonic sensor is mounted a little way back from the front edge of the robot, so we need to take that offset into account when deciding that the front of the robot is in contact with an obstacle.
-
-
+###  Configuring the Simulator
 
 As well as downloading code to the simulator, the magic supports several command line switches that can be used to configure the robot and the simulator environment.
 
@@ -85,7 +85,22 @@ Flags (pass the following to force the specified behaviour):
 - `--ultrasound / -u`: show ultrasound rays (default: no rays);
 - `--pendown / -p`: set the pen in the pen down position (default: pen up).
 
+We can use these settings to control the way that the simulator is configured.
 
+<!-- #region activity=true -->
+## 2.2 Activity: Testing the ultrasonic sensor
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+In this activity you will see how the ultrasonic sensor can be used in the simulator.
+
+The robot will drive forward, at speed, until it observes an obstacle, at which point it will start to slow down.
+
+Note that the ultrasonic sensor is mounted a little way back from the front edge of the robot, so we need to take that offset into account when deciding that the front of the robot is in contact with an obstacle.
+
+<!-- #endregion -->
+
+<!-- #region activity=true -->
 The following code cell configures the simulator to use a blank background (`-b Empty_Map`) and a single obstacle (`Central_post`); the simulated robot is initially situated to near the mid-point of the left hand edge of the simulator canvas (`-x 100 -y 500`) and the ultrasonc rays are displayed (`-u`).
 
 Run the code cell to configure the simulator and download the programme and then run the programme in the simulator.
@@ -95,14 +110,16 @@ Observe what happens and record your observations, paying attention to both the 
 What happens if you initially locate the robot at `-x 100 -y 450`?
 
 When you have observed what happens, closely read through the programme. How does the code explain the behaviour of the robot?
+<!-- #endregion -->
 
-
+<!-- #region student=true -->
 *Use this markdown cell to record your observations of what happens when the programme is run.*
 
 *Annotate the programme with comments to explain how it works.*
+<!-- #endregion -->
 
-```python
-%%sim_magic_preloaded -u -b Empty_Map -o Central_post -x 100 -y 450
+```python activity=true
+%%sim_magic_preloaded -u -b Empty_Map -o Central_post -x 100 -y 500
 
 import time
 ultrasonic = UltrasonicSensor(INPUT_1)
@@ -121,13 +138,13 @@ while  u > 3:
 print("done...")
 ```
 
-<!-- #region heading_collapsed=true -->
+<!-- #region activity=true heading_collapsed=true -->
 ### My Observations
 
 *Click the arrow on the left to reveal my observations*
 <!-- #endregion -->
 
-<!-- #region hidden=true -->
+<!-- #region activity=true hidden=true -->
 When the programme is run, the robot remains stationary for a moment or two before driving forward at some speed. As the simulated robot appraoches the obstacle, it starts to slow down, coming to stop as it reaches the obstacle.
 
 Starting from the second location, the robot behaves in a similar way to the first run, but it doesn't stop when it reaches the obstacle. Rather, it runs over the obstacle, slowly at first, then speeds up as it passes the obstacle.

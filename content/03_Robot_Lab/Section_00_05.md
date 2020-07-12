@@ -56,11 +56,16 @@ A version of Connelly's code, updated to run in the version of Python used in th
 
 Relive the past, perhaps in more ways than one — depending on how your conversation goes! — by chatting to Eliza for two or three minutes.
 
-Run the following code cell to summon Eliza, then start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the programme by clicking the *stop* button in the notebook toolbar.
+Run the following code cell to import the `eliza` package:
 <!-- #endregion -->
 
-```python activity=true
+```python
 import eliza
+```
+
+Run the following code cell to enter Eliza's treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the programme by clicking the *stop* button in the notebook toolbar.
+
+```python activity=true
 eliza.hello_doctor()
 ```
 

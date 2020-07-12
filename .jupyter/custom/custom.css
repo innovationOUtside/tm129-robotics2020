@@ -28,19 +28,28 @@ OU logo available to stylesheet at url('oulogo-56.jpg')
 
 }
 
+
 .ou_comment_outer {
-    background-color: #eda7c3;
+    background-color: #eda7c3 !important;
 }
 
 .ou_comment_prompt {
-    background-color: #f4cadb;
+    background-color: #f4cadb !important;
 }
 
 .ou_activity_outer {
-    background-color: #c8ecff;
+    background-color: #c8ecff !important;
 }
 
 
 .ou_activity_prompt {
-    background-color: #ecf6ff;
+    background-color: #ecf6ff !important;
 }
+
+.ou_student_outer {
+	background-color: #ffffcc !important;
+};
+
+.ou_student_prompt {
+	background-color: #ffeecd !important;
+};

@@ -1,13 +1,40 @@
-# 5 Overcoming the edge ambiguity problem
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
 
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
-Open the `Noisy_tracker` program. For this program I started from a different perspective. I defined a constant called `T_black_red`, where anything below this threshold is black. Similarly, anything above `T_red_grey` is grey.
+%load_ext nbev3devsim
+%load_ext nbtutor
+```
 
-My control strategy is based on these thresholds. For dark areas I apply more power to the right motor, for light areas I apply more power to the left motor.
+<!-- #region activity=true -->
+# 5 Challenge — Coping with Noise
 
-I test for the red bar by counting the number of consecutive readings in the range 49–51%. If the number exceeds six, my program assumes that the red bar has been reached.
+Using The *Noisy_Lollipop* background in the simulator, see if you can refine your programme, or my programme, to complete the challenge of following the line and stopping on the red bar.
 
-I spent quite a lot of time trying to get the speed parameters to work. Even so, my program is not perfect and the simulated robot sometimes goes astray.
+Trying to solve challenges like this can be both frustrating and time consuming, so try to keep an eye on the clock and don't spend more that ten or fifteen minutes trying to complete the challenge.
 
-If you can write a better control program than mine, attach it to a message and post it to the forum.
+If you think you have come up with a good solution, feel free to share it via the module forums.
+<!-- #endregion -->
 
+<!-- #region student=true -->
+*Your design notes...*
+<!-- #endregion -->
+
+```python student=true
+%%sim_magic_preloaded --background Lollipop
+
+# YOUR CODE HERE
+```
