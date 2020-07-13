@@ -96,11 +96,13 @@ __`demo-video-arm-pose` dir__
 ## Optional Activity — Training Your Own Image or Audio Classifier
 
 
-If you have a camera or microphone attached to your computer, the following activity will show you how you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising:
+If you have a camera or microphone attached to your computer, you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising. The tutorial [here](https://blog.google/technology/ai/teachable-machine/) describes a process for training a neural network to distinguish between images representing two different situations.
 
-- upload your own images (or capture some images from a camera attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/image
+You can train your own neural network by:
 
-- upload your own audio files (or capture some audio from a microphone attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/audio
+- uploading your own images (or capture some images from a camera attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/image
+
+- uploading your own audio files (or capture some audio from a microphone attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/audio
 <!-- #endregion -->
 
 ## Summary
