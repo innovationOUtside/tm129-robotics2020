@@ -29,6 +29,8 @@ At the time (this is only a few short years ago remember), recognising arbitrary
 
 However, identifying individual objects in an image on the one hand, and being able to generate a sensible caption that describes the image, is a different matter. A quick web search today will undoubtedly turn up some very enticing demos out there of automated caption generators. But "reading the scene" presented by a picture and generating a caption from a set or keywords or tags associated with items that can be recognised in the image is an altogether more complex task: as well as performing the object recognition task correctly, we also need to be able to identify the relationships that hold between the different parts of the image; and do that in a meaningful way.
 
+In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks.
+
 <!-- #region activity=true -->
 ### Activity - Example Image Tagging Demo
 
@@ -48,6 +50,21 @@ __Do not spend more than 10 minutes on this activity.__
 *If you discover any additional demo services, or if you find that any of the above services seem have either stipped working, or disappeared, please let us know via the module forums.*
 <!-- #endregion -->
 
+<!-- #region activity=true -->
+## Activity — Recognising A Static Pose in An Image
+
+As well as tagging images, properly trained models can recognise individual people's faces in photos (and not just of celebrities!) and human poses within a photograph.
+
+Click through to the following web location to see an example of a neural network model running in your web browser to the recognise the pose of several different people across a set of images: https://pose-animator-demo.firebaseapp.com/static_image.html
+
+
+<!-- #endregion -->
+
+
+<!-- #region tags=["todo", "alter-danger"] -->
+TO DO - Add a local example with additional ability to upload your own photo.
+<!-- #endregion -->
+
 ## Transfer Learning
 
 Creating a neural network capable of recognising a particular image can take a lot of data and a lot of computing power. The training process typically involves showing the network being trained:
@@ -61,24 +78,10 @@ The effectiveness of the model is then tested on images it has not seen before, 
 
 A process known as "transfer learning" allows a model trained on one set of images to be "topped up" with additional training based on image/label pairs from images it has not seen or been trained on before. 
 
-The pre-trained model already knows how to identify lots of different unique "features" that might be contained within an image. When you further train the model, it uses combinations of the features it can already detect as components of different feature collections that it can use to distinguish between the different object types you train it to recognise specifically.
+The pre-trained model already knows how to identify lots of different unique "features" that might be contained within an image. These features may be quiet abstract; for example, the network might be able to recognise straight lines, or right angles, or several distinguishable points positioned in a particular way relative to each other, or other patterns that defy explanation (to us, at least).
 
-In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks.
+When you further train the model, it uses combinations of the features it can already detect as components of different feature collections that it can use to distinguish between the different object types you train it to recognise specifically.
 
-
-<!-- #region activity=true -->
-## Activity — Recognising A Static Pose in An Image
-
-As well as tagging images, properly trained models can recognise individual people's faces in photos (and not just of celebrities!) and human poses within a photograph.
-
-Click through to the following web location to see an example of a netural network model running in your web browser to the recognise the pose of several different people across a set of images: https://pose-animator-demo.firebaseapp.com/static_image.html
-
-
-<!-- #endregion -->
-
-<!-- #region tags=["todo", "alter-danger"] -->
-TO DO - Add a local example with additional ability to upload your own photo.
-<!-- #endregion -->
 
 <!-- #region activity=true -->
 ## Optional Activity — Distinguishing Between Two Of Your Own Poses From a Live Video Feed
