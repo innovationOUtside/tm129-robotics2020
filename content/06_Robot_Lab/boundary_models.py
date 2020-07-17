@@ -9,6 +9,8 @@ from PIL import Image
 import tempfile
 import os
 
+from tqdm.notebook import tqdm
+
 import IPython.display
 
 
@@ -70,7 +72,7 @@ def mlp_boundary_animate(df, Xdata='Input', ydata='FruitNum',
     classes = np.unique(df[ydata])
 
     with tempfile.TemporaryDirectory() as tmpdirname:
-        for i in range(num_iterations):
+        for i in tqdm(range(num_iterations)):
             # In the partial_fit(), we need to declare up front what all the possible classes are
             # This is because we could present different training classes at each step
             model.partial_fit(df[Xdata].to_list(), df[ydata], classes)
