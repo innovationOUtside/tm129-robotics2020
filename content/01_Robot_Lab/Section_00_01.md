@@ -636,6 +636,7 @@ To delete one of more particular lines of code in a code cell, highlight just th
 
 To move one or more lines of code in a code cell, first highlight them to select them. Next, cut then using your normal keyboard cut command (for example, `Ctrl-X` or `Cmd-X`), place the cursor where you want them to go then and paste them using your normal keyboard paste command (for example, `Ctrl-V` or `Cmd-V`).
 
+<font color='red'>JD: There's no Section 1.4. (And, as mentioned later, it seems odd that Section 1.5 is an activity whereas other activities are third-level sections inside second-level sections.)</font>
 
 ## 1.5 Activity – Working with comments
 
@@ -860,7 +861,7 @@ For this reason, it often makes sense to start small and then test increasingly 
 
 <!-- #region activity=true -->
 ### Activity – Extending your program further
-<font color='red'>JD: This activity is nested inside the previous activity (which seems odd). It's because the second-level heading 1.6 is being used as an activity. I think it would be clearer to consistently use third-level headings as activities, and use numbered second-level headings for sections only.</font>
+<font color='red'>JD: This activity is nested inside the previous activity (which seems odd). It's because the second-level heading 1.6 is being used as an activity. I think it would be clearer to consistently use third-level sections as activities, and use numbered second-level sections as sections only.</font>
 
 Bulding on the program you developed in the previous activity, extend your program further so that the robot draws all four sides of a square.
 
