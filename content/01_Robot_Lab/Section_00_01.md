@@ -458,7 +458,7 @@ Suppose that a simulated robot starts pointing towards the top of the screen. If
 <!-- #endregion -->
 
 <!-- #region student=true -->
-__DOUBLE-CLICK THIS CELL TO EDIT IT.__
+*Double-click this cell to edit it.*
 
 *When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
 <!-- #endregion -->
@@ -487,7 +487,7 @@ If a simulated robot starts pointing towards the *right-hand side* of the screen
 <!-- #endregion -->
 
 <!-- #region student=true -->
-__DOUBLE-CLICK THIS CELL TO EDIT IT.__
+*Double-click this cell to edit it.*
 
 *When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
 <!-- #endregion -->
