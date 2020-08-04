@@ -761,11 +761,11 @@ The notebook will be automatically saved every minute or two. When it is autosav
 
 <img src="../images/Section_00_01_-_autosaved.png" width=600 />
 
-You can also do a ‘hard save’ of your notebook by clicking on the *Save and Checkpoint* notebook toolbar button or, from the *File* menu by seleting *Save and Checkpoint*. You can also save the notebook to a new file name from the *File -> Save as...* menu option. The *File -> Make a Copy* option will create a copy of the current notebook.
+You can also do a ‘hard save’ of your notebook by clicking on the *Save and Checkpoint* notebook toolbar button or, from the *File* menu by seleting *Save and Checkpoint*. You can also save the notebook to a new file name from the *File* > *Save as...* menu option. The *File* > *Make a Copy* option will create a copy of the current notebook.
 
 <img src="../images/Section_00_01_-checkpointed.png" width=600 />
 
-Checkpoints are useful because they not only autosave the notebook to the current file, but they also save a hidden copy of the notebook in a checkpoints directory. The *File -> Revert to Checkpoint* menu option allows you to reload the previously checkpointed notebook. This is handy if you have made some changes to your notebook and those changes have been autosaved, but you find you want to revert to the previous version of the notebook where you made a conscious decision to save and checkpoint it.
+Checkpoints are useful because they not only autosave the notebook to the current file, but they also save a hidden copy of the notebook in a checkpoints directory. The *File* > *Revert to Checkpoint* menu option allows you to reload the previously checkpointed notebook. This is handy if you have made some changes to your notebook and those changes have been autosaved, but you find you want to revert to the previous version of the notebook where you made a conscious decision to save and checkpoint it.
 
 It’s not uncommon to see that you have been working on a noebook for quite some time since consciously saving it!
 
