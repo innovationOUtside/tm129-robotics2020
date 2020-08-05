@@ -18,43 +18,43 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbev3devsim
 %load_ext nbtutor
 ```
+<font color='red'>JD: Rename notebook if first and second notebooks for this week are combined.</font>
+
+# 4 Reasoning and the sense–think–act model
+
+In the sense–act model, agents (or robots) typically perform an action as a direct response of a sensory input. In the ‘sense–think–act’ model, there is an element of deliberation in which the agent makes a *choice* about what action to perform based not just on the sensory input but also other factors. In the simplest case, this might be a value against which the input is compared, or it might be a much more elaborate decision process involving a wide range of factors.
 
 
-# Reasoning and the sense–think–act model
-
-In the sense-act model, agents (or robots) tyically perform an action as a direct response of a sensory input. In the `sense-think-act` model, there is an element of deliberation in which the agent makes a *choice* about what action to perform based not just on the sensory input but also other factors. In the simplest case, this might be a value against which the input is compared, or it might be a much more elaborate decision process involving a wide range of factors.
-
-
-## Representing and using knowledge and beliefs
+## 4.1 Representing and using knowledge and beliefs
 
 Artificial intelligence and robotics have the major problem of *representing* facts and *knowledge*, or at least, *beliefs* inside machines. We have a vast amount of knowledge in our brains. This knowledge is distributed over the brain, rather than each fact being neatly stored in a single memory unit.
 
 <!-- #region tags=["alert-success"] -->
-In many formal studies of intelligent agents, "knowledge" is defined as "justified true belief". An agent may "believe" a fact, but that is only classed as "knowledge":
+In many formal studies of intelligent agents, ‘knowledge’ is defined as ‘justified true belief’. An agent may ‘believe’ a fact, but that is only classed as ‘knowledge’:
 
-- if the fact is true;
+- if the fact is true
 - if the agent is justified in having the belief (that is, there is a good reason why it has that belief).
 <!-- #endregion -->
 
-The structure of the human brain is completely different from the structure of a robot's or a real computer’s "brain", and roboticists have found it very difficult to implant a wide range of experiences (real-world data) into robot brains. Whilst significant progress has been made in Artificial Intelligence (AI) and Machine Learning (ML) approaches to machine vision in recent years by using ever more computational resources, these achievements are often quite limited in terms of domain or general applicability. They can also be hugely expensive in terms of the amount of data and computational effort, as well as the energy used to power the underlying computers, that are required to create them. Ever larger and more complex natural language processing (NLP) models are also proving effective in parsing natural language statements and generating natural language texts, albeit often in a "free-writing" sense.
+The structure of the human brain is completely different from the structure of a robot’s or a real computer’s ‘brain’, and roboticists have found it very difficult to implant a wide range of experiences (real-world data) into robot brains. Whilst significant progress has been made in artificial intelligence (AI) and machine learning (ML) approaches in recent years by using ever-more computational resources, these achievements are often quite limited in terms of domain or general applicability. They can also be hugely expensive in terms of the amount of data and computational effort, as well as the energy used to power the underlying computers that are required to create them. Ever larger and more complex natural-language processing (NLP) models are also proving effective in parsing natural-language statements and generating natural-language texts, albeit often in a ‘free-writing’ sense.
 
-An alternative to the "self-learning" neural network style of Artificial Intelligence, which you will meet later in the module, are approaches in which we try to *explicitly* encode knowledge using an approach known as *rule based systems*.
+An alternative to the ‘self-learning’ neural network style of artificial intelligence, which you will meet later in the block, are approaches in which we try to *explicitly* encode knowledge using an approach known as *rule-based systems*.
 
-In this notebook, you will meet two such examples: the classic *Eliza* rule based conversational agent; and a more general rule based architecture, `birable-rules`, that can be used to develop a wide range of rulesets that can be used to reason more generally over a set of provided "facts".
+In this notebook you will meet two such examples: the classic *Eliza* rule-based conversational agent, and a more general rule-based architecture, *durable-rules*, which can be used to develop a wide range of rulesets that can be used to reason more generally over a set of provided ‘facts’.
 
 
-## Eliza
+## 4.2 Eliza
 
-Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* programme is often referred to as one of the first great milestones in computational natural language interaction. You can see a copy of the original paper [here](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf), which includes examples of the code used to programme the original Eliza engine.
+Athough written fifty or so years ago, Joseph Weizenbaum’s *Eliza* program is often referred to as one of the first great milestones in computational natural-language interaction. [This copy of the original paper](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf) includes examples of the code used to program the original Eliza engine.
 
-Eliza has been reimplemented several times, such as in the *Lisp* programming language by Peter Norvig's for his textbook *Paradigms of Artificial Intelligence Programming*, as well as in Python reimplementation of Norvig's code by Daniel Connelly ([*Paip-python: Peter Norvig's Paradigms of AI Programming implemented in Python*](http://dhconnelly.com/paip-python/)). 
+Eliza has been reimplemented several times, such as in the *Lisp* programming language by Peter Norvig for his textbook *Paradigms of Artificial Intelligence Programming*, as well as a Python reimplementation of Norvig’s code by Daniel Connelly ([Paip-python: Peter Norvig's Paradigms of AI Programming implemented in Python](http://dhconnelly.com/paip-python/)). 
 
-A version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
+A version of Connelly’s code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
 <!-- #region activity=true -->
-### Activity - Chatting to `Eliza`
+### Activity – Chatting to ‘Eliza’
 
-Relive the past, perhaps in more ways than one — depending on how your conversation goes! — by chatting to Eliza for two or three minutes.
+Relive the past, perhaps in more ways than one – depending on how your conversation goes! – by chatting to Eliza for two or three minutes.
 
 Run the following code cell to import the `eliza` package:
 <!-- #endregion -->
@@ -63,20 +63,20 @@ Run the following code cell to import the `eliza` package:
 import eliza
 ```
 
-Run the following code cell to enter Eliza's treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the programme by clicking the *stop* button in the notebook toolbar.
+Run the following code cell to enter Eliza’s treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the program by clicking the *stop* button in the notebook toolbar.
 
 ```python activity=true
 eliza.hello_doctor()
 ```
 
 <!-- #region activity=true -->
-If you want to hear Eliza speak the responses aloud to you, start the programme by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
+If you want to hear Eliza speak the responses aloud to you then start the program by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
 <!-- #endregion -->
 
 <!-- #region -->
-### So What Makes Eliza Tick?
+### What makes Eliza tick?
 
-If you [look at the rules file](eliza.json), you will see that it contains a series of rules that have the form:
+If you look at the [rules file](eliza.json), you will see that it contains a series of rules that have the form:
 
 ```
 CONDITION: [
@@ -106,17 +106,17 @@ For example:
         ]
 ```
 
-The `?*x` and `?*y` elements in the condition part of the rule are pattern matching operators that capture arbirtary text before and after the provided `KEYPHRASE`. A rule matches a provided input if the `KEYPHRASE` is contained in the text given to Eliza. The pattern matched content in the text can then be extracted from the input and used in the output response given by Eliza.
+The `?*x` and `?*y` elements in the condition part of the rule are pattern-matching operators that capture arbirtary text before and after the provided `KEYPHRASE`. A rule matches a provided input if the `KEYPHRASE` is contained in the text given to Eliza. The pattern-matched content in the text can then be extracted from the input and used in the output response given by Eliza.
 
-A rule matching engine, written in Python, takes the user input, tries to match it with one of the rules and then generates a response. If you are interested in the details, Connelly provided a commentary [here](https://dhconnelly.com/paip-python/docs/paip/eliza.html) that explains how his version of the Eliza program works.
+A rule-matching engine, written in Python, takes the user input, tries to match it with one of the rules and then generates a response. If you are interested in the details, [Connelly provides a commentary](https://dhconnelly.com/paip-python/docs/paip/eliza.html) that explains how his version of the Eliza program works.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Optional Activity
+### Optional activity
 
-If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and edit it to contain your own rules, you can run Eliza using your ruleset by running the command: `eliza.hello_doctor('dr_me.json')`.
+If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and edit it to contain your own rules, then you can run Eliza using your ruleset by running the command: `eliza.hello_doctor('dr_me.json')`.
 
-You can also provide a set of custom default responses that Eliza will select between if no rules match by passing in them into the `hello_doctor()` function via the `default=` parameter. For example:
+You can also provide a set of custom default responses that Eliza will select between if no rules match by passing them into the `hello_doctor()` function via the `default=` parameter. For example:
 
 ```python
 eliza.hello_doctor('doolittle.json',
@@ -125,30 +125,32 @@ eliza.hello_doctor('doolittle.json',
                   )
 ```
 
-If you come up with an interesting script, please fee free to share it in the module forums.
+If you come up with an interesting script, then share it in your Cluster group forum.
 <!-- #endregion -->
 
-### Durable Rules Engine
+## 4.3 Durable Rules Engine
 
-The [*Durable Rules Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
+The [Durable Rules Engine](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule-based systems capable of reasonng over large collections of factual statements.
 
-To say that the framework is *polyglot* means that we can write programmes for the same framework using different programming languages, specifically Python, Node.js (a flavour of Javascript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
+To say that the framework is *polyglot* means that we can write programs for the same framework using different programming languages, specifically Python, Node.js (a flavour of JavaScript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
 
-Note that the *Durable Rules Engine* is *not* available directly within our robot simulator programmes. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.
+Note that the Durable Rules Engine (durable-rules) is *not* available directly within our robot simulator programs. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.
 
 The engine itself is rather more powerful than the engine used in the Eliza program example and can accept a wide range of rule definitions. It also makes use of a knowledge base of asserted facts (as well as ephemeral events) that are reasoned against using the rules.
 
-To see how this more comprehensive version of a rule based system works, let's consider the example of reasoning over a set of "facts" that are asserted as *subject predicate object* statements. Separate rules parse one or more of these statements and then try to general additional statements as a logical consequence.
+To see how this more comprehensive version of a rule-based system works, let’s consider the example of reasoning over a set of ‘facts’ that are asserted as *subject predicate object* statements. Separate rules parse one or more of these statements and then try to make general additional statements as a logical consequence.
 
 Facts might take the form *Sam is a student* where *Sam* is the subject of the statement, *student* is the object of the statement, and *is a* is a *predicate* that defines some sort of relationship between the subject and the object.
 
-Rules test statements, and if they match the rule condition, the rule asserts another fact.
+Rules test statements, and if they match the rule condition then the rule asserts another fact.
 
 For example, *if Sam is a student, then Sam can use the module forums*.
 
-Let's see how that works in practice. Note that the following treatment uses a simplification of the syntax used by default in the durable rules framework. (There is just too much clutter in the original syntax to see what's going on!)
+Let’s see how that works in practice. Note that the following treatment uses a simplification of the syntax used by default in the durable-rules framework. (There is just too much clutter in the original syntax to see what’s going on!)
 
-Let's import the packages we need and enable some magic...
+Let’s import the packages we need and enable some magic:
+
+<font color='red'>JD: Does the following code cell do anything? Is it needed?</font>
 
 ```python
 #%pip install  --upgrade git+https://github.com/innovationOUtside/durable_rules_magic.git
@@ -161,9 +163,9 @@ from durable_rules_tools.rules_utils import new_ruleset, SPO, Set, Subject
 ```
 
 <!-- #region -->
-The ruleset definition syntax is little bewildering so just try to see the structural patterns the various bits of syntax make.
+The ruleset definition syntax is little bewildering, so just try to see the structural patterns that the various bits of syntax make.
 
-So, take a deep breath, and let's dive in, looking at this pseudo-code abstraction of a possible rule:
+So, let’s take a deep breath and dive in, looking at this pseudo-code abstraction of a possible rule:
 
 ```
 if ?PERSON is student
@@ -172,7 +174,7 @@ if ?PERSON is student
 
 In this case, `?PERSON` is a variable representing the subject, *forums* is the object, and *can use* is the predicate.
 
-We can encode this a formal rule using the `durable-rules` framework as follows:
+We can encode this formal rule using the durable-rules framework as follows:
 
 ```python
 @when_all(Subject("is", "student"))
@@ -182,7 +184,7 @@ def cm_forum_use(c):
 <!-- #endregion -->
 
 <!-- #region tags=["alert-danger"] -->
-The `@...` statements are known as Python *decorators*; but that's all you need to know in case you want to look them up them further (further investigation is definitely *not required* and *not expected* of you for the purposes of this module). Just regard it as "syntactic sugar" intended to make the rule a but more readable than it might otherwise have to be. So go with the flow and just try to read the rules as some sort of structured pattern you can recognise as performing some sort of magic...
+The `@...` statements are known as Python *decorators*; but that’s all you need to know in case you want to look them up them further (further investigation is definitely *not required* and *not expected* of you for the purposes of this module). Just regard it as ‘syntactic sugar’ intended to make the rule a bit more readable than it might otherwise be. So go with the flow and just try to read the rules as some sort of structured pattern you can recognise as performing some sort of magic...
 <!-- #endregion -->
 
 <!-- #region -->
@@ -194,7 +196,7 @@ def RULENAME(TESTED_ASSERTION):
     ACTION
 ```
 
-If you defocus your eyes, you can perhaps see how those elements might relate to a rule that coould perhaps be more logically presented as:
+If you defocus your eyes, you can perhaps see how those elements might relate to a rule that could perhaps be more logically presented as:
 
 ```
 RULENAME:
@@ -202,7 +204,7 @@ RULENAME:
   then ACTION
 ```
 
-The rule is used in the code cell below without further explanation, other than the commentary provided in the cell itself. What is important is that you see (if you close you eyes and squint hard enough!) the logical "shape" of the rule. The actual symbols used, and their placement, is "just syntax".
+The rule is used in the code cell below without further explanation, other than the commentary provided in the cell itself. What is important is that you see (if you close you eyes and squint hard enough!) the logical ‘shape’ of the rule. The actual symbols used, and their placement, is ‘just syntax’.
 
 Run the following cell to define a new ruleset:
 <!-- #endregion -->
@@ -233,7 +235,7 @@ with ruleset(RULESET_1):
      
 ```
 
-We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules...
+We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules.
 
 Facts are asserted in the form: `subject : predicate : object`.
 
@@ -247,7 +249,7 @@ Sam : is : student
 Jo : is : course manager
 ```
 
-We can't easily add rules to a pre-exsiting ruleset, so let's create another ruleset, building on the first, that contains another rule:
+We can’t easily add rules to a pre-exsiting ruleset, so let’s create another ruleset, building on the first, that contains another rule:
 
 ```python
 RULESET_2 = new_ruleset()
@@ -270,7 +272,7 @@ with ruleset(RULESET_2):
  
 ```
 
-Let's test our assertions again:
+Let’s test our assertions again:
 
 ```python
 %%assert_facts -r RULESET_2
@@ -318,7 +320,7 @@ Sam : is : student
 Jo : is : course manager
 ```
 
-At the next level of complexity, we might want to draw some conclusions about multiple facts. Suppose, for example, that we wish to identify people who have "engaged" with the forums. We might define such people as people who have read a forum post and who have posted to a forum. 
+At the next level of complexity, we might want to draw some conclusions about multiple facts. Suppose, for example, that we wish to identify people who have ‘engaged’ with the forums. We might define such people as people who have read a forum post and who have posted to a forum. 
 
 ```python
 %%assert_facts -r RULESET_3
@@ -336,7 +338,7 @@ if ?PERSON has read forum post AND ?PERSON has posted to forum
 then ?PERSON has engaged with forum
 ```
 
-This is where things start getting trickier, and where we shall finish our quick introduction to creating rules with the *durable rules* framework. Briefly, we create a temporary reference when a fact matches a condition, and then compare those temporary references to see whether the same fact satisfied both conditions:
+This is where things start getting trickier, and where we shall finish our quick introduction to creating rules with the durable-rules framework. Briefly, we create a temporary reference when a fact matches a condition, and then compare those temporary references to see whether the same fact satisfied both conditions:
 
 ```python
 RULESET_4 = new_ruleset()
@@ -355,7 +357,7 @@ with ruleset(RULESET_4):
  
 ```
 
-Let's now test the following assertions to see who has been identified as engaging with the forums:
+Let’s now test the following assertions to see who has been identified as engaging with the forums:
 
 ```python
 %%assert_facts -r RULESET_4
@@ -366,21 +368,21 @@ Al : has posted to : forum
 Sam : has posted to : forum
 ```
 
-Hopefully, from these examples and the earlier Eliza example, you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier presented facts) using quite simple rules. But while each rule in and of itself might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.
+Hopefully, from these examples and the earlier Eliza example you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier-presented facts) using quite simple rules. But while each rule might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.
 
 
 ### Trying out another ruleset
 
-Let's try another example, this time using one of the example rule sets provided in the `durable-rules` documentation.
+Let’s try another example, this time using one of the example rulesets provided in the durable-rules documentation.
 
-We'll also see how we can add another dimension to the rules - and create a ruleset that speaks back to us.
+We’ll also see how we can add another dimension to the rules and create a ruleset that speaks back to us.
 
-You've already seen how we can get the simulated robot to speak, but how might we go about getting our notebooks to talk to us?
+You’ve already seen how we can get the simulated robot to speak, but how might we go about getting our notebooks to talk to us?
 
 
-### Talking Notebooks
+### Talking notebooks
 
-To get the robot to speak in the simulator, we make use of the browser's Javascript speech engine. This speech engine was also used to allow Eliza to speak. It's not too hard to pull together a simple Python package, intended for use in Jupyter notebooks, that makes it easy for us to call this engine from a single line of Python code running via a notebook code cell that is not prefixed with the simulator magic.  
+To get the robot to speak in the simulator, we make use of the browser’s JavaScript speech engine. This speech engine was also used to allow Eliza to speak. It’s not too hard to pull together a simple Python package, intended for use in Jupyter notebooks, that makes it easy for us to call this engine from a single line of Python code running via a notebook code cell that is not prefixed with the simulator magic.  
 
 
 The following example demonstrates one such approach. The Python object that manages the speech actions also keeps track of how many messages have been posted and returns a visual count of utterances, alongside a transcript of each utterance.
@@ -407,6 +409,7 @@ You can list the available voices by running the following code cell:
 ```python
 print(browser_voicelist)
 ```
+<font color='red'>JD: This doesn't print out anything (maybe an empty list?) so presumbly I don't have alternative voices :¬( </font>
 
 Change the voice by setting the desired voice number: 
 
@@ -415,7 +418,7 @@ speaker.set_voice(49)
 speaker.say('I can change my voice')
 ```
 
-You can use the folowing command to reset the message count in the transcript:
+You can use the following command to reset the message count in the transcript:
 
 ```python
 speaker.reset_count()
@@ -473,17 +476,17 @@ with ruleset(RULESET):
 Kermit : eats : worms
 ```
 
-## More General Forms of Rules
+## More general forms of rules
 
-So far we have focused on reasoning about "facts" in the form of statements with the form  *subject predicate object*.
+So far we have focused on reasoning about ‘facts’ in the form of statements with the form *subject predicate object*.
 
 But this actally represents a more complicated form of reasoning than the rules engine actually employs because the *atomic* smallest possible facts are not the *subject predicate object* triples at all, they are the individual properties: `{subject: SUBJECT}`, `{'predicate': PREDICATE}` and `{object: OBJECT}`.
+<font color='red'>JD: in the above, in `{'predicate': PREDICATE}` should predicate be in quote marks? (Compare with subject and object.)</font>
 
 
+### Facts versus events
 
-### Facts versus Events
-
-Facts persist, events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
+Facts persist, whereas events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
 
 For example, imagine a case where we want to avoid a red line, because red lines indicate danger.
 
@@ -517,7 +520,7 @@ with ruleset(RULESET):
 
 ```
 
-What happens when if we detect a red color?
+What happens when if we detect a red colour?
 
 ```python
 post(RULESET, {'color': 'red' });
@@ -538,31 +541,31 @@ post(RULESET, {'color': 'green' });
 
 ### How might rules be useful in a robot context?
 
-Although we can easily create our own `if...` statements in the programme downloaded to the simulator, and control the robot's behaviour that way, it may more convenient to develop, and test, a large and possibly complex rule based set of behaviours using a framework such as a *Durable Rules*.
+Although we can easily create our own `if...` statements in the program downloaded to the simulator and control the robot’s behaviour that way, it may be more convenient to develop, and test, a large and possibly complex rule-based set of behaviours using a framework such as durable-rules.
 
-This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook's Python context, passing them as events to the Durable Rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.
+This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook’s Python context, passing them as events to the durable-rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.
 
-We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule based system, in a later notebook.
+We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule-based system, in a later notebook.
 
 
 ## Summary
 
-In this notebook, you have seen how a rule based agent originally created fifty years ago can still hold a conversation (of sorts!) today. By providing different scripts containing only a few dozen rules, quite wide ranging conversations are possible if the human conversant adds the detail.
+In this notebook, you have seen how a rule-based agent originally created over fifty years ago can still hold a conversation (of sorts!) today. By providing different scripts containing only a few dozen rules, quite wide-ranging conversations are possible if the human conversant adds the detail.
 
-The `durable_rules` framework provides an example of system that can be used to generate a more powerful rule based system. Reasoning of a set of persistent facts, or ephemeral events, rule based systems constructed using framweorks such as this can be used to implement a wide range of systems, from fraud detection systems and systems that implement complex sets of business rules in a corporate context. Such systems can also be developed to implement actual robot controllers, with rules accepting events based on incoming sensor data as well as higher level beliefs ((that is, "facts") derived from sensor data events and other facts.
+The durable-rules framework provides an example of a system that can be used to generate a more powerful rule-based system. Reasoning about a set of persistent facts, or ephemeral events, rule-based systems constructed using framweorks such as this can be used to implement a wide range of systems, from fraud-detection systems to systems that implement complex sets of business rules in a corporate context. Such systems can also be developed to implement actual robot controllers, with rules accepting events based on incoming sensor data as well as higher-level beliefs (that is, ‘facts’) derived from sensor data events and other facts.
 
-In a later part of the course, you will have an opportunity to see how a multi-agent system can be architected whereby  the simulated robot can pass sensor readings to an external rule based system agent, which will process the data, and return some sort of response that the robot can then act on.
+In a later part of the block, you will have an opportunity to see how a multi-agent system can be built where the simulated robot can pass sensor readings to an external rule-based system, which will process the data and return some sort of response that the robot can then act on.
 
 <!-- #region heading_collapsed=true -->
-## Appendix
+## Addendum
 
-Adding a simple Python speech utility in a Jupyter notebook is quite easy if we make use of the Javascript speech engine in the browser used to render the notebook. This appendix shows how...
+Adding a simple Python speech utility in a Jupyter notebook is quite easy if we make use of the JavaScript speech engine in the browser used to render the notebook. This addendum shows how.
 
-*(You are not required to study this for the purposes of the module.)*
+*(You are not required to study this addendum for the purposes of the module.)*
 <!-- #endregion -->
 
 <!-- #region hidden=true -->
-To create a simple Pyhton speech function, we need to import the `IPython.display.Javascript` package that lets us run Javascript code in the browser from Python.
+To create a simple Python speech function, we need to import the `IPython.display.Javascript` package that lets us run JavaScript code in the browser from Python.
 <!-- #endregion -->
 
 ```python hidden=true
@@ -570,7 +573,7 @@ from IPython.display import Javascript, display
 ```
 
 <!-- #region hidden=true -->
-Then we can define a simple function that invokes the Javascript speech engine with a provided piece of text:
+Then we can define a simple function that invokes the JavaScript speech engine with a provided piece of text:
 <!-- #endregion -->
 
 ```python hidden=true
@@ -580,7 +583,7 @@ def say(txt):
 ```
 
 <!-- #region hidden=true -->
-We can create a further level of abstraction by putting the function inside a Pyhton `class`:
+We can create a further level of abstraction by putting the function inside a Python `class`:
 <!-- #endregion -->
 
 ```python hidden=true
