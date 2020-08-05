@@ -19,7 +19,9 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbtutor
 ```
 
-# 3 Dead reckoning
+<font color='red'>JD: If the first two notebooks are to be combined, then this notebook needs renaming as it will then be the second notebook in this week.</font>
+
+# 2 Dead reckoning
 
 
 *Dead reckoning* is a means of navigation that does not rely on external observations. Instead, a robot’s position is estimated by summing its incremental movements relative to a known starting point.
@@ -29,29 +31,32 @@ Estimates of the distance traversed are usually obtained from measuring how many
 In RoboLab we will calculate the position of a robot from how long it moves in a straight line or rotates about its centre. We will assume that the length of time for which the motors are switched on is directly related to the distance travelled by the wheels.
 
 
-## 3.1 Activity: Dead reckoning
+## 2.1 Activity – Dead reckoning
 
 
-An environment for the simulated robot to navigate is shown below, based on the 2018 First Lego League "Into Orbit" challenge.
+An environment for the simulated robot to navigate is shown below, based on the 2018 First Lego League ‘Into Orbit’ challenge.
 
 The idea is that the robot must get to the target satellite from its original starting point by avoiding the obstacles in its direct path.
 
-![Space scene showing the robot, some satellites against a "space" bacground, and some wall like obstacles between the robot starting point and a target satellite](../images/Section_00_02_-_Jupyter_Notebook.png)
+<font color='red'>JD: Are there any rights issues with using this image?</font>
 
-The following programme should drive the robot from its starting point, to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot's *pen down* trail.
+![Space scene showing the robot, some satellites against a ‘space’ bacground, and some wall-like obstacles between the robot’s starting point and a target satellite.](../images/Section_00_02_-_Jupyter_Notebook.png)
 
-Load the *FLL_2018_Into_Orbit* background into the simulator. Run the code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the programme in the simulator.
+The following program should drive the robot from its starting point to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot’s *pen down* trail.
 
-*Remember that you can reset the original location and orientation of the robot by clicking the simularo `Reset` button. You can clear the pen trace by clicking the simulator `Clear Trace` button.*
+Load the *FLL_2018_Into_Orbit* background into the simulator. Run the following code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the program in the simulator.
+
+*Remember that you can reset the original location and orientation of the robot by clicking the simulator’s `Reset` button. You can clear the pen trace by clicking the simulator’s `Clear Trace` button.*
 
 Does the robot reach the target satellite without encountering any obstacles?
-
+<font color='red'>JD: Is it meant to? When I ran this it didn't dock with the satellite between the obstacles (i.e. the satellite marked with an arrow in the figure above): it docked with the machine on the asteriod.</font>
 
 To set the speeds and times, I used a bit of trial and error.
 
-If the route had been much more complex, I would have been tempted to  comment out the steps up I had already run an add new steps that would be applied from wherever the robot was currently located.
+If the route had been much more complex then I would have been tempted to comment out the steps up I had already run and add new steps that would be applied from wherever the robot was currently located.
 
-Note that the robot could have taken other routes to get to the satellite - I just thought I should avoid the asteroid!
+Note that the robot could have taken other routes to get to the satellite – I just thought I should avoid the asteroid!
+<font color='red'>JD: It seems my robot went to the thing on the asteriod..,</font>
 
 ```python
 %%sim_magic_preloaded -b FLL_2018_Into_Orbit -p
@@ -87,15 +92,15 @@ playsound.say("Hopefully I have docked with the satellite...")
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## 3.2 Challenge: Reaching the moon base
+## 2.2 Challenge – Reaching the moon base
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-In the following code cell, write a program to move the simulated robot from its location servicing the satellite to the moon base identified as the circlular area marked on the moon in the top right hand corner of the simulated world.
+In the following code cell, write a program to move the simulated robot from its location servicing the satellite to the moon base identified as the circlular area marked on the moon in the top right-hand corner of the simulated world.
 
-In the simulator, set the robot's X location to `1250` and Y location `450` and use the *Move* button to loate the robot there.
+In the simulator, set the robot’s X location to `1250` and Y location `450` and use the *Move* button to locate the robot there.
 
-Use the following code cell to write your own dead reckoning programme to drive the robot to the moon base at location `(2150, 950)`.
+Use the following code cell to write your own dead reckoning program to drive the robot to the moon base at location `(2150, 950)`.
 <!-- #endregion -->
 
 ```python activity=true
@@ -105,17 +110,19 @@ Use the following code cell to write your own dead reckoning programme to drive 
 
 ```
 
-## 3.3 Dead reckoning with noise
+## 2.3 Dead reckoning with noise
 
 
-The robot traverses its path using timing information for dead reckoning. In principle, if the simulated robot had a map, it could calculate all the distances and directions for itself, convert these to times, and dead reckon its way to the target. However, there is a problem with dead reckoning: *noise*.
+The robot traverses its path using timing information for dead reckoning. In principle, if the simulated robot had a map then it could calculate all the distances and directions for itself, convert these to times, and dead reckon its way to the target. However, there is a problem with dead reckoning: *noise*.
 
-In many physical systems, a perfect intended behaviour is subject to *noise*, random perturbations that arise within the system as time goes on as a side-effect of its operation. In a robot, noise might arise in the behaviour of the motors, the transmission or the wheels. The result is that the robot does not execute its motion without error. We can model noise effects in the mobility system of out robot by adding a small amount of noise to the motor speeds as the simulator runs. This noise componenent may speed up, or slow down, the speed of each motor, in a random way. As with real systems, the noise represents are slight random deviations from the theoretical, ideal behaviour.
+In many physical systems, a perfect intended behaviour is subject to *noise* – random perturbations that arise within the system as time goes on as a side effect of its operation. In a robot, noise might arise in the behaviour of the motors, the transmission or the wheels. The result is that the robot does not execute its motion without error. We can model noise effects in the mobility system of our robot by adding a small amount of noise to the motor speeds as the simulator runs. This noise componenent may speed up or slow down the speed of each motor, in a random way. As with real systems, the noise represents slight random deviations from the theoretical, ideal behaviour.
 
 
-Run the following code cell to download the programme to the simulator. Select an empty background (select the *Empty Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `50` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
+Run the following code cell to download the program to the simulator. Select an empty background (select the *Empty_Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `50` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
 
 Run the program in the simulator and observe what happens.
+
+<font color='red'>JD: In the following, the FLL_2018_Into_Orbit background gets loaded (when we've just told students to select the *Empty_Map*).</font>
 
 ```python
 %%sim_magic_preloaded -b FLL_2018_Into_Orbit -p
@@ -124,20 +131,23 @@ tank_drive.on_for_rotations(SpeedPercent(30),
                             SpeedPercent(30), 3)
 ```
 
-When you run the programme, you should see the robot drive forwards a short way in a straight line, leaving a staight line trail behind it.
+When you run the program, you should see the robot drive forwards a short way in a straight line, leaving a straight line trail behind it.
 
 Reset the location of the robot by clicking the simulator *Move* button. Also within the simulator, increase the *Wheel noise* value from zero by dragging the slider to the right a little way.
 
-Run the programme in the simulator again.
+Run the program in the simulator again.
 
-You should notice this time that the robot does not travel in a straight line. Instead, it drifts from side to slide although possible to one side of the line.
+You should notice this time that the robot does not travel in a straight line. Instead, it drifts from side to slide, although possibly to one side of the line.
 
-Move the robot back to the start poistion (click the *Move* button) and run the programme in the simulator again. This time, you should see it follows yet another different path.
+Move the robot back to the start poistion (click the *Move* button) and run the program in the simulator again. This time, you should see it follows yet another different path.
 
-Depending on how severe the noise setting is, the robot will travel closer (low noise) the original straight libe, or follow an ever more erratic path (high noise).
+Depending on how severe the noise setting is, the robot will travel closer (low noise) the original straight libe, or follow an ever-more erratic path (high noise).
 
 
-Now run the original satellite finding dead reckoning programme again, using the *FLL 2018 - Into Orbit* background, but in the presence of *Wheel noise*. Does it:
+Now run the original satellite-finding dead reckoning program again, using the *FLL_2018_Into_Orbit* background, but in the presence of *Wheel noise*. Does it: 
+<font color='red'>JD: Does it what?.</font>
+
+<font color='red'>JD: In the following, the FLL_2018_Into_Orbit background *doesn't* get automatically loaded (but perhaps it should?).</font>
 
 ```python
 %%sim_magic_preloaded
