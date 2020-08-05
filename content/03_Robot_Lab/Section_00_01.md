@@ -27,7 +27,7 @@ In this week’s practical activities, we are concerned with how a robot can use
 
 The first control strategy, dead reckoning, is an ‘open-loop’ control approach, since it does not use sensor input.
 
-The second is an example of a ‘sense–act’ control strategy that you encountered earlier in the module; we will illustrate this control strategy using simulated implementations of simple Braitenberg vehicles.
+The second is an example of a ‘sense–act’ control strategy that you encountered earlier in the block; we will illustrate this control strategy using simulated implementations of simple Braitenberg vehicles.
 
 Finally, there is the most complex control strategy, in which the robot deliberates on the sensor inputs in the context of other knowledge using an approach we refer to as ‘sense–think–act’. This involves *reasoning* and corresponds more closely to the way humans solve complex problems and plan actions in the long and short term.
 
