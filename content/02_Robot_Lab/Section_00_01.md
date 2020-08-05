@@ -20,16 +20,16 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 ```
 <font color='red'>JD: I think we need to remind students to run this first code cell (or move it to when it's first needed?).</font>
 
-# 1 Introduction to loops and branches
+# Introduction to loops and branches
 
 Loops and branches are powerful constructs in programming, and they are used extensively in almost all computer programs. In this session, I will introduce the different loop and branch statements provided by RoboLab. You will have an opportunity to see how they are used by working through the activities. We end the session with a number of challenges for you to attempt. These will give you practice in selecting and using different RobotLab statements.
-<font color='red'>JD: I think it would be helpful to say that in this session there are four notebooks.</font>
+<font color='red'>JD: I think it would be helpful to say that in this session there are four notebooks, and the first notebook looks at loops, the second at branches, while the third and fourth contain RoboLab challenges.</font>
 
 
-# 2 Loops
+# 1 Loops
 
 
-## 2.1 An introduction to loops in computer programs
+## 1.1 An introduction to loops in computer programs
 
 
 To illustrate the idea of a loop it is helpful to use a swimming analogy. Suppose you want to swim 20 lengths of a swimming pool. The chances are you will want to monitor your progress by keeping count of the number of lengths you complete. So, at the start, your personal counter (you) will be set to ‘0’. After one length of the pool you add 1 to your counter. You also ask yourself ‘have I done 20 lengths yet?’ If the answer is ‘no’, then you ‘loop back’ to swim another length. On completion of the second length you add 1 to your counter and ask yourself the question again. If the answer is ‘no’, then you loop back and repeat the process once more. You keep going like this until the answer to the question is ‘yes’, at which point you will have completed 20 lengths of the pool and the loop will end:
@@ -170,7 +170,7 @@ The `while...` loop tests the truth value of a statement. If the statement evaul
 Let’s see how each of these constructs works in turn, first using a simple, pure Python example, then in the context of our simulated robot.
 
 
-## Using a `for...in...` loop
+## 1.2 Using a `for...in...` loop
 
 A `for...in...` loop takes each item from a list of items (or a more general Python *iterator* object), one at a time, then enters the loop, until the list (or iterator) is empty.
 
@@ -305,7 +305,7 @@ You may remember from the program we used to draw a square that there was a lot 
 Look through the code in the code cell below and predict what you think the robot will do when it runs that program.
 
 <!-- #region student=true -->
-*DOUBLE-CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the program.*
+*Double-click this cell to edit it and enter your prediction of what the robot will do as it runs through the program.*
 <!-- #endregion -->
 
 ```python
@@ -478,7 +478,7 @@ for day in ['Monday', 'Tuesday', 'Wednesday',
         break
 ```
 
-## Using a `while...` loop
+## 1.3 Using a `while...` loop
 
 A `while...` loop tests the truth of a statement on each iteration of the loop. In ‘pseudo-code’, the behaviour can be described as:
 
@@ -602,7 +602,7 @@ Being able to loop *whilst* a particular condition holds allows us to perform ac
 
 This may be particularly useful in a robot programming context, as the following simple example demonstrates.
 
-In the simulator, load the *Grey bands* background and reset the trace. (You can also disable the *Pen Down* control: we don’t need to keep track of where the robot has travelled for this activity.)
+In the simulator, load the *Grey\_bands* background and reset the trace. (You can also disable the *Pen Down* control: we don’t need to keep track of where the robot has travelled for this activity.)
 
 Run the following code cell to download the program to the simulator and then run it in the simulator, observing the behaviour of the robot.
 
@@ -636,7 +636,7 @@ The program works by checking the value from one of the robot’s sensors: a dow
 Try modifying the numerical value used in the `while` conditional test and downloading and running the modified program. Can you get the robot to stop as soon as it encounters the second medium grey band? How about on the third, dark grey line, or on the final, black line?
 
 <!-- #region activity=true -->
-## Open activity – Changing a loop variable count up to 10
+## 1.4 Activity – Changing a loop variable count up to 10
 <!-- #endregion -->
 
 <!-- #region activity=true -->
