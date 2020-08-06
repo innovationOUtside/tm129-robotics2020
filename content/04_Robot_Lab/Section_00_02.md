@@ -343,7 +343,7 @@ In this manner the robot wiggles along the line. If we use the right-hand sensor
 <!-- #endregion -->
 
 ```python activity=true hidden=true
-%%sim_magic_preloaded --background  Line_Following_Test
+%%sim_magic_preloaded --background Line_Following_Test
 
 colorLeft = ColorSensor(INPUT_2)
 while True:
