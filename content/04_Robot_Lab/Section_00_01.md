@@ -10,7 +10,7 @@ Through your experiments, you will investigate the way the sensors behave and ho
 
 Let’s just recap how we might be able to use the simulator as an experimental laboratory.
 
-When the robot simulator screen is displayed, a blank background image is shown by default. You can configure the simulator to use different background images by selecting the desired background from the drop-down list in the simulator or by specifying the background to be used via the `-b\--background` parameter when defining a `sim_magic` code cell.
+When the robot simulator screen is displayed, a blank background image is shown by default. You can configure the simulator to use different background images by selecting the desired background from the drop-down list in the simulator or by specifying the background to be used via the `-b` or `--background` parameter when defining a `sim_magic` code cell.
 
 Background images can also be loaded from a file. If you create your own background images they should be PNG or JPEG images 2362&nbsp;pixels wide and 1143&nbsp;pixels high. Python code for generating some of the background images using the Python PIL package can be found in the notebook [`backgrounds/Background Image Generator.ipynb`](../backgrounds/Background%20Image%20Generator.ipynb).
 
