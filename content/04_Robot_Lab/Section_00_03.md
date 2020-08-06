@@ -119,6 +119,7 @@ def showColour(red=255, green=0, blue=0):
 ```
 
 <!-- #region activity=true -->
+
 ### Calibrating the required sensor readings
 
 You first need to record the light sensor readings associated with each of the coloured bands on the lollipop image, as well as for the black line and the grey background.
