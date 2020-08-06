@@ -16,7 +16,12 @@ import IPython.display
 
 # -
 
-def plot_boundaries(model, df, response=False, Xdata='Input', ydata='Fruit'):
+def plot_boundaries(model, df, response=False, Xdata='Input', ydata='Fruit', ymap=None):
+    
+    classes = np.unique(df[ydata])
+    
+    if ymap is None:
+        ymap = {'Strawberry': 'red', 'Pear': 'green', 'Orange': 'black', 'Banana': 'magenta'}
 
     fig, ax = plt.subplots()
     plt.style.use('ggplot')
@@ -44,13 +49,14 @@ def plot_boundaries(model, df, response=False, Xdata='Input', ydata='Fruit'):
     Z = model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
 
     # Plotting
-    ax.contourf(xx, yy, Z, colors= ['red', 'green', 'blue', 'orange'], alpha=0.2)
+    contour_colours = ['red', 'green', 'blue', 'orange', 'pink', 'magenta', 'cyan']
+    ax.contourf(xx, yy, Z, colors= contour_colours[:len(classes)], alpha=0.2)
 
 
     for f in df[ydata]:
         tmp = pd.DataFrame(df[Xdata].to_list(), columns=['x', 'y'])
         ax.scatter(tmp['x'], tmp['y'], s=100,
-                    c =df[ydata].map({'Strawberry': 'red', 'Pear': 'green', 'Orange': 'black', 'Banana': 'magenta'}),
+                    c =df[ydata].map(ymap),
                     marker='*', 
                     alpha=0.8)
     plt.xlabel("x",fontsize=15)
