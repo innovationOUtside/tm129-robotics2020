@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.1
   kernelspec:
     display_name: Python 3
     language: python
@@ -21,7 +21,7 @@ Neural networks can solve subtle pattern recognition problems, which are very im
 
 In recent years, great advances have been made in generating powerful neural networks based models often referred to as "deep learning" models. But neural networks have been around for over 50 years, with advances every few years, often reflecting advances in computing availability, and then long periods of "AI Winter" when not much progress appeared to be being made.
 
-The following XKCD cartoon, *Tasks*, was first published in 2014. As is typical of XKCD cartoons, hovering over the cartoon revealed some hidden caption text. In this particular case: *[i]n the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it*. 
+The following XKCD cartoon, *Tasks*, was first published in 2014. As is typical of XKCD cartoons, hovering over the cartoon revealed some hidden caption text. In this particular case: _[i]n the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it_. 
 
 ![](https://imgs.xkcd.com/comics/tasks.png)
 
@@ -48,6 +48,28 @@ Try one or more of the following services to get a feel for what sorts of servic
 __Do not spend more than 10 minutes on this activity.__
 
 *If you discover any additional demo services, or if you find that any of the above services seem have either stipped working, or disappeared, please let us know via the module forums.*
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Double click this cell to edit it and record your own summary and observations about what sorts of services were provided by one or more of the applications linked to above.*
+
+For example:
+
+- which website(s) did you try?
+- what sort of application or service does the website provide?
+- how well did it perform? For example, if the service was tagging an image, did it appear to tag any particular sorts of image incorrectly?
+
+What benefits can you imagine from using such a service? What risks might be associated with using such a service? 
+
+To what extent would you trust such a service for tagging:
+
+- your own photos to help you rediscover them;
+- stock items in a commercial retail setting;
+- medical images (CT scans, X-rays, etc);
+- images of people in a social network;
+- images of people in a police surveillance setting.
+
+What risks, if any, might be associated with using such a service in each of those settings?
 <!-- #endregion -->
 
 <!-- #region activity=true -->
