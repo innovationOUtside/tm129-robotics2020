@@ -20,13 +20,13 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 ```
 
 <!-- #region activity=true -->
-# 5 Challenge — Coping with Noise
+# 4 Challenge – Coping with noise
 
-Using The *Noisy_Lollipop* background in the simulator, see if you can refine your programme, or my programme, to complete the challenge of following the line and stopping on the red bar.
+Using The *Noisy_Lollipop* background <font color='red'>JD: I don't have a *Noisy_Lollipop* bakground... and your code below loads the original Lollipop too...</font>in the simulator, see if you can refine your program (or my program) to complete the challenge of following the line and stopping on the red bar.
 
-Trying to solve challenges like this can be both frustrating and time consuming, so try to keep an eye on the clock and don't spend more that ten or fifteen minutes trying to complete the challenge.
+Trying to solve challenges like this can be both frustrating and time-consuming, so try to keep an eye on the clock and don’t spend more than ten or fifteen minutes trying to complete the challenge.
 
-If you think you have come up with a good solution, feel free to share it via the module forums.
+If you think you have come up with a good solution, then share it on your Cluster group forum.
 <!-- #endregion -->
 
 <!-- #region student=true -->
