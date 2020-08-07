@@ -19,14 +19,14 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbtutor
 ```
 
-# 3 Runaround
+# 2 Runaround
 
 
-In the Asimov short story "Runaround" in *I, Robot* there is an interaction between the potential due to the instruction given to collect selenium (*Second Law: obey a human*), and Speedy's strong self-preservation potential (*Third Law: protect its own existence*). In this section you are going to see how such conflicting potentials interact in practice.
+In the Asimov short story ‘Runaround’ in *I, Robot* there is an interaction between the potential due to the instruction given to collect selenium (*Second Law: obey a human*), and Speedy’s strong self-preservation potential (*Third Law: protect its own existence*). In this section you are going to see how such conflicting potentials interact in practice.
 
-One way of modeling a potential map is to think of it in geographical terms, with the potential map represented as a "landscape" over an area. Areas of high potential are represented by high points in the landscape; areas of low potential are represented as valleys. We can take the modeling step one step further, and represent this landscape using a topographical map, where high points are represented by bright colours, and low areas are represented by dark colours.
+One way of modelling a potential map is to think of it in geographical terms, with the potential map represented as a ‘landscape’ over an area. Areas of high potential are represented by high points in the landscape; areas of low potential are represented as valleys. We can take the modelling step one step further, and represent this landscape using a topographical map, where high points are represented by bright colours, and low areas are represented by dark colours.
 
-I was hoping to use a background that is actually generated from topographic map data (that is, geographical height data) from NASA's Shuttle Radar Topography Mission (SRTM) to model the presence of selenium deposits. "High", brightly coloured areas were to be imagined as corresponding to areas nominally rich in selenium; "low" areas correspond to areas nominally low in selenium. But the terrain was never quite as well behaved as I'd hoped it would be for the purposes of this activity, so instead we'll be using the *Radial_red* background and the *Small_Robot_Wide_Eyes* configuration.
+I was hoping to use a background that is actually generated from topographic map data (that is, geographical height data) from NASA’s Shuttle Radar Topography Mission (SRTM) to model the presence of selenium deposits. ‘High’, brightly coloured areas were to be imagined as corresponding to areas nominally rich in selenium; ‘low’ areas would correspond to areas nominally low in selenium. But the terrain was never quite as well behaved as I’d hoped it would be for the purposes of this activity, so instead we’ll be using the *Radial_red* background and the *Small_Robot_Wide_Eyes* configuration.
 
 Download and run the following program in pen down mode. What does the robot do?
 
@@ -36,7 +36,7 @@ Download and run the following program in pen down mode. What does the robot do?
 colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 
-# The GAIN term "amplifies" the error signal
+# The GAIN term 'amplifies' the error signal
 GAIN = 30
 
 steering_drive = MoveSteering(OUTPUT_B, OUTPUT_C)
@@ -62,19 +62,21 @@ while ((colorLeft.reflected_light_intensity_pc>0.05)
     
 ```
 
+<font color='red'>JD: Is the above program meant to stop the robot when it reaches the selenium? For me, it continues looping around (going past the selenium, then turning, then going past the selenium again, etc.).</font>
+
 <!-- #region student=true -->
-*Your notes and observations on what happens when the programme is executed.*
+*Your notes and observations on what happens when the program is executed.*
 <!-- #endregion -->
 
-The previous programme is based on one of the earlier Braitenberg programmes in which the robot attempts to turn towards the bright light source. This corresponds to the thing "get selenium" instruction.
+The previous program is based on one of the earlier Braitenberg programs in which the robot attempts to turn towards the bright light source. This corresponds to the ‘get selenium’ instruction.
 
 <!-- #region tags=["alert-success"] -->
-By inspection of the programme, you might be wondering: what happens if we set `error = intensity_left - intensity_right`? Can you make a prediction about that? Is your prediction likely to be affected by the starting point and orientation of the robot? Try it and see!
+By inspection of the program, you might be wondering: what happens if we set `error = intensity_left - intensity_right`? Can you make a prediction about that? Is your prediction likely to be affected by the starting point and orientation of the robot? Try it and see!
 <!-- #endregion -->
 
 But what happens if we add a further rule that causes the robot to shy away from the selenium if things are too hot?
 
-Download and the following programme and observe what happens:
+Download and run the following program and observe what happens:
 
 ```python
 %%sim_magic_preloaded -b Radial_red -p -r Small_Robot_Wide_Eyes
@@ -125,13 +127,15 @@ while ((colorLeft.reflected_light_intensity_pc>0.05)
 *Record your observations here.*
 <!-- #endregion -->
 
-When the second program is run, the robot approaches the selenium deposit, then turns away then approaches it again. When I ran the programme, it started to "thrash" the robot didn't seem to know whether to turn left or right. (You may even have started to feel sorry for it...)
+When the second program is run, the robot approaches the selenium deposit, then turns away then approaches it again. When I ran the program, it started to ‘thrash’: the robot didn’t seem to know whether to turn left or right. (You may even have started to feel sorry for it...)
 
-What happens if you add some sensor noise using the slider as the programme is running? Does the addition of some some uncertainty in the sensor values help the robot make progress at all?
+<font color='red'>JD: I don't see any 'thrashing': it gets close then turns away and then makes another approach, etc.</font>
+
+What happens if you add some sensor noise using the slider as the program is running? Does the addition of some some uncertainty in the sensor values help the robot make progress at all?
 
 
 ## Summary
 
-Simple programmes can often lead to complex emergent behaviours. Whilst the control behaviours themselves may be simple the way they interact with the environment, which may itself be complex, can lead to a wide range of behaviours that you might never think to predict.
+Simple programs can often lead to complex emergent behaviours. Whilst the control behaviours themselves may be simple, the way they interact with the environment, which may itself be complex, can lead to a wide range of behaviours that you might never think to predict.
 
-In the example programme in this notebook, you saw how two simple rules — one for turning towards the selenium, another, "higher priority" rule for turning the other way if you get too close — can also interact to create a complex behaviour from two simple sensor inputs.
+In the example program in this notebook, you saw how two simple rules – one for turning towards the selenium, another, ‘higher-priority’ rule for turning the other way if you get too close – can also interact to create a complex behaviour from two simple sensor inputs.
