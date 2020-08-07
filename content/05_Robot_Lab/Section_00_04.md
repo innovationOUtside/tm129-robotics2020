@@ -17,50 +17,48 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 %load_ext nbev3devsim
 ```
-# 4 Where am I?
+# 3 Where am I?
 
 
-One of the main problems a robot has is locating itself in its environment: the simulated robot doesn't know where it is in the simulated world. Within the simulator, some `x` and `y` co-ordinate values are used by the simulator to keep track of the simulated robot's location, and an angle parameter records its orientation. This information is then used to draw the robot on the background canvas.
+One of the main problems a robot has is locating itself in its environment: the simulated robot doesn’t know where it is in the simulated world. Within the simulator, some `x` and `y` co-ordinate values are used by the simulator to keep track of the simulated robot’s location, and an angle parameter records its orientation. This information is then used to draw the robot on the background canvas.
 
-Typically when using a simulator, we try not to cheat by providing the robot direct access to simulator state information. That would be rather like you going outside, raising your arms to the sky, shouting *where am I?* and the universe responding with your current location.
+Typically when using a simulator, we try not to cheat by providing the robot direct access to simulator state information. That would be rather like you going outside, raising your arms to the sky, shouting ‘*Where am I?*’ and the universe responding with your current location.
 
-Instead, we try to ensure that the information on which the robot makes its decision come from it's own internal reasoning and any sensor values it has access to.
+Instead, we try to ensure that the information on which the robot makes its decisions comes from its own internal reasoning and any sensor values it has access to.
 
-At this point, we could create a magical "simulated-GPS" sensor, that allows the robot to identify its location from the simulator's point of view; but in the real world, we can't always guarantee that external location services are available. For example, GPS doesn't work indoors or underground, or even in many cities, where line of sight access to four or more GPS satellites is not available.
+At this point, we could create a magical ‘simulated-GPS’ sensor that allows the robot to identify its location from the simulator’s point of view; but in the real world we can’t always guarantee that external location services are available. For example, GPS doesn’t work indoors or underground, or even in many cities where line-of-sight access to four or more GPS satellites is not available.
 
-Instead, we often have to rely on other sensors to help us identify our robot's location at least in a relative sense to where it has been previously.
-
-So that's what we'll be exploring in this notebook...
+Instead, we often have to rely on other sensors to help us identify our robot’s location, at least in a relative sense to where it has been previously. So that’s what we’ll be exploring in this notebook.
 
 
-## 4.1 Activity: Logging Motor Tachometer / "Rotation Sensor" Data
+## 3.1 Activity – Logging motor tachometer or ‘rotation sensor’ data
 
 
-We can get a sense of how far the robot has traveled by logging the `.position` of each motor. Inside a real motor, a rotary encoder is used to detect rotation of the motor. When the motor turns in one direction the count goes up, when it turns in the other, it goes down.
+We can get a sense of how far the robot has travelled by logging the `.position` of each motor. Inside a real motor, a rotary encoder is used to detect rotation of the motor. When the motor turns in one direction, the count goes up; when it turns in the other direction, it goes down.
 
-We'll be looking at the logged data using notebook tools, so let's take the precaution of clearing the datalog:
+We’ll be looking at the logged data using notebook tools, so let’s take the precaution of clearing the datalog:
 
 ```python
 roboSim.clear_datalog()
 ```
 
-As well as each sensor value, we will also capture the simulator "clock time". When running the simulator, you may have noticed that the simulator sometimes seems to slow down, perhaps because your computer processor is interrupted by having to commit resource to some other task. Inside the simulator, however, is an internal clock that counts simulator steps. Depending on how much work the simulator has to do to calculate updates in each step of the simulator run, this may take more or less "real time" as measured by a clock on your wall (or more likely, the clock on your mobile phone!). By logging the simulator step time, we can create a more accurate plot of the sensor values at each step of simulator time, irrespective of how long that step to to calculate in the real world.
+As well as each sensor value, we will also capture the simulator ‘clock time’. When running the simulator, you may have noticed that the simulator sometimes seems to slow down, perhaps because your computer processor is interrupted by having to commit resource to some other task. Inside the simulator, however, is an internal clock that counts simulator steps. Depending on how much work the simulator has to do to calculate updates in each step of the simulator run, this may take more or less ‘real time’ as measured by a clock on your wall (or, more likely, the clock on your mobile phone!). By logging the simulator step time, we can create a more accurate plot of the sensor values at each step of simulator time, irrespective of how long that step took to calculate in the real world.
 
 <!-- #region tags=["alert-success"] -->
-In his book "The New Dark Age", artist James Bridle describes the evolution of weather forecasting based on mathematical models:
+In his book *New Dark Age*, artist James Bridle describes the evolution of weather forecasting based on mathematical models:
 
->In 1950, a team of meteorologists assembled at Aberdeen in order to perform the first automated twenty-four-hour weather forecast.... For this project, the boundaries of the world were the edges of the continental United States; a grid separated it into fifteen rows and eighteen columns. The calculation programmed into the machine consisted of sixteen successive operations, each of which had to be carefully planned and punched into cards, and which in turn output a new deck of cards that had to be reproduced, collated, and sorted. The meteorologists worked in eight-hour shifts, supported by programmers, and the entire run absorbed almost five weeks, 100,000 IBM punch cards, and a million mathematical operations. But when the experimental logs were examined, von Neumann, the director of the experiment, discovered that the actual computational time was almost exactly twenty-four hours. 'One has reason to hope’, he wrote, that 'Richardson's dream of advancing computation faster than the weather may soon be realised'.
+>In 1950, a team of meteorologists assembled at Aberdeen in order to perform the first automated twenty-four-hour weather forecast.... For this project, the boundaries of the world were the edges of the continental United States; a grid separated it into fifteen rows and eighteen columns. The calculation programmed into the machine consisted of sixteen successive operations, each of which had to be carefully planned and punched into cards, and which in turn output a new deck of cards that had to be reproduced, collated, and sorted. The meteorologists worked in eight-hour shifts, supported by programmers, and the entire run absorbed almost five weeks, 100,000 IBM punch cards, and a million mathematical operations. But when the experimental logs were examined, von Neumann, the director of the experiment, discovered that the actual computational time was almost exactly twenty-four hours. ‘One has reason to hope’, he wrote, that ‘Richardson’s dream of advancing computation faster than the weather may soon be realised’.
 
 *Historical note: Lewis Fry Richardson was an early pioneer of weather forecasting, whose story is also summarised by Bridle.*
 
-As Bridle observes, the number crunching required to perform a weather forecast requires the solution of lots of complex mathematical equations, so much so that the earliest computers might take days to make a 24 hour weather forecast. If you're in the habit of checking online weather reports just before you set out for the day, they wouldn't be much use if they took the next three days to compute. Although our simulator is a simple one, at times it may still take more computational resource than is available to the programme for it compute a single second of time in the simulated world in less than a second of real world time.
+As Bridle observes, the number crunching required to perform a weather forecast requires the solution of lots of complex mathematical equations, so much so that the earliest computers might take days to make a 24-hour weather forecast. If you’re in the habit of checking online weather reports just before you set out for the day, they wouldn’t be much use if they took the next three days to compute. Although our simulator is a simple one, at times it may still take more computational resource than is available to the program for it to compute a single second of time in the simulated world in less than a second of real-world time.
 
-Reference: `BRIDLE, J. (2018). New Dark Age: Technology, Knowledge and the End of the Future. Verso Books.`
+Reference: Bridle, J. (2018) *New Dark Age: Technology and the End of the Future*, London: Verso Books.
 <!-- #endregion -->
 
-The following programme logs the position count as we drive the robot forwards, backwards, wait awhile, then turn on the spot slowly one way, quickly the other. I have also instrumented it so that the simulated robot says aloud what it is about to do next as the programme progresses.
+The following program logs the position count as we drive the robot forwards, backwards, wait a while, then turn on the spot slowly one way, then quickly the other. I have also instrumented it so that the simulated robot says aloud what it is about to do next as the program progresses.
 
-With the simulator chart display enabled, and the *Left_wheel* and *Right_wheel* traces selected, download and run the programme.
+With the simulator chart display enabled, and the *Left wheel* and *Right wheel* traces selected, download and run the program.
 
 Observe what happens to the wheel position counts as the robot progresses.
 
@@ -70,7 +68,7 @@ from playsound import say
 
 import ev3dev2_glue as glue
 
-tank_steering= MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_steering = MoveSteering(OUTPUT_B, OUTPUT_C)
 
 tank_steering.left_motor.position = str(0)
 tank_steering.right_motor.position = str(0)
@@ -131,13 +129,13 @@ for i in range(20):
 say("All done")
 ```
 
-The chart display in the simulator uses "sample number" along the horizontal x-axis to the log the data. This can result in some misleading traces as we can currently only add one sensor value to each sample.
+The chart display in the simulator uses ‘sample number’ along the horizontal x-axis to the log the data. This can result in some misleading traces as we can currently only add one sensor value to each sample.
 
 To plot the data more accurately, we need to plot the samples as a proper time series, with the sample timestamp as the x-coordinate.
 
 We can do that by charting the data from the datalog directly in the notebook.
 
-Retrieve the data from the data log, and preview it:
+Retrieve the data from the datalog, and preview it:
 
 ```python
 #Grab the logged data into a pandas dataframe
@@ -149,6 +147,7 @@ df = eds.get_dataframe_from_datalog(data)
 #Preview the first few rows of the dataset
 df.head()
 ```
+<font color='red'>JD: As in earlier notebooks, my datalog is empty.</font>
 
 Now we can chart the data:
 
@@ -164,24 +163,24 @@ ax = sns.lineplot(x="time",
                   data=df);
 ```
 
-Here's a stylised impression of what my chart looked like:
+Here’s a stylised impression of what my chart looked like:
 
 ![](../images/position_time.png)
 
-You'll notice that I have added some vertical grey lines to my chart to indicate different areas of the chart, as well as some simple labels identifying each area.
+You’ll notice that I have added some vertical grey lines to my chart to indicate different areas of the chart, as well as some simple labels identifying each area.
 
-Annotating charts can often help us make more sense of them when we try to read read them. In creating such charts there is often a balance between making a "production quality" chart that you could share with other people as a part of a formal report (or formal teaching materials!) and a "good enough for personal use" feel for your own reference. 
+Annotating charts can often help us make more sense of them when we try to read read them. In creating such charts there is often a balance between making a ‘production quality’ chart that you could share with other people as a part of a formal report (or formal teaching materials!) and a ‘good enough for personal use’ feel for your own reference. 
 
-In this regard, you may also notice the that the chart shown above has an informal, stylised feel to it. The chart really was created from the data I collected, but I then styled it using an XKCD chart theme to differentiate it from the charts generated within the notebook.
+In this regard, you may also notice that the chart shown above has an informal, stylised feel to it. The chart really was created from the data I collected, but I then styled it using an XKCD chart theme to differentiate it from the charts generated within the notebook.
 
 <!-- #region tags=["optional-extra"] heading_collapsed=true -->
-#### Create your own annotated chart
+### Create your own annotated chart
 
-*Click on the arrow in the sidebar to reveal how to create the annotated chart*
+*Click on the arrow in the sidebar or run this cell to reveal how to create the annotated chart.*
 <!-- #endregion -->
 
 <!-- #region tags=["optional-extra"] hidden=true -->
-I used the following code to create the annotated chart. I manually set the horizontal x-axis values where I wanted the the the vertical lines to appear. 
+I used the following code to create the annotated chart. I manually set the horizontal x-axis values where I wanted the vertical lines to appear. 
 <!-- #endregion -->
 
 ```python tags=["optional-extra"] hidden=true
@@ -196,9 +195,9 @@ and_back = 8.0
 # We need some additional tools from matplotlib
 import matplotlib.pyplot as plt
 
-# I am using the xkcd theme
+# I am using the xkcd theme.
 # This gives the chart an informal
-# or "indicatiive example" feel
+# or 'indicative example' feel
 with plt.xkcd():
     # Generate a line chart from the datalog dataframe
     ax = sns.lineplot(x="time",
@@ -207,7 +206,7 @@ with plt.xkcd():
                       hue='variable',
                       data=df)
 
-    # Move the legend outside the plotting area
+    # Move the legend outside the plotting area.
     # The prevents it from overlapping areas of the plot
     ax.legend( bbox_to_anchor=(1.0, 0.5))
 
@@ -229,7 +228,7 @@ with plt.xkcd():
     plot_line_label(on_the_spot, 'On the\nspot')
     plot_line_label(and_back, 'And\nback');
 
-    # We can save the image as a file if required
+    # We can save the image as a file if required.
     # Increase the figure size
     #plt.figure(figsize=(12,8))
     # Nudge the margins so we don't cut off labels
@@ -241,9 +240,9 @@ with plt.xkcd():
 ```
 
 <!-- #region activity=true -->
-### Optional Activity
+### Optional activity
 
-How do the position counts vary for each wheel if the robot is  driving forwards in a gentle curve, or a tight turn?
+How do the position counts vary for each wheel if the robot is driving forwards in a gentle curve, or a tight turn?
 
 For example, we might create such turns using the following steering commands:
 
@@ -255,14 +254,14 @@ tank_steering.on(-30, 20)
 tank_steering.on(-30, 20)
 ```
 
-Feel free to make your own predictions, or run a program, grab the data and analyse it yourself. If you do run your own experiment(s), remember to clear the datalog before running your data collecting code in the simulator...
+Feel free to make your own predictions, or run a program, grab the data and analyse it yourself. If you do run your own experiment(s), then remember to clear the datalog before running your data-collecting code in the simulator.
 <!-- #endregion -->
 
-## Measuring How Far The Robot Has Traveled
+## 3.2 Measuring how far the robot has travelled
 
-The wheel `position` data corresponds to an angular measure, which is to say, how far the wheel has turned.
+The wheel `position` data corresponds to an angular measure, that is, how far the wheel has turned.
 
-Use the following programme to drive the robot over a fixed number of rotations and observe how the position count increases. Based on your observations, make a note of what you think the position count actually measures.
+Use the following program to drive the robot over a fixed number of rotations and observe how the position count increases. Based on your observations, make a note of what you think the position count actually measures.
 
 ```python
 %%sim_magic_preloaded
@@ -289,49 +288,49 @@ reporter(last_position)
 ```
 
 <!-- #region student=true -->
-*Based on your observations of position counts for number of wheel rotations traveled, what do you think the position value measures. Bear in mind that the simulation, like the real world, may have sources of noise that affect the actual values recorded, rather than "ideal" ones.*
+*Based on your observations of position counts for number of wheel rotations travelled, what do you think the position value measures? Bear in mind that the simulation, like the real world, may have sources of noise that affect the actual values recorded, rather than ‘ideal’ ones.*
 
 *Record your impressions here.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### My Observations
+### My observations
 
-*Click the arrow in the sidebar to reveal my observations.*
+*Click the arrow in the sidebar or run this cell to reveal my observations.*
 <!-- #endregion -->
 
-When I ran the programme, I got counts between 365 and 380 for each rotation, depending in part on the speed I set the wheels to run at.
+When I ran the program, I got counts between 365 and 380 for each rotation, depending in part on the speed I set the wheels to run at.
 
-The simulator actually runs in steps, with 30 steps per simulated second. This means that at 20% speed, the wheel will turn approximately 6 to 7 degrees each step. By the time the simulator detects that the wheel has reached *at least* 360 degrees (i.e. completed one rotation), it may already have exceeded that amount of turn; so the stopping condition for the `.on_for_rotations` function, which is based on observing the turned angle, may actually stop the motors after more than one rotation.
+The simulator actually runs in steps, with 30 steps per simulated second. This means that at 20% speed, the wheel will turn approximately 6 to 7 degrees each step. By the time the simulator detects that the wheel has reached *at least* 360&nbsp;degrees (i.e. completed one rotation), it may already have exceeded that amount of turn; so the stopping condition for the `.on_for_rotations` function, which is based on observing the turned angle, may actually stop the motors after more than one rotation.
 
 So notwithstanding the values we get for the position count after a single rotation, the position is actually measured in degrees.
 
 <!-- #region activity=true -->
-## Activity — Are We There Yet?
+## 3.3 Activity – Are we there yet?
 
 In this activity, you will experiment with driving the robot over a fixed distance.
 
-Nominally, the wheel diameter is set in the robot configuration file to `56`, which is to say, `56mm`, so just under six centimetres, or in old money(?!), just over two inches.
+Nominally, the wheel diameter is set in the robot configuration file to `56`, that is, 56&nbsp;mm, so just under six&nbsp;centimetres.
 
 What this means is that we can drive the robot forward a specified distance.
 
-The bands shown on the *Coloured_bands* background are 60cm high.
+The bands shown on the *Coloured_bands* background are 60&nbsp;cm high.
 
-See if you can write a programme that drives the robot exactly the length of one of the bands by monitoring the `position` value of a one of the motors as the robot drives in a straight line.
+See if you can write a program that drives the robot exactly the length of one of the bands by monitoring the `position` value of one of the motors as the robot drives in a straight line.
 
-How accurately can you cover the distance? (Don't panic, or waste too much time, if you can't...). Comment on your results.
+How accurately can you cover the distance? (Don’t panic, or waste too much time, if you can’t...). Comment on your results.
 
-__Hint: how many degrees will the wheel need to turn for the wheel to turn 60cm?__
+__Hint: how many degrees will the wheel need to turn for the wheel to turn 60&nbsp;cm?__
 
-__Warning: if you use a loop, put something in it that uses up simulator time and progresses the clock, or you may find that your simulator Python programme get stuck and hangs the browser. __
+__Warning: if you use a loop then put something in it that uses up simulator time and progresses the clock; otherwise you may find that your simulator Python program gets stuck and hangs the browser.__
 
-*Note: the `.position` value is returned as a string and should be converted to an `int` if you want to use it numerically.*
+*Note: the `.position` value is returned as a string and should be converted to an integer (`int`) if you want to use it numerically.*
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*How many degrees does the wheel need to turn? Record you calculation and result here.*
+*How many degrees does the wheel need to turn? Record your calculation and result here.*
 
-*Remember, you can use a code cell as a interactive calculator... You can access pi as a number by importing `from math import pi`.*
+*Remember that you can use a code cell as a interactive calculator. You can access pi as a number by importing `from math import pi`.*
 <!-- #endregion -->
 
 ```python activity=true
@@ -345,15 +344,15 @@ __Warning: if you use a loop, put something in it that uses up simulator time an
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Answer
+### My answer
 
-*Click on the arrow in the sidebar to reveal my answer.*
+*Click on the arrow in the sidebar or run this cell to reveal my answer.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-The `position` counter reports number of degrees turned by the wheel, so let's start by finding out how many degrees we need to turn the wheel to travel 60cm.
+The `position` counter reports number of degrees turned by the wheel, so let’s start by finding out how many degrees we need to turn the wheel to travel 60&nbsp;cm.
 
-Recall, the wheel diameter is 56mm.
+Recall that the wheel diameter is 56&nbsp;mm.
 <!-- #endregion -->
 
 ```python activity=true hidden=true
@@ -371,7 +370,7 @@ int(no_of_degrees)
 ```
 
 <!-- #region activity=true hidden=true -->
-We can use this calculation in a programme that drives the robot forward until that wheels have turned by the desired amount, and then stops.
+We can use this calculation in a program that drives the robot forward until the wheels have turned by the desired amount, and then stops.
 
 Note that the speed of the robot may affect how accurately the robot can perform the task, bearing in mind the comment earlier about how the simulator uses quite crude discrete time steps to animate the world.
 <!-- #endregion -->
@@ -407,17 +406,17 @@ while int(tank_steering.left_motor.position) < no_of_degrees:
 ```
 
 <!-- #region activity=true hidden=true -->
-When I ran the programme, it did pretty well, running between the lines and stopping maybe just a fraction too long.
+When I ran the program, it did pretty well, running between the lines and stopping maybe just a fraction too long.
 <!-- #endregion -->
 
-## Measuring the Width of a Coloured Track
+## 3.4 Measuring the width of a coloured track
 
 One of the activities in the Open University [*T176 Engineering* residential school](http://www.open.ac.uk/jobs/residential-schools/modules/modules-summer-schools/txr120-engineering-active-introduction) is a robotics challenge to recreate a test track that depicts several coloured bands of various widths purely from data logged by an EV3 Lego robot.
 
-Let's try a related, but slightly simpler challenge: identifying the width of the track that is displayed on the *Loop* background.
+Let’s try a related, but slightly simpler challenge: identifying the width of the track that is displayed on the *Loop* background.
 
 <!-- #region activity=true -->
-### Using Logged Data to Take Measurements From the Simulated World
+### Using logged data to take measurements from the simulated world
 
 In this activity, you will use data logged by the robot to learn something about the structure of the world it is operating in.
 
@@ -429,7 +428,7 @@ roboSim.clear_datalog()
 ```
 
 <!-- #region activity=true -->
-and then download and run the following program in the simulator to drive the robot over the test track.
+Then download and run the following program in the simulator to drive the robot over the test track.
 <!-- #endregion -->
 
 ```python activity=true
@@ -457,7 +456,7 @@ while int(tank_steering.left_motor.position)<1000:
 <!-- #region activity=true -->
 From a chart display of the data, such as the one that is generated if you run the code cell below, how might you identify the width of the black line?
 
-*Hint: in the interactive plotly chart, if you hove over the chart to raise the plotly toolbar, you can select the `Compare data on hover` to report the line values for a particular x-axis value; the `Toggle Spike Lines` view will also show dynamic crosslines highlighting the current and y values.*
+*Hint: in the interactive plotly chart, if you hover over the chart to raise the plotly toolbar then you can select the `Compare data on hover` to report the line values for a particular x-axis value; the `Toggle Spike Lines` view will also show dynamic crosslines highlighting the current and y-values.*
 <!-- #endregion -->
 
 ```python activity=true
@@ -473,24 +472,25 @@ df = eds.get_dataframe_from_datalog(data)
 # Generate a line chart from the datalog dataframe
 df.plot( x = 'time', y = 'value', color='variable')
 ```
+<font color='red'>JD: The plot above didn't display for me.</font>
 
 <!-- #region student=true -->
-*How can you use the logged data displayed in the chart above, or otherwise, to work out how wide the black line is? What other information, if any, do you need in order to express this as a distance in (simulated) meters?*
+*How can you use the logged data displayed in the chart above, or otherwise, to work out how wide the black line is? What other information, if any, do you need in order to express this as a distance in (simulated) metres?*
 
 *Record your observations here.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
 ### Answer
-*Click on the arrow in the sidebar to reveal my answer.*
+*Click on the arrow in the sidebar or run this cell to reveal my answer.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-The chart shows the increasing trace from the position sensor and a another trace for the light sensor. The light sensor value dips from 100 to 0 as the robot goes over the black line, then back to 100.
+The chart shows the increasing trace from the position sensor and another trace for the light sensor. The light sensor value dips from 100 to 0 as the robot goes over the black line, then back to 100.
 
-The horizontal x-axis is simulator time. If we take the position count reading at the same time the robot detects the black line, and again at the same time the robot crosses back onto the white background, we can subtract the first position value from the second to give use the distance travelled by the robot.
+The horizontal x-axis is simulator time. If we take the position count reading at the same time the robot detects the black line, and again at the same time the robot crosses back onto the white background, then we can subtract the first position value from the second to give use the distance travelled by the robot.
 
-To convert this to simulated meters, we would need to know what distance is traveled for a motor position increment value of 1.
+To convert this to simulated meters, we would need to know what distance is travelled for a motor position increment value of 1.
 
 If the position count is an angular measure (for example, degrees of wheel turn), then we could calculate the distance travelled as:
 
@@ -509,19 +509,19 @@ or:
 both of which could be measured from the robot *if* we had physical access to it.
 <!-- #endregion -->
 
-## Which Way Did You Say We Were Going, Again?
+## 3.5 Which way did you say we were going, again?
 
 
-As well as keeping track of how much the wheels have turned, and estimating location on that basis, we can also use the robot's gyroscope — often referred to as a "gyro" — sensor to tell us which direction it is facing.
+As well as keeping track of how much the wheels have turned, and estimating location on that basis, we can also use the robot’s gyroscope – often referred to as a ‘gyro’ – sensor to tell us which direction it is facing.
 
 In the following activities, you will see how the gyroscope and position sensors can be used to keep track of where the robot has been, as well as helping it get to where it needs to go.
 
 <!-- #region activity=true -->
-### Activity: Detecting orientation
+### Activity – Detecting orientation
 
-The following programme defines a simple edge follower that allows the robot to navigate its way around the shape described in the *Two_shapes* background, logging the gyro sensor as it does so.
+The following program defines a simple edge follower that allows the robot to navigate its way around the shape described in the *Two_shapes* background, logging the gyro sensor as it does so.
 
-Show the chart display, enable the gyro trace, and download and run the programme. Purely by observation of the chart view of the gyro data, do you think you would be able to the  shape corresponding to the the path followed by the robot?
+Show the chart, enable the gyro trace, and download and run the program. Purely by observation of the chart view of the gyro data, do you think you would be able to determine the shape corresponding to the path followed by the robot?
 <!-- #endregion -->
 
 ```python activity=true
@@ -550,15 +550,15 @@ while True:
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### My Observations
+### My observations
 
-*Click on the arrow in the sidebar to reveal my observations.*
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-The gyro sensor values follow a stepped trace in the chart, dropping by 90 or so every time the robot turns a corner, corresponding to a right angled turn counter-clockwise. The values oscillate as the robot proceeds, wiggling as it follows the edge of the line. The width (as measured along the x-axis) of each step is roughly the same, so the robot is describing a square.
+The gyro sensor values follow a stepped trace in the chart, dropping by 90 or so every time the robot turns a corner, corresponding to a right-angled turn anticlockwise. The values oscillate as the robot proceeds, wiggling as it follows the edge of the line. The width (as measured along the x-axis) of each step is roughly the same, so the robot is describing a square.
 
-I also note that the angle count is not a direction; it seems to be an accumulated count of degrees turned in a particular direction. If the robot were to turn the other way I would expect the count to go down. I even did a little experiment to check that.
+I also noticed that the angle count is not a direction: it seems to be an accumulated count of degrees turned in a particular direction. If the robot were to turn the other way then I would expect the count to go down. I even did a little experiment to check that.
 <!-- #endregion -->
 
 ```python activity=true
@@ -573,7 +573,7 @@ def say(txt):
 
 gyro = GyroSensor(INPUT_4)
 
-say('Turnn one way')
+say('Turn one way')
 tank_drive.on(SpeedPercent(20), SpeedPercent(0))
 while gyro.angle < 90:
     print('Gyro: '+str(gyro.angle))
@@ -588,19 +588,19 @@ say('all done')
 ```
 
 <!-- #region activity=true -->
-## Challenge - Navigating to a Specifed Location
+## 3.6 Challenge – Navigating to a specifed location
 
 The *WRO_2018_Regular_Junior* challenge background has several coloured areas marked on it at (350, 580), (1180, 960) and (2000, 580).
 
-From the starting location of the robot at (1180, 150, 90), see if you can write a program that drives the robot using dead reckoning — that is, using just the motor `position` and the gyro `angle` values — to drive the robot to one of those locations. Then see if you can get it to drive to one of the other locations.
+From the starting location of the robot at (1180, 150, 90), see if you can write a program that drives the robot using dead reckoning – that is, using just the motor `position` and the gyro `angle` values – to drive the robot to one of those locations. Then see if you can get it to drive to one of the other locations.
 
 The background co-ordinates give locations in millimetres relative to a fixed origin.
 
-Once you have got your programme to work reasonably reliably, try adding some noise to the motors using the *Wheel noise* slider in the simulator. Does this have any effect on the performance of your control programme?
+Once you have got your program to work reasonably reliably, try adding some noise to the motors using the *Wheel noise* slider in the simulator. Does this have any effect on the performance of your control program?
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*You may find it helpful to do some sums to calculate how far the robot has to travel. Make some notes on that here...*
+*You may find it helpful to do some sums to calculate how far the robot has to travel. Make some notes on that here.*
 <!-- #endregion -->
 
 ```python student=true
@@ -617,13 +617,13 @@ Once you have got your programme to work reasonably reliably, try adding some no
 <!-- #region student=true -->
 *Comment on how well your robot performed the task here. What strategy did you use to come up with your solution?*
 
-*Describe what affect, if any, adding noise to the motors does the the performance of the robot in completing this dead reckoning task.*
+*Describe what effect, if any, adding noise to the motors does to the performance of the robot in completing this dead-reckoning task.*
 <!-- #endregion -->
 
 ## Summary
 
-In this notebook you have seen how the motor `position` tachometer can be used to record how far, in degrees, each motor has turned, and the gyroscope `angle` value to keep track of the accumulated directional turns, in degrees, it has turned. In each case, turning one way increases the count, turning the other decreases it.
+In this notebook you have seen how the motor `position` tachometer can be used to record how far, in degrees, each motor has turned, and the gyroscope `angle` value to keep track of the accumulated directional turns, in degrees, it has turned. In each case, turning one way increases the count, whereas turning the other decreases it.
 
-Tacho counts and gyro angles are very useful at providing an indicative feel for how a robot has traveled, but they may not be overly accurate. As with many data traces, *trends* and *differences* often tell us much of what we need to know.
+Tacho counts and gyro angles are very useful for providing an indicative feel for how a robot has travelled, but they may not be particularly accurate. As with many data traces, *trends* and *differences* often tell us much of what we need to know.
 
-Through working with the motors an sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programmes. In certain cases, we may even have to do things in the programme code that are there simply to accommodate some "feature" of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord, in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.
+Through working with the motors and sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programs. In certain cases, we may even have to do things in the program code that are there simply to accommodate some ‘feature’ of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord – in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.
