@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.1
   kernelspec:
     display_name: Python 3
     language: python
@@ -70,13 +70,13 @@ Let us suppose that a robot has the data in the above in its memory, and it come
 Double click on this cell and complete the table, identifying the class of fruit the robot would associate each measurement pair with.
 <!-- #endregion -->
 
-<!-- #region activity=true heading_collapsed=true -->
+<!-- #region activity=true -->
 ### Answer
 
 Click on the arrow in the sidebar to reveal the answer.
 <!-- #endregion -->
 
-<!-- #region activity=true hidden=true -->
+<!-- #region activity=true -->
 The answers I got were as follows:
 
 | Features | Label |
@@ -227,7 +227,7 @@ predictions = fruit.predict(df['Input'].to_list())
 predictions
 ```
 
-Running the cell should display a *"ConvergenceWarning"* that although the complicated sounding *Stochastic Optimizer* has reached the *Maximum iterations (20)*, the maximun value we set, *the optimization hasn't converged yet*.
+Running the cell should display a _"ConvergenceWarning"_ that although the complicated sounding *Stochastic Optimizer* has reached the *Maximum iterations (20)*, the maximum value we set, _"the optimization hasn't converged yet"_.
 
 That is, the MLP hasn't been trained effectively.
 
@@ -243,7 +243,8 @@ The first is a *classification report*; this tells us, for each output category,
 ```python
 from sklearn.metrics import classification_report
 
-print(classification_report(df['Fruit'], predictions))
+# The zero_division parameter suppresses a divide by zero warning when using zeroed parameters
+print(classification_report(df['Fruit'], predictions, zero_division=False))
 ```
 
 The second tool is called a [confusion matrix](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html) which has down the rows the actual known categories and across the top the categories those items, when tested, were predicted as being in. If the classifier is working perfectly, the confusion matrix is a diagonal matrix, with zeros everywhere other then down the topleft-bottom right diagonal.
@@ -261,7 +262,7 @@ Let's see if we can improve things by tweaking the network parameters, such as t
 <!-- #region activity=true -->
 ### Activity — Interactively Training the Network
 
-Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and the displays the classification report and confusion matrix as your do so.
+Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and the displays the classification report and confusion matrix as you do so.
 <!-- #endregion -->
 
 ```python activity=true
@@ -310,7 +311,7 @@ Run the following cell to view the weights of your trained network; the blue lin
 network_structure = mlp_structure(2, fruit.hidden_layer_sizes, 4)
 
 # Draw the Neural Network with weights
-network=DrawNN(network_structure, model.coefs_)
+network=DrawNN(network_structure, fruit.coefs_)
 network.draw()
 ```
 
@@ -321,7 +322,7 @@ Note that each time you train the network from scratch, it is seeded with differ
 <!-- #region activity=true -->
 ###  Activity — Visualising Boundaries
 
-The way the MLP works is to try t draw "decision lines" or "boundary lines" that separate each clustered group of values associated with one class from the values associated with other categories.
+The way the MLP works is to try to draw "decision lines" or "boundary lines" that separate each clustered group of values associated with one class from the values associated with other categories.
 
 For a two dimensional feature space as the one we have (the long and the short measurements each represent a separate "feature" of the input training space) we can plot how every point in the plane (within specified bounds) is categorised, and colour it accordingly.
 
@@ -357,6 +358,7 @@ And now visualise that to see where the decision boundaries are:
 
 ```python activity=true
 from boundary_models import plot_boundaries
+
 plot_boundaries(model, df)
 ```
 
@@ -377,7 +379,7 @@ __Poorly trained model__
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-## Observations
+### Observations
 
 *Click the arrow in the sidebar to reveal my observations.*
 <!-- #endregion -->
@@ -395,6 +397,66 @@ In the poorly trained model, the decision lines do not properly separate the dif
 
 Further observations: for a two-dimensional model this sort of visulisation works well, and could even work for a three dimensional model. But with 10, 10 or 100 input dimensions it would be rather hard to visualise. As a minds-eye visualisation tool, however, you may get a "feeling" about what separation in high dimensional space might be like.
 <!-- #endregion -->
+
+### Partially Training the Network
+
+As well as training a network until it converges, or until the maximum number of iterations is reached, we can also train the network an iteration at a time, and review the performance of the network at the end of each iteration.
+
+To do this, we need to use the `.partial_fit()`, rather than `.fit()` training function.
+
+The following code cell runs 1000 iterations, showing the confusion matrixafter every 100 iterations:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+model = MLPClassifier(hidden_layer_sizes=(6, 6))
+
+num_iterations = 1000
+
+# Get a list of all the classes
+classes = np.unique(df['FruitNum'])
+
+
+for i in range(num_iterations):
+    # In the partial_fit(), we need to declare up front what all the possible classes are
+    # This is because we could present different training classes at each step
+    model.partial_fit(df['Input'].to_list(), df['FruitNum'], classes)
+
+    # for every 100 iterations, display the result
+    # A simple way to do this is to divide the iteration count by 100
+    #  and see if there's a remainder...
+    if (i==0) or ((i+1) % 100 == 0):
+        predictions = model.predict(df['Input'].to_list())
+        
+        print(f"\n\nAt iteration {i+1}:\n")
+        #print(classification_report(df['FruitNum'], predictions))
+        
+        # Generate the boundary plot
+        fig, ax = plot_boundaries(model, df, True)
+        # And display it
+        display(fig)
+        # Prevent the repeated display of the figure at the end
+        plt.close(fig)
+
+        # Also show the confusion matrix
+        print(confusion_matrix(df['FruitNum'], predictions))
+```
+
+Did the network get a reasonable solution? Run the cell several times again, reviewing the confusion matrices produced each time. You should see how the network may come to a reasonable solution quite quickly on some runs, and not achieve a particularly good result even after 1000 iterations on other runs.
+
+
+### Animating the Boundary Line Evolution
+
+Finally, it's worth notong that we can also generate animations to show how the boundaries evolve over a specified number of iterations iterations. In the following cell, the `mlp_boundary_animate` function reuses the routine from the previous code cell to train the network, but also grabs the boundary plot every 10 iterations (as defined by the `every` parameter) and uses it as an animation frame.
+
+*Note that this may take some time to produce the animation if you set the every parameter too low. Changing it to every 100 iterations should speed things up but the animation will not be so smooth.*
+
+```python
+from boundary_models import mlp_boundary_animate
+
+mlp_boundary_animate(df, size=(6, 6), iterations=1000, every=10, fname='animation.gif');
+```
 
 ## Summary
 
