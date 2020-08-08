@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.1
   kernelspec:
     display_name: Python 3
     language: python
@@ -21,13 +21,15 @@ Neural networks can solve subtle pattern recognition problems, which are very im
 
 In recent years, great advances have been made in generating powerful neural networks based models often referred to as "deep learning" models. But neural networks have been around for over 50 years, with advances every few years, often reflecting advances in computing availability, and then long periods of "AI Winter" when not much progress appeared to be being made.
 
-The following XKCD cartoon, *Tasks*, was first published in 2014. As is typical of XKCD cartoons, hovering over the cartoon revealed some hidden caption text. In this particular case: *[i]n the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it*. 
+The following XKCD cartoon, *Tasks*, was first published in 2014. As is typical of XKCD cartoons, hovering over the cartoon revealed some hidden caption text. In this particular case: _[i]n the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it_. 
 
 ![](https://imgs.xkcd.com/comics/tasks.png)
 
 At the time (this is only a few short years ago remember), recognising arbitrary items in images was still a hard task and the sentiment of this cartoon rang true. But within a few months, advances in neural network research meant that AI models capable of performing similar tasks, albeit crudely and with limited success, had started to appear. Today, photographs are routinely tagged with labels that identify what can be seen in the photograph using much larger, much more powerful, and much more effective AI models.
 
 However, identifying individual objects in an image on the one hand, and being able to generate a sensible caption that describes the image, is a different matter. A quick web search today will undoubtedly turn up some very enticing demos out there of automated caption generators. But "reading the scene" presented by a picture and generating a caption from a set or keywords or tags associated with items that can be recognised in the image is an altogether more complex task: as well as performing the object recognition task correctly, we also need to be able to identify the relationships that hold between the different parts of the image; and do that in a meaningful way.
+
+In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks.
 
 <!-- #region activity=true -->
 ### Activity - Example Image Tagging Demo
@@ -48,6 +50,43 @@ __Do not spend more than 10 minutes on this activity.__
 *If you discover any additional demo services, or if you find that any of the above services seem have either stipped working, or disappeared, please let us know via the module forums.*
 <!-- #endregion -->
 
+<!-- #region student=true -->
+*Double click this cell to edit it and record your own summary and observations about what sorts of services were provided by one or more of the applications linked to above.*
+
+For example:
+
+- which website(s) did you try?
+- what sort of application or service does the website provide?
+- how well did it perform? For example, if the service was tagging an image, did it appear to tag any particular sorts of image incorrectly?
+
+What benefits can you imagine from using such a service? What risks might be associated with using such a service? 
+
+To what extent would you trust such a service for tagging:
+
+- your own photos to help you rediscover them;
+- stock items in a commercial retail setting;
+- medical images (CT scans, X-rays, etc);
+- images of people in a social network;
+- images of people in a police surveillance setting.
+
+What risks, if any, might be associated with using such a service in each of those settings?
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+## Activity — Recognising A Static Pose in An Image
+
+As well as tagging images, properly trained models can recognise individual people's faces in photos (and not just of celebrities!) and human poses within a photograph.
+
+Click through to the following web location to see an example of a neural network model running in your web browser to the recognise the pose of several different people across a set of images: https://pose-animator-demo.firebaseapp.com/static_image.html
+
+
+<!-- #endregion -->
+
+
+<!-- #region tags=["todo", "alter-danger"] -->
+TO DO - Add a local example with additional ability to upload your own photo.
+<!-- #endregion -->
+
 ## Transfer Learning
 
 Creating a neural network capable of recognising a particular image can take a lot of data and a lot of computing power. The training process typically involves showing the network being trained:
@@ -61,24 +100,10 @@ The effectiveness of the model is then tested on images it has not seen before, 
 
 A process known as "transfer learning" allows a model trained on one set of images to be "topped up" with additional training based on image/label pairs from images it has not seen or been trained on before. 
 
-The pre-trained model already knows how to identify lots of different unique "features" that might be contained within an image. When you further train the model, it uses combinations of the features it can already detect as components of different feature collections that it can use to distinguish between the different object types you train it to recognise specifically.
+The pre-trained model already knows how to identify lots of different unique "features" that might be contained within an image. These features may be quiet abstract; for example, the network might be able to recognise straight lines, or right angles, or several distinguishable points positioned in a particular way relative to each other, or other patterns that defy explanation (to us, at least).
 
-In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks.
+When you further train the model, it uses combinations of the features it can already detect as components of different feature collections that it can use to distinguish between the different object types you train it to recognise specifically.
 
-
-<!-- #region activity=true -->
-## Activity — Recognising A Static Pose in An Image
-
-As well as tagging images, properly trained models can recognise individual people's faces in photos (and not just of celebrities!) and human poses within a photograph.
-
-Click through to the following web location to see an example of a netural network model running in your web browser to the recognise the pose of several different people across a set of images: https://pose-animator-demo.firebaseapp.com/static_image.html
-
-
-<!-- #endregion -->
-
-<!-- #region tags=["todo", "alter-danger"] -->
-TO DO - Add a local example with additional ability to upload your own photo.
-<!-- #endregion -->
 
 <!-- #region activity=true -->
 ## Optional Activity — Distinguishing Between Two Of Your Own Poses From a Live Video Feed
@@ -96,11 +121,13 @@ __`demo-video-arm-pose` dir__
 ## Optional Activity — Training Your Own Image or Audio Classifier
 
 
-If you have a camera or microphone attached to your computer, the following activity will show you how you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising:
+If you have a camera or microphone attached to your computer, you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising. The tutorial [here](https://blog.google/technology/ai/teachable-machine/) describes a process for training a neural network to distinguish between images representing two different situations.
 
-- upload your own images (or capture some images from a camera attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/image
+You can train your own neural network by:
 
-- upload your own audio files (or capture some audio from a microphone attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/audio
+- uploading your own images (or capture some images from a camera attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/image
+
+- uploading your own audio files (or capture some audio from a microphone attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: https://teachablemachine.withgoogle.com/train/audio
 <!-- #endregion -->
 
 ## Summary
