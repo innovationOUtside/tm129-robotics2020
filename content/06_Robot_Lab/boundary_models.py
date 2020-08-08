@@ -1,8 +1,29 @@
+# +
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-def plot_boundaries(model, df):
+from sklearn.neural_network import MLPClassifier
+
+from PIL import Image
+import tempfile
+import os
+
+from tqdm.notebook import tqdm
+
+import IPython.display
+
+
+# -
+
+def plot_boundaries(model, df, response=False, Xdata='Input', ydata='Fruit', ymap=None):
+    
+    classes = np.unique(df[ydata])
+    
+    if ymap is None:
+        ymap = {'Strawberry': 'red', 'Pear': 'green', 'Orange': 'black', 'Banana': 'magenta'}
+
+    fig, ax = plt.subplots()
     plt.style.use('ggplot')
     #Via https://towardsdatascience.com/easily-visualize-scikit-learn-models-decision-boundaries-dd0fb3747508
     #Plot the decision boundaries of a classification model.
@@ -28,16 +49,61 @@ def plot_boundaries(model, df):
     Z = model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
 
     # Plotting
-    plt.contourf(xx, yy, Z, colors= ['red', 'green', 'blue', 'orange'], alpha=0.2)
+    contour_colours = ['red', 'green', 'blue', 'orange', 'pink', 'magenta', 'cyan']
+    ax.contourf(xx, yy, Z, colors= contour_colours[:len(classes)], alpha=0.2)
 
 
-    for f in df["Fruit"]:
-        tmp = pd.DataFrame(df["Input"].to_list(), columns=['x', 'y'])
-        plt.scatter(tmp['x'], tmp['y'], s=100,
-                    c =df['Fruit'].map({'Strawberry': 'red', 'Pear': 'green', 'Orange': 'black', 'Banana': 'magenta'}),
+    for f in df[ydata]:
+        tmp = pd.DataFrame(df[Xdata].to_list(), columns=['x', 'y'])
+        ax.scatter(tmp['x'], tmp['y'], s=100,
+                    c =df[ydata].map(ymap),
                     marker='*', 
                     alpha=0.8)
     plt.xlabel("x",fontsize=15)
     plt.ylabel("y",fontsize=15)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14);
+
+    if response:
+        return fig, ax
+
+
+def mlp_boundary_animate(df, Xdata='Input', ydata='FruitNum',
+                         size=(6, 6), iterations=1000, every=100, fname='animation.gif', show=True):
+    model = MLPClassifier(hidden_layer_sizes=size)
+
+    num_iterations = iterations
+
+    # Get a list of all the classes
+    classes = np.unique(df[ydata])
+
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        for i in tqdm(range(num_iterations)):
+            # In the partial_fit(), we need to declare up front what all the possible classes are
+            # This is because we could present different training classes at each step
+            model.partial_fit(df[Xdata].to_list(), df[ydata], classes)
+
+            # for every 100 iterations, display the result
+            # A simple way to do this is to divide the iteration count by 100
+            #  and see if there's a remainder...
+            if (i==0) or ((i+1) % every == 0):
+                predictions = model.predict(df[Xdata].to_list())
+
+                # Generate the boundary plot
+                fig, ax = plot_boundaries(model, df, True)
+                plt.savefig(os.path.join(tmpdirname, f'frame_{i}.png'))
+                # Prevent the repeated display of the figure at the end
+                plt.close(fig)
+
+        ims = []
+        for i in range(num_iterations):
+            if (i==0) or ((i+1) % every == 0):
+                im = Image.open(os.path.join(tmpdirname, f'frame_{i}.png'))
+                ims.append(im)
+
+    im.save(fname, save_all=True, append_images=ims, loop=0)
+    
+    if show:
+        display(IPython.display.Image(fname))
+
+    return model
