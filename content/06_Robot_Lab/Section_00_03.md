@@ -114,7 +114,7 @@ If you find an architecture that appears to work well without too many underused
 
 Note that if you have a network with a large number of hidden neurons, then sometimes the boundary lines the trained netwrok generates seem to try to fit round the data ‘too well’ (that is, the boundary line shape gets very wiggly around certain points to take account of them). This is know as ‘overfitting’ and causes the network not to generalise so well: that is, when presented with a pattern it has not seen before, it can’t broadly, or ‘generally’ see which group it is likely to fall into based on its training.
 
-If you take the OU module TM358 *Machine learning and artificial intelligence*, which looks at machine-learning techniques in more depth, then you will learn in much more detail about neural network pathologies such as overfitting.
+If you take the OU module *TM358 Machine learning and artificial intelligence*, which looks at machine-learning techniques in more depth, then you will learn in much more detail about neural network pathologies such as overfitting.
 
 
 ## Summary
