@@ -51,7 +51,7 @@ In the playground, you will also notice a checkbox that allows you to ‘discret
 The *Show test data* checkbox will show you the data used to test the output of the network. This is data that the network does not see whilst it is being trained.
 
 <!-- #region activity=true -->
-## Activity – A harder example: XOR
+## 3.1 Activity – A harder example: XOR
 
 In the initial example, we could separate the two clusters with a single line, implemented by a single neuron.
 
@@ -87,7 +87,7 @@ __Note that as you increase the number of layers, the network may take an increa
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## Optional activity – Manually editing weights
+## 3.2 Optional activity – Manually editing weights
 
 As well as training the network to find weights that allow the network to make a decision, you can also hover over a weight and edit it manually.
 
@@ -102,7 +102,7 @@ Sometimes, you may find that you can just about predict how a network is coming 
 *Add your notes and reflections here.*
 <!-- #endregion -->
 
-## Yet more complicated patterns
+## 3.3 Yet more complicated patterns
 
 From experimenting with the TensorFlow Playground, you may have started to realise that the network makes its decisions by essentially trying to draw some combination of straight lines across the feature space to separate the groups.
 
