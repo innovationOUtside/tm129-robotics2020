@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -33,7 +33,7 @@ Instead, we often have to rely on other sensors to help us identify our robot's 
 So that's what we'll be exploring in this notebook...
 
 
-## 4.1 Activity: Logging Motor Tachometer / "Rotation Sensor" Data
+## 4.1 Activity — logging motor tachometer / "rotation sensor" data
 
 
 We can get a sense of how far the robot has traveled by logging the `.position` of each motor. Inside a real motor, a rotary encoder is used to detect rotation of the motor. When the motor turns in one direction the count goes up, when it turns in the other, it goes down.
@@ -53,14 +53,14 @@ In his book "The New Dark Age", artist James Bridle describes the evolution of w
 
 *Historical note: Lewis Fry Richardson was an early pioneer of weather forecasting, whose story is also summarised by Bridle.*
 
-As Bridle observes, the number crunching required to perform a weather forecast requires the solution of lots of complex mathematical equations, so much so that the earliest computers might take days to make a 24 hour weather forecast. If you're in the habit of checking online weather reports just before you set out for the day, they wouldn't be much use if they took the next three days to compute. Although our simulator is a simple one, at times it may still take more computational resource than is available to the programme for it compute a single second of time in the simulated world in less than a second of real world time.
+As Bridle observes, the number crunching required to perform a weather forecast requires the solution of lots of complex mathematical equations, so much so that the earliest computers might take days to make a 24 hour weather forecast. If you're in the habit of checking online weather reports just before you set out for the day, they wouldn't be much use if they took the next three days to compute. Although our simulator is a simple one, at times it may still take more computational resource than is available to the program for it compute a single second of time in the simulated world in less than a second of real world time.
 
 Reference: `BRIDLE, J. (2018). New Dark Age: Technology, Knowledge and the End of the Future. Verso Books.`
 <!-- #endregion -->
 
-The following programme logs the position count as we drive the robot forwards, backwards, wait awhile, then turn on the spot slowly one way, quickly the other. I have also instrumented it so that the simulated robot says aloud what it is about to do next as the programme progresses.
+The following program logs the position count as we drive the robot forwards, backwards, wait awhile, then turn on the spot slowly one way, quickly the other. I have also instrumented it so that the simulated robot says aloud what it is about to do next as the program progresses.
 
-With the simulator chart display enabled, and the *Left_wheel* and *Right_wheel* traces selected, download and run the programme.
+With the simulator chart display enabled, and the *Left_wheel* and *Right_wheel* traces selected, download and run the program.
 
 Observe what happens to the wheel position counts as the robot progresses.
 
@@ -241,7 +241,7 @@ with plt.xkcd():
 ```
 
 <!-- #region activity=true -->
-### Optional Activity
+### Optional activity
 
 How do the position counts vary for each wheel if the robot is  driving forwards in a gentle curve, or a tight turn?
 
@@ -258,11 +258,11 @@ tank_steering.on(-30, 20)
 Feel free to make your own predictions, or run a program, grab the data and analyse it yourself. If you do run your own experiment(s), remember to clear the datalog before running your data collecting code in the simulator...
 <!-- #endregion -->
 
-## Measuring How Far The Robot Has Traveled
+## Measuring how far the robot has traveled
 
 The wheel `position` data corresponds to an angular measure, which is to say, how far the wheel has turned.
 
-Use the following programme to drive the robot over a fixed number of rotations and observe how the position count increases. Based on your observations, make a note of what you think the position count actually measures.
+Use the following program to drive the robot over a fixed number of rotations and observe how the position count increases. Based on your observations, make a note of what you think the position count actually measures.
 
 ```python
 %%sim_magic_preloaded
@@ -295,19 +295,19 @@ reporter(last_position)
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### My Observations
+### My observations
 
 *Click the arrow in the sidebar to reveal my observations.*
 <!-- #endregion -->
 
-When I ran the programme, I got counts between 365 and 380 for each rotation, depending in part on the speed I set the wheels to run at.
+When I ran the program, I got counts between 365 and 380 for each rotation, depending in part on the speed I set the wheels to run at.
 
 The simulator actually runs in steps, with 30 steps per simulated second. This means that at 20% speed, the wheel will turn approximately 6 to 7 degrees each step. By the time the simulator detects that the wheel has reached *at least* 360 degrees (i.e. completed one rotation), it may already have exceeded that amount of turn; so the stopping condition for the `.on_for_rotations` function, which is based on observing the turned angle, may actually stop the motors after more than one rotation.
 
 So notwithstanding the values we get for the position count after a single rotation, the position is actually measured in degrees.
 
 <!-- #region activity=true -->
-## Activity — Are We There Yet?
+## Activity — are we there yet?
 
 In this activity, you will experiment with driving the robot over a fixed distance.
 
@@ -317,13 +317,13 @@ What this means is that we can drive the robot forward a specified distance.
 
 The bands shown on the *Coloured_bands* background are 60cm high.
 
-See if you can write a programme that drives the robot exactly the length of one of the bands by monitoring the `position` value of a one of the motors as the robot drives in a straight line.
+See if you can write a program that drives the robot exactly the length of one of the bands by monitoring the `position` value of a one of the motors as the robot drives in a straight line.
 
 How accurately can you cover the distance? (Don't panic, or waste too much time, if you can't...). Comment on your results.
 
 __Hint: how many degrees will the wheel need to turn for the wheel to turn 60cm?__
 
-__Warning: if you use a loop, put something in it that uses up simulator time and progresses the clock, or you may find that your simulator Python programme get stuck and hangs the browser. __
+__Warning: if you use a loop, put something in it that uses up simulator time and progresses the clock, or you may find that your simulator Python program get stuck and hangs the browser. __
 
 *Note: the `.position` value is returned as a string and should be converted to an `int` if you want to use it numerically.*
 <!-- #endregion -->
@@ -345,7 +345,7 @@ __Warning: if you use a loop, put something in it that uses up simulator time an
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Answer
+### My answer
 
 *Click on the arrow in the sidebar to reveal my answer.*
 <!-- #endregion -->
@@ -371,7 +371,7 @@ int(no_of_degrees)
 ```
 
 <!-- #region activity=true hidden=true -->
-We can use this calculation in a programme that drives the robot forward until that wheels have turned by the desired amount, and then stops.
+We can use this calculation in a program that drives the robot forward until that wheels have turned by the desired amount, and then stops.
 
 Note that the speed of the robot may affect how accurately the robot can perform the task, bearing in mind the comment earlier about how the simulator uses quite crude discrete time steps to animate the world.
 <!-- #endregion -->
@@ -407,17 +407,17 @@ while int(tank_steering.left_motor.position) < no_of_degrees:
 ```
 
 <!-- #region activity=true hidden=true -->
-When I ran the programme, it did pretty well, running between the lines and stopping maybe just a fraction too long.
+When I ran the program, it did pretty well, running between the lines and stopping maybe just a fraction too long.
 <!-- #endregion -->
 
-## Measuring the Width of a Coloured Track
+## Measuring the width of a coloured track
 
 One of the activities in the Open University [*T176 Engineering* residential school](http://www.open.ac.uk/jobs/residential-schools/modules/modules-summer-schools/txr120-engineering-active-introduction) is a robotics challenge to recreate a test track that depicts several coloured bands of various widths purely from data logged by an EV3 Lego robot.
 
 Let's try a related, but slightly simpler challenge: identifying the width of the track that is displayed on the *Loop* background.
 
 <!-- #region activity=true -->
-### Using Logged Data to Take Measurements From the Simulated World
+### Using logged data to take measurements from the simulated world
 
 In this activity, you will use data logged by the robot to learn something about the structure of the world it is operating in.
 
@@ -509,7 +509,7 @@ or:
 both of which could be measured from the robot *if* we had physical access to it.
 <!-- #endregion -->
 
-## Which Way Did You Say We Were Going, Again?
+## Which way did you say we were going, again?
 
 
 As well as keeping track of how much the wheels have turned, and estimating location on that basis, we can also use the robot's gyroscope — often referred to as a "gyro" — sensor to tell us which direction it is facing.
@@ -517,11 +517,11 @@ As well as keeping track of how much the wheels have turned, and estimating loca
 In the following activities, you will see how the gyroscope and position sensors can be used to keep track of where the robot has been, as well as helping it get to where it needs to go.
 
 <!-- #region activity=true -->
-### Activity: Detecting orientation
+### Activity — detecting orientation
 
-The following programme defines a simple edge follower that allows the robot to navigate its way around the shape described in the *Two_shapes* background, logging the gyro sensor as it does so.
+The following program defines a simple edge follower that allows the robot to navigate its way around the shape described in the *Two_shapes* background, logging the gyro sensor as it does so.
 
-Show the chart display, enable the gyro trace, and download and run the programme. Purely by observation of the chart view of the gyro data, do you think you would be able to the  shape corresponding to the the path followed by the robot?
+Show the chart display, enable the gyro trace, and download and run the program. Purely by observation of the chart view of the gyro data, do you think you would be able to the  shape corresponding to the the path followed by the robot?
 <!-- #endregion -->
 
 ```python activity=true
@@ -550,7 +550,7 @@ while True:
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### My Observations
+### My observations
 
 *Click on the arrow in the sidebar to reveal my observations.*
 <!-- #endregion -->
@@ -588,7 +588,7 @@ say('all done')
 ```
 
 <!-- #region activity=true -->
-## Challenge - Navigating to a Specifed Location
+## Challenge —  navigating to a specifed location
 
 The *WRO_2018_Regular_Junior* challenge background has several coloured areas marked on it at (350, 580), (1180, 960) and (2000, 580).
 
@@ -596,7 +596,7 @@ From the starting location of the robot at (1180, 150, 90), see if you can write
 
 The background co-ordinates give locations in millimetres relative to a fixed origin.
 
-Once you have got your programme to work reasonably reliably, try adding some noise to the motors using the *Wheel noise* slider in the simulator. Does this have any effect on the performance of your control programme?
+Once you have got your program to work reasonably reliably, try adding some noise to the motors using the *Wheel noise* slider in the simulator. Does this have any effect on the performance of your control program?
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -626,4 +626,4 @@ In this notebook you have seen how the motor `position` tachometer can be used t
 
 Tacho counts and gyro angles are very useful at providing an indicative feel for how a robot has traveled, but they may not be overly accurate. As with many data traces, *trends* and *differences* often tell us much of what we need to know.
 
-Through working with the motors an sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programmes. In certain cases, we may even have to do things in the programme code that are there simply to accommodate some "feature" of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord, in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.
+Through working with the motors an sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programmes. In certain cases, we may even have to do things in the program code that are there simply to accommodate some "feature" of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord, in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.

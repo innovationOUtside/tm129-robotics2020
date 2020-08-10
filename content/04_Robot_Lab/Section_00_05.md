@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -20,9 +20,9 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 ```
 
 <!-- #region activity=true -->
-# 5 Challenge — Coping with Noise
+# 5 Challenge — coping with noise
 
-Using The *Noisy_Lollipop* background in the simulator, see if you can refine your programme, or my programme, to complete the challenge of following the line and stopping on the red bar.
+Using The *Noisy_Lollipop* background in the simulator, see if you can refine your program, or my program, to complete the challenge of following the line and stopping on the red bar.
 
 Trying to solve challenges like this can be both frustrating and time consuming, so try to keep an eye on the clock and don't spend more that ten or fifteen minutes trying to complete the challenge.
 

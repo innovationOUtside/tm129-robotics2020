@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -85,16 +85,16 @@ During the design cycle, candidate soluions are generated and evaluated. If the 
 In a continuous improvement design cycle, the the design may be used but it may also be reconsidered. If an improvement is found the new design may be both adopted and passed back round the cycle for further reconsideration.
 
 
-### Following the Design Cycle
+### Following the design cycle
 
 In the lollipop line following challenge, the system was specified according to the requirement that the robot would go all the way round the track and stop at the red bar. I generated a solution based on my 'model' of the system.
 
-When I first ran the program, my evaluation was that the system did not work: for some reason, the robot kept stopping! (Even if it had worked first time, it's possible that the solution was not very good either in terms of the way the robot behaved, or in terms of how the programme was written.)
+When I first ran the program, my evaluation was that the system did not work: for some reason, the robot kept stopping! (Even if it had worked first time, it's possible that the solution was not very good either in terms of the way the robot behaved, or in terms of how the program was written.)
 
 Under these circumstances, the design engineer looks for reasons why things went wrong, using all the available information. Sometimes this involves devising experiments. It's rather like being a detective, trying to piece together the solution.
 
 
-Here's the programme I used for the lollipop challenge at first:
+Here's the program I used for the lollipop challenge at first:
 
 ```python
 %%sim_magic_preloaded --background Lollipop
@@ -126,10 +126,10 @@ One of the main assumptions underlying my first program was that the colours cou
 
 For the stopping decision ("have I seen red?") I checked whether or not the full/tri-band reflected light percentage was between 30% and 40%. This was based on the fact that the red line gives a full reflected light percentage of 33.3%, the solid grey background has a reading of 82.75% and the black background has a reading of 0%.
 
-But when I downloaded and ran the programme (which you can try too), the robot kept stopping on the line. So what was going on?
+But when I downloaded and ran the program (which you can try too), the robot kept stopping on the line. So what was going on?
 
 
-Let's try a simple test programme to get a better idea of what the robot is actually perceiving.
+Let's try a simple test program to get a better idea of what the robot is actually perceiving.
 
 We'll explore the data at leisure in the notebook, so run the following code cell to clear the notebook datalog:
 
@@ -140,7 +140,7 @@ roboSim.clear_datalog()
 
 For our test case, we'll get the robot to turn on the spot so that the sensor crosses over the balck line and the grey background a couple of times. 
 
-Download and run the following programme in the simulator to collect sensor data as the robot spins slowly on the spot for three seconds, grabbing data into the datalog by printing it to the robot display terminal:
+Download and run the following program in the simulator to collect sensor data as the robot spins slowly on the spot for three seconds, grabbing data into the datalog by printing it to the robot display terminal:
 
 ```python
 %%sim_magic_preloaded --background Lollipop
@@ -207,12 +207,12 @@ Based on this investigation, I ended up using a different approach to to identfi
 
 However, following the discussion at the end of the last notebook regarding noise, I think I should probably change the exact / equality test on the red value to a threshold test, such as `color_sensor.rgb[0]>250` and that the other values are less than some value (for example, `color_sensor.rgb[1]<15`) to allow for noise in the background or the sensor.
 
-As you can see, designing a programme often requires a continual process of iterative improvement.
+As you can see, designing a program often requires a continual process of iterative improvement.
 
 <!-- #region activity=true -->
-## Optional Activity
+## Optional activity
 
-Download and run a programme in the simulator that drives the robot over the *Rainbow_bands* background, logging the reflected light sensor data as it does so.
+Download and run a program in the simulator that drives the robot over the *Rainbow_bands* background, logging the reflected light sensor data as it does so.
 
 Then either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.
 
@@ -221,6 +221,6 @@ Does the reflected light sensor data allow you to reliably identify each colour 
 
 ## Summary
  
-In this notebook you have seen how an investigative process may be required to help us better understand why an assumption we may about how our programme might work helps us better understand what it is actualy doing, or what the robot is actually perceiving.
+In this notebook you have seen how an investigative process may be required to help us better understand why an assumption we may about how our program might work helps us better understand what it is actualy doing, or what the robot is actually perceiving.
 
-We have also seen how the process of design is often an iterative one in which we repeatedly refine and improve our programme as we better come to understand the problem domain and what we are actually trying to achieve.
+We have also seen how the process of design is often an iterative one in which we repeatedly refine and improve our program as we better come to understand the problem domain and what we are actually trying to achieve.

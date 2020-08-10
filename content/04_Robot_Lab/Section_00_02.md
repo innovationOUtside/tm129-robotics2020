@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -19,7 +19,7 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbtutor
 ```
 
-# 2 Line Followers and Edge Followers
+# 2 Line followers and edge followers
 
 In this section you will investigate how a robot can be made to follow a desired path as it navigates its environment.
 
@@ -30,14 +30,14 @@ The idea behind *line following* is that the environment has been adapted by the
 As well as following a line, we can also follow the *edge* of a line. You will have an opportunity to explore both forms of control.
 
 
-#### A Simple Line Follower Using Two Sensors
+#### A simple line follower using two sensors
 
 In a simple visual line follower, we might use two light sensors along the front edge of the robot. Suppose the separation of the sensors slightly exceeds that of the background. With the robot placed over the line and straddling it, one sensor is on either side of the line, over the white background.
 
 If the robot turns across the *left* hand side of the line, the sensor on the *right* hand side of the robot will turn onto the line and detect black. This provides us with an error signal we can use to correct the path of the robot and turn it back onto the line. In this case, the control strategy would be to turn towards the right side of the robot.
 
 <!-- #region activity=true -->
-### SAQ
+### Saq
 
 What would happen if the robot veered off the right hand side of the line?
 <!-- #endregion -->
@@ -57,7 +57,7 @@ If the robot goes over the *right hand* edge of the line, the left hand sensor w
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### SAQ
+### Saq
 
 What would the robot do if the line started to curved to the left rather than continued in a straight line? Explain how it might stay on the line.
 <!-- #endregion -->
@@ -77,7 +77,7 @@ If the robot turned to the left and the robot was moving straight ahead, the lef
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### SAQ
+### Saq
 
 Suppose that the two sensors are moved closer together, separated by a distance less than the width of the line to be followed, with one sensor still on either side of the centreline of the robot.
 
@@ -107,7 +107,7 @@ The behaviour of the sensors and the interpretation of the data they provide is 
 The challenge is to write a robot control program to make the robot follow the line.
 
 
-### Calibrating the Required Sensor Readings
+### Calibrating the required sensor readings
 
 You first need to record the light sensor readings just to check that we know what reading the sensor gives when it is over the line, and off the line.
 
@@ -132,7 +132,7 @@ What readings do you obtain? Record your readings in the cell below:
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Readings
+### My readings
 *Click the arrow in the sidebar to reveal my readings.*
 <!-- #endregion -->
 
@@ -144,22 +144,22 @@ The readings I got were as follows:
 - *value over the edge (where the sensor sees black and white):* various between the black and white values, depending on how much of the lie was in view of the sensor.
 <!-- #endregion -->
 
-## Creating a Line Follower Programme
+## Creating a line follower program
 
-In the following challenge, you will develop a programme that will allow the robot to use two sensors to help it follow a narrow line.
+In the following challenge, you will develop a program that will allow the robot to use two sensors to help it follow a narrow line.
 
 A starting constraint is that the line is quite a narrow one that can be straddled by the robot, with a light sensor to either side of the line over the white background
 
-Here are some questions to bear in mind as you develop your programme:
+Here are some questions to bear in mind as you develop your program:
   - what should the robot do if both sensors see white?
   - what should the robot do if the left sensor sees white and the right sensor sees black?
   - what should the robot do if the left sensor sees black and the right sensor sees white?
   - could there be a situation if both sensors see black? What should the robot do in such a case?
 
-How might you need to modify the programme if the robot is placed on a black line that is slightly wider than the maximum sensor separation?
+How might you need to modify the program if the robot is placed on a black line that is slightly wider than the maximum sensor separation?
 
 <!-- #region activity=true -->
-### Challenge — Writing  Line Follower Programme
+### Challenge — writing line follower program
 
 Use the `Line_Following_Test` background and set the pen down option to create a trace showing where the robot travelled:
 <!-- #endregion -->
@@ -253,9 +253,9 @@ while True:
 
 ```
 
-## A Simple Edge Follower Using a Single Sensor
+## A simple edge follower using a single sensor
 
-In the line follower programme we used *two* light sensors to detect when the robot started to veer off the line, either to the left, or to the right.
+In the line follower program we used *two* light sensors to detect when the robot started to veer off the line, either to the left, or to the right.
 
 But what happens if the line is much wider than the maximum separation of the two sensors?
 
@@ -264,7 +264,7 @@ In that case, it might make more sense to follow a particular edge of the line. 
 But do we really need *two* sensors to follow the edge of a line? Or can we get away with using just a single sensor?
 
 <!-- #region activity=true -->
-### Activity - Following a Single Edge
+### Activity —  following a single edge
 
 What strategy might you use to control a robot so that it can follow a line using just a single light sensor?
 <!-- #endregion -->
@@ -283,18 +283,18 @@ What strategy might you use to control a robot so that it can follow a line usin
 The basic idea is that, as the robot moves forwards, the light sensor tells it if it should move towards the edge or away from it. For example, if the light sensor picks up a light background, the robot needs to turn (say to the right) until it detects the dark line. Once the light sensor detects it is over the dark line, the robot should start moving forwards whilst also turning back to the left to find the edge of the line again. In this way, the robot would "edge" forwards as it follows the *right hand* edge of the black line.
 <!-- #endregion -->
 
-### Turning a Control Strategy Into Code
+### Turning a control strategy into code
 
-Having a strategy for writing a robot control programme that will allow a robot to follow a line using just a single sensor is one thing, but can you now turn that strategy into a working control programme?
+Having a strategy for writing a robot control program that will allow a robot to follow a line using just a single sensor is one thing, but can you now turn that strategy into a working control program?
 
 <!-- #region activity=true -->
-### Challenge - An Edge Follower Using a Single Sensor
+### Challenge —  an edge follower using a single sensor
 
-Building on the control strategy you developed in the previous activity, see if you can implement that strategy by writing a programme to follow the edge of a line using just a single light sensor.
+Building on the control strategy you developed in the previous activity, see if you can implement that strategy by writing a program to follow the edge of a line using just a single light sensor.
 
-Download your programme to the simulator and test it against various lines in the *Line_Following_Test* background.
+Download your program to the simulator and test it against various lines in the *Line_Following_Test* background.
 
-What happens if you start your robot on the other edge? How would you modify your programme so that the robot could follow the other edge?
+What happens if you start your robot on the other edge? How would you modify your program so that the robot could follow the other edge?
 <!-- #endregion -->
 
 ```python activity=true
@@ -304,7 +304,7 @@ What happens if you start your robot on the other edge? How would you modify you
 ```
 
 <!-- #region student=true -->
-*Record a description of how well your control programme worked here.*
+*Record a description of how well your control program worked here.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -326,13 +326,13 @@ What advantages and disadvantages might arise from using a single light sensor s
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-## My Answer
+## My answer
 
 *Click the arrow in the sidebar to reveal my answer.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-My programme is below. It uses a `while True` to infinitely loop through a code block that checks to see whether the single sensor detects white or black; if it detects white, the robot turns about one wheel back onto the line, which eases it forwards on one side; if it detects black, it turns about one wheel away from the line, again edging it slightly forwards.
+My program is below. It uses a `while True` to infinitely loop through a code block that checks to see whether the single sensor detects white or black; if it detects white, the robot turns about one wheel back onto the line, which eases it forwards on one side; if it detects black, it turns about one wheel away from the line, again edging it slightly forwards.
 
 In this manner the robot wiggles along the line. If we use the right, rather than left, sensor to detect the edge, and enable the pen trace, we see the trace follows the first test trace line reasonably well.
 <!-- #endregion -->
@@ -358,7 +358,7 @@ while True:
 ```
 
 <!-- #region activity=true hidden=true -->
-In terms of the relative trade off between one or two sensors, the single sensor approach would likely be cheaper, but the two sensor approach is more general: the two sensor robot follow the line or either edge, whereas the control programme for the single sensor solution confines the robot to following a specific edge.
+In terms of the relative trade off between one or two sensors, the single sensor approach would likely be cheaper, but the two sensor approach is more general: the two sensor robot follow the line or either edge, whereas the control program for the single sensor solution confines the robot to following a specific edge.
 <!-- #endregion -->
 
 ## Summary

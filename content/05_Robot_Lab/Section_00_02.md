@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -18,14 +18,14 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbev3devsim
 ```
 
-# 2 The RobotLab sensors
+# 2 The RoboLab sensors
 
-In most of the activities we have completed to date, we have relied in the light sensor to provide sensory input to the robot control programme.
+In most of the activities we have completed to date, we have relied in the light sensor to provide sensory input to the robot control program.
 
 In this notebook, we will review some of the other sensors that are available to us, including a ultrasonic distance sensor, a direction revealing gyroscope and tachometer "sensor" readings that are reported by the motors. 
 
 
-## 2.1 Available Sensors
+## 2.1 Available sensors
 
 Recall from previous activities that the simulated robot is configured with a variety of sensors, including two downward facing light sensors, an ultrasonic sensor and a gyroscope (gyro).
 
@@ -49,7 +49,7 @@ Motors are confugured relative to specified input ports, convetionally output po
 
 `from ev3dev2.motor import OUTPUT_B, OUTPUT_C`
 
-The sensors are configured in a programme by identifyng the physical port they are connected to and the type of sensor they are:
+The sensors are configured in a program by identifyng the physical port they are connected to and the type of sensor they are:
 
 ```python
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -61,12 +61,12 @@ colorRight = ColorSensor(INPUT_3)
 gyro = GyroSensor(INPUT_4)
 ```
 
-In some of the magics used to download programmes to the robot, these statements are added as default "boilerplate" code when the magic cell is run and before the programme is downloaded to the simulator. So although they may not appear in the code you write, they are required for the programme code to run correctly in the simulator.
+In some of the magics used to download programmes to the robot, these statements are added as default "boilerplate" code when the magic cell is run and before the program is downloaded to the simulator. So although they may not appear in the code you write, they are required for the program code to run correctly in the simulator.
 
 *You can always check exactly what code has been downloaded to the simulator by clicking on the `Show Code` button in the simulator.*
 
 
-###  Configuring the Simulator
+### Configuring the simulator
 
 As well as downloading code to the simulator, the magic supports several command line switches that can be used to configure the robot and the simulator environment.
 
@@ -88,7 +88,7 @@ Flags (pass the following to force the specified behaviour):
 We can use these settings to control the way that the simulator is configured.
 
 <!-- #region activity=true -->
-## 2.2 Activity: Testing the ultrasonic sensor
+## 2.2 Activity — testing the ultrasonic sensor
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -103,19 +103,19 @@ Note that the ultrasonic sensor is mounted a little way back from the front edge
 <!-- #region activity=true -->
 The following code cell configures the simulator to use a blank background (`-b Empty_Map`) and a single obstacle (`Central_post`); the simulated robot is initially situated to near the mid-point of the left hand edge of the simulator canvas (`-x 100 -y 500`) and the ultrasonc rays are displayed (`-u`).
 
-Run the code cell to configure the simulator and download the programme and then run the programme in the simulator.
+Run the code cell to configure the simulator and download the program and then run the program in the simulator.
 
 Observe what happens and record your observations, paying attention to both the behaviour of the robot and the measurements returned by the ultrasonic sensor. (You may find it useful to display a chart of the measurements.)
 
 What happens if you initially locate the robot at `-x 100 -y 450`?
 
-When you have observed what happens, closely read through the programme. How does the code explain the behaviour of the robot?
+When you have observed what happens, closely read through the program. How does the code explain the behaviour of the robot?
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*Use this markdown cell to record your observations of what happens when the programme is run.*
+*Use this Markdown cell to record your observations of what happens when the program is run.*
 
-*Annotate the programme with comments to explain how it works.*
+*Annotate the program with comments to explain how it works.*
 <!-- #endregion -->
 
 ```python activity=true
@@ -139,19 +139,19 @@ print("done...")
 ```
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Observations
+### My observations
 
 *Click the arrow on the left to reveal my observations*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-When the programme is run, the robot remains stationary for a moment or two before driving forward at some speed. As the simulated robot appraoches the obstacle, it starts to slow down, coming to stop as it reaches the obstacle.
+When the program is run, the robot remains stationary for a moment or two before driving forward at some speed. As the simulated robot appraoches the obstacle, it starts to slow down, coming to stop as it reaches the obstacle.
 
 Starting from the second location, the robot behaves in a similar way to the first run, but it doesn't stop when it reaches the obstacle. Rather, it runs over the obstacle, slowly at first, then speeds up as it passes the obstacle.
 
 It seems that as the robot does not get very close to the obstacle *as measured by the ultrasonic sensor*, it does not stop. Instead, it continues moving and as the obstacle gets further away, the robot speeds up.
 
-Looking at the programme, I have annotated it to describe what each line does and relate it the my observations of the robot's behaviour:
+Looking at the program, I have annotated it to describe what each line does and relate it the my observations of the robot's behaviour:
 
 ```python
 
