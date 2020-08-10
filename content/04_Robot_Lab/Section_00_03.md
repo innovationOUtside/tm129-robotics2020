@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -33,7 +33,7 @@ This environment has grey background, with a lollipop shaped black line. At the 
 In this notebook, you will start to work on the challenge of programming the simulated robot to use a single light sensor to follow the line from its default starting point in the environment, go round the lollipop, up the stick, over the yellow rectangle and stop when it reaches the red rectangle.
 
 
-## A Closer Look at the  `ColorSensor`
+## A closer look at the `colorsensor`
 
 In order to complete this challenge, you will need to calibrate the robot's sensor readings so that you can work out a strategy for identifying what the robot can see at any particular time.
 
@@ -48,7 +48,7 @@ When a light sensor is placed over an object, the sensor display areas shows the
   - the "full" reflected light intensity as a percentage;
   - the red, green and blue colour components, each in the range `0..255`.
 
-In order to access these values in a programme:
+In order to access these values in a program:
 
 ```python
 from ev3dev2.sensor import INPUT_2 # Or INPUT_3
@@ -73,7 +73,7 @@ The colour value readings are  are made up of different amounts of red (R), blue
 <!-- #endregion -->
 
 <!-- #region -->
-The raw RGB values are returned as list and can be accessed in a simulated robot programme as follows:
+The raw RGB values are returned as list and can be accessed in a simulated robot program as follows:
 
 ```python
 # List of RGB values: [red, green, blue]
@@ -117,7 +117,7 @@ def showColour(red=255, green=0, blue=0):
 ```
 
 <!-- #region activity=true -->
-### Calibrating the Required Sensor Readings
+### Calibrating the required sensor readings
 
 You first need to record the light sensor readings associated with each of the coloured bands on the chart, as well as for the black line and the grey background.
 
@@ -138,7 +138,7 @@ What happens to the readings if the sensor is now completely over a single solid
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Readings
+### My readings
 
 *Click on the arrow in the sidebar to reveal my answer.*
 <!-- #endregion -->
@@ -158,19 +158,19 @@ If the sensor was not completely over a single block of colour, the values were 
 
 ### Challenge
 
-Write an edge follower programme using a single light sensor that will cause the robot to follow the line from its default starting point in the environment, go round the lollipop, up the stick, over the yellow rectangle and stop when it reaches the red rectangle.
+Write an edge follower program using a single light sensor that will cause the robot to follow the line from its default starting point in the environment, go round the lollipop, up the stick, over the yellow rectangle and stop when it reaches the red rectangle.
 
-You are encouraged to use the edge follower code from a previous activity as the basis for your programme.
+You are encouraged to use the edge follower code from a previous activity as the basis for your program.
 
-You may find it convenient to consider your programme in two or three parts. For example:
+You may find it convenient to consider your program in two or three parts. For example:
 
 - following the line over the grey background;
 - following the line over the yellow bar;
 - stopping on the red bar.
 
-Spend five to ten minutes developing your programme. Good luck!
+Spend five to ten minutes developing your program. Good luck!
 
-*If you cannot get your programme to work properly, or even at all don't panic. My programme didn't work at all well at first! In later activities we will be reviewing several aspects of this programme, including how to apply a design cycle approach to fix it when it doesn't at first work, as well as looking at how to make it more robust and reliable when it does seem to work.*
+*If you cannot get your program to work properly, or even at all don't panic. My program didn't work at all well at first! In later activities we will be reviewing several aspects of this program, including how to apply a design cycle approach to fix it when it doesn't at first work, as well as looking at how to make it more robust and reliable when it does seem to work.*
 
 ```python student=true
 %%sim_magic_preloaded --background Lollipop
@@ -179,17 +179,17 @@ Spend five to ten minutes developing your programme. Good luck!
 ```
 
 <!-- #region activity=true heading_collapsed=true -->
-### My Answer
+### My answer
 
 *Click on the arrow in the sidebar to reveal my answer.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-The following programme represents my final attempt at the edge follower that stops on the red line.
+The following program represents my final attempt at the edge follower that stops on the red line.
 
 The original attempt did not work so well, as you will find out in the next notebook. But after a bit of investigative work I managed to find out why it wasn't working as I;d anticipated and how I then fixed the problem.
 
-A key consideration in the following programme is the stopping condition; in this iteration of the programme, I explicitly try to detect pure red. As you will see later, my first attempt used a different, and far less successful, approach to try to identify when the robot should stop.
+A key consideration in the following program is the stopping condition; in this iteration of the program, I explicitly try to detect pure red. As you will see later, my first attempt used a different, and far less successful, approach to try to identify when the robot should stop.
 
 There could still be a problem with this approach, though... if the red is not a pure red, or there is a non-zero green component, or the robot does not get a clear view of just the red bar, the condition will not evaluate as true and the robot won't stop.
 <!-- #endregion -->
@@ -218,9 +218,9 @@ while True:
         break
 ```
 
-### Trying to Identify What the Robot Can See 
+### Trying to identify what the robot can see
 
-The way I designed my programme was based on various logical distinctions that I made and that I tried to put into the programme. In particular, I tried to identify whether the robot could see:
+The way I designed my program was based on various logical distinctions that I made and that I tried to put into the program. In particular, I tried to identify whether the robot could see:
 
 -  the black line as distinct from the grey background or yellow bar;
 - the red bar.
@@ -228,7 +228,7 @@ The way I designed my programme was based on various logical distinctions that I
 The light sensor values identified during the calibration phase helped me decide what sensor readings would allow me to distinguish each of those cases. I also had to bear in mind that the calibration values were based on ideal values when the sensor could only see a "pure" block of colour and that the actual values seen by the robot would be determined by the area of the background it could actually see. 
 
 
-## Coping With Noise
+## Coping with noise
 
 The *Lollipop* background image used for the line following activity was made with a Python drawing package (see the `backgrounds/Background Image Generator.ipynb` notebook), and the colours are all very precise, with no variation. Many real images are not like this.
 
@@ -241,7 +241,7 @@ Each pixel is visible, but there is considerable variation in colour, for exampl
 Human vision is very adaptable and can usually overcome these irregularities. If you have normal colour vision you should be able to pick out the red, yellow, black and grey areas in this image easily, but it is much more difficult for a machine to do this. Poor machine vision is a major problem in the development of robots.
 
 
-### Noise from Sensors
+### Noise from sensors
 
 In many respects, what the robot sees is like the view a scanner has of the image, except that the robot sensor sees only a tiny part of the image at any particular time.
 
@@ -252,7 +252,7 @@ There are several various possible sources of such noise, including electrical n
 Where the noise is added may be largely irrelevant, for example whether it's noise "in the background" or noise added by the sensor. If the value returned by the sensor is affected by noise, and we can't reduce that noise, our control strategy needs to be able to cope with it.
 
 
-## The Light Sensor's Pixelated View of the World
+## The light sensor's pixelated view of the world
 
 The images that form the different backgrounds in the Simulator window are made up grids of coloured squares called *pixels*. The sensor array view on the simulator shows the pixel values detected by the sensor as coloured squares of of various intensities. The colour value of each pixel is represented by an RGB value. The light sensor view is as circular as it can be given that it's made from squares!
 
@@ -261,7 +261,7 @@ The single value returned by the light sensor is an average of the pixel values 
 We can increase the number of pixels read by the sensor by tuning the *diameter* of the area sensed. This is analogous to increasing the height off the ground of the light sensor on a real robot.
 
 
-### Adding Sensor Noise
+### Adding sensor noise
 
 We can model the addition of sensor noise by using the *Light sensor noise* slider in the simulator.
 
@@ -270,17 +270,17 @@ If you add noise using the light sensor noise slider, you should see "speckles" 
 ![Screenshot of the simulator showing the light sensor noise slider has been increased to a high value; the sensor array displays show lots of differently coloured pixels as a result of noise being added. Reducing the sensor noise level allows the pixel colour values to return the values detected from the background image.](../images/sim_sensor_noise.png)
 
 <!-- #region activity=true -->
-## Activity — Following a Line in the Presence of Sensor Noise
+## Activity — following a line in the presence of sensor noise
 
-Try rerunning your edge follower programme in the presence of sensor noise.
+Try rerunning your edge follower program in the presence of sensor noise.
 
-Make some notes on what the effect (if any) is on the behaviour of your programme for increasing levels of sensor noise.
+Make some notes on what the effect (if any) is on the behaviour of your program for increasing levels of sensor noise.
 
 *Sometimes the addition of small amounts of noise can, perhaps surprisingly, improve the behaviour of a robot...*
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*Record your observations here describing how the addition of sensor noise affects the performance of your edge follower programme.*
+*Record your observations here describing how the addition of sensor noise affects the performance of your edge follower program.*
 <!-- #endregion -->
 
 ## Summary

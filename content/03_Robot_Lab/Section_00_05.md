@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -45,14 +45,14 @@ In this notebook, you will meet two such examples: the classic *Eliza* rule base
 
 ## Eliza
 
-Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* programme is often referred to as one of the first great milestones in computational natural language interaction. You can see a copy of the original paper [here](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf), which includes examples of the code used to programme the original Eliza engine.
+Athough written fifty or so years ago, Joseph Weizenbaum's *Eliza* program is often referred to as one of the first great milestones in computational natural language interaction. You can see a copy of the original paper [here](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf), which includes examples of the code used to program the original Eliza engine.
 
 Eliza has been reimplemented several times, such as in the *Lisp* programming language by Peter Norvig's for his textbook *Paradigms of Artificial Intelligence Programming*, as well as in Python reimplementation of Norvig's code by Daniel Connelly ([*Paip-python: Peter Norvig's Paradigms of AI Programming implemented in Python*](http://dhconnelly.com/paip-python/)). 
 
 A version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
 <!-- #region activity=true -->
-### Activity - Chatting to `Eliza`
+### Activity —  chatting to `eliza`
 
 Relive the past, perhaps in more ways than one — depending on how your conversation goes! — by chatting to Eliza for two or three minutes.
 
@@ -63,18 +63,18 @@ Run the following code cell to import the `eliza` package:
 import eliza
 ```
 
-Run the following code cell to enter Eliza's treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the programme by clicking the *stop* button in the notebook toolbar.
+Run the following code cell to enter Eliza's treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the program by clicking the *stop* button in the notebook toolbar.
 
 ```python activity=true
 eliza.hello_doctor()
 ```
 
 <!-- #region activity=true -->
-If you want to hear Eliza speak the responses aloud to you, start the programme by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
+If you want to hear Eliza speak the responses aloud to you, start the program by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
 <!-- #endregion -->
 
 <!-- #region -->
-### So What Makes Eliza Tick?
+### So what makes eliza tick?
 
 If you [look at the rules file](eliza.json), you will see that it contains a series of rules that have the form:
 
@@ -112,7 +112,7 @@ A rule matching engine, written in Python, takes the user input, tries to match 
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Optional Activity
+### Optional activity
 
 If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and edit it to contain your own rules, you can run Eliza using your ruleset by running the command: `eliza.hello_doctor('dr_me.json')`.
 
@@ -128,7 +128,7 @@ eliza.hello_doctor('doolittle.json',
 If you come up with an interesting script, please fee free to share it in the module forums.
 <!-- #endregion -->
 
-### Durable Rules Engine
+### Durable rules engine
 
 The [*Durable Rules Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
 
@@ -369,7 +369,7 @@ Sam : has posted to : forum
 Hopefully, from these examples and the earlier Eliza example, you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier presented facts) using quite simple rules. But while each rule in and of itself might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.
 
 
-### Trying out another ruleset
+### Trying out another ruleset
 
 Let's try another example, this time using one of the example rule sets provided in the `durable-rules` documentation.
 
@@ -378,7 +378,7 @@ We'll also see how we can add another dimension to the rules - and create a rule
 You've already seen how we can get the simulated robot to speak, but how might we go about getting our notebooks to talk to us?
 
 
-### Talking Notebooks
+### Talking notebooks
 
 To get the robot to speak in the simulator, we make use of the browser's Javascript speech engine. This speech engine was also used to allow Eliza to speak. It's not too hard to pull together a simple Python package, intended for use in Jupyter notebooks, that makes it easy for us to call this engine from a single line of Python code running via a notebook code cell that is not prefixed with the simulator magic.  
 
@@ -473,7 +473,7 @@ with ruleset(RULESET):
 Kermit : eats : worms
 ```
 
-## More General Forms of Rules
+## More general forms of rules
 
 So far we have focused on reasoning about "facts" in the form of statements with the form  *subject predicate object*.
 
@@ -481,7 +481,7 @@ But this actally represents a more complicated form of reasoning than the rules 
 
 
 
-### Facts versus Events
+### Facts versus events
 
 Facts persist, events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
 
@@ -538,7 +538,7 @@ post(RULESET, {'color': 'green' });
 
 ### How might rules be useful in a robot context?
 
-Although we can easily create our own `if...` statements in the programme downloaded to the simulator, and control the robot's behaviour that way, it may more convenient to develop, and test, a large and possibly complex rule based set of behaviours using a framework such as a *Durable Rules*.
+Although we can easily create our own `if...` statements in the program downloaded to the simulator, and control the robot's behaviour that way, it may more convenient to develop, and test, a large and possibly complex rule based set of behaviours using a framework such as a *Durable Rules*.
 
 This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook's Python context, passing them as events to the Durable Rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.
 

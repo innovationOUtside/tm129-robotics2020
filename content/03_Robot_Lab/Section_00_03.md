@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -29,7 +29,7 @@ Estimates of the distance traversed are usually obtained from measuring how many
 In RoboLab we will calculate the position of a robot from how long it moves in a straight line or rotates about its centre. We will assume that the length of time for which the motors are switched on is directly related to the distance travelled by the wheels.
 
 
-## 3.1 Activity: Dead reckoning
+## 3.1 Activity — dead reckoning
 
 
 An environment for the simulated robot to navigate is shown below, based on the 2018 First Lego League "Into Orbit" challenge.
@@ -38,9 +38,9 @@ The idea is that the robot must get to the target satellite from its original st
 
 ![Space scene showing the robot, some satellites against a "space" bacground, and some wall like obstacles between the robot starting point and a target satellite](../images/Section_00_02_-_Jupyter_Notebook.png)
 
-The following programme should drive the robot from its starting point, to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot's *pen down* trail.
+The following program should drive the robot from its starting point, to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot's *pen down* trail.
 
-Load the *FLL_2018_Into_Orbit* background into the simulator. Run the code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the programme in the simulator.
+Load the *FLL_2018_Into_Orbit* background into the simulator. Run the code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the program in the simulator.
 
 *Remember that you can reset the original location and orientation of the robot by clicking the simularo `Reset` button. You can clear the pen trace by clicking the simulator `Clear Trace` button.*
 
@@ -87,7 +87,7 @@ playsound.say("Hopefully I have docked with the satellite...")
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## 3.2 Challenge: Reaching the moon base
+## 3.2 Challenge: reaching the moon base
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -95,7 +95,7 @@ In the following code cell, write a program to move the simulated robot from its
 
 In the simulator, set the robot's X location to `1250` and Y location `450` and use the *Move* button to loate the robot there.
 
-Use the following code cell to write your own dead reckoning programme to drive the robot to the moon base at location `(2150, 950)`.
+Use the following code cell to write your own dead reckoning program to drive the robot to the moon base at location `(2150, 950)`.
 <!-- #endregion -->
 
 ```python activity=true
@@ -113,7 +113,7 @@ The robot traverses its path using timing information for dead reckoning. In pri
 In many physical systems, a perfect intended behaviour is subject to *noise*, random perturbations that arise within the system as time goes on as a side-effect of its operation. In a robot, noise might arise in the behaviour of the motors, the transmission or the wheels. The result is that the robot does not execute its motion without error. We can model noise effects in the mobility system of out robot by adding a small amount of noise to the motor speeds as the simulator runs. This noise componenent may speed up, or slow down, the speed of each motor, in a random way. As with real systems, the noise represents are slight random deviations from the theoretical, ideal behaviour.
 
 
-Run the following code cell to download the programme to the simulator. Select an empty background (select the *Empty Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `50` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
+Run the following code cell to download the program to the simulator. Select an empty background (select the *Empty Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `50` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
 
 Run the program in the simulator and observe what happens.
 
@@ -124,20 +124,20 @@ tank_drive.on_for_rotations(SpeedPercent(30),
                             SpeedPercent(30), 3)
 ```
 
-When you run the programme, you should see the robot drive forwards a short way in a straight line, leaving a staight line trail behind it.
+When you run the program, you should see the robot drive forwards a short way in a straight line, leaving a staight line trail behind it.
 
 Reset the location of the robot by clicking the simulator *Move* button. Also within the simulator, increase the *Wheel noise* value from zero by dragging the slider to the right a little way.
 
-Run the programme in the simulator again.
+Run the program in the simulator again.
 
 You should notice this time that the robot does not travel in a straight line. Instead, it drifts from side to slide although possible to one side of the line.
 
-Move the robot back to the start poistion (click the *Move* button) and run the programme in the simulator again. This time, you should see it follows yet another different path.
+Move the robot back to the start poistion (click the *Move* button) and run the program in the simulator again. This time, you should see it follows yet another different path.
 
 Depending on how severe the noise setting is, the robot will travel closer (low noise) the original straight libe, or follow an ever more erratic path (high noise).
 
 
-Now run the original satellite finding dead reckoning programme again, using the *FLL 2018 - Into Orbit* background, but in the presence of *Wheel noise*. Does it:
+Now run the original satellite finding dead reckoning program again, using the *FLL 2018 - Into Orbit* background, but in the presence of *Wheel noise*. Does it:
 
 ```python
 %%sim_magic_preloaded

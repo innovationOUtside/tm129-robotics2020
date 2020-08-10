@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -21,7 +21,7 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 # 1 Introduction to loops and branches
 
-Loops and branches are powerful constructs in programming, and they are used extensively in almost all computer programs. In this lab session, I will introduce the different loop and branch statements provided by RoboLab. You will have an opportunity to see how they are used by working through the activities. We end the session with a number of challenges for you to attempt. These will give you practice in selecting and using different RobotLab statements.
+Loops and branches are powerful constructs in programming, and they are used extensively in almost all computer programs. In this lab session, I will introduce the different loop and branch statements provided by RoboLab. You will have an opportunity to see how they are used by working through the activities. We end the session with a number of challenges for you to attempt. These will give you practice in selecting and using different RoboLab statements.
 
 
 # 2 Loops
@@ -158,9 +158,9 @@ Python gives you two main ways of implementing loops:
 - a `for...in...` loop;
 - a `while ...` loop.
 
-The `for...in...` loop checks the status of an *iterator*, which is capable of returning items from a list of values, one at a time. If the list is empty, the looping ends. If the iterator is not empty, the programme flow passes to the first instruction inside the `for...in...` code block, otherwise it passes to the next instruction at the same block (indentation) level as the `for...in...` statement.
+The `for...in...` loop checks the status of an *iterator*, which is capable of returning items from a list of values, one at a time. If the list is empty, the looping ends. If the iterator is not empty, the program flow passes to the first instruction inside the `for...in...` code block, otherwise it passes to the next instruction at the same block (indentation) level as the `for...in...` statement.
 
-The `while...` loop tests the truth value of a statement. If the statement evaulates as `True`, the programme flow passes into the body of the loop, otherwise it proceeds to the next statement at the same block (indentation) level as the `while...` statement. 
+The `while...` loop tests the truth value of a statement. If the statement evaulates as `True`, the program flow passes into the body of the loop, otherwise it proceeds to the next statement at the same block (indentation) level as the `while...` statement. 
 
 Let's see how each of these constructs works in turn, first using a simple, pure Python example, then in the context of our simulated robot.
 
@@ -193,7 +193,7 @@ When the loop has finished, the value of the last item retrieved from the list w
 
 Run the following code cell to see how the `for...in...` loop retrieves one item at a time from a list of items (line 1), enters the code block within the loop starting at line 2, executes each line 2-3 in turn, then returns to line 1 to get the next item from the list.
 
-When all the items have been retrieved from the list, the programme flow moves on to next item at the same indentation as the `for...in...` loop, which is to say line 4:
+When all the items have been retrieved from the list, the program flow moves on to next item at the same indentation as the `for...in...` loop, which is to say line 4:
 
 ```python
 for item in ['one', 'two', 'three', 'fish']:
@@ -209,7 +209,7 @@ It is also worth noting that the value of the `item` variable is the value of th
 item
 ```
 
-We can use the `nbtutor` extension to step thrhough the programme exectution to see what exactly is going on.
+We can use the `nbtutor` extension to step thrhough the program exectution to see what exactly is going on.
 
 Run the following code cell to load in the `nbtutor` magic:
 
@@ -249,7 +249,7 @@ Close the `nbtutor` cell toolbar view by clicking on the notebook toolbar `View`
 <!-- #region activity=true -->
 ### Activity
 
-See if you can write a simple programme that loops through a list of days of the week, print out a message of the form 'day 1 is Monday' followed by "day 2 is Tuesday', and so on.
+See if you can write a simple program that loops through a list of days of the week, print out a message of the form 'day 1 is Monday' followed by "day 2 is Tuesday', and so on.
 
 *Hint: Python f-strings ("formatted strings" or "formatted string literals") provide a convenient way of getting the value of a variable into a string. For example, if you have a variable `day_of_week = "Monday"`, we can display a message using the construction `print(f"Today is {day_of_week}")`. The `f"..."` construction denotes the f-string. The curly brace brackets (`{..}`) contain the name of a variable whose value you want to substitute into the string. Note that f-strings are not available in the simulator's Python implementation.*
 <!-- #endregion -->
@@ -279,23 +279,23 @@ for day in ['Monday', 'Tuesday', 'Wednesday',
 ```
 
 <!-- #region tags=["alert-danger"] -->
-### Using Loops in Code Intended to be Downloaded and Run in the Simulator
+### Using loops in code intended to be downloaded and run in the simulator
 
-If you use a loop in code you want to download to the simulator, you need to put something in the loop that "uses up" simulator time and that allows its internal clock to proceed or you may find that your simulator Python programme get stuck and hangs the browser.
+If you use a loop in code you want to download to the simulator, you need to put something in the loop that "uses up" simulator time and that allows its internal clock to proceed or you may find that your simulator Python program get stuck and hangs the browser.
 
-Turning motors on for a specified time or rotation count, or polling sensors is one way to do this. Another way is to add an excplcit delay into the loop. For example, if you add the line `from time import sleep` to the start of your simulator programme, you can add a step `sleep(0.01)` to pause in the loop for one hundredth of a second. This gives the simulator a chance to model the progress of time in the simulated world, rather than getting stuck in very rapidly iterating loop in the code it's trying to execute.
+Turning motors on for a specified time or rotation count, or polling sensors is one way to do this. Another way is to add an excplcit delay into the loop. For example, if you add the line `from time import sleep` to the start of your simulator program, you can add a step `sleep(0.01)` to pause in the loop for one hundredth of a second. This gives the simulator a chance to model the progress of time in the simulated world, rather than getting stuck in very rapidly iterating loop in the code it's trying to execute.
 <!-- #endregion -->
 
-### Using a `for..in..` Loop in a Robot Control Program
+### Using a `for..in..` loop in a robot control program
 
 Loops are very useful when it comes to executing repetitive tasks.
 
-You may remember from the programme we use to draw a square that there was a lot of repeated code, with the same code used to draw a single side and then turn through a right angle repeated four times each. At the time, you may have tought "there must be a better way than this?" and the use of a loop provides just such a better way.
+You may remember from the program we use to draw a square that there was a lot of repeated code, with the same code used to draw a single side and then turn through a right angle repeated four times each. At the time, you may have tought "there must be a better way than this?" and the use of a loop provides just such a better way.
 
-Look through the code in the code cell below and predict what you think the robot will do when it runs that programme.
+Look through the code in the code cell below and predict what you think the robot will do when it runs that program.
 
 <!-- #region student=true -->
-*DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the programme.*
+*DOUBLE CLICK this cell to edit it and enter your prediction of what the robot will do as it runs through the program.*
 <!-- #endregion -->
 
 ```python
@@ -316,16 +316,16 @@ for count in range(3):
 
 ```
 
-Now run the code cell to download the programme to the robot. With the pen trace enabled, run the programme in the simulator and observe what happens. Was your predcition correct?
+Now run the code cell to download the program to the robot. With the pen trace enabled, run the program in the simulator and observe what happens. Was your predcition correct?
 
-Modify the programme (if necessary...) so that the robot will trace out something close to a square (don't spend too much time trying to make it perfect: that may not be possible!). Clear the trace in the simulator, reset the robot location, and download and run the programme again to check your programme modification worked.
+Modify the program (if necessary...) so that the robot will trace out something close to a square (don't spend too much time trying to make it perfect: that may not be possible!). Clear the trace in the simulator, reset the robot location, and download and run the program again to check your program modification worked.
 
 
 ### Returning to the top of a loop early
 
 Sometimes we may want to to return to the top of a loop from within a loop code block *before* we have executed all the lines in the looped block. We can do this using the `continue` instruction.
 
-Run the following code cell and step through each line of code a line at a time using the `nbtutor` *Next* button. Watch the programme flow particularly closely when the `item` variable takes the value `three`.
+Run the following code cell and step through each line of code a line at a time using the `nbtutor` *Next* button. Watch the program flow particularly closely when the `item` variable takes the value `three`.
 
 ```python
 %%nbtutor --reset --force
@@ -339,9 +339,9 @@ print('All done...')
 ```
 
 <!-- #region -->
-### Conditional Tests Using the Conditional Construct, `if`...
+### Conditional tests using the conditional construct, `if`...
 
-In the previous programme, you may have noticed another new statement, an `if` statement. This is another sort of conditional statement. The `if` statement will test a logical condition and if it evaluates as `True` programme flow will pass to any statements contained within the `if` statement block.
+In the previous program, you may have noticed another new statement, an `if` statement. This is another sort of conditional statement. The `if` statement will test a logical condition and if it evaluates as `True` program flow will pass to any statements contained within the `if` statement block.
 
 ```python
 if LOGICAL_TEST_STATEMENT:
@@ -395,7 +395,7 @@ Try experimenting with you own equivalent, or unequivalent, statements in the co
 <!-- #region activity=true -->
 ### Activity
 
-Suppose Wednesday is early closing day. Building on elements from your earlier programme that displays the days of the week, modify the programme to use a `continue` statement so that it prints out the message *I could go shopping on DAY afternoon* for every day except Wednesday.
+Suppose Wednesday is early closing day. Building on elements from your earlier program that displays the days of the week, modify the program to use a `continue` statement so that it prints out the message *I could go shopping on DAY afternoon* for every day except Wednesday.
 <!-- #endregion -->
 
 ```python activity=true
@@ -408,7 +408,7 @@ Suppose Wednesday is early closing day. Building on elements from your earlier p
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-I used a simple `if` statement to check if it was Wednesday, and if it was, the `continue` statement passed the programme control flow back to the top of the loop *before* the programme had a chance to print out that day of the week. 
+I used a simple `if` statement to check if it was Wednesday, and if it was, the `continue` statement passed the program control flow back to the top of the loop *before* the program had a chance to print out that day of the week. 
 <!-- #endregion -->
 
 ```python activity=true hidden=true
@@ -420,7 +420,7 @@ for day in ['Monday', 'Tuesday', 'Wednesday',
     print(f"I could go shopping on {day} afternoon.")
 ```
 
-### Escaping from a Loop Early
+### Escaping from a loop early
 
 As well as returning back to the top of a loop early using a `continue` statement, we may sometimes want to escape from a loop altogether before the loop would normally finish. We can achieve this using the `break` statement, which breaks the control flow oout of a loop when it is encountered.
 
@@ -438,9 +438,9 @@ print('All done...')
 ```
 
 <!-- #region activity=true -->
-### Activity  - Escape from a `for...in...` loop
+### Activity — escape from a `for...in...` loop
 
-Suppose we get weekends off. Using a `break` construct inside a `for..in...` loop, create a simple programme that takes a list containing the days of the week in order *Monday*...*Sunday* and displays the message *DAY is a workday...* for days Monday to Friday, but then breaks out of the loop when it realises it is Friday.
+Suppose we get weekends off. Using a `break` construct inside a `for..in...` loop, create a simple program that takes a list containing the days of the week in order *Monday*...*Sunday* and displays the message *DAY is a workday...* for days Monday to Friday, but then breaks out of the loop when it realises it is Friday.
 <!-- #endregion -->
 
 ```python activity=true
@@ -491,11 +491,11 @@ do the following sequence of instructions while a condition holds
 
 In some respects the `while` resembles an `if` statement in that if (while) the tested condition is true, control passes into the body of the while statment block, and if it evaluates false, control passes immediately to the next statement after the while block. However, *unlike* the `if` statement, when all the statements inside the `while` block have been executed, in sequential order, control does not then flow to the next statement after the while block, it passes back to the top of the while loop and the condition is re-evaluated.
 
-In this way, the programme can keep repeating the lines of code inside the while block until some condition is met, or some condition fails.
+In this way, the program can keep repeating the lines of code inside the while block until some condition is met, or some condition fails.
 
-Note that if the conditionally tested value changes to a value that would cause the condition to evaluate as false whilst the programme flow is inside the while block, the statements insde the while block will continue to execute in sequential order. Control only passes from the while statement to the statement after the while block at the point when  control passes to the while statement and its condition is tested and found to evaluate as false.
+Note that if the conditionally tested value changes to a value that would cause the condition to evaluate as false whilst the program flow is inside the while block, the statements insde the while block will continue to execute in sequential order. Control only passes from the while statement to the statement after the while block at the point when  control passes to the while statement and its condition is tested and found to evaluate as false.
 
-Let's see an example of how to use a `while` loop to help us keep track of whether we have counted up to a particular number yet as you will see if you run the programme in the following code cell:
+Let's see an example of how to use a `while` loop to help us keep track of whether we have counted up to a particular number yet as you will see if you run the program in the following code cell:
 
 ```python
 #%%nbtutor --reset --force
@@ -515,7 +515,7 @@ Observe how the program flow repeatedly moves from the last line of the code ins
 
 
 <!-- #region activity=true -->
-### Activity - Use a `while` Loop
+### Activity — use a `while` loop
 
 The Python `random` functon from the `random` package is capabale of generating a random number between 0 and 1, as you will see if you run the following cell repeatedly. (The package is only imported once despite multiple calls to it.)
 <!-- #endregion -->
@@ -558,7 +558,7 @@ while random.random() >= 0.5:
 Running the cell multiple times, sometimes nothing is printed (if the "coin" flips as "tails", that is, the first random value is *less than* 0.5); at other times, we may get one or more "heads" displayed. (The most I saw in several attempts was eight heads in a row!)
 <!-- #endregion -->
 
-### Infinite Loops
+### Infinite loops
 
 We can create a special sort loop known as an *infinite loop* using the `while True:` construction, where the statement `True` *always* evaluates as `True` and so the loop repeats until the program is forced to stop or the flow is forced out of the loop and onto the next instruction using a `break` statement.
 
@@ -585,7 +585,7 @@ This may be particularly useful in a robot programming context, as the following
 
 In the simulator, load in the *Grey bands* background and reset the trace. (You can also disable the *pen down* control: we don't need to keep track of where the robot has travelled for this activity.)
 
-Run the following code cell to download the programme to the simulator and then run it in the simulator, observing the behaviour of the robot.
+Run the following code cell to download the program to the simulator and then run it in the simulator, observing the behaviour of the robot.
 
 ```python
 %%sim_magic_preloaded
@@ -605,24 +605,24 @@ print("I now see {}".format( colorLeft.reflected_light_intensity))
 tank_drive.off()
 ```
 
-When you run the programme in the simulator, the robot should drive forwards until it encounters the first, light grey line, and then it should stop.
+When you run the program in the simulator, the robot should drive forwards until it encounters the first, light grey line, and then it should stop.
 
-*Although the robot will stop, by default, when the programme ends, becuase the simulator run stops at the end of the programme, it is often good practice to explicitly turn the motors off yourself. By doing this,  you know for sure what state the motors are in at the end of the programme. In the above example, what would happen if, for some reason, the motor off command was omitted and the simulator carried on running even as the programme execution had completed?*
+*Although the robot will stop, by default, when the program ends, becuase the simulator run stops at the end of the program, it is often good practice to explicitly turn the motors off yourself. By doing this,  you know for sure what state the motors are in at the end of the program. In the above example, what would happen if, for some reason, the motor off command was omitted and the simulator carried on running even as the program execution had completed?*
 
-The programme works by checking the value from one of the robot's sensors, a downward facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a "reflected light" sensor, a percentage value which relates to the colour of the background canvas over which the robot is travelling. The simulator output display window shows the sensor value, starting at `100` when the robot is on the plain white background. This value is above the conditionally tested threshold value of `99` used in the original programme's `while` statement, and so the programme continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of just over 87 when I ran the programme.
+The program works by checking the value from one of the robot's sensors, a downward facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a "reflected light" sensor, a percentage value which relates to the colour of the background canvas over which the robot is travelling. The simulator output display window shows the sensor value, starting at `100` when the robot is on the plain white background. This value is above the conditionally tested threshold value of `99` used in the original program's `while` statement, and so the program continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of just over 87 when I ran the program.
 
-*Rather than testing and reporting the `colorLeft.reflected_light_intensity` value directly, the programme is constructed as it is because the sensor value may change in going from the `while` programme step to the `print()` step. Even though computers may step between lines of code very quickly, they still take a finite time to do so.*
+*Rather than testing and reporting the `colorLeft.reflected_light_intensity` value directly, the program is constructed as it is because the sensor value may change in going from the `while` program step to the `print()` step. Even though computers may step between lines of code very quickly, they still take a finite time to do so.*
 
-Try modifying the numerical value used in the `while` conditional test and downloading and running the modified programme. Can you get the robot to stop as soomn as it encounters the second medium grey band? On the third, dark grey line? On the final, black line?
+Try modifying the numerical value used in the `while` conditional test and downloading and running the modified program. Can you get the robot to stop as soomn as it encounters the second medium grey band? On the third, dark grey line? On the final, black line?
 
 <!-- #region activity=true -->
-## Open Activity: Changing a loop variable count up to 10
+## Open activity — changing a loop variable count up to 10
 <!-- #endregion -->
 
 <!-- #region activity=true -->
 As well as programming the siunulated robot to respond to a sensor value, we can also get it to count aloud.
 
-The following programme, for example, when downloaded to the simulator, will cause the robot (?!) to count aloud.
+The following program, for example, when downloaded to the simulator, will cause the robot (?!) to count aloud.
 
 Can you get the robot to count to 10, rather than 5?
 <!-- #endregion -->
@@ -644,12 +644,12 @@ while count < 5:
 <!-- #region -->
 ## Summary
 
-In this notebook, you have seen how we can control the way in which programme statements are executed in a programme by using various programme flow control constructs and how we can use the `nbtutor` extension to step through and monitor the flow of simple Python programmes executing in the notebook's Python environment (unfortunately, it does not allow us to step through code we download into the simulator).
+In this notebook, you have seen how we can control the way in which program statements are executed in a program by using various program flow control constructs and how we can use the `nbtutor` extension to step through and monitor the flow of simple Python programmes executing in the notebook's Python environment (unfortunately, it does not allow us to step through code we download into the simulator).
 
 
-Regarding the programme control flow, you have seen how:
+Regarding the program control flow, you have seen how:
 
-- the `for..in..` loop allows a the programme to work through a set of statements in the loop body once for each item in a list of values or "iterator" construct;
+- the `for..in..` loop allows a the program to work through a set of statements in the loop body once for each item in a list of values or "iterator" construct;
 - the `if...` conditional command checks a logical condition once and once only; if the tested condition evaluates true, control passes inside the block, and then continues after the if block. If the condition evaluates as false, control passes immediately to the statement after the if block;
 - the `while...` loop allows us to repeatedly test a condition, and if it is found to be true, pass control to a sequnece of instructions inside the while block. Once those instructions have been executed, control is passed back the top of the while loop and the test condition is evaluated again. If the while condition evaluates as false, control passes to the first statement after the while block.
 

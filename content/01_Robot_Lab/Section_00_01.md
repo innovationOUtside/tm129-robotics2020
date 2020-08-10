@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-# 1 An introduction to programming robots
+# 1 an introduction to programming robots
 
 
 The objective of this RoboLab Session is to explain the basics of robot computer programming and show you how to use some of the elementary features of the RoboLab simulator.
@@ -20,7 +20,7 @@ The objective of this RoboLab Session is to explain the basics of robot computer
 It is assumed that you are completely new to computer programming and robotics. We’ll try to avoid jargon and go at a pace that makes it easy for you to understand what is going on.
 
 
-## 1.1 Some basics of computer programming
+## 1.1 some basics of computer programming
 
 
 For beginners, computer programming can appear to be a very mysterious process. Programming a robot may seem even more daunting, but I hope to show that the basics are quite straightforward. As you may have seen in the quick tour in the software guide, a *computer program* is a sequence of instructions or commands, written using words, symbols and numbers.
@@ -28,16 +28,16 @@ For beginners, computer programming can appear to be a very mysterious process. 
 For example, you might want the robot to go forwards for five seconds. If we control the motors separately, this involves turning each motor on separately, waiting for 5 seconds, and then terminating the program, at which point the motors in our robot simulation are automatically switched off.
 
 
-<div class='alert-warning'>The "stop the motors at the end of the programme" behaviour is not guaranteed in other environments used to programme either simulated or real robots. To be safe, it's often worth making sure you turn off the motors at the end of a programme so you know for sure what state they are in when the programme terminates.</div>
+<div class='alert-warning'>The "stop the motors at the end of the program" behaviour is not guaranteed in other environments used to program either simulated or real robots. To be safe, it's often worth making sure you turn off the motors at the end of a program so you know for sure what state they are in when the program terminates.</div>
 
 <!-- #region -->
 In our simulated robot environment, we need to:
 
 - turn each motor on with a particular *speed*, which also sets the *direction*: positive speed values are assumed to mean "go forwards", negative ones "go backwards";
 - wait for five seconds;
-- (programme ends, motors turned off automatically).
+- (program ends, motors turned off automatically).
 
-This could be *coded* in RobotLab using Python instructions of the form:
+This could be *coded* in RoboLab using Python instructions of the form:
 
 ```python
 left_motor.on(SpeedPercent(50))
@@ -50,20 +50,20 @@ for suitable configurations of `left_motor` and `right_motor`.
 
 Perhaps confusingly, the `time.sleep()` command, rather than saying "do nothing for 5 seconds", says "continue to do what you're already doing for 5 seconds". For our current example, this means "keep your motors on and running for 5 seconds".
 
-But how does the programme know what the `left_motor` and `right_motor` are? Our programme also requires that we have defined these items earlier in the programme using things it *does* know about. In particular, we would need to use a construction of the form:
+But how does the program know what the `left_motor` and `right_motor` are? Our program also requires that we have defined these items earlier in the program using things it *does* know about. In particular, we would need to use a construction of the form:
 
 ```python
 left_motor = Motor(OUTPUT_B)
 right_motor = Motor(OUTPUT_C)
 ```
 
-Here, the `Motor()`, `OUTPUT_B` and `OUTPUT_C` statements, as well as the previously seen `SpeedPercent`, are provided as predefined building blocks to use in our own simulated robot control programmes.
+Here, the `Motor()`, `OUTPUT_B` and `OUTPUT_C` statements, as well as the previously seen `SpeedPercent`, are provided as predefined building blocks to use in our own simulated robot control programs.
 
-The `Motor()` element refers to programme elements elsewhere that define a `Motor` *object*. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or *methods* that can be enacted upon it. For example, we may turn a motor *on* in a particular *direction* and with a particular *speed* for a particular *time* or for a specified number of *rotations*. 
+The `Motor()` element refers to program elements elsewhere that define a `Motor` *object*. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or *methods* that can be enacted upon it. For example, we may turn a motor *on* in a particular *direction* and with a particular *speed* for a particular *time* or for a specified number of *rotations*. 
 
 The `Motor()` object is created with an *argument* that identifies an *output port* that the physical motor in a real robot, and the simualted motor in a simulated robot, would be connected to. Output ports are used to identify power and/or control lines that a software controller can use to control the behaviour of a physical (or simulated) device, such as a motor, LED display, or speaker. In our simulated robot case, two output ports are defined, `OUTPUT_B` and `OUTPUT_C`. By convention, we associate `OUTPUT_B` with the motor on the left hand side of the robot as it travels in a forwards direction, and `OUTPUT_C` with the right hand motor.
 
-To simplify matters, other "higher level" *predefined* building blocks are also provided to make writing our programmes simpler.
+To simplify matters, other "higher level" *predefined* building blocks are also provided to make writing our programs simpler.
 
 For example, the `MoveTank` building block allows us to create a "tank" drive comprised of a left and right motor. We can instruct the tank drive to turn each motor on with its own specified speed and direction, and for a certain amount of time, using a single command:
 
@@ -75,7 +75,7 @@ tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), 5)
 Computer code usually looks stilted like this because it has to follow very strict rules about which characters go where. Fortunately, the notebooks have some support, know as "tab completion", for helping you create programs without making typing mistakes. You will learn more about that as we go along.
 <!-- #endregion -->
 
-## How The Jupyter Notebooks and the Robot Simulator Work Together
+## How the jupyter notebooks and the robot simulator work together
 
 The following describes what happens when you use a notebook to program the simulated robot.
 
@@ -91,32 +91,32 @@ The rest of the code in the cell is the code that will be passed into the simula
 
 When you *Run* the code cell, the code is "downloaded" to the simulator *but is not executed*.
 
-To execute your programme, you need to click the *Run* button in the simulator. Once the code is "downloaded" from your code cell to the simulator (or — if we work out how! [This](https://github.com/ev3dev/vscode-ev3dev-browser) may provide some clues... — to a real robot), the robot is *autonomous* and runs independently of the code cell within which the program is defined. 
+To execute your program, you need to click the *Run* button in the simulator. Once the code is "downloaded" from your code cell to the simulator (or — if we work out how! [This](https://github.com/ev3dev/vscode-ev3dev-browser) may provide some clues... — to a real robot), the robot is *autonomous* and runs independently of the code cell within which the program is defined. 
 
 
-The following diagram tries to capture the relationship between the code as seen in a notebook magic code cell and the simulator running as a Javascript programme inside the browser Javascript environment.
+The following diagram tries to capture the relationship between the code as seen in a notebook magic code cell and the simulator running as a Javascript program inside the browser Javascript environment.
 
 ![A diagram showing how code wihtin a code cell can be "downloaded" to the nbev3devsim simulator or, in principle, downloaded to a real robot running Linux and the ev3dev-py environment. At one side is a box representing a jupyter notebook and the other side a box representing an EV3 robot. The notebook container contains a "magic code cell" and a separate Javascript environment. The Javascript environment contains an nbev3devsim container. An arrow is shown going from the code cell to the nbev3devsim container inside the Javascript container. Inside the EV3 robot box is a Linux container, and inside that an ev3dev container. An second arrow leads from the magic code cell inside the notebook container to the ev3dev container inside the Linux conainer inside the EV3 robot box.](../images/ev3dev-codearchitecture.png)
 
-The diagram also shows how, in principle, the *same* programme could be used to program the simulated robot *or* a real EV3 powered robot.
+The diagram also shows how, in principle, the *same* program could be used to program the simulated robot *or* a real EV3 powered robot.
 
 
 In the simulated robot environment, the same physical computer is being used to do several different things:
 
-1. to create and edit RobotLab programs in the Jupyter notebook or JupyterLab user interface; the Jupyter notebook interface runs in the browser, and the content of the code cells are executed inside a Python environment running on your computer.
+1. to create and edit RoboLab programs in the Jupyter notebook or JupyterLab user interface; the Jupyter notebook interface runs in the browser, and the content of the code cells are executed inside a Python environment running on your computer.
 
 2. to execute Python code contained in a notebook code cell in a Python environment, or "download" code from a code cell to the simulator;
 
 3. to execute the program in a simulated robot in a Javascript environment running inside your browser.
 
-Whilst they run on the same physical computer, these programmes actually run in different computational environments on the computer. For example, the simulator is actually a Javascript programme that runs in your browser: once you click on the `Run` button, it is the simulated robot’s control system that is executing the robot program inside a Javascript environment in your browser. The code is actually sent to the simulator via a Python process when the notebook code cell is run. The IPython magic tells the Python process to grab the contents of the code cell (and depending on the magic, prefix it with additional boilerplate code), and then send that code to the simulator running as Javascript code in the browser window that contains the notebook user interface.
+Whilst they run on the same physical computer, these programs actually run in different computational environments on the computer. For example, the simulator is actually a Javascript program that runs in your browser: once you click on the `Run` button, it is the simulated robot’s control system that is executing the robot program inside a Javascript environment in your browser. The code is actually sent to the simulator via a Python process when the notebook code cell is run. The IPython magic tells the Python process to grab the contents of the code cell (and depending on the magic, prefix it with additional boilerplate code), and then send that code to the simulator running as Javascript code in the browser window that contains the notebook user interface.
 
 ![](../images/ev3-jupyter-arch.png)
 
 <div class='alert-warning'>Would it make sense to use another work in the simulator? "Execute"? "SimRun"?</div>
 
 <!-- #region -->
-## Getting Started With the Simulator
+## Getting started with the simulator
 
 
 The simulator we will be using must be loaded into each notebook that wants to use it once per notebook. In addition, __only one instance of the simulator per notebook is allowed__. Any more than that and things don't work at all.
@@ -141,12 +141,12 @@ You can also get code into the simulator by highlighting and copying the code (w
 
 You can also preview the code available in the simulator by clicking the simulator *Show Code* button.
 
-To execute the programme on the simulated robot, click the *Run* button in the simulator and watch the result.
+To execute the program on the simulated robot, click the *Run* button in the simulator and watch the result.
 
 
-### Error Messages in the Simulator
+### Error messages in the simulator
 
-If you make an error in a programme sent to the simulator, when you try to run the program in the simulator, a message will be displayed in the simulator console.
+If you make an error in a program sent to the simulator, when you try to run the program in the simulator, a message will be displayed in the simulator console.
 
 <img src='../images/Section_00_01_Jupyter_Notebook_error.png' width=500 alt='' />
 
@@ -155,9 +155,9 @@ The line number specified will be one less than the line number displayed in the
 __TO DO: this needs addressing if we have preloaded some packages as inserts into the code. The code preview window in the simulator may help here: need line numbers and code styling there?__ 
 
 
-### Passing Code into the Simulator
+### Passing code into the simulator
 
-To write programme code that can be passed to the simulator and executed within it to control the simulated robot, we add code to a code cell with some IPyhton magic in the first line:
+To write program code that can be passed to the simulator and executed within it to control the simulated robot, we add code to a code cell with some IPyhton magic in the first line:
 
 ```python
 %%sim_magic
@@ -167,7 +167,7 @@ print('hello world')
 When the code cell is run, the code is downloaded to the simulator. The code can then be executed in the simulator by pressing the *Run* button __in the simulator__.
 
 
-## 1.2 An introduction to sequential programming
+## 1.2 an introduction to sequential programming
 
 
 There are various ways of programming computers to control robots. One of these is the *sequential* approach, which is the main approach used in RoboLab. This method of writing computer programs, as lists or sequences of commands, produces what are called *sequential programs*.
@@ -180,11 +180,11 @@ __TO DO: we can just do sequential here using simple Pyhton code in un-magicked 
 <!-- #endregion -->
 
 <!-- #region -->
-The programme is structured in a particular way that allows the programme to operate correctly (a *necessary* requirement) as well as making it "readable" (a *desirable* requirement).
+The program is structured in a particular way that allows the program to operate correctly (a *necessary* requirement) as well as making it "readable" (a *desirable* requirement).
 
-In terms of correctness, the programme requires that we define things within our programme before we try to call on them and make use of them within our programme.
+In terms of correctness, the program requires that we define things within our program before we try to call on them and make use of them within our program.
 
-One way of defining things is to *import* them from a Python package. A package is essentially a collection of predefined programme elements that are useful for a particular programming task.
+One way of defining things is to *import* them from a Python package. A package is essentially a collection of predefined program elements that are useful for a particular programming task.
 
 ```python
 # Import statements
@@ -195,20 +195,20 @@ import time
 left_motor = Motor(OUTPUT_B)
 right_motor = Motor(OUTPUT_C)
 
-# Programme actions
+# Program actions
 left_motor.on(SpeedPercent(75))
 right_motor.on(SpeedPercent(75))
 
 # Wait here for 1 second...
 time.sleep(1)
 
-# Programme ends
+# Program ends
 ```
 
-Lines prefixed by a `#` are *comments* that are not executed as programme code but are intended as notes to human readers that can be used to help make a programme more readable.
+Lines prefixed by a `#` are *comments* that are not executed as program code but are intended as notes to human readers that can be used to help make a program more readable.
 <!-- #endregion -->
 
-The following programme turns the left and right motors on at a quarter (25%) of their full speed, waits for a short period (3 seconds), then the programe ends and the motors are automatically switched off.
+The following program turns the left and right motors on at a quarter (25%) of their full speed, waits for a short period (3 seconds), then the programe ends and the motors are automatically switched off.
 
 ```python
 %%sim_magic
@@ -221,24 +221,24 @@ import time
 left_motor = Motor(OUTPUT_B)
 right_motor = Motor(OUTPUT_C)
 
-# Programme actions
+# program actions
 left_motor.on(SpeedPercent(25))
 right_motor.on(SpeedPercent(25))
 
 # Wait here for 3 seconds...
 time.sleep(3)
 
-# Programme ends
+# Program ends
 ```
 
-*Run the above code cell to download the code to the simulator, and then run the programme using the simulator interface.*
+*Run the above code cell to download the code to the simulator, and then run the program using the simulator interface.*
 
-When you run the programme in the simulator, the robot should move forwards quickly for one second and then stop. Try increasing the "sleep" time in seconds, re-run the code code cell to download the programme to the simulator, and then re-run it in the simulator. Does the robot behave as you expect? What happens if you also change the `SpeedPercent(VALUE)`, where `VALUE` is a numerical value that can range from `-100` to `100`?
+When you run the program in the simulator, the robot should move forwards quickly for one second and then stop. Try increasing the "sleep" time in seconds, re-run the code code cell to download the program to the simulator, and then re-run it in the simulator. Does the robot behave as you expect? What happens if you also change the `SpeedPercent(VALUE)`, where `VALUE` is a numerical value that can range from `-100` to `100`?
 
 <!-- #region -->
-### Using Predefined Code Building Blocks
+### Using predefined code building blocks
 
-Writing programmes at such a low level is possible, but we often find it more convenient to programme at a higher level of abstraction or generalisation. In the following example, we can configure and use a predefined motor drive that allows us to control both motors from a single command.
+Writing programs at such a low level is possible, but we often find it more convenient to program at a higher level of abstraction or generalisation. In the following example, we can configure and use a predefined motor drive that allows us to control both motors from a single command.
 
 In particular, the ` MoveTank()` function from the `ev3dev3.motor` Python package allows us to define a simple tank drive composed of two motors, one on the left hand side of the robot on one on the right hand side. The configuration associates a controllable motor output with a particular motor.
 
@@ -264,7 +264,7 @@ The following example shows how we can drive the tank:
 - *turn on the spot* for the same period (one motor forwards, the other backwards, at the same speed); and then
 - *reverse* in a straight line for the same period of time (both motors backwards at the same speed.
 
-*Run the following code cell to download the program to the simulator and then run the programme in the simulator:*
+*Run the following code cell to download the program to the simulator and then run the program in the simulator:*
 <!-- #endregion -->
 
 ```python
@@ -297,9 +297,9 @@ tank_drive.on_for_seconds(SpeedPercent(-50), SpeedPercent(-50), time_1s)
 ```
 
 <!-- #region activity=true -->
-### Activity - Driving the Motors at Different Speeds
+### Activity – Driving the motors at different speeds
 
-What happens if the motors are turning in the same direction but at different speeds? Explore this situation by running the followng code cell, using different motorspeed values, to the simulator and running the code there.
+What happens if the motors are turning in the same direction but at different speeds? Explore this situation by running the following code cell, using different motorspeed values, to the simulator and running the code there.
 
 What happens if the motors turn in *different* directions? Is the behaviour as you'd expect?
 
@@ -308,7 +308,7 @@ Check the *pen down* checkbox so that you can see the trace of where the robot h
 *Note that the simulated robot may not behave as a real robot would. It all depends on how well the simulated robot and the simulator physics have been implemented.*
 
 
-*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the programme in the simulator.*
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.*
 <!-- #endregion -->
 
 ```python activity=true
@@ -344,7 +344,7 @@ If both motors are are going backwards (negative speed), then wuth the `.on_for_
 <!-- #endregion -->
 
 <!-- #region -->
-### Turning the Motors on for a Specified Number of Wheel Rotations
+### Turning the motors on for a specified number of wheel rotations
 
 As well as turning the motors on for a specified period of time, we can also turn them on for a specified number of rotations of the wheels:
 
@@ -361,7 +361,7 @@ From [the documentation](https://ev3dev-lang.readthedocs.io/projects/python-ev3d
 The following code cell provides code for exploring the use of the `.on_for_rotations()` command.
 
 
-*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configutations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the programme in the simulator.*
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configutations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.*
 <!-- #endregion -->
 
 ```python
@@ -385,7 +385,7 @@ Compared to the `.on_for_seconds()` command, the `.on_for_rotations()` command i
 *TO DO - we could make that an activity and have an example of annotated screengrab of the simulator showing different traces.*
 
 <!-- #region -->
-### Steering the Robot — `MoveSteering`
+### Steering the robot `movesteering`
 
 As well as the `MoveTank()` configuration, a `MoveSteering()` configuration is also available that again is based on the presence of two motors connected to the same controllable outputs:
 
@@ -411,9 +411,9 @@ where `STEERING`steering is a numerical value between `-100` and `100` and where
 
 As well as turning the steering drive on, we can turn it on for a specified time using `.on_for_seconds(STEERING, SPEED, TIME)` as in the case of the tank drive.
 
-The following programme gives a simple example of how to turn the robot using the `MoveSteering()` motor configuration.
+The following program gives a simple example of how to turn the robot using the `MoveSteering()` motor configuration.
 
-*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment with various settings for the s*
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment with various settings for the s*
 <!-- #endregion -->
 
 *TO DO - it would perhaps be interesting to have a simple simulator view, cf. a [remote control](https://github.com/innovationOUtside/nbev3devsim/issues/39), where we can turn the motors on or off, select a motor group, and set the motor speeds, steering degree etc. Maybe do this with a magic that has a couple of ipywidgets that send realtime updates to a free running simulator?*
@@ -447,11 +447,11 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
 <!-- #region activity=true -->
 #### Question
 
-Suppose that a simulated robot starts pointing towards the top of the screen. If you download and run the programme in the code cell below, will the robot turn towards the right or left while executing the sequence of commands shown?
+Suppose that a simulated robot starts pointing towards the top of the screen. If you download and run the program in the code cell below, will the robot turn towards the right or left while executing the sequence of commands shown?
 
 *Before* you run the code, make a prediction about what you thing the robot will do when the code is executed by the simulated robot.
 
-*To monitor what the robot does, you may also find it convenient to enable the `pen down` feature in the simulator that will trace out the path taken by the simulator robot as the programme runs.*
+*To monitor what the robot does, you may also find it convenient to enable the `pen down` feature in the simulator that will trace out the path taken by the simulator robot as the program runs.*
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -496,7 +496,7 @@ __DOUBLE CLICK THIS CELL TO EDIT IT.__
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-When the programme is run, the first `tank_drive` motor command moves the robot forwards for one second:
+When the program is run, the first `tank_drive` motor command moves the robot forwards for one second:
 
 ```python
 tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), time_1s)
@@ -519,28 +519,28 @@ The combined result is that the robot goes forwards for one second and turns for
 The trace left as the robot turns on the spot does not appear to be center simulated robot doesn't turn exactly on the spot because the robot is turning about one of the wheels.
 <!-- #endregion -->
 
-### Writing Your Own Programmes — Getting into the "Mind" of the Robot
+### Writing your own programs getting into the "mind" of the robot
 
 When trying to understand, or write your own, robot programs, it can be helpful to "play robot". This means that you put yourself in the place of the robot and act out (or at least imagine) what you or the robot would do when executing each statement of the program. If you have the help of a friend, get them to read out the program statements to you one at a time. 
 
 <!-- #region -->
-## 1.3 Writing Programs for Use in the RoboLab Simulator
+## 1.3 writing programs for use in the RoboLab simulator
 
-Once the simulator has been loaded and displayed in a notebook, you can start to write programmes that will run on the simulated robot.
+Once the simulator has been loaded and displayed in a notebook, you can start to write programs that will run on the simulated robot.
 
-The programmes are written __in a single code cell__ prefixed with the magic incantation `%%sim_magic roboSim` on __the first line__ of the code cell.
+The programs are written __in a single code cell__ prefixed with the magic incantation `%%sim_magic roboSim` on __the first line__ of the code cell.
 
-Running the code cell "downloads" the programme from the cell to the simulated robot. Pressing the run button in the simulated robot will then execute the downloaded robot programme within the simulator.
+Running the code cell "downloads" the program from the cell to the simulated robot. Pressing the run button in the simulated robot will then execute the downloaded robot program within the simulator.
 
 
-*TO DO - need some sort of help or lookup for simulator programme commands.*
+*TO DO - need some sort of help or lookup for simulator program commands.*
 
 In the next few activities you are going to learn how to use RoboLab to construct a computer program that will move a simulated robot around a square course. You should try to work through the instructions carefully and slowly. It is important that you complete each step successfully before moving on to the next. We have allowed two hours for this, although you may be able to complete the exercise in less time if you have some experience of computer programming.
 <!-- #endregion -->
 
 ## Creating and editing your own programs
 
-If you run the following programme in the simulator, you will find that it drives the robot forward a short way and then turns on the spot for more than a right angle (ninety degrees).
+If you run the following program in the simulator, you will find that it drives the robot forward a short way and then turns on the spot for more than a right angle (ninety degrees).
 
 *TO DO - simple diagram showing angles and their names, eg ninety degrees.*
 
@@ -558,9 +558,9 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 1)
 ```
 
 <!-- #region activity=true -->
-### Activity — Copying and Modifying a program
+### Activity –copying–and–modifying–a–program
 
-We can edit a code cell directly to add additional lines to it, or we may want to retain our original code (for reference) and create a new programme based on an earlier one.
+We can edit a code cell directly to add additional lines to it, or we may want to retain our original code (for reference) and create a new program based on an earlier one.
 
 We can grab a copy of a code cell by:
 
@@ -569,9 +569,9 @@ We can grab a copy of a code cell by:
 - clicking the *paste cells below* toolbar button to place a copy of the cell in a new cell;
 - select the new cell and use the arrow keys to move it to a locaiton of your choosing.
 
-Select the code cell above by clicking on it, use the tool bar button to copy it, single click on this markdown cell to provide the current location, then click on the toolbar paste button to copy the code cell below this one.
+Select the code cell above by clicking on it, use the tool bar button to copy it, single click on this Markdown cell to provide the current location, then click on the toolbar paste button to copy the code cell below this one.
 
-Modify the programme in your newly created cell so that the robot turns through a right angle (or as close as you can get it without spending too much time!). Test your code by runn the code cell to download the code to the simulator, and then run it in the simulator.
+Modify the program in your newly created cell so that the robot turns through a right angle (or as close as you can get it without spending too much time!). Test your code by runn the code cell to download the code to the simulator, and then run it in the simulator.
 
 You may find that using the pen trace helps you see how far the robot has turned.
 <!-- #endregion -->
@@ -590,7 +590,7 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 1)
 ```
 
 <!-- #region activity=true heading_collapsed=true -->
-#### My Attempt
+#### My attempt
 
 *Click the arrow in the sidebar to reveal the settings I used.*
 <!-- #endregion -->
@@ -613,16 +613,16 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 On my computer, I found I could turn the robot through about ninety degrees by setting the number of wheel rotations on the turn step to between 0.85 and 0.9.
 <!-- #endregion -->
 
-### Copying Code Using Keyboard shortcut commands
+### Copying code using keyboard shortcut commands
 
 You can also use the `ESC-C` keyboard shortcut to copy a selected cell and `ESC-V` to paste a copied cell immediately below the currently selected cell.
 
 Alternatively, you can highlight and select code *within* a code cell and then use the keyboard copy and paste commands to copy the code from the original cell, create a new code cell, then paste the copied code into the new code cell.
 
 
-### Deleting Cells
+### Deleting cells
 
-Sometimes, you may find you want to delete a code or markdown cell.
+Sometimes, you may find you want to delete a code or Markdown cell.
 
 To delete a cell, click on it to select it and then click the scissors / *cut selected cells* toolbar button.
 
@@ -633,12 +633,12 @@ To delete one of more particular lines of code in a code cell, highlight just th
 To move one or more lines of code in a code cell, highlight them to select them, cut them using your normal keyboard cut command (for example, `ctrl-x` or `cmd-x`), place the cursor where you want them to go, and paste them using your normal keyboard paste command (for example, `ctrl-v` or `cmd-v`).
 
 
-## 1.5 Activity: Working with comments
+## Activity –working–with–comments
 
 <!-- #region -->
-In a computer programme, a *comment* refers to a line of explanatory text that is not executed when the programme runs. As such, it does not have to conform to the syntax of the programming language once it has be identified as a comment.
+In a computer program, a *comment* refers to a line of explanatory text that is not executed when the program runs. As such, it does not have to conform to the syntax of the programming language once it has be identified as a comment.
 
-In a Python programme, a comment is identified by prefixing a line of text or a line of code with a `#` (a "hash", or in US English, "pound") character.
+In a Python program, a comment is identified by prefixing a line of text or a line of code with a `#` (a "hash", or in US English, "pound") character.
 
 ```python
 # A Python comment line is prefixed by a # (hash) character
@@ -672,19 +672,19 @@ __DO__: *un*comment the second print statement in the code cell above by deletin
 
 If a comment line would work in uncommented form as a line of code, rather than being a more general line of human readable text, it will often be referred to as being "commented out".
 
-If you hear the phrase "comment out that line", it thus refers to leaving the line in the programme, but prefixing it with the comment character so that the line is not exectuted when the programme is run.
+If you hear the phrase "comment out that line", it thus refers to leaving the line in the program, but prefixing it with the comment character so that the line is not exectuted when the program is run.
 
 __DO__: comment out the first print statement in the code cell above by prefixing it with the `#` comment character and rerun the cell. This time you should only see the second print message being displayed.
 
 __DO__: finally, uncomment the first (text comment) line in the code cell above and run the cell. This time, an error will be thrown because the first line is *not* a valid line of Python code.
 
 
-### Using Comments
+### Using comments
 
 Comments of often used to document particular lines of code to clarify or explain their role in a program. It is good practice to keep comments as meaningful as possible.
 
 
-### Block Comments
+### Block comments
 
 The phrase *block comment*, or the plural *comments*, is taken to refer to continous explanatory comment text that extends over several lines.
 
@@ -713,12 +713,12 @@ Run this code cell to see what I mean...
 
 ### Using comments in other ways
 
-As well as being used to annotate a program with helpful information, comments can also be used to provide visual clues to the division of lines or chunks of code. For example, you might use a comment to identify separate sections of programme from each other. This technique can be used to make your programs easier to read.
+As well as being used to annotate a program with helpful information, comments can also be used to provide visual clues to the division of lines or chunks of code. For example, you might use a comment to identify separate sections of program from each other. This technique can be used to make your programs easier to read.
 
 
-### Using Notebook Markdown Cells to Narrate a Programme Code and Programme Development
+### Using notebook Markdown cells to narrate a program code and program development
 
-As well as commenting code within a code cell, you can also make notes in a Jupyter notebook's markdown cells. For example, you might use markdown cells:
+As well as commenting code within a code cell, you can also make notes in a Jupyter notebook's Markdown cells. For example, you might use Markdown cells:
 
 - to describe what you aim to achieve with the code in a following code cell;
 - to describe the output produced by running a prior code cell;
@@ -731,14 +731,14 @@ You may notice that in some activities cells are distinguisehd by a yellow backg
 For example, you may wish to make some notes in the following cell about why it might be useful to make notes in the notebooks...
 
 <!-- #region student=true -->
-*Double click this markdown cell to edit it. "Run" the cell to render the markdown as styled HTML text.*
+*Double click this Markdown cell to edit it. "Run" the cell to render the Markdown as styled HTML text.*
 
 *Add some of your own thoughts here about why it might be useful to add your own notes to the Jupyter notebooks.*
 <!-- #endregion -->
 
-If you create your own cells in the notebook, either code cells or markdown cells, you may want to highlight them with the yellow background so that you can easily find them again.
+If you create your own cells in the notebook, either code cells or Markdown cells, you may want to highlight them with the yellow background so that you can easily find them again.
 
-Create a new cell by clicking on the `+` button in the notebook toolbar. To change it from the default code cell to a markdown cell, enter `ESC-M` while the cell is selected or use the cell type drop down list in the notebook toolbar to change the cell type to *Markdown*. Add some content to it and then, with the cell selected, click on the person (*Toggle cell student*) button in the toolbar to toggle the yellow background on and off.
+Create a new cell by clicking on the `+` button in the notebook toolbar. To change it from the default code cell to a Markdown cell, enter `ESC-M` while the cell is selected or use the cell type drop down list in the notebook toolbar to change the cell type to *Markdown*. Add some content to it and then, with the cell selected, click on the person (*Toggle cell student*) button in the toolbar to toggle the yellow background on and off.
 
 <!-- #region -->
 ### Saving a RoboLab program
@@ -750,7 +750,7 @@ Notebooks are typically saved with the `.ipynb` filetype suffix. The name of the
 <img src="../images/Section_00_01_-_Jupyter_Notebook_rename.png" width=600 />
 
 
-When you make changes to a notebook, either by editing a code or markdown cell, or by running one or more code cells, you may notice that an `(unsaved changes)` message appears at the top of the notebook
+When you make changes to a notebook, either by editing a code or Markdown cell, or by running one or more code cells, you may notice that an `(unsaved changes)` message appears at the top of the notebook
 
 <img src="../images/Section_00_01_-_unsaved changes.png" width=600 />
 
@@ -771,7 +771,7 @@ It's not uncommon to see that you have been working on a noebook for quite some 
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## 1.6 Activity: Completing the square
+## 1.6 activity –completing–the–square
 
 In this activity, you need to have the program you worked with in the previous activity already open in RoboLab. If you don't, open it now by running the code cell that contains the simulator and simulator magic import commands:
 
@@ -800,21 +800,21 @@ Make a copy of the earlier code cell in which you programmed the robot to draw o
 
 In the new code cell, copy the lines of code to drive the robot forward and turn through ninety degrees, and paste the copy below the original lines.
 
-What do you think your programme will do now?
+What do you think your program will do now?
 
-Run the programme in the sinulator to find out.
+Run the program in the sinulator to find out.
 
 *Note that copying and pasting code is a tried and trusted technique. Do not be averse to reusing any code your have developed previously and that behaves as you expect.*
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-#### My Observations
+#### My observations
 
 *Click on the arrow in the sidebar to reveal my observations.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-When I ran my version of the programme (see below) the robot drew two sides of a square as an L shape and had made the turn ready to start a third edge.
+When I ran my version of the program (see below) the robot drew two sides of a square as an L shape and had made the turn ready to start a third edge.
 <!-- #endregion -->
 
 ```python activity=true hidden=true
@@ -847,23 +847,23 @@ tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 ```
 
-### Building On A Previously Developed Computer Programme
+### Building on a previously developed computer program
 
-Trying to build a complex programme from a blank slate to a completed programme in one go is a risky strategy. There are many factors that can prevent a programme form working correctly, including:
+Trying to build a complex program from a blank slate to a completed program in one go is a risky strategy. There are many factors that can prevent a program form working correctly, including:
 
 - *syntax errors*: characters in the wrong place, incorrectly typed package or variable names;
-- *logical errors*: for example, if your programme uses logical tests, these may not be tested as intended, or the wider logic of the programme may be incorrect.
+- *logical errors*: for example, if your program uses logical tests, these may not be tested as intended, or the wider logic of the program may be incorrect.
 
-For this reason, it often makes sense to start small and then test ever more elaborate versions of your programme by incrementally adding a line or two of code at a time, checking that things are still working as you'd expect as you add additional steps to your programme.
+For this reason, it often makes sense to start small and then test ever more elaborate versions of your program by incrementally adding a line or two of code at a time, checking that things are still working as you'd expect as you add additional steps to your program.
 
 <!-- #region activity=true -->
-### Activity — Extending your programme further
+### Activity – extending your program further
 
-Bulding on the programme you developed in the previous activity, extend your programme further so that the robot draws all four sides of a square.
+Building on the program you developed in the previous activity, extend your program further so that the robot draws all four sides of a square.
 
-(Either modify your programme in an earlier code cell, or make a copy of the earlier code cell, paste it here, and work in the newly copied cell: your notebook, your rules...!)
+(Either modify your program in an earlier code cell, or make a copy of the earlier code cell, paste it here, and work in the newly copied cell: your notebook, your rules...!)
 
-You may find it convenient to make some notes first about how the new goal (draw four sides of the square) relates to the previous goal, and what you need to change about your original programme so that it performs the new task.
+You may find it convenient to make some notes first about how the new goal (draw four sides of the square) relates to the previous goal, and what you need to change about your original program so that it performs the new task.
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -871,9 +871,9 @@ You may find it convenient to make some notes first about how the new goal (draw
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-When you have created your extended / modified programme, download it to the simulator and run it to test that it works.
+When you have created your extended / modified program, download it to the simulator and run it to test that it works.
 
-Run your program several times, with the pen down and without clearing the trace between runs. Note how any errors compound as you run the programme multiple times.
+Run your program several times, with the pen down and without clearing the trace between runs. Note how any errors compound as you run the program multiple times.
 
 You may notice that it is easier to "tune" the value of the rotation count required to turn the robot through ninety degrees when the robot turns multiple times, because it is easier to see where, and by how much, the turn undershoots or overshoots the right angle.
 
@@ -881,21 +881,21 @@ Increasing the length of the side of the square can also help reveal when the an
 
 Also note that you may not be able to get the robot to create a perfect square. (Don't spend too long trying to achieve this!) You will learn in a later notebook how to get the robot to turn through a right angle in a more accurate and controllable way.
 
-__Reflection__: Having written your programme, what do you notice about the programme? If you want to change the size of the square's side length, for example, or modify the angle turned by the robot, how easy is it to modify your programme? 
+__Reflection__: Having written your program, what do you notice about the program? If you want to change the size of the square's side length, for example, or modify the angle turned by the robot, how easy is it to modify your program? 
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*Record your thoughts and observations about how easy your programme is to extend and maintain here.*
+*Record your thoughts and observations about how easy your program is to extend and maintain here.*
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-#### My Observations
+#### My observations
 
 *Click the arrow in the sidebar to reveal my observations.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
-Here is my programme. On multiple runs, it seems to overshoot the turn slightly.
+Here is my program. On multiple runs, it seems to overshoot the turn slightly.
 <!-- #endregion -->
 
 ```python activity=true hidden=true
@@ -953,16 +953,16 @@ tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 ```
 
 <!-- #region activity=true hidden=true -->
-In terms of the programme's design, I used comments to split out the code for each side, but there does seem to be a lot of repetition. If I want to change the side length or the angle turned, I need to make changes in lots of different places. If I had to draw a regular shape with twenty or thirty sides, things would start to get really unwieldly!
+In terms of the program's design, I used comments to split out the code for each side, but there does seem to be a lot of repetition. If I want to change the side length or the angle turned, I need to make changes in lots of different places. If I had to draw a regular shape with twenty or thirty sides, things would start to get really unwieldly!
 <!-- #endregion -->
 
 <!-- #region -->
 ## Summary
 
 
-In this notebook you have learned how to make use of the notebooks for creating your own simulated robot control programmes and running them in the robot simulator.
+In this notebook you have learned how to make use of the notebooks for creating your own simulated robot control programs and running them in the robot simulator.
 
-You have seen how sequential programmes can be used to instruct a robot to perform a series of tasks, one after the other.
+You have seen how sequential programs can be used to instruct a robot to perform a series of tasks, one after the other.
 
 For simple, rote tasks, that may already be quite useful. But in the approach we have taken so far, there does appear to be a lot of repetition in the code.
 
@@ -971,7 +971,7 @@ Surely there's a better way..?
 
 ---
 
-## Addendum
+## Addendum
 
 The following might be useful as a redux later on to this activity; it uses the gyro to perform the turn with quite a nice graceful turn.
 

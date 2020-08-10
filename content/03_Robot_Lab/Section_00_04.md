@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -20,7 +20,7 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 ```
 
 
-# 4 Emergent behaviour: Braitenberg’s vehicles
+# 4 Emergent behaviour: braitenberg’s vehicles
 
 
 In Study week 2 you came across Valentino Braitenberg’s ideas on the behaviour of robots *emerging* from the way they are wired up. The figure belows shows two ways of connecting sensors to motors. In (a), the left sensor is connected to the left motor and the right sensor is connected to the right motor. In (b) these connections are reversed.
@@ -29,7 +29,7 @@ In Study week 2 you came across Valentino Braitenberg’s ideas on the behaviour
 ![Diagrams representing Braitenberg vehicles alongside simulated robots wired up in a similar fashion. A Braitenberg vehicle and our simulated robot are very similar: they have two wheels, one each side, and two light sensors, one on the left and one on the right of the front of the robot. A pair of Braitenberg vehicles are shown, one light avoiding and one seeking. A light avoiding vehicle has the left light sensor connected to the left motor and wheel, and the right light sensor connected to the right motor and wheel. A light seeking vehicle has the left light sensor connected to the right motor and wheel, and the right light sensor connected to the left wheel. The simulated robots have wiring indicating identical connections. ](../images/tm129_rob_p4_f008.gif)
 
 
-## 4.1 Activity: Testing Braitenberg’s vehicles
+## 4.1 Activity — testing braitenberg’s vehicles
 
 
 A 'thought experiment' suggests that the vehicle in figure (a) will move away from a light source. Similarly, another thought experiment suggests that the vehicle in figure (b) will move towards a light source. In the following activities you will test these predictions using an enivironment that models this set up, but uses downward facing light sensors that take measurements from a "light gradient" background, rather than forward facing light sensors that look for a light source at "eye-level" (that is, sensor-level!).
@@ -46,7 +46,7 @@ You may notice that the simulator's left and right light sensors appear to be fu
 This has been done via a change to the robot configuration setting update that is applied automatically when the *Radial grey* background is loaded.
 
 
-#### Manually Changing the Robot Configuration Settings
+#### Manually changing the robot configuration settings
 
 You can increase the spacing between the sensors by:
 
@@ -58,9 +58,9 @@ You can increase the spacing between the sensors by:
 If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
 
 
-#### Exploring the *Radial Grey* World
+#### Exploring the *radial grey* world
 
-Run the following code cell to download the programme to the simulator and then run it in the simulator. For now, don't pay too much attention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
+Run the following code cell to download the program to the simulator and then run it in the simulator. For now, don't pay too much attention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
 
 Observe what happens paying particularly close attention to the trajectory the robot follows.
 
@@ -98,7 +98,7 @@ When the robot starts *above* the centerline, it veers away on the left hand sid
 If the robot starts on the centerline, it continues on a straight path.
 
 <!-- #region -->
-So how does the programme work?
+So how does the program work?
 
 If you inspect it closely, you will see it is split into several parts.
 
@@ -109,14 +109,14 @@ colorLeft = ColorSensor(INPUT_2)
 colorRight = ColorSensor(INPUT_3)
 ```
 
-Then we have a `while..` loop that ensures the programme keeps running until either the left or the right sensor value sees a particularly dark value:
+Then we have a `while..` loop that ensures the program keeps running until either the left or the right sensor value sees a particularly dark value:
 
 ```python
 while ((colorLeft.reflected_light_intensity>5) 
        and (colorLeft.reflected_light_intensity)>5):
 ```
 
-Inside the `while..` block is the "intelligence" of the programme.
+Inside the `while..` block is the "intelligence" of the program.
 
 
 The values are displayed in the simulator output window using a `print()` statement, and are then used to set the motor speeds:
@@ -133,10 +133,10 @@ In this configuration:
 - the percentage scaled *left* sensor value determines the speed value applied to the *left* motor, and
 - the percentage scaled *right* sensor value sets the *right* motor speed.
 
-The sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. As described by the programme, the left motor thus turns more quickly than the right motor, and so the robot turns toward its right hand side and veers away from the light source.
+The sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. As described by the program, the left motor thus turns more quickly than the right motor, and so the robot turns toward its right hand side and veers away from the light source.
 <!-- #endregion -->
 
-### Crossing the Wires...
+### Crossing the wires...
 
 Now let's see what happens if we run the following program which uses:
 
@@ -145,7 +145,7 @@ Now let's see what happens if we run the following program which uses:
 
 Still using the *Radial grey* background, clear the traces in the simulator.
 
-Run the following code cell to download the programme to the simulator and then run it in the simulator.
+Run the following code cell to download the program to the simulator and then run it in the simulator.
 
 Move the robot to the starting location `X=100, Y=700` and run the program again.
 
@@ -172,13 +172,13 @@ while ((colorLeft.reflected_light_intensity_pc>5)
  
 ```
 
-When the programme runs this time, the robot arcs *towards* the light: if it starts below the centre line, the robot turns to its left and up towards the light; if it starts above the light, the robot turns to its right, and  curves down towards the light.
+When the program runs this time, the robot arcs *towards* the light: if it starts below the centre line, the robot turns to its left and up towards the light; if it starts above the light, the robot turns to its right, and  curves down towards the light.
 
 
 <!-- #region activity=true -->
 #### Question
 
-How is the robot's behaviour explained by the programme this time?
+How is the robot's behaviour explained by the program this time?
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -207,7 +207,7 @@ As before, the sensor value reports a higher reading the brighter the background
 <!-- #endregion -->
 
 <!-- #region -->
-### Looking at the Data
+### Looking at the data
 
 
 To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. 
@@ -220,7 +220,7 @@ To start with, let's just make sure the datalog is empty:
 roboSim.clear_datalog()
 ```
 
-The following programme streams the necessary data elements to the simulator output window.
+The following program streams the necessary data elements to the simulator output window.
 
 Run the program and observe the behavior of the traces.
 
@@ -274,18 +274,18 @@ ax = sns.lineplot(x="index",
 ```
 
 <!-- #region -->
-## Using Ultrasound
+## Using ultrasound
 
 
 We can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Activity — Using Ultrasound
+### Activity — using ultrasound
 
-Load in the *Obstacles_Test* background, run the following code cell to download the programme to the simulator. Ensure that the background is loaded and that the ultrasound rays are enable, and then run the programme in the simulator.
+Load in the *Obstacles_Test* background, run the following code cell to download the program to the simulator. Ensure that the background is loaded and that the ultrasound rays are enable, and then run the program in the simulator.
 
-Record your observations of the the behaviour of the robot when the programme is run in the simulator with the robot starting in different positions (for example `(x, y, a)` of `[(120, 120, 90), (200, 120, 90), (500,170, 145), (500, 370, 75) ]`. Based on your observations, what do sort of behaviour does the robot appear to be performing?
+Record your observations of the the behaviour of the robot when the program is run in the simulator with the robot starting in different positions (for example `(x, y, a)` of `[(120, 120, 90), (200, 120, 90), (500,170, 145), (500, 370, 75) ]`. Based on your observations, what do sort of behaviour does the robot appear to be performing?
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -315,7 +315,7 @@ while  u > 1:
 <!-- #endregion -->
 
 <!-- #region student=true -->
-*With reference to the programme, what actions is the robot actually performing?*
+*With reference to the program, what actions is the robot actually performing?*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -324,9 +324,9 @@ while  u > 1:
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-When the programme is run in the simulator, the robot moves forwards but then slows down as it approaches the obstacle as if it was a bit wary of it. The robot eventueally, stops as it reaches the obstacle *if* the obstacle is directly in front of the centerline of the robot. Otherwise, the robot inches up the obstacle, moves with its wheels over it, and then accelerates away once it is clear of the obstacle.
+When the program is run in the simulator, the robot moves forwards but then slows down as it approaches the obstacle as if it was a bit wary of it. The robot eventueally, stops as it reaches the obstacle *if* the obstacle is directly in front of the centerline of the robot. Otherwise, the robot inches up the obstacle, moves with its wheels over it, and then accelerates away once it is clear of the obstacle.
 
-I have commented to the programme to explain how I think it works.
+I have commented to the program to explain how I think it works.
 <!-- #endregion -->
 
 ```python activity=true
@@ -366,7 +366,7 @@ while  u > 1:
     tank_drive.on(left_motor_speed, right_motor_speed)
     
 # The distance must be less than 1cm
-# so end the programme and turn the motors off
+# so end the program and turn the motors off
 
 ```
 

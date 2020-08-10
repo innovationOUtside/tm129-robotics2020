@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -53,7 +53,7 @@ If you change the `sensor2.diameter` to 10 and apply it, you'll notice the senso
 
 
 <!-- #region activity=true -->
-### Activity — Exploring the Effect of Rasining and Lowering the Sensor
+### Activity — exploring the effect of rasining and lowering the sensor
 
 Set the value for the `sensor1` diameter to 30, and apply it, and leave the `sensor2` diameter value at 10. This will give the robot an eccentric set up, where one light sensor is mounted high and the other is mounted low.
 
@@ -68,7 +68,7 @@ roboSim.clear_datalog()
 ```
 
 <!-- #region activity=true -->
-Create your own programme to drive the robot horizontally across the vertical bars, logging data from both light sensors as it does so. Drive the robot at least over all the black lines. Experiment with setting different speeds for the robot as it crosses the lines to see what effect, if any, that has on the readings you obtain.
+Create your own program to drive the robot horizontally across the vertical bars, logging data from both light sensors as it does so. Drive the robot at least over all the black lines. Experiment with setting different speeds for the robot as it crosses the lines to see what effect, if any, that has on the readings you obtain.
 
 The following code cell correctly configures the initial starting point and orientation for the robot at `(200, 645, 0)`. Additionally pass in `-r Sensor_Diameter_Config` if you want to set the sensor diameters automatically
 <!-- #endregion -->
@@ -86,7 +86,7 @@ The following code cell correctly configures the initial starting point and orie
 <!-- #region activity=true heading_collapsed=true -->
 ### Answer
 
-*Click the arrow in the sidebar to view my programme and sampled data.*
+*Click the arrow in the sidebar to view my program and sampled data.*
 <!-- #endregion -->
 
 <!-- #region activity=true hidden=true -->
@@ -98,7 +98,7 @@ roboSim.clear_datalog()
 ```
 
 <!-- #region activity=true hidden=true -->
-For my programme, I'm just going to drive the robot forwards, albeit relatively slowly, logging the data in an infinite while loop. As a stopping condition, I'll break out of the while loop if I explicitly see red.
+For my program, I'm just going to drive the robot forwards, albeit relatively slowly, logging the data in an infinite while loop. As a stopping condition, I'll break out of the while loop if I explicitly see red.
 
 Note that in my stopping condition test, I have grabbed the sensor reading into a variable `sample` and then check it's components. If I test `colorRight.rgb[0]` and then `colorRight.rgb[1]` there's always a chance the `colorRight.rgb` value will have been updated between testing the first component and the second.
 <!-- #endregion -->
@@ -170,24 +170,24 @@ In particular:
 If I speed up the robot, then the right light sensor, which has a small diameter and is close to the ground, may miss the narrower black line altogether as it drives over the the line.
 <!-- #endregion -->
 
-## Trading Off Physical Settings and Code Settings
+## Trading off physical settings and code settings
 
 In a real physical robot, we may be able to tune elements of the physical set-up, as well as the code, to get the robot to perform as we require.
 
-As designers and engineers, it may often be the case that a problem that is hard to solve in one domain, for example, in the creation of a computer control programme, can be simplified by making changes to the physical robot.
+As designers and engineers, it may often be the case that a problem that is hard to solve in one domain, for example, in the creation of a computer control program, can be simplified by making changes to the physical robot.
 
 On the other hand, we may be able to accommodate fiddly aspects of a robot's physical set-up by simple software fixes.
 
-We can model a similar sort of interaction in the simulator by varying elements of the robot configuration as well as programme parameters.
+We can model a similar sort of interaction in the simulator by varying elements of the robot configuration as well as program parameters.
 
 <!-- #region activity=true -->
-### Open Challenge — Exploring the Effect of the Light Sensor Diameter on the Line Following Behaviour
+### Open challenge — exploring the effect of the light sensor diameter on the line following behaviour
 
-Using the `Lollopop` background, and the programme you previously created to complete the associated challenge, modify the light sensor setting of the sensor you have used in your programe and rerun the programme.
+Using the `Lollopop` background, and the program you previously created to complete the associated challenge, modify the light sensor setting of the sensor you have used in your programe and rerun the program.
 
-Does increasing or decreasing the diameter of the sensor affect the performance of the programme?
+Does increasing or decreasing the diameter of the sensor affect the performance of the program?
 
-Are there any changes you can make in the programme to compensate for changes in the robot's physical sensor configuration?
+Are there any changes you can make in the program to compensate for changes in the robot's physical sensor configuration?
 <!-- #endregion -->
 
 ```python student=true
@@ -201,17 +201,17 @@ Are there any changes you can make in the programme to compensate for changes in
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Open Challenge — Making this robot control strategy faster
+### Open challenge — making this robot control strategy faster
 
-Can you tune the robot's physical set-up to allow you to write a programme that allows the robot to more quickly complete the *Lollipop* challenge?
+Can you tune the robot's physical set-up to allow you to write a program that allows the robot to more quickly complete the *Lollipop* challenge?
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Optional Investigatory Activity — The Effect of Simulated Noise Sensors of Various Diameters
+### Optional investigatory activity — the effect of simulated noise sensors of various diameters
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-You have already seen how sensor noise may affect the performance of a sensor and the performance of a software control programme.
+You have already seen how sensor noise may affect the performance of a sensor and the performance of a software control program.
 
 If you are curious, spend ten or fifteen minutes exploring how the different levels of sensor noise affect the ranges and "stability" of readings you can get for sensors of different diameters / simulated heights about the background.
 <!-- #endregion -->

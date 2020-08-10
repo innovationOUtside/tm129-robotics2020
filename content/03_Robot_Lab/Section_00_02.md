@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -197,13 +197,13 @@ Generally, it is *not* good practice to return different sorts of object from di
 There is quite a lot more to know about functions, particularly in respect of how variables inside the function relate to variables defined outside the function, a topic referred to as *variable scope*. But for a treatment of that, you will need to refer to a module with a heavier emphasis on teaching programming.
 <!-- #endregion -->
 
-## Using Functions in Robot Control Programs
+## Using functions in robot control programs
 
 We’ll start by considering the simple program we wrote to make the robot trace out a square.
 
 If you recall, our first version of this explicitly coded each turn and edge movement, and then we used a loop to repeat the same action several times.
 
-Move the robot to the bottom left corner of the simulator window, run the following code cell to download the programme to the simulator and then run the programme in the simulator.
+Move the robot to the bottom left corner of the simulator window, run the following code cell to download the program to the simulator and then run the program in the simulator.
 
 Tweak the parameter settings until the robot approximately traces out the shape of a square.
 
@@ -238,9 +238,9 @@ for side in range(SIDES):
 
 We could can extract this code into a function that allows us to draw a square whenever we want. By adding an option `side_length` parameter we can change the side length as required.
 
-Download the following programme to the simulator and run it there.
+Download the following program to the simulator and run it there.
 
-Can you modify the programme to draw a third square with a size somewhere between the size of the first two squares?
+Can you modify the program to draw a third square with a size somewhere between the size of the first two squares?
 
 ```python
 %%sim_magic_preloaded
@@ -282,7 +282,7 @@ draw_square(2)
 ```
 
 <!-- #region activity=true -->
-### Optional Activity
+### Optional activity
 
 Copy the code used to define the `draw_square() function, and modify it so that it takes a second "turn" parameter that replaces the `TURN_ROTATIONS` value.
 

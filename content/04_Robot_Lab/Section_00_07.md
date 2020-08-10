@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -20,7 +20,7 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 ```
 
 <!-- #region activity=true -->
-# 7 The RobotLab Grand Prix Challenge
+# 7 The RoboLab grand prix challenge
 
 The aim of this challenge is to create a program that makes the simulated robot go round a race track as quickly as possible. You can do this either by writing your own program or by modifying mine.
 

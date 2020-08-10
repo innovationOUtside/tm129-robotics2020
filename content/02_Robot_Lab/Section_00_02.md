@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: Markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -24,25 +24,25 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 
 So far we have concentrated mainly on sequential programs, where the flow of control proceeds through the program statements in linear sequence, except when it encounters loop element where the control flow is redirected back "up" the program to the start of a loop block.
 
-In the previous notebook, you saw how the conditional `if..` statement could be used to optionally pass control to a set of instructions in the sequential programme *if* a particular condition was met.
+In the previous notebook, you saw how the conditional `if..` statement could be used to optionally pass control to a set of instructions in the sequential program *if* a particular condition was met.
 
 The `if...` statement fits the the sequential program model by redirecting control flow, albeit briefly, to a set of "extra" commands if the conditional test evaluates true.
 
-A sequential program will always follow the same sequentially order path. But to be useful, a robot program will often need to make decisions and behave differently in different circumstances. To do this, the program has to have alternative *branches* in the programme flow where we can follow different courses of actions depending on some conditional test.
+A sequential program will always follow the same sequentially order path. But to be useful, a robot program will often need to make decisions and behave differently in different circumstances. To do this, the program has to have alternative *branches* in the program flow where we can follow different courses of actions depending on some conditional test.
 
 Python provides an `if..else..` statement to do just that, and you will see how it is used in the following activities.
 
 *In other programming languages, this may often be referred to as an `if...then...else...` construct. In Python, the "then" is assumed.*
 
 
-## 3.1 Activity: Detecting black and grey
+## 3.1 Activity — detecting black and grey
 
 
 Load the *Grey and black* background into the simulator.
 
-Download the programme to the simulator and then run it several times with the robot moved to different starting positions.
+Download the program to the simulator and then run it several times with the robot moved to different starting positions.
 
-What does the programme cause the robot to do?
+What does the program cause the robot to do?
 
 ```python
 %%sim_magic_preloaded
@@ -102,12 +102,12 @@ When you run the program, what does the robot do?
 <!-- #region activity=true hidden=true -->
 The robot moves forward over the white background until it reaches the grey or black area. If the background is black, the robot says *black*; otherwise, it says *grey*. 
 
-The programme works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 100). When the light sensor reading goes below the white background value of 100, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
+The program works by driving the robot forwards and  continues in that direction while it is over the white background (a reflected light sensor reading of 100). When the light sensor reading goes below the white background value of 100, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading, and makes a decision about what to say based on the value of the sensor reading.
 <!-- #endregion -->
 
-### Working through the programme flow
+### Working through the program flow
 
-The following flow chart shows how the flow of control passes through the programme.
+The following flow chart shows how the flow of control passes through the program.
 
 ```python
 from jp_flowchartjs.jp_flowchartjs import FlowchartWidget
@@ -164,7 +164,7 @@ graph TD
 <!-- #endraw -->
 
 <!-- #region activity=true -->
-## Activity: Stepping Through An `if..else...` Statement
+## Activity — stepping through an `if..else...` statement
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -178,9 +178,9 @@ Inspect the code in the following cell? If you run the code cell, what do you th
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-Once you have made your prediction, run the following cell, and in the markdown cell beneath it, record what happened and how it compared to your prediction.
+Once you have made your prediction, run the following cell, and in the Markdown cell beneath it, record what happened and how it compared to your prediction.
 
-*You may find it informative to use `nbtutor` to step through each line of code in turn to see how the programme flow progresses. To do this, uncomment the `%%nbtutor` magic in the first line of the code cell by deleting the `#` at the start of the line before running the code cell.*
+*You may find it informative to use `nbtutor` to step through each line of code in turn to see how the program flow progresses. To do this, uncomment the `%%nbtutor` magic in the first line of the code cell by deleting the `#` at the start of the line before running the code cell.*
 <!-- #endregion -->
 
 ```python activity=true
@@ -202,7 +202,7 @@ print("All done...")
 <!-- #region activity=true -->
 What do you think will happen when you run the following code cell?
 
-Run the cell and use *nbtutor* to step through the programme. How does the programme flow differ from the case where `x` had the value `1`? 
+Run the cell and use *nbtutor* to step through the program. How does the program flow differ from the case where `x` had the value `1`? 
 <!-- #endregion -->
 
 ```python activity=true
@@ -226,9 +226,9 @@ print("All done...")
 <!-- #region activity=true hidden=true -->
 In the cell where `x=1`, I predicted that the program would print the message *'x equals 1'* and then the messge *'All done...'*.
 
-Viewing the trace, I could see how the programme started by initialising the `x` variable to the value `1`, then checked whether `x==1` (that is, whether `x` was equal to `1`); becuase it was, the programme then moved onto the `print("x equals 1")` statement and printed the first message, then programme flow continued to the first instruction after the `if...else...` block, which was the statement that printed the *'All done...'* message.
+Viewing the trace, I could see how the program started by initialising the `x` variable to the value `1`, then checked whether `x==1` (that is, whether `x` was equal to `1`); becuase it was, the program then moved onto the `print("x equals 1")` statement and printed the first message, then program flow continued to the first instruction after the `if...else...` block, which was the statement that printed the *'All done...'* message.
 
-When I ran the programme with a value of `x` other then `1`, the control passed from the `if...` statement, where the conditional test evaluated as `False`, to the first line in the `else..` block, which printed the message *'x does not equal '*, before moving on to the first line after the `if..else..` block as before.
+When I ran the program with a value of `x` other then `1`, the control passed from the `if...` statement, where the conditional test evaluated as `False`, to the first line in the `else..` block, which printed the message *'x does not equal '*, before moving on to the first line after the `if..else..` block as before.
 <!-- #endregion -->
 
 ## An `if..` without an `else...`
@@ -237,7 +237,7 @@ When I ran the programme with a value of `x` other then `1`, the control passed 
 It is sometimes useful to have just a single branch to the `if` statement. Python provides a simple `if...` statement for this purpose.
 
 <!-- #region activity=true -->
-### Activity - An `if` on its own
+### Activity — an `if` on its own
 
 Run the following code cell as it stands, with the `x` variable taking the intial value `1` (`x=1`). Can you predict what will happen?
 <!-- #endregion -->
@@ -263,7 +263,7 @@ Try to predict what will happen if you change the initial value and run the cell
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-Run the code cell above again with a modified initial value. Was your prediction about what would happen correct? Make a note in the cell below about how successful your prediction was. If your prediction was incorrect, try to explain why you think your prediction was different to how the programme actually behaved.
+Run the code cell above again with a modified initial value. Was your prediction about what would happen correct? Make a note in the cell below about how successful your prediction was. If your prediction was incorrect, try to explain why you think your prediction was different to how the program actually behaved.
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -286,7 +286,7 @@ With the initial value of the variable `x` set to `1` (`x = 1`) the program disp
 When `x` was initialised to a different value, for example as `x = 2`, only the messages *Are you ready?* and *All done* were displayed as the `if..` conditional test failed and redirected control flow to the first statement *after* the `if..` block.
 <!-- #endregion -->
 
-## 3.4 Combining loops and branching statements 
+## 3.4 Combining loops and branching statements
 
 
 It is important to be clear that the condition in a branching statement (`if...` or `if...else...`) is checked only when execution reaches that part of the program.
@@ -297,13 +297,13 @@ You have already seen how the `while...` loop tests a condition at the start of 
 
 You may also recall from an earlier notebook that we also used an `if...` statment to return the control flow back to the top of a loop before all the statements in the loop body had been executed, or break out of a loop early and pass control to the first statement after the loop block.
 
-This ability to combine loop and branching statements is very powerful and even a very simple programme can produce quite a complex robot behaviour.
+This ability to combine loop and branching statements is very powerful and even a very simple program can produce quite a complex robot behaviour.
 
 <!-- #region activity=true -->
-### Activity — Combining loops and branching statements 
+### Activity — combining loops and branching statements
 
 
-Can you predict what the following programme will cause the robot to do when it is downloaded and run in the simulator using the *Loop* background with the robot initially placed inside the loop ?
+Can you predict what the following program will cause the robot to do when it is downloaded and run in the simulator using the *Loop* background with the robot initially placed inside the loop ?
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -326,9 +326,9 @@ while True:
 ```
 
 <!-- #region activity=true -->
-Download the program to the simulator and run it there to check your prediction. After a minute or two, stop the programme from executing.
+Download the program to the simulator and run it there to check your prediction. After a minute or two, stop the program from executing.
 
-How does the behaviour of the programme lead to the robot's emergent behaviour in the simulator?
+How does the behaviour of the program lead to the robot's emergent behaviour in the simulator?
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
@@ -347,11 +347,11 @@ The `while True:`  loop is a so-called *infinite loop* that will run indefinitel
 In other circumstances, we might want the loop to continue only while some condition holds true. In such cases, using the `while` statement to test the truth of a conitional statement is more useful.
 <!-- #endregion -->
 
-## Multiple Conditions Using `if..elif..else..`
+## Multiple conditions using `if..elif..else..`
 
 The `if...else..` statement allows us to creating a branching control flow statement that performs on conditional test and then chooses between two alternative outcomes depending on the result of the test.
 
-Python also supports a yet more complex branch construction in the form of an `if..elif..else..` statement that allows us to make multiple conditional tests. Run the following code cell and then use `nbtutor` to explore the flow through the programme. 
+Python also supports a yet more complex branch construction in the form of an `if..elif..else..` statement that allows us to make multiple conditional tests. Run the following code cell and then use `nbtutor` to explore the flow through the program. 
 
 ```python
 %%nbtutor --reset --force
@@ -412,7 +412,7 @@ Now run the previous code cell and step through its execution using *nbtutor*; o
 
 Note that there is no requirement that you test the same variable in each step. The different steps could test a different variable or range of variables.
 
-For example, in the following programme, we might decide what to take out with us on a walk based on a variety of conditions:
+For example, in the following program, we might decide what to take out with us on a walk based on a variety of conditions:
 
 ```python
 raining = False
@@ -442,7 +442,7 @@ else:
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## 3.5 Challenge: Three shades of grey
+## 3.5 Challenge: three shades of grey
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -454,7 +454,7 @@ A copy of the original program is provided below as a starting point. You will n
 ```python activity=true
 %%sim_magic_preloaded
 
-# Use this programme with the "Grey and black" background
+# Use this program with the "Grey and black" background
 
 import playsound
 
@@ -493,7 +493,7 @@ else:
 ```
 
 <!-- #region activity=true -->
-When you have modified the code, run the cell to download it to the simulator, ensure the *Grey and black* background is loaded, and then run the programme in the simulator for various starting positions of the robot. Does it behave as you intended?
+When you have modified the code, run the cell to download it to the simulator, ensure the *Grey and black* background is loaded, and then run the program in the simulator for various starting positions of the robot. Does it behave as you intended?
 <!-- #endregion -->
 
 <!-- #region student=true -->
@@ -511,7 +511,7 @@ To identify the values to use in the condition statements, inspect the simulator
 <!-- #endregion -->
 
 <!-- #region activity=true heading_collapsed=true -->
-#### Worked Answer
+#### Worked answer
 *Click the arrow in the sidebar to display a worked answer.*
 <!-- #endregion -->
 
@@ -550,7 +550,7 @@ __ TO DO - a diagram to illustrate this would be useful. __
 ```python activity=true hidden=true
 %%sim_magic_preloaded
 
-# Use this programme with the "Grey and black" background
+# Use this program with the "Grey and black" background
 
 import playsound
 

@@ -6,7 +6,7 @@ In this session you will explore a range of simulator environments and sensor an
 Through your experiments, you will investigate the way the sensors behave and how this information can be used to control the robot.
 
 
-## 1.1 Activity: The Simulator Environment as a Laboratory
+## 1.1 Activity — the simulator environment as a laboratory
 
 Let's just recap on how we might be able to use the simulator as an experimental laboratory.
 
