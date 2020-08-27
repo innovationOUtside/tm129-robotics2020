@@ -42,10 +42,10 @@ jupyter nbextension enable --py nbtutor
 ## Graffiti
 ### Support for interactive intra-notebook tutorials
 ### The pypi package lags the repo
-git clone https://github.com/willkessler/jupytergraffiti.git
+##git clone https://github.com/willkessler/jupytergraffiti.git
 jupyter nbextension install --$INSTALL_PREFIX jupytergraffiti/jupytergraffiti/graffiti_extension
 ### Tidy up
-rm -r jupytergraffiti
+#rm -r jupytergraffiti
 #jupyter nbextension enable graffiti_extension/main --$INSTALL_PREFIX
 #jupyter nbextension disable graffiti_extension/main --$INSTALL_PREFIX
 
