@@ -1,13 +1,6 @@
-#Utilities
-zip # Handy if students need to zip files themselves for download / export
-unzip #This should already be installed
-
-# Drawing
+zip
+unzip
 libcairo2
-
-# Spellchecker support
 aspell
 hunspell
-
-# xkcd chart style
 fonts-humor-sans

@@ -1,0 +1,68 @@
+#Vagrantfile for building machine from build scripts
+
+#Set the environment variable from the command line used to call vagrant for:
+# - password for authenticated notebook services (default is: tm129)
+#export VM_NB_TMP_PASS="tm129"
+
+
+# Change the path in the SHARED_FOLDER_PATH setting below (default: "."):
+SHARED_FOLDER_PATH = "."
+
+Vagrant.configure("2") do |config|
+
+	#---- START PORT FORWARDING ----
+	#Registered ports: https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+	#Jupyter notebook
+	config.vm.network :forwarded_port, guest: 8888, host: 12900, auto_correct: true
+	#---- END PORT FORWARDING ----
+
+	#Make sure that any required directories are created
+	config.vm.provision :shell, :inline => <<-SH
+		mkdir -p /vagrant/notebooks
+	SH
+
+	#------------------------- PROVIDER: VIRTUALBOX (BUILD) ------------------------------
+
+	config.vm.provider :virtualbox do |virtualbox|
+
+		#ubuntu/xenial bug? https://bugs.launchpad.net/cloud-images/+bug/1569237
+		config.vm.box = "bento/ubuntu-20.04"
+		#Stick with the default key
+		config.ssh.insert_key=false
+
+		config.vm.hostname = "tm129robotics"
+
+		virtualbox.name = "tm129robotics"
+		#We need the memory to install scipy and build indexes on seeded mongodb
+		#After the build it can be reduced back down to 1024
+		virtualbox.memory = 1024
+		virtualbox.cpus = 1
+		virtualbox.gui = true
+
+		# Shared folder - we set user options as per oustudent userid
+		# The fact that the user has not been created is okay if we use the uid?
+		# eg as per https://github.com/hashicorp/vagrant/issues/936
+		config.vm.synced_folder SHARED_FOLDER_PATH, "/vagrant", mount_options: ["uid=1129", "gid=100"]
+
+	end
+
+	#------------------------- END PROVIDER: VIRTUALBOX (BUILD) ------------------------------
+
+
+	#------------------------------
+
+	# The TMP_PASS var is set during provisioning from the host VM_NB_TMP_PASS env vars,
+	# and defines a simple http auth password: 
+	#config.vm.provision :shell, :env => {"TMP_PASS" => ENV["VM_NB_TMP_PASS"]}, :inline => <<-SH
+	config.vm.provision :shell, :inline => <<-SH
+
+		#Add build scripts here
+		cd /vagrant/.VM
+		source ./monolithic_build.sh
+
+		#Should do a vagrant restart with vagrant reload...
+		source /vagrant/.VM/end_first_run.sh
+	SH
+
+
+end

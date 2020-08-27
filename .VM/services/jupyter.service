@@ -1,0 +1,27 @@
+#via https://gist.github.com/whophil/5a2eab328d2f8c16bb31c9ceaf23164f
+[Unit]
+Description=OU TM129 Jupyter Notebook
+
+#When to bring the service up
+#via https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+#Wait for a network stack to appear
+After=network.target
+#If we actually need the network to have a routable IP address:
+#After=network-online.target 
+
+[Service]
+User=oustudent
+
+Type=simple
+PIDFile=/run/jupyter.pid
+
+ExecStartPre=/bin/mkdir -p /vagrant/notebooks
+
+ExecStart=/usr/local/bin/jupyter notebook --port=8888 --ip=0.0.0.0 --y --log-level=WARN --no-browser --notebook-dir=/vagrant/notebooks --allow-root --NotebookApp.token='' --NotebookApp.password='' 
+
+Restart=always
+RestartSec=10
+#KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
