@@ -7,8 +7,11 @@ echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
 INSTALL_PREFIX=sys-prefix  #user
 
 # Stash notebook files in the $CONDA_DIR so we can retrieve them
-mkdir ${CONDA_DIR}/workfiles
-cp -r content ${CONDA_DIR}/workfiles
+mkdir -p ${CONDA_DIR}/workfiles/recover
+cp -r .jupyter ${CONDA_DIR}/workfiles/recover
+cp -r .ipython ${CONDA_DIR}/workfiles/recover
+cp -r content ${CONDA_DIR}/workfiles/recover
+
 
 
 ## nbextensions
