@@ -51,6 +51,17 @@ Any files in the local `TM129` directory on your host computer should appear in 
 
 The repository also contains drafts of the practical activity teaching materials. These materials are "unpublished" and *©The Open University, 2020*; they are posted here purely to support commentary and review during development. The initial draft of the materials is essentially a recasting of the original materials and activities into a form that uses a new user environment (*Jupyter notebooks*) and new simulation environment ([`nbev3devsim`](https://github.com/innovationOUtside/nbev3devsim), based on [`ev3devsim`](https://github.com/QuirkyCort/ev3dev-sim)).
 
+When starting the Docker container, if you mount the current working directory on host onto the `/home/jovyan` directory in the container, it will clobber all the files that were are the top level of this repo that are otherwise baked into the container.
+
+However, some essential file from the top level of the repo directory are also stashed in the `$CONDA_DIR/workfiles/recover` directory.
+
+Launch a notebook terminal and run the command: 
+
+`cp -ir $CONDA_DIR/workfiles/recover/* /home/jovyan/`
+
+to recover the files into clobbered home directory. This files will then be place in your current working directory. (Omit the `i` flag if you do not want to be warned about overwriting any files.)
+
+
 ## Open Computing Lab
 
 This repo is being developed according to (emerging!) *Open Computing Lab* principles. The `userguide` provides generic instruction on using *Open Computing Lab* environments.
