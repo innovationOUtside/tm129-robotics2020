@@ -13,6 +13,10 @@ This repository defines the computing environment for the practical activities f
 
 A Docker container image built from the repository using `repo2docker` is available on Dockerhub: [`ousefuldemos/tm129-robotics2020`](https://hub.docker.com/repository/docker/ousefuldemos/tm129-robotics2020)
 
+Release:
+
+`docker pull ousefuldemos/tm129-robotics2020:latest && docker image tag ousefuldemos/tm129-robotics2020:latest ousefulcoursecontainers/ou-tm129:current && docker push ousefulcoursecontainers/ou-tm129:current`
+
 ## Getting Started
 You can explore the contents of this repository via interactive Jupyter notebooks by clicking the *Binder* button above.
 
