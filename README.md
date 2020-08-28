@@ -33,8 +33,11 @@ To run the environment on your own computer, you need to do the following:
     - *(the quotes round the volume mount cope with spaces in the `$PWD` directory path)*
   - stop (hibernate) the container with the command: `docker stop tm129vce`
   - restart the container with the command: `docker restart tm129vce`
- 
-*If you can help me debug the Windows invocation, that would be really useful. Please create a related issue.*
+
+
+On Windows, use a run command of the form:
+
+`docker run --name tm129vce -d -p 8129:8888 -v $pwd\notebooks:/home/jovyan/notebooks -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
 
 When you run the `docker` command, several things will happen:
  
