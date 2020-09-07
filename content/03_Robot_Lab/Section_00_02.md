@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -22,9 +22,9 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 <!-- #region -->
 # Functions
 
-Many of the programmes we have used so far have been quite short programmes with little, if any, reused code.
+Many of the programs we have used so far have been quite short programs with little, if any, reused code.
 
-As programmes get larger, it is often convenient to encapsulate several lines of code within a *function*. The multiple lines of code within the function can then be called conveniently from a single statement whenever they are needed.
+As programs get larger, it is often convenient to encapsulate several lines of code within a *function*. The multiple lines of code within the function can then be called conveniently from a single statement whenever they are needed.
 
 Functions are very powerful, and if you have studied other programming courses, you may well be familiar with them.
 
@@ -292,7 +292,7 @@ Then see if you can use a `for..in range(N)` loop to call the square drawing fun
 
 Can you further modify the program so that the side length is increased each time the function is called by the loop?
 
-Share your programmes in the module forum.
+Share your programs in the module forum.
 <!-- #endregion -->
 
 ## 2.3 Functions: a summary

@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -52,7 +52,7 @@ Eliza has been reimplemented several times, such as in the *Lisp* programming la
 A version of Connelly's code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
 <!-- #region activity=true -->
-### Activity —  chatting to `eliza`
+### Activity — chatting to `eliza`
 
 Relive the past, perhaps in more ways than one — depending on how your conversation goes! — by chatting to Eliza for two or three minutes.
 
@@ -132,9 +132,9 @@ If you come up with an interesting script, please fee free to share it in the mo
 
 The [*Durable Rules Engine*](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule based systems capable of reasonng over large collections of factual statements.
 
-To say that the framework is *polyglot* means that we can write programmes for the same framework using different programming languages, specifically Python, Node.js (a flavour of Javascript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
+To say that the framework is *polyglot* means that we can write programs for the same framework using different programming languages, specifically Python, Node.js (a flavour of Javascript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
 
-Note that the *Durable Rules Engine* is *not* available directly within our robot simulator programmes. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.
+Note that the *Durable Rules Engine* is *not* available directly within our robot simulator programs. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.
 
 The engine itself is rather more powerful than the engine used in the Eliza program example and can accept a wide range of rule definitions. It also makes use of a knowledge base of asserted facts (as well as ephemeral events) that are reasoned against using the rules.
 
