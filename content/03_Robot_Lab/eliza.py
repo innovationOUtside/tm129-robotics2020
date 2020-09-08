@@ -292,6 +292,10 @@ def hello_doctor(rules_file='eliza.json', default=None, aloud=False):
         pattern = remove_punct(str(pattern.upper())) # kill unicode
         transforms = [str(t).upper() for t in transforms]
         rules_list.append((pattern, transforms))
+        
+    if aloud:
+        speaker.say("Welcome to Eliza.")
+        
     interact('ELIZA> ', rules_list, list(map(str.upper, default_responses)), aloud)
 
 
@@ -337,6 +341,8 @@ IPython.notebook.kernel.execute("_browser_voicelist = '"+ voicelist+"'");
         display(Javascript(js))
         
     def show_voices(self):
+        # TO DO - _browser_list is not defined in the scope of this module namespace
+        
         self.voicelist = _browser_voicelist
         
         outlist = '\n'.join([s.strip() for s in _browser_voicelist.split('*')])

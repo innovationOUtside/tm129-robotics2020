@@ -5,12 +5,21 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.2
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
 ---
+
+# 2 Dead reckoning
+
+
+*Dead reckoning* is a means of navigation that does not rely on external observations. Instead, a robot’s position is estimated by summing its incremental movements relative to a known starting point.
+
+Estimates of the distance traversed are usually obtained from measuring how many times the wheels have turned, and how many times they have turned in relation to each other. For example, the wheels of the robot could be attached to an odometer, similar to the device that records the mileage of a car.
+
+In RoboLab we will calculate the position of a robot from how long it moves in a straight line or rotates about its centre. We will assume that the length of time for which the motors are switched on is directly related to the distance travelled by the wheels.
 
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
@@ -19,289 +28,163 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbtutor
 ```
 
-<!-- #region -->
-# Functions
+## 2.1 Activity – Dead reckoning
 
-Many of the programs we have used so far have been quite short programs with little, if any, reused code.
 
-As programs get larger, it is often convenient to encapsulate several lines of code within a *function*. The multiple lines of code within the function can then be called conveniently from a single statement whenever they are needed.
+An environment for the simulated robot to navigate is shown below, based on the 2018 First Lego League ‘Into Orbit’ challenge.
 
-Functions are very powerful, and if you have studied other programming courses, you may well be familiar with them.
+The idea is that the robot must get to the target satellite from its original starting point by avoiding the obstacles in its direct path.
 
-For our purposes, the following provides a very quick review of some of the key behaviours of Python functions. Remember, this isn't a Python programming module *per se*; rather, it's a module where we explore how to use Python to get things done. What follows should be enough to get you started writing your own functions, without creating too many bad habits along the way.
+![Space scene showing the robot, some satellites against a ‘space’ bacground, and some wall-like obstacles between the robot’s starting point and a target satellite.](../images/Section_00_02_-_Jupyter_Notebook.png)
 
-To see how we can create our own functions, let's consider a really simple example, a function that just prints out the word *Hello*.
+To navigate the environment, we will use a small robot configuration within the simulator. The scale can be set via the simulator user interface, or by passing the `-r Small_Robot` paramter setting in the simulator magic.
 
-The function definition has a very specific syntax:
+The following program should drive the robot from its starting point to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot’s *pen down* trail.
 
-```python
-def FUNCTION_NAME():
-     ONE_OR_MORE_LINES_OF_CODE
-```
+Load the *FLL_2018_Into_Orbit* background into the simulator. Run the following code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the program in the simulator.
 
-Here are some of the rules relating to the syntactic definition of a Python function:
+*Remember that you can reset the original location and orientation of the robot by clicking the simulator’s `Reset` button. You can clear the pen trace by clicking the simulator’s `Clear Trace` button.*
 
-- the `FUNCTION_NAME` __MUST NOT__ contain any spaces or punctuation other than underscore (`_`) characters;
-- the function name __MUST__ be followed by a pair of brackets (`()`), that may contain something (we'll see what later), followed by a colon (`:`);
-- the body of the function __MUST__ be indented using space or tab characters. The level of indentation of the first line sets the effective "left-hand margin" for the remaining lines of code in the function;
-- the body of the function must include __AT LEAST__ one valid statement / line of code __EXCLUDING__ comments. If you don't want the function to do anything, but need it as a placeholder, use `pass` as the single line of required code in the function body.
-
-It is also good practice to annotate your function with a so-called "docstring" (*documentation string*) providing a concise, imperative description of what the function does.
+Does the robot reach the target satellite without encountering any obstacles?
 
 ```python
-def FUNCTION_NAME():
-    """"Docstring contain a concise summary of the function behaviour."""
-     ONE_OR_MORE_LINES_OF_CODE
+%%sim_magic_preloaded -b FLL_2018_Into_Orbit -p -r Small_Robot
+
+import playsound
+
+# Turn on the spot to the right
+tank_turn.on_for_rotations(100, SpeedPercent(70), 1.7 )
+
+# Go forwards
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 20)
+
+# Slight graceful turn to left
+tank_drive.on_for_rotations(SpeedPercent(35), SpeedPercent(50), 8.5)
+
+# Turn on the spot to the left
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.8)
+
+# Forwards a bit
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 2.0)
+
+#Turn on the spot a bit more to the right
+tank_turn.on_for_rotations(100, SpeedPercent(60), 0.4 )
+
+# Go forwards a bit more and dock on the satellite
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 1.0)
+
+playsound.say("Hopefully I have docked with the satellite...")
 ```
-
-Run the following code cell to define a simple function that prints the message *'hello'*:
-<!-- #endregion -->
-
-```python
-def sayHello():
-    print('Hello')
-```
-
-When we *call* the function, the code contained within the function body is executed.
-
-Run the following cell to call the function:
-
-```python
-sayHello()
-```
-
-Functions can contain multiple lines of code, which means they can provide a convenient way of calling multiple lines of code from a single line of code.
-
-Functions can also be used to perform actions over one or more arguments passed into the function. For example, if you want to say hello to a specific person by name, we can pass their name into the function as an argument, and then use that argument within the body of the function.
-
-We'll use a Python *f*-string as a convenient way of passing the variable value, by reference, into a string:
-
-```python
-def sayHelloName(name):
-    """Print a welcome messge."""
-    print(f"Hello, {name}")
-```
-
-Let's call that function to see how it behaves:
-
-```python
-sayHelloName("Sam")
-```
-
-What happens if we forget to provide a name?
-
-```python
-sayHelloName()
-```
-
-Oops... We have defined the argument as a *positional* argument that is REQUIRED if the function is to be called without raising an error.
-
-If we want to make the argument optional, we need to provide a default value:
-
-```python
-def sayHelloName(name='there'):
-    """Print a message to welcome someone by name."""
-    print(f"Hello, {name}")
-    
-sayHelloName()
-```
-
-If we want to have different behaviours depending on whether a value is passed for the name, we can set a default such as `None` and then use a conditional statement to determine what to do based on the value that is presented:
-
-```python
-def sayHelloName(name=None):
-    """Print a message to welcome someone optionally by name."""
-    if name:
-        print(f"Hello, {name}")
-    else:
-        print("Hi there!")
-
-sayHelloName()
-```
-
-Sometimes, we may want to get one or more values returned back from a function. We can do that using the `return` statement. The `return` statement essentially does two things when it is called: firstly, it terminates the function's execution at that point; secondly, it optionally returns a value to the part of the program that called the function.
-
-Run the following code cell to define a function that constructs a welcome message, displays the message *and returns it*:
-
-```python
-def sayAndReturnHelloName(name):
-    """Print a welcome message and return it."""
-    message = f"Hello, {name}"
-    print("Printing:", message)
-    return message
-```
-
-What do you think will happen when we call the function?
 
 <!-- #region student=true -->
-*Write your prediction about what you think will happen when the function is run here __before__ you run the code cell to call it.*
+*Add your notes on how well the simulated robot performed the task here.*
 <!-- #endregion -->
 
-```python
-sayAndReturnHelloName('Sam')
-```
+To set the speeds and times, I used a bit of trial and error.
 
-Did you get the response you expected?
+If the route had been much more complex then I would have been tempted to comment out the steps up I had already run and add new steps that would be applied from wherever the robot was currently located.
 
-In the first case, a message was *printed* out in the cells print area. In the second case, the message was returned as the value returned by the function. As the function appeared on the last line of the code cell, its value was *displayed* as the cell output.
-
-As you might expect, we can set a variable to the value returned from a function:
-
-```python
-message = sayAndReturnHelloName('Sam')
-```
-
-If we view the value of that variable by running the following cell, what do you think you will see? Will the message be printed as well as displayed? 
-
-<!-- #region student=true -->
-*Write your prediction about what you think will happen when the function is run here __before__ you run the code cell to call it.*
-<!-- #endregion -->
-
-```python
-message
-```
-
-Only the value returned from the function is displayed. The function is not called again, and so there is no instruction to *print* the message.
-
-To return multiple values, we do that from a single return statement:
-
-```python
-def sayAndReturnHelloName(name):
-    """Print a welcome message and return it."""
-    message = f"Hello, {name}"
-    print("Printing:", message)
-    return (name, message)
-
-sayAndReturnHelloName('Sam')
-```
-
-Finally, we can have multiple return statements in a function, but only one of them can be called from a single invocation of the function:
-
-```python
-def sayHelloName(name=None):
-    """Print a message to welcome someone optionally by name."""
-    if name:
-        print(f"Hello, {name}")
-        return (name, message)
-    else:
-        print("Hi there!")
-    return
-
-print(sayHelloName(), 'and', sayHelloName("Sam"))
-```
-
-<!-- #region -->
-Generally, it is *not* good practice to return different sorts of object from different parts of the same function.
-
-
-There is quite a lot more to know about functions, particularly in respect of how variables inside the function relate to variables defined outside the function, a topic referred to as *variable scope*. But for a treatment of that, you will need to refer to a module with a heavier emphasis on teaching programming.
-<!-- #endregion -->
-
-## Using functions in robot control programs
-
-We’ll start by considering the simple program we wrote to make the robot trace out a square.
-
-If you recall, our first version of this explicitly coded each turn and edge movement, and then we used a loop to repeat the same action several times.
-
-Move the robot to the bottom left corner of the simulator window, run the following code cell to download the program to the simulator and then run the program in the simulator.
-
-Tweak the parameter settings until the robot approximately traces out the shape of a square.
-
-```python
-%%sim_magic_preloaded
-
-SIDES = 4
-
-# Try to draw a square
-STEERING = -100
-TURN_ROTATIONS = 0.826
-TURN_SPEED = 40
-
-STRAIGHT_SPEED_PC = SpeedPercent(40)
-STRAIGHT_ROTATIONS = 4
-
-for side in range(SIDES):
-    #Go straight
-    # Set the left and right motors in a forward direction
-    # and run for 1 rotation
-    tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
-                                STRAIGHT_SPEED_PC,
-                                STRAIGHT_ROTATIONS)
-
-    #Turn
-    # Set the robot to turn on the spot
-    # and run for a certain number of rotations *of the wheels*
-    tank_turn.on_for_rotations(STEERING,
-                               SpeedPercent(TURN_SPEED),
-                               TURN_ROTATIONS)
-```
-
-We could can extract this code into a function that allows us to draw a square whenever we want. By adding an option `side_length` parameter we can change the side length as required.
-
-Download the following program to the simulator and run it there.
-
-Can you modify the program to draw a third square with a size somewhere between the size of the first two squares?
-
-```python
-%%sim_magic_preloaded
-
-SIDES = 4
-
-# Try to draw a square
-STEERING = -100
-TURN_ROTATIONS = 0.826
-TURN_SPEED = 40
-
-STRAIGHT_SPEED_PC = SpeedPercent(40)
-STRAIGHT_ROTATIONS = 6
-
-def draw_square(side=STRAIGHT_ROTATIONS):
-    """Draw square of specified side length."""
-    for side in range(SIDES):
-        #Go straight
-        # Set the left and right motors in a forward direction
-        # and run for 1 rotation
-        tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
-                                    STRAIGHT_SPEED_PC,
-                                    #Use provided side length
-                                    side)
-
-        #Turn
-        # Set the robot to turn on the spot
-        # and run for a certain number of rotations *of the wheels*
-        tank_turn.on_for_rotations(STEERING,
-                                   SpeedPercent(TURN_SPEED),
-                                   TURN_ROTATIONS)
-        
-        
-# Call the function to draw a small size square
-draw_square(4)
-
-# And an even smaller square
-draw_square(2)
-```
+Note that the robot could have taken other routes to get to the satellite – I just thought I should avoid the asteroid!
 
 <!-- #region activity=true -->
-### Optional activity
-
-Copy the code used to define the `draw_square() function, and modify it so that it takes a second "turn" parameter that replaces the `TURN_ROTATIONS` value.
-
-Use the `turn` parameter to tune how far the robot turns at each corner.
-
-Then see if you can use a `for..in range(N)` loop to call the square drawing function several times.
-
-Can you further modify the program so that the side length is increased each time the function is called by the loop?
-
-Share your programs in the module forum.
+## 2.2 Challenge – Reaching the moon base
 <!-- #endregion -->
 
-## 2.3 Functions: a summary
+<!-- #region activity=true -->
+In the following code cell, write a program to move the simulated robot from its location servicing the satellite to the moon base identified as the circular area marked on the moon in the top right-hand corner of the simulated world.
 
-You have seen that a Python function is a *named* sequence of commands that can be "called" or invoked from anywhere in the main program or from another macro. Functions offer four advantages:
+In the simulator, set the robot’s X location to `1250` and Y location `450` and use the *Move* button to locate the robot there.
 
-- they allow a piece of program functionality to be "encapsulated" in a clear and detached way;
-- they allow the functionality to be used many times from anywhere in the program; 
-- they simplify the program, making it easier to understand
-- they make programs less prone to error.
+Use the following code cell to write your own dead reckoning program to drive the robot to the moon base at location `(2150, 950)`.
+<!-- #endregion -->
 
-Other programming languages have similar features to macros that offer additional benefits. Depending on the language, or the context in which they are defined, these may be known as *macros*, *methods*, *procedures* or *subroutines*. 
+```python activity=true
+%%sim_magic_preloaded
+
+# YOUR CODE HERE
+
+```
+
+## 2.3 Dead reckoning with noise
+
+
+The robot traverses its path using timing information for dead reckoning. In principle, if the simulated robot had a map then it could calculate all the distances and directions for itself, convert these to times, and dead reckon its way to the target. However, there is a problem with dead reckoning: *noise*.
+
+In many physical systems, a perfect intended behaviour is subject to *noise* – random perturbations that arise within the system as time goes on as a side effect of its operation. In a robot, noise might arise in the behaviour of the motors, the transmission or the wheels. The result is that the robot does not execute its motion without error. We can model noise effects in the mobility system of our robot by adding a small amount of noise to the motor speeds as the simulator runs. This noise component may speed up or slow down the speed of each motor, in a random way. As with real systems, the noise represents slight random deviations from the theoretical, ideal behaviour.
+
+
+Run the following code cell to download the program to the simulator. Select an empty background (select the *Empty_Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `150` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
+
+Run the program in the simulator and observe what happens.
+
+
+```python
+%%sim_magic_preloaded -b Empty_Map -C -p -x 150 -y 400 -r Small_Robot
+
+
+tank_drive.on_for_rotations(SpeedPercent(30),
+                            SpeedPercent(30), 10)
+```
+
+When you run the program, you should see the robot drive forwards a short way in a straight line, leaving a straight line trail behind it.
+
+Reset the location of the robot by clicking the simulator *Move* button. Also within the simulator, increase the *Wheel noise* value from zero by dragging the slider to the right a little way.
+
+Run the program in the simulator again.
+
+You should notice this time that the robot does not travel in a straight line. Instead, it drifts from side to slide, although possibly to one side of the line.
+
+Move the robot back to the start position (click the *Move* button) and run the program in the simulator again. This time, you should see it follows yet another different path.
+
+Depending on how severe the noise setting is, the robot will travel closer (low noise) the original straight line, or follow an ever-more erratic path (high noise).
+
+<!-- #region student=true -->
+*Record your own notes and observations here describing the behaviour of the robot for different levels of motor noise.*
+<!-- #endregion -->
+
+Clear the pen traces from the simulator by running the following line magic:
+
+```python
+%sim_magic -C
+```
+
+Now run the original satellite-finding dead reckoning program again, using the *FLL_2018_Into_Orbit* background, but in the presence of *Wheel noise*. How well does it perform this time compared to previously?
+
+```python
+%%sim_magic_preloaded -b FLL_2018_Into_Orbit -p -r Small_Robot
+
+import playsound
+
+# Turn on the spot to the right
+tank_turn.on_for_rotations(100, SpeedPercent(70), 1.7 )
+
+# Go forwards
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 20)
+
+# Slight graceful turn to left
+tank_drive.on_for_rotations(SpeedPercent(35), SpeedPercent(50), 8.5)
+
+# Turn on the spot to the left
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.8)
+
+# Forwards a bit
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 2.0)
+
+#Turn on the spot a bit more to the right
+tank_turn.on_for_rotations(100, SpeedPercent(60), 0.4 )
+
+# Go forwards a bit more and dock on the satellite
+tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 1.0)
+
+playsound.say("Did I avoid crashing and dock with the satellite?")
+```
+
+Use the simulator *Move* button to reset the robot to its original location and run the program in the simulator again. Even with the same level of motor noise as on the previous run, how does the path followed by the robot this time compare with the previous run?
+
+<!-- #region student=true -->
+*Add your own notes and observations here.*
+<!-- #endregion -->
+
+## Summary
+
+In this notebook you have seen how we can use dead reckoning to move the robot along a specified path. However, in the presence of noise, this is very unreliable: whilst the robot may think it is following one path, it may in fact be following another. And whilst in some cases it may reach the target safely, in others it may end somewhere completely different, or encounter an obstacle along the way.
