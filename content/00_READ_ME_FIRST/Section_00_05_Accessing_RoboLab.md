@@ -62,6 +62,16 @@ Alternatively, if you check a single file from the notebook homepage, you can ch
 
 ![](../images/jupyter_select_download.png)
 
+To upload files, from the notebook homepage, click on the upload button and select the file you want to upload.
+
+![](../images/jupyter_upload.png)
+
+If you upload a `.zip` file, you will need to unzip it. From the notebook homepage `Open` menu, open a new terminal.
+
+Run the command `ls` to list the files in the current directory. To unzip your uploaded file, for example `upload.zip`, run the command:
+
+`unzip upload.zip`
+
 
 ### Running An Open Computing Lab Environment On Your Own Computer - Computer Requirements
 
@@ -118,7 +128,10 @@ Open a terminal. From the command prompt, do the following:
 
 - create a working directory / folder to work in by entering the command: `mkdir TM129`;
 - change directory into that directory by running the command: `cd TM129`;
-- start the container by running the command: `docker run --name tm129test -p 8129:8888 -v $PWD:/home/jovyan/notebooks -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+- start the container by running the command: `docker run --name tm129test -p 8129:8888 -v "$PWD:/home/jovyan/notebooks" -e JUPYTER_TOKEN="letmein" ousefuldemos/tm129-robotics2020:latest`
+
+
+*(The quotes round the volume mount cope with spaces in the $PWD directory path.)*
 
 ##### On Windows:
 
@@ -276,6 +289,17 @@ Click on the `WEB` link and you should be taken directly to the notebook homepag
 ### Obtaining the RoboLab Instructional Materials
 
 We have provided a complete set of interactive instructional materials for working through the RoboLab activities in the RoboLab environment when run as a standalone container. However, if you share a local directory into the container using ContainDS, this will overwrite all those files.
+
+
+#### Extracting Files Distributed Inside the Container Onto Your Desktop
+
+Some *Open Computing Lab* environments may contain instructional materials and resources pre-packaged inside the container. Whilst you can work with these resources in the OCL environment, they will not be shared onto tyour computer desktop.
+
+Typically, such resources will be located inside the `content` directory (if they are in another location, the module documentation or OCL documentation for that environment should say where). On the notebook homepage, check to select the `content` directory (or whatever the name of the distributed content folder is) and then click `Rename` in the toolbar. Rename the folder as `notebooks/distributed`. You should then see the content of the `content` folder originally just inside the container has now been copied into the `distributed` directory inside your working directory.
+
+These files now exist on your computer, even if the Docker container is stopped or deleted; they will also be available inside the *Open Computing Environment* container.
+
+#### Obtaining the Files From Github Using `nbgitpuller`
 
 If you need to download the materials separately, they can be downloaded from:
 
