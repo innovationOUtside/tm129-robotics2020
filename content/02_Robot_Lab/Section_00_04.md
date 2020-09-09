@@ -41,7 +41,7 @@ You may also find the following switches useful when configuring the simulator v
 - `-C`: clear pen-trace.
 
 
-### Challenge – Fitness training take&nbsp;3
+### Challenge – Fitness training take 3
 
 Modify the program you developed for the *Fitness training take&nbsp;2* challenge so that the robot travels the same distance as the first traverse on the third and final traverse, and double the first distance on the second traverse.
 
@@ -61,7 +61,7 @@ Download your program to the simulator and run it to check that it performs as r
 *Make any notes / observations about how your programmed worked, or any issues associated with getting it to work, etc, to help you complete the task here.*
 <!-- #endregion -->
 
-### Challenge – Fitness training take&nbsp;4
+### Challenge – Fitness training take 4
 
 Modify the program you developed for the *Fitness training take&nbsp;3* challenge so that the robot can easily be tasked with performing any number of traverses. On odd numbered traverses it should travel a short distance; on even numbered traverses it should travel twice that distance.
 

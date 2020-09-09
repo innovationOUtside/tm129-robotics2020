@@ -12,7 +12,7 @@ jupyter:
     name: python3
 ---
 
-# Introduction to robot sensors and code functions
+# Introduction to robot control strategies
 
 Sensors are at the heart of robotics. A machine without sensors cannot be a robot in our terms. The human body is replete with sensors. Our five external senses – sight, hearing, touch, smell and taste – and internal sensing such as balance and proprioception (body awareness) are all marvellously sophisticated.
 
