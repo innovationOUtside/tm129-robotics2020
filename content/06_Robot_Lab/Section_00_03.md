@@ -5,14 +5,14 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.1
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
 ---
 
-# 3 Inside the Mind of a Neural Network
+# 3 Inside the mind of a neural network
 
 In the previous notebook, you met a simple neural network architecture known as a *multi-layer perceptron* and saw how it could be trained to recognise and distinguish between various classes of object based on a two dimensional representation of each object.
 
@@ -50,7 +50,7 @@ In the playground, you will also notice a check box that allows you to "discreti
 The *Show test data* check box will show you the data used to test the output of the network. This is data that the network does not see whilst it is being trained.
 
 <!-- #region activity=true -->
-## Activity — A Harder Example - XOR
+## Activity — a harder example —  xor
 
 The initial example, we could separate the two clusters with a single line, implemented by a single neuron.
 
@@ -80,13 +80,13 @@ Take the size of the network back to a single hidden layer with just one neuron 
 
 *What is the smallest combination of nodes across three hidden layers that can solve the task? How about four layers? Or five?*
 
-*WHen the network reaches a steady state, do you observe anything notable about the boundary lines it has learned for differing numbers and combinations of neurons across the hidden layers?*
+*When the network reaches a steady state, do you observe anything notable about the boundary lines it has learned for differing numbers and combinations of neurons across the hidden layers?*
 
 __Note that as you increase the number of layers, the network is may take an increasing amount of time to find a steady, final state, as indicated by the error curve reaching a steady, flat state.__
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## Optional Activity — Manually Editing Weights
+## Optional activity — manually editing weights
 
 As well as training the network to find weights that allow the network to make a decision, you can also hover over a weight and edit it manually.
 
@@ -101,7 +101,7 @@ Sometimes, you may find that you can just about predict how a network is coming 
 *Add any notes and reflections you care to make here.*
 <!-- #endregion -->
 
-## Yet More Complicated Patterns
+## Yet more complicated patterns
 
 From experimenting with the Tensorflow playground, you may have started to realise that the network makes its decisions by essentially trying to draw some combination of straight lines across the feature space to separate the groups.
 
@@ -109,9 +109,9 @@ If you look at the available training datasets, you will see two more, rather tr
 
 If you have not spent too much time on this notebook already, or if perhaps you fancy a play over a coffee break at some other time, see if you can create a network that can separate these groups. Don't spend too much time on it though! (It can get quite addictive when you try...)
 
-If you find an architecture that appears to work well without too many underused neurons (particularly low sets of input and/or output weights) across mutliple resets (i.e. reset initial weights and training runs) please feel free to share the details on the module forums and put those who haven't has as much luck out of their misery!
+If you find an architecture that appears to work well without too many underused neurons (particularly low sets of input and/or output weights) across mutliple resets (i.e. reset initial weights and training runs) please feel free to share the details on the module forums and put those who haven't had as much luck out of their misery!
 
-Note that if you have a network with a large number of hidden neurons, sometimes the boundary lines the trained netwrok generates seem to try to fit round the data "too well" (that is, the boundary line shape gets very wiggly around certain points to take account of them). This is know as "overfitting" and causes the network not to generalise so well: that is, when presented with a pattern it has not seen before, it can't broadly, or "gernally" see which group it is likely to fall into based on its training.
+Note that if you have a network with a large number of hidden neurons, sometimes the boundary lines the trained network generates seem to try to fit round the data "too well" (that is, the boundary line shape gets very wiggly around certain points to take account of them). This is know as "overfitting" and causes the network not to generalise so well: that is, when presented with a pattern it has not seen before, it can't broadly, or "gernally" see which group it is likely to fall into based on its training.
 
 If you end up taking the OU module *TM358 Machine learning and artificial intelligence*, which looks at machine learning techniques in more depth, you will learn in much more detail about neural network pathologies such as overfitting.
 
