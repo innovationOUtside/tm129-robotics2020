@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -588,7 +588,7 @@ say('all done')
 ```
 
 <!-- #region activity=true -->
-## Challenge —  navigating to a specifed location
+## Challenge — navigating to a specifed location
 
 The *WRO_2018_Regular_Junior* challenge background has several coloured areas marked on it at (350, 580), (1180, 960) and (2000, 580).
 
@@ -626,4 +626,4 @@ In this notebook you have seen how the motor `position` tachometer can be used t
 
 Tacho counts and gyro angles are very useful at providing an indicative feel for how a robot has traveled, but they may not be overly accurate. As with many data traces, *trends* and *differences* often tell us much of what we need to know.
 
-Through working with the motors an sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programmes. In certain cases, we may even have to do things in the program code that are there simply to accommodate some "feature" of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord, in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.
+Through working with the motors an sensors at quite a low level, you have also learned how the implementation of the simulator itself may affect the performance of our programs. In certain cases, we may even have to do things in the program code that are there simply to accommodate some "feature" of the way the simulator is implemented that would not occur in the real robot. In the physical world, time flows continuously of its own accord, in real time! In the simulator, we simulate it in discrete steps, which may even take longer to compute than the amount of time the step is supposed to represent.

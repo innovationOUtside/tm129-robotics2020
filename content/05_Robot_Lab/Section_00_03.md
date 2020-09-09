@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -66,7 +66,7 @@ while ((colorLeft.reflected_light_intensity_pc>0.05)
 *Your notes and observations on what happens when the program is executed.*
 <!-- #endregion -->
 
-The previous program is based on one of the earlier Braitenberg programmes in which the robot attempts to turn towards the bright light source. This corresponds to the thing "get selenium" instruction.
+The previous program is based on one of the earlier Braitenberg programs in which the robot attempts to turn towards the bright light source. This corresponds to the thing "get selenium" instruction.
 
 <!-- #region tags=["alert-success"] -->
 By inspection of the program, you might be wondering: what happens if we set `error = intensity_left - intensity_right`? Can you make a prediction about that? Is your prediction likely to be affected by the starting point and orientation of the robot? Try it and see!
@@ -132,6 +132,6 @@ What happens if you add some sensor noise using the slider as the program is run
 
 ## Summary
 
-Simple programmes can often lead to complex emergent behaviours. Whilst the control behaviours themselves may be simple the way they interact with the environment, which may itself be complex, can lead to a wide range of behaviours that you might never think to predict.
+Simple programs can often lead to complex emergent behaviours. Whilst the control behaviours themselves may be simple the way they interact with the environment, which may itself be complex, can lead to a wide range of behaviours that you might never think to predict.
 
 In the example program in this notebook, you saw how two simple rules — one for turning towards the selenium, another, "higher priority" rule for turning the other way if you get too close — can also interact to create a complex behaviour from two simple sensor inputs.
