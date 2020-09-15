@@ -12,21 +12,23 @@ jupyter:
     name: python3
 ---
 
-# 2 Multi-dimensional data and the MLP
+<!-- #region cell_style="center" -->
+# 2 Multi-dimensional data and the mlp
 
 The neural network examples in the previous notebook were very impressive, but how do they work?
 
 In this notebook we'll make a start by looking at a classification task that attempts to identify various pieces of fruit. The activity is a simplified, stylised one, but it demonstrates several of the features (pun intended, as you may see!) that more complex neural neural network models employ when performing their recognition tasks.
+<!-- #endregion -->
 
-
-## Fruit Recognition Task
+<!-- #region cell_style="center" -->
+## Fruit recognition task
 
 Consider four classes of fruit: pears, bananas, strawberries and oranges. How might a robot recognise and distinguish between them?
 
 Let us suppose that a robot's vision system can isolate the fruit objects and make two measurements. The first is the length of the 'long axis'. This is called the *long measurement*. The second measurement is taken at right angles to the long axis, halfway along it. This is called the *short measurement*. Oranges are approximately spherical in shape, which means that their long and short measurements are nearly the same. Bananas, on the other hand, are long and thin, so their long measurements are larger than their short measurements.
 
 Note that we are also making an assumption that the fruits are all presented to the same scale. This is fine if we are using a fixed camera and the fruit is passing underneath on a conveyor belt, but in a more general photograph that information may not be so easy to discern. The approach we're taking also suggests we can segment the photographic image to just give us the fruit object within it. Again, in an industrial setting, we may be able to control for this (only one object in view, on a clean white conveyor background, for example.
-
+<!-- #endregion -->
 
 Let's assume we have got the images though, in the form that is required.
 
@@ -51,7 +53,7 @@ As the diagram shows, when we plot the objects on a grid using the long measurem
 When data are grouped like this, we can use various techniques to learn about the clusters, as well as identifying which cluster a newly presented object is likely to correspond to. Neural networks provide a powerful method for working with such data.
 
 <!-- #region activity=true -->
-### Activity — A Simple Classification Task
+### Activity — a simple classification task
 
 Let us suppose that a robot has the data in the above in its memory, and it comes across (as yet) unclassified fruit having the pairs of measurements shown in the table below.
 <!-- #endregion -->
@@ -95,7 +97,7 @@ You probably found this quite easy. Arranging data points like this on a grid is
 In many cases, however, rather than than imaginging the points in a 2-dimensional grid, the network may be partitioning them over a 20-dimensional grid, or 200 dimensional grid. Which is quite a bit harder for us to visualise!
 <!-- #endregion -->
 
-### The Classification Task
+### The classification task
 
 The general idea behind classification using neural networks as classifers is that data are fed into the network and one of the outputs "fires", signifying that the class associated with this output has been recognised.
 
@@ -105,7 +107,7 @@ For example, in the figure below, a neural network that classifies fruit is show
 ](../images/tm129_rob_p8_f004.jpg)
 
 
-## Creating a SImple Neural Network Model  — A Multi-Layer Perceptron (MLP)
+## Creating a simple neural network model — a multi-layer perceptron (mlp)
 
 One of the original neural network models, but one that is still relevant today, is known as a multi-layer perceptron or MLP network.
 
@@ -139,7 +141,7 @@ For this reason, as well as the need to generate features derived from the origi
 %load_ext blockdiag_magic
 ```
 
-```python
+```python cell_style="split"
 %%blockdiag
 
 A [label = "Pre-processor"];
@@ -149,13 +151,15 @@ C [label = "Post-processor"];
 A -> B -> C;
 ```
 
-## Training a Simple MLP Using `sklearn`
+<!-- #region cell_style="center" -->
+## Training a simple mlp using `sklearn`
 
 The code below will load a set of training pairs of data based on the fruit measurement data into a *pandas* dataframe.
 
 Run the cell to load the values into the dataframe and preview the result.
+<!-- #endregion -->
 
-```python
+```python cell_style="center"
 import pandas as pd
 
 df = pd.DataFrame([['Pear', [5.2, 3.1]], ['Pear', [6.3, 2.4]],
@@ -173,11 +177,13 @@ df = pd.DataFrame([['Pear', [5.2, 3.1]], ['Pear', [6.3, 2.4]],
 df.head(6)
 ```
 
+<!-- #region cell_style="center" -->
 These measurement-label pairs are called the *training data*. Once a system is trained, it can be used to classify previously *unseen* data: given the input numbers, the network will report which class has been recognised, which we regard as a prediction of the class as made by the model.
 
 With the data in place, let's start to prepare things for our network. We don't actually need to define the number of output nodes (they can be calculated from the number of provided output categories) but let's make a note of the number we think there are anyway.
 
 The number of input nodes is then set to two, the number of output nodes to four, and for the hidden neurons let's have two layers, with six nodes in each.
+<!-- #endregion -->
 
 ```python
 input_nodes = 2
@@ -260,7 +266,7 @@ Our network really isn't very good, is it?!
 Let's see if we can improve things by tweaking the network parameters, such as the hidden layer sizes (`h1` and `h2`) and the maximum number of training iterations.
 
 <!-- #region activity=true -->
-### Activity — Interactively Training the Network
+### Activity — interactively training the network
 
 Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and the displays the classification report and confusion matrix as you do so.
 <!-- #endregion -->
@@ -301,7 +307,7 @@ How did your network do? (I'm hoping you could work out which fruit was which fr
 *Record your observations about how effectively the network worked hear, as well as any other reflections you have about how the parameter changes affect the performance of the network.*
 <!-- #endregion -->
 
-### Visualising the Network Structure
+### Visualising the network structure
 
 Sometimes, it can be quite instructive to look at the neural network weights. If you see that all the weights incoming to a particular nodes are close to zero, that node isn't really contributing much to the decisionmaking in the next layer, so you might consider reducing the size of the layer with the redundant neuron(s).
 
@@ -320,7 +326,7 @@ Based on the structure of the weights, does it look like there may be any redund
 Note that each time you train the network from scratch, it is seeded with different training results, so even with a fixed architecture you may find that some times it reaches a good solution, but other times it doesn't...
 
 <!-- #region activity=true -->
-###  Activity — Visualising Boundaries
+### Activity — visualising boundaries
 
 The way the MLP works is to try to draw "decision lines" or "boundary lines" that separate each clustered group of values associated with one class from the values associated with other categories.
 
@@ -398,13 +404,13 @@ In the poorly trained model, the decision lines do not properly separate the dif
 Further observations: for a two-dimensional model this sort of visulisation works well, and could even work for a three dimensional model. But with 10, 10 or 100 input dimensions it would be rather hard to visualise. As a minds-eye visualisation tool, however, you may get a "feeling" about what separation in high dimensional space might be like.
 <!-- #endregion -->
 
-### Partially Training the Network
+### Partially training the network
 
 As well as training a network until it converges, or until the maximum number of iterations is reached, we can also train the network an iteration at a time, and review the performance of the network at the end of each iteration.
 
 To do this, we need to use the `.partial_fit()`, rather than `.fit()` training function.
 
-The following code cell runs 1000 iterations, showing the confusion matrixafter every 100 iterations:
+The following code cell runs 1000 iterations, showing the confusion matrix after every 100 iterations:
 
 ```python
 import numpy as np
@@ -446,7 +452,7 @@ for i in range(num_iterations):
 Did the network get a reasonable solution? Run the cell several times again, reviewing the confusion matrices produced each time. You should see how the network may come to a reasonable solution quite quickly on some runs, and not achieve a particularly good result even after 1000 iterations on other runs.
 
 
-### Animating the Boundary Line Evolution
+### Animating the boundary line evolution
 
 Finally, it's worth notong that we can also generate animations to show how the boundaries evolve over a specified number of iterations iterations. In the following cell, the `mlp_boundary_animate` function reuses the routine from the previous code cell to train the network, but also grabs the boundary plot every 10 iterations (as defined by the `every` parameter) and uses it as an animation frame.
 

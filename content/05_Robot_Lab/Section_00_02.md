@@ -3,7 +3,7 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
       jupytext_version: 1.4.2
   kernelspec:
@@ -61,7 +61,7 @@ colorRight = ColorSensor(INPUT_3)
 gyro = GyroSensor(INPUT_4)
 ```
 
-In some of the magics used to download programmes to the robot, these statements are added as default "boilerplate" code when the magic cell is run and before the program is downloaded to the simulator. So although they may not appear in the code you write, they are required for the program code to run correctly in the simulator.
+In some of the magics used to download programs to the robot, these statements are added as default "boilerplate" code when the magic cell is run and before the program is downloaded to the simulator. So although they may not appear in the code you write, they are required for the program code to run correctly in the simulator.
 
 *You can always check exactly what code has been downloaded to the simulator by clicking on the `Show Code` button in the simulator.*
 

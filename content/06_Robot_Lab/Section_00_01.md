@@ -32,7 +32,7 @@ However, identifying individual objects in an image on the one hand, and being a
 In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks.
 
 <!-- #region activity=true -->
-### Activity - Example Image Tagging Demo
+### Activity —  example image tagging demo
 
 There are many commercial image tagging services available on the web that are capable are tagging uploaded images or images that can be identified by a web URL.
 
@@ -73,7 +73,7 @@ What risks, if any, might be associated with using such a service in each of tho
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## Activity — Recognising A Static Pose in An Image
+## Activity — recognising a static pose in an image
 
 As well as tagging images, properly trained models can recognise individual people's faces in photos (and not just of celebrities!) and human poses within a photograph.
 
@@ -87,7 +87,7 @@ Click through to the following web location to see an example of a neural networ
 TO DO - Add a local example with additional ability to upload your own photo.
 <!-- #endregion -->
 
-## Transfer Learning
+## Transfer learning
 
 Creating a neural network capable of recognising a particular image can take a lot of data and a lot of computing power. The training process typically involves showing the network being trained:
 
@@ -106,7 +106,7 @@ When you further train the model, it uses combinations of the features it can al
 
 
 <!-- #region activity=true -->
-## Optional Activity — Distinguishing Between Two Of Your Own Poses From a Live Video Feed
+## Optional activity — distinguishing between two of your own poses from a live video feed
 Although is can take *a lot* of data and *a lot* of computational effort to train a model, topping up a model with transfer learning applied to a previously trained model can be achieved quite simply.
 
 This optional activity allows you to top-up a pre-trained model to recognise of an image of you with your hand raised, and an image of you without you hand raised. Feeding a live image into the model allows it to detect in real time whether you have your hand or arm raised or not.
@@ -118,7 +118,7 @@ __`demo-video-arm-pose` dir__
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## Optional Activity — Training Your Own Image or Audio Classifier
+## Optional activity — training your own image or audio classifier
 
 
 If you have a camera or microphone attached to your computer, you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising. The tutorial [here](https://blog.google/technology/ai/teachable-machine/) describes a process for training a neural network to distinguish between images representing two different situations.

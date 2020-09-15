@@ -3,373 +3,584 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.2
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
 ---
 
-```python
-from nbev3devsim.load_nbev3devwidget import roboSim, eds
+# 4 Reasoning and the sense–think–act model
 
-%load_ext nbev3devsim
-%load_ext nbtutor
-```
+In the sense–act model, agents (or robots) typically perform an action as a direct response of a sensory input. In the ‘sense–think–act’ model, there is an element of deliberation in which the agent makes a *choice* about what action to perform based not just on the sensory input but also other factors. In the simplest case, this might be a value against which the input is compared, or it might be a much more elaborate decision process involving a wide range of factors.
 
 
-# 4 Emergent behaviour: braitenberg’s vehicles
+## 4.1 Representing and using knowledge and beliefs
 
+Artificial intelligence and robotics have the major problem of *representing* facts and *knowledge*, or at least, *beliefs* inside machines. We have a vast amount of knowledge in our brains. This knowledge is distributed over the brain, rather than each fact being neatly stored in a single memory unit.
 
-In Study week 2 you came across Valentino Braitenberg’s ideas on the behaviour of robots *emerging* from the way they are wired up. The figure belows shows two ways of connecting sensors to motors. In (a), the left sensor is connected to the left motor and the right sensor is connected to the right motor. In (b) these connections are reversed.
+<!-- #region tags=["alert-success"] -->
+In many formal studies of intelligent agents, ‘knowledge’ is defined as ‘justified true belief’. An agent may ‘believe’ a fact, but that is only classed as ‘knowledge’:
 
-
-![Diagrams representing Braitenberg vehicles alongside simulated robots wired up in a similar fashion. A Braitenberg vehicle and our simulated robot are very similar: they have two wheels, one each side, and two light sensors, one on the left and one on the right of the front of the robot. A pair of Braitenberg vehicles are shown, one light avoiding and one seeking. A light avoiding vehicle has the left light sensor connected to the left motor and wheel, and the right light sensor connected to the right motor and wheel. A light seeking vehicle has the left light sensor connected to the right motor and wheel, and the right light sensor connected to the left wheel. The simulated robots have wiring indicating identical connections. ](../images/tm129_rob_p4_f008.gif)
-
-
-## 4.1 Activity — testing braitenberg’s vehicles
-
-
-A 'thought experiment' suggests that the vehicle in figure (a) will move away from a light source. Similarly, another thought experiment suggests that the vehicle in figure (b) will move towards a light source. In the following activities you will test these predictions using an enivironment that models this set up, but uses downward facing light sensors that take measurements from a "light gradient" background, rather than forward facing light sensors that look for a light source at "eye-level" (that is, sensor-level!).
-
-
-### Reconfiguring the robot
-
-In order to detect different values from the light sensors on the right and left hand side of the robot, we need to reconfigure the robot so that the sensors are placed further apart than they are in the default robot configuration.
-
-In the simulator, select the *Radial grey* background and check the *Pen down* checkbox.
-
-You may notice that the simulator's left and right light sensors appear to be further apart than they have been previously.
-
-This has been done via a change to the robot configuration setting update that is applied automatically when the *Radial grey* background is loaded.
-
-
-#### Manually changing the robot configuration settings
-
-You can increase the spacing between the sensors by:
-
-- clicking the *Configure Robot* button in the simulator to pop-up a window containing the robot configuration settings;
-- in the robot configuration settings window, scroll down to the `"sensor1"` parameters and change the `"x"` value from the default value of `-20` to the new value `-60`;
-- for `"sensor2"`, change the `"x"` value from its default value of `20` the new value `60`;
-- click the *Apply* button.
-
-If you look at the robot in the simulator, you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
-
-
-#### Exploring the *radial grey* world
-
-Run the following code cell to download the program to the simulator and then run it in the simulator. For now, don't pay too much attention to the code; our initial focus is purely on what we can observe about the behaviour of the robot.
-
-Observe what happens paying particularly close attention to the trajectory the robot follows.
-
-Enter a new starting location in the simulator, changing the original *Y* value from `400` to the new value `600`. Click the *Move* button to move the robot to that location and run the simulator again. How does the robot move this time? 
-
-```python
-%%sim_magic_preloaded -b Radial_grey
-
-def reflected_pc(reflected_val):
-    """Return reflected value (range 0..255) as percentage."""
-    return 100.*reflected_val / 255
-
-colorLeft = ColorSensor(INPUT_2)
-colorRight = ColorSensor(INPUT_3)
-
-while ((colorLeft.reflected_light_intensity>5) 
-       and (colorRight.reflected_light_intensity)>5):
-    
-    intensity_left = colorLeft.reflected_light_intensity
-    intensity_right = colorRight.reflected_light_intensity
-    
-    print(intensity_left, intensity_right)
-    
-    left_motor_speed = SpeedPercent(reflected_pc(intensity_left))
-    right_motor_speed = SpeedPercent(reflected_pc(intensity_right))
-    
-    tank_drive.on(left_motor_speed, right_motor_speed)
- 
-```
-
-With the robot starting just *below* the centerline on the radial grey background, you should notice that as it moves across the background it veers away from the light on a path that curves towards the bottom right of the simulator, steering to the right from the robot's perspective. 
-
-When the robot starts *above* the centerline, it veers away on the left hand side of the central bright point (that is, the robot steers to its left).
-
-If the robot starts on the centerline, it continues on a straight path.
-
-<!-- #region -->
-So how does the program work?
-
-If you inspect it closely, you will see it is split into several parts.
-
-The first part just clarifies the sensor configuration:
-
-```python
-colorLeft = ColorSensor(INPUT_2)
-colorRight = ColorSensor(INPUT_3)
-```
-
-Then we have a `while..` loop that ensures the program keeps running until either the left or the right sensor value sees a particularly dark value:
-
-```python
-while ((colorLeft.reflected_light_intensity>5) 
-       and (colorLeft.reflected_light_intensity)>5):
-```
-
-Inside the `while..` block is the "intelligence" of the program.
-
-
-The values are displayed in the simulator output window using a `print()` statement, and are then used to set the motor speeds:
-
-```python
-    left_motor_speed = SpeedPercent(intensity_left)
-    right_motor_speed = SpeedPercent(intensity_right)
-    
-    tank_drive.on(left_motor_speed, right_motor_speed)
-```
-
-In this configuration:
-
-- the percentage scaled *left* sensor value determines the speed value applied to the *left* motor, and
-- the percentage scaled *right* sensor value sets the *right* motor speed.
-
-The sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. As described by the program, the left motor thus turns more quickly than the right motor, and so the robot turns toward its right hand side and veers away from the light source.
+- if the fact is true
+- if the agent is justified in having the belief (that is, there is a good reason why it has that belief).
 <!-- #endregion -->
 
-### Crossing the wires...
+The structure of the human brain is completely different from the structure of a robot’s or a real computer’s ‘brain’, and roboticists have found it very difficult to implant a wide range of experiences (real-world data) into robot brains. Whilst significant progress has been made in artificial intelligence (AI) and machine learning (ML) approaches in recent years by using ever-more computational resources, these achievements are often quite limited in terms of domain or general applicability. They can also be hugely expensive in terms of the amount of data and computational effort, as well as the energy used to power the underlying computers that are required to create them. Ever larger and more complex natural-language processing (NLP) models are also proving effective in parsing natural-language statements and generating natural-language texts, albeit often in a ‘free-writing’ sense.
 
-Now let's see what happens if we run the following program which uses:
+An alternative to the ‘self-learning’ neural network style of artificial intelligence, which you will meet later in the block, are approaches in which we try to *explicitly* encode knowledge using an approach known as *rule-based systems*.
 
-- the *left* light sensor to control the speed of the *right* motor; and
-- the *right* light sensor to control the speed of the *left* motor.
+In this notebook you will meet two such examples: the classic *Eliza* rule-based conversational agent, and a more general rule-based architecture, *durable-rules*, which can be used to develop a wide range of rulesets that can be used to reason more generally over a set of provided ‘facts’.
 
-Still using the *Radial grey* background, clear the traces in the simulator.
 
-Run the following code cell to download the program to the simulator and then run it in the simulator.
+## 4.2 Eliza
 
-Move the robot to the starting location `X=100, Y=700` and run the program again.
+Athough written fifty or so years ago, Joseph Weizenbaum’s *Eliza* program is often referred to as one of the first great milestones in computational natural-language interaction. [This copy of the original paper](https://github.com/wadetb/eliza/blob/master/p36-weizenabaum.pdf) includes examples of the code used to program the original Eliza engine.
 
-How does the robot's behaviour with the "cross-wired" sensors and motors compare with the "direct", same-side wiring?
+Eliza has been reimplemented several times, such as in the *Lisp* programming language by Peter Norvig for his textbook *Paradigms of Artificial Intelligence Programming*, as well as a Python reimplementation of Norvig’s code by Daniel Connelly ([Paip-python: Peter Norvig's Paradigms of AI Programming implemented in Python](http://dhconnelly.com/paip-python/)). 
 
-```python
-%%sim_magic_preloaded
-
-colorLeft = ColorSensor(INPUT_2)
-colorRight = ColorSensor(INPUT_3)
-
-while ((colorLeft.reflected_light_intensity_pc>5) 
-       and (colorRight.reflected_light_intensity_pc)>5):
-    
-    intensity_left = colorLeft.reflected_light_intensity_pc
-    intensity_right = colorRight.reflected_light_intensity_pc
-    
-    print(intensity_left, intensity_right)
-    
-    left_motor_speed = SpeedPercent(intensity_right)
-    right_motor_speed = SpeedPercent(intensity_left)
-    
-    tank_drive.on(left_motor_speed, right_motor_speed)
- 
-```
-
-When the program runs this time, the robot arcs *towards* the light: if it starts below the centre line, the robot turns to its left and up towards the light; if it starts above the light, the robot turns to its right, and  curves down towards the light.
-
+A version of Connelly’s code, updated to run in the version of Python used in these notebooks, is contained in the file [eliza.py](eliza.py).
 
 <!-- #region activity=true -->
-#### Question
+### Activity – Chatting to ‘Eliza’
 
-How is the robot's behaviour explained by the program this time?
-<!-- #endregion -->
+Relive the past, perhaps in more ways than one – depending on how your conversation goes! – by chatting to Eliza for two or three minutes.
 
-<!-- #region student=true -->
-*Double click this cell to edit it and enter your explanation of why the robot behaves as it does.*
-<!-- #endregion -->
-
-<!-- #region activity=true heading_collapsed=true -->
-#### Answer
-
-*Click the arrow in the sidebar to reveal my answer.*
-<!-- #endregion -->
-
-<!-- #region activity=true hidden=true -->
-The sensor values are mapped onto motor speeds with the following lines of code:
-
-```python
-    left_motor_speed = SpeedPercent(intensity_right)
-    right_motor_speed = SpeedPercent(intensity_left)
-    
-    tank_drive.on(left_motor_speed, right_motor_speed)
-```
- 
-In this configuration, the percentage scaled *right sensor* value determines the speed value applied to the *left motor*, and the percentage scaled left sensor* value sets the *right motor* speed.
-
-As before, the sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centreline, the left sensor reads a higher value than the right sensor. This results in the right motor turning more quickly than the left motor. As a result, the robot turns toward its left hand side and turns towards the light source.
-<!-- #endregion -->
-
-<!-- #region -->
-### Looking at the data
-
-
-To understand a little more closely what the sensors are seeing, click the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. 
-
-To start with, let's just make sure the datalog is empty:
+Run the following code cell to import the `eliza` package:
 <!-- #endregion -->
 
 ```python
-# Clear the datalog
-roboSim.clear_datalog()
+import eliza
 ```
 
-The following program streams the necessary data elements to the simulator output window.
-
-Run the program and observe the behavior of the traces.
-
-How do the traces differ in value?
-
-```python
-%%sim_magic_preloaded
-
-colorLeft = ColorSensor(INPUT_2)
-colorRight = ColorSensor(INPUT_3)
-
-while ((colorLeft.reflected_light_intensity_pc>5) 
-       and (colorLeft.reflected_light_intensity_pc>5)):
-    
-    intensity_left = colorLeft.reflected_light_intensity_pc
-    intensity_right = colorRight.reflected_light_intensity_pc
-    
-    print('Light_left: ' + str(intensity_left))
-    print('Light_right: ' + str(intensity_right))
-    
-    left_motor_speed = SpeedPercent(intensity_right)
-    right_motor_speed = SpeedPercent(intensity_left)
-   
-    tank_drive.on(left_motor_speed, right_motor_speed)
-
-```
-
-By inspection of the traces, you should notice that one of them is always slightly higher than the other.
-
-We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchronised datalog.
-
-```python
-#Grab the logged data into a pandas dataframe
-df = eds.get_dataframe_from_datalog(roboSim.results_log)
-
-#Preview the first few rows of the dataset
-df.head()
-```
-
-Plot the data from the dataframe using the `seaborn` scientific charting package:
-
-```python
-import seaborn as sns
-
-# A line plot is a sensible chart type to use
-# to plot the time series data
-ax = sns.lineplot(x="index",
-                  y="value",
-                  hue='variable',
-                  data=df)
-```
-
-<!-- #region -->
-## Using ultrasound
-
-
-We can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.
-<!-- #endregion -->
-
-<!-- #region activity=true -->
-### Activity — using ultrasound
-
-Load in the *Obstacles_Test* background, run the following code cell to download the program to the simulator. Ensure that the background is loaded and that the ultrasound rays are enable, and then run the program in the simulator.
-
-Record your observations of the the behaviour of the robot when the program is run in the simulator with the robot starting in different positions (for example `(x, y, a)` of `[(120, 120, 90), (200, 120, 90), (500,170, 145), (500, 370, 75) ]`. Based on your observations, what do sort of behaviour does the robot appear to be performing?
-<!-- #endregion -->
-
-<!-- #region student=true -->
-*Record your observations here about what the robot appears to be doing when the program is run in the simulator with the rovot starting in different positions.*
-<!-- #endregion -->
+Run the following code cell to enter Eliza’s treatment room. Start your conversation with a *Hello*; end the conversation by starting your response with *Goodbye* or force an exit to the program by clicking the *stop* button in the notebook toolbar.
 
 ```python activity=true
-%%sim_magic_preloaded -b Obstacles_Test -u -x 120 -y 120 -a 90
-import time
-ultrasonic = UltrasonicSensor(INPUT_1)
-
-u = ultrasonic.distance_centimeters
-print('Ultrasonic: ' + str(u))
-time.sleep(1)
-while  u > 1:
-    u = ultrasonic.distance_centimeters
-    print('Ultrasonic: ' + str(u))
-    speed = min(100, u)
-    left_motor_speed = SpeedPercent(speed)
-    right_motor_speed = SpeedPercent(speed)
-    tank_drive.on(left_motor_speed, right_motor_speed)
-
+eliza.hello_doctor(aloud=True)
 ```
 
-<!-- #region student=true -->
-*Based solely on your observations, what sort of behaviour does the robot appear to be performing?*
+<!-- #region activity=true -->
+If you want to hear Eliza speak the responses aloud to you then start the program by passing in the parameter `aloud=True` in the following way: `eliza.hello_doctor(aloud=True)`.
 <!-- #endregion -->
 
-<!-- #region student=true -->
-*With reference to the program, what actions is the robot actually performing?*
+<!-- #region -->
+### What makes Eliza tick?
+
+If you look at the [rules file](eliza.json), you will see that it contains a series of rules that have the form:
+
+```
+CONDITION: [
+    POSSIBLE_RESPONSE_1,
+    POSSIBLE_RESPONSE_2,
+    ...
+    ]
+```
+
+or more completely:
+
+```
+"?*x KEYPHRASE ?*y": [
+        "RESPONSE_1 ?y?",
+        "RESPONSE_2 ?y?",
+        ...
+        ]
+```
+
+For example:
+
+```python
+    "?*x I want ?*y": [
+        "What would it mean if you got ?y?",
+        "Why do you want ?y?",
+        "Suppose you got ?y soon."
+        ]
+```
+
+The `?*x` and `?*y` elements in the condition part of the rule are pattern-matching operators that capture arbirtary text before and after the provided `KEYPHRASE`. A rule matches a provided input if the `KEYPHRASE` is contained in the text given to Eliza. The pattern-matched content in the text can then be extracted from the input and used in the output response given by Eliza.
+
+A rule-matching engine, written in Python, takes the user input, tries to match it with one of the rules and then generates a response. If you are interested in the details, [Connelly provides a commentary](https://dhconnelly.com/paip-python/docs/paip/eliza.html) that explains how his version of the Eliza program works.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Answer
-*Click the arrow in the sidebar to reveal my answer.*
+### Optional activity
+
+If you make a copy of the `eliza.json` file, for example, as `dr_me.json` and edit it to contain your own rules, then you can run Eliza using your ruleset by running the command: `eliza.hello_doctor('dr_me.json')`.
+
+You can also provide a set of custom default responses that Eliza will select between if no rules match by passing them into the `hello_doctor()` function via the `default=` parameter. For example:
+
+```python
+eliza.hello_doctor('doolittle.json',
+                   default = ["Very interesting",
+                              "I am not sure I understand you fully"]
+                  )
+```
+
+If you come up with an interesting script, then share it in your Cluster group forum.
 <!-- #endregion -->
 
-<!-- #region activity=true -->
-When the program is run in the simulator, the robot moves forwards but then slows down as it approaches the obstacle as if it was a bit wary of it. The robot eventueally, stops as it reaches the obstacle *if* the obstacle is directly in front of the centerline of the robot. Otherwise, the robot inches up the obstacle, moves with its wheels over it, and then accelerates away once it is clear of the obstacle.
+## 4.3 Durable Rules Engine
 
-I have commented to the program to explain how I think it works.
-<!-- #endregion -->
+The [Durable Rules Engine](https://github.com/jruizgit/rules) is a *polyglot* framework for creating rule-based systems capable of reasoning over large collections of factual statements.
 
-```python activity=true
-%%sim_magic_preloaded -b Obstacles_Test -u -x 120 -y 120 -a 90
+To say that the framework is *polyglot* means that we can write programs for the same framework using different programming languages, specifically Python, Node.js (a flavour of JavaScript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.
 
-import time
-ultrasonic = UltrasonicSensor(INPUT_1)
+Note that the Durable Rules Engine (durable-rules) is *not* available directly within our robot simulator programs. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.
 
-# Wait for a moment:
-# ultrasound sensors can take a moment or two to
-# start working as they take soundings on the environment
-time.sleep(1)
+The engine itself is rather more powerful than the engine used in the Eliza program example and can accept a wide range of rule definitions. It also makes use of a knowledge base of asserted facts (as well as ephemeral events) that are reasoned against using the rules.
 
-# Grab the sensor reading
-# as a distance in cm
-u = ultrasonic.distance_centimeters
+To see how this more comprehensive version of a rule-based system works, let’s consider the example of reasoning over a set of ‘facts’ that are asserted as *subject predicate object* statements. Separate rules parse one or more of these statements and then try to make general additional statements as a logical consequence.
 
-print('Ultrasonic: ' + str(u))
+Facts might take the form *Sam is a student* where *Sam* is the subject of the statement, *student* is the object of the statement, and *is a* is a *predicate* that defines some sort of relationship between the subject and the object.
 
-# If the distance to an obstacle is greater than 1cm
-# Not that from the ray trace, the sensor 
-# appears to be mounted a little way in
-# from the front edge of the robot.
-while  u > 1:
-    # Resample the 
-    u = ultrasonic.distance_centimeters
-    print('Ultrasonic: ' + str(u))
-    
-    # Set a speed limit to the lesser of
-    # 100 and the obstacle distance in cm
-    speed = min(100, u)
-    
-    # Set the motor speeds based on the distance
-    # to the nearest obstacle
-    left_motor_speed = SpeedPercent(speed)
-    right_motor_speed = SpeedPercent(speed)
-    tank_drive.on(left_motor_speed, right_motor_speed)
-    
-# The distance must be less than 1cm
-# so end the program and turn the motors off
+Rules test statements, and if they match the rule condition then the rule asserts another fact.
+
+For example, *if Sam is a student, then Sam can use the module forums*.
+
+Let’s see how that works in practice. Note that the following treatment uses a simplification of the syntax used by default in the durable-rules framework. (There is just too much clutter in the original syntax to see what’s going on!)
+
+Let’s import the packages we need and enable some magic:
+
+```python
+from durable.lang import ruleset, when_all, assert_fact, c, m
+from durable_rules_tools.rules_utils import new_ruleset, SPO, Set, Subject
+
+%reload_ext durable_rules_tools
+```
+
+<!-- #region -->
+The ruleset definition syntax is little bewildering, so just try to see the structural patterns that the various bits of syntax make.
+
+So, let’s take a deep breath and dive in, looking at this pseudo-code abstraction of a possible rule:
 
 ```
+if ?PERSON is student
+    then ?PERSON can use forums
+```
+
+In this case, `?PERSON` is a variable representing the subject, *forums* is the object, and *can use* is the predicate.
+
+We can encode this formal rule using the durable-rules framework as follows:
+
+```python
+@when_all(Subject("is", "student"))
+def cm_forum_use(c):
+    Set(c, '? : can use : forums' )
+```    
+<!-- #endregion -->
+
+<!-- #region tags=["alert-danger"] -->
+The `@...` statements are known as Python *decorators*; but that’s all you need to know in case you want to look them up them further (further investigation is definitely *not required* and *not expected* of you for the purposes of this module). Just regard it as ‘syntactic sugar’ intended to make the rule a bit more readable than it might otherwise be. So go with the flow and just try to read the rules as some sort of structured pattern you can recognise as performing some sort of magic...
+<!-- #endregion -->
+
+<!-- #region -->
+The rule has the form:
+
+```python
+@CONDITION
+def RULENAME(TESTED_ASSERTION):
+    ACTION
+```
+
+If you defocus your eyes, you can perhaps see how those elements might relate to a rule that could perhaps be more logically presented as:
+
+```
+RULENAME:
+  if TESTED_ASSERTION meets CONDITION
+  then ACTION
+```
+
+The rule is used in the code cell below without further explanation, other than the commentary provided in the cell itself. What is important is that you see (if you close you eyes and squint hard enough!) the logical ‘shape’ of the rule. The actual symbols used, and their placement, is ‘just syntax’.
+
+Run the following cell to define a new ruleset:
+<!-- #endregion -->
+
+```python
+# Get a unique identifier for the ruleset
+RULESET_1 = new_ruleset()
+
+# Add rules to the ruleset
+with ruleset(RULESET_1):
+    
+    # Rule condition (the "if" part)
+    @when_all(Subject("is", "student"))
+    # Rule body (the "then" part)
+    # - cm_forum_use is can be viewed as the name of the rule
+    # - c is an assertion that is being tested by the rule
+    def cm_forum_use(c):
+        # This is what we actually do when the rule condition is satisfied
+        # The ? in the first position says:
+        #   """use the original value in this position (i.e. the subject)
+        #      from the tested statement when creating the asserted statement"""
+        Set(c, '? : can use : forums' )
+
+    #A "utility" rule that displays all asserted facts
+    @when_all(+m.subject)
+    def output(c):
+        print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+     
+```
+
+We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules.
+
+Facts are asserted in the form: `subject : predicate : object`.
+
+We assert facts in the context of a particular ruleset via a cell block magic, `%%assert_facts -r RULESET_NAME`.
+
+Run the following cell to assert some facts against the `RULESET_1` ruleset:
+
+```python
+%%assert_facts -r RULESET_1
+Sam : is : student
+Jo : is : course manager
+```
+
+We can’t easily add rules to a pre-existing ruleset, so let’s create another ruleset, building on the first, that contains another rule:
+
+```python
+RULESET_2 = new_ruleset()
+with ruleset(RULESET_2):
+    
+    @when_all(Subject("is", "course manager"))
+    def cm_forum_use(c):
+        Set(c, '? : can read : forum discussions' )
+
+
+    # -- PREVIOUS RULES --
+
+    @when_all(Subject("is", "student"))
+    def cm_forum_use(c):
+        Set(c, '? : can use : forums' )
+
+    @when_all(+m.subject)
+    def output(c):
+        print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+ 
+```
+
+Let’s test our assertions again:
+
+```python
+%%assert_facts -r RULESET_2
+Sam : is : student
+Jo : is : course manager
+```
+
+So, course managers can *read* forum discussions, but students can *use* forums. What might that entail?
+
+In the following set, we define two rules that test the same condition, but with different actions:
+
+```python
+RULESET_3 = new_ruleset()
+with ruleset(RULESET_3):
+    
+    @when_all(Subject("can use", "forums"))
+    def forum_read(c):
+        Set(c, '? : can read : forum discussions' )
+        
+    @when_all(Subject("can use", "forums"))
+    def forum_post(c):
+        Set(c, '? : can post to : forum discussions' )
+        
+    
+    # -- PREVIOUS RULES --
+    @when_all(Subject("is", "course manager"))
+    def cm_forum_use(c):
+        Set(c, '? : can read : forum discussions' )
+
+    @when_all(Subject("is", "student"))
+    def student_forum_use(c):
+        Set(c, '? : can use : forums' )
+
+    @when_all(+m.subject)
+    def output(c):
+        print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+ 
+```
+
+What can we determine now? 
+
+```python
+%%assert_facts -r RULESET_3
+Sam : is : student
+Jo : is : course manager
+```
+
+At the next level of complexity, we might want to draw some conclusions about multiple facts. Suppose, for example, that we wish to identify people who have ‘engaged’ with the forums. We might define such people as people who have read a forum post and who have posted to a forum. 
+
+```python
+%%assert_facts -r RULESET_3
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+```
+
+The rules we have seen so far test just a single condition, so how do we test *two* conditions?
+
+```
+if ?PERSON has read forum post AND ?PERSON has posted to forum
+then ?PERSON has engaged with forum
+```
+
+This is where things start getting trickier, and where we shall finish our quick introduction to creating rules with the durable-rules framework. Briefly, we create a temporary reference when a fact matches a condition, and then compare those temporary references to see whether the same fact satisfied both conditions:
+
+```python
+RULESET_4 = new_ruleset()
+with ruleset(RULESET_4):
+    
+    @when_all(c.first << Subject('has read', 'forum post'),
+              c.second << Subject('has posted to', 'forum') & (m.subject == c.first.subject))
+    def forum_discussions(c):
+        c.assert_fact({ 'subject': c.first.subject,
+                       'predicate': 'has engaged with',
+                       'object': 'forum' })
+
+    @when_all(+m.subject)
+    def output(c):
+        print('Fact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+ 
+```
+
+Let’s now test the following assertions to see who has been identified as engaging with the forums:
+
+```python
+%%assert_facts -r RULESET_4
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+```
+
+Hopefully, from these examples and the earlier Eliza example you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier-presented facts) using quite simple rules. But while each rule might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.
+
+
+### Trying out another ruleset
+
+Let’s try another example, this time using one of the example rulesets provided in the durable-rules documentation.
+
+We’ll also see how we can add another dimension to the rules and create a ruleset that speaks back to us.
+
+You’ve already seen how we can get the simulated robot to speak, but how might we go about getting our notebooks to talk to us?
+
+
+### Talking notebooks
+
+To get the robot to speak in the simulator, we make use of the browser’s JavaScript speech engine. This speech engine was also used to allow Eliza to speak. It’s not too hard to pull together a simple Python package, intended for use in Jupyter notebooks, that makes it easy for us to call this engine from a single line of Python code running via a notebook code cell that is not prefixed with the simulator magic.  
+
+
+The following example demonstrates one such approach. The Python object that manages the speech actions also keeps track of how many messages have been posted and returns a visual count of utterances, alongside a transcript of each utterance.
+
+```python
+from nb_simple_speech import Speech
+```
+
+Create a speaker...
+
+```python
+speaker = Speech()
+```
+
+And listen to them talk:
+
+```python
+speaker.say('Hello, how are you?')
+speaker.say('All well, I hope?')
+```
+
+You can list the available voices by running the following code cell:
+
+```python
+print(browser_voicelist)
+```
+<!-- #region tags=["alert-danger"] -->
+*If no voices are listed your browser may not support the full range of speech commands. Try using a recent version of Google Chrome instead.*
+<!-- #endregion -->
+
+Change the voice by setting the desired voice number: 
+
+```python
+speaker.set_voice(49)
+speaker.say('I can change my voice')
+```
+
+You can use the following command to reset the message count in the transcript:
+
+```python
+speaker.reset_count()
+speaker.say('hello again')
+```
+
+Now we can listen to the rules as they are fired, as well as seeing a report that shows the order in which they were fired.
+
+```python
+RULESET = new_ruleset()
+with ruleset(RULESET):
+    @when_all(c.first << Subject('eats', 'flies'),
+              Subject('lives', 'water') & (m.subject == c.first.subject))
+    def frog(c):
+        c.assert_fact(SPO(c.first.subject, 'is', 'frog'))
+
+    @when_all(c.first << Subject('eats', 'flies'),
+              Subject('lives', 'land') & (m.subject == c.first.subject))
+    def chameleon(c):
+        c.assert_fact(SPO(c.first.subject, 'is', 'chameleon'))
+        
+    @when_all(Subject('eats', 'worms'))
+    def bird(c):
+        speaker.say(f'Given {c.m.subject} eats worms')
+        Set(c, '? : is : bird')
+        speaker.say(f'then {c.m.subject} is a bird')
+
+    @when_all(Subject('is', 'frog'))
+    def green(c):
+        Set(c, '? : is : green')
+
+    @when_all(Subject('is', 'chameleon'))
+    def grey(c):
+        Set(c, '? : is : grey')
+
+    @when_all(Subject('is', 'bird'))
+    def black(c):
+        speaker.say(f'Given {c.m.subject} is a bird')
+        Set(c, '? :is : black')
+        speaker.say(f'then {c.m.subject} is black')
+        
+    @when_all(Subject("is", "bird"))
+    def can_fly(c):
+        speaker.say(f'Given {c.m.subject} is a bird')
+        Set(c, '? : can : fly' )
+        speaker.say(f'then {c.m.subject} can fly')
+
+    @when_all(+m.subject)
+    def output(c):
+        print('\nFact: {0} {1} {2}'.format(c.m.subject, c.m.predicate, c.m.object))
+```
+
+```python
+%%assert_facts -r RULESET
+Kermit : eats : worms
+```
+
+## More general forms of rules
+
+So far we have focused on reasoning about ‘facts’ in the form of statements with the form *subject predicate object*.
+
+But this actually represents a more complicated form of reasoning than the rules engine actually employs because the *atomic* smallest possible facts are not the *subject predicate object* triples at all, they are the individual properties: `{subject: SUBJECT}`, `{predicate: PREDICATE}` and `{object: OBJECT}`.
+
+
+
+### Facts versus events
+
+Facts persist, whereas events are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.
+
+For example, imagine a case where we want to avoid a red line, because red lines indicate danger.
+
+
+```python
+from durable.lang import post
+
+RULESET = new_ruleset()
+with ruleset(RULESET):
+    # this rule will trigger as soon as three events match the condition
+    @when_all(m.color=='red')
+    def see_red(c):
+        speaker.say(f'I see red')
+        c.assert_fact({'status': 'danger'})
+        
+    @when_all(m.color!='red')
+    def not_red(c):
+        speaker.say(f'I see {c.m.color}')
+        c.assert_fact({'status': 'safe'})
+
+    @when_all( m.status == 'danger')
+    def dangerous(c):
+        speaker.say(f'That is dangerous.')
+        c.retract_fact({'status': 'danger'})
+        
+    @when_all( m.status == 'safe')
+    def safe(c):
+        speaker.say(f'That is safe.')
+        c.retract_fact({'status': 'safe'})
+          
+
+```
+
+What happens when if we detect a red colour?
+
+```python
+post(RULESET, {'color': 'red' });
+```
+
+How about if we detect a green colour?
+
+```python
+post(RULESET, {'color': 'green' });
+```
+
+What if we see red, then green quickly after?
+
+```python
+post(RULESET, {'color': 'red' });
+post(RULESET, {'color': 'green' });
+```
+
+### How might rules be useful in a robot context?
+
+Although we can easily create our own `if...` statements in the program downloaded to the simulator and control the robot’s behaviour that way, it may be more convenient to develop, and test, a large and possibly complex rule-based set of behaviours using a framework such as durable-rules.
+
+This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook’s Python context, passing them as events to the durable-rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.
+
+We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule-based system, in a later notebook.
+
 
 ## Summary
 
-In this notebook you have experimented with some simple Braitenberg vehicles, seeing how a reactive control strategy based on some simple sensor inputs can lead to different emergent behabviours in the robot. In some cases, we might be tempted to call such behaviours "intelligent", or to ascribe certain *desires* to the robot (such as '*it __wants__ to this*) but that is not really the case: the robot is simply reacting to particular inputs in a particular way.
+In this notebook, you have seen how a rule-based agent originally created over fifty years ago can still hold a conversation (of sorts!) today. By providing different scripts containing only a few dozen rules, quite wide-ranging conversations are possible if the human conversant adds the detail.
+
+The durable-rules framework provides an example of a system that can be used to generate a more powerful rule-based system. Reasoning about a set of persistent facts, or ephemeral events, rule-based systems constructed using frameworks such as this can be used to implement a wide range of systems, from fraud-detection systems to systems that implement complex sets of business rules in a corporate context. Such systems can also be developed to implement actual robot controllers, with rules accepting events based on incoming sensor data as well as higher-level beliefs (that is, ‘facts’) derived from sensor data events and other facts.
+
+In a later part of the block, you will have an opportunity to see how a multi-agent system can be built where the simulated robot can pass sensor readings to an external rule-based system, which will process the data and return some sort of response that the robot can then act on.
+
+<!-- #region heading_collapsed=true -->
+## Addendum
+
+Adding a simple Python speech utility in a Jupyter notebook is quite easy if we make use of the JavaScript speech engine in the browser used to render the notebook. This addendum shows how.
+
+*(You are not required to study this addendum for the purposes of the module.)*
+<!-- #endregion -->
+
+<!-- #region hidden=true -->
+To create a simple Python speech function, we need to import the `IPython.display.Javascript` package that lets us run JavaScript code in the browser from Python.
+<!-- #endregion -->
+
+```python hidden=true
+from IPython.display import Javascript, display
+```
+
+<!-- #region hidden=true -->
+Then we can define a simple function that invokes the JavaScript speech engine with a provided piece of text:
+<!-- #endregion -->
+
+```python hidden=true
+def say(txt):
+    """Say a provided text sentence out loud."""
+    display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{str(txt)}"))'))
+```
+
+<!-- #region hidden=true -->
+We can create a further level of abstraction by putting the function inside a Python `class`:
+<!-- #endregion -->
+
+```python hidden=true
+class Speech():
+    def say(self, txt):
+        """Say a provided text sentence out loud."""
+        display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{str(txt)}"))'))
+        
+speaker = Speech()
+speaker.say('hello')
+```

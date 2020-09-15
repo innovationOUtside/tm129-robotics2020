@@ -3,14 +3,30 @@ jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: Markdown
+      format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.2
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
 ---
+
+# 3 Emergent behaviour: Braitenberg’s vehicles
+
+
+In Study week 2 you came across Valentino Braitenberg’s ideas on the behaviour of robots *emerging* from the way they are wired up. The figure below shows two ways of connecting sensors to motors. In (a), the left sensor is connected to the left motor and the right sensor is connected to the right motor. In (b) these connections are reversed.
+
+
+![Diagrams representing Braitenberg vehicles alongside simulated robots wired up in a similar fashion. A Braitenberg vehicle and our simulated robot are very similar: they have two wheels, one each side, and two light sensors, one on the left and one on the right of the front of the robot. A pair of Braitenberg vehicles are shown, one light avoiding and one light seeking. A light-avoiding vehicle has the left-hand light sensor connected to the left-hand motor and wheel, and the right-hand light sensor connected to the right-hand motor and wheel. A light-seeking vehicle has the left-hand light sensor connected to the right-hand motor and wheel, and the right-hand light sensor connected to the left-hand wheel. The simulated robots have wiring indicating identical connections. ](../images/tm129_rob_p4_f008.gif)
+
+
+## 3.1 Activity: Testing Braitenberg’s vehicles
+
+
+A ‘thought experiment’ suggests that the vehicle in figure (a) will move away from a light source. Similarly, another thought experiment suggests that the vehicle in figure (b) will move towards a light source. In the following activities you will test these predictions using an environment that models this set up, but uses downward-facing light sensors that take measurements from a ‘light gradient’ background, rather than forward-facing light sensors that look for a light source at ‘eye-level’ (that is, sensor-level!).
+
+To start with, let's load in the simulator:
 
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
@@ -19,155 +35,360 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbtutor
 ```
 
-# 3 Dead reckoning
 
+### Reconfiguring the robot
 
-*Dead reckoning* is a means of navigation that does not rely on external observations. Instead, a robot’s position is estimated by summing its incremental movements relative to a known starting point.
+In order to detect different values from the light sensors on the right- and left-hand sides of the robot, we need to reconfigure the robot so that the sensors are placed further apart than they are in the default robot configuration.
 
-Estimates of the distance traversed are usually obtained from measuring how many times the wheels have turned, and how many times they have turned in relation to each other. For example, the wheels of the robot could be attached to an odometer, similar to the device that records the mileage of a car.
-
-In RoboLab we will calculate the position of a robot from how long it moves in a straight line or rotates about its centre. We will assume that the length of time for which the motors are switched on is directly related to the distance travelled by the wheels.
-
-
-## 3.1 Activity — dead reckoning
-
-
-An environment for the simulated robot to navigate is shown below, based on the 2018 First Lego League "Into Orbit" challenge.
-
-The idea is that the robot must get to the target satellite from its original starting point by avoiding the obstacles in its direct path.
-
-![Space scene showing the robot, some satellites against a "space" bacground, and some wall like obstacles between the robot starting point and a target satellite](../images/Section_00_02_-_Jupyter_Notebook.png)
-
-The following program should drive the robot from its starting point, to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot's *pen down* trail.
-
-Load the *FLL_2018_Into_Orbit* background into the simulator. Run the code cell to download the program to the simulator and then, with the *Pen Down* checkbox enabled, run the program in the simulator.
-
-*Remember that you can reset the original location and orientation of the robot by clicking the simularo `Reset` button. You can clear the pen trace by clicking the simulator `Clear Trace` button.*
-
-Does the robot reach the target satellite without encountering any obstacles?
-
-
-To set the speeds and times, I used a bit of trial and error.
-
-If the route had been much more complex, I would have been tempted to  comment out the steps up I had already run an add new steps that would be applied from wherever the robot was currently located.
-
-Note that the robot could have taken other routes to get to the satellite - I just thought I should avoid the asteroid!
+In the simulator, or via the following line magic, select the *Radial_grey* background and tick the *Pen Down* checkbox.
 
 ```python
-%%sim_magic_preloaded -b FLL_2018_Into_Orbit -p
-
-import playsound
-
-# Turn on the spot to the right
-tank_turn.on_for_rotations(100, SpeedPercent(75), 0.8 )
-
-# Go forwards
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 4)
-
-# Slight graceful turn to right
-tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(30), 2.5)
-
-# Turn on the spot to the left
-tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.8 )
-
-# Forwards a bit
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 0.8)
-
-#Turn on the spot a bit more to the left
-tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.6 )
-
-# Go forwards a bit more and dock on the satellite
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 1.5)
-
-playsound.say("Hopefully I have docked with the satellite...")
+%sim_magic -p -b Radial_grey
 ```
 
+You may notice that the simulator’s left and right light sensors appear to be further apart than they have been previously. This has been done via a change to the robot configuration setting that is applied automatically when the *Radial_grey* background is loaded.
+
+
+#### Manually changing the robot configuration settings
+
+You can manually increase the spacing between the sensors by:
+
+- clicking the *Configure Robot* button in the simulator to open a window containing the robot configuration settings
+- in the robot configuration settings window, scroll down to the `"sensor1"` parameters and change the `"x"` value from the default value of `-20` to the new value `-60`
+- for `"sensor2"`, change the `"x"` value from its default value of `20` the new value `60`
+- click the *Apply* button.
+
+If you look at the robot in the simulator then you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centreline.
+
+
+### Exploring the *Radial_grey* world
+
+Run the following code cell to download the program to the simulator and then run it in the simulator. For now, don’t pay too much attention to the code: our initial focus is purely on what we can observe about the behaviour of the robot.
+
+Observe what happens paying particularly close attention to the trajectory the robot follows.
+
+Enter a new starting location in the simulator, changing the original Y value from `400` to the new value `600`. Click the *Move* button to move the robot to that location and run the simulator again. How does the robot move this time? 
+
+```python
+%%sim_magic_preloaded -p -b Radial_grey -y 400
+
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity_pc > 5) 
+       and (colorRight.reflected_light_intensity_pc > 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print(intensity_left, intensity_right)
+    
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+ 
+```
+With the robot starting just *below* the centerline on the radial grey background, you should notice that as it moves across the background it veers away from the light on a path that curves towards the bottom right of the simulator screen, steering to the right from the robot’s perspective. 
+
+When the robot starts *above* the centerline, it veers away on the left-hand side of the central bright point (that is, the robot steers to its left).
+
+If the robot starts on the centerline then it continues on a straight path.
+
+<!-- #region -->
+So how does the program work?
+
+If you inspect it closely, you will see it is split into several parts.
+
+The first part just clarifies the sensor configuration:
+
+```python
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+```
+
+Then we have a `while...` loop that ensures the program keeps running until either the left or the right sensor value sees a particularly dark value:
+
+```python
+while ((colorLeft.reflected_light_intensity_pc > 5) 
+       and (colorLeft.reflected_light_intensity_pc > 5)):
+```
+
+Inside the `while...` block is the ‘intelligence’ of the program.
+
+
+The values are displayed in the simulator output window using a `print()` statement, and are then used to set the motor speeds:
+
+```python
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+```
+
+In this configuration:
+
+- the percentage-scaled *left* sensor value determines the speed value applied to the *left* motor
+- the percentage-scaled *right* sensor value determines the *right* motor speed.
+
+The sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. As described by the program, the left motor thus turns more quickly than the right motor, and so the robot turns toward its right-hand side and veers away from the light source.
+<!-- #endregion -->
+
+### Crossing the wires
+
+Now let’s see what happens if we run the following program which uses:
+
+- the *left* light sensor to control the speed of the *right* motor
+- the *right* light sensor to control the speed of the *left* motor.
+
+Still using the *Radial_grey* background, clear the traces in the simulator.
+
+Run the following code cell to download the program to the simulator and then run it in the simulator.
+
+Move the robot to the starting location `X=100, Y=700` and run the program again.
+
+How does the robot's behaviour with the "cross-wired" sensors and motors compare with the "direct", same-side wiring?
+
+```python
+%%sim_magic_preloaded -b Radial_grey
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity_pc > 5) 
+       and (colorRight.reflected_light_intensity_pc > 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print(intensity_left, intensity_right)
+    
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+ 
+```
+
+When the program runs this time, the robot arcs *towards* the light: if it starts below the centreline, then the robot turns to its left and up towards the light; if it starts above the centreline, then the robot turns to its right, and curves down towards the light.
+
+
+<!-- #region activity=true -->
+#### Question
+
+How is the robot’s behaviour explained by the program this time?
+<!-- #endregion -->
+
 <!-- #region student=true -->
-*Add your notes on how well the simulated robot performed the task here.*
+*Double-click this cell to edit it and enter your explanation of why the robot behaves as it does.*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Answer
+
+*Click the arrow in the sidebar or run this cell to reveal my answer.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+The sensor values are mapped onto motor speeds with the following lines of code:
+
+```python
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+```
+ 
+In this configuration, the percentage-scaled *right sensor* value determines the speed value applied to the *left motor*, and the percentage-scaled *left sensor* value sets the *right motor* speed. 
+
+As before, the sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centreline, the left sensor reads a higher value than the right sensor. This results in the right-hand motor turning more quickly than the left motor. As a result, the robot turns toward its left-hand side and turns towards the light source.
+<!-- #endregion -->
+
+<!-- #region -->
+### Looking at the data
+
+
+To understand a little more closely what the sensors are seeing, tick the *Show chart* checkbox in the simulator and select the *Left light* and *Right light* traces. 
+
+To start with, let's just make sure the datalog is empty:
+<!-- #endregion -->
+
+```python
+# Clear the datalog
+roboSim.clear_datalog()
+```
+
+The following program streams the necessary data elements to the simulator output window.
+
+Run the program and observe the behavior of the traces.
+
+How do the traces differ in value?
+
+```python
+%%sim_magic_preloaded -c -b Radial_grey
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity_pc > 5) 
+       and (colorLeft.reflected_light_intensity_pc > 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print('Light_left: ' + str(intensity_left))
+    print('Light_right: ' + str(intensity_right))
+    
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
+   
+    tank_drive.on(left_motor_speed, right_motor_speed)
+
+```
+By inspection of the traces, you should notice that one of them is always slightly higher than the other.
+
+We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchronised datalog.
+
+Run the following code cell.
+
+```python
+#Grab the logged data into a pandas dataframe
+df = eds.get_dataframe_from_datalog(roboSim.results_log)
+
+#Preview the first few rows of the dataset
+df.head()
+```
+
+Run the following code cell to plot the data using the `seaborn` scientific charting package:
+
+```python
+import seaborn as sns
+
+# A line plot is a sensible chart type to use
+# to plot the time series data
+ax = sns.lineplot(x="index",
+                  y="value",
+                  hue='variable',
+                  data=df)
+```
+
+
+<!-- #region -->
+## 3.2 Using ultrasound
+
+
+We can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-## 3.2 Challenge: reaching the moon base
+### Activity — Using ultrasound
+
+Load in the *Obstacles_Test* background and run the following code cell to download the program to the simulator. Ensure that the background is loaded and that the ultrasound rays are enabled, and then run the program in the simulator.
 <!-- #endregion -->
 
-<!-- #region activity=true -->
-In the following code cell, write a program to move the simulated robot from its location servicing the satellite to the moon base identified as the circlular area marked on the moon in the top right hand corner of the simulated world.
-
-In the simulator, set the robot's X location to `1250` and Y location `450` and use the *Move* button to loate the robot there.
-
-Use the following code cell to write your own dead reckoning program to drive the robot to the moon base at location `(2150, 950)`.
+<!-- #region tags=["active-warning"] activity=true -->
+*You can enable the ultrasound sensor rays by passing the `-u` switch in the simulator magic or via the Obstacles popup in the simulator itself.*
 <!-- #endregion -->
 
 ```python activity=true
-%%sim_magic_preloaded
+%sim_magic -u
+```
 
-# YOUR CODE HERE
+<!-- #region activity=true -->
+Record your observations of the the behaviour of the robot when the program is run in the simulator with the robot starting in different positions (for example, for combinations of `(X, Y, Angle)` of `(120, 120, 90)`, `(210, 120, 90)`, `(500, 170, 145)` and `(500, 370, 75)`. Based on your observations, what sort of behaviour does the robot appear to be exhibiting?
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Record your observations here about what the robot appears to be doing when the program is run in the simulator with the rovot starting in different positions.*
+<!-- #endregion -->
+
+```python activity=true
+%%sim_magic_preloaded -b Obstacles_Test -u -x 120 -y 120 -a 90
+
+import time
+ultrasonic = UltrasonicSensor(INPUT_1)
+
+u = ultrasonic.distance_centimeters
+print('Ultrasonic: ' + str(u))
+
+time.sleep(1)
+
+while  u > 1:
+    u = ultrasonic.distance_centimeters
+    
+    print('Ultrasonic: ' + str(u))
+    
+    speed = min(100, u)
+    
+    left_motor_speed = SpeedPercent(speed)
+    right_motor_speed = SpeedPercent(speed)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
 
 ```
 
-## 3.3 Dead reckoning with noise
+<!-- #region student=true -->
+*Based solely on your observations, what sort of behaviour does the robot appear to be performing?*
+<!-- #endregion -->
 
+<!-- #region student=true -->
+*With reference to the program, what actions is the robot actually performing? Annotate the program with comments that describe the behaviour each setp is intended to produce.*
+<!-- #endregion -->
 
-The robot traverses its path using timing information for dead reckoning. In principle, if the simulated robot had a map, it could calculate all the distances and directions for itself, convert these to times, and dead reckon its way to the target. However, there is a problem with dead reckoning: *noise*.
+<!-- #region activity=true heading_collapsed=true -->
+#### Answer
+*Click the arrow in the sidebar or run this cell to reveal my answer.*
+<!-- #endregion -->
 
-In many physical systems, a perfect intended behaviour is subject to *noise*, random perturbations that arise within the system as time goes on as a side-effect of its operation. In a robot, noise might arise in the behaviour of the motors, the transmission or the wheels. The result is that the robot does not execute its motion without error. We can model noise effects in the mobility system of out robot by adding a small amount of noise to the motor speeds as the simulator runs. This noise componenent may speed up, or slow down, the speed of each motor, in a random way. As with real systems, the noise represents are slight random deviations from the theoretical, ideal behaviour.
+<!-- #region activity=true hidden=true -->
+When the program is run in the simulator, the robot moves forwards but then slows down as it approaches the obstacle as if it was a bit wary of it. The robot eventually stops as it reaches the obstacle *if* the obstacle is directly in front of the centerline of the robot. Otherwise, the robot inches up the obstacle, moves with its wheels over it, and then accelerates away once it is clear of the obstacle.
 
+I have commented to the program to explain how I think it works.
+<!-- #endregion -->
 
-Run the following code cell to download the program to the simulator. Select an empty background (select the *Empty Map*) and tick the *Pen Down* checkbox. Also reset the initial location of the robot to an X value of `50` and Y value of `400`; use the simulator *Move* button to move the robot to that location.
+```python activity=true hidden=true
+%%sim_magic_preloaded -b Obstacles_Test -u -x 120 -y 120 -a 90
 
-Run the program in the simulator and observe what happens.
+import time
+ultrasonic = UltrasonicSensor(INPUT_1)
 
-```python
-%%sim_magic_preloaded -b FLL_2018_Into_Orbit -p
+# Wait for a moment:
+# ultrasound sensors can take a moment or two to
+# start working as they take soundings on the environment
+time.sleep(1)
 
-tank_drive.on_for_rotations(SpeedPercent(30),
-                            SpeedPercent(30), 3)
-```
+# Grab the sensor reading
+# as a distance in cm
+u = ultrasonic.distance_centimeters
 
-When you run the program, you should see the robot drive forwards a short way in a straight line, leaving a staight line trail behind it.
+print('Ultrasonic: ' + str(u))
 
-Reset the location of the robot by clicking the simulator *Move* button. Also within the simulator, increase the *Wheel noise* value from zero by dragging the slider to the right a little way.
+# Check the distance to an obstacle
+# Loop whilst the distance is greater than 1cm
+# Note that from the ray trace, the sensor 
+# appears to be mounted a little way in
+# from the front edge of the robot.
+while  u > 1:
+    # Resample the ultrasonic sensor reading
+    u = ultrasonic.distance_centimeters
+    print('Ultrasonic: ' + str(u))
+    
+    # Set a speed limit to the lesser of
+    # 100 and the obstacle distance in cm
+    speed = min(100, u)
+    
+    # Set the motor speeds based on the distance
+    # to the nearest obstacle
+    left_motor_speed = SpeedPercent(speed)
+    right_motor_speed = SpeedPercent(speed)
+    tank_drive.on(left_motor_speed, right_motor_speed)
+    
+# The distance must be less than 1cm
+# so end the program and implicitly turn the motors off
 
-Run the program in the simulator again.
-
-You should notice this time that the robot does not travel in a straight line. Instead, it drifts from side to slide although possible to one side of the line.
-
-Move the robot back to the start poistion (click the *Move* button) and run the program in the simulator again. This time, you should see it follows yet another different path.
-
-Depending on how severe the noise setting is, the robot will travel closer (low noise) the original straight libe, or follow an ever more erratic path (high noise).
-
-
-Now run the original satellite finding dead reckoning program again, using the *FLL 2018 - Into Orbit* background, but in the presence of *Wheel noise*. Does it:
-
-```python
-%%sim_magic_preloaded
-
-import playsound
-
-# Turn on the spot to the right
-tank_turn.on_for_rotations(100, SpeedPercent(75), 0.8 )
-
-# Go forwards
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 4)
-
-# Slight graceful turn to right
-tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(30), 2.5)
-
-# Turn on the spot to the left
-tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.8 )
-
-# Forwards a bit
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 0.8)
-
-#Turn on the spot a bit more to the left
-tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.6 )
-
-# Go forwards a bit more and dock on the satellite
-tank_drive.on_for_rotations(SpeedPercent(30), SpeedPercent(30), 1.5)
-
-playsound.say("Hopefully I have docked with the satellite...")
 ```
 
 ## Summary
 
-In this notebook you have seen how we can use dead reckoning to move the robot along a specified path. However, in the presence of noise, this is very unreliable: whilst the robot may think it is following one path, it may in fact be following another. And whilst in some cases it may reach the target safely, in others it may end somewhere completely different, or encounter an obstacle along the way.
+In this notebook you have experimented with some simple Braitenberg vehicles, seeing how a reactive control strategy based on some simple sensor inputs can lead to different emergent behaviours in the robot. In some cases, we might be tempted to call such behaviours ‘intelligent’, or to ascribe certain *desires* to the robot (such as ‘*it __wants__ to this*’), but that is not really the case: the robot is simply reacting to particular inputs in a particular way.
