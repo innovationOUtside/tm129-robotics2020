@@ -199,7 +199,7 @@ The resulting network looks like this:
 ```python
 from VisualizeNN import DrawNN, mlp_structure
 
-network_structure = mlp_structure(2, [6, 6], 4)
+network_structure = mlp_structure(input_nodes, hidden_nodes, output_nodes)
 network = DrawNN(network_structure)
 
 # Draw the Neural Network without weights
