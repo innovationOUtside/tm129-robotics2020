@@ -8,6 +8,37 @@ from sklearn.preprocessing import normalize
 
 import pandas as pd
 
+
+# +
+from sklearn.neural_network import MLPClassifier
+
+# tqdm provides progress bars to wrap around iterators
+from tqdm.notebook import tqdm
+from sklearn.utils._testing import ignore_warnings
+from sklearn.exceptions import ConvergenceWarning
+
+@ignore_warnings(category=ConvergenceWarning)
+def progress_tracked_training(data, labels, MLP=None, hidden_layer_sizes=(30), max_iterations=40):
+    """MLP trainer with progress bar."""
+    iterator_start = 0
+    if not MLP:
+        #Create the initial network
+        MLP = MLPClassifier(hidden_layer_sizes=hidden_layer_sizes, max_iter=1,
+                        verbose=False)
+        iterator_start += 1
+        max_iterations += 1
+    #provide an initial training iteration to define the classes
+    MLP.fit(data, labels)
+
+    #Now cycle through the remaining iterations
+    for i in tqdm(range(iterator_start, max_iterations)):
+        # Perform another training iteration
+        MLP.partial_fit(data, labels)
+        
+    return MLP
+
+
+
 # -
 
 def reshape_data(img, n_images=3000, size=(28, 28)):
@@ -93,7 +124,7 @@ def _test_display(MLP, sample, label):
     display(pd.DataFrame(MLP.predict_proba([sample])).T.plot(kind='bar'))
 
 
-def test_display(MLP, img, label):
+def test_display(MLP, img, label=''):
     """Test an image against a pretrained classifier and display the result"""
     flat_image = array_from_image(img).reshape(1, img.size[0]*img.size[1])
     normalised_flat_image = normalize(flat_image, norm='max', axis=1)
@@ -104,10 +135,14 @@ def test_display(MLP, img, label):
     #Plot the class predictions as a bar chart
     _df.plot(kind='bar', legend=False, title="Confidence score for each class")
     
+    prediction = MLP.predict(normalised_flat_image)[0]
     # Report the actual and predicted class labels
-    print(f'Actual label: {label}')
-    print(f'Predicted label: {MLP.predict(normalised_flat_image)[0]}')
-    
+    if label:
+        print(f'Actual label: {label}')
+        print(f'Predicted label: {prediction} [{prediction == label}]')
+    else:
+        print(f'Predicted label: {prediction}')
+        
     # Display the sample as an image
     display(img)
 
@@ -144,3 +179,46 @@ def predict_and_report_from_image(MLP, img, label,
     prediction = class_predict_from_image(MLP, img, quiet=quiet)
 
     print(f"MLP predicts {prediction} compared to label {label}; classification is {prediction == label}")
+
+
+# -
+
+# We need a function that will accept a test image and that will:
+# - test it;
+# - display it;
+# - display the test chart
+def grabbed_image_predictor(img, label=''):
+    # Convert to grayscale
+    img = img.convert('L')
+    if img.size==(20, 20):
+        print("Cropping..")
+        img = img.crop((3, 3, 17, 17))
+        
+    if img.size!=(28, 28):
+        print("Resizing")
+        img = img.resize((28, 28), Image.LANCZOS)
+    
+    #resized_image_bw_list = list(img.getdata())
+
+    # get data as normalised array
+    resized_image_bw_array = np.array(img.getdata()).astype(np.uint8)
+    normalised_resized_image_bw_array = normalize([resized_image_bw_array], norm='max', axis=1)
+
+    # Get the prediction for likelihood of class membership as a dataframe
+    _dfx = pd.DataFrame(MLP.predict_proba(normalised_resized_image_bw_array)).T
+
+    #Plot the class predictions as a bar chart
+    _dfx.plot(kind='bar', legend=False, title="Confidence score for each class")
+
+    prediction = MLP.predict(normalised_resized_image_bw_array)[0]
+    # Report the actual and predicted class labels
+    if label:
+        # Report the actual and predicted class labels
+        print(f'Actual label: {label}')
+        print(f'Predicted label: {prediction} [{prediction == label}]')
+    else:
+        # Report the predicted class label
+        print(f'Predicted label: {prediction}')
+        
+    # Display the sample as an image
+    display(img)
