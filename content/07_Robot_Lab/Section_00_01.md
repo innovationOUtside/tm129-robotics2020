@@ -31,378 +31,6 @@ The approach we will use, although much simpler approach than the full ROS archi
 
 After testing this approach, we will then explore a simple message passing protocol where the simulated robot sends a message to the Python environment containing the image sensor data, the data is run through the MLP, and the classification response is sent back to the simulated robot.
 
-
-## Extracting MNIST training images from an image data file
-
-The MNIST training data used by the various browser based neural network tools we have been using is itself stored in image files, with each row of the image file containing the 28 x 28 x 1 = 784 pixel values that represent each 28 x 28 pixel training image.
-
-This is what one of the training data image files looks like:
-
-![](mnist_batch_0.png)
-
-At first glance, it doesn't look like a lot of handwritten digits, does it?
-
-So let's investigate it a little bit more.
-
-When displayed as an image, the image is 784 pixels wide and 3000 pixels high, which we can see from the size of the image if we load it in to Python as an image object:
-
-```python
-from PIL import Image
-
-#Load in the image data file
-img = Image.open('mnist_batch_0.png')
-
-#If the image is a colour image, we can use various tools
-#to convert it to a greyscale image
-#.convert("L")
-
-# Display the size of the image as (rows, columns)
-img.size
-```
-
-This image itself contains 3000 lines of MNIST image data, corresponding to 3000 separate handwritten digit images. The 784 columns in each row represent a linearised version of the $28 \times 28 = 784$ values that represent the values of each pixel in each `28x28` handwritten digit image.
-
-We can preview what one of the rows looks like by running the following code cell:
-
-```python
-# If we convert the image data to a one dimensional array (i.e. a list of values)
-# the first 784 elements will represent the contents of the first row
-# That is, a linear representation of the the first 28x28 pixel sized handwritten digit image
-print(list(img.getdata())[:784])
-```
-
-We can inspect the image object to see how the data has been encoded:
-
-```python
-img.getbands()
-```
-
-In this case, from the [`PIL` package documentation](https://pillow.readthedocs.io/en/4.1.x/handbook/concepts.html#modes), we see that mode `L` corresponds to a black and white image encoded with 8-bit pixels, defining each pixel as an integer with one of $2^8$ values, which is to say, an integer in the range `0..255`, as can be seen from the preview of the first row of the image data.
-
-What happens if we take one of these rows of data, cast it into its own 28x28 array, and convert it to an image file format?
-
-```python
-import numpy as np
-
-# Turn the image data into a multidimensional array
-# of 3000 separate 28 x 28 arrays
-images_array = np.array(img).reshape(3000, 28, 28)
-
-#Get the third item (index value 2), that is, the third 28x28 image data array
-image_array = images_array[2]
-
-# And convert it to an image
-image_image = Image.fromarray(image_array)
-
-# Then display it
-image_image
-```
-
-The `sensor_data.image_from_array()` function will also create the image for us using the same approach:
-
-```python
-from sensor_data import image_from_array
-
-image_from_array(image_array)
-```
-
-We can zoom in on an image to look at it in more detail:
-
-```python
-from sensor_data import zoom_img
-
-zoom_img(image_image)
-```
-
-We now see the handwritten digit not as series of numbers but as an actual image.
-
-We can also view the image data in a pandas dataframe, trimming the dataframe to remove background coloured edging.
-
-*By default, the dataframe returning functions will preview the dataframe with colour highlight; pass the attribure `show=False` to disable this view.*
-
-```python
-from sensor_data import trim_image, df_from_image
-
-trimmed_image = trim_image( df_from_image(image_image, show=False), background=0)
-```
-
-To recap, the original *mnist_batch_0.png* file, which just happened to be an image file and could be viewed as such, was actually being used as a convenenient way of transporting 3000 rows of data. In turn, each row of data could itself be transformed into a square data array that could be then be rendered as a distinct handwritten digit image. The image itself, of course, is just numbers underneath...
-
-At this point, you may be wondering what this has to do with training neural networks, let alone programming robots. What is serves to demonstrate is that training a neural network on some test data may require a range of computer skills and knowledge to even get the data into a form where you can begin to make use of it.
-
-Working with file formats and raw data representations often represents a large part of the workload associated with building any data analysis, modeling, or classification task, and often requires significant computational data handling skills. Whilst we don't expect you to learn how to perform these data wrangling tasks yourself as part of this module, you should be aware then when you see recipes saying things like "*just load in the dataset...*", there may be quite a lot of work associated with that word, *just*.
-
-
-### Training a simple MLP on the MNIST image data
-
-Although MLP classifiers can struggle with large images, the 28x28 pixel image size used for the MNIST images is not too large to train an MLP on, although it does require an input layer containing 784 neurons, one for each pixel.
-
-To train the MLP on the linearised pixel values, we need to present labeled images that identify the category (that is, the digit) that each image represents.
-
-The training labels are provided in a separate file which we can load in as follows:
-
-```python
-import json
-
-# The labels.txt file contains 3000 digit labels in the same order as the image data file
-with open('labels.txt', 'r') as f:
-    labels=json.load(f)
-
-# Show the length of the label array and the value of the first 10 digits
-len(labels), labels[:10]
-```
-
-### Grabbing random test images and their labels
-
-Recalling the maxim that "code is a tool for building tools", we can define a function to retrieve a random image from the data set. The element of chance is provided by the Python `random` package. This package contains functions for creating a variety of diffrerent sorts of random numbers (floating point nubers, integers) within a specified range.
-
-For example, we can create a random number in the range 0...3 using the `random.randint()` function, which takes lower and upper bounds on the range of integers to be returned as parameters:
-
-```python
-import random
-
-random.randint(0, 100)
-```
-
-The following cell defines a function to retrieve a random image:
-
-```python
-def get_random_image(show=True):
-    """Return a random image and label."""
-    _index = random.randint(0, len(images_array))
-    
-    #Get the first item, that is, the first 28x28 image data array
-    image_array = images_array[ _index ]
-
-    # And return an image created from it
-    return Image.fromarray(image_array), labels[_index] 
-```
-
-Run the following cell repeatedly to try it out:
-
-```python
-(test_img, test_label) = get_random_image()
-
-display(test_label, test_img)
-```
-
-### Displaying images and their labels by index value
-
-We can also create a simple Python function to display a handwritten image from the MNIST dataset, along with its label. The function accepts a single integer that is used as the index number for the image we want to display, reusing code we have already worked out:
-
-```python
-def displayImageLabelPair(index):
-    """Display the image and label for a MNIST digit by index value."""
-    # The display() function is provided "for free" within Jupyter notebooks
-    display( Image.fromarray(images_array[index]), labels[index])
-```
-
-We can then call the function as follows, where the `index` parameter represents the data row (starting at `0`) that we wish to render as an image along with its label:
-
-```python
-displayImageLabelPair(176)
-```
-
-## Training a simple MLP on the MNIST image data
-
-We can now train a simple MLP from the MNIST data and the training labels.
-
-The ScikitLearn `MLPClassifier` can automatically identify from a training set the number of nodes required for the input and output layers, so all we need to provide is the hidden layer(s) definition.
-
-For starters, let's see if we can train the network to classify the images using a single layer containing 40 hidden neurons:
-
-```python
-from sklearn.neural_network import MLPClassifier
-
-hidden_layer_sizes = (40)
-max_iterations = 40
-
-MLP = MLPClassifier(hidden_layer_sizes=, max_iter=max_iterations,
-                    verbose=True,
-                    # For reproducibility, set the inital random state to a specified seed value
-                    #random_state=1,
-                   )
-```
-
-We need to present the data as a list (that is, as a one-dimensional linear array) of 784 values, each in the normalised range 0..1, rather than the 0..255 range they are currently in.
-
-The data is currently in a `numpy` array containing several thousand square arrays, one per image:
-
-```python
-type(images_array), images_array.shape
-```
-
-We can apply a special method to each of the square arrays to "flatten" each one to a separate one dimensional list. We can then normalise these values to get them into the value range 0..1: 
-
-```python
-from sklearn.preprocessing import normalize
-
-# Get the dimensions of the images array as the number of images
-# and each individual image array size
-(array_n, array_x, array_y) = images_array.shape
-
-# Create a list of "flat" images,
-# where each image is represented as one dimensional list
-# containing column*row individual pixel values
-flat_images = images_array.reshape(array_n, array_x*array_y)
-
-# We can normalise the values so they fall in the range 0..1
-normalised_flat_images = normalize(flat_images, norm='max', axis=1)
-```
-
-When training the network, we can use the first 2,900 images as a training set and hold back 100 images to use as a "previously unseen" image test set.
-
-```python
-test_limit = 100
-train_limit = len(normalised_flat_images) - test_limit
-
-# Train the MLP on a subset of the images
-
-MLP.fit(normalised_flat_images[:train_limit], labels[:train_limit])
-```
-
-<!-- #region tags=["alert-success"] -->
-In defining the MLP originally, we specified a maximum number of training iterations, as well as the *verbose* reporting option. By default, a progress bar display is not available when training the MLP, but we can create one by defining a minimal MLP, training it on a single iteration to define the classes, and then training it across mutliple iterations using the `.partial_fit()` method, which applies additional training iterations to the MLP.
-
-This approach has been implemented as the function `network_views.progress_tracked_training()`:
-
-```python
-from network_views import progress_tracked_training
-
-# Usage:
-hidden_layer_sizes = (40)
-max_iterations = 50
-
-training_data = normalised_flat_images[:train_limit]
-training_labels = labels[:train_limit]
-
-# Create a new MLP
-MLP = progress_tracked_training(training_data, training_labels,
-                                hidden_layer_sizes=hidden_layer_sizes,
-                                max_iterations=40)
-
-# Top up an existing MLP
-MLP = progress_tracked_training(training_data, training_labels,
-                                MLP=MLP,
-                                max_iterations=40)
-```
-<!-- #endregion -->
-
-### Testing the performance of the network
-
-With the network trained, we can check how well it performs on the images in the training set using the classification report and confusion matrix:
-
-```python
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-
-predictions = MLP.predict(normalised_flat_images[:train_limit])
-
-print(classification_report(labels[:train_limit], predictions))
-print(confusion_matrix(labels[:train_limit], predictions))
-```
-
-We can also test it on a single image:
-
-```python
-from sensor_data import array_from_image
-
-flat_image = array_from_image(image_image).reshape(1, array_x*array_y)
-
-# We can normalise the values so they fall in the range 0..1
-normalised_flat_image = normalize(flat_image, norm='max')
-
-display(image_image, MLP.predict(normalised_flat_image))
-```
-
-Or more conveniently via the `network_views.predict_and_report_from_image()` function, this time testing against a randomly selected image:
-
-```python
-from network_views import predict_and_report_from_image 
-
-# Get a test image
-(test_image, test_label) = get_random_image()
- 
-# And test the trained MLP against it
-predict_and_report_from_image(MLP, test_image, test_label)
-```
-
-As well as testing the network against data it has already seen, we can also test it against images we held back and that it hasn't seen before. Once again, we can review the effectiveness of the network by means of the classification report and confusion matrix:
-
-```python
-predictions = MLP.predict(normalised_flat_images[train_limit:])
-
-print(classification_report(labels[train_limit:], predictions))
-print(confusion_matrix(labels[train_limit:], predictions))
-```
-
-We can summarise the performance using the MLP `.score()` function:
-
-```python
-print("Training set score: {}".format(MLP.score(normalised_flat_images[:train_limit], labels[:train_limit])))
-print("Test set score: {}".format(MLP.score(normalised_flat_images[train_limit:], labels[train_limit:])))
-```
-
-*You will have an opportunity to explore other MLP configurations and training regimes later in this notebook to see if you can improve the performance of the network.*
-
-<!-- #region activity=true heading_collapsed=true -->
-## Optional Activity — Visualising the trained MLP weights
-
-*This is an experimental optional activity. It is still quite brittle. Click the arrow in the sidebar, or run this cell, to view the activity.*
-<!-- #endregion -->
-
-<!-- #region activity=true hidden=true -->
-In passing, we can plot the 28x28 incoming weights into the hidden layer neurons in a 28x28 grid to see how they filter the input values. The code is rather fiddly, so don't try to make too much sense of it. You will notice that to human eyes at least, none of the input neurons has weights that apparently encode directly for a particular handwritten integer (1, 2, 3 etc.).
-
-Note that this only works at the moment for a single layer network with 40 hidden nodes.
-<!-- #endregion -->
-
-```python activity=true hidden=true
-from network_views import preview_weights
-
-preview_weights(MLP)
-```
-
-<!-- #region hidden=true -->
-Things don't seem much clearer if we "present" a test image to the weights by multiplying each image pixel by its coreresponding input weight to each node:
-<!-- #endregion -->
-
-```python activity=true hidden=true
-from network_views import multiply_image_by_weights
-
-image_number = 12 # References into the list of images contained in flat_images
-
-# Use the actual image data
-multiply_image_by_weights(MLP, img, labels, image_number)
-
-# Use the normalised image data
-multiply_image_by_weights(MLP, img, labels, image_number, normalised=True)
-```
-
-## Probing the behaviour of the MLP
-
-Even though it may be hard for us to see from the network's weights exactly what is going on, the network appears to be doing its job in terms of classifying digits, at least when it comes to the sample images.
-
-For example, we can use the `network_views.test_display()` function to present one of the images to the classifier and get the predicted class for it, along with a plot of the likelihood that the input is each of the possible classes.
-
-Let's try it out:
-
-```python
-from network_views import test_display
-# To see how the test_display() function is defined
-# you can uncomment and run:
-# test_display??
-# on its own in a code cell to display the code
-# that defines the function
-
-
-# Get a test image
-(test_image, test_label) = get_random_image()
- 
-# And test the trained MLP against it
-test_display(MLP, test_image, test_label);
-```
-
 ## Using the trained MLP to categorise data logged from the simulator
 
 The *MNIST_Digits* simulator background includes various digit images from the MNIST dataset, arranged in a grid.
@@ -417,18 +45,12 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbev3devsim
 ```
 
-As we're going to be collecting data from the simulator into the notebook Python enviornment, we should take the precaution of clearing the datalog before we start using it:
-
-```python
-roboSim.clear_datalog()
-```
-
 In order to collect the sensor image data, if the print message starts with `image_data` then the left channel image is sent to the data log.
 
 The `-R` switch in magic at the start of the following code cell will run the program in the simulator once it has been downloaded.  
 
 ```python
-%%sim_magic_preloaded -b MNIST_Digits -O -R -x 427
+%%sim_magic_preloaded -b MNIST_Digits -O -R -x 400 -y 50
 
 # how do we log the raw light sensor data to the datalog?
 
@@ -446,15 +68,31 @@ print("image_data left")
 # the "Image data logged..." message display
 ```
 
+As we're going to be collecting data from the simulator into the notebook Python enviornment, we should take the precaution of clearing the datalog before we start using it:
+
+```python
+roboSim.clear_datalog()
+```
+
+We can then run the data collection routine by calling a simple line magic that teleports the robot to a specific location and runs the data collection program (`-R`):
+
+```python
+%sim_magic -R -x 400 -y 850
+```
+
 We need to wait a few moments for the program to execute and the data to be sent to the notebook Python environment. Then we should be able to see the data via the `roboSim.image_data` list:
 
 ```python
-from sensor_data import generate_image, zoom_img
-index = 0
+from nn_tools.sensor_data import generate_image, zoom_img
+index = -1 # Get the last image in the dataframe
 
 img = generate_image(roboSim.image_data, index)
 zoom_img(img)
 ```
+
+<!-- #region tags=["alert-warning"] -->
+If you don't see a figure image displayed, check that the robot is placed over a figure by reviewing the sensor array display in the simulator. If the image is there, rerun the previous code cell to see if the data is now available. If it isn't, rerun the data collecting magic cell, wait a view seconds, and then try to view the zoomed image display.
+<!-- #endregion -->
 
 We can check the color depth of the image by calling the `.getbands()` method on it:
 
@@ -474,13 +112,13 @@ img = img.convert('L')
 img.getbands()
 ```
 
-The images we trained the network on were size 28 x 28 pixels. The raw images retrieved from the simularolt by the sensor are slightly smaller, coming in at 20 x 20 pixels.
+The images we trained the network on were size 28 x 28 pixels. The raw images retrieved from the simulator sensor are slightly smaller, coming in at 20 x 20 pixels.
 
 ```python
 img.size
 ```
 
-The collected image also represents square profile around the "circular" sensor view. We might thus reasonable decide that we are going to focus our attention on the 14 x 14 square  area in the centre of the collected image, with top left pixel `(3, 3)` and bottom right pixel `(17, 17)`.
+The collected image also represents square profile around the "circular" sensor view. We might thus reasonably decide that we are going to focus our attention on the 15 x 15 square area in the centre of the collected image, with top left pixel `(3, 3)` and bottom right pixel `(18, 18)`.
 
 ```python
 zoom_img(img)
@@ -491,7 +129,7 @@ One of the advantages of using the Python `PIL` package is that a range of *meth
 We can preview the area in our sampled image by cropping the image to the area of interest:
 
 ```python
-cropped_image = img.crop((3, 3, 17, 17));
+cropped_image = img.crop((3, 3, 18, 18));
                        
 display(cropped_image.size)
 zoom_img(cropped_image)
@@ -505,29 +143,151 @@ zoom_img(resized_cropped_image)
 ```
 
 ```python
-test_display(MLP, resized_cropped_image);
+image_class_predictor(MLP, resized_cropped_image);
+```
+
+```python
+The `sensor_data.sensor_image_focus()` function will take an image, crop it to the central area, a
 ```
 
 We can view the collected samples via a *pandas* dataframe:
 
 ```python
-from sensor_data import process_robot_image_data
+from nn_tools.sensor_data import process_robot_image_data
 
 image_data_df = process_robot_image_data(roboSim.image_data)
 image_data_df
 ```
 
-```python
-from network_views import grabbed_image_predictor
+The handwritten digit image centre locations on the *MINIST_Digits* simulator background can be found:
 
-grabbed_image_predictor(resized_cropped_image)
+- along rows `100` pixels apart, starting at `x=100` and ending at `x=2000`;
+- along columns `100` pixels apart, starting at `y=50` and ending at `y=1050`.
+
+<!-- #region activity=true -->
+## Activity — Collecting image sample data at a specific location
+
+Write a simple line magic command to collect the image data for the handwritten digit centred on the location `(600, 750)`.
+
+Note that you may need to wait a short time between running the data collection program and trung to view it.
+
+Display a zoomed version of the image in the notebook. By observation, what digit does it represent?
+
+Using the `image_class_predictor()` function, how does the trained MLP classify the image? Does this match your observation?
+
+Increase the light sensor noise in the simulator to its maximum value and collect and test the data again. How well does the network perform this time?
+<!-- #endregion -->
+
+```python student=true
+# Your image sampling code here
+
 ```
 
-```python
-# locations 
-# y 56, 156 -6
-# x , 227, 527 -27
+```python student=true
+# Your image viewing code here
+
 ```
+
+<!-- #region student=true -->
+*From your own observation, record which digit is represented by the image here.*
+<!-- #endregion -->
+
+```python student=true
+# How does the trained MLP classify the image?
+
+```
+
+<!-- #region student=true -->
+*How well does the prediction match your observation? Is the MLP confident in its prediction?*
+<!-- #endregion -->
+
+<!-- #region student=true -->
+Increase the level of light sensor noise to it's maximum value and rerun the experiment:
+<!-- #endregion -->
+
+```python student=true
+# Collect data with noise
+
+```
+
+```python student=true
+# Preview image with noise
+
+```
+
+```python student=true
+# Classify image with noise
+
+```
+
+<!-- #region student=true -->
+*Your notes and observations on how well the network performed the classfication task in the presece of sensor noise.*
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+We can collect the image data by calling the `%sim_magic` with the `-R` switch so that it runs the current program directly. We also need to set the location using the `-x` and `-y` parameters.
+<!-- #endregion -->
+
+```python activity=true
+%sim_magic -R -x 600 -y 750
+```
+
+<!-- #region activity=true -->
+To view the result, we can zoom the display of the last collected image in the notebook synched datalog.
+<!-- #endregion -->
+
+```python activity=true
+index = -1 # Get data for the last image
+my_img = generate_image(roboSim.image_data, -1)
+zoom_img(my_img)
+```
+
+<!-- #region activity=true -->
+By my observation, the digit represented by the image at the specified location is a figure `0`.
+
+The trained MLP classifies the object as follows:
+<!-- #endregion -->
+
+```python
+image_class_predictor(MLP, my_img)
+```
+
+###### Th matches my prediction
+
+```python
+## Activity — 
+```
+
+## Collecting digit image and class data from the simulator
+
+If you look carefully at the *MNIST_Digits* background in the simulator, you will see that 
+
+
+## Activity — Collecting image sample data from the *MNIST_Digits* background
+
+In this activity, you will need to collect sample data from the simulator to test the ability of the network to correctly identify 
+
+
+
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
+
+
+## Activity
+
+Briefly describe how you would train a network using this data in the form of a set of placeholder comments that might comment the steps an appropriate program would take. *You do not need to actually train the network, or write the code to train the network.*
+
+
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
 
 ```python
 %%sim_magic -R
@@ -541,7 +301,7 @@ dataX
 
 ```python
 test_collected_imageX = collected_image(dataX, -)
-grabbed_image_predictor(test_collected_imageX)
+image_class_predictor(MPL, test_collected_imageX)
 ```
 
 Scaling filter so we have all sorts of other possible sources of confusion stepping in.
@@ -582,7 +342,7 @@ trimmed_image_df = trim_image( image_df, background=0)
 We can also convert this dataframe back to an image:
 
 ```python
-from sensor_data import image_from_df
+from nn_tools.sensor_data import image_from_df
 
 cropped_image = image_from_df(trimmed_image_df)
 zoom_img( cropped_image )
@@ -616,10 +376,10 @@ display( resized_image.size)
 zoom_img(resized_image)
 ```
 
-The `sensor_data.crop_and_zoom_to_fit()` function does this in one step:
+The `nn_tools.sensor_data.crop_and_zoom_to_fit()` function does this in one step:
 
 ```python
-from sensor_data import crop_and_zoom_to_fit
+from nn_tools.sensor_data import crop_and_zoom_to_fit
 
 zoom_img( crop_and_zoom_to_fit(image_image) )
 ```
@@ -630,9 +390,13 @@ Note that other image handling tools are available to us within the `PIL` packag
 ```python
 # Define the limits of the crop operation
 
-x0 = 6 # Let's cut off 6 pixels on the lefthand side
+# Cut 6 pixel columns on lefthand edge
+x0 = 6
+# Cut 10 pixel columns on righthand edge
+x1 = image_image.size[1] -10
+
+# Leave the rows alone
 y0 = 0
-x1 = image_image.size[1] -10 # And some pixels on the right hand side
 y1 = image_image.size[1]
 
 crop_image = image_image.crop((x0, y0, x1, y1))
@@ -645,19 +409,29 @@ To simplify creating translated images, the `sensor_data.jiggle()` function will
 <!-- #region activity=true -->
 ## Activity — translating the digit within the image frame
 
-Explore how the `sensor_data.jiggle()` function works in practice. Run the following cell multiple times to see how the a differently translated versions of the image are returned each time the function is called. Is there much variation in how the digit is centered in the image frame?
+Explore how the `sensor_data.jiggle()` function works in practice. Run the following cell multiple times, observing what happens in each case, to see how the a differently translated versions of the image are returned each time the function is called. Is there much variation in how the digit is centered in the image frame?
 <!-- #endregion -->
 
 ```python activity=true
-from sensor_data import jiggle
+from nn_tools.sensor_data import jiggle
 
 # Setting quiet=False displays the original input image
 # as well as returning the jiggled image as cell output
-jiggle(image_image, quiet=False)
+zoom_img( jiggle(image_image, quiet=False) )
 ```
 
 <!-- #region student=true -->
 *Record any notes or observations here.*
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+The `jiggle` function slightly translates the image to the left, right, and up and down within the image area. However, it nevers seems to be translated so far that bits of it get cut off.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -669,11 +443,12 @@ Start by testing the network against one of the original images:
 <!-- #endregion -->
 
 ```python activity=true
-from network_views import predict_and_report_from_image
+from nn_tools.network_views import predict_and_report_from_image
 
 test_image, test_label = get_random_image()
 
-predict_and_report_from_image(MLP, test_image, test_label, quiet=False)
+predict_and_report_from_image(MLP, test_image,
+                              test_label, quiet=False)
 ```
 
 <!-- #region activity=true -->
@@ -681,11 +456,26 @@ How does the trained MLP fare if we translate the image? Run the following cell 
 <!-- #endregion -->
 
 ```python activity=true
-predict_and_report_from_image(MLP, test_image, test_label, jiggled=True, quiet=False)
+predict_and_report_from_image(MLP, test_image, test_label,
+                              jiggled=True, quiet=False)
 ```
 
 <!-- #region student=true -->
-*Record your observations about how well the MLP performs against the translated images here.*
+*Record your observations about how well the MLP performs against the translated images here. Why you think the network is performing the way it does?*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+When I tested the network against the translated / jiggled images, I found that it wasn't very reliable at classifying them.
+
+Although the digits are the same size as the original digits, the original MLP has no real sense of how the pixels representing the digits relate to each other according to their *relative* location*.
+
+Instead, it is looking for pixels that overlap the pixels representing the digit that were presented in the original training set. If we translate the digit in the image frame, it may end up overlapping the pixels associated with the original location of another digit more than it overlaps the pixels associated with its own originally located image.
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -695,11 +485,25 @@ How well does the trained MLP work if we rescale the image by crop it and then z
 <!-- #endregion -->
 
 ```python activity=true
-predict_and_report_from_image(MLP, test_image, test_label, cropzoom=True, quiet=False)
+predict_and_report_from_image(MLP,
+                              test_image, test_label,
+                              cropzoom=True, quiet=False)
 ```
 
 <!-- #region student=true -->
-*Record your observations about how well the MLP performs against the translated images here.*
+*Record your observations about how well the MLP performs against the translated images here. Why you think the network is performing the way it does?*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Discussion
+
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+When I tested the network against the resized images, I found that it wasn't very reliable at classifying them.
+
+The original MLP has no real sense of how images are scaled across the presented image frame: it is looking for pixels that overlap the pixels representing the digit that were presented in the original training set.
 <!-- #endregion -->
 
 ## Activity — Improving the performance of the network
@@ -710,16 +514,19 @@ Once again, can you improve performance against these unseen items by tweaking t
 
 ```python
 <div class="girk">
-#TO DO -  single function to train MLP. Didn't I have a widget thing for this in week 6?
+#TO DO -  single function to train MLP.
+# Didn't I have a widget thing for this in week 6?
 
 from ipywidgets import interact
 
 fruit = None
 
-@interact(iterations=(100, 3000, 100), h1=(0, 10, 1), h2=(0, 10, 1))
+@interact(iterations=(100, 3000, 100),
+          h1=(0, 10, 1), h2=(0, 10, 1))
 def trainer(iterations=2000, h1=6, h2=6):
     global fruit
-    fruit = MLPClassifier(hidden_layer_sizes=(h1, h2), max_iter=iterations)
+    fruit = MLPClassifier(hidden_layer_sizes=(h1, h2),
+                          max_iter=iterations)
     
     # Fit the model
     fruit.fit(df['Input'].to_list(), df['Fruit'])
@@ -795,9 +602,11 @@ np.array(image_data_df.loc[0,'vals'].split)
 
 ## Trying to get a convolutional neural network (CNN) running
 
-Although training a convolutional neural netwrok can take quite a lot of time, and a *lot* of computational effort, off-the-shelf pretrained models are also increasingly available (although *caveat emptor* — buyer beware... assumptins etc of model
+Although training a convolutional neural netwrok can take quite a lot of time, and a *lot* of computational effort, off-the-shelf pretrained models are also increasingly available. However, whilst this means you may be able to get started on a recognition task without the requirement to build your own model, *caveat emptor*: buyer beware. When you use a petrained model, you may not what data it ws trained against (and what biases it may include because of that), and you may not know what weaknesses there may be in the model.
 
-The 
+<!-- #region tags=["alert-warning"] -->
+Security of models; not focus of this module but something to be aware of.
+<!-- #endregion -->
 
 ```python
 #https://www.tensorflow.org/lite/guide/python
@@ -823,18 +632,8 @@ input_details, output_details, height, width
 ```
 
 ```python
-(test_img, test_label) = get_random_image()
+(tf_test_img, tf_test_label) = get_random_image()
 test_img
-```
-
-```python
-tf_test_img.size
-```
-
-```python
-tf_test_img = resized_cropped_image.convert('L')
-print(tf_test_img.size)
-tf_test_img
 ```
 
 ```python
@@ -858,13 +657,17 @@ top_k = results.argsort()[-5:][::-1]
 
 #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 with open('mnist_tflite_labels.txt', 'r') as f:
-    labels = [line.strip() for line in f.readlines()]
+    tf_labels = [line.strip() for line in f.readlines()]
+
+#Plot the class predictions as a bar chart
+pd.DataFrame(results).plot(kind='bar', legend=False,
+                           title="Confidence score for each class")
 
 for i in top_k:
     if floating_model:
-        print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
+        print('{:08.6f}: {}'.format(float(results[i]), tf_labels[i]))
     else:
-        print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+        print('{:08.6f}: {}'.format(float(results[i] / 255.0), tf_labels[i]))
     
 ```
 
@@ -876,16 +679,26 @@ for i in top_k:
 # downloaded mnist_model.tflite
 import tflite_runtime.interpreter as tflite
 
-def cnn_load(fpath='./mnist.tflite'):
+def cnn_load(fpath='./mnist.tflite',
+             fpath_labels='./mnist_tflite_labels.txt'):
+    """Load tensorflow lite model."""
     interpreter = tflite.Interpreter(model_path=fpath)
 
     interpreter.allocate_tensors()
 
-    return interpreter
+    tf_labels = []
+    if fpath_labels:
+        with open(fpath_labels, 'r') as f:
+            tf_labels = [line.strip() for line in f.readlines()]
+        
+    return (interpreter, tf_labels)
 
-cnn_interpreter = cnn_load()
+cnn = cnn_load()
 
-def cnn_get_details(interpreter):
+def cnn_get_details(cnn):
+    """Unpack details of tesnforflow-lite model."""
+    (interpreter, tf_labels) = cnn
+    
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
 
@@ -899,38 +712,57 @@ def cnn_get_details(interpreter):
 
 #input_details, output_details, floating_model, height, width = cnn_get_details(cnn_interpreter)
 
-def cnn_test_with_image(interpreter, img):
-    
-    display(img)
+def cnn_rank_results(results):
+    """Display ordered list of top five cnn classification results."""
+       
+    top_k = results.argsort()[-5:][::-1]
 
-    input_details, output_details, floating_model, height, width = cnn_get_details(cnn_interpreter)
+    for i in top_k:
+        if floating_model:
+            print('{:08.6f}: {}'.format(float(results[i]), tf_labels[i]))
+        else:
+            print('{:08.6f}: {}'.format(float(results[i] / 255.0), tf_labels[i]))
+    
+
+def cnn_test_with_image(cnn, img, tf_labels='', retval=False):
+    """Test an image against a pretrained tensorflow-lite CNN."""
+    interpreter, _tf_labels = cnn
+    if not tf_labels:
+        tf_labels = _tf_labels
+    
+    display(img);
+
+    input_details, output_details, floating_model, height, width = cnn_get_details(cnn)
     
     tf_test_img = img.resize((width, height))
     input_data = np.expand_dims(tf_test_img, axis=0)
     if floating_model:
         input_data = (np.float32(input_data) - 127.5) / 127.5
         
-    interpreter.set_tensor(input_details[0]['index'], input_data.reshape(input_details[0]['shape']))
+    interpreter.set_tensor(input_details[0]['index'],
+                           input_data.reshape(input_details[0]['shape']))
     interpreter.invoke()
 
     output_data = interpreter.get_tensor(output_details[0]['index'])
     results = np.squeeze(output_data)
-    
-    top_k = results.argsort()[-5:][::-1]
-
+ 
     #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    with open('mnist_tflite_labels.txt', 'r') as f:
-        labels = [line.strip() for line in f.readlines()]
+ 
+    #Plot the class predictions as a bar chart
+    if tf_labels and len(tf_labels)==len(results):
+        results_df = pd.DataFrame(results, index=tf_labels)
+    else:
+        results_df = pd.DataFrame(results)
 
-    for i in top_k:
-        if floating_model:
-            print('{:08.6f}: {}'.format(float(results[i]), labels[i]))
-        else:
-            print('{:08.6f}: {}'.format(float(results[i] / 255.0), labels[i]))
+    results_df.plot(kind='bar', legend=False,
+                    title="Confidence score for each class")
+    if retval:
+        return results
 
 (test_img, test_label) = get_random_image()
 
-cnn_test_with_image(cnn_interpreter, test_img)
+cnn_test_with_image(cnn, test_img);
+
 ```
 
 ## Logging lots of data
@@ -993,7 +825,7 @@ vvi
 ```
 
 ```python
-#vvx = vvi.crop((3, 3, 17, 17)) 
+#vvx = vvi.crop((3, 3, 19, 19)) 
 vvx =vvi.resize((28, 28), Image.LANCZOS)
 vvx
 ```
