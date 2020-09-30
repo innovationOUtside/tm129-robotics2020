@@ -208,7 +208,7 @@ time.sleep(1)
 ```
 <font color='red'>JD: given what we've said about time.sleep, perhaps the comment in the program shouldn't be 'Wait' but something like 'Keep motors on for 1 second...' ?</font>
 
-Lines prefixed by a `#` are *comments* that are not executed as program code but are intended as notes to human readers that can be used to help make a program more readable.
+Lines prefixed by a `#` are *comments* that are not executed as program code but are intended as notes to human readers that can be used to help make a program more readable. Writing good comments can help others make sense of your programme, and help you maintain and debug your own code in the future. (For an excellent guide to writing comments, see this blog post on [Writing system software: code comments](http://antirez.com/news/124).)
 <!-- #endregion -->
 
 The following program turns the left and right motors on at a quarter (25%) of their full speed, program contol flow waits for a short period (3&nbsp;seconds) with the motors continuing to run, then the program ends and the motors are automatically switched off.

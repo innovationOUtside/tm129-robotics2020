@@ -73,9 +73,9 @@ Double click on this cell and complete the table, identifying the class of fruit
 <!-- #endregion -->
 
 <!-- #region activity=true -->
-### Answer
+### Discussion
 
-Click on the arrow in the sidebar to reveal the answer.
+*Click on the arrow in the sidebar or run this cell to reveal my observations.*
 <!-- #endregion -->
 
 <!-- #region activity=true -->
@@ -197,9 +197,9 @@ One of the defining features of an MLP network is that it is *fully connected*, 
 The resulting network looks like this:
 
 ```python
-from VisualizeNN import DrawNN, mlp_structure
+from nn_tools.visualize_nn import DrawNN, mlp_structure
 
-network_structure = mlp_structure(2, [6, 6], 4)
+network_structure = mlp_structure(input_nodes, hidden_nodes, output_nodes)
 network = DrawNN(network_structure)
 
 # Draw the Neural Network without weights
@@ -363,7 +363,7 @@ And now visualise that to see where the decision boundaries are:
 <!-- #endregion -->
 
 ```python activity=true
-from boundary_models import plot_boundaries
+from nn_tools.boundary_models import plot_boundaries
 
 plot_boundaries(model, df)
 ```
@@ -459,7 +459,7 @@ Finally, it's worth notong that we can also generate animations to show how the 
 *Note that this may take some time to produce the animation if you set the every parameter too low. Changing it to every 100 iterations should speed things up but the animation will not be so smooth.*
 
 ```python
-from boundary_models import mlp_boundary_animate
+from nn_tools.boundary_models import mlp_boundary_animate
 
 mlp_boundary_animate(df, size=(6, 6), iterations=1000, every=10, fname='animation.gif');
 ```
