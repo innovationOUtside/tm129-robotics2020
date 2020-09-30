@@ -37,7 +37,7 @@ We hope that by the end of the RoboLab practical sessions you understand some of
 
 Most of the Jupyter notebook features are keyboard accessible. Several optional extensions provide further support in terms of visual styling and limited audio feedback support.
 
-If you struggle to use the simulator for any reason, including but not limited to incompatability with any tools you may use to improve software access or usability, please raise an issue in the Technical help forum or contact tony.hirst@open.ac.uk directly.
+If you struggle to use the simulator for any reason, including but not limited to incompatibility with any tools you may use to improve software access or usability, please raise an issue in the Technical help forum or contact tony.hirst@open.ac.uk directly.
 
 
 ### Keyboard interface
@@ -50,11 +50,11 @@ You can also add additional shortcuts and/or edit exist shortcuts via the `Edit 
 
 ![Screenshot of the Jupyter keyboard shortcuts help page previewing the Edit Command Mode cell options.](../images/00_01_jupyter_nb_edit_shortcuts.png)
 
-The RoboLab simultator provides a range of keyboard shortcuts to customise the environment display and control certain simulator behaviours. (More details can be found in the actual activity notebooks.)
+The RoboLab simulator provides a range of keyboard shortcuts to customise the environment display and control certain simulator behaviours. (More details can be found in the actual activity notebooks.)
 
 
 ### Visual appearance
-If required, you can use the  [jupyter-themes](https://github.com/dunovank/jupyter-themes) extension to modify the visual appearance of the notebooks. The extension has been pre-installed in the virutal environment. See the [`jupyterthemes` documentation](https://github.com/dunovank/jupyter-themes) for more information. If you encounter any issues trying to run the extension, post a question to the *Technical help* forum.
+If required, you can use the  [jupyter-themes](https://github.com/dunovank/jupyter-themes) extension to modify the visual appearance of the notebooks. The extension has been pre-installed in the virtual environment. See the [`jupyterthemes` documentation](https://github.com/dunovank/jupyter-themes) for more information. If you encounter any issues trying to run the extension, post a question to the *Technical help* forum.
 
 
 #### Magnification
@@ -68,7 +68,7 @@ Alternatively, use operating systems tools such as *Windows Magnify* or the MacO
 
 Some RoboLab programs 'speak'. Where the speech is generated as a part of a program flow, a visual display of the spoken phrase will also typically be displayed at the time the phrase is spoken.
 
-An experimental extension to provide screen reading support to the notebooks is available. If you would be interested in helping us further develop and test this extension, or raise accessibility issues or concerns either in general or with particular referecne to specific extensions, please email `tony.hirst@open.ac.uk`.
+An experimental extension to provide screen reading support to the notebooks is available. If you would be interested in helping us further develop and test this extension, or raise accessibility issues or concerns either in general or with particular reference to specific extensions, please email `tony.hirst@open.ac.uk`.
 
 
 ### Accessibility toolbar (experimental)
@@ -84,9 +84,9 @@ The accessibility is __disabled__ in the RoboLab environment by default. To use 
 
 Check the [accessibility toolbar documentation](https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar#toolbar-summary) for more information.
 
-All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibilty extension.
+All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibility extension.
 
-All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibilty extension.
+All of the styles are saved into local storage when refreshing the page. This means that if you use notebooks on different servers with the same browser, the same accessibility settings will be applied to notebooks on all servers within which you have enabled the accessibility extension.
 
 
 #### Controlling colours and fonts using the Accessibility Toolbar
@@ -113,4 +113,6 @@ A spell checker is also available to check spelling in notebook markdown cells. 
 
 ## 1.4 Installing the Software
 
-To install the virtucal computing environment (VCE) software, please refer to the Robotics Software Guide.
+To install the virtual computing environment (VCE) software, please refer to the Robotics Software Guide.
+
+You will also need to use the Chrome browser to run the RoboLab environment. If you do not already have it installed, you can download and install the Chrome browser from [https://www.google.com/chrome/](https://www.google.com/chrome/).
