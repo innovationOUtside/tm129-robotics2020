@@ -8,6 +8,8 @@ The main environment provided for working through the activities is a customised
 
 The programming language you will be using in this block is the Python programming language. If you have not used the Python programming language before, or even if you haven't done *any* programming before, *DON'T PANIC*. We have tried to take a pragmatic approach to demonstrating how use to Python code to *get things done*, and the provided examples show you all you need to know to programme the simulated robot yourself.
 
+You will also learn how to use simple command line style commands in the form of IPython magics (yes, they really are called that!) that allow us to perform various housekeeping acts. In the way they are formed and use "switches" to modify and extend the behaviour of the magic command, they are reminiscent of many Linux command line commands.
+
 Although the interface to the programming activities is provided through a web browser (most reliably, the Chrome web-browser), the software supporting the activities run inside a virtual environment (you'll learn more about virtual machines later in the module).
 
 To run the virtual environment locally, you will need to install the Docker application (we'll provide full guidance around this). It is also possible to run the application using free or paid for services on the web, and we provide some guidance on how to do this. However, you should be aware that free services may not always be available or reliable, and some are "free" only in exchange for someone else, such as personal registration data.

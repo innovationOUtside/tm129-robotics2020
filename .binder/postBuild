@@ -27,7 +27,8 @@ jupyter nbextension enable collapsible_headings/main --$INSTALL_PREFIX
 #jupyter nbextension enable codefolding/main --$INSTALL_PREFIX
 ### Allow users to highlight elements
 jupyter nbextension enable highlighter/highlighter --$INSTALL_PREFIX
-
+## Spellchecker extension
+jupyter nbextension enable spellchecker/main --$INSTALL_PREFIX
 ## nbgitpuller
 ### This allows us to easily pull in files from Github
 jupyter serverextension enable nbgitpuller --$INSTALL_PREFIX
@@ -41,10 +42,6 @@ jupyter nbextension install --$INSTALL_PREFIX accessibility_toolbar
 rm -r accessibility_toolbar
 #jupyter nbextension enable accessibility_toolbar/main --$INSTALL_PREFIX
 #jupyter nbextension disable accessibility_toolbar/main --$INSTALL_PREFIX
-
-#nbtutor
-jupyter nbextension install --overwrite --py nbtutor
-jupyter nbextension enable --py nbtutor
 
 ## Graffiti
 ### Support for interactive intra-notebook tutorials
@@ -67,13 +64,10 @@ jupyter nbextension enable --py nbzip --$INSTALL_PREFIX
 jupyter nbextension install --py nbtutor --user
 jupyter nbextension enable --py nbtutor --user
 
-## multi-outputs
+## cell_execution_status
 ### Cell status indicators.
-### There's also a tool so save cell output for diffing but this may be overcomplicated.
-### Consider forking to support disabling the pinned cell output features
-jupyter nbextension install --py lc_multi_outputs --$INSTALL_PREFIX
-jupyter nbextension enable --py lc_multi_outputs --$INSTALL_PREFIX
-
+jupyter nbextension install cell_execution_status --$INSTALL_PREFIX
+jupyter nbextension enable cell_execution_status/index --$INSTALL_PREFIX
 
 ## WYSIWYG notebook markdown editor
 jupyter nbextension install --py jupyter_wysiwyg  --$INSTALL_PREFIX
