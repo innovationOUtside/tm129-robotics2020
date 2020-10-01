@@ -1,0 +1,189 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Appendix — Configuring the `nbev3devsim` simulated robot
+
+This notebook is a technical reference document that describes in a bit more detail to how the simulated robot in `nbev3devsim` simulator is configured.
+
+Note that this information is provided for informational purposes only. If the configuration of the robot away from the default values is required, any required changes and how to make them will be described in the associated activity.
+
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+```
+
+
+<!-- #region -->
+## 4.1 Robot configuration overview
+
+The `nbev3devsim` simulator allows robots to be configured using various components on specific input and output ports as defined in the `ev3dev` package developed for use with the EV3 Lego Mindstorms controller brick:
+
+- `OUTPUT_B`: left motor (state can be running or blank, not ramping, holding, overloaded, or stalled; stop action is ignored and the robot always stops instantly; `SpeedPercent`, `SpeedNativeUnits`, `SpeedRPS`, `SpeedRPM`, `SpeedDPS`, `SpeedDPM` are all defined, as are [`MotorSet`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#motor-set), [`MoveTank`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#move-tank) and [`MoveSteering`](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#move-steering) motor groups);
+- `OUTPUT C`: right motor;
+
+
+The simulated robot also supports a range of sensors:
+
+- an ultrasonic sensor (`UltrasonicSensor`) that is polled at the relatively slow rate of 10 times a second and that can be used to detect obstacles ahead of the sensor with an angle of incidence of no more than 50 degrees. (This models the behaviour of an actual ultrasonic whereby if the angle of incidence is too large, the ultrasound signal is reflected away from the sensor and no reading is recorded);
+- one or more downward facing light / colour sensors (`ColorSensor`) that can be used to sense coloured readings on the world canvas directly below the sensor; sensors give readings of between 0..255; in `nbev3devsim`, access is also provided to the light sensor pixel array, which effectively models a simple, low resolution camera;
+- a gyroscope sensor (`GyroSensor`) that measures the angle of the robot in accumulated degrees turned since the sensor was enabled.
+ 
+The sensors are available on predefined sensor input ports. The ultrasonic and color sensors are mounted at default positions on the robot, although the position can be reconfigured using the robot configuration file:
+
+- `INPUT 1` : ultrasonic sensor; by default, this is mounted *front and center* on the robot;  [ultrasonic sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#ultrasonic-sensor) (readings provided for angles of incidence up to 50 degrees; slow update rate of an actual ultrasonic sensor is simulated with reading updates approximately every 0.1s);
+- `INPUT 2` : color sensor by default, mounted *front and left* on the robot; left [color sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#color-sensor) (raw values ranges between 0 to 255; ambient_light_intensity will always return 0; color and color_name may not give the same value as the actual sensor);
+- `INPUT 3` : color sensor; by default, mounted *front and right* on the robot;  `INPUT 3`: right color sensor;
+- `INPUT 4` : gyro sensor; fixed location in the center of the robot; [gyro sensor](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/sensors.html#gyro-sensor).
+
+In the T176 residential school, several activities are defined using different floorplans, such a circular racing track marked out a flat surface that the robots must navigate round as quickly as possible. Such activities are essentially "two dimensional" so you should not feel that just because the simulator we are using is essentially a two dimensional simulator you are not doing a realistic robot programming activity.
+
+(In actual fact, the simulator is more like 2.5D simulator in that it supports an obstacle layer that sits above the plane of the background and within which walls and other smaller obstacles can be detected by a simulated ultrasonic sensor. Note that to keep the "world physics" provided by the simulation as simple as possible, the obstacles do not, in fact, impede the progress of the simulated robot.
+
+The simulated world can be loaded with a selection of predefined background layouts, or uploaded custom layouts, can be used as the basis of specific robot programming tasks or challenges.
+<!-- #endregion -->
+
+<!-- #region tags=["alert-success"] -->
+Layouts are sized 2362 by 1143 pixels, which corresponds to the size of a First Lego League / World Robot Olympiad (WRO) field mat, with 1 pixel representing 1mm.
+<!-- #endregion -->
+
+The colour sensors can obtain readings from traces on canvas layer that loads the floor mat; the ultrasonic sensor can sense obstacles on the mat although these are not physical objects that impede the progress of the robot. 
+
+<img alt="Close up of simulated robot showing two wheel drive (one wheel on each side towards the front of the robot) and two light sensors at the front of the robot just to the left and right of the center line." src="../images/EV3DEV_Python_Simulator_robot.png" width=200 />
+
+
+## 4.2 Declaring motor and sensor configurations
+
+Motor and sensor settings are declared at the start of downloaded program. To minimise the amount of repetitive boilerplate declaration code, two magics are defined that prepend downloaded code with boilerplate code.
+
+You can preview the code appended to the download programs by running them as a line magic with the `-v` or `--preview` flag:
+
+```python
+# Preview prepended boilerplate code
+%sim_magic_imports --preview
+```
+
+```python
+# Preview prepended boilerplate code
+%sim_magic_preloaded -v
+```
+
+## 4.3 Magic configured robot manifestation settings
+
+As well as configuring sensor and motor setups programmatically via the downloaded code, the magics can be also be used to configure various properties of the "physical" manifestation of robot in the simulator.
+
+For example:
+
+- `--pendown` / `-p`: set the pen in pendown mode (default is pen up); this can also be toggled using the keyboard shortcut `p` when the mouse cursor is over the simulator widget;
+- `--xpos` / `-x` : set the x co-ordinate;
+- `--ypos` / -y` : set y co-ordinate;
+- `--angle` / `-a` : set the angle of rotation;
+- `--sensornoise` / `-N` set the sensor noise level (0..128)
+- `--motornoise` / `-M` : set the motor noise level (0..500)
+
+
+<!-- #region -->
+## 4.4 Physical robot configuration
+
+The simulated robot itself is configured according to a simple set-up script that defines:
+
+- `wheeldiameter`: the diameter of the robot's wheels (default: `56` mm);
+- `wheelSpacing`: the distance between the robot's wheels; essentially, this defines the "width" of the robot (default: `180` mm);
+- `back`: the distance to the back of the robot from the front; essentially, this defines the "height" of the robot (default: `120` mm from the centreline between the wheels (TO DO - check));
+- `weight`: the weight of the robot (default: `medium`) TO DO - does this affect physics at all?
+- `sensor1`: the physical location on the robot of the color sensor on `INPUT 2` (`sensor1`, by default registered at location `(-20, 30)` from centre front of the robot and with diameter `20`;
+- `sensor2`: the physical location on the robot of the color sensor on `INPUT 3`  at location `(20, 30)` and with diameter `20`;
+- `ultrasonic`: the orientation and physical location on the robot of the ultrasonic sensor on `INPUT 1` (by default, in the front center of the robot at (`0`, `20`) with angle `0` degrees relative to the front/back robot center-line).
+
+Various robot configurations can be selected from the  can be updated via a drop down list in the simulator *Settings* panel:
+
+![Screenshot showing robot config selection menu in nbev3devsim Settings panel](../images/nbev3devsim_robot_config_selector.png)
+
+Predefined robot configurations (named as shown in the drop down list in the *Settings* panel) can also be selected via a magic switch:
+
+- `--robotSetup` / `-r`: robot config selection
+rr
+
+Clicking the *Robot config* toggle display button in the *Settings* panel displays an editable version of the actual robot physical configuration file in the *Robot configurator* panel.
+
+![Screenshot of the nbev3devsim robot configurator panel](../images/nbev3devsim_robot_config.png)
+
+
+After making any changes to the configuration, click the *Apply* button in the *Robot configurator* panel to commit them.
+
+The robot configuration object itself is a JSON (Javascript Object Notation) object definition :
+
+```javascript
+{
+  "wheeldiameter": 56,
+  "wheelSpacing": 180,
+  "back": -120,
+  "weight": "medium",
+  "sensor1": {
+    "x": -20,
+    "y": 30,
+    "diameter": 20
+  },
+  "sensor2": {
+    "x": 20,
+    "y": 30,
+    "diameter": 20
+  },
+  "ultrasonic": {
+    "x": 0,
+    "y": 10,
+    "angle": 0
+  }
+}
+```
+
+Robot configuration files can also be saved as `.json` files and imported/loaded into the simulator.
+<!-- #endregion -->
+## 4.5 Viewing programs downloaded to the simulated robot
+
+Run the following code cell to download a program to the simulator:
+
+```python
+%%sim_magic
+
+# Move robot forward
+from ev3dev2.motor import MoveSteering, OUTPUT_B, OUTPUT_C
+
+motor_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+# Move robot forward for 3 seconds
+motor_pair.on_for_seconds(steering=0, speed=20, seconds=3)
+```
+
+When the cell is run, you should get an audible alert to inform you that the code has been successfully downloaded.
+
+In the simulator, from the *Simulator controls* panel, click the *Code display* toggle button, used the `D` keyboard shortcut, or use the `-D` magic flag:
+
+```python
+%sim_magic -D
+```
+
+## 4.6 Viewing sensor and motor state
+
+Motor and sensor state values can be viewed via the simulator *Instrumentation* panel, which we can raise using the `--instrumentation` or `-i` magic flag:
+
+```python
+%sim_magic --instrumentation
+```
+
+The raw sensor array values can be displayed via the *Sensor arrays* panel, which we can raise using the `--array` or `-A` magic flag:
+
+```python
+%sim_magic --array
+```

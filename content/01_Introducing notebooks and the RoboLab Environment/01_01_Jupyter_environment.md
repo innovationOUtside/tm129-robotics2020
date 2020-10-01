@@ -1,17 +1,33 @@
-# 1 Getting started
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
 
-In which we introduce the working environment for the TM129 Robotics Block practical activities.
+# 1 Introduction to the TM129 Jupyter notebook environment
 
-*As I edit this, as a direct revision of the original, it's a very "flat" document. A lot of the things could be made more interactive. eg an interactive tour of elements of the notebook or a Graffiti interaction, rather than a static, linear, screenshot enhanced narration. Middle ground would be a screencast. But could we also instrument that somehow? Certainly, we could capture the visual recording using browser automation.*
+*In which we introduce the working environment for the TM129 Robotics Block practical activities.*
+
+The TM129 virtualised computing environment (VCE) is based around a Docker container running a self-contained Linux environment which in turn is running a Jupyter notebook server. This environment enables you to experiment with, and program, simple simulated robots using the Python programming language within a Jupyter notebook context. The same environment can be used on different computing platforms (Windows, MacOS, Linux) either running locally on your own computer or via a remote external server accessed over the internet.
+
+Within the Jupyter notebook environment, you will be making use of a simple two dimensional robot simulator, `nbev3devsim`. At times, we will refer the Jupyter notebook + `nbev3devsim` simulator, or just the simulator itself, as *RoboLab* (it's somewhat easier to say than `nbev3devsim`!)
 
 
-## 1.1 Introduction to the TM129 Virtual Robotics Lab: RoboLab
+<!-- #region tags=["alert-danger"] -->
+The RoboLab environment is designed to work in the Chrome browser environment. If you do not have Chrome installed, you should download and install it from [`www.google.com/chrome`](https://www.google.com/chrome/) and use it when running the RoboLab environment.
+<!-- #endregion -->
 
-The *TM129 Virtual Robotics Lab*, or "RoboLab" for short, is a self-contained, virtualised computing environment. This environment enables you to experiment with, and program, simple simulated robots using the Python programming language. The same environment can be used on different computing platforms (Windows, MacOS, Linux) either running locally on your own computer or via a remote external server accessed over the internet.
+You will use the RoboLab environment in a practical session during each study week of this part of the module. 
 
-You will use RoboLab in a practical session during each study week of this part of the module. 
-
-After studying RoboLab you should be able to: 
+After studying the robotics block practical activities, you should be able to: 
 
 * understand the basics of computer programs (e.g. explain what is meant by a sequential computer program, the terms ‘constant’ and ‘variable’, and explain and illustrate the terms ‘branch’ and ‘loop’)
 
@@ -28,44 +44,39 @@ The lab sessions each week consist of exercises using a simulated robot. The sim
 RoboLab itself is accessed using a Jupyter environment presented via a web browser. Many activities are presented through interactive Jupyter notebooks and make use of a simple graphical robot simulator.
 
 
-### The Jupyer Notebook Environment
+## 1.1 The Jupyter notebook environment
 
 Jupyter notebooks are are widely used interactive environment for writing "literate" programming scripts in a web browser. Originally developed to support computational data science projects, they are increasingly used as more general computational notebooks that can blend explanatory text with executable code and graphical, or even interactive, code outputs.
 
-The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user-enabled extensions that can be used to customise your notebook environment.
 
-__TO DO: the actual simulator view is a bit different now, so this will need updating.__
+####  Jupyter notebook environment interactive tour
+
+The Jupyter notebook environment has an inbuilt interactive tour to help you find your way around the Jupyter notebook interface. To take the tour, from the Jupyter noteboon `Help` menu, select the first item: `User Interface Tour`.
+
+![](../images/Jupyter_Notebook_tour.png)
+
+Press the `Escape` key on your keyboard to cut the tour short.
+
+
+#### Jupyter notebook environment overview
+The Jupyter notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user-enabled extensions that can be used to customise your notebook environment.
 
 ![Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing.](../images/00_01_jupyter_nb_homepage.png)
 
 Clicking on a file of an appropriate type will open it as an interactive Jupyter notebook.
 
+<!-- #region tags=["active-danger"] -->
+It is generally not advisable to have multiple copies of *the same notebook* open in multiple windows. As the notebooks autosave, you may find that work you have created and saved from one notebook gets overwritten by an earlier version of the notebook in a different browser tab or window.
+<!-- #endregion -->
+
 Notebooks are structured using the notion of different sorts of "cell". For example, *markdown cells* are used to contain explanatory text written using the simple text based markdown script. Executable *code cells* can be used to declare executable Python code, the outputs of which can be displayed as *code cell outputs*.
 
 ![Screenshot of notebook fragment showing a markdown cell containing text and a styled list, a code cell containing a code fragment, the code cell print display and the code cell output.](../images/notebook_markdown_and_code_cell.png)
 
-As well as supporting general computation, code cells are also used to create and display a simulator output:
-
-![Example of a Jupyter notebook showing markdown (text), simulator display code cell and embedded simulator display.](../images/nbev3devsim_in_notebook_annotated.png)
-
-In addition, code cells can contain code that is "downloaded" to the simulator when the code cell is run:
-
-![Example of a Jupyter notebook showing markdown (text) and code cell with magic invocation to send code to simulator.](../images/nbev3devsim_example_code_cell_annotated.png)
-
 Markdown and code cells can be edited and saved interactively via the notebook's browser interface.
 
-For an interactive tour of the notebook environment, from a notebook *Help* menu select the *User Interface Tour* option. (Press the `Escape` key on your keyboard to cut the tour short.)
 
-![](../images/Jupyter_Notebook_tour.png)
-
-As well as the notebook environment, a more complex "lab" or "integrated development" style interface, *Jupyterlab*, is also available.
-
-The following shows a JupyterLab set up based around another notebook based simulator, the  `Jyro` robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the "torn off" simulator output window display mode shown below.
-
-![Example of the JupyterLab user interface, showing the file navigator, an open notebook, a torn off cell output and the JupyterLab Launcher.](../images/00_01_jupyterlab_example.png)
-
-Whilst you are welcome to make use of the JupyterLab environment, we will tend to stick to the simple notebook interface for the module activities.
-
+## 1.2 Running Jupyter notebook code cells
 
 The following cell contains Python code that can be executed by "running" the code cell. The code can produce two sorts of output:
 
@@ -83,7 +94,7 @@ my_variable = "value of my variable"
 my_variable
 ```
 
-### Notebook Extensions
+## 1.3 Jupyter Notebook Extensions
 
 A wide range of notebook extensions are installed in the RoboLab environment, although the majority have not been pre-enabled.
 
@@ -95,13 +106,17 @@ You are welcome to explore the available extensions, or even add further ones of
 
 *You may want to share details of any extensions you find particularly useful in your module or tutor group forums.*
 
+## Summary
+In this notebook you have seen an overview of the Jupyter notebook server environment and how it can be extended by enabling custom extension via the notebook configuration panel.
+
+In the next notebook, you will have an opportunity to explore how a Jupyter notebook itself works.
 
 
 
-
-
+<!-- #region tags=["alert-warning"] -->
 ## Addendum
 
 At the end of some notebooks, there may be an *Addendum* section. These sections are *optional* as far as the module goes, and you are not necessarily expected to, let alone required to, study them, read through them, or even glance at them at all.
 
 In particular, the addendum sections provide additional context or explanation not directly relevant to the module but which may be of interest to the more curious or technically minded amongst you. In some cases, the sections are there to explore in a little more detail how a particular activity or notebook feature works behind the scenes; in other cases, they may hint at other ways in which what you have learned may be applied to other contexts not directly associated with programming robots.
+<!-- #endregion -->

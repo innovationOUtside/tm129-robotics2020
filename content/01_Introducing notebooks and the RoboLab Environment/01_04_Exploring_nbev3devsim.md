@@ -1,0 +1,272 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# 4 Exploring the `nbev3devsim` simulator
+
+In this notebook, you will start to explore the `nbev3devsim` simulator and see how we can use it to run some simple Python programs. In the next notebook, you will see some more examples of Python programs. At this stage the intention is to give you an overview of the sorts of things that are possible, rather than expecting you to learn and remember the details.
+
+
+As in the previous notebook, the simulator widget is loaded into the notebook by running the following code cell.
+
+When the code cell is run:
+
+- the notebook content is moved into a column at the left hand side of the screen;
+- a resizable draggable pop-up widget containing the simulator is displayed towards the right hand side of the screen
+
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+```
+
+<!-- #region hideCode=true hidePrompt=true tags=["alert-danger"] -->
+You should only run the cell to load in and display the simulator once in each notebook. If you need to load it in again for some reason:
+
+- from the notebook *Kernel* menu, select *Restart*;
+- run the cell to load in and display the simulator.
+
+Note that restarting the kernel resets the state of the Python environment to a state akin to loading a new notebook within which no code cells have yet been run.
+<!-- #endregion -->
+
+## 4.1 The simulator environment as a laboratory
+
+By referring to the notebook + simulator widget environment as *RoboLab*, the implication is that we are thinking of it as a *laboratory*. Let’s just explore, for a moment, how we might be able to use the environment as an engineering laboratory.
+
+As you may already have seen, the RoboLab `nbev3devsim` simulator provides the following controls, either via the simulator graphical user interface or via the notebook magics used to download code to the simulator:
+
+- load a background into the simulator world;
+- configure the robot;
+- configure obstacles in the simulator world;
+- pen up / pen down for tracing the path followed by the robot;
+- clear trace (that is, clear pen trace);
+- show chart:
+  - select trace(s) (colour, left light, right light, ultrasonic, gyro, left wheel, right wheel);
+- clear chart;
+- set light sensor noise value;
+- set motor/wheel noise value;
+- set the X and Y co-ordinates and the Angle or orientation of robot; the X and Y values are updated when the robot is dragged across the canvas; the *Reset* button resets the robot’s location and orientation to the default for that background (if set).
+
+This provides us with a wide range of options for setting up different experiments in the form of particular tasks we want the robot to perform or challenges we want the robot to complete.
+
+The notebook itself represents a laboratory notebook, and you are intended to treat it as such, keeping a personal record of your work and using it to record your own comments, observations and reflections, as well as experimental method, code and results.
+
+<!-- #region tags=["alert-success"] -->
+For a complete overview of the `nbev3devsim` user interface, see the *Appendix-nbev3devsim_user_interface* notebook.
+
+For a complete overview of the `nbev3devsim` robot configuration options, see the *Appendix-nb3ev3devsim_robot_config* notebook.
+<!-- #endregion -->
+
+
+## 4.2 Setting up the laboratory via the simulator user interface
+
+At the top of the simulator user interface are several toggle buttons that can be used to toggle the display of various panels inside the simulator widget.
+
+When the panel is displayed, the toggle button is highlighted to show that the panel display is enabled.
+
+Also note that some of the panels themselves contain toggle display buttons for revealing yet more panels.
+
+Most of the panel displays can also be toggled using simulator keyboard shortcuts. These are enabled when your mouse cursor is placed within the bounds of the simulator widget. The keyboard shortcuts follow the single character magic switches that can also control the simulator user interface display, and which are described in the next section.
+
+<!-- #region activity=true -->
+### 4.2.1 Activity — using simulator toggle button controls to hide and reveal simulator widget display panels
+
+Repeatedly click the toggle display buttons to see how to toggle the display of various simulator controls on and off.
+
+Position your mouse cursor over the simulator widget and use the following keyboard shortcuts to toggle the panel displays:
+
+- `W` : simulator world display;
+- `H` : simulator controls;
+- `X` : position controls.
+<!-- #endregion -->
+
+<!-- #region activity=true -->
+### 4.2.2 Activity — Loading different backgrounds into the simulator
+
+Use the simulator toggle buttons to display the *Settings* and *World* panels in the simulator widget and hide all the other panels, including the *Simulator controls*.
+
+Using the map selector selection list in the settings panel (with the default value *Empty_Map*, load in the *Test_card* background and then hide the *Settings* panel.
+
+The simulator should now just display the *Simulator world* panel containing the *Test_card* background.
+
+Resize the widget, either by clicking and dragging on one of its sides or corners, or by uisng the widget display buttons in the top right hand corner of the widget, so that you can see the background clearly.
+<!-- #endregion -->
+
+<!-- #region tags=["alert-danger"] -->
+If you close the simulator widget, you will need to *Restart* the notebook from the *Kernel* menu and then rerun the code cell that loaded and displayed the simulator widget to open a new simulator widget.
+<!-- #endregion -->
+
+## 4.3 Setting up the laboratory — helper magics
+
+Although we are likely to make use of most of the simulator features over the course of running the module activities as a whole, any particular activity is likely to only require a subset of those features. (The same is is true in many laboratories: most of the time, you only need to make use of some of its facilities.)
+
+To set up the simulator environment for any particular task, we can either use the display controls within the simulator user interface (or the keyboard shortcuts associated with it) or we can use lab assistants in the form of various magic switches. These switches can be used either on their own, or in combination with each other, to set up the simulator for us.
+
+To see a full list of magic switches, call the `%sim_magic` command with the `--help` or `-h` flag.
+
+The list may seem quite bewildering at first, but don't worry: you aren't expected to be able to remember them all  (although you may find you do learn some of them quite quickly).
+
+```python
+%sim_magic --help
+```
+
+<!-- #region activity=true -->
+### 4.3.1 Activity — Using magic to toggle the display particular simulator panels
+
+By default, running a magic command will configure the simulator to display the *Simulator controls* and *Simulator world* panels:
+<!-- #endregion -->
+
+```python activity=true
+%sim_magic
+```
+
+<!-- #region activity=true -->
+Run the following code cell to set up the simulator to hide the *Simulator controls* panel (`--hide / -H`) and display the *Positioning* panel (`--positioning / -X`); by default, *Simulator world* panel will be shown unless we explicitly hide it with the (`--world / -W` flag.
+<!-- #endregion -->
+
+```python activity=true
+%sim_magic --positioning -H
+```
+
+<!-- #region activity=true -->
+When we use the single character flags, we can combine then in a single flag. By referring to the list of flags show by the `%sim_magic --help` command, can you predict which panels will be displayed using the combination of flags shown in the code cell below? 
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Before running the code cell below, double click this cell to edit it and record your prediction of what the simulator display will look like after running the code cell to configure.*
+
+*Run this cell by clicking the note toolbar run button or using the `Shift-Return` keyboard shortcut to return it to its rendered view.*
+<!-- #endregion -->
+
+```python activity=true
+%sim_magic -HWiA
+```
+
+<!-- #region activity=true -->
+### 4.3.2 Activity — Using magic to load in a particular background
+
+As an example of using some magic to help set up the simulator, let's load in a specific background using the `--background / -b` magic switch. Unlike the previous magic flags, this switch takes an argument in the form of a particular background name.
+
+The background names follow the names on the *Settings* panel background dropdown list. Examples include `Loop`, `Radial_grey` and `MNIST_Digits`.
+
+Note also the use of other flags to control which panels are displayed.
+<!-- #endregion -->
+
+```python activity=true
+%sim_magic --background Radial_grey -H
+```
+
+## 4.4 Downloading code to the simulator
+
+The magic commands we have used so far are so-called *line magics*. Magics are a special form of IPython (Interactive Python) command that exist "outside" the actual Python language but extend it to allow us to perform various housekeeping duties.
+
+Line magics are prefixed by a single `%` sign and are single line commands that can appear on any line of a code cell, even in the context of other actual Python language commands.
+
+In addition to line magics are cell magics (also known as code cell or block level magics) which are prefixed by two percentage signs, `%%`.
+
+<!-- #region tags=["alert-success"] -->
+Block cell magics *must* be prefixed by two percentage signs, — `%%` _ and *must* appear at the start of the first line of a code cell.
+
+Block cell magics applied to a cell are used to modify the behaviour of that cell and the rest of its contents.
+<!-- #endregion -->
+
+The RoboLab environment supports three sorts of cell magic, which you will explore in more detail in the next notebook:
+
+- `%%sim_magic`
+- `%%sim_magic_imports`
+- `%%sim_magic preloaded`
+
+The switches you have seen previously all work with each of these magics.
+
+When a code cell prefixed by one of the RoboLab block magics is run, the code is not executed by the notebook's Python environment, but instead is downloaded to the simulated robot in the `nbev3devsim` simulator. The code can then be executed *in the simulator* in order to control the simulated robot.
+
+If you run the following code cell, you will download a simple program that prints the message *hello world* to the simulator's output panel. The output window is display *form the magic* using the `-O` or `--output` switch, acting in combination with the `-W` switch which hides the *Simulator world* panel.
+
+Once you have run the following cell to download the code to the simulator, click the *Run* button in the *Simulator controls* panel to run the code and display the message in the simulator *Output panel* display area.
+
+```python
+%%sim_magic -OW
+print("Hello world!")
+```
+
+As well as running programs in the simulator manually, you can also use the `--autorun` or `-R` magic switch to automatically run the code once it has been successfully downloaded.
+
+Run the following code cell to see this in action:
+
+```python
+%%sim_magic -OWH -R
+print("Hello world again!")
+```
+
+<!-- #region activity=true -->
+### 4.4.1 Activity - downloading your own program
+
+In the following code cell, define your own block magic that will display just the simulator *Output* panel and the *Sensor arrays* panel. The command should also load in the *Simple_Shapes* background. Your program should print a message of your choosing to the *Output* display window. Finally, when you run the code cell, it should be automatically run by the simulator.
+
+*Hint: the block cell magic __must__ appear on the first line of the code cell.*
+<!-- #endregion -->
+
+```python student=true
+# ADD YOUR MAGIC AND CODE HERE
+```
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Example solution
+
+Click the arrow in the sidebar or run this cell to reveal an example solution.
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+To display the *Output panel* (`-O`) and *Sensor array* (`-A`) panel, and hide the open by default *Simulator controls* and *Simulator world* panels (`-H` and `-W` respectively) I created the combined switch `-HWOA`.
+
+To load in the background, I used the `-b Simple_Shapes` switch,
+
+To autorun the program, I used the `--autorun` switch.
+
+The message I decided to print was *I guess that's a success:-)*.
+<!-- #endregion -->
+
+```python activity=true hidden=true
+%%sim_magic -HWOA -b Simple_Shapes --autorun
+print("I guess that's a success:-)")
+```
+
+### 4.4.2 Showing a downloaded program listing
+
+To view the program that is current loaded into the simulator, in the *Simulator control* panel click the *Code display* button or run some magic with the `--code` or `-D` switch to display the *Code display* panel. 
+
+This is particularly useful when debugging your own programs, because error messages often display the line number that caused the error, and the *Code display* panel lists the full program downloaded to the simulator, along with line numbers.
+
+```python
+%%sim_magic_imports --code -HW
+print("I wrote this bit...")
+```
+
+You can also use the `--preview` or `-v` switch to print the code downloaded to the simulator as output from the code cell.
+
+```python
+%%sim_magic_preloaded --preview
+print('Hello.')
+```
+
+## 4.5 Summary
+
+In this notebook, you have learned how to control the `nbev3devsim` simulator including how to automate its display configuration using magic commands and how to display and print items in the simulator *Output* panel.
+
+You have also already started to learn how to write simple computer programs in the form of simple one-line magic scripts that can be used to perform particular actions regarding setting up the `nbev3devsim` simulator. Writing command scripts such as these is often referred to as *automation*: creating scripts that can automatically perform tasks on our behalf that we might otherwise have to perform manually, such as by operating the simulator user interface ourselves.
+
+Using block cell magics, you have seen how we can create a very simple program and download it to the simulator, as well as running it using simulator user interface controls or automatically on download. You have also learned how to preview the currently downloaded program in the simulator *Code display* panel, as well as in the output area of a code cell in the notebook.
+
+In the next notebook, you will see some actual robot programs in action to get a feel for the sorts of things we can program the robot to do in the simulator.
+
+*But first, you surely learned something you would like to keep a note of in your own summary notes for this notebook?!*
