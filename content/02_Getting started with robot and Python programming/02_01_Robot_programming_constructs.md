@@ -1,0 +1,501 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# 1 An introduction to programming robots
+
+
+In the first week's activities, you were introduced to the basic anatomy of a Python program and how such programs can be downloaded and run in the RoboLab simulator. The objective of this RoboLab session is to explore in a little more detail some of the programming constructs that will allow you to control the simulated robot within the RoboLab simulator.
+
+It is assumed that you are completely new to computer programming and robotics. We’ll try to avoid jargon and go at a pace that makes it easy for you to understand what is going on.
+
+
+## 1.1 Getting started with the simulator
+
+As you learned in last week's notebooks, the simulator we will be using must be loaded into each notebook that wants to use it, once per notebook.
+
+Run the following code cell to load the simulator in the normal way:
+
+```python
+from nbev3devsim.load_nbev3devwidget import roboSim, eds
+
+%load_ext nbev3devsim
+```
+
+<!-- #region tags=["alert-success"] -->
+At the moment, there is no simple way of getting back the 'Robot Simulator' dialogue if you accidently delete it or if you see an *Uninitialized Proxy Widget* message when you try to display it. 
+
+Instead, you will have to go to the *Kernel* menu, select *Restart* and then rerun the notebook code cells.
+<!-- #endregion -->
+
+### 1.1.1 Passing code into the simulator
+
+You should recall from the first week's RoboLab activities that the program code intended for the simulator should be written in a code cell prefixed with some simulator magic. Running the magicked code cell downloads the program to the simulator. The downloaded program code can then be run in the simulator to control our simulated robot.
+
+Switches passed to the magic allow us to automate how the simulator is set up for any particular code experiment. The available switches can be previewed by running the following code cell:
+
+```python
+%sim_magic --help
+```
+
+For example, running the following cell will set up the simulator to display just the *Output* panel (`-O`), hiding the *Simulator world* (`-W`) and *Simulator controls* (`-H`) panels, which would otherwise be displayed by default, and then autorunning the program on download (`-R)
+
+```python
+%%sim_magic -OHW -R
+print('hello world')
+```
+
+### 1.1.2 Debugging error messages in the simulator
+
+Further recapping the first week's activities, you should also recall that if you make an error in a program sent to the simulator,  when you try to run the program in the simulator a message will be displayed in the simulator console.
+
+<img src='../images/Section_00_01_Jupyter_Notebook_error.png' width=500 alt='' />
+
+The line number specified relates to the line number of the program actually run by the simulated robot.
+
+You can see the full program listing *as loaded into the simulated robot* from the *Code display* panel in the simulator, which can be raised from the *Simulator controls* panel, the `D` simulator keyboard shortcut, or the `-D` magic switch:
+
+```python
+%%sim_magic_preloaded -OHW --code -R
+print("This works")
+print This doesn't
+```
+
+
+## 1.2 An introduction to sequential programming
+
+For beginners, computer programming can appear to be a very mysterious process. Programming a robot may seem even more daunting, but I hope to show that the basics are quite straightforward.
+
+Throughout the practical activities associated with this block, you will have the opportunity to create and run your own code, as well as code provided for you. In some cases, the provided code may look quite complex. You are not expected to be able to write programs as complex as some of the ones provided. However, we have include some code in the notebooks, rather than hiding it elsewhere and referring to it via single line function calls, so that you can see how short programs or code blocks may be constructed in order to perform particular tasks.
+
+There are various ways of programming computers to control robots. One of these is the *sequential* approach, which is the main approach used in RoboLab. This method of writing computer programs, as lists or sequences of commands, produces what are called *sequential programs*.
+
+In the sequential program model, the computer executes commands in sequence.
+
+The program is structured in a particular way that allows it to operate correctly (a *necessary* requirement) as well as making it ‘readable’ (a *desirable* requirement).
+
+In terms of correctness, the program requires that we define things within our program before we try to call on them and make use of them within our program.
+
+<!-- #region -->
+## 1.2.1 A simple sequential program
+
+As you may have gleaned from last week's overview activities, a *computer program* is a sequence of instructions or commands, written using words, symbols and numbers.
+
+For example, you might want a robot to go forwards for five seconds. If we control the motors separately, this involves turning each motor on separately, waiting for 5&nbsp;seconds, and then terminating the program, at which point the motors in our robot simulation are automatically switched off.
+
+<!-- #region tags=["alert-success"] -->
+The *‘stop the motors at the end of the program’* behaviour is a specific feature of the simulator we are using. This behaviour is not guaranteed in other environments that can be used to program either simulated or real robots.
+
+To be safe, it’s often worth making sure you turn off the motors at the end of a program so you know for sure what state they are in when the program terminates.
+<!-- #endregion -->
+
+<!-- #region -->
+In our simulated robot environment, to drive a robot forwards for 5 seconds, we need to:
+
+- turn each motor on with a particular *speed*, which also sets the *direction*: positive speed values are assumed to mean ‘go forwards’, negative ones ‘go backwards’
+- wait for 5 seconds
+- (program ends, motors turned off automatically).
+
+This could be *coded* in RoboLab using Python instructions of the form:
+
+```python
+left_motor.on(SpeedPercent(50))
+right_motor.on(SpeedPercent(50))
+
+import time
+time.sleep(5)
+```
+
+for suitable configurations of `left_motor` and `right_motor`.
+
+Perhaps confusingly, the `time.sleep()` command, rather than saying ‘do nothing for 5&nbsp;seconds’, means ‘continue to do what you’re already doing for 5&nbsp;seconds’. For our current example, this means ‘keep your motors on and running for 5&nbsp;seconds’.
+<!-- #endregion -->
+
+<!-- #region tags=["alert-success"] -->
+The `time.sleep()` command is known as a *blocking* operation. The way the program execution progresses is temporarily blocked by the `time.sleep()` command until it has finished executing — in this case, for dawdling on the current line for a specified amount of time.
+
+Some of the motor commands are blocking in a similar way: if you tell the motors to turn on for a specified amount of time or a specified number of rotations, that's exactly what the robot will do before moving on the to the next step of the program.
+
+<!-- #endregion -->
+
+<!-- #region -->
+In the above example, we explicitly *import* the `time` package which provides access to the `time.sleep()` command. But how does the program know what the `left_motor` and `right_motor` are? Our program requires that we have defined these items earlier in the program using things it *does* know about. In particular, we would need to use a construction of the form:
+
+```python
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+```
+
+Here, the `Motor()`, `OUTPUT_B` and `OUTPUT_C` statements, as well as the previously seen `SpeedPercent`, are provided as predefined building blocks to use in our own simulated robot control programs.
+
+The `Motor()` element refers to program elements elsewhere that define a `Motor` *object*. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or *methods* that can be enacted on it. For example, we may turn a motor *on* in a particular *direction* and with a particular *speed* for a particular *time* or for a specified number of *rotations*. 
+
+The `Motor()` object is created with an *argument* that identifies an *output port* that the physical motor in a real robot, and the simulated motor in a simulated robot, would be connected to. Output ports are used to identify power and/or control lines that a software controller can use to control the behaviour of a physical (or simulated) device, such as a motor, LED display, or speaker. In our simulated robot case, two output ports are defined: `OUTPUT_B` and `OUTPUT_C`. By convention, we associate `OUTPUT_B` with the motor on the left-hand side of the robot as it travels in a forwards direction, and `OUTPUT_C` with the right-hand motor.
+
+To simplify matters, other ‘higher level’ *predefined* building blocks are also provided to make writing our programs simpler.
+
+For example, the `MoveTank` building block allows us to create a ‘tank’ drive comprising a left motor and right motor. We can instruct the tank drive to turn each motor on with its own specified speed and direction, and for a certain amount of time, using a single command:
+
+```python
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), 5)
+```
+
+<!-- #endregion -->
+
+### 1.2.2 Importing predefined components from Python packages
+
+One way of defining things is to *import* them from a Python package. A package is essentially a collection of predefined program elements that are useful for a particular programming task.
+
+```python
+%%sim_magic
+
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
+import time
+
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+
+# Program actions
+left_motor.on(SpeedPercent(75))
+right_motor.on(SpeedPercent(75))
+
+# Idle here for 1 second
+# with the motors still running
+time.sleep(1)
+
+# Program ends
+```
+
+Remember, lines prefixed by a `#` are *comment* lines that are not executed as program code. Instead, they are intended as notes to human readers that can be used to help make a program more readable. Writing good comments can help others make sense of your program, and help you maintain and debug your own code in the future. (For an excellent guide to writing comments, see this blog post on [Writing system software: code comments](http://antirez.com/news/124).)
+<!-- #endregion -->
+
+The following program turns the left and right motors on at a quarter (25%) of their full speed, program control flow waits for a short period (3&nbsp;seconds) with the motors continuing to run, then the program ends and the motors are automatically switched off.
+
+```python
+%%sim_magic --background Empty_Map
+
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
+import time
+
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+
+# Program actions
+left_motor.on(SpeedPercent(25))
+right_motor.on(SpeedPercent(25))
+
+# Wait here for 3 seconds...
+time.sleep(3)
+
+# Program ends
+```
+
+*Run the above code cell to download the code to the simulator, and then run the program using the simulator interface.*
+
+When you run the program in the simulator, the robot should move forwards quickly for one second and then stop. Try increasing the ‘sleep’ time in seconds, re-run the code code cell to download the program to the simulator, and then re-run it in the simulator. Does the robot behave as you expect? What happens if you also change the `SpeedPercent(VALUE)`, where `VALUE` is a numerical value that can range from `-100` to `100`?
+
+
+### 1.2.3 Using predefined code building blocks
+
+Writing programs at such a low level is possible, but we often find it more convenient to program at a higher level of abstraction or generalisation. In the following example, we can configure and use a predefined motor drive that allows us to control both motors from a single command. The `%%sim_magic_preloaded` magic prepends our code with some common set up code that makes our programs easier to write.
+
+```python
+%sim_magic_preloaded --preview
+```
+
+<!-- #region -->
+In particular, the `MoveTank()` function from the `ev3dev3.motor` Python package allows us to define a simple tank drive comprising two motors, one on the left-hand side of the robot and one on the right-hand side. The configuration associates a controllable motor output with a particular motor.
+
+```python
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+```
+
+The tank drive is used to power two motors simultaneously in various ways. For example, we can turn the motors on at desired speeds:
+
+```python
+tank_drive.on(LEFT_SPEED, RIGHT_SPEED)
+```
+
+We can also turn the motors on for a specified time and then automatically turn them off at the end of that period:
+
+```python
+tank_drive.on_for_seconds(LEFT_SPEED, RIGHT_SPEED, TIME)
+```
+
+The following example shows how we can drive the tank:
+
+1. *forwards* in a straight line (both motors at the same speed) for a specified time using the tank drive
+
+2. *turn on the spot* for the same period (one motor forwards, the other backwards, at the same speed)
+
+3. *reverse* in a straight line for the same period of time (both motors backwards at the same speed.
+
+*Run the following code cell to download the program to the simulator and then run the program in the simulator.*
+<!-- #endregion -->
+
+```python
+%%sim_magic_preloaded --background Empty_Map
+
+from time import sleep
+
+time_1s = 1
+
+# Go forwards...
+# Set the left and right motors in a
+# forward direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(50),
+                          time_1s)
+
+# Pause further program execution for a moment
+sleep(1)
+
+# Turn on the spot...
+# Set the left motor forwards
+# and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(-50),
+                          time_1s)
+
+# Pause further program execution for a moment
+sleep(1)
+
+# Go backwards...
+# Set the left and right motors in a
+# backwards direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(-50),
+                          SpeedPercent(-50),
+                          time_1s)
+```
+
+Observe how the robot behaves when you run the program. Can you see how the sequence of program commands matches the sequence of the robot's actions?
+
+
+## 1.3 Making the simulated robot move
+
+One of the defining characteristics of mobile robots is, trivially, that they move. So in the following set of activities, you will explore various ways of controlling just how the robot moves in the simulated environment, such as moving forwards and backwards for a specified distance or a particular duration, and turning in various ways.
+
+<!-- #region activity=true -->
+### 1.3.1 Activity – Driving the motors at different speeds
+
+[*You can complete and submit this activity as part of your ePortfolio.*](https://learn2.open.ac.uk/mod/oucontent/olink.php?id=1704241&targetdoc=TM129+ePortfolio)
+
+What do you think will happen if the motors are turning in the same direction but at different speeds?
+
+What will happen if the motors turn in *different* directions?
+
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the Pen Down feature to leave a trace showing where the robot has been. Use the Clear Trace button to remove the trace and the Move button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.*
+
+*Note that the simulated robot may not behave as a real robot would. It all depends on how well the simulated robot and the simulator physics have been implemented.*
+<!-- #endregion -->
+
+```python activity=true
+%%sim_magic_preloaded -b Empty_Map -a 180
+
+TIME_IN_S = 2
+
+LEFT_MOTOR_SPEED_PC = -50
+RIGHT_MOTOR_SPEED_PC = -50
+
+tank_drive.on_for_seconds(SpeedPercent(LEFT_MOTOR_SPEED_PC),
+                          SpeedPercent(RIGHT_MOTOR_SPEED_PC),
+                          TIME_IN_S)
+```
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Example solution
+
+*Click the arrow in the sidebar or run this cell to reveal an example solution.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+With both motor speeds in reverse, the robot drives backwards.
+
+With both motor speeds set in the forward direction, if the left motor speed is slightly faster than the right motor speed, then the robot curves towards the right; if the right motor is slightly faster than the left motor, then the robot curves to the left. The greater difference between the speeds, the tighter the curve.
+
+If one of the motors is set at a forward speed and one is in reverse, then the robot turns in a tight circle centred on the reverse turning wheel.
+<!-- #endregion -->
+
+<!-- #region -->
+### 1.3.2 Turning the motors on for a specified number of wheel rotations
+
+As well as turning the motors on for a specified period of time, we can also turn them on for a specified number of rotations of the wheels:
+
+```python
+tank_drive.on_for_rotations(LEFT_SPEED, RIGHT_SPEED, ROTATIONS)
+```
+
+This is easy to imagine for the case where the wheels are turning at the same speed, but if one wheel turns faster than the other, then the robot will follow a curving path and the outside wheel will travel further than the inside wheel (assuming that the inside wheel doesn’t slip).
+
+
+From [the documentation](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#ev3dev2.motor.MoveTank.on_for_rotations), *‘if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn.’*
+
+The following code cell provides code for exploring the use of the `.on_for_rotations()` command.
+
+
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configurations, use the Pen Down feature to leave a trace showing where the robot has been. Use the Clear Trace button to remove the trace and the Move button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.*
+<!-- #endregion -->
+
+```python
+%%sim_magic_preloaded -b Empty_Map
+
+LEFT_MOTOR_SPEED = SpeedPercent(50)
+RIGHT_MOTOR_SPEED = SpeedPercent(55)
+
+ROTATIONS = 4
+
+tank_drive.on_for_rotations(LEFT_MOTOR_SPEED, RIGHT_MOTOR_SPEED,
+                          ROTATIONS)
+
+```
+
+<!-- #region -->
+### 1.3.3 Steering the robot – `MoveSteering`
+
+As well as the `MoveTank()` configuration, a `MoveSteering()` configuration is also available that again is based on the presence of two motors connected to the same controllable outputs:
+
+
+```python
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+```
+
+The `MoveSteering()` configuration again drives both motors simultaneously, although this time at the same speed but in different directions.
+
+To turn the robot, we use the command:
+
+```python
+tank_turn.on(STEERING, SPEED)
+```
+
+where `STEERING` is a numerical value between `-100` and `100` and where:
+
+- `-100` means turn left on the spot (right motor at 100% forward, left motor at 100% backward)
+- `0` means drive in a straight line
+- `100` means turn right on the spot (left motor at 100% forward, right motor at 100% backward).
+
+
+As well as turning the steering drive on, we can turn it on for a specified time using `.on_for_seconds(STEERING, SPEED, TIME)` as in the case of the tank drive.
+
+Alternatively, we can turn the steering drive on for a specified number of rotations of one of the wheels:
+
+```python
+on_for_rotations(STEERING, SPEED, ROTATIONS)
+```
+
+The following program gives a simple example of how to turn the robot using the `MoveSteering()` motor configuration.
+
+*Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment with various settings for the motor speeds to get a feel for how  the relative left and right motor speeds determine the robot's behaviour.*
+<!-- #endregion -->
+
+```python
+%%sim_magic_preloaded -b Empty_Map
+
+# the first two parameters can be unit classes or percentages.
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 4)
+
+# drive in a turn for 2 rotations of the outer motor
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(75), 2)
+```
+
+<!-- #region activity=true -->
+### 1.3.4 Activity — Predicitng a robot's behaviour from it's program
+
+Suppose that a simulated robot starts pointing towards the top of the screen. If you download and run the program in the code cell below, will the robot turn towards the right or left while executing the sequence of commands shown?
+
+*Before* you run the code, make a prediction about what you think the robot will do when the code is executed by the simulated robot.
+
+*To monitor what the robot does, you may find it convenient to enable the Pen Down feature in the simulator that will trace out the path taken by the simulator robot as the program runs.*
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Double-click this cell to edit it.*
+
+*When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
+<!-- #endregion -->
+
+```python activity=true
+%%sim_magic_preloaded
+
+time_1s = 1
+
+# Set the left and right motors
+# in a forward direction and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(50),
+                          time_1s)
+
+
+# Set the left motor forwards
+# and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(-50),
+                          time_1s)
+
+```
+
+<!-- #region activity=true -->
+If a simulated robot starts pointing towards the *right-hand side* of the screen, will it turn towards the top or bottom of the screen while executing the same sequence of commands?
+<!-- #endregion -->
+
+<!-- #region student=true -->
+*Double-click this cell to edit it.*
+
+*When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
+<!-- #endregion -->
+
+<!-- #region activity=true heading_collapsed=true -->
+#### Example solution
+
+*Click on the arrow in the sidebar or run this cell to reveal an example solution.*
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+When the program is run, the first `tank_drive` motor command moves the robot forwards for one second:
+
+```python
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), time_1s)
+```
+
+The next command turns the robot towards the right (the left wheel goes forwards and the right wheel goes backwards) for one second:
+
+```python
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(-50), time_1s)
+```
+
+The combined result is that the robot goes forwards for one second and turns for one second.
+<!-- #endregion -->
+
+<!-- #region activity=true hidden=true -->
+The trace left as the robot turns on the spot does not appear to be center simulated robot doesn’t turn exactly on the spot because the robot is turning about one of the wheels.
+<!-- #endregion -->
+
+## 1.5 Summary
+
+In the notebook, you have seen how we can construct programs as a set of sequential operations that are followed in turn. Some operations are "blocking" in the sense that rather than being evaluated quickly and passing control on to the next line more or less immediately, they hog control until they have finished executing. If you turn the motors on for 15 seconds, control will remain at that line of the program for 15 seconds.
+
+You should also have started to get a feel for how we can drive the robot around, getting it to move forwards, backwards, turn and so on.
+
+In the next notebook, you'll have a chance to create some of your own programs to get the robot to move in a particular way.
