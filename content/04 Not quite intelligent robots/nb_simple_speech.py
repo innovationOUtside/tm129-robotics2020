@@ -63,7 +63,8 @@ IPython.notebook.kernel.execute('browser_voicelist = """'+ voicelist+'"""');
         print(outlist)
         #return self.voicelist
 
-
+browser_voicelist = ''
+Speech()._get_voices()
 # speaker = Speech()
 
 # speaker.set_voice(49)
