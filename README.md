@@ -95,6 +95,8 @@ Use the token: `letmein`
 On notebook homepage, click to select the `content` folder, then in notebook homepage toolbar select `Move`, and enter `/shared` in the moved to path.
  
 You should then be able to view the notebooks in `shared/content` in the notebook UI and the notebooks should also be on host in `TM129VCE/content`
+
+__Note that the `nbev3devsim` simulator used throughout the notebooks requires you to access the materials via a recent Chrome browser.__
  
 
 ## HTML version
