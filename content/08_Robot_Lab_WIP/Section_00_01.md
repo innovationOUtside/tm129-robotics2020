@@ -31,13 +31,22 @@ The approach we will use, although much simpler approach than the full ROS archi
 
 After testing this approach, we will then explore a simple message passing protocol where the simulated robot sends a message to the Python environment containing the image sensor data, the data is run through the MLP, and the classification response is sent back to the simulated robot.
 
-## Using the trained MLP to categorise data logged from the simulator
+<!-- #region -->
+## Using a pre-trained MLP to categorise light sensor array data logged from the simulator
 
 The *MNIST_Digits* simulator background includes various digit images from the MNIST dataset, arranged in a grid.
 
 Alongside each digit is a grey square, where the grey level is used to encode the actual label associated with the image. (You can see how the background was created in the `Background Image Generator.ipynb` notebook.)
 
+In this notebook, you will use the light sensor as a simple low resolution camera, working with the pixel array data rather then the single value reflected light value.
+
+*Note that this functionionality is not supported by the real Lego light sensor.*
+
+
+## TO DO - should we have a figure showing pushing the data?
+
 Let's start by loading in the simulator:
+<!-- #endregion -->
 
 ```python
 from nbev3devsim.load_nbev3devwidget import roboSim, eds
@@ -45,19 +54,19 @@ from nbev3devsim.load_nbev3devwidget import roboSim, eds
 %load_ext nbev3devsim
 ```
 
-In order to collect the sensor image data, if the print message starts with `image_data` then the left channel image is sent to the data log.
+```python
+%sim_magic -x 350
+```
+
+In order to collect the sensor image data, if the simulated robot program `print()` message starts with the word `image_data`, then we can send light sensor array data from the left, right or both light sensorts to a data log in the noteobok Python environment.
 
 The `-R` switch in magic at the start of the following code cell will run the program in the simulator once it has been downloaded.  
 
 ```python
 %%sim_magic_preloaded -b MNIST_Digits -O -R -x 400 -y 50
 
-# how do we log the raw light sensor data to the datalog?
-
-
 # Configure a light sensor
 colorLeft = ColorSensor(INPUT_2)
-
 
 #Sample the light sensor reading
 sensor_value = colorLeft.reflected_light_intensity
@@ -68,25 +77,43 @@ print("image_data left")
 # the "Image data logged..." message display
 ```
 
-As we're going to be collecting data from the simulator into the notebook Python enviornment, we should take the precaution of clearing the datalog before we start using it:
+As we're going to be collecting data from the simulator into the notebook Python enviornment, we should take the precaution of clearing the notebook datalog before we start using it:
 
 ```python
 roboSim.clear_datalog()
 ```
 
-We can then run the data collection routine by calling a simple line magic that teleports the robot to a specific location and runs the data collection program (`-R`):
+We can then run the data collection routine by calling a simple line magic that teleports the robot to a specific location, runs the data collection program (`-R`) and pushes the light sensor array data to the notebook Python environment:
 
 ```python
 %sim_magic -R -x 400 -y 850
+
+# Wait a moment to give data time to synchronise
+import time
+time.sleep(1)
 ```
 
-We need to wait a few moments for the program to execute and the data to be sent to the notebook Python environment. Then we should be able to see the data via the `roboSim.image_data` list:
+We need to wait a few moments for the program to execute and the data to be sent to the notebook Python environment.
+
+Note that this is a different approach to the one we used in an earlier notebook where we *pulled* a copy of the simple sensor datalog *from the simulator* into the notebook.
+
+In the current example, the simulator is *pushing* the light sensor array data to the notebook each time the robot sends a particular message to the simulator output window.
+
+With the data pushed from the simulator to the notebook Python environment, we should be able to see a dataframe containing the retrieved data:
+
+```python
+roboSim.image_data()
+```
+
+### Previewing the sampled sensor array
+
+The data representing the image is a long list of RGB (red green, blue) valaues. We can generate an image from a the a specific row of the dataframe, given it the row index:
 
 ```python
 from nn_tools.sensor_data import generate_image, zoom_img
 index = -1 # Get the last image in the dataframe
 
-img = generate_image(roboSim.image_data, index)
+img = generate_image(roboSim.image_data(), index, mode='rgb')
 zoom_img(img)
 ```
 
@@ -102,13 +129,12 @@ img.getbands()
 
 As we might expect from the robot color sensor, this is a tri-band, RGB image.
 
-
-If we are to try to recognise this image using our pretrained MLP, we need to pay careful attention to the format of the image as well as the dimensions of the collected images.
-
-Let's start by casting the image to a single band greyscale image:
+Alternatively, we can generate an image directly as a greyscale image, either by setting the mode explicity or by omitting it (`mode=greyscale` is the default setting):
 
 ```python
-img = img.convert('L')
+img = generate_image(roboSim.image_data(), index)
+zoom_img(img)
+
 img.getbands()
 ```
 
@@ -118,7 +144,7 @@ The images we trained the network on were size 28 x 28 pixels. The raw images re
 img.size
 ```
 
-The collected image also represents square profile around the "circular" sensor view. We might thus reasonably decide that we are going to focus our attention on the 15 x 15 square area in the centre of the collected image, with top left pixel `(3, 3)` and bottom right pixel `(18, 18)`.
+The collected image also represents square profile around the "circular" sensor view. We might thus reasonably decide that we are going to focus our attention on the 14 x 14 square area in the centre of the collected image, with top left pixel `(3, 3)`.
 
 ```python
 zoom_img(img)
@@ -129,40 +155,190 @@ One of the advantages of using the Python `PIL` package is that a range of *meth
 We can preview the area in our sampled image by cropping the image to the area of interest:
 
 ```python
-cropped_image = img.crop((3, 3, 18, 18));
-                       
-display(cropped_image.size)
-zoom_img(cropped_image)
+img = generate_image(roboSim.image_data(), index,
+                    crop=(3, 3, 17, 17))
+
+display(img.size)
+zoom_img( img )
 ```
 
-In order to present this image as a test image to the trained MLP, we need to resize it so that it is the same size as the training images:
+In order to present this image as a test image to the trained MLP, we need to resize it so that it is the same size as the original training images (28 x 28 pixels).
+
+We can do this by passing the desired size via the `resize` parameter, setting it either to a specified size, such as `resize=(28, 28)` (that is, 28 x 28 pixels) or back to the original, uncropped image size (`resize=('auto')`): 
 
 ```python
-resized_cropped_image = cropped_image.resize((28, 28), Image.LANCZOS)
-zoom_img(resized_cropped_image)
+img = generate_image(roboSim.image_data(), index,
+                    crop=(3, 3, 17, 17),
+                    resize = (28, 28))
+
+zoom_img( img )
 ```
 
-```python
-image_class_predictor(MLP, resized_cropped_image);
-```
+### Collecting some sample images
+
+The handwritten digit image centre locations on the *MINIST_Digits* simulator background can be found at the following locations:
+
+- along rows `100` pixels apart, starting at `x=100` and ending at `x=2000`;
+- along columns `100` pixels apart, starting at `y=50` and ending at `y=1050`.
+
+We can collect the samples up a column by using line magic to teleport the simulated robot to each new location in turn and automatically run the program to log the sensor data.
+
+To start, let's just check we can generate the required *y* values:
 
 ```python
-The `sensor_data.sensor_image_focus()` function will take an image, crop it to the central area, a
+# Generate a list of integers with desired range and gap
+min_value = 50
+max_value = 1050
+step = 100
+
+list(range(min_value, max_value+1, step))
+```
+
+Using this as a pattern, we can now create a simple script to clear the datalog, then iterate throug the desired *y* locations, using line magic to locate the robot at each step and run the already downloaded image sampling program.
+
+To access the value of the iterated *y* value in the magic, we need to prefix it with a `$` when we refer to it. Note that we also use the `tqdm.notebook.trange` argument to define the range: this enhance the range iterator to provide an interactive progress bar that allows us to follw the progress of the iterator.
+
+```python
+# Provide a progress bar when iterating through the range
+from tqdm.notebook import trange
+
+# We need to add a short delay between iterations to give
+# the data time to synchronise
+import time
+
+# Clear the datalog so we know it's empty
+roboSim.clear_datalog()
+
+for _y in trange(min_value, max_value+1, step):
+    %sim_magic -R -x 100 -y $_y
+    # Give the data time to synchronise
+    time.sleep(1)
 ```
 
 We can view the collected samples via a *pandas* dataframe:
 
 ```python
-from nn_tools.sensor_data import process_robot_image_data
-
-image_data_df = process_robot_image_data(roboSim.image_data)
+image_data_df = roboSim.image_data()
 image_data_df
 ```
 
-The handwritten digit image centre locations on the *MINIST_Digits* simulator background can be found:
+We can preview a specified row of the dataframe as zoomed in image:
 
-- along rows `100` pixels apart, starting at `x=100` and ending at `x=2000`;
-- along columns `100` pixels apart, starting at `y=50` and ending at `y=1050`.
+```python
+# Preview the last image in the dataframe
+index = -1
+
+zoom_img( generate_image(image_data_df, index) )
+```
+
+We can also convert the image to a black and white image by setting pixels above a specified threshold value to white (`255`), otherwise coloring the pixel black (`0`).
+
+Run the following code cell to create a simple interactive application to explore this behaviour.
+
+Experiment with using the *index* slide to select the image and the *threshold* slider to set the threshold value. 
+
+Press the *Run Interact* button to see the effect of creating the black and white version of the selected image using the specified threshold value.
+
+The *crop* checkbox allows you to just focus on the central area of the image; the *original* checkbox lets
+
+```python
+from nn_tools.sensor_data import generate_bw_image
+from ipywidgets import interact_manual
+
+@interact_manual(threshold=(0, 255),
+                 index=(0, len(image_data_df)-1))
+def bw_preview(index=0, threshold=200, crop=False):
+    # Optionally crop to the centre of the image
+    _crop = (3, 3, 17, 17) if crop else None
+    _original_img = generate_image(image_data_df, index) 
+    _demo_img = generate_bw_image(image_data_df, index,
+                                  threshold=threshold,
+                                  crop=_crop)
+    zoom_img( _original_img)
+    zoom_img( _demo_img )
+
+    # Uncomment the following line to view the actual size images
+    #display(_original_img, _demo_img)
+```
+
+## Loading in a previously save MLP model
+
+Rather than train a new model, we can load in an MLP we have trained previously. Remember, when using a neural network model, we need to make sure that we know how many inputs it expects, which in our case matches the size of presented images.
+
+You can either use the pretrained model that is provided in the same directory as this notebook (`mlp_mnist.joblib`), or use your own model created in an earlier notebook.
+
+```python
+# Load model
+from joblib import load
+
+MLP = load('mlp_mnist14x14.joblib')
+```
+
+```python
+# Network inputs, hidden later sizes
+MLP.n_features_in_,  MLP.n_layers_, MLP.n_outputs_, MLP.hidden_layer_sizes
+#dir(MLP)
+```
+
+```python
+MLP2 = load('mlp_mnist28x28.joblib')
+import math
+MLP2.n_features_in_, int(math.sqrt(MLP2.n_features_in_)), MLP2.n_layers_, MLP2.n_outputs_, MLP2.hidden_layer_sizes
+#dir(MLP)
+```
+
+### Using the pre-trained classifier to recognise sampled images
+
+What happens if we now try to recognise images sampled from the simulator light sensor array using our previously trained MLP classifier?
+
+```python
+# Get a random image index value
+index = random.randint(0, len(image_data_df)-1)
+        
+# Generate the test image as a black and white image
+test_image = generate_bw_image(image_data_df, index,
+                               threshold=127,
+                               crop=(3, 3, 17, 17))
+
+# Display a zoomed version of the test image
+zoom_img(test_image)
+
+# Print the class prediction report
+image_class_predictor(MLP, test_image);
+```
+
+How well did the classifier perform?
+
+<!-- #region student=true -->
+*Make your own notes and observations about the MLP's performance here. If anything strikes you as unusual, why do you think the MLP is performing the way it is?*
+<!-- #endregion -->
+
+We can create a simple interactive application to test the other images more easily:
+
+```python
+from nn_tools.network_views import image_class_predictor
+
+@interact_manual(threshold=(0, 255),
+                 index=(0, len(image_data_df)-1))
+def test_image(index=0, threshold=200, show_image=False):
+    # Create the test image
+    test_image = generate_bw_image(image_data_df, index, 
+                                   threshold=threshold,
+                                   crop=(3, 3, 17, 17))
+    
+    # Generate class prediction chart
+    image_class_predictor(MLP, test_image)
+    
+    if show_image:
+        zoom_img(test_image)
+
+```
+
+In general, how well does the classifier appear to perform?
+
+<!-- #region student=true -->
+*Record your own notes and observations about the behaviour and performance of the MLP here.*
+<!-- #endregion -->
 
 <!-- #region activity=true -->
 ## Activity — Collecting image sample data at a specific location
@@ -268,6 +444,26 @@ image_class_predictor(MLP, my_img)
 
 If you look carefully at the *MNIST_Digits* background in the simulator, you will see that 
 
+```python
+%%sim_magic_preloaded -b MNIST_Digits -O -R -A -x 400 -y 50
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+
+# This is a command invocation rather than a print statement
+print("image_data both")
+```
+
+```python
+from nn_tools.sensor_data import get_sensor_image_pair
+
+# The sample we want from the logged image data
+_index = 10
+
+left_img, right_img = get_sensor_image_pair(roboSim.image_data, _index)
+
+display(left_img, right_img)
+```
 
 ## Activity — Collecting image sample data from the *MNIST_Digits* background
 
@@ -295,7 +491,7 @@ print("image_data left")
 ```
 
 ```python
-dataX = process_robot_image_data()
+dataX = roboSim.image_data()
 dataX
 ```
 
@@ -308,268 +504,6 @@ Scaling filter so we have all sorts of other possible sources of confusion stepp
 
 
 Predictions seem to be very very sensitive the central location of the digit? A single pixel change in direction around (426, 155) can result in completely different classifications.
-
-<!-- #region -->
-## Testing the network on newly created images
-
-To recap, we have trained our MLP on the 28x28 original pixel values used to represent each handwritten digit image and tested the trained network against some test images we held back from the original training set.
-
-
-
-**how did it do on simulator? Can we break things further?**
-
-But how robust is our network when it comes to classifying images that were perhaps not in the original dataset at all?
-
-For example, will the network still recognise an image if we slightly recenter it in original image frame?
-<!-- #endregion -->
-
-### Creating synthetic data — translating an original image
-
-We have already seen how we can get rid of the "background" columns and rows around the outside of an image using the `sensor_data.trim_image()` function.
-
-For example, given the following raw image viewed as a dataframe:
-
-```python
-image_df = df_from_image(image_image)
-```
-
-we can trim it to size:
-
-```python
-trimmed_image_df = trim_image( image_df, background=0)
-```
-
-We can also convert this dataframe back to an image:
-
-```python
-from nn_tools.sensor_data import image_from_df
-
-cropped_image = image_from_df(trimmed_image_df)
-zoom_img( cropped_image )
-```
-
-We have already mentioned how the PIL Python package provides many useful tools for dealing with images as native images.
-
-For example, as well as being able to crop images, if we create a blank image of size 28x28 pixels with a grey background, we can paste a copy of our cropped image into it.
-
-```python
-_grey_background = 200
-
-_image_size = (28, 28)
-_image_mode = 'L' #greyscale image mode
-
-shift_image = Image.new(_image_mode, _image_size, _grey_background)
-
-# Set an offset for where to paste the image
-_xy_offset = (2, 6)
-
-shift_image.paste(cropped_image, _xy_offset) 
-zoom_img(shift_image)
-```
-
-Alternatively, we might zoom the cropped image back to the original image size. (The `Image.LANCZOS` setting defines a filter that is used to interpolate new pixel values in the scaled image based on the pixel values in the cropped image. As such, it may introduce digital artefacts of its own into the scaled image.)
-
-```python
-resized_image = cropped_image.resize(image_image.size, Image.LANCZOS)
-
-display( resized_image.size)
-zoom_img(resized_image)
-```
-
-The `nn_tools.sensor_data.crop_and_zoom_to_fit()` function does this in one step:
-
-```python
-from nn_tools.sensor_data import crop_and_zoom_to_fit
-
-zoom_img( crop_and_zoom_to_fit(image_image) )
-```
-
-<!-- #region tags=["alert-success"] -->
-Note that other image handling tools are available to us within the `PIL` package that allow us to perform other "native" image manipulating functions, such as cropping an image:
-
-```python
-# Define the limits of the crop operation
-
-# Cut 6 pixel columns on lefthand edge
-x0 = 6
-# Cut 10 pixel columns on righthand edge
-x1 = image_image.size[1] -10
-
-# Leave the rows alone
-y0 = 0
-y1 = image_image.size[1]
-
-crop_image = image_image.crop((x0, y0, x1, y1))
-zoom_img(crop_image)
-```
-<!-- #endregion -->
-
-To simplify creating translated images, the `sensor_data.jiggle()` function will accept an image and then return randomly translated version of it.
-
-<!-- #region activity=true -->
-## Activity — translating the digit within the image frame
-
-Explore how the `sensor_data.jiggle()` function works in practice. Run the following cell multiple times, observing what happens in each case, to see how the a differently translated versions of the image are returned each time the function is called. Is there much variation in how the digit is centered in the image frame?
-<!-- #endregion -->
-
-```python activity=true
-from nn_tools.sensor_data import jiggle
-
-# Setting quiet=False displays the original input image
-# as well as returning the jiggled image as cell output
-zoom_img( jiggle(image_image, quiet=False) )
-```
-
-<!-- #region student=true -->
-*Record any notes or observations here.*
-<!-- #endregion -->
-
-<!-- #region activity=true -->
-#### Discussion
-
-*Click on the arrow in the sidebar or run this cell to reveal my observations.*
-<!-- #endregion -->
-
-<!-- #region activity=true -->
-The `jiggle` function slightly translates the image to the left, right, and up and down within the image area. However, it nevers seems to be translated so far that bits of it get cut off.
-<!-- #endregion -->
-
-<!-- #region activity=true -->
-## Activity — Testing the MLP against translated digit images
-
-Now let's see how well our trained MLP responds to translated versions of the original training images.
-
-Start by testing the network against one of the original images:
-<!-- #endregion -->
-
-```python activity=true
-from nn_tools.network_views import predict_and_report_from_image
-
-test_image, test_label = get_random_image()
-
-predict_and_report_from_image(MLP, test_image,
-                              test_label, quiet=False)
-```
-
-<!-- #region activity=true -->
-How does the trained MLP fare if we translate the image? Run the following cell several times and see if the MLP continues to classify the digit correctly. 
-<!-- #endregion -->
-
-```python activity=true
-predict_and_report_from_image(MLP, test_image, test_label,
-                              jiggled=True, quiet=False)
-```
-
-<!-- #region student=true -->
-*Record your observations about how well the MLP performs against the translated images here. Why you think the network is performing the way it does?*
-<!-- #endregion -->
-
-<!-- #region activity=true heading_collapsed=true -->
-#### Discussion
-
-*Click on the arrow in the sidebar or run this cell to reveal my observations.*
-<!-- #endregion -->
-
-<!-- #region activity=true hidden=true -->
-When I tested the network against the translated / jiggled images, I found that it wasn't very reliable at classifying them.
-
-Although the digits are the same size as the original digits, the original MLP has no real sense of how the pixels representing the digits relate to each other according to their *relative* location*.
-
-Instead, it is looking for pixels that overlap the pixels representing the digit that were presented in the original training set. If we translate the digit in the image frame, it may end up overlapping the pixels associated with the original location of another digit more than it overlaps the pixels associated with its own originally located image.
-<!-- #endregion -->
-
-<!-- #region activity=true -->
-## Activity — rescaling the digit within the image frame
-
-How well does the trained MLP work if we rescale the image by crop it and then zooming it to fit the original image size?
-<!-- #endregion -->
-
-```python activity=true
-predict_and_report_from_image(MLP,
-                              test_image, test_label,
-                              cropzoom=True, quiet=False)
-```
-
-<!-- #region student=true -->
-*Record your observations about how well the MLP performs against the translated images here. Why you think the network is performing the way it does?*
-<!-- #endregion -->
-
-<!-- #region activity=true heading_collapsed=true -->
-#### Discussion
-
-*Click on the arrow in the sidebar or run this cell to reveal my observations.*
-<!-- #endregion -->
-
-<!-- #region activity=true hidden=true -->
-When I tested the network against the resized images, I found that it wasn't very reliable at classifying them.
-
-The original MLP has no real sense of how images are scaled across the presented image frame: it is looking for pixels that overlap the pixels representing the digit that were presented in the original training set.
-<!-- #endregion -->
-
-## Activity — Improving the performance of the network
-
-__If the network doesn't work perfectly in the recognition task against the data it is trained with, try tuning the network parameters and retraining the network to see if you can improve its performance.__
-
-Once again, can you improve performance against these unseen items by tweaking the network parameters and retraining it?
-
-```python
-<div class="girk">
-#TO DO -  single function to train MLP.
-# Didn't I have a widget thing for this in week 6?
-
-from ipywidgets import interact
-
-fruit = None
-
-@interact(iterations=(100, 3000, 100),
-          h1=(0, 10, 1), h2=(0, 10, 1))
-def trainer(iterations=2000, h1=6, h2=6):
-    global fruit
-    fruit = MLPClassifier(hidden_layer_sizes=(h1, h2),
-                          max_iter=iterations)
-    
-    # Fit the model
-    fruit.fit(df['Input'].to_list(), df['Fruit'])
-    
-    #Check the prediction for each input
-    predictions = fruit.predict(df['Input'].to_list())
-
-    print(classification_report(df['Fruit'], predictions))
-    print(confusion_matrix(df['Fruit'], predictions))</div><i class="fa fa-lightbulb-o "></i>
-```
-
-## Trying to improve the performance of our MLP
-
-You may have noticed that the trained MLP did not perform particularly well when presented with the translated or resized images.
-
-Can we perhaps improve matters by increasing the size of our training dataset and 
-
-Given our original training images, we can derive a set of additional training images that add further variation to the training set by translating and resizing 
-
-
-## Parameter sweeps - to do but not in this module
-
-```python
-# Increase size of test array
-for i in range(len(images_array)):
-    _image_array = images_array[i]
-    # And convert it to an image
-    _image_image = Image.fromarray(_image_array.astype(np.uint8))
-    
-    # Jiggle - randomly translate the image inside the image frame
-    _image_image = jiggle(_image_image)
-    
-    #Convert back to data
-    _image_array = np.array(_image_image.getdata()).astype(np.uint8)
-    _image_array = _image_array.reshape(28, 28)
-    
-    images_array = np.append(images_array, [_image_array], 0)
-    labels.append(labels[i])
-```
-
-```python
-len(labels), len(images_array)
-```
 
 ## `gradio` ??
 
@@ -605,164 +539,50 @@ np.array(image_data_df.loc[0,'vals'].split)
 Although training a convolutional neural netwrok can take quite a lot of time, and a *lot* of computational effort, off-the-shelf pretrained models are also increasingly available. However, whilst this means you may be able to get started on a recognition task without the requirement to build your own model, *caveat emptor*: buyer beware. When you use a petrained model, you may not what data it ws trained against (and what biases it may include because of that), and you may not know what weaknesses there may be in the model.
 
 <!-- #region tags=["alert-warning"] -->
-Security of models; not focus of this module but something to be aware of.
+As with any area of IT, privacy and security concerns must always be taken into account. With the increasing number of neural networks being deployed, they are starting to become attractive to attackers, although we will not be considering such matters in this module (for an example of related concerns, see *Biggio, B. and Roli, F., 2018. Wild patterns: Ten years after the rise of adversarial machine learning. Pattern Recognition, 84, pp.317-331* [[PDF](https://arxiv.org/pdf/1712.03141.pdf)]).
+
+However, you should be aware when using third party models that they may incorporate risks and threats when you come to use them. For example, __risks__ associated with *bias* in the training data used to train the network, or in its final trained performance; or __threats__ in terms of incorporating patterns that are deliberately misidentifed compared to how you might ordinarily expect them to be identified.
 <!-- #endregion -->
 
+The following example uses a pretrained convolutional neural network model implemented as a TensorFlow Lite model. [*TensorFlow Lite*](https://www.tensorflow.org/lite/) is a framework developed to support the deployment of TensorFlow Model on internet of things (IoT) devices. As such, the models are optimised to be as small as possible and to be evaluated as computationally quickly and efficiently as possible.
+
 ```python
-#https://www.tensorflow.org/lite/guide/python
-#%pip install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp37-cp37m-linux_x86_64.whl
-#https://github.com/frogermcs/MNIST-TFLite/blob/master/notebooks/mnist_model.tflite 
-# downloaded mnist_model.tflite
-import tflite_runtime.interpreter as tflite
 
-interpreter = tflite.Interpreter(model_path='./mnist.tflite')
-
-interpreter.allocate_tensors()
-
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
-
-# check the type of the input tensor
-floating_model = input_details[0]['dtype'] == np.float32
-
-height = input_details[0]['shape'][1]
-width = input_details[0]['shape'][2]
-
-input_details, output_details, height, width
 ```
 
 ```python
-(tf_test_img, tf_test_label) = get_random_image()
-test_img
+from nn_tools.network_views import cnn_load
+from nn_tools.network_views import cnn_get_details
+from nn_tools.network_views import cnn_test_with_image
+from nn_tools.network_views import cnn_rank_results
+
+cnn = cnn_load(fpath='./mnist.tflite',
+               fpath_labels='./mnist_tflite_labels.txt')
 ```
 
 ```python
-tf_test_img = tf_test_img.resize((width, height))
-input_data = np.expand_dims(tf_test_img, axis=0)
-if floating_model:
-    input_data = (np.float32(input_data) - 127.5) / 127.5
+cnn_get_details(cnn)
 ```
 
 ```python
-interpreter.set_tensor(input_details[0]['index'], input_data.reshape(input_details[0]['shape']))
-interpreter.invoke()
+from nn_tools.sensor_data import jiggle
 
-output_data = interpreter.get_tensor(output_details[0]['index'])
-results = np.squeeze(output_data)
-results
+index = 3
+cnn_test_image = generate_image(image_data_df, index, crop=(3, 3, 17, 17)).resize((28, 28))
+cnn_test_image2 = jiggle(cnn_test_image)
+
+display(cnn_test_image, cnn_test_image2)
 ```
 
 ```python
-top_k = results.argsort()[-5:][::-1]
-
-#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-with open('mnist_tflite_labels.txt', 'r') as f:
-    tf_labels = [line.strip() for line in f.readlines()]
-
-#Plot the class predictions as a bar chart
-pd.DataFrame(results).plot(kind='bar', legend=False,
-                           title="Confidence score for each class")
-
-for i in top_k:
-    if floating_model:
-        print('{:08.6f}: {}'.format(float(results[i]), tf_labels[i]))
-    else:
-        print('{:08.6f}: {}'.format(float(results[i] / 255.0), tf_labels[i]))
-    
+# Pass retval=True to return the results values
+# pass rank=N to print top N ranked results
+cnn_test_with_image(cnn, cnn_test_image2, retval=True)
 ```
 
-
 ```python
-#https://www.tensorflow.org/lite/guide/python
-#%pip install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp37-cp37m-linux_x86_64.whl
-#https://github.com/frogermcs/MNIST-TFLite/blob/master/notebooks/mnist_model.tflite 
-# downloaded mnist_model.tflite
-import tflite_runtime.interpreter as tflite
-
-def cnn_load(fpath='./mnist.tflite',
-             fpath_labels='./mnist_tflite_labels.txt'):
-    """Load tensorflow lite model."""
-    interpreter = tflite.Interpreter(model_path=fpath)
-
-    interpreter.allocate_tensors()
-
-    tf_labels = []
-    if fpath_labels:
-        with open(fpath_labels, 'r') as f:
-            tf_labels = [line.strip() for line in f.readlines()]
-        
-    return (interpreter, tf_labels)
-
-cnn = cnn_load()
-
-def cnn_get_details(cnn):
-    """Unpack details of tesnforflow-lite model."""
-    (interpreter, tf_labels) = cnn
-    
-    input_details = interpreter.get_input_details()
-    output_details = interpreter.get_output_details()
-
-    # check the type of the input tensor
-    floating_model = input_details[0]['dtype'] == np.float32
-
-    height = input_details[0]['shape'][1]
-    width = input_details[0]['shape'][2]
-
-    return input_details, output_details, floating_model, height, width
-
-#input_details, output_details, floating_model, height, width = cnn_get_details(cnn_interpreter)
-
-def cnn_rank_results(results):
-    """Display ordered list of top five cnn classification results."""
-       
-    top_k = results.argsort()[-5:][::-1]
-
-    for i in top_k:
-        if floating_model:
-            print('{:08.6f}: {}'.format(float(results[i]), tf_labels[i]))
-        else:
-            print('{:08.6f}: {}'.format(float(results[i] / 255.0), tf_labels[i]))
-    
-
-def cnn_test_with_image(cnn, img, tf_labels='', retval=False):
-    """Test an image against a pretrained tensorflow-lite CNN."""
-    interpreter, _tf_labels = cnn
-    if not tf_labels:
-        tf_labels = _tf_labels
-    
-    display(img);
-
-    input_details, output_details, floating_model, height, width = cnn_get_details(cnn)
-    
-    tf_test_img = img.resize((width, height))
-    input_data = np.expand_dims(tf_test_img, axis=0)
-    if floating_model:
-        input_data = (np.float32(input_data) - 127.5) / 127.5
-        
-    interpreter.set_tensor(input_details[0]['index'],
-                           input_data.reshape(input_details[0]['shape']))
-    interpreter.invoke()
-
-    output_data = interpreter.get_tensor(output_details[0]['index'])
-    results = np.squeeze(output_data)
- 
-    #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
- 
-    #Plot the class predictions as a bar chart
-    if tf_labels and len(tf_labels)==len(results):
-        results_df = pd.DataFrame(results, index=tf_labels)
-    else:
-        results_df = pd.DataFrame(results)
-
-    results_df.plot(kind='bar', legend=False,
-                    title="Confidence score for each class")
-    if retval:
-        return results
-
-(test_img, test_label) = get_random_image()
-
-cnn_test_with_image(cnn, test_img);
-
+# test 20x20 MLP2
+image_class_predictor(MLP2, cnn_test_image2);
 ```
 
 ## Logging lots of data
@@ -830,44 +650,8 @@ vvx =vvi.resize((28, 28), Image.LANCZOS)
 vvx
 ```
 
-### Generate MNIST Output background
+### Communicating between sim and robot
 
-```python
-from IPython.display import Image as I
-from PIL import Image, ImageDraw
-from numpy.random import randint
-
-
-filename='_number_sheet.png'
-
-mode = 'RGB'
-size = (2362, 1143)
-color = 'white'
-
-
-img = Image.new(mode, size, color)
-draw = ImageDraw.Draw(img)
-img_cnt = len(images_array)
-
-
-for i in range(20):
-    for j in range(20):
-        _img = randint(img_cnt)
-        arr = images_array[_img]
-        img_N = Image.fromarray(arr.reshape(28, 28), 'L')
-        img_Ns = img_N.resize((14, 14), Image.LANCZOS)
-        img.paste(img_Ns, (100+i*100, 50+j*100))
-        #draw.text((100+i*100, 40+j*100), str(z[_img]), fill=(0,0,0))
-        
-        # We can draw a square with grey scale values that encode the training set value
-        _x, _y = (100+i*100, 40+j*100)
-        h = labels[_img] * 25
-        draw.rectangle([(_x+38, _y+7), (_x+58, _y+30)], fill=(h,h,h))
-
-
-img.save(filename)
-I(filename)
-```
 
 ![A diagram showing a robot and computer connected by a double ended arrow labelled ‘messages between the agents’.](../tm129-19J-images/tm129_rob_p9_f002.jpg)
 
