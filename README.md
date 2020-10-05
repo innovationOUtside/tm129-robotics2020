@@ -7,7 +7,25 @@ Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybin
 
 *(I note in passing the nbgitpuller binder tab [here](https://jupyterhub.github.io/nbgitpuller/link.html), as well as this [WIP](https://github.com/innovationOUtside/ou-tm129-py/) on packaging py requirements via a py package; should this repo be used as content against a binderbox elsewhere?)*
 
-## Quick start (production)
+
+## Build process
+
+The `ousefuldemos/tm129-robotics2020:latest` container  is built from this [`innovationOUtside/tm129-robotics2020/`](https://github.com/innovationOUtside/tm129-robotics2020/) repo by a Github Action [watching releases](https://github.com/innovationOUtside/tm129-robotics2020/blob/master/.github/workflows/repo2docker.yml).
+ 
+On my own machine, I then run:
+
+```
+cd release
+docker pull ousefuldemos/tm129-robotics2020:latest
+docker build --tag ousefulcoursecontainers/ou-tm129:current .
+docker push ousefulcoursecontainers/ou-tm129:current
+```
+
+The [`release/Dockerfile`](https://github.com/innovationOUtside/tm129-robotics2020/blob/master/release/Dockerfile) is likely to become a work in progress that does things like tidy up the container. At some point, the housekeeping will then be pushed back into the Github Action; I may also create another Github Action, or extend the original one, to perform the above steps to publish the release container.
+
+A proper tagging strategy and automation route for images creating and publishing images released to students also needs figuring out.
+
+## Quick start (presentation testing)
 
 Download and installer docker...
 
