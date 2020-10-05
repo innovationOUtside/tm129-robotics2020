@@ -5,9 +5,82 @@ Repo to explore the drafting of updated robotics activities for the OU module TM
 
 Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=seminar_tm129_robotics_overview.md)
 
-*(I note in passing the nbgitpuller binder tab  [here](https://jupyterhub.github.io/nbgitpuller/link.html), as well as this [WIP](https://github.com/innovationOUtside/ou-tm129-py/) on packaging py requirements via a py package; should this repo be used as content against a binderbox elsewhere?)*
+*(I note in passing the nbgitpuller binder tab [here](https://jupyterhub.github.io/nbgitpuller/link.html), as well as this [WIP](https://github.com/innovationOUtside/ou-tm129-py/) on packaging py requirements via a py package; should this repo be used as content against a binderbox elsewhere?)*
 
-An HTML version of the materials in the repo is available here: [https://innovationoutside.github.io/tm129-robotics2020/](https://innovationoutside.github.io/tm129-robotics2020/). Note that this site may lag the materials in the repo by few days...
+## Quick start (production)
+
+Download and installer docker...
+
+From the command line / Powershell, run:
+
+```
+# update the image
+docker pull ousefulcoursecontainers/ou-tm129:current
+```
+
+Create a directory to share into the container somewhere, eg `~/TM129VCE`
+
+### Docker dashboard instructions
+
+From the images tab, create a new container (`tm351vce`), use port: `8129`, select the `TM129VCE` directory you want to to share and mount it onto `/home/jovyan/shared` inside the container:
+
+![](.images/docker_dashboard_images_list.png)
+
+Set the container running and follow the running containe's *Open in browser* dashboard link.
+
+Go to the *With the container running* instructions...
+
+### Mac instructions:
+ 
+From command line:
+ 
+Find yourself a working directory.
+Optionally create a TM129VCE test directory (one will be created if you don’t)
+Run: 
+
+```
+# update the image
+docker pull ousefulcoursecontainers/ou-tm129:current
+# clear any old container
+docker rm -f tm129vce
+# launch new container
+docker run -d -p 8129:8888 --name tm129vce -v "$PWD/TM129VCE":/home/jovyan/shared  ousefulcoursecontainers/ou-tm129:current
+```
+
+Go to the *With the container running* instructions...
+
+### Windows instructions:
+ 
+Using Powershell, find yourself a working directory.
+
+Optionally create a TM129VCE test directory (one will be created if you don’t)
+
+Run:
+ 
+```
+# update the image
+docker pull ousefulcoursecontainers/ou-tm129:current
+# clear any old container
+docker rm -f tm129vce
+# launch new container
+docker run -d -p 8129:8888 --name tm129vce -v $pwd\TM129VCE:/home/jovyan/shared  ousefulcoursecontainers/ou-tm129:current
+```
+
+Go to the *With the container running* instructions...
+
+### With the container running:
+
+In a browser, go to localhost:8129
+
+Use the token: `letmein`
+ 
+On notebook homepage, click to select the `content` folder, then in notebook homepage toolbar select `Move`, and enter `/shared` in the moved to path.
+ 
+You should then be able to view the notebooks in `shared/content` in the notebook UI and the notebooks should also be on host in `TM129VCE/content`
+ 
+
+## HTML version
+An HTML version (maybe?!) of the materials in the repo is available here: [https://innovationoutside.github.io/tm129-robotics2020/](https://innovationoutside.github.io/tm129-robotics2020/). Note that this site may lag the materials in the repo by few days...
 
 This repository defines the computing environment for the practical activities for the 20J update to the OU TM129 robotics block.
 
