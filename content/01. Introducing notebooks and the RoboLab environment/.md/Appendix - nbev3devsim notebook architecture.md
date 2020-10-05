@@ -1,0 +1,61 @@
+---
+jupyter:
+  jupytext:
+    formats: ipynb,.md//md
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+# Appendix — How the Jupyter notebooks and the robot simulator work together (optional)
+
+*This appendix describes how the Jupyter notebook and the robot simulator interact and are you do not need to study it in order to complete the learning objectives of this module.*
+
+One of the other blocks studied as part of TM129 reviews how operating systems are used to manage computer hardware resources and provide an interface to them that can be used by applications and, ultimately, human computer users.
+
+This notebook provides a quick overview of what happens when you use a notebook to program the simulated robot in terms of managing computer resources.
+
+The notebook code cells are used to execute code in an IPython (interactive Python) environment. As well as executing Python code, the IPython environment also provides additional commands that allow us to run command lines commands or invoke special behaviours that modify how the contents of a code cell are interpreted.
+
+First, we use some IPython ‘magic’ (and yes, it really is called that!), at the start of a code cell to say that the following code should be passed to a particular instance of our simulator running in the same notebook.
+
+The magic incantation takes the form:
+
+`%%sim_magic`
+
+and it __MUST__ appear as the first line of a code cell.
+
+In general, *block* or *cell* magics start with a `%%` and modify the behaviour of the whole cell. Simpler line magics start with a single `%` and are used to run single line magic commands.
+
+The rest of the code in the cell is the code that will be passed into the simulator and used to control the the simulated robot. (The same code should also work with a *real* Lego EV3 robot running the `ev3dev` operating system.)
+
+When you run the code cell, the code is ‘downloaded’ to the simulator *but is not executed*.
+
+To execute your program, you need to click the *Run* button in the simulator itself. Once the code is ‘downloaded’ from your code cell to the simulator, the robot is *autonomous* and runs independently of the code cell within which the program is defined.
+
+The following diagram tries to capture the relationship between the code as seen in a notebook magic code cell and the simulator running as a JavaScript program inside the browser JavaScript environment.
+
+![A diagram showing how code within a code cell can be ‘downloaded’ to the nbev3devsim simulator or, in principle, downloaded to a real robot running Linux and the ev3dev-py environment. At one side is a box representing a Jupyter notebook and the other side a box representing an EV3 robot. The notebook container contains a ‘magic code cell’ and a separate JavaScript environment. The JavaScript environment contains an nbev3devsim container. An arrow is shown going from the code cell to the nbev3devsim container inside the JavaScript container. Inside the EV3 robot box is a Linux container, and inside that an ev3dev container. A second arrow leads from the magic code cell inside the notebook container to the ev3dev container inside the Linux container inside the EV3 robot box.](../images/ev3dev-codearchitecture.png)
+
+The diagram also shows how, in principle, the *same* program could be used to program the simulated robot *or* a real EV3-powered robot.
+
+
+When you run the simulated robot environment, the physical computer computer that runs the simulator is being used to do several different things. In particular, it is used:
+
+1. to create and edit RoboLab programs in the Jupyter notebook; the Jupyter notebook interface runs in the browser, and the content of the code cells are executed inside a Python environment running on your computer;
+
+2. to execute Python code contained in a notebook code cell in a Python environment, or ‘download’ code from a code cell to the simulator;
+
+3. to execute the program in a simulated robot in a JavaScript environment running inside your browser.
+
+Whilst they run on the same physical computer, these programs actually run in different computational environments on the computer. For example, the simulator is actually a JavaScript program that runs in your browser: once you click on the `Run` button, it is the simulated robot’s control system that is executing the robot program inside a JavaScript environment in your browser. The code is actually sent to the simulator via a Python process when the notebook code cell is run. The IPython magic tells the Python process to grab the contents of the code cell (and depending on the magic, prefix it with additional boilerplate code), and then send that code to the simulator running as JavaScript code in the browser window that contains the notebook user interface.
+
+![](../images/ev3-jupyter-arch.png)
+
+

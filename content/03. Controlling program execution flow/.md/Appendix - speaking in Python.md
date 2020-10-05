@@ -1,0 +1,49 @@
+---
+jupyter:
+  jupytext:
+    cell_metadata_filter: pinned_outputs,-all
+    formats: ipynb,.md//md
+    main_language: python
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.2
+---
+
+# Appendix — Speaking in Python
+
+This appendix provides additional explanatory material that offers an insight into some of the technical issues associated with creating speech actions in a Jupyter notebook context as well as creating speech actions in a pure Python environment.
+
+The robot simulator speech action is built up from a JavaScript function that builds on a built-in browser function for creating speech utterances. We can force the Jupyter notebook to run JavaScript code in the browser from a code cell using the `%%javascript` cell magic. This means we can get the browser to ‘speak’ by calling the browser speech functions via JavaScript directly.
+
+*Note that there may be a brief delay between running the code cell and hearing the speech utterance.*
+
+```javascript
+speechSynthesis.speak(new SpeechSynthesisUtterance("hello"))
+```
+
+We can also create a simple wrapper around a JavaScript call that we can use in a Jupyter notebook context to speak, via the browser, from a Python statement:
+
+```python pinned_outputs=[]
+from IPython.display import Javascript
+
+class Speech():
+    def say(self, txt):
+        display(Javascript(f'speechSynthesis.speak(new SpeechSynthesisUtterance("{txt}"))'))
+
+speaker = Speech()
+speaker.say('hello')
+```
+
+We can also create a simple Python program to count aloud up to 10, for example by using a `while` loop:
+
+```python
+n = 1
+
+while n <= 10:
+    speaker.say(n)
+    n = n + 1
+```
+
+As currently defined, there is no way we can stop the `speaker` from counting unless we reload this notebook webpage.
