@@ -1,3 +1,5 @@
+# ----- TM129 repo2docker: postBuild ---
+
 
 # Copy in a datestamp for start of postBuild activity
 echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
@@ -69,5 +71,5 @@ jupyter nbextension install --py jupyter_wysiwyg  --$INSTALL_PREFIX
 # Copy in a datestamp of end of build - checks we got this far as well!
 echo "postBuild end time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
 
-# GDAL / osgeo
+# GDAL / osgeo - Lidar mapping
 #conda install -y -c conda-forge gdal

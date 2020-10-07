@@ -3,6 +3,8 @@ Repo to explore the drafting of updated robotics activities for the OU module TM
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master)
 
+Neural net demos: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=content%2F07.%2520Neural%2520networks)
+
 Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=seminar_tm129_robotics_overview.md)
 
 *(I note in passing the nbgitpuller binder tab [here](https://jupyterhub.github.io/nbgitpuller/link.html), as well as this [WIP](https://github.com/innovationOUtside/ou-tm129-py/) on packaging py requirements via a py package; should this repo be used as content against a binderbox elsewhere?)*
