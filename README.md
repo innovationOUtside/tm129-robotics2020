@@ -3,7 +3,7 @@ Repo to explore the drafting of updated robotics activities for the OU module TM
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master)
 
-Neural net demos: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=content%2F07.%2520Neural%2520networks)
+Neural net demos: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=content%2F07.%20Neural%20networks)
 
 Presentation: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=seminar_tm129_robotics_overview.md)
 
