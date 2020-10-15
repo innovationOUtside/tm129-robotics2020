@@ -51,7 +51,9 @@ Set the container running and follow the running containe's *Open in browser* da
 Go to the *With the container running* instructions...
 
 ### Mac instructions:
- 
+
+__If you've done the Docker Dashbboard route, follow the previous instruction and go to the *With the container running* section.__
+
 From command line:
  
 Find yourself a working directory.
@@ -70,7 +72,9 @@ docker run -d -p 8129:8888 --name tm129vce -v "$PWD/TM129VCE":/home/jovyan/share
 Go to the *With the container running* instructions...
 
 ### Windows instructions:
- 
+
+__If you've done the Docker Dashbboard route, follow the previous instruction and go to the *With the container running* section.__
+
 Using Powershell, find yourself a working directory.
 
 Optionally create a TM129VCE test directory (one will be created if you don’t)
