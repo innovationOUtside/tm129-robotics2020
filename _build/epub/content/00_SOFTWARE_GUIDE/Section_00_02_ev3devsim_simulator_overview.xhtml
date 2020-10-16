@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The ev3devsim Simulator</title>
     <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
@@ -85,7 +85,7 @@ docs</p></li>
 <p><strong>TO DO - optionally impede progrgess if robot encouters wall or obstacle.</strong></p>
 <p>The simulated world can be loaded with a selection of predefined background layouts, or uploaded custom layouts, can be used as the basis of specific robot programming tasks or challenges. (Layouts are sized 2362 by 1143 pixels, which corresponds to the size of a First Lego League / World Robot Olympiad (WRO) field mat, with 1 pixel representing 1mm.)</p>
 <p>The colour sensors can obtain readings from traces on canvas layer that loads the floor mat; the ultrasonic sensor can sense obstacles on the mat although these are not physical objects that impede the progress of the robot.</p>
-<p><img alt="Close up of simulated robot showing two wheel drive (one wheel on each side towards the front of the robot) and two light sensors at the front of the robot just to the left and right of the center line." src="../../_images/EV3DEV_Python_Simulator_robot.png" style="width: 200px;" /></p>
+<p><img alt="Close up of simulated robot showing two wheel drive (one wheel on each side towards the front of the robot) and two light sensors at the front of the robot just to the left and right of the center line." class="no-scaled-link" src="../../_images/EV3DEV_Python_Simulator_robot.png" style="width: 200px;" /></p>
 </div>
 <div class="section" id="Robot-Configuration">
 <h1>Robot Configuration</h1>
@@ -103,24 +103,24 @@ docs</p></li>
 <p><img alt="Example of ev3devsim robot configuration window. SUBJECT TO CHANGE" src="../../_images/00_01_EV3DEV_Python_Simulator-config_robot.png" /></p>
 <p>The robot configuration file is a JSON (Javascript Object Notation) object definition:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;wheeldiameter&quot;</span><span class="o">:</span> <span class="mi">56</span><span class="p">,</span>
-  <span class="s2">&quot;wheelSpacing&quot;</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
-  <span class="s2">&quot;back&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mi">120</span><span class="p">,</span>
+  <span class="s2">&quot;wheeldiameter&quot;</span><span class="o">:</span> <span class="mf">56</span><span class="p">,</span>
+  <span class="s2">&quot;wheelSpacing&quot;</span><span class="o">:</span> <span class="mf">180</span><span class="p">,</span>
+  <span class="s2">&quot;back&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mf">120</span><span class="p">,</span>
   <span class="s2">&quot;weight&quot;</span><span class="o">:</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span>
   <span class="s2">&quot;sensor1&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="s2">&quot;diameter&quot;</span><span class="o">:</span> <span class="mi">20</span>
+    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mf">20</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mf">30</span><span class="p">,</span>
+    <span class="s2">&quot;diameter&quot;</span><span class="o">:</span> <span class="mf">20</span>
   <span class="p">},</span>
   <span class="s2">&quot;sensor2&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="s2">&quot;diameter&quot;</span><span class="o">:</span> <span class="mi">20</span>
+    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mf">30</span><span class="p">,</span>
+    <span class="s2">&quot;diameter&quot;</span><span class="o">:</span> <span class="mf">20</span>
   <span class="p">},</span>
   <span class="s2">&quot;ultrasonic&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s2">&quot;angle&quot;</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>
+    <span class="s2">&quot;angle&quot;</span><span class="o">:</span> <span class="mf">0</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

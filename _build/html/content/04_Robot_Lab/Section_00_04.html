@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4 The design engineer as detective &#8212; TM129 Robotics Practical Activities  documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -487,7 +487,7 @@ cf.go_offline()
 </div>
 </div>
 <p>Here’s a screenshot of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:</p>
-<p><img alt="image0" src="../../_images/plotly_sensor_false_positive.png" /></p>
+<p><img alt="image1" src="../../_images/plotly_sensor_false_positive.png" /></p>
 <p><strong>TO DO: should long desc text only be for partially sighted students, or does it actually make things easier for all students? Here’s an example of using a long desc style description in the main body of the teaching material.</strong></p>
 <p>The vertical scale shows sensor values on a vertical y-axis scale ranging 0-85 or so (the actual readings in principle range form 0..100 per cent). The horizontal scale is a time base showing a time of 0 to 2 seconds, with a plot every 0.02s (that is, about every fiftieth of a second. The sensor readings are also joined to form a line. The line starts with high values, starting at a y value of just over 80. There is then an abrupt fall in the values until they reach a low point of 0 for 3
 samples, followed by a return to the high values around 80. On the diagram, I have marked a horizontal band highlighting values between</p>
@@ -542,14 +542,6 @@ on either the grey or the black line and produce a correspondingly high (80-95) 
 <li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_03_Accessibility.html">1.3 Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_04_Writing_Code.html">1.4 Writing Style Compliant Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.html">1.5 Gaining Access to the RoboLab Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html">1.6 Activity: The RoboLab Notebook Editable Text Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Working-With-Notebook-Files-Interactively">Working With Notebook Files Interactively</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Taking-Ownership-of-Your-Notebooks">Taking Ownership of Your Notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Cells">Creating New Cells</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Code-Cells">Code Cells</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-New-Code-Cells">Creating New Code Cells</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#How-the-simulator-relates-to-the-notebooks">How the simulator relates to the notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.html#Creating-and-Saving-Your-Own-Code">Creating and Saving Your Own Code</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.html">1 Getting started</a></li>
@@ -561,18 +553,18 @@ on either the grey or the black line and produce a correspondingly high (80-95) 
 <li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Simulator-Overview">Simulator Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.html#Robot-Configuration">Robot Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.html">3 Some features of RoboLab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4 RobotLab’s simulator remote control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY">NOTES BELOW OF HISTORICAL INTEREST ONLY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html">4.1 Activity: Remote control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.html#4.2-Activity:-More-remote-control">4.2 Activity: More remote control</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_01.html">1 An introduction to programming robots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_Robot_Lab/Section_00_02.html">2 Constants and variables in programs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html">1 Introduction to loops and branches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_01.html#2-Loops">2 Loops</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_02.html">3 Branches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">3 Robot Lab challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html">Challenge: Making a countdown program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_03.html#Challenge:-Traversing-a-hook">Challenge: Traversing a hook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_Robot_Lab/Section_00_04.html">4 Optional challenges</a></li>
 </ul>
 <ul>
@@ -618,7 +610,7 @@ on either the grey or the black line and produce a correspondingly high (80-95) 
       &copy;The Open University, 2020.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

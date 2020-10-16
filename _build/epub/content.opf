@@ -12,8 +12,8 @@
     <dc:publisher>No publisher provided.</dc:publisher>
     <dc:rights>The Open University, 2020</dc:rights>
     <dc:identifier id="unknown">unknown</dc:identifier>
-    <dc:date>2020-06-11T18:17:35Z</dc:date>
-    <meta property="dcterms:modified">2020-06-11T18:17:35Z</meta>
+    <dc:date>2020-10-16T14:17:37Z</dc:date>
+    <meta property="dcterms:modified">2020-10-16T14:17:37Z</meta>
     <meta property="ibooks:version">0.0.1</meta>
     <meta property="ibooks:specified-fonts">true</meta>
     <meta property="ibooks:binding">true</meta>
@@ -154,13 +154,11 @@
     <itemref idref="epub-97" />
     <itemref idref="epub-98" />
     <itemref idref="epub-99" />
-    <itemref idref="epub-100" />
     <itemref idref="epub-101" />
     <itemref idref="epub-102" />
     <itemref idref="epub-103" />
     <itemref idref="epub-104" />
     <itemref idref="epub-105" />
-    <itemref idref="epub-106" />
     <itemref idref="epub-107" />
     <itemref idref="epub-108" />
     <itemref idref="epub-109" />
@@ -176,6 +174,8 @@
     <itemref idref="epub-119" />
     <itemref idref="epub-1" />
     <itemref idref="epub-0" linear="no" />
+    <itemref idref="epub-100" linear="no" />
+    <itemref idref="epub-106" linear="no" />
     <itemref idref="epub-120" linear="no" />
     <itemref idref="epub-121" linear="no" />
   </spine>

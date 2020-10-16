@@ -258,1077 +258,717 @@
     </navPoint>
     <navPoint id="navPoint42" playOrder="35">
       <navLabel>
-        <text>1.6 Activity: The RoboLab Notebook Editable Text Environment</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml" />  
-      <navPoint id="navPoint43" playOrder="35">
-        <navLabel>
-          <text>1.6 Activity: The RoboLab Notebook Editable Text Environment</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml" />  
-      </navPoint>
-      <navPoint id="navPoint44" playOrder="36">
-        <navLabel>
-          <text>A first look</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#A-first-look" />  
-      </navPoint>
-    </navPoint>
-    <navPoint id="navPoint45" playOrder="37">
-      <navLabel>
-        <text>Working With Notebook Files Interactively</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Working-With-Notebook-Files-Interactively" />  
-      <navPoint id="navPoint46" playOrder="37">
-        <navLabel>
-          <text>Working With Notebook Files Interactively</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Working-With-Notebook-Files-Interactively" />  
-      </navPoint>
-      <navPoint id="navPoint47" playOrder="38">
-        <navLabel>
-          <text>Previewing Formatted Markdown</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Previewing-Formatted-Markdown" />  
-      </navPoint>
-      <navPoint id="navPoint48" playOrder="39">
-        <navLabel>
-          <text>Markdown Examples</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Markdown-Examples" />  
-      </navPoint>
-    </navPoint>
-    <navPoint id="navPoint49" playOrder="40">
-      <navLabel>
-        <text>Taking Ownership of Your Notebooks</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Taking-Ownership-of-Your-Notebooks" />  
-      <navPoint id="navPoint50" playOrder="40">
-        <navLabel>
-          <text>Taking Ownership of Your Notebooks</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Taking-Ownership-of-Your-Notebooks" />  
-      </navPoint>
-      <navPoint id="navPoint51" playOrder="41">
-        <navLabel>
-          <text>Previewing Style Markup</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Previewing-Style-Markup" />  
-      </navPoint>
-      <navPoint id="navPoint52" playOrder="42">
-        <navLabel>
-          <text>WYSIWYG “Text Editor” View</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#WYSIWYG-“Text-Editor”-View" />  
-      </navPoint>
-    </navPoint>
-    <navPoint id="navPoint53" playOrder="43">
-      <navLabel>
-        <text>Creating New Cells</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-New-Cells" />  
-    </navPoint>
-    <navPoint id="navPoint54" playOrder="44">
-      <navLabel>
-        <text>Code Cells</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Code-Cells" />  
-      <navPoint id="navPoint55" playOrder="44">
-        <navLabel>
-          <text>Code Cells</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Code-Cells" />  
-      </navPoint>
-      <navPoint id="navPoint56" playOrder="45">
-        <navLabel>
-          <text>Displaying Code Line Numbers</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Displaying-Code-Line-Numbers" />  
-      </navPoint>
-      <navPoint id="navPoint57" playOrder="46">
-        <navLabel>
-          <text>Code Style</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Code-Style" />  
-      </navPoint>
-    </navPoint>
-    <navPoint id="navPoint58" playOrder="47">
-      <navLabel>
-        <text>Creating New Code Cells</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-New-Code-Cells" />  
-    </navPoint>
-    <navPoint id="navPoint59" playOrder="48">
-      <navLabel>
-        <text>How the simulator relates to the notebooks</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#How-the-simulator-relates-to-the-notebooks" />  
-      <navPoint id="navPoint60" playOrder="48">
-        <navLabel>
-          <text>How the simulator relates to the notebooks</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#How-the-simulator-relates-to-the-notebooks" />  
-      </navPoint>
-      <navPoint id="navPoint61" playOrder="49">
-        <navLabel>
-          <text>Alternative RoboLab User Environments</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Alternative-RoboLab-User-Environments" />  
-      </navPoint>
-      <navPoint id="navPoint62" playOrder="50">
-        <navLabel>
-          <text>Configuring the Simulator Layout</text>
-        </navLabel>
-        <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Configuring-the-Simulator-Layout" />  
-      </navPoint>
-    </navPoint>
-    <navPoint id="navPoint63" playOrder="51">
-      <navLabel>
-        <text>Creating and Saving Your Own Code</text>
-      </navLabel>
-      <content src="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml#Creating-and-Saving-Your-Own-Code" />  
-    </navPoint>
-    <navPoint id="navPoint64" playOrder="52">
-      <navLabel>
         <text>1 Getting started</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml" />  
-      <navPoint id="navPoint65" playOrder="52">
+      <navPoint id="navPoint43" playOrder="35">
         <navLabel>
           <text>1 Getting started</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint66" playOrder="53">
+      <navPoint id="navPoint44" playOrder="36">
         <navLabel>
           <text>1.1 Introduction to the TM129 Virtual Robotics Lab: RoboLab</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#1.1-Introduction-to-the-TM129-Virtual-Robotics-Lab:-RoboLab" />  
-        <navPoint id="navPoint67" playOrder="53">
+        <navPoint id="navPoint45" playOrder="36">
           <navLabel>
             <text>1.1 Introduction to the TM129 Virtual Robotics Lab: RoboLab</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#1.1-Introduction-to-the-TM129-Virtual-Robotics-Lab:-RoboLab" />  
         </navPoint>
-        <navPoint id="navPoint68" playOrder="54">
+        <navPoint id="navPoint46" playOrder="37">
           <navLabel>
             <text>The Jupyer Notebook Environment</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#The-Jupyer-Notebook-Environment" />  
         </navPoint>
-        <navPoint id="navPoint69" playOrder="55">
+        <navPoint id="navPoint47" playOrder="38">
           <navLabel>
             <text>Notebook Extensions</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#Notebook-Extensions" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint70" playOrder="56">
+      <navPoint id="navPoint48" playOrder="39">
         <navLabel>
           <text>Addendum</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml#Addendum" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint71" playOrder="57">
+    <navPoint id="navPoint49" playOrder="40">
       <navLabel>
         <text>2 The RoboLab simulated on-screen robot (nbev3devsim)</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml" />  
-      <navPoint id="navPoint72" playOrder="57">
+      <navPoint id="navPoint50" playOrder="40">
         <navLabel>
           <text>2 The RoboLab simulated on-screen robot (nbev3devsim)</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint73" playOrder="58">
+      <navPoint id="navPoint51" playOrder="41">
         <navLabel>
           <text>2.1 Activity: Running a program</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#2.1-Activity:-Running-a-program" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint74" playOrder="59">
+    <navPoint id="navPoint52" playOrder="42">
       <navLabel>
         <text>Move robot forward</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#Move-robot-forward" />  
     </navPoint>
-    <navPoint id="navPoint75" playOrder="60">
+    <navPoint id="navPoint53" playOrder="43">
       <navLabel>
         <text>Move robot forward for 3 seconds</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#Move-robot-forward-for-3-seconds" />  
-      <navPoint id="navPoint76" playOrder="60">
+      <navPoint id="navPoint54" playOrder="43">
         <navLabel>
           <text>Move robot forward for 3 seconds</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#Move-robot-forward-for-3-seconds" />  
       </navPoint>
-      <navPoint id="navPoint77" playOrder="61">
+      <navPoint id="navPoint55" playOrder="44">
         <navLabel>
           <text>2.2 The Program window</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml#2.2-The-Program-window" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint78" playOrder="62">
+    <navPoint id="navPoint56" playOrder="45">
       <navLabel>
         <text>The ev3devsim Simulator</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml" />  
     </navPoint>
-    <navPoint id="navPoint79" playOrder="63">
+    <navPoint id="navPoint57" playOrder="46">
       <navLabel>
         <text>The EV3 “Brick”</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#The-EV3-“Brick”" />  
     </navPoint>
-    <navPoint id="navPoint80" playOrder="64">
+    <navPoint id="navPoint58" playOrder="47">
       <navLabel>
         <text>Simulator Overview</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#Simulator-Overview" />  
     </navPoint>
-    <navPoint id="navPoint81" playOrder="65">
+    <navPoint id="navPoint59" playOrder="48">
       <navLabel>
         <text>Robot Configuration</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml#Robot-Configuration" />  
     </navPoint>
-    <navPoint id="navPoint82" playOrder="66">
+    <navPoint id="navPoint60" playOrder="49">
       <navLabel>
         <text>3 Some features of RoboLab</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml" />  
-      <navPoint id="navPoint83" playOrder="66">
+      <navPoint id="navPoint61" playOrder="49">
         <navLabel>
           <text>3 Some features of RoboLab</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint84" playOrder="67">
+      <navPoint id="navPoint62" playOrder="50">
         <navLabel>
           <text>3.1 Activity: Keeping a robot in an area</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.1-Activity:-Keeping-a-robot-in-an-area" />  
-        <navPoint id="navPoint85" playOrder="67">
+        <navPoint id="navPoint63" playOrder="50">
           <navLabel>
             <text>3.1 Activity: Keeping a robot in an area</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.1-Activity:-Keeping-a-robot-in-an-area" />  
         </navPoint>
-        <navPoint id="navPoint86" playOrder="68">
+        <navPoint id="navPoint64" playOrder="51">
           <navLabel>
             <text>Viewing the stay inside test on a real robot</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Viewing-the-stay-inside-test-on-a-real-robot" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint87" playOrder="69">
+      <navPoint id="navPoint65" playOrder="52">
         <navLabel>
           <text>Using Less Magic…</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Using-Less-Magic…" />  
       </navPoint>
-      <navPoint id="navPoint88" playOrder="70">
+      <navPoint id="navPoint66" playOrder="53">
         <navLabel>
           <text>A Complete Python Programme</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#A-Complete-Python-Programme" />  
       </navPoint>
-      <navPoint id="navPoint89" playOrder="71">
+      <navPoint id="navPoint67" playOrder="54">
         <navLabel>
           <text>3.2 Activity: Investigating sensors</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.2-Activity:-Investigating-sensors" />  
-        <navPoint id="navPoint90" playOrder="71">
+        <navPoint id="navPoint68" playOrder="54">
           <navLabel>
             <text>3.2 Activity: Investigating sensors</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#3.2-Activity:-Investigating-sensors" />  
         </navPoint>
-        <navPoint id="navPoint91" playOrder="72">
+        <navPoint id="navPoint69" playOrder="55">
           <navLabel>
             <text>SAQ TO DO</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#SAQ-TO-DO" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint92" playOrder="73">
+      <navPoint id="navPoint70" playOrder="56">
         <navLabel>
           <text>Activity - Viewing the Logged Data - The Simulator Datalog Chart Display</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity---Viewing-the-Logged-Data---The-Simulator-Datalog-Chart-Display" />  
-        <navPoint id="navPoint93" playOrder="73">
+        <navPoint id="navPoint71" playOrder="56">
           <navLabel>
             <text>Activity - Viewing the Logged Data - The Simulator Datalog Chart Display</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity---Viewing-the-Logged-Data---The-Simulator-Datalog-Chart-Display" />  
         </navPoint>
-        <navPoint id="navPoint94" playOrder="74">
+        <navPoint id="navPoint72" playOrder="57">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#id1" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint95" playOrder="75">
+      <navPoint id="navPoint73" playOrder="58">
         <navLabel>
           <text>Viewing the Logged Data - Uploading the Logged Data to the Notebook</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Viewing-the-Logged-Data---Uploading-the-Logged-Data-to-the-Notebook" />  
       </navPoint>
-      <navPoint id="navPoint96" playOrder="76">
+      <navPoint id="navPoint74" playOrder="59">
         <navLabel>
           <text>Robots that speak</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Robots-that-speak" />  
       </navPoint>
-      <navPoint id="navPoint97" playOrder="77">
+      <navPoint id="navPoint75" playOrder="60">
         <navLabel>
           <text>Robots That Count</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Robots-That-Count" />  
-        <navPoint id="navPoint98" playOrder="77">
+        <navPoint id="navPoint76" playOrder="60">
           <navLabel>
             <text>Robots That Count</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Robots-That-Count" />  
         </navPoint>
-        <navPoint id="navPoint99" playOrder="78">
+        <navPoint id="navPoint77" playOrder="61">
           <navLabel>
             <text>Activity TO DO</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity-TO-DO" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint100" playOrder="79">
+      <navPoint id="navPoint78" playOrder="62">
         <navLabel>
           <text>Announcing Bands As The Robot Encounters Them</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Announcing-Bands-As-The-Robot-Encounters-Them" />  
-        <navPoint id="navPoint101" playOrder="79">
+        <navPoint id="navPoint79" playOrder="62">
           <navLabel>
             <text>Announcing Bands As The Robot Encounters Them</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Announcing-Bands-As-The-Robot-Encounters-Them" />  
         </navPoint>
-        <navPoint id="navPoint102" playOrder="80">
+        <navPoint id="navPoint80" playOrder="63">
           <navLabel>
             <text>Activity - Announce When the Robot Has Left a Band</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity---Announce-When-the-Robot-Has-Left-a-Band" />  
         </navPoint>
-        <navPoint id="navPoint103" playOrder="81">
+        <navPoint id="navPoint81" playOrder="64">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#id3" />  
         </navPoint>
-        <navPoint id="navPoint104" playOrder="82">
+        <navPoint id="navPoint82" playOrder="65">
           <navLabel>
             <text>Activity - Count the Bands</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Activity---Count-the-Bands" />  
         </navPoint>
-        <navPoint id="navPoint105" playOrder="83">
+        <navPoint id="navPoint83" playOrder="66">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#id4" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint106" playOrder="84">
+      <navPoint id="navPoint84" playOrder="67">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml#Summary" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint107" playOrder="85">
+    <navPoint id="navPoint85" playOrder="68">
       <navLabel>
-        <text>4 RobotLab’s simulator remote control</text>
+        <text>4.1 Activity: Remote control</text>
       </navLabel>
       <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml" />  
-    </navPoint>
-    <navPoint id="navPoint108" playOrder="86">
-      <navLabel>
-        <text>NOTES BELOW OF HISTORICAL INTEREST ONLY</text>
-      </navLabel>
-      <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY" />  
-      <navPoint id="navPoint109" playOrder="86">
-        <navLabel>
-          <text>NOTES BELOW OF HISTORICAL INTEREST ONLY</text>
-        </navLabel>
-        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY" />  
-      </navPoint>
-      <navPoint id="navPoint110" playOrder="87">
+      <navPoint id="navPoint86" playOrder="68">
         <navLabel>
           <text>4.1 Activity: Remote control</text>
         </navLabel>
-        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.1-Activity:-Remote-control" />  
-        <navPoint id="navPoint111" playOrder="87">
-          <navLabel>
-            <text>4.1 Activity: Remote control</text>
-          </navLabel>
-          <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.1-Activity:-Remote-control" />  
-        </navPoint>
-        <navPoint id="navPoint112" playOrder="88">
-          <navLabel>
-            <text>Question</text>
-          </navLabel>
-          <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#Question" />  
-        </navPoint>
-        <navPoint id="navPoint113" playOrder="89">
-          <navLabel>
-            <text>Answer</text>
-          </navLabel>
-          <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#Answer" />  
-        </navPoint>
-        <navPoint id="navPoint114" playOrder="90">
-          <navLabel>
-            <text>Question</text>
-          </navLabel>
-          <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#id1" />  
-        </navPoint>
-        <navPoint id="navPoint115" playOrder="91">
-          <navLabel>
-            <text>Answer</text>
-          </navLabel>
-          <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#id2" />  
-        </navPoint>
+        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint116" playOrder="92">
+      <navPoint id="navPoint87" playOrder="69">
         <navLabel>
-          <text>4.2 Activity: More remote control</text>
+          <text>Question</text>
         </navLabel>
-        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.2-Activity:-More-remote-control" />  
+        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#Question" />  
+      </navPoint>
+      <navPoint id="navPoint88" playOrder="70">
+        <navLabel>
+          <text>Answer</text>
+        </navLabel>
+        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#Answer" />  
+      </navPoint>
+      <navPoint id="navPoint89" playOrder="71">
+        <navLabel>
+          <text>Question</text>
+        </navLabel>
+        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint90" playOrder="72">
+        <navLabel>
+          <text>Answer</text>
+        </navLabel>
+        <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#id2" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint117" playOrder="93">
+    <navPoint id="navPoint91" playOrder="73">
       <navLabel>
-        <text>1 An introduction to programming robots</text>
+        <text>4.2 Activity: More remote control</text>
       </navLabel>
-      <content src="content/01_Robot_Lab/Section_00_01.xhtml" />  
-      <navPoint id="navPoint118" playOrder="93">
-        <navLabel>
-          <text>1 An introduction to programming robots</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml" />  
-      </navPoint>
-      <navPoint id="navPoint119" playOrder="94">
-        <navLabel>
-          <text>1.1 Some basics of computer programming</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.1-Some-basics-of-computer-programming" />  
-      </navPoint>
-      <navPoint id="navPoint120" playOrder="95">
-        <navLabel>
-          <text>Getting Started With the Simulator</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#Getting-Started-With-the-Simulator" />  
-        <navPoint id="navPoint121" playOrder="95">
-          <navLabel>
-            <text>Getting Started With the Simulator</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Getting-Started-With-the-Simulator" />  
-        </navPoint>
-        <navPoint id="navPoint122" playOrder="96">
-          <navLabel>
-            <text>Error Messages in the Simulator</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Error-Messages-in-the-Simulator" />  
-        </navPoint>
-        <navPoint id="navPoint123" playOrder="97">
-          <navLabel>
-            <text>Passing Code into the Simulator</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Passing-Code-into-the-Simulator" />  
-        </navPoint>
-      </navPoint>
-      <navPoint id="navPoint124" playOrder="98">
-        <navLabel>
-          <text>1.2 An introduction to sequential programming</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.2-An-introduction-to-sequential-programming" />  
-        <navPoint id="navPoint125" playOrder="98">
-          <navLabel>
-            <text>1.2 An introduction to sequential programming</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.2-An-introduction-to-sequential-programming" />  
-        </navPoint>
-        <navPoint id="navPoint126" playOrder="99">
-          <navLabel>
-            <text>Using Predefined Code Building Blocks</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Using-Predefined-Code-Building-Blocks" />  
-        </navPoint>
-        <navPoint id="navPoint127" playOrder="100">
-          <navLabel>
-            <text>Activity - Driving the Motors at Different Speeds</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Activity---Driving-the-Motors-at-Different-Speeds" />  
-        </navPoint>
-        <navPoint id="navPoint128" playOrder="101">
-          <navLabel>
-            <text>Turning the Motors on for a Specified Number of Wheel Rotations</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Turning-the-Motors-on-for-a-Specified-Number-of-Wheel-Rotations" />  
-        </navPoint>
-        <navPoint id="navPoint129" playOrder="102">
-          <navLabel>
-            <text>Steering the Robot — MoveSteering</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Steering-the-Robot-—-MoveSteering" />  
-        </navPoint>
-      </navPoint>
-      <navPoint id="navPoint130" playOrder="103">
-        <navLabel>
-          <text>1.3 Writing Programs for Use in the RoboLab Simulator</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.3-Writing-Programs-for-Use-in-the-RoboLab-Simulator" />  
-      </navPoint>
-      <navPoint id="navPoint131" playOrder="104">
-        <navLabel>
-          <text>NN TO DO Activity: Creating and editing your own programs</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#NN-TO-DO-Activity:-Creating-and-editing-your-own-programs" />  
-        <navPoint id="navPoint132" playOrder="104">
-          <navLabel>
-            <text>NN TO DO Activity: Creating and editing your own programs</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#NN-TO-DO-Activity:-Creating-and-editing-your-own-programs" />  
-        </navPoint>
-        <navPoint id="navPoint133" playOrder="105">
-          <navLabel>
-            <text>Copying and Modifying a program</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Copying-and-Modifying-a-program" />  
-        </navPoint>
-        <navPoint id="navPoint134" playOrder="106">
-          <navLabel>
-            <text>Copying Code Using Keyboard shortcut commands</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Copying-Code-Using-Keyboard-shortcut-commands" />  
-        </navPoint>
-        <navPoint id="navPoint135" playOrder="107">
-          <navLabel>
-            <text>Deleting Cells</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Deleting-Cells" />  
-        </navPoint>
-        <navPoint id="navPoint136" playOrder="108">
-          <navLabel>
-            <text>Deleting and moving lines of code in a code cell</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Deleting-and-moving-lines-of-code-in-a-code-cell" />  
-        </navPoint>
-      </navPoint>
-      <navPoint id="navPoint137" playOrder="109">
-        <navLabel>
-          <text>1.5 Activity: Working with comments</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.5-Activity:-Working-with-comments" />  
-        <navPoint id="navPoint138" playOrder="109">
-          <navLabel>
-            <text>1.5 Activity: Working with comments</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.5-Activity:-Working-with-comments" />  
-        </navPoint>
-        <navPoint id="navPoint139" playOrder="110">
-          <navLabel>
-            <text>Using Comments</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Using-Comments" />  
-        </navPoint>
-        <navPoint id="navPoint140" playOrder="111">
-          <navLabel>
-            <text>Block Comments</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Block-Comments" />  
-        </navPoint>
-        <navPoint id="navPoint141" playOrder="112">
-          <navLabel>
-            <text>Using comments in other ways</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Using-comments-in-other-ways" />  
-        </navPoint>
-        <navPoint id="navPoint142" playOrder="113">
-          <navLabel>
-            <text>Using Notebook Markdown Cells to Narrate a Programme Code and Programme Development</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Using-Notebook-Markdown-Cells-to-Narrate-a-Programme-Code-and-Programme-Development" />  
-        </navPoint>
-        <navPoint id="navPoint143" playOrder="114">
-          <navLabel>
-            <text>Saving a RoboLab program</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Saving-a-RoboLab-program" />  
-        </navPoint>
-      </navPoint>
-      <navPoint id="navPoint144" playOrder="115">
-        <navLabel>
-          <text>1.6 Activity: Completing the square</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.6-Activity:-Completing-the-square" />  
-        <navPoint id="navPoint145" playOrder="115">
-          <navLabel>
-            <text>1.6 Activity: Completing the square</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#1.6-Activity:-Completing-the-square" />  
-        </navPoint>
-        <navPoint id="navPoint146" playOrder="116">
-          <navLabel>
-            <text>Extending your programme further</text>
-          </navLabel>
-          <content src="content/01_Robot_Lab/Section_00_01.xhtml#Extending-your-programme-further" />  
-        </navPoint>
-      </navPoint>
-      <navPoint id="navPoint147" playOrder="117">
-        <navLabel>
-          <text>Summary</text>
-        </navLabel>
-        <content src="content/01_Robot_Lab/Section_00_01.xhtml#Summary" />  
-      </navPoint>
+      <content src="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml#4.2-Activity:-More-remote-control" />  
     </navPoint>
-    <navPoint id="navPoint148" playOrder="118">
+    <navPoint id="navPoint92" playOrder="74">
       <navLabel>
         <text>2 Constants and variables in programs</text>
       </navLabel>
       <content src="content/01_Robot_Lab/Section_00_02.xhtml" />  
-      <navPoint id="navPoint149" playOrder="118">
+      <navPoint id="navPoint93" playOrder="74">
         <navLabel>
           <text>2 Constants and variables in programs</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint150" playOrder="119">
+      <navPoint id="navPoint94" playOrder="75">
         <navLabel>
           <text>2.1 An introduction to constants in computer programs</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#2.1-An-introduction-to-constants-in-computer-programs" />  
-        <navPoint id="navPoint151" playOrder="119">
+        <navPoint id="navPoint95" playOrder="75">
           <navLabel>
             <text>2.1 An introduction to constants in computer programs</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#2.1-An-introduction-to-constants-in-computer-programs" />  
         </navPoint>
-        <navPoint id="navPoint152" playOrder="120">
+        <navPoint id="navPoint96" playOrder="76">
           <navLabel>
             <text>Question</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#Question" />  
         </navPoint>
-        <navPoint id="navPoint153" playOrder="121">
+        <navPoint id="navPoint97" playOrder="77">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#Answer" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint154" playOrder="122">
+      <navPoint id="navPoint98" playOrder="78">
         <navLabel>
           <text>2.2 Activity: Working with constants and variables</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#2.2-Activity:-Working-with-constants-and-variables" />  
       </navPoint>
-      <navPoint id="navPoint155" playOrder="123">
+      <navPoint id="navPoint99" playOrder="79">
         <navLabel>
           <text>Activity: Robo Lab challenge</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#Activity:-Robo-Lab-challenge" />  
-        <navPoint id="navPoint156" playOrder="123">
+        <navPoint id="navPoint100" playOrder="79">
           <navLabel>
             <text>Activity: Robo Lab challenge</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#Activity:-Robo-Lab-challenge" />  
         </navPoint>
-        <navPoint id="navPoint157" playOrder="124">
+        <navPoint id="navPoint101" playOrder="80">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#id1" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint158" playOrder="125">
+      <navPoint id="navPoint102" playOrder="81">
         <navLabel>
           <text>2.4 Activity: Working with variables</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#2.4-Activity:-Working-with-variables" />  
-        <navPoint id="navPoint159" playOrder="125">
+        <navPoint id="navPoint103" playOrder="81">
           <navLabel>
             <text>2.4 Activity: Working with variables</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#2.4-Activity:-Working-with-variables" />  
         </navPoint>
-        <navPoint id="navPoint160" playOrder="126">
+        <navPoint id="navPoint104" playOrder="82">
           <navLabel>
             <text>SAQ — Question</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#SAQ-—-Question" />  
         </navPoint>
-        <navPoint id="navPoint161" playOrder="127">
+        <navPoint id="navPoint105" playOrder="83">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/01_Robot_Lab/Section_00_02.xhtml#id2" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint162" playOrder="128">
+      <navPoint id="navPoint106" playOrder="84">
         <navLabel>
           <text>Updating Variables from Sensor Values</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#Updating-Variables-from-Sensor-Values" />  
       </navPoint>
-      <navPoint id="navPoint163" playOrder="129">
+      <navPoint id="navPoint107" playOrder="85">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/01_Robot_Lab/Section_00_02.xhtml#Summary" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint164" playOrder="130">
+    <navPoint id="navPoint108" playOrder="86">
       <navLabel>
         <text>1 Introduction to loops and branches</text>
       </navLabel>
       <content src="content/02_Robot_Lab/Section_00_01.xhtml" />  
     </navPoint>
-    <navPoint id="navPoint165" playOrder="131">
+    <navPoint id="navPoint109" playOrder="87">
       <navLabel>
         <text>2 Loops</text>
       </navLabel>
       <content src="content/02_Robot_Lab/Section_00_01.xhtml#2-Loops" />  
-      <navPoint id="navPoint166" playOrder="131">
+      <navPoint id="navPoint110" playOrder="87">
         <navLabel>
           <text>2 Loops</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#2-Loops" />  
       </navPoint>
-      <navPoint id="navPoint167" playOrder="132">
+      <navPoint id="navPoint111" playOrder="88">
         <navLabel>
           <text>2.1 An introduction to loops in computer programs</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#2.1-An-introduction-to-loops-in-computer-programs" />  
       </navPoint>
-      <navPoint id="navPoint168" playOrder="133">
+      <navPoint id="navPoint112" playOrder="89">
         <navLabel>
           <text>Using a for...in... loop</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-for...in...-loop" />  
-        <navPoint id="navPoint169" playOrder="133">
+        <navPoint id="navPoint113" playOrder="89">
           <navLabel>
             <text>Using a for...in... loop</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-for...in...-loop" />  
         </navPoint>
-        <navPoint id="navPoint170" playOrder="134">
+        <navPoint id="navPoint114" playOrder="90">
           <navLabel>
             <text>Activity</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Activity" />  
         </navPoint>
-        <navPoint id="navPoint171" playOrder="135">
+        <navPoint id="navPoint115" playOrder="91">
           <navLabel>
             <text>Using a for..in.. Loop in a Robot Control Program</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-for..in..-Loop-in-a-Robot-Control-Program" />  
         </navPoint>
-        <navPoint id="navPoint172" playOrder="136">
+        <navPoint id="navPoint116" playOrder="92">
           <navLabel>
             <text>Returning to the top of a loop early</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Returning-to-the-top-of-a-loop-early" />  
         </navPoint>
-        <navPoint id="navPoint173" playOrder="137">
+        <navPoint id="navPoint117" playOrder="93">
           <navLabel>
             <text>Conditional Tests Using the Conditional Construct, if…</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Conditional-Tests-Using-the-Conditional-Construct,-if…" />  
         </navPoint>
-        <navPoint id="navPoint174" playOrder="138">
+        <navPoint id="navPoint118" playOrder="94">
           <navLabel>
             <text>Activity</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#id1" />  
         </navPoint>
-        <navPoint id="navPoint175" playOrder="139">
+        <navPoint id="navPoint119" playOrder="95">
           <navLabel>
             <text>Escaping from a Loop Early</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Escaping-from-a-Loop-Early" />  
         </navPoint>
-        <navPoint id="navPoint176" playOrder="140">
+        <navPoint id="navPoint120" playOrder="96">
           <navLabel>
             <text>Activity - Escape from a for...in... loop</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Activity---Escape-from-a-for...in...-loop" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint177" playOrder="141">
+      <navPoint id="navPoint121" playOrder="97">
         <navLabel>
           <text>Using a while... loop</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-while...-loop" />  
-        <navPoint id="navPoint178" playOrder="141">
+        <navPoint id="navPoint122" playOrder="97">
           <navLabel>
             <text>Using a while... loop</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-while...-loop" />  
         </navPoint>
-        <navPoint id="navPoint179" playOrder="142">
+        <navPoint id="navPoint123" playOrder="98">
           <navLabel>
             <text>Activity - Use a while Loop</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Activity---Use-a-while-Loop" />  
         </navPoint>
-        <navPoint id="navPoint180" playOrder="143">
+        <navPoint id="navPoint124" playOrder="99">
           <navLabel>
             <text>Infinite Loops</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Infinite-Loops" />  
         </navPoint>
-        <navPoint id="navPoint181" playOrder="144">
+        <navPoint id="navPoint125" playOrder="100">
           <navLabel>
             <text>Using a while loop in the simulator</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_01.xhtml#Using-a-while-loop-in-the-simulator" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint182" playOrder="145">
+      <navPoint id="navPoint126" playOrder="101">
         <navLabel>
           <text>Activity: Changing a loop variable count up to 10</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#Activity:-Changing-a-loop-variable-count-up-to-10" />  
       </navPoint>
-      <navPoint id="navPoint183" playOrder="146">
+      <navPoint id="navPoint127" playOrder="102">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#Summary" />  
       </navPoint>
-      <navPoint id="navPoint184" playOrder="147">
+      <navPoint id="navPoint128" playOrder="103">
         <navLabel>
           <text>Addendum</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_01.xhtml#Addendum" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint185" playOrder="148">
+    <navPoint id="navPoint129" playOrder="104">
       <navLabel>
         <text>3 Branches</text>
       </navLabel>
       <content src="content/02_Robot_Lab/Section_00_02.xhtml" />  
-      <navPoint id="navPoint186" playOrder="148">
+      <navPoint id="navPoint130" playOrder="104">
         <navLabel>
           <text>3 Branches</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint187" playOrder="149">
+      <navPoint id="navPoint131" playOrder="105">
         <navLabel>
           <text>3.1 Activity: Detecting black and grey</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.1-Activity:-Detecting-black-and-grey" />  
-        <navPoint id="navPoint188" playOrder="149">
+        <navPoint id="navPoint132" playOrder="105">
           <navLabel>
             <text>3.1 Activity: Detecting black and grey</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.1-Activity:-Detecting-black-and-grey" />  
         </navPoint>
-        <navPoint id="navPoint189" playOrder="150">
+        <navPoint id="navPoint133" playOrder="106">
           <navLabel>
             <text>Question</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#Question" />  
         </navPoint>
-        <navPoint id="navPoint190" playOrder="151">
+        <navPoint id="navPoint134" playOrder="107">
           <navLabel>
             <text>Answer</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#Answer" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint191" playOrder="152">
+      <navPoint id="navPoint135" playOrder="108">
         <navLabel>
           <text>Activity: Stepping Through An if..else... Statement</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#Activity:-Stepping-Through-An-if..else...-Statement" />  
       </navPoint>
-      <navPoint id="navPoint192" playOrder="153">
+      <navPoint id="navPoint136" playOrder="109">
         <navLabel>
           <text>An if.. without an else...</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#An-if..-without-an-else..." />  
       </navPoint>
-      <navPoint id="navPoint193" playOrder="154">
+      <navPoint id="navPoint137" playOrder="110">
         <navLabel>
           <text>3.4 Activity: Combining loops and branching statements</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.4-Activity:-Combining-loops-and-branching-statements" />  
-        <navPoint id="navPoint194" playOrder="154">
+        <navPoint id="navPoint138" playOrder="110">
           <navLabel>
             <text>3.4 Activity: Combining loops and branching statements</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.4-Activity:-Combining-loops-and-branching-statements" />  
         </navPoint>
-        <navPoint id="navPoint195" playOrder="155">
+        <navPoint id="navPoint139" playOrder="111">
           <navLabel>
             <text>Discussion</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#Discussion" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint196" playOrder="156">
+      <navPoint id="navPoint140" playOrder="112">
         <navLabel>
           <text>Multiple Conditions Using if..elif..else..</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#Multiple-Conditions-Using-if..elif..else.." />  
       </navPoint>
-      <navPoint id="navPoint197" playOrder="157">
+      <navPoint id="navPoint141" playOrder="113">
         <navLabel>
           <text>3.5 Challenge: Three shades of grey</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.5-Challenge:-Three-shades-of-grey" />  
-        <navPoint id="navPoint198" playOrder="157">
+        <navPoint id="navPoint142" playOrder="113">
           <navLabel>
             <text>3.5 Challenge: Three shades of grey</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#3.5-Challenge:-Three-shades-of-grey" />  
         </navPoint>
-        <navPoint id="navPoint199" playOrder="158">
+        <navPoint id="navPoint143" playOrder="114">
           <navLabel>
             <text>Hint: click the arrow in the sidebar to reveal a hint</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#Hint:-click-the-arrow-in-the-sidebar-to-reveal-a-hint" />  
         </navPoint>
-        <navPoint id="navPoint200" playOrder="159">
+        <navPoint id="navPoint144" playOrder="115">
           <navLabel>
             <text>Worked Answer</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_02.xhtml#Worked-Answer" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint201" playOrder="160">
+      <navPoint id="navPoint145" playOrder="116">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#Summary" />  
       </navPoint>
-      <navPoint id="navPoint202" playOrder="161">
+      <navPoint id="navPoint146" playOrder="117">
         <navLabel>
           <text>Addendum</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_02.xhtml#Addendum" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint203" playOrder="162">
+    <navPoint id="navPoint147" playOrder="118">
       <navLabel>
-        <text>3 Robot Lab challenges</text>
+        <text>Challenge: Making a countdown program</text>
       </navLabel>
       <content src="content/02_Robot_Lab/Section_00_03.xhtml" />  
-      <navPoint id="navPoint204" playOrder="162">
-        <navLabel>
-          <text>3 Robot Lab challenges</text>
-        </navLabel>
-        <content src="content/02_Robot_Lab/Section_00_03.xhtml" />  
-      </navPoint>
-      <navPoint id="navPoint205" playOrder="163">
-        <navLabel>
-          <text>Challenge: Moving Simon forwards</text>
-        </navLabel>
-        <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Moving-Simon-forwards" />  
-      </navPoint>
-      <navPoint id="navPoint206" playOrder="164">
-        <navLabel>
-          <text>Challenge: Traversing a triangle</text>
-        </navLabel>
-        <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Traversing-a-triangle" />  
-      </navPoint>
-      <navPoint id="navPoint207" playOrder="165">
+      <navPoint id="navPoint148" playOrder="118">
         <navLabel>
           <text>Challenge: Making a countdown program</text>
         </navLabel>
-        <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Making-a-countdown-program" />  
-        <navPoint id="navPoint208" playOrder="165">
-          <navLabel>
-            <text>Challenge: Making a countdown program</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Making-a-countdown-program" />  
-        </navPoint>
-        <navPoint id="navPoint209" playOrder="166">
-          <navLabel>
-            <text>Question</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#Question" />  
-        </navPoint>
-        <navPoint id="navPoint210" playOrder="167">
-          <navLabel>
-            <text>Answer</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#Answer" />  
-        </navPoint>
+        <content src="content/02_Robot_Lab/Section_00_03.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint211" playOrder="168">
+      <navPoint id="navPoint149" playOrder="119">
+        <navLabel>
+          <text>Question</text>
+        </navLabel>
+        <content src="content/02_Robot_Lab/Section_00_03.xhtml#Question" />  
+      </navPoint>
+      <navPoint id="navPoint150" playOrder="120">
+        <navLabel>
+          <text>Answer</text>
+        </navLabel>
+        <content src="content/02_Robot_Lab/Section_00_03.xhtml#Answer" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint151" playOrder="121">
+      <navLabel>
+        <text>Challenge: Traversing a hook</text>
+      </navLabel>
+      <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Traversing-a-hook" />  
+      <navPoint id="navPoint152" playOrder="121">
         <navLabel>
           <text>Challenge: Traversing a hook</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Traversing-a-hook" />  
-        <navPoint id="navPoint212" playOrder="168">
-          <navLabel>
-            <text>Challenge: Traversing a hook</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#Challenge:-Traversing-a-hook" />  
-        </navPoint>
-        <navPoint id="navPoint213" playOrder="169">
-          <navLabel>
-            <text>Question</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#id1" />  
-        </navPoint>
-        <navPoint id="navPoint214" playOrder="170">
-          <navLabel>
-            <text>Answer</text>
-          </navLabel>
-          <content src="content/02_Robot_Lab/Section_00_03.xhtml#id2" />  
-        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint153" playOrder="122">
+        <navLabel>
+          <text>Question</text>
+        </navLabel>
+        <content src="content/02_Robot_Lab/Section_00_03.xhtml#id1" />  
+      </navPoint>
+      <navPoint id="navPoint154" playOrder="123">
+        <navLabel>
+          <text>Answer</text>
+        </navLabel>
+        <content src="content/02_Robot_Lab/Section_00_03.xhtml#id2" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint215" playOrder="171">
+    <navPoint id="navPoint155" playOrder="124">
       <navLabel>
         <text>4 Optional challenges</text>
       </navLabel>
       <content src="content/02_Robot_Lab/Section_00_04.xhtml" />  
-      <navPoint id="navPoint216" playOrder="171">
+      <navPoint id="navPoint156" playOrder="124">
         <navLabel>
           <text>4 Optional challenges</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_04.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint217" playOrder="172">
+      <navPoint id="navPoint157" playOrder="125">
         <navLabel>
           <text>Challenge: Traversing a multi-square</text>
         </navLabel>
         <content src="content/02_Robot_Lab/Section_00_04.xhtml#Challenge:-Traversing-a-multi-square" />  
-        <navPoint id="navPoint218" playOrder="172">
+        <navPoint id="navPoint158" playOrder="125">
           <navLabel>
             <text>Challenge: Traversing a multi-square</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_04.xhtml#Challenge:-Traversing-a-multi-square" />  
         </navPoint>
-        <navPoint id="navPoint219" playOrder="173">
+        <navPoint id="navPoint159" playOrder="126">
           <navLabel>
             <text>HINT: click the arrow in the sidebar to reveal a hint</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_04.xhtml#HINT:-click-the-arrow-in-the-sidebar-to-reveal-a-hint" />  
         </navPoint>
-        <navPoint id="navPoint220" playOrder="174">
+        <navPoint id="navPoint160" playOrder="127">
           <navLabel>
             <text>HINT: click the arrow in the sidebar to reveal a hint</text>
           </navLabel>
           <content src="content/02_Robot_Lab/Section_00_04.xhtml#id1" />  
         </navPoint>
-        <navPoint id="navPoint221" playOrder="175">
+        <navPoint id="navPoint161" playOrder="128">
           <navLabel>
             <text>HINT: click the arrow in the sidebar to reveal a hint</text>
           </navLabel>
@@ -1336,77 +976,77 @@
         </navPoint>
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint222" playOrder="176">
+    <navPoint id="navPoint162" playOrder="129">
       <navLabel>
         <text>1 Introduction</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_01.xhtml" />  
     </navPoint>
-    <navPoint id="navPoint223" playOrder="177">
+    <navPoint id="navPoint163" playOrder="130">
       <navLabel>
         <text>2 Dead reckoning</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_02.xhtml" />  
-      <navPoint id="navPoint224" playOrder="177">
+      <navPoint id="navPoint164" playOrder="130">
         <navLabel>
           <text>2 Dead reckoning</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_02.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint225" playOrder="178">
+      <navPoint id="navPoint165" playOrder="131">
         <navLabel>
           <text>2.1 Activity: Dead reckoning</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_02.xhtml#2.1-Activity:-Dead-reckoning" />  
       </navPoint>
-      <navPoint id="navPoint226" playOrder="179">
+      <navPoint id="navPoint166" playOrder="132">
         <navLabel>
           <text>2.2 Challenge: Reaching the moon base</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_02.xhtml#2.2-Challenge:-Reaching-the-moon-base" />  
       </navPoint>
-      <navPoint id="navPoint227" playOrder="180">
+      <navPoint id="navPoint167" playOrder="133">
         <navLabel>
           <text>2.3 Activity: Dead reckoning with noise</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_02.xhtml#2.3-Activity:-Dead-reckoning-with-noise" />  
       </navPoint>
-      <navPoint id="navPoint228" playOrder="181">
+      <navPoint id="navPoint168" playOrder="134">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_02.xhtml#Summary" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint229" playOrder="182">
+    <navPoint id="navPoint169" playOrder="135">
       <navLabel>
         <text>4 Emergent behaviour: Braitenberg’s vehicles</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_03.xhtml" />  
-      <navPoint id="navPoint230" playOrder="182">
+      <navPoint id="navPoint170" playOrder="135">
         <navLabel>
           <text>4 Emergent behaviour: Braitenberg’s vehicles</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_03.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint231" playOrder="183">
+      <navPoint id="navPoint171" playOrder="136">
         <navLabel>
           <text>4.1 Activity: Testing Braitenberg’s vehicles</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_03.xhtml#4.1-Activity:-Testing-Braitenberg’s-vehicles" />  
-        <navPoint id="navPoint232" playOrder="183">
+        <navPoint id="navPoint172" playOrder="136">
           <navLabel>
             <text>4.1 Activity: Testing Braitenberg’s vehicles</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_03.xhtml#4.1-Activity:-Testing-Braitenberg’s-vehicles" />  
         </navPoint>
-        <navPoint id="navPoint233" playOrder="184">
+        <navPoint id="navPoint173" playOrder="137">
           <navLabel>
             <text>Reconfiguring the robot</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_03.xhtml#Reconfiguring-the-robot" />  
         </navPoint>
-        <navPoint id="navPoint234" playOrder="185">
+        <navPoint id="navPoint174" playOrder="138">
           <navLabel>
             <text>Looking at the Data</text>
           </navLabel>
@@ -1414,83 +1054,83 @@
         </navPoint>
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint235" playOrder="186">
+    <navPoint id="navPoint175" playOrder="139">
       <navLabel>
         <text>Using Ultrasound</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_03.xhtml#Using-Ultrasound" />  
-      <navPoint id="navPoint236" playOrder="186">
+      <navPoint id="navPoint176" playOrder="139">
         <navLabel>
           <text>Using Ultrasound</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_03.xhtml#Using-Ultrasound" />  
       </navPoint>
-      <navPoint id="navPoint237" playOrder="187">
+      <navPoint id="navPoint177" playOrder="140">
         <navLabel>
           <text>Summary</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_03.xhtml#Summary" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint238" playOrder="188">
+    <navPoint id="navPoint178" playOrder="141">
       <navLabel>
         <text>4 Reasoning and the sense–think–act model</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_04.xhtml" />  
-      <navPoint id="navPoint239" playOrder="188">
+      <navPoint id="navPoint179" playOrder="141">
         <navLabel>
           <text>4 Reasoning and the sense–think–act model</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_04.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint240" playOrder="189">
+      <navPoint id="navPoint180" playOrder="142">
         <navLabel>
           <text>4.1 Representing and using knowledge</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_04.xhtml#4.1-Representing-and-using-knowledge" />  
       </navPoint>
-      <navPoint id="navPoint241" playOrder="190">
+      <navPoint id="navPoint181" playOrder="143">
         <navLabel>
           <text>Eliza</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_04.xhtml#Eliza" />  
-        <navPoint id="navPoint242" playOrder="190">
+        <navPoint id="navPoint182" playOrder="143">
           <navLabel>
             <text>Eliza</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_04.xhtml#Eliza" />  
         </navPoint>
-        <navPoint id="navPoint243" playOrder="191">
+        <navPoint id="navPoint183" playOrder="144">
           <navLabel>
             <text>Optional Activity</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_04.xhtml#Optional-Activity" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint244" playOrder="192">
+      <navPoint id="navPoint184" playOrder="145">
         <navLabel>
           <text>More General Forms of Rules</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_04.xhtml#More-General-Forms-of-Rules" />  
-        <navPoint id="navPoint245" playOrder="192">
+        <navPoint id="navPoint185" playOrder="145">
           <navLabel>
             <text>More General Forms of Rules</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_04.xhtml#More-General-Forms-of-Rules" />  
         </navPoint>
-        <navPoint id="navPoint246" playOrder="193">
+        <navPoint id="navPoint186" playOrder="146">
           <navLabel>
             <text>Facts versus Events</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_04.xhtml#Facts-versus-Events" />  
         </navPoint>
-        <navPoint id="navPoint247" playOrder="194">
+        <navPoint id="navPoint187" playOrder="147">
           <navLabel>
             <text>How might rules be useful in a robot context?</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_04.xhtml#How-might-rules-be-useful-in-a-robot-context?" />  
         </navPoint>
-        <navPoint id="navPoint248" playOrder="195">
+        <navPoint id="navPoint188" playOrder="148">
           <navLabel>
             <text>Addendum - Using Python to Respond to and Control Events in the Simulator</text>
           </navLabel>
@@ -1498,89 +1138,89 @@
         </navPoint>
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint249" playOrder="196">
+    <navPoint id="navPoint189" playOrder="149">
       <navLabel>
         <text>5 Functions</text>
       </navLabel>
       <content src="content/03_Robot_Lab/Section_00_05.xhtml" />  
-      <navPoint id="navPoint250" playOrder="196">
+      <navPoint id="navPoint190" playOrder="149">
         <navLabel>
           <text>5 Functions</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_05.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint251" playOrder="197">
+      <navPoint id="navPoint191" playOrder="150">
         <navLabel>
           <text>Using Functions in Robot Control Programs</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_05.xhtml#Using-Functions-in-Robot-Control-Programs" />  
-        <navPoint id="navPoint252" playOrder="197">
+        <navPoint id="navPoint192" playOrder="150">
           <navLabel>
             <text>Using Functions in Robot Control Programs</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_05.xhtml#Using-Functions-in-Robot-Control-Programs" />  
         </navPoint>
-        <navPoint id="navPoint253" playOrder="198">
+        <navPoint id="navPoint193" playOrder="151">
           <navLabel>
             <text>Optional Activity</text>
           </navLabel>
           <content src="content/03_Robot_Lab/Section_00_05.xhtml#Optional-Activity" />  
         </navPoint>
       </navPoint>
-      <navPoint id="navPoint254" playOrder="199">
+      <navPoint id="navPoint194" playOrder="152">
         <navLabel>
           <text>5.3 Functions: a summary</text>
         </navLabel>
         <content src="content/03_Robot_Lab/Section_00_05.xhtml#5.3-Functions:-a-summary" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint255" playOrder="200">
+    <navPoint id="navPoint195" playOrder="153">
       <navLabel>
         <text>1 Introduction</text>
       </navLabel>
       <content src="content/04_Robot_Lab/Section_00_01.xhtml" />  
-      <navPoint id="navPoint256" playOrder="200">
+      <navPoint id="navPoint196" playOrder="153">
         <navLabel>
           <text>1 Introduction</text>
         </navLabel>
         <content src="content/04_Robot_Lab/Section_00_01.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint257" playOrder="201">
+      <navPoint id="navPoint197" playOrder="154">
         <navLabel>
           <text>1.1 Activity: The Simulator Environment as a Laboratory</text>
         </navLabel>
         <content src="content/04_Robot_Lab/Section_00_01.xhtml#1.1-Activity:-The-Simulator-Environment-as-a-Laboratory" />  
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint258" playOrder="202">
+    <navPoint id="navPoint198" playOrder="155">
       <navLabel>
         <text>2 Line followers</text>
       </navLabel>
       <content src="content/04_Robot_Lab/Section_00_02.xhtml" />  
-      <navPoint id="navPoint259" playOrder="202">
+      <navPoint id="navPoint199" playOrder="155">
         <navLabel>
           <text>2 Line followers</text>
         </navLabel>
         <content src="content/04_Robot_Lab/Section_00_02.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint260" playOrder="203">
+      <navPoint id="navPoint200" playOrder="156">
         <navLabel>
           <text>2.1 Challenge: Writing an edge-follower program</text>
         </navLabel>
         <content src="content/04_Robot_Lab/Section_00_02.xhtml#2.1-Challenge:-Writing-an-edge-follower-program" />  
-        <navPoint id="navPoint261" playOrder="203">
+        <navPoint id="navPoint201" playOrder="156">
           <navLabel>
             <text>2.1 Challenge: Writing an edge-follower program</text>
           </navLabel>
           <content src="content/04_Robot_Lab/Section_00_02.xhtml#2.1-Challenge:-Writing-an-edge-follower-program" />  
         </navPoint>
-        <navPoint id="navPoint262" playOrder="204">
+        <navPoint id="navPoint202" playOrder="157">
           <navLabel>
             <text>Activity</text>
           </navLabel>
           <content src="content/04_Robot_Lab/Section_00_02.xhtml#Activity" />  
         </navPoint>
-        <navPoint id="navPoint263" playOrder="205">
+        <navPoint id="navPoint203" playOrder="158">
           <navLabel>
             <text>Taking readings</text>
           </navLabel>
@@ -1588,18 +1228,18 @@
         </navPoint>
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint264" playOrder="206">
+    <navPoint id="navPoint204" playOrder="159">
       <navLabel>
         <text>4 The design engineer as detective</text>
       </navLabel>
       <content src="content/04_Robot_Lab/Section_00_04.xhtml" />  
-      <navPoint id="navPoint265" playOrder="206">
+      <navPoint id="navPoint205" playOrder="159">
         <navLabel>
           <text>4 The design engineer as detective</text>
         </navLabel>
         <content src="content/04_Robot_Lab/Section_00_04.xhtml" />  
       </navPoint>
-      <navPoint id="navPoint266" playOrder="207">
+      <navPoint id="navPoint206" playOrder="160">
         <navLabel>
           <text>Following the Design Cycle</text>
         </navLabel>

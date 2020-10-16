@@ -214,7 +214,7 @@
 
 
 \title{TM129 Robotics Practical Activities}
-\date{Jun 11, 2020}
+\date{Oct 16, 2020}
 \release{}
 \author{Tony Hirst}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -916,377 +916,317 @@ What this means is that if you work on a file, allowing it to be autosaved, and 
 Note that this will throw away all changes made to the autosaved version of the notebook since the last manual (checkpointing) save, so use this command with care.
 
 
-\subsection{1.6 Activity: The RoboLab Notebook Editable Text Environment}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:1.6-Activity:-The-RoboLab-Notebook-Editable-Text-Environment}}\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment::doc}}
+
+---
+## 1.6 Activity: The RoboLab Notebook Editable Text Environment
+
+
 In this short activity I will show you how to organise your RoboLab work environment. You won’t run any robot programs until the next activity.
 
-
-\bigskip\hrule\bigskip
-
-
-
-
-TO DO \sphinxhyphen{} this is a 101 in using the environment. We’re in an md doc running in notebook, so can use this part of the doc interactively. The workflow / layout may change, but that needs front\sphinxhyphen{}end js/ts/css dev and debug skills I donlt have (atm…). I’m working on MVP workflow atm, which may suck, but should work.
-
+<div class='alert-danger'>TO DO - this is a 101 in using the environment. We're in an md doc running in notebook, so can use this part of the doc interactively. The workflow / layout may change, but that needs front-end js/ts/css dev and debug skills I donlt have (atm...). I'm working on MVP workflow atm, which may suck, but should work.</div>
 
 
 If you clicked on the the link to this document from a Jupyter notebook server homepage in the RoboLab environment, it will have opened within the notebook user interface as an interactive notebook document.
 
 
-\subsubsection{A first look}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:A-first-look}}
+### A first look
+
 To start RoboLab, launch the ContainDS application.
 
 If RoboLab is running, you should see it in the side bar, with its status indicator highlighted green.
 
-\sphinxincludegraphics[width=2150\sphinxpxdimen,height=980\sphinxpxdimen]{{00_01_ContainDS_robolab_running}.png}
+![ContainDS showing a running container with a green status indicator](../images/00_01_ContainDS_robolab_running.png)
 
-If it is not running, the status indicator will be greyed out. Click on the \sphinxcode{\sphinxupquote{START}} button to start the container running.
+If it is not running, the status indicator will be greyed out. Click on the `START` button to start the container running.
 
-If you cannot see the container in the sidebar, click on the \sphinxcode{\sphinxupquote{+NEW}} button and following the instructions for \sphinxstyleemphasis{Running the RoboLab Environment from a Local Docker Image}.
+If you cannot see the container in the sidebar, click on the `+NEW` button and following the instructions for *Running the RoboLab Environment from a Local Docker Image*.
 
-If you cannot see a local copy of the image, follow the instructions for \sphinxcode{\sphinxupquote{Using ContainDS to Install the Prebuilt RoboLab Container Image}}.
+If you cannot see a local copy of the image, follow the instructions for `Using ContainDS to Install the Prebuilt RoboLab Container Image`.
 
-With the container running, click on the \sphinxcode{\sphinxupquote{WEB}} button to open the notebook server homepage in your browser.
+With the container running, click on the `WEB` button to open the notebook server homepage in your browser.
 
 When RobotLab starts, the notebook server homepage will look something like the following (the actual file listing may differ).
 
-\sphinxincludegraphics[width=2160\sphinxpxdimen,height=564\sphinxpxdimen]{{00_01_jupyter_nb_homepage}.png}
+![Example of the notebook server homepage, including Files, Running and NBextensions tabs and a file listing.](../images/00_01_jupyter_nb_homepage.png)
+
 
 If you click on a folder link, you will be presented with a list of the files contained in that folder, as you might expect. Click on the directory path links to navigate your way back up the directory listing tree.
 
-The top of the directory listing is the directory that you shared in to the container using ContainDS. If you started the container from the command line, the top level is the \sphinxcode{\sphinxupquote{/home/jovyan}} directory in the container and files should be mounted into that directory, either directly on on the path (for example, \sphinxcode{\sphinxupquote{/home/directory/mySharedDirectory}}).
+The top of the directory listing is the directory that you shared in to the container using ContainDS. If you started the container from the command line, the top level is the `/home/jovyan` directory in the container and files should be mounted into that directory, either directly on on the path (for example, `/home/directory/mySharedDirectory`).
 
 
-\subsection{Working With Notebook Files Interactively}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Working-With-Notebook-Files-Interactively}}
+## Working With Notebook Files Interactively
+
 If you are reading this document in a live Jupyter notebook environment, you will be able to interact with it directly.
 
-For example, you can correct the speling mistake in this sentence by editing it directly. Double click on this paragraph, and the cell will become editable. Correct the spelling mistake, then “run” the markdown cell to redisplay it as formatted text.
 
-You can do this in two ways. Either click on the \sphinxcode{\sphinxupquote{Run}} button in the toolbar, or use a keyboard shortcut: \sphinxcode{\sphinxupquote{shift\sphinxhyphen{}enter}} (that is, the shift key and the enter key at the same time).
+For example, you can correct the speling mistake in this sentence by editing it directly. Double click on this paragraph, and the cell will become editable. Correct the spelling mistake, then "run" the markdown cell to redisplay it as formatted text.
 
-Remember, to look up keyboard shortcuts, you can use the \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}h}} keyboard shortcut (press the escape key and then, quickly after, the \sphinxcode{\sphinxupquote{h}} key, or the escape key and the \sphinxcode{\sphinxupquote{h}} at the same time): in the “Edit mode” area, look for “run selected cell”.
+You can do this in two ways. Either click on the `Run` button in the toolbar, or use a keyboard shortcut: `shift-enter` (that is, the shift key and the enter key at the same time).
+
+Remember, to look up keyboard shortcuts, you can use the `ESC-h` keyboard shortcut (press the escape key and then, quickly after, the `h` key, or the escape key and the `h` at the same time): in the "Edit mode" area, look for "run selected cell".
 
 
-\subsubsection{Previewing Formatted Markdown}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Previewing-Formatted-Markdown}}
-Markdown text is a simple \sphinxstyleemphasis{mark\sphinxhyphen{}up} language in which you can write styled text using simple (hopefully intuitive) text elements. For example, to \sphinxstyleemphasis{emphasise} a word using italics, write it as follows: *emphasis*.
+### Previewing Formatted Markdown
 
-You may notice my “starred” text is not itself italicised. If you double click on this markdown cell to see its editable view, you will see I have “escaped” the * characters around the word *emphasis* with a backslash character —  — as if to say: \sphinxstyleemphasis{do not process this}. Note that if you have a space between a * and a letter at the start of a word, then the styling is similarly not applied; likewise, to “close” the styling, you need to place the second * right next to the final character in
-the emphasised text.
+Markdown text is a simple *mark-up* language in which you can write styled text using simple (hopefully intuitive) text elements. For example, to *emphasise* a word using italics, write it as follows: \*emphasis\*.
 
-\sphinxstyleemphasis{When you have finished looking at the editable text, hit \textasciigrave{}\textasciigrave{}shift\sphinxhyphen{}enter\textasciigrave{}\textasciigrave{} to return the cell to the rendered view.}
+You may notice my "starred" text is not itself italicised. If you double click on this markdown cell to see its editable view, you will see I have "escaped" the * characters around the word \*emphasis\* with a backslash character — \ — as if to say: *do not process this*. Note that if you have a space between a * and a letter at the start of a word, then the styling is similarly not applied; likewise, to "close" the styling, you need to place the second * right next to the final character in the emphasised text.
+
+*When you have finished looking at the editable text, hit `shift-enter` to return the cell to the rendered view.*
 
 That may all sound complicated, but hopefully it will become natural to you. You may find you use similar techniques anyway when writing emails or social media messages or posts. You may even find that your editor in those environments is actually treating your text markup as markdown anyway.
 
 The next paragraph contains several examples of other forms of mark up. Double click on the cell to make it editable so you can see how the styling was generated.
 
+### Markdown Examples
 
-\subsubsection{Markdown Examples}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Markdown-Examples}}
 Double click on this cell to see how markdown is used to create particular styling effects.
 
-We can \sphinxstyleemphasis{italicise text} by wrapping it with single asterisk \sphinxcode{\sphinxupquote{*...*}} or \sphinxcode{\sphinxupquote{\_...\_}} underscore elements.
+We can *italicise text* by wrapping it with single asterisk `*...*` or `_..._` underscore elements.
 
-Use a backslash character to disable the text processing effect, eg if you which to italicise a \sphinxstyleemphasis{*} character.
+Use a backslash character to disable the text processing effect, eg if you which to italicise a *\** character.
 
-Strong (\sphinxstylestrong{bold}) emphasis can be introduced by wrapping text doubling up the number of * or \_ elements.
+Strong (__bold__) emphasis can be introduced by wrapping text doubling up the number of * or _ elements.
 
 Unnumbered list items:
-\begin{itemize}
-\item {} 
-are prefixed by a \sphinxcode{\sphinxupquote{\sphinxhyphen{}}} or single \sphinxcode{\sphinxupquote{*}} character, followed by a space;
 
-\item {} 
-are clearer in their text for if you precede the first list item with a blank line
-\begin{itemize}
-\item {} 
-sublists are indented, and are identified by prefixing the \sphinxhyphen{} or * marker by two spaces.
-
-\end{itemize}
-
-\end{itemize}
+- are prefixed by a `-` or single `*` character, followed by a space;
+* are clearer in their text for if you precede the first list item with a blank line
+  - sublists are indented, and are identified by prefixing the - or * marker by two spaces.
 
 Numbered lists:
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-are identified by prefixing the line with \sphinxcode{\sphinxupquote{1.}} followed by a space.
 
-\item {} 
-some flavours of markdown may offer the ability to use alternative numbering schemes (letters, or Roman numerals, for example).
-
-\end{enumerate}
-
-Headings are identified by starting the header line with one or more \sphinxcode{\sphinxupquote{\#}} characters, followed by a space and then the title or (sub) heading. The number of \sphinxcode{\sphinxupquote{\#}} characters identifies the level of heading required.
-
-You can also identify a heading by placing two or more equals signs (\sphinxcode{\sphinxupquote{==}}) on the line immediately below it, or a subheading by placing two or more dashes (\sphinxcode{\sphinxupquote{\sphinxhyphen{}\sphinxhyphen{}}}) at the start of the following line.
-
-Dividing lines can also be added: just start a line with three or more dashes (\sphinxcode{\sphinxupquote{\sphinxhyphen{}\sphinxhyphen{}\sphinxhyphen{}}}) prefixed by an empty line.
+1. are identified by prefixing the line with `1.` followed by a space.
+1. some flavours of markdown may offer the ability to use alternative numbering schemes (letters, or Roman numerals, for example).
 
 
-\bigskip\hrule\bigskip
+Headings are identified by starting the header line with one or more `#` characters, followed by a space and then the title or (sub) heading. The number of `#` characters identifies the level of heading required.
+
+You can also identify a heading by placing two or more equals signs (`==`) on the line immediately below it, or a subheading by placing two or more dashes (`--`) at the start of the following line.
+
+Dividing lines can also be added: just start a line with three or more dashes (`---`) prefixed by an empty line.
 
 
-Inline \sphinxcode{\sphinxupquote{code}} can be identified by wrapping the code item within backticks: \textasciigrave{}…{\color{red}\bfseries{}\textasciigrave{}}.
+Inline `code` can be identified by wrapping the code item within backticks: \`...\`.
 
 Blocks of code can identified by marking out an area using three or more backticks to start and end the block:
 
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} comment}
-\PYG{k}{def} \PYG{n+nf}{hello}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)}
+```
+# comment
+def hello(msg):
+    print(msg)
 
-\PYG{n}{hello}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{my friend}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
+hello("my friend")
+```
 
-Syntax highlighting for a particular language can be enabled by declaring the language required immediately after the opening set of backtcicks (although rendereing backticks in backticks can be tricky!). For example, starting a code block with \sphinxcode{\sphinxupquote{\textasciigrave{}\textasciigrave{}\textasciigrave{}python}} will cause it to be rendered using Python language syntax highlighting:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} comment}
-\PYG{k}{def} \PYG{n+nf}{hello}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)}
-
-\PYG{n}{hello}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{my friend}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-You can also add links you your markdown text, using constructions of the form: \sphinxcode{\sphinxupquote{{[}my link text{]}(https://example.com)}}.
+Syntax highlighting for a particular language can be enabled by declaring the language required immediately after the opening set of backtcicks (although rendereing backticks in backticks can be tricky!). For example, starting a code block with ```` ```python ```` will cause it to be rendered using Python language syntax highlighting:
 
 
-\subsection{Taking Ownership of Your Notebooks}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Taking-Ownership-of-Your-Notebooks}}
+```python
+# comment
+def hello(msg):
+    print(msg)
+
+hello("my friend")
+```
+
+You can also add links you your markdown text, using constructions of the form: `[my link text](https://example.com)`.
+
+## Taking Ownership of Your Notebooks
+
 One of the difficulties in working with electronic texts is that they can often be hard to annotate. Interactive notebook style interfaces offer a different way of working, in that you can annotate or edit the text directly.
 
 One way of annotating the markdown text materials is to use the highlighter pen from notebook toolbar.
 
-\sphinxincludegraphics[width=1399\sphinxpxdimen,height=251\sphinxpxdimen]{{00_01_highlighter}.png}
+![Notebook toolbar showing highlight pen buttons.](../images/00_01_highlighter.png)
 
-Simply select the text you want to highlight in its rendered view, and then click on the appropriate highlighter pen colour.
+
+<span class="mark">Simply select the text you want to highlight in its rendered view, and then click on the appropriate highlighter pen colour.</span>
 
 Another way is to just start clicking on the markdown cells, adding your own notes, commentary or reflection, or your own questions, explanations and examples, to the text.
 
-There are risks associated with this of course \sphinxhyphen{} like accidentally deleting a chunk of module materials, or changing a working example to a broken one. But there are also many advantages \sphinxhyphen{} like making the materials meaningful \sphinxstyleemphasis{to you}. And if you want to distinguish your content from the provided materials, you can always highlight them, or put them in a markdown cell of their own, with a heading that identifies the text in that cell as your own work.
-
-
+There are risks associated with this of course - like accidentally deleting a chunk of module materials, or changing a working example to a broken one. But there are also many advantages - like making the materials meaningful *to you*. And if you want to distinguish your content from the provided materials, you can always highlight them, or put them in a markdown cell of their own, with a heading that identifies the text in that cell as your own work.
 
 Alternatively, from the notebook toolbar, change your own markdown cells to cells of type `Raw NBConvert`. Although this cell type does not render the markdown styling — the text is presented in a "raw" teletype style text view —  if you used markdown annotations *they should still mark up your text in a __meaningful__ way*. And the text is visually distinguishable from the provided, styled, markdown materials.
 
+### Previewing Style Markup
 
-\subsubsection{Previewing Style Markup}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Previewing-Style-Markup}}
-Although I find it second nature to write in markdown (I’ve been been writing in simple text formats for a long time!) you may find it takes some getting used to, and that you keep having to flip between the edit view and the rendered view to make sure you are creating the text effect you intended.
+Although I find it second nature to write in markdown (I've been been writing in simple text formats for a long time!) you may find it takes some getting used to, and that you keep having to flip between the edit view and the rendered view to make sure you are creating the text effect you intended.
 
-To make it easier, if you enable the \sphinxcode{\sphinxupquote{livemdpreview}} notebook extension {[}\sphinxhref{/nbextensions/?nbextension=livemdpreview/livemdpreview}{direct link}{]}, you can preview how your rendered markdown looks in a preview window directly underneath a markdown cell you are editing.
+To make it easier, if you enable the `livemdpreview` notebook extension [[direct link](/nbextensions/?nbextension=livemdpreview/livemdpreview)], you can preview how your rendered markdown looks in a preview window directly underneath a markdown cell you are editing.
 
-\sphinxstyleemphasis{You may need to save your notebook and reload it in your browser after enabling the extension to see the effect. It should be enabled by default for any notebooks you open after enabling the extension.}
+*You may need to save your notebook and reload it in your browser after enabling the extension to see the effect. It should be enabled by default for any notebooks you open after enabling the extension.*
 
-A checkbox option in the extension’s configuration panel optionally allows you to display the preview alongside, rather then below, the markdown cell being edited. The preview disappears when you return the cell to its display mode.
+A checkbox option in the extension's configuration panel optionally allows you to display the preview alongside, rather then below, the markdown cell being edited. The preview disappears when you return the cell to its display mode.
 
 
-\subsubsection{WYSIWYG “Text Editor” View}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:WYSIWYG-_u201cText-Editor_u201d-View}}
+### WYSIWYG "Text Editor" View
 If you really cannot get to grips with writing raw markdown, a WYSIWG editor is available.
 
-Enable the \sphinxcode{\sphinxupquote{\textasciigrave{}jupyter\_wysiwyg}} \textless{}/nbextensions/nbextension=jupyter\_wysiwyg/index\textgreater{}\textasciigrave{}\_\_ extension from the \sphinxcode{\sphinxupquote{nbextensions}} notebook configuration tab on the notebook server homepage. (You may find that access to the \sphinxstyleemphasis{WYSIWYG text editor} extension is disabled at first; at the top of the extensions configurator page, uncheck the \sphinxstyleemphasis{disable configuration for nbextensions without explicit compatibility} option.)
+Enable the [`jupyter_wysiwyg`](/nbextensions/nbextension=jupyter_wysiwyg/index) extension from the `nbextensions` notebook configuration tab on the notebook server homepage. (You may find that access to the *WYSIWYG text editor* extension is disabled at first; at the top of the extensions configurator page, uncheck the *disable configuration for nbextensions without explicit compatibility* option.)
 
-Save and reload your notebook. When you double click on a markdown cell to edit it, you should now see two buttons have appeared on the left\sphinxhyphen{}hand side of the cell, one with a \sphinxcode{\sphinxupquote{Rich Text Editing}} tooltip when you hover over it, the other with a \sphinxcode{\sphinxupquote{Run Cell}} tooltip.
+Save and reload your notebook. When you double click on a markdown cell to edit it, you should now see two buttons have appeared on the left-hand side of the cell, one with a `Rich Text Editing` tooltip when you hover over it, the other with a `Run Cell` tooltip.
 
-The \sphinxcode{\sphinxupquote{Run Cell}} button provides a convenient additional way of rendereing a markdown cell that is currently in edit mode. You also need to use this button to render the cell if you have been editing it using the rich text WYSIWYG editor.
+The `Run Cell` button provides a convenient additional way of rendereing a markdown cell that is currently in edit mode. You also need to use this button to render the cell if you have been editing it using the rich text WYSIWYG editor.
 
-The \sphinxcode{\sphinxupquote{Rich Text Editing}} button provides a way of launching the rich text editor. This editor allows you to style your text, and immediately see the result, as you type. You can still see the raw mark\sphinxhyphen{}up text by rendering the cell and then double clicking on it to take it into the edit mode. However, you may find that the marked up text is not quite as clean as mark\sphinxhyphen{}up text: HTML tags are used to style the text and any previous markdown annotations will be converted to theitr HTML equivalents.
-
-
-\subsection{Creating New Cells}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Creating-New-Cells}}
-To create a new cell in a notebook, click on the \sphinxcode{\sphinxupquote{+}} button in the notebook toolbar. A new cell will be created directly below the current selected cell.
-
-By default, a new cell is created as a code cell. To convert the cell to a \sphinxstyleemphasis{markdown} cell type, change the cell type using the cell type drop\sphinxhyphen{}down list in the notebook toolbar from \sphinxcode{\sphinxupquote{Code}} to \sphinxcode{\sphinxupquote{Markdown}}.
-
-A keyboard shortcut — \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}M}} (that is, the escape key followed by the letter \sphinxcode{\sphinxupquote{m}}) — also converts a selected cell in \sphinxstyleemphasis{Edit mode} to the \sphinxstyleemphasis{markdown} cell type.
+The `Rich Text Editing` button provides a way of launching the rich text editor. This editor allows you to style your text, and immediately see the result, as you type. You can still see the raw mark-up text by rendering the cell and then double clicking on it to take it into the edit mode. However, you may find that the marked up text is not quite as clean as mark-up text: HTML tags are used to style the text and any previous markdown annotations will be converted to theitr HTML equivalents.
 
 
-\subsection{Code Cells}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Code-Cells}}
-Code cells can be used to enter — and \sphinxstyleemphasis{execute} — Python code.
+## Creating New Cells
 
-To run a code cell, which is to say, to execute the code contained in a code cell, click in the code cell to select it and then press the run (“play”) button on the notebook toolbar. Alternatively, use a keyboard shortcut \sphinxhyphen{} \sphinxcode{\sphinxupquote{SHIFT\sphinxhyphen{}RETURN}} — to run the selected cell.
+To create a new cell in a notebook, click on the `+` button in the notebook toolbar. A new cell will be created directly below the current selected cell.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}print(\PYGZdq{}Hello!\PYGZdq{})
-\end{sphinxVerbatim}
-}
+By default, a new cell is created as a code cell. To convert the cell to a *markdown* cell type, change the cell type using the cell type drop-down list in the notebook toolbar from `Code` to `Markdown`.
 
-When a cell has successfully completed executing, the run status indicator is coloured green. After running a code cell, a number in square brackets displays a cell execution index number. Each time a code cell is run, the overall index count goes up by one and is used to indicate the cell execution index (or “cell run number”) for that cell.
+A keyboard shortcut — `ESC-M` (that is, the escape key followed by the letter `m`) — also converts a selected cell in *Edit mode* to the *markdown* cell type.
+
+
+## Code Cells
+
+Code cells can be used to enter — and *execute* — Python code.
+
+To run a code cell, which is to say, to execute the code contained in a code cell, click in the code cell to select it and then press the run ("play") button on the notebook toolbar. Alternatively, use a keyboard shortcut - `SHIFT-RETURN` — to run the selected cell.
+
+```python
+print("Hello!")
+```
+
+When a cell has successfully completed executing, the run status indicator is coloured green. After running a code cell, a number in square brackets displays a cell execution index number. Each time a code cell is run, the overall index count goes up by one and is used to indicate the cell execution index (or "cell run number") for that cell.
 
 When a code cell is running, or waiting to run, it is highlighted with a light blue colour on the left hand side. A * character also indicates the status of the running cell.
 
-\sphinxincludegraphics[width=400\sphinxpxdimen]{{00_01_cell_run_status_running}.png}
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_status_running.png" width=400 />
 
 If you run all the cells in a notebook, all the cells yet to be run, as well as the running cell, are highlighted with a blue run status indicator and the * cell run number.
 
-\sphinxincludegraphics[width=400\sphinxpxdimen]{{00_01_cell_run_status}.png}
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_status.png" width=400 />
+
 
 If an error is raised that causes a code cell not to execute correctly, the run status indicator is coloured pink and an error message is show beneath the the cell in the code cell display area.
 
-{\color{red}\bfseries{}|d6ead4655eeb440f806efb6bdfce5189|}
+<img alt="Screenshot of notebook showing one completed cell execution with green run status indicator in the cell sidebar, along with one running cell and one yet to be run cell with a light blue run status indicator." src="../images/00_01_cell_run_error.png" width=800/>
 
 Clicking on the arrow will at the end of the error messge will reveal the full error message.
 
-\sphinxincludegraphics[width=800\sphinxpxdimen]{{00_01_cell_run_error_message}.png}
+<img alt="Screenshot of notebook showing a code cell execution error with expanded error message." src="../images/00_01_cell_run_error_message.png" width=800 />
+
 
 Run the following cells to see the indicators in action.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}import time
-\end{sphinxVerbatim}
-}
+```python
+import time
+```
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}time.sleep(25)
-\end{sphinxVerbatim}
-}
+```python
+time.sleep(25)
+```
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}print(\PYGZdq{}hello\PYGZdq{})
-\end{sphinxVerbatim}
-}
+```python
+print("hello")
+```
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}print(\PYGZdq{}hello again\PYGZdq{}
-\end{sphinxVerbatim}
-}
+```python
+print("hello again"
+```
 
+### Displaying Code Line Numbers
 
-\subsubsection{Displaying Code Line Numbers}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Displaying-Code-Line-Numbers}}
-Sometimes it can be useful to display line numbers in a code cell to more easily reference or refer to a particular line of code. Line numbers can be toggled on and off within a particular code cell using the keyboard shortcut \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}L}} (that is, \sphinxstyleemphasis{escape} and \sphinxstyleemphasis{l}).
+Sometimes it can be useful to display line numbers in a code cell to more easily reference or refer to a particular line of code. Line numbers can be toggled on and off within a particular code cell using the keyboard shortcut `ESC-L` (that is, *escape* and *l*).
 
-When a notebook is saved, the line number toggled display settings are also saved.
+When a notebook is saved, the  line number toggled display settings are also saved.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZsh{} Example of code cell line numbering
+```python
+# Example of code cell line numbering
 
-\PYGZsh{} This is actually line 3...
-\end{sphinxVerbatim}
-}
+# This is actually line 3...
+```
 
 Click in the above code cell to select it and practice toggling the line numbers on and off.
 
 
-\subsubsection{Code Style}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Code-Style}}
-To make code as readable as possible, the \sphinxhref{https://www.python.org/dev/peps/pep-0008/}{Pyhton PEP8 style guide} provides guidance on how to lay out your code so that it is easier to read. Code style guidance includes things like:
-\begin{itemize}
-\item {} 
-use of white space within lines and between lines
+### Code Style
 
-\item {} 
-naming conventions for function and variable names
+To make code as readable as possible, the [Pyhton PEP8 style guide](https://www.python.org/dev/peps/pep-0008/) provides guidance on how to lay out your code so that it is easier to read. Code style guidance includes things like:
 
-\item {} 
-maximum line lengths to maintain readability
-
-\end{itemize}
+ - use of white space within lines and between lines
+ - naming conventions for function and variable names
+ - maximum line lengths to maintain readability
 
 Throughout the notebooks, we have tried to use good practice, although PEP8 standards have not necessarily always been enforced. Various tools are available for warning about breaches of PEP8 style guidelines or even automatically formatting code so that it is style compliant, but these are disabled by default in these notebooks.
 
-\sphinxstyleemphasis{See}\sphinxhref{https://github.com/innovationOUtside/TM351\_forum\_examples/blob/master/Notebook\%20Code\%20Linting.ipynb}{Notebook Code Linting}\sphinxstyleemphasis{for more information about automatically linting code in Jupyter notebooks.}
+*See [Notebook Code Linting](https://github.com/innovationOUtside/TM351_forum_examples/blob/master/Notebook%20Code%20Linting.ipynb) for more information about automatically linting code in Jupyter notebooks.*
 
 
-\subsection{Creating New Code Cells}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Creating-New-Code-Cells}}
-Single click on this markdown cell to ensure that it has the focus and then create a new code cell by clicking on the \sphinxcode{\sphinxupquote{+}} button in the notebook toolbar. A new cell will be created directly below the currently selected cell, whatever type of cell it is. By default, newly created cells are created as code cells. The cursor focus is automatically moved to the new cell, so once it is created you can immediately start typing code into it.
+## Creating New Code Cells
 
-\sphinxstylestrong{DO:} \sphinxstyleemphasis{Click on the \textasciigrave{}\textasciigrave{}+\textasciigrave{}\textasciigrave{} button in the notebook toolbar to create a new code cell, entry \textasciigrave{}\textasciigrave{}print(‘hello world’)\textasciigrave{}\textasciigrave{} and run the cell to execute the code and see the result.}
+Single click on this markdown cell to ensure that it has the focus and then create a new code cell by clicking on the `+` button in the notebook toolbar. A new cell will be created directly below the currently selected cell, whatever type of cell it is. By default, newly created cells are created as code cells. The cursor focus is automatically moved to the new cell, so once it is created you can immediately start typing code into it.
 
-Feel free to create and run your own notebook code cells to try out your own code examples. Remember, the notebooks \sphinxstyleemphasis{are yours}. So make full use of them…
+__DO:__ *Click on the `+` button in the notebook toolbar to create a new code cell, entry `print('hello world')` and run the cell to execute the code and see the result.*
+
+Feel free to create and run your own notebook code cells to try out your own code examples. Remember, the notebooks *are yours*. So make full use of them...
 
 
-\subsection{How the simulator relates to the notebooks}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:How-the-simulator-relates-to-the-notebooks}}
-The simulator we are using is created as an interactive \sphinxcode{\sphinxupquote{ipywidget}} that is embedded within a Jupyter notebook. In the current iteration, the layout is not ideal, but we are working on improving on it.
+## How the simulator relates to the notebooks
+
+The simulator we are using is created as an interactive `ipywidget` that is embedded within a Jupyter notebook. In the current iteration, the layout is not ideal, but we are working on improving on it.
 
 The simulator runs as a Javascript programme in the browser tab associated with the notebook the simulator is embedded in. The simulator has various settings that can be configured within the simulator UI, or from the notebook commands that invoke it.
 
-\sphinxstyleemphasis{TO DO: there may also be magicked UIs for various settings; still to be decided.}
+*TO DO: there may also be magicked UIs for various settings; still to be decided.*
+
 
 Run the following code cell to load in an instance of the simulator and embed it within this notebook:
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}from nbev3devsim import ev3devsim\PYGZus{}nb as eds
-\PYGZpc{}load\PYGZus{}ext nbev3devsim
+```python
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
 
 roboSim = eds.Ev3DevWidget()
 display(roboSim)
-\end{sphinxVerbatim}
-}
+```
 
-Code is “downloaded” from a code cell in the notebook to the simulator by running the code cell with some special IPython \sphinxstyleemphasis{magic} in the first line of the cell.
+Code is "downloaded" from a code cell in the notebook to the simulator by running the code cell with some special IPython *magic* in the first line of the cell.
 
-Run the following code cell to download the code to the simulator. Then click the \sphinxstyleemphasis{Run} button in the simulator to run the downloaded code there.
+Run the following code cell to download the code to the simulator. Then click the *Run* button in the simulator to run the downloaded code there.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded roboSim
+```python
+%%sim_magic_preloaded roboSim
 
-\PYGZsh{} Stay inside
-tank\PYGZus{}drive.on(SpeedPercent(50), SpeedPercent(50))
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 2)
-\end{sphinxVerbatim}
-}
+# Stay inside
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+```
 
-Only a single instance of the simulator should be embedded in any given notebook, although you may have different notebooks open each running their own embedded simulator. (It is generally not advisable to have multiple copies of \sphinxstyleemphasis{the same notebook} open in multiple windows. As the notebooks autosave, you may find that work you have created and saved from one notebook gets overwritten by an earlier version of the notebook in a different browser tab or window.
+Only a single instance of the simulator should be embedded in any given notebook, although you may have different notebooks open each running their own embedded simulator. (It is generally not advisable to have multiple copies of *the same notebook* open in multiple windows. As the notebooks autosave, you may find that work you have created and saved from one notebook gets overwritten by an earlier version of the notebook in a different browser tab or window.
 
 
-\subsubsection{Alternative RoboLab User Environments}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Alternative-RoboLab-User-Environments}}
-The original \sphinxcode{\sphinxupquote{ev3devsim}} simulator ran solely within a web browser (that is, it did not require any support from Jupyter tools). The embedded simulator has been extended and whilst many of the extensions could be integrated back into the original standalone simulator, they have not currently been so.
+### Alternative RoboLab User Environments
+
+The original `ev3devsim` simulator ran solely within a web browser (that is, it did not require any support from Jupyter tools). The embedded simulator has been extended and whilst many of the extensions could be integrated back into the original standalone simulator, they have not currently been so.
 
 Withing the Jupyter ecosystem, using tools such as JupyterLab, or Voilà interactive dashboards/applications, there is more scope for controlling the layout of the RoboLab environment. For the initial treatment, however, we are just working with Jupyter notebooks.
 
 One advantage of using Jupyter notebooks is that we can retrieve logged data from sensors mounted on the robot in the simulator back into the notebook environment and then use the full range of Python charting and analysis tools to expore the data.
 
 
-\subsubsection{Configuring the Simulator Layout}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Configuring-the-Simulator-Layout}}
+### Configuring the Simulator Layout
+
 The simulator environment includes a range of user controls that can be used to configure the layout and view of the simulator user interface, as well as controlling operations performed within it. These include positioning the simulated robot, loading in different simulator backgrounds, loading obstacles into the simulated world, displaying status messages from the robot and dynamically charting logged sensor readings, as well as many other features.
 
 You will be introduced to these in more detail as and when they are required.
 
 
-\subsection{Creating and Saving Your Own Code}
-\label{\detokenize{content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment:Creating-and-Saving-Your-Own-Code}}
-The activities hve been created within Jupyter notebooks using the embedded simulator. In many activities, you will have the opportunity to create and run your own programmes to run within the simulator, as well as within the notebook’s own Python coding environment.
+## Creating and Saving Your Own Code
+
+The activities hve been created within Jupyter notebooks using the embedded simulator. In many activities, you will have the opportunity to create and run your own programmes to run within the simulator, as well as within the notebook's own Python coding environment.
 
 Saving a notebook will save your code and any currently displayed cell outputs (the notebooks also autosave regularly), so you can close the notebook, shutdown the associated notebook process, and then restart the notebook and return to it later.
 
-Although the current simulator view, any other displayed widgets, and the internal state of the simulator and the notebook’s own Python environment, are not saved, rerunning the code cells that create them will generate them afresh.
+Although the current simulator view, any other displayed widgets, and the internal state of the simulator and the notebook's own Python environment, are not saved, rerunning the code cells that create them will generate them afresh.
 
 As well as using the provided notebooks, you are also encouraged to create and save your own notebooks and use the simulator for your own exercises.
+---
 
 
 \section{SOFTWARE GUIDE}
@@ -1334,7 +1274,7 @@ Jupyter notebooks are are widely used interactive environment for writing “lit
 
 The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user\sphinxhyphen{}enabled extensions that can be used to customise your notebook environment.
 
-\sphinxincludegraphics[width=2160\sphinxpxdimen,height=564\sphinxpxdimen]{{00_01_jupyter_nb_homepage1}.png}
+\sphinxincludegraphics[width=2160\sphinxpxdimen,height=564\sphinxpxdimen]{{00_01_jupyter_nb_homepage}.png}
 
 Clicking on a file of an appropriate type will open it as an interactive Jupyter notebook.
 
@@ -1706,24 +1646,24 @@ The robot configuration file is a JSON (Javascript Object Notation) object defin
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{p}{\PYGZob{}}
-  \PYG{l+s+s2}{\PYGZdq{}wheeldiameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{56}\PYG{p}{,}
-  \PYG{l+s+s2}{\PYGZdq{}wheelSpacing\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{180}\PYG{p}{,}
-  \PYG{l+s+s2}{\PYGZdq{}back\PYGZdq{}}\PYG{o}{:} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{120}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}wheeldiameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{56}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}wheelSpacing\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{180}\PYG{p}{,}
+  \PYG{l+s+s2}{\PYGZdq{}back\PYGZdq{}}\PYG{o}{:} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{120}\PYG{p}{,}
   \PYG{l+s+s2}{\PYGZdq{}weight\PYGZdq{}}\PYG{o}{:} \PYG{l+s+s2}{\PYGZdq{}medium\PYGZdq{}}\PYG{p}{,}
   \PYG{l+s+s2}{\PYGZdq{}sensor1\PYGZdq{}}\PYG{o}{:} \PYG{p}{\PYGZob{}}
-    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{20}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{30}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}diameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{20}
+    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{20}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{30}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}diameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{20}
   \PYG{p}{\PYGZcb{}}\PYG{p}{,}
   \PYG{l+s+s2}{\PYGZdq{}sensor2\PYGZdq{}}\PYG{o}{:} \PYG{p}{\PYGZob{}}
-    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{20}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{30}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}diameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{20}
+    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{20}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{30}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}diameter\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{20}
   \PYG{p}{\PYGZcb{}}\PYG{p}{,}
   \PYG{l+s+s2}{\PYGZdq{}ultrasonic\PYGZdq{}}\PYG{o}{:} \PYG{p}{\PYGZob{}}
-    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{0}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{10}\PYG{p}{,}
-    \PYG{l+s+s2}{\PYGZdq{}angle\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mi}{0}
+    \PYG{l+s+s2}{\PYGZdq{}x\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{0}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}y\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{10}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}angle\PYGZdq{}}\PYG{o}{:} \PYG{l+m+mf}{0}
   \PYG{p}{\PYGZcb{}}
 \PYG{p}{\PYGZcb{}}
 \end{sphinxVerbatim}
@@ -2661,30 +2601,27 @@ You have also seen how we can get the robot to count as we iterate through a ran
 By keeping track of previous and current sensor values, you have seen how the robot can identify when it encounters a new feature in the simulated world, such as entering or leaving a coloured band. Using the speak functionality, the robot can also alert us to when it encounters a new object.
 
 
-\subsection{4 RobotLab’s simulator remote control}
-\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:4-RobotLab_u2019s-simulator-remote-control}}\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE::doc}}
-The original RobotLab simulator included a simple remote control for controlling a real, as well as simulated, robot in a direct, user\sphinxhyphen{}controlled interactive way.
+
+---
+# 4 RobotLab’s simulator remote control
+
+The original RobotLab simulator included a simple remote control for controlling a real, as well as simulated, robot in a direct, user-controlled interactive way.
 
 The remote control activities provided a way of developing familiarity with how to control the robot prior to moving on to programmatic control.
 
-Neither the current version of the \sphinxcode{\sphinxupquote{nbev3devsim}} simulator, nor the original \sphinxcode{\sphinxupquote{ev3devsim}} on which it was based, support a direct remote control interface.
+Neither the current version of the `nbev3devsim` simulator, nor the original `ev3devsim` on which it was based, support a direct remote control interface.
 
 Whilst future versions of the simulator may be extended to include remote control operation, the following activity descriptions from the original RobotLab activities, are retained here for historical interest only.
 
 
-\bigskip\hrule\bigskip
+
+# NOTES BELOW OF HISTORICAL INTEREST ONLY
+
+---
 
 
-
-\subsection{NOTES BELOW OF HISTORICAL INTEREST ONLY}
-\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:NOTES-BELOW-OF-HISTORICAL-INTEREST-ONLY}}
-
-\bigskip\hrule\bigskip
-
-
-
-\subsubsection{4.1 Activity: Remote control}
-\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:4.1-Activity:-Remote-control}}
+\subsection{4.1 Activity: Remote control}
+\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:4.1-Activity:-Remote-control}}\label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE::doc}}
 The RobotLab environment allows you to write programs that an autonomous robot will run. As you have seen, RobotLab also provides a simulated robot that appears in the \sphinxcode{\sphinxupquote{Simulator}} window so that you can test out your programs. Some (real) robots can be controlled by a human using a remote control. In a similar fashion, RobotLab also provides a remote control unit that you can use to control the (simulated) robot directly.
 
 Start RobotLab. (If you already have a program loaded, choose \sphinxcode{\sphinxupquote{File \&gt; New}}.) In this activity, you are not going to program the robot, so you can close or minimise the \sphinxcode{\sphinxupquote{Program editor}} window. (Do you remember how to do this? If not, refer back to Section 1.6.) Open the \sphinxcode{\sphinxupquote{Controls}} window either by clicking on its restore icon or by choosing \sphinxcode{\sphinxupquote{Window \&gt; Controls}}.
@@ -2777,22 +2714,22 @@ In order to turn the robot, \sphinxstyleemphasis{differential} or \sphinxstyleem
 For example, click on one of the curved arrows to rotate the robot about its centre. To turn the robot clockwise about its centre, the left motor (A) is switched on in a forwards direction, and the right motor (C) is switched on in a backwards direction.
 
 
-\paragraph{Question}
+\subsubsection{Question}
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:Question}}
 How would you control the motors to turn the robot anticlockwise about its centre?
 
 
-\paragraph{Answer}
+\subsubsection{Answer}
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:Answer}}
 The right motor needs to run forwards and the left motor to run backwards. The robot can also turn clockwise or anticlockwise by switching on either motor A or motor C and leaving the other motor switched off.
 
 
-\paragraph{Question}
+\subsubsection{Question}
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:id1}}
 How would you control the motors to make a slow, gradual turn to one side?
 
 
-\paragraph{Answer}
+\subsubsection{Answer}
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:id2}}
 If the motors run at different speeds, the robot will make a gradual turn. A slow turn (right forwards, left forwards, right backward or left backwards) can be obtained by switching on both motors either forwards or backwards, but running them at different power levels (i.e. at different speeds) using the slider controls. Click on the forward arrow, then experiment by reducing the power levels for motors A and C to 75\% and 50\% respectively.
 
@@ -2825,7 +2762,7 @@ If all else fails, just close RobotLab and reopen it.
 To move the robot, left\sphinxhyphen{}click and hold down the cursor on the robot itself, and drag and drop it within the \sphinxcode{\sphinxupquote{Simulator}} window. You can also rotate the robot by right\sphinxhyphen{}clicking on it and dragging it with the mouse.
 
 
-\subsubsection{4.2 Activity: More remote control}
+\subsection{4.2 Activity: More remote control}
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:4.2-Activity:-More-remote-control}}
 In the \sphinxcode{\sphinxupquote{Controls}} window there is also a set of indicators for each sensor (1, 2, 3) (Figure 4.4). The indicators show the readings provided by sensors connected to the relevant input ports.
 
@@ -2995,846 +2932,431 @@ This is the end of Robot Lab Session 1.
 \section{Session 01 — RoboLab}
 \label{\detokenize{index:session-01-robolab}}
 
-\subsection{1 An introduction to programming robots}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1-An-introduction-to-programming-robots}}\label{\detokenize{content/01_Robot_Lab/Section_00_01::doc}}
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}from IPython.core.display import display, HTML
 
-display(HTML(\PYGZdq{}\PYGZlt{}style\PYGZgt{}\PYGZsh{}notebook\PYGZhy{}container \PYGZob{} width:50\PYGZpc{} !important; float:left !important;\PYGZcb{}\PYGZlt{}/style\PYGZgt{}\PYGZdq{}))
+---
+# 1 An introduction to programming robots
 
-\end{sphinxVerbatim}
-}
+```python
+from IPython.core.display import display, HTML
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZsh{}\PYGZpc{}pip install \PYGZhy{}\PYGZhy{}upgrade git+https://github.com/innovationOUtside/nbev3devsim.git@draggable\PYGZhy{}robot
-\end{sphinxVerbatim}
-}
+display(HTML("<style>#notebook-container { width:50% !important; float:left !important;}</style>"))
+
+```
+
+```python
+#%pip install --upgrade git+https://github.com/innovationOUtside/nbev3devsim.git@draggable-robot
+```
 
 The objective of RoboLab Session 2 is to explain the basics of robot computer programming and show you how to use some of the elementary features of the RoboLab simulator.
 
 It is assumed that you are completely new to computer programming and robotics. We’ll try to avoid jargon and go at a pace that makes it easy for you to understand what is going on.
 
 
-\subsubsection{1.1 Some basics of computer programming}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1.1-Some-basics-of-computer-programming}}
-For beginners, computer programming can appear to be a very mysterious process. Programming a robot may seem even more daunting, but I hope to show that the basics are quite straightforward. As you saw in Robot Lab Session 1, a \sphinxstyleemphasis{computer program} is a sequence of instructions or commands, written using words, symbols and numbers.
+## 1.1 Some basics of computer programming
 
+For beginners, computer programming can appear to be a very mysterious process. Programming a robot may seem even more daunting, but I hope to show that the basics are quite straightforward. As you saw in Robot Lab Session 1, a *computer program* is a sequence of instructions or commands, written using words, symbols and numbers.
 For example, you might want the robot to go forwards for five seconds. If we control the motors separately, this involves turning each motor on separately, waiting for 5 seconds, and then terminating the program, at which point the motors in our robot simulation are automatically switched off.
-
-
-
-The “stop the motors at the end of the programme” behaviour is not guaranteed in other environments used to programme either simulated or real robots. To be safe, it’s often worth making sure you turn off the motors at the end of a programme so you know for sure what state they are in when the programme terminates.
-
-
-
+<div class='alert-warning'>The "stop the motors at the end of the programme" behaviour is not guaranteed in other environments used to programme either simulated or real robots. To be safe, it's often worth making sure you turn off the motors at the end of a programme so you know for sure what state they are in when the programme terminates.</div>
 In our environment, we need to:
-\begin{itemize}
-\item {} 
-turn each motor on with a particular \sphinxstyleemphasis{speed}, which also sets the \sphinxstyleemphasis{direction}: positive speed values are assumed to mean “go forwards”, negative ones “go backwards”;
-
-\item {} 
-wait for five seconds;
-
-\item {} 
-(programme ends, motors turned off automatically).
-
-\end{itemize}
-
-This could be \sphinxstyleemphasis{coded} in RobotLab using instructions of the form:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{left\PYGZus{}motor}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{right\PYGZus{}motor}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{)}
-
-\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-for suitable configurations of \sphinxcode{\sphinxupquote{left\_motor}} and \sphinxcode{\sphinxupquote{right\_motor}}.
-
-Perhaps confusingly, the \sphinxcode{\sphinxupquote{sleep()}} command, rather than saying “do nothing for 5 seconds”, says “continue to do what you’re already doing for 5 seconds”. For our current example, this means “keep your motors on and running for 5 seconds”.
-
-But how does the programme know what the \sphinxcode{\sphinxupquote{left\_motor}} and \sphinxcode{\sphinxupquote{right\_motor}} are? Our programme also requires that we have defined these items earlier in the programme using things it \sphinxstyleemphasis{does} know about. In particular, we would need to use a construction of the form:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{left\PYGZus{}motor} \PYG{o}{=} \PYG{n}{Motor}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{)}
-\PYG{n}{right\PYGZus{}motor} \PYG{o}{=} \PYG{n}{Motor}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}C}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-Here, the \sphinxcode{\sphinxupquote{Motor()}}, \sphinxcode{\sphinxupquote{OUTPUT\_B}} and \sphinxcode{\sphinxupquote{OUTPUT\_C}} statements, as well as the previously seen \sphinxcode{\sphinxupquote{SpeedPercent}}, are provided as predefined building blocks to use in our own simulated robot control programmes.
-
-The \sphinxcode{\sphinxupquote{Motor()}} element refers to programme elements elsewhere that define a \sphinxcode{\sphinxupquote{Motor}} \sphinxstyleemphasis{object}. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or \sphinxstyleemphasis{methods} that can be enacted upon it. For example, we may turn a motor \sphinxstyleemphasis{on} in a particular \sphinxstyleemphasis{direction} and with a particular \sphinxstyleemphasis{speed} for a particular \sphinxstyleemphasis{time} or for a specified number of \sphinxstyleemphasis{rotations}.
-
-The \sphinxcode{\sphinxupquote{Motor()}} object is created with an \sphinxstyleemphasis{argument} that identifies an \sphinxstyleemphasis{output port} that the physical motor in a real robot, and the simualted motor in a simulated robot, would be connected to. Output ports are used to identify power and/or control lines that a software controller can use to control the behaviour of a physical (or simuluted) device, such as a motor, LED display, or speaker. In our simulated robot case, two output ports are defined, \sphinxcode{\sphinxupquote{OUTPUT\_B}} and \sphinxcode{\sphinxupquote{OUTPUT\_C}}. By convention,
-we associate \sphinxcode{\sphinxupquote{OUTPUT\_B}} with the motor on the left hand side of the robot as it travels in a forwards direction, and \sphinxcode{\sphinxupquote{OUTPUT\_C}} with the right hand motor.
-
-To simplify matters, other “higher level” \sphinxstyleemphasis{predefined} building blocks are also provided to make writing our programmes simpler.
-
-For example, the \sphinxcode{\sphinxupquote{MoveTank}} building block allows us to create a “tank” drive comprised of a left and right motor. We can instruct the tank drive to turn each motor on with its own specified speed and direction, and for a certain amount of time, using a single command:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}drive} \PYG{o}{=} \PYG{n}{MoveTank}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{,} \PYG{n}{OUTPUT\PYGZus{}C}\PYG{p}{)}
-\PYG{n}{tank\PYGZus{}drive}\PYG{o}{.}\PYG{n}{on\PYGZus{}for\PYGZus{}seconds}\PYG{p}{(}\PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{,} \PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-Computer code usually looks stilted like this because it has to follow very strict rules about which characters go where. Fortunately, the notebooks have some support, know as “tab completion”, for helping you create programs without making typing mistakes. You will learn more about that as we go along.
-
+- turn each motor on with a particular *speed*, which also sets the *direction*: positive speed values are assumed to mean "go forwards", negative ones "go backwards";
+- wait for five seconds;
+- (programme ends, motors turned off automatically).
+This could be *coded* in RobotLab using instructions of the form:
+```python
+left_motor.on(SpeedPercent(50))
+right_motor.on(SpeedPercent(50))
+sleep(5)
+```
+for suitable configurations of `left_motor` and `right_motor`.
+Perhaps confusingly, the `sleep()` command, rather than saying "do nothing for 5 seconds", says "continue to do what you're already doing for 5 seconds". For our current example, this means "keep your motors on and running for 5 seconds".
+But how does the programme know what the `left_motor` and `right_motor` are? Our programme also requires that we have defined these items earlier in the programme using things it *does* know about. In particular, we would need to use a construction of the form:
+```python
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+```
+Here, the `Motor()`, `OUTPUT_B` and `OUTPUT_C` statements, as well as the previously seen `SpeedPercent`, are provided as predefined building blocks to use in our own simulated robot control programmes.
+The `Motor()` element refers to programme elements elsewhere that define a `Motor` *object*. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or *methods* that can be enacted upon it. For example, we may turn a motor *on* in a particular *direction* and with a particular *speed* for a particular *time* or for a specified number of *rotations*.
+The `Motor()` object is created with an *argument* that identifies an *output port* that the physical motor in a real robot, and the simualted motor in a simulated robot, would be connected to. Output ports are used to identify power and/or control lines that a software controller can use to control the behaviour of a physical (or simuluted) device, such as a motor, LED display, or speaker. In our simulated robot case, two output ports are defined, `OUTPUT_B` and `OUTPUT_C`. By convention, we associate `OUTPUT_B` with the motor on the left hand side of the robot as it travels in a forwards direction, and `OUTPUT_C` with the right hand motor.
+To simplify matters, other "higher level" *predefined* building blocks are also provided to make writing our programmes simpler.
+For example, the `MoveTank` building block allows us to create a "tank" drive comprised of a left and right motor. We can instruct the tank drive to turn each motor on with its own specified speed and direction, and for a certain amount of time, using a single command:
+```python
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), 5)
+```
+Computer code usually looks stilted like this because it has to follow very strict rules about which characters go where. Fortunately, the notebooks have some support, know as "tab completion", for helping you create programs without making typing mistakes. You will learn more about that as we go along.
 The following describes what happens when you use a notebook to program our simulated robot.
-
-First, we use some IPython “magic” (and yes, it really is called that!), at the start of a code cell to say that the following code should be passed to a particular instance of our simulator running in the same notebook.
-
+First, we use some IPython "magic" (and yes, it really is called that!), at the start of a code cell to say that the following code should be passed to a particular instance of our simulator running in the same notebook.
 The magic incantation takes the form:
-
-\sphinxcode{\sphinxupquote{\%\%sim\_magic}}
-
-and it \sphinxstylestrong{MUST} appear as the first line of a code cell. In the above example, \sphinxcode{\sphinxupquote{roboSim}} is the name of the variable associated with our simulator instance.
-
-The rest of the code in the cell is the code that will be passed into the simulator and used to control the the simulated robot. (The same code should also work with a \sphinxstyleemphasis{real} Lego EV3 robot running the \sphinxcode{\sphinxupquote{ev3dev}} operating system.)
-
-When you \sphinxstyleemphasis{Run} the code cell, the code is “downloaded” to the simulator \sphinxstyleemphasis{but is not executed}.
-
-To execute your programme, you need to click the \sphinxstyleemphasis{Run} button in the simulator. Once the code is “downloaded” from your code cell to the simulator (or — if we work out how! \sphinxhref{https://github.com/ev3dev/vscode-ev3dev-browser}{This} may provide some clues… — to a real robot), the robot is \sphinxstyleemphasis{autonomous} and runs independently of the code cell within which the program is defined.
-
+`%%sim_magic`
+and it __MUST__ appear as the first line of a code cell. In the above example, `roboSim` is the name of the variable associated with our simulator instance.
+The rest of the code in the cell is the code that will be passed into the simulator and used to control the the simulated robot. (The same code should also work with a *real* Lego EV3 robot running the `ev3dev` operating system.)
+When you *Run* the code cell, the code is "downloaded" to the simulator *but is not executed*.
+To execute your programme, you need to click the *Run* button in the simulator. Once the code is "downloaded" from your code cell to the simulator (or — if we work out how! [This](https://github.com/ev3dev/vscode-ev3dev-browser) may provide some clues... — to a real robot), the robot is *autonomous* and runs independently of the code cell within which the program is defined.
 The following diagram tries to capture the relationship between the code as seen in a notebook magic code cell and the simulator running as a Javascript programme inside the browser Javascript environment.
-
-\sphinxincludegraphics[width=491\sphinxpxdimen,height=301\sphinxpxdimen]{{ev3dev-codearchitecture}.png}
-
-The diagram also shows how, in principle, the \sphinxstyleemphasis{same} programme could be used to program the simulated robot \sphinxstyleemphasis{or} a real EV3 powered robot.
-
+![A diagram showing how code wihtin a code cell can be "downloaded" to the nbev3devsim simulator or, in principle, downloaded to a real robot running Linux and the ev3dev-py environment. At one side is a box representing a jupyter notebook and the other side a box representing an EV3 robot. The notebook container contains a "magic code cell" and a separate Javascript environment. The Javascript environment contains an nbev3devsim container. An arrow is shown going from the code cell to the nbev3devsim container inside the Javascript container. Inside the EV3 robot box is a Linux container, and inside that an ev3dev container. An second arrow leads from the magic code cell inside the notebook container to the ev3dev container inside the Linux conainer inside the EV3 robot box.](../images/ev3dev-codearchitecture.png)
+The diagram also shows how, in principle, the *same* programme could be used to program the simulated robot *or* a real EV3 powered robot.
 In the simulated robot environment, the same physical computer is being used to do several different things:
-\begin{enumerate}
-\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
-\item {} 
-to create and edit RobotLab programs in the Jupyter notebook or JupyterLab user interface; the Jupyter notebook interface runs in the browser, and the content of the code cells are executed inside a Python environment running on your computer.
-
-\item {} 
-to execute Python code contained in a notebook code cell in a Python environment, or “download” code from a code cell to the simulator;
-
-\item {} 
-to execute the program in a simulated robot in a Javascript environment running inside your browser.
-
-\end{enumerate}
-
-Whilst they run on the same physical computer, these programmes actually run in different computational environments on the computer. For example, the simulator is actually a Javascript programme that runs in your browser: once you click on the \sphinxcode{\sphinxupquote{Run}} button, it is the simulated robot’s control system that is executing the robot program inside a Javascript environment in your browser. The code is actually sent to the simulator via a Python process when the notebook code cell is run. The IPython
-magic tells the Python process to grab the contents of the code cell (and depending on the magic, prefix it with additional boilerplate code), and then send that code to the simulator running as Javascript code in the browser window that contains the notebook user interface.
-
-\sphinxincludegraphics[width=661\sphinxpxdimen,height=441\sphinxpxdimen]{{ev3-jupyter-arch}.png}
-
-
-
-Would it make sense to use another work in the simulator? “Execute”? “SimRun”?
-
-
-
-
-\subsubsection{Getting Started With the Simulator}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Getting-Started-With-the-Simulator}}
-The simulator we will be using must be loaded into each notebook that wants to use it once per notebook. In addition, \sphinxstylestrong{only one instance of the simulator per notebook is allowed}. Any more than that and things don’t work at all.
-
-
-
-I’m working on a minimum viable model at the moment, with as few instructions about workflow as I can get away with in the hope that I can iterate a few times, improve the UI, workflow etc, maybe even radically change things. A lot can happen in Jupyter land in 6\sphinxhyphen{}8 weeks! The single simulator instance is becuase atm the simulator is embedded into the notebook with a hard coded HTML element id; multiple elements w/ same id break things. It may be a quick fix, it may not; if it’s quick, it may be
-fixable over a coffee. If it’s not, it could take an afternoon, and then testing time. So that’s parked for now…
-
-
-
+1. to create and edit RobotLab programs in the Jupyter notebook or JupyterLab user interface; the Jupyter notebook interface runs in the browser, and the content of the code cells are executed inside a Python environment running on your computer.
+2. to execute Python code contained in a notebook code cell in a Python environment, or "download" code from a code cell to the simulator;
+3. to execute the program in a simulated robot in a Javascript environment running inside your browser.
+Whilst they run on the same physical computer, these programmes actually run in different computational environments on the computer. For example, the simulator is actually a Javascript programme that runs in your browser: once you click on the `Run` button, it is the simulated robot’s control system that is executing the robot program inside a Javascript environment in your browser. The code is actually sent to the simulator via a Python process when the notebook code cell is run. The IPython magic tells the Python process to grab the contents of the code cell (and depending on the magic, prefix it with additional boilerplate code), and then send that code to the simulator running as Javascript code in the browser window that contains the notebook user interface.
+![](../images/ev3-jupyter-arch.png)
+<div class='alert-warning'>Would it make sense to use another work in the simulator? "Execute"? "SimRun"?</div>
+## Getting Started With the Simulator
+The simulator we will be using must be loaded into each notebook that wants to use it once per notebook. In addition, __only one instance of the simulator per notebook is allowed__. Any more than that and things don't work at all.
+<div class='alert-danger'>I'm working on a minimum viable model at the moment, with as few instructions about workflow as I can get away with in the hope that I can iterate a few times, improve the UI, workflow etc, maybe even radically change things. A lot can happen in Jupyter land in 6-8 weeks!<br/><br/>
+The single simulator instance is becuase atm the simulator is embedded into the notebook with a hard coded HTML element id; multiple elements w/ same id break things. It may be a quick fix, it may not; if it's quick, it may be fixable over a coffee. If it's not, it could take an afternoon, and then testing time. So that's parked for now...</div>
 The following cell will load in the Python package that makes the simulator available, along with some IPython magic that allows us to interact with the simulator.
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}from nbev3devsim import ev3devsim\PYGZus{}nb as eds
-\PYGZpc{}load\PYGZus{}ext nbev3devsim
-\end{sphinxVerbatim}
-}
-
-The simulator itself is created as a Jupyter widget, referenced by a variable of our choosing, in the following case, the variable \sphinxcode{\sphinxupquote{roboSim}}. The \sphinxcode{\sphinxupquote{display()}} command then renders the widget.
-
+```python
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+```
+The simulator itself is created as a Jupyter widget, referenced by a variable of our choosing, in the following case, the variable `roboSim`. The `display()` command then renders the widget.
 Run the notebook code cell containing the lines:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
+```pyhton
 roboSim = eds.Ev3DevWidget()
 display(roboSim)
-\end{sphinxVerbatim}
-
+```
 to create the simulator and embed it in the notebook:
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}roboSim = eds.Ev3DevWidget()
+```python
+roboSim = eds.Ev3DevWidget()
 display(roboSim)
 roboSim.element.dialog();
-\end{sphinxVerbatim}
-}
-
-At the moment, things are a little clunky in terms of how we actually get code into the simulator and run it. Using the \sphinxcode{\sphinxupquote{move selected cells up}} and \sphinxcode{\sphinxupquote{move selected cells down}} up and down arrow buttons in the notebook toolbar, I suggest you move the simulator display so that it is \sphinxstyleemphasis{above} the code cell you are currently using to programme the robot.
-
-You can then run the notebook code cell to download the programme to the simulator, and press the simulator \sphinxstyleemphasis{Run} button to exectute the programme in the simulator and watch the result.
-
-
-\paragraph{Error Messages in the Simulator}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Error-Messages-in-the-Simulator}}
+```
+At the moment, things are a little clunky in terms of how we actually get code into the simulator and run it.
+Using the `move selected cells up` and `move selected cells down` up and down arrow buttons in the notebook toolbar, I suggest you move the simulator display so that it is *above* the code cell you are currently using to programme the robot.
+You can then run the notebook code cell to download the programme to the simulator, and press the simulator *Run* button to exectute the programme in the simulator and watch the result.
+### Error Messages in the Simulator
 If you make an error in a programme sent to the simulator, when you try to run the program in the simulator, a message will be displayed in the simulator console.
-
-??Missing image? \sphinxincludegraphics[width=500\sphinxpxdimen]{{content/01_Robot_Lab/../../images/Section_00_01_-_Jupyter_Notebook_error}.png}
-
+??Missing image?
+<img src='../../images/Section_00_01_-_Jupyter_Notebook_error.png' width=500 alt='' />
 The line number specified will be one less than the line number displayed in the associated code cell if you enable line number display within the cell.
-
-
-\paragraph{Passing Code into the Simulator}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Passing-Code-into-the-Simulator}}
+### Passing Code into the Simulator
 To write programme code that can be passed to the simulator and executed within it to control the simulated robot,
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-print(\PYGZsq{}hello world\PYGZsq{})
-\end{sphinxVerbatim}
-}
-
-
-\subsubsection{1.2 An introduction to sequential programming}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1.2-An-introduction-to-sequential-programming}}
-There are various ways of programming computers to control robots. One of these is the \sphinxstyleemphasis{sequential} approach, which is the main approach used in RobotLab. This method of writing computer programs, as lists or sequences of commands, produces what are called \sphinxstyleemphasis{sequential programs}.
-
+```python
+%%sim_magic
+print('hello world')
+```
+## 1.2 An introduction to sequential programming
+There are various ways of programming computers to control robots. One of these is the *sequential* approach, which is the main approach used in RobotLab. This method of writing computer programs, as lists or sequences of commands, produces what are called *sequential programs*.
 In the sequential program model the computer executes commands in sequence.
-
-\sphinxstylestrong{TO DO: we can just do sequential here using notebook code cells, then introduce the simulator later?}
-
-The programme is structured in a particular way that allows the programme to operate correctly (a \sphinxstyleemphasis{necessary} requirement) as well as making it “readable” (a \sphinxstyleemphasis{desirable} requirement).
-
+__TO DO: we can just do sequential here using notebook code cells, then introduce the simulator later?__
+The programme is structured in a particular way that allows the programme to operate correctly (a *necessary* requirement) as well as making it "readable" (a *desirable* requirement).
 In terms of correctness, the programme requires that we define things within our programme before we try to call on them and make use of them within our programme.
-
-One way of defining things is to \sphinxstyleemphasis{import} them from a Python package. A package is essentially a collection of predefined programme elements that are useful for a particular programming task.
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} Import statements}
-\PYG{k+kn}{from} \PYG{n+nn}{ev3dev2}\PYG{n+nn}{.}\PYG{n+nn}{motor} \PYG{k+kn}{import} \PYG{n}{Motor}\PYG{p}{,} \PYG{n}{SpeedPercent}\PYG{p}{,} \PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{,} \PYG{n}{OUTPUT\PYGZus{}C}
-\PYG{k+kn}{import} \PYG{n+nn}{time}
-
-\PYG{c+c1}{\PYGZsh{} Definitions}
-\PYG{n}{left\PYGZus{}motor} \PYG{o}{=} \PYG{n}{Motor}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{)}
-\PYG{n}{right\PYGZus{}motor} \PYG{o}{=} \PYG{n}{Motor}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}C}\PYG{p}{)}
-
-\PYG{c+c1}{\PYGZsh{} Programme actions}
-\PYG{n}{left\PYGZus{}motor}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{75}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{right\PYGZus{}motor}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{SpeedPercent}\PYG{p}{(}\PYG{l+m+mi}{75}\PYG{p}{)}\PYG{p}{)}
-
-\PYG{c+c1}{\PYGZsh{} Wait here for 1 second...}
-\PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
-
-\PYG{c+c1}{\PYGZsh{} Programme ends}
-\end{sphinxVerbatim}
-
-Lines prefixed by a \sphinxcode{\sphinxupquote{\#}} are \sphinxstyleemphasis{comments} that are not executed as programme code but are intended as notes to human readers that can be used to help make a programme more readable.
-
-The following programme turns the left and right motors on at three quarters of their full speed, waits for a short period (1 second), then the programe ends and the motors are automatically switched off.
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-
-\PYGZsh{} Import statements
-from ev3dev2.motor import Motor, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
+One way of defining things is to *import* them from a Python package. A package is essentially a collection of predefined programme elements that are useful for a particular programming task.
+```python
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
 import time
-
-\PYGZsh{} Definitions
-left\PYGZus{}motor = Motor(OUTPUT\PYGZus{}B)
-right\PYGZus{}motor = Motor(OUTPUT\PYGZus{}C)
-
-\PYGZsh{} Programme actions
-left\PYGZus{}motor.on(SpeedPercent(75))
-right\PYGZus{}motor.on(SpeedPercent(75))
-
-\PYGZsh{} Wait here for 1 second...
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+# Programme actions
+left_motor.on(SpeedPercent(75))
+right_motor.on(SpeedPercent(75))
+# Wait here for 1 second...
 time.sleep(1)
-
-\PYGZsh{} Programme ends
-\end{sphinxVerbatim}
-}
-
-\sphinxstyleemphasis{Run the above code cell to download the code to the simulator, and then run the programme using the simulator interface.}
-
-When you run the programme in the simulator, the robot should move forwards quickly for one second and then stop. Try increasing the “sleep” time in seconds, re\sphinxhyphen{}run the code code cell to download the programme to the simulator, and then re\sphinxhyphen{}run it in the simulator. Does the robot behave as you expect? What happens if you also change the \sphinxcode{\sphinxupquote{SpeedPercent(VALUE)}}, where \sphinxcode{\sphinxupquote{VALUE}} is a numerical value that can range from \sphinxcode{\sphinxupquote{\sphinxhyphen{}100}} to \sphinxcode{\sphinxupquote{100}}?
-
-
-\paragraph{Using Predefined Code Building Blocks}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Using-Predefined-Code-Building-Blocks}}
+# Programme ends
+```
+Lines prefixed by a `#` are *comments* that are not executed as programme code but are intended as notes to human readers that can be used to help make a programme more readable.
+The following programme turns the left and right motors on at three quarters of their full speed, waits for a short period (1 second), then the programe ends and the motors are automatically switched off.
+```python
+%%sim_magic
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
+import time
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+# Programme actions
+left_motor.on(SpeedPercent(75))
+right_motor.on(SpeedPercent(75))
+# Wait here for 1 second...
+time.sleep(1)
+# Programme ends
+```
+*Run the above code cell to download the code to the simulator, and then run the programme using the simulator interface.*
+When you run the programme in the simulator, the robot should move forwards quickly for one second and then stop. Try increasing the "sleep" time in seconds, re-run the code code cell to download the programme to the simulator, and then re-run it in the simulator. Does the robot behave as you expect? What happens if you also change the `SpeedPercent(VALUE)`, where `VALUE` is a numerical value that can range from `-100` to `100`?
+### Using Predefined Code Building Blocks
 Writing programmes at such a low level is possible, but we often find it more convenient to programme at a higher level of abstraction. In the following example, we can configure and use a predefined motor drive that allows us to control both motors from a single command.
-
-In particular, the \sphinxcode{\sphinxupquote{MoveTank()}} function from the \sphinxcode{\sphinxupquote{ev3dev3.motor}} Python package allows us to define a simple tank drive composed of two motors, one on the left hand side of the robot on one on the right hand side. The configuration associates a controllable motor output with a particular motor.
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}drive} \PYG{o}{=} \PYG{n}{MoveTank}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{,} \PYG{n}{OUTPUT\PYGZus{}C}\PYG{p}{)}
-\end{sphinxVerbatim}
-
+In particular, the ` MoveTank()` function from the `ev3dev3.motor` Python package allows us to define a simple tank drive composed of two motors, one on the left hand side of the robot on one on the right hand side. The configuration associates a controllable motor output with a particular motor.
+```python
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+```
 The tank drive is used to power two motors simultaneously in various ways. For example, we can turn the motors on at a desired speed:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}drive}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{LEFT\PYGZus{}SPEED}\PYG{p}{,} \PYG{n}{RIGHT\PYGZus{}SPEED}\PYG{p}{)}
-\end{sphinxVerbatim}
-
+```python
+tank_drive.on(LEFT_SPEED, RIGHT_SPEED)
+```
 We can also turn the motors on for a specified time and then automatically turn them off at the end of that period:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}drive}\PYG{o}{.}\PYG{n}{on\PYGZus{}for\PYGZus{}seconds}\PYG{p}{(}\PYG{n}{LEFT\PYGZus{}SPEED}\PYG{p}{,} \PYG{n}{RIGHT\PYGZus{}SPEED}\PYG{p}{,} \PYG{n}{TIME}\PYG{p}{)}
-\end{sphinxVerbatim}
-
+```python
+tank_drive.on_for_seconds(LEFT_SPEED, RIGHT_SPEED, TIME)
+```
 The following example shows how we can drive the tank:
-\begin{itemize}
-\item {} 
-\sphinxstyleemphasis{forwards} in a straight line (both motors at the same speed) for a specified time using the tank drive;
-
-\item {} 
-\sphinxstyleemphasis{turn on the spot} for the same period (one motor forwards, the other backwards, at the same speed); and then
-
-\item {} 
-\sphinxstyleemphasis{reverse} in a straight line for the same period of time (both motors backwards at the same speed.
-
-\end{itemize}
-
-\sphinxstyleemphasis{Run the following code cell to download the program to the simulator and then run the programme in the simulator:}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
-
-from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-
-\PYGZsh{} Sequential program
-
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-time\PYGZus{}1s = 1
-
-\PYGZsh{} Go forwards...
-\PYGZsh{} Set the left and right motors in a forward direction at the same speed
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(50), SpeedPercent(50), time\PYGZus{}1s)
-
-
-\PYGZsh{} Turn on the spot...
-\PYGZsh{} Set the left motor forwards and the right motor backwards
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(50), SpeedPercent(\PYGZhy{}50), time\PYGZus{}1s)
-
-
-\PYGZsh{} Go backwards...
-\PYGZsh{} Set the left and right motors in a backwards direction at the same speed
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(\PYGZhy{}50), SpeedPercent(\PYGZhy{}50), time\PYGZus{}1s)
-\end{sphinxVerbatim}
-}
-
-
-\paragraph{Activity \sphinxhyphen{} Driving the Motors at Different Speeds}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Activity---Driving-the-Motors-at-Different-Speeds}}
+- *forwards* in a straight line (both motors at the same speed) for a specified time using the tank drive;
+- *turn on the spot* for the same period (one motor forwards, the other backwards, at the same speed); and then
+- *reverse* in a straight line for the same period of time (both motors backwards at the same speed.
+*Run the following code cell to download the program to the simulator and then run the programme in the simulator:*
+```python
+%%sim_magic_preloaded
+from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
+# Sequential program
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+time_1s = 1
+# Go forwards...
+# Set the left and right motors in a forward direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), time_1s)
+# Turn on the spot...
+# Set the left motor forwards and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(-50), time_1s)
+# Go backwards...
+# Set the left and right motors in a backwards direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(-50), SpeedPercent(-50), time_1s)
+```
+### Activity - Driving the Motors at Different Speeds
 What happens if the motors are turning in the same direction but at different speeds? Explore this situation by running the followng code cell, using different motorspeed values, to the simulator and running the code there.
-
-What happens if the motors turn in \sphinxstyleemphasis{different} directions? Is the behaviour as you’d expect?
-
-Check the \sphinxstyleemphasis{pen down} checkbox so that you can see the trace of where the robot has been.
-
-\sphinxstyleemphasis{Note that the simulated robot may not behave as a real robot would. It all depends on how well the simulated robot and the simulator physics have been implemented.}
-
-\sphinxstyleemphasis{Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re\sphinxhyphen{}running the
-programme in the simulator.}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-
-\PYGZsh{} Try motors with difference speeds
-
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-TIME\PYGZus{}IN\PYGZus{}S = 5
-
-LEFT\PYGZus{}MOTOR\PYGZus{}SPEED\PYGZus{}PC = \PYGZhy{}50
-RIGHT\PYGZus{}MOTOR\PYGZus{}SPEED\PYGZus{}PC = \PYGZhy{}50
-
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(LEFT\PYGZus{}MOTOR\PYGZus{}SPEED\PYGZus{}PC),
-                          SpeedPercent(RIGHT\PYGZus{}MOTOR\PYGZus{}SPEED\PYGZus{}PC),
-                          TIME\PYGZus{}IN\PYGZus{}S)
-\end{sphinxVerbatim}
-}
-
-
-\subparagraph{Answer}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Answer}}
-\sphinxstyleemphasis{Click the arrow in the sidebar to reveal the answer.}
-
+What happens if the motors turn in *different* directions? Is the behaviour as you'd expect?
+Check the *pen down* checkbox so that you can see the trace of where the robot has been.
+*Note that the simulated robot may not behave as a real robot would. It all depends on how well the simulated robot and the simulator physics have been implemented.*
+*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the programme in the simulator.*
+```python
+%%sim_magic
+from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
+# Try motors with difference speeds
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+TIME_IN_S = 5
+LEFT_MOTOR_SPEED_PC = -50
+RIGHT_MOTOR_SPEED_PC = -50
+tank_drive.on_for_rotations(SpeedPercent(LEFT_MOTOR_SPEED_PC),
+                          SpeedPercent(RIGHT_MOTOR_SPEED_PC),
+                          TIME_IN_S)
+```
+#### Answer
+*Click the arrow in the sidebar to reveal the answer.*
 With both motor speeds set in the forward direction, if the left motor speed is slightly faster than the right motor speed, then the robot curves towards the right; if the right motor is slightly faster than the left motor, the robot curves to the left. The greater difference between the speeds, the tighter the curve.
-
 If one of the motors is set at a forward speed and one is in reverse, the robot turns in a tight circle centred on the reverse turning wheel.
-
-If both motors are are going backwards (negative speed), then wuth the \sphinxcode{\sphinxupquote{.on\_for\_seconds()}} command, the robot does not move. This seems to be an issue with the simulator.
-
-
-\paragraph{Turning the Motors on for a Specified Number of Wheel Rotations}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Turning-the-Motors-on-for-a-Specified-Number-of-Wheel-Rotations}}
+If both motors are are going backwards (negative speed), then wuth the `.on_for_seconds()` command, the robot does not move. This seems to be an issue with the simulator.
+### Turning the Motors on for a Specified Number of Wheel Rotations
 As well as turning the motors on for a specified period of time, we can also turn them on for a specified number of rotations of the wheels:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}drive}\PYG{o}{.}\PYG{n}{on\PYGZus{}for\PYGZus{}rotations}\PYG{p}{(}\PYG{n}{LEFT\PYGZus{}SPEED}\PYG{p}{,} \PYG{n}{RIGHT\PYGZus{}SPEED}\PYG{p}{,} \PYG{n}{ROTATIONS}\PYG{p}{)}
-\end{sphinxVerbatim}
-
+```python
+tank_drive.on_for_rotations(LEFT_SPEED, RIGHT_SPEED, ROTATIONS)
+```
 This is easy to imagine for the case where the wheels are turning at the same speed, but if one wheel turns faster than the other, the robot will follow a curving path and the ooutside wheel will travel further than the inside wheel (assuming that the inside wheel doesnlt slip).
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} we could have a diagram here showing a robot driving round a circle; the circumference of the locus followed by the outer wheel wheel will be shorter than that of the inner wheel making it clear that if the wheels are the same size, the outer one must rotate more than the inner one.}
-
-From \sphinxhref{https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html\#ev3dev2.motor.MoveTank.on\_for\_rotations}{the documentation}, \sphinxstyleemphasis{‘if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn.’}
-
-The following code cell provides code for exploring the use of the \sphinxcode{\sphinxupquote{.on\_for\_rotations()}} command.
-
-\sphinxstyleemphasis{Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configutations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell
-before re\sphinxhyphen{}running the programme in the simulator.}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-LEFT\PYGZus{}MOTOR\PYGZus{}SPEED = SpeedPercent(50)
-RIGHT\PYGZus{}MOTOR\PYGZus{}SPEED = SpeedPercent(55)
-
+*TO DO -  we could have a diagram here showing a robot driving round a circle; the circumference of the locus followed by the outer wheel wheel will be shorter than that of the inner wheel making it clear that if the wheels are the same size, the outer one must rotate more than the inner one.*
+From [the documentation](https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#ev3dev2.motor.MoveTank.on_for_rotations), *'if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn.'*
+The following code cell provides code for exploring the use of the `.on_for_rotations()` command.
+*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configutations, use the pen down control to leave a trace showing where the robot hos been and the Move position reset button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the programme in the simulator.*
+```python
+%%sim_magic
+from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+LEFT_MOTOR_SPEED = SpeedPercent(50)
+RIGHT_MOTOR_SPEED = SpeedPercent(55)
 ROTATIONS = 4
-
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(LEFT\PYGZus{}MOTOR\PYGZus{}SPEED, RIGHT\PYGZus{}MOTOR\PYGZus{}SPEED, ROTATIONS)
-
-\end{sphinxVerbatim}
-}
-
-Compared to the \sphinxcode{\sphinxupquote{.on\_for\_seconds()}} command, the \sphinxcode{\sphinxupquote{.on\_for\_rotations()}} command is capable of going backwards!
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} we could make that an activity and have an example of annotated screengrab of the simulator showing different traces.}
-
-
-\paragraph{Steering the Robot — \sphinxstyleliteralintitle{\sphinxupquote{MoveSteering}}}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Steering-the-Robot-_u2014-MoveSteering}}
-As well as the \sphinxcode{\sphinxupquote{MoveTank()}} configuration, a \sphinxcode{\sphinxupquote{MoveSteering()}} configuration is also available that again is based on the presence of two motors connected to the same controllable outputs:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}turn} \PYG{o}{=} \PYG{n}{MoveSteering}\PYG{p}{(}\PYG{n}{OUTPUT\PYGZus{}B}\PYG{p}{,} \PYG{n}{OUTPUT\PYGZus{}C}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-The \sphinxcode{\sphinxupquote{MoveSteering()}} configuration again drives both motors simutaneously, although this time at the same speed but in different directions.
-
+tank_drive.on_for_seconds(LEFT_MOTOR_SPEED, RIGHT_MOTOR_SPEED, ROTATIONS)
+```
+Compared to the `.on_for_seconds()` command, the `.on_for_rotations()` command is capable of going backwards!
+*TO DO - we could make that an activity and have an example of annotated screengrab of the simulator showing different traces.*
+### Steering the Robot — `MoveSteering`
+As well as the `MoveTank()` configuration, a `MoveSteering()` configuration is also available that again is based on the presence of two motors connected to the same controllable outputs:
+```python
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+```
+The `MoveSteering()` configuration again drives both motors simutaneously, although this time at the same speed but in different directions.
 To turn the robot, we use the command:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{tank\PYGZus{}turn}\PYG{o}{.}\PYG{n}{on}\PYG{p}{(}\PYG{n}{STEERING}\PYG{p}{,} \PYG{n}{SPEED}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-where \sphinxcode{\sphinxupquote{STEERING}}steering is a numerical value between \sphinxcode{\sphinxupquote{\sphinxhyphen{}100}} and \sphinxcode{\sphinxupquote{100}} and where:
-\begin{itemize}
-\item {} 
-\sphinxcode{\sphinxupquote{\sphinxhyphen{}100}} means turn left on the spot (right motor at 100\% forward, left motor at 100\% backward);
-
-\item {} 
-\sphinxcode{\sphinxupquote{0}} means drive in a straight line, and
-
-\item {} 
-\sphinxcode{\sphinxupquote{100}} means turn right on the spot (left motor at 100\% forward, right motor at 100\% backward).
-
-\end{itemize}
-
-As well as turning the steering drive on, we can turn it on for a specified time using \sphinxcode{\sphinxupquote{.on\_for\_seconds(STEERING, SPEED, TIME)}} as in the case of the tank drive.
-
-The following programme gives a simple example of how to turn the robot using the \sphinxcode{\sphinxupquote{MoveSteering()}} motor configuration.
-
-\sphinxstyleemphasis{Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment with various settings for the s}
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} it would perhaps be interesting to have a simple simulator view, cf. a}\sphinxhref{https://github.com/innovationOUtside/nbev3devsim/issues/39}{remote control}\sphinxstyleemphasis{, where we can turn the motors on or off, select a motor group, and set the motor speeds, steering degree etc. Maybe do this with a magic that has a couple of ipywidgets that send realtime updates to a free running simulator?}
-
+```python
+tank_turn.on(STEERING, SPEED)
+```
+where `STEERING`steering is a numerical value between `-100` and `100` and where:
+- `-100` means turn left on the spot (right motor at 100% forward, left motor at 100% backward);
+- `0` means drive in a straight line, and
+- `100` means turn right on the spot (left motor at 100% forward, right motor at 100% backward).
+As well as turning the steering drive on, we can turn it on for a specified time using `.on_for_seconds(STEERING, SPEED, TIME)` as in the case of the tank drive.
+The following programme gives a simple example of how to turn the robot using the `MoveSteering()` motor configuration.
+*Run the following code cell to download the program to the simulator and then run the programme in the simulator. Experiment with various settings for the s*
+*TO DO - it would perhaps be interesting to have a simple simulator view, cf. a [remote control](https://github.com/innovationOUtside/nbev3devsim/issues/39), where we can turn the motors on or off, select a motor group, and set the motor speeds, steering degree etc. Maybe do this with a magic that has a couple of ipywidgets that send realtime updates to a free running simulator?*
 Alternatively, we can turn the steering drive on for a specified number of rotations of one of the wheels:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{on\PYGZus{}for\PYGZus{}rotations}\PYG{p}{(}\PYG{n}{STEERING}\PYG{p}{,} \PYG{n}{SPEED}\PYG{p}{,} \PYG{n}{ROTATIONS}\PYG{p}{)}
-\end{sphinxVerbatim}
-
+```python
+on_for_rotations(STEERING, SPEED, ROTATIONS)
+```
 Running the following code cell provides a demonstration:
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
+```python
+%%sim_magic
 from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent
-from ev3dev2.motor import OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-\PYGZsh{} the first two parameters can be unit classes or percentages.
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 4)
-
-\PYGZsh{} drive in a turn for 2 rotations of the outer motor
-tank\PYGZus{}turn = MoveSteering(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 2)
-\end{sphinxVerbatim}
-}
-
-
-
-
-\subparagraph{Question}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Question}}
+from ev3dev2.motor import OUTPUT_B, OUTPUT_C
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+# the first two parameters can be unit classes or percentages.
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 4)
+# drive in a turn for 2 rotations of the outer motor
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+```
+#### Question
 If a simulated robot starts pointing towards the top of the screen, will it turn towards the right or left while executing the sequence of commands shown in the code cell below?
-
-\sphinxstyleemphasis{Before} you run the code, make a prediction about what you thing the robot will do when the code is executed by the simulated robot.
-
+*Before* you run the code, make a prediction about what you thing the robot will do when the code is executed by the simulated robot.
 If a simulated robot starts pointing towards the right hand side of the screen, will it turn towards the top or bottom of the screen while executing the same sequence of commands?
-
-\sphinxstylestrong{DOUBLE CLICK THIS CELL TO EDIT IT.}
-
-\sphinxstyleemphasis{When the following code is executed by the robot simulator, I predict …***YOUR ANSWER HERE*}\sphinxstyleemphasis{… .}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
-
-time\PYGZus{}1s = 1
-
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(50), SpeedPercent(50), time\PYGZus{}1s)
-
-
-\PYGZsh{} Set the left motor forwards and the right motor backwards
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(50), SpeedPercent(\PYGZhy{}50), time\PYGZus{}1s)
-\end{sphinxVerbatim}
-}
-
-
-\subparagraph{Answer}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:id1}}
-Open and run \sphinxcode{\sphinxupquote{Sequence}} to see what happens. The first two commands in \sphinxcode{\sphinxupquote{Sequence}} move the robot forwards for one second (Figure 1.3a). The next two commands turn the robot towards the right (the left wheel goes forwards and the right wheel goes backwards) for one second (Figure 1.3b). The combined result is that the robot goes forwards for one second and turns for one second (Figure 1.3c).
-
-\sphinxincludegraphics[width=346\sphinxpxdimen,height=163\sphinxpxdimen]{{tm129_rob_p2_f007}.jpg}
-
-Figure 1.3 Movements of the simulated robot in \sphinxcode{\sphinxupquote{Sequence}}
-
-Diagrams representing different movements of a differentially steered two\sphinxhyphen{}wheel robot by drawing its initial and final position. (a) Forward (line 10): the robot moves straight ahead a short distance and stops without turning. (b) Turn (line 15): the robot initially points forward and then turns well short of a right angle, on the spot, clockwise. (c) Forward and turn (statements 1, 2, 3 and 4): the robot starts, drives forward a short distance and then turns on the spot through a right\sphinxhyphen{}angle
-clockwise.
-
+__DOUBLE CLICK THIS CELL TO EDIT IT.__
+*When the following code is executed by the robot simulator, I predict ...__YOUR ANSWER HERE__... .*
+```python
+%%sim_magic
+from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent, OUTPUT_B, OUTPUT_C
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
+time_1s = 1
+# Set the left and right motors in a forward direction
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), time_1s)
+# Set the left motor forwards and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(-50), time_1s)
+```
+#### Answer
+Open and run `Sequence` to see what happens.
+The first two commands in `Sequence` move the robot forwards for one second (Figure 1.3a). The next two commands turn the robot towards the right (the left wheel goes forwards and the right wheel goes backwards) for one second (Figure 1.3b). The combined result is that the robot goes forwards for one second and turns for one second (Figure 1.3c).
+![figure ../images/tm129_rob_p2_f007.jpg](../images/tm129_rob_p2_f007.jpg)
+Figure 1.3 Movements of the simulated robot in `Sequence`
+Diagrams representing different movements of a differentially steered two-wheel robot by drawing its initial and final position. (a) Forward (line 10): the robot moves straight ahead a short distance and stops without turning. (b) Turn (line 15): the robot initially points forward and then turns well short of a right angle, on the spot, clockwise. (c) Forward and turn (statements 1, 2, 3 and 4): the robot starts, drives forward a short distance and then turns on the spot through a right-angle clockwise.
 When trying to understand, or write your own, robot programs, it can be helpful to ‘play robot’. This means that you put yourself in the place of the robot and act out (or at least imagine) what you or the robot would do when executing each statement of the program. If you have the help of a friend, get them to read out the program statements to you one at a time.
-
-The trace left as the robot turns on the spot does not appear to be center simulated robot doesn’t turn exactly on the spot because the robot is turning about one of the wheels.
-
-
-\subsubsection{1.3 Writing Programs for Use in the RoboLab Simulator}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1.3-Writing-Programs-for-Use-in-the-RoboLab-Simulator}}
+The trace left as the robot turns on the spot does not appear to be center simulated robot doesn't turn exactly on the spot because the robot is turning about one of the wheels.
+## 1.3 Writing Programs for Use in the RoboLab Simulator
 Once the simulator has been loaded and displayed in a notebook, you can start to write programmes that will run on the simulated robot.
-
-The programmes are written \sphinxstylestrong{in a single code cell} prefixed with the magic incantation \sphinxcode{\sphinxupquote{\%\%sim\_magic roboSim}} on \sphinxstylestrong{the first line} of the code cell.
-
-Running the code cell “downloads” the programme from the cell to the simulated robot. Pressing the run button in the simulated robot will then execute the downloaded robot programme within the simulator.
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} need some sort of help or lookup for simulator programme commands.}
-
-
-\subsubsection{NN TO DO Activity: Creating and editing your own programs}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:NN-TO-DO-Activity:-Creating-and-editing-your-own-programs}}
+The programmes are written __in a single code cell__ prefixed with the magic incantation `%%sim_magic roboSim` on __the first line__ of the code cell.
+Running the code cell "downloads" the programme from the cell to the simulated robot. Pressing the run button in the simulated robot will then execute the downloaded robot programme within the simulator.
+*TO DO - need some sort of help or lookup for simulator programme commands.*
+## NN TO DO  Activity: Creating and editing your own programs
 In the next few activities you are going to learn how to use RobotLab to construct a computer program that will move a simulated robot around a square course. You should try to work through the instructions carefully and slowly. It is important that you complete each step successfully before moving on to the next. We have allowed two hours for this, although you may be able to complete the exercise in less time if you have some experience of computer programming.
-
 If you run the following programme in the simulator, you will find that it drives the robot forward a short way and then turns on the spot for more than a right angle (ninety degrees).
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} simple diagram showing angles and their names, eg ninety degrees.}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
-
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 1)
-\end{sphinxVerbatim}
-}
-
-
-\paragraph{Copying and Modifying a program}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Copying-and-Modifying-a-program}}
+*TO DO - simple diagram showing angles and their names, eg ninety degrees.*
+```python
+%%sim_magic_preloaded
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 1)
+```
+### Copying and Modifying a program
 We can edit a code cell directly to add additional lines to it, or we may want to retain our original code (for reference) and create a new programme based on an earlier one.
-
 We can grab a copy of a code cell by:
-\begin{itemize}
-\item {} 
-clicking on it to select it;
-
-\item {} 
-clicking the \sphinxstyleemphasis{copy selected cells} button in the toolbar;
-
-\item {} 
-clicking the \sphinxstyleemphasis{paste cells below} toolbar button to place a copy of the cell in a new cell;
-
-\item {} 
-select the new cell and use the arrow keys to move it to a locaiton of your choosing.
-
-\end{itemize}
-
+- clicking on it to select it;
+- clicking the *copy selected cells* button in the toolbar;
+- clicking the *paste cells below* toolbar button to place a copy of the cell in a new cell;
+- select the new cell and use the arrow keys to move it to a locaiton of your choosing.
 Select the code cell above by clicking on it, use the tool bar button to copy it, single click on this markdown cell to provide the current location, then click on the toolbar paste button to copy the code cell below this one.
-
 Modify the programme in your newly created cell so that the robot turns through a right angle (or as close as you can get it without spending too much time!). Test your code by runn the code cell to download the code to the simulator, and then run it in the simulator.
-
 You may find that using the pen trace helps you see how far the robot has turned.
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
-
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 1)
-\end{sphinxVerbatim}
-}
-
-
-\subparagraph{My Attempt}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:My-Attempt}}
-\sphinxstyleemphasis{Click the arrow in the sidebar to reveal the settings I used.}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
-
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
-
-\end{sphinxVerbatim}
-}
-
+```python
+%%sim_magic_preloaded
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 1)
+```
+#### My Attempt
+*Click the arrow in the sidebar to reveal the settings I used.*
+```python
+%%sim_magic_preloaded
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+```
 On my computer, I found I could turn the robot through about ninety degrees by setting the number of wheel rotations on the turn step to between 0.85 and 0.9.
-
-
-\paragraph{Copying Code Using Keyboard shortcut commands}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Copying-Code-Using-Keyboard-shortcut-commands}}
-You can also use the \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}C}} keyboard shortcut to copy a selected cell and \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}V}} to paste a copied cell immediately below the currently selected cell.
-
-Alternatively, you can highlight and select code \sphinxstyleemphasis{within} a code cell and then use the keyboard copy and paste commands to copy the code from the original cell, create a new code cell, then paste the copied code into the new code cell.
-
-
-\paragraph{Deleting Cells}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Deleting-Cells}}
+### Copying Code Using Keyboard shortcut commands
+You can also use the `ESC-C` keyboard shortcut to copy a selected cell and `ESC-V` to paste a copied cell immediately below the currently selected cell.
+Alternatively, you can highlight and select code *within* a code cell and then use the keyboard copy and paste commands to copy the code from the original cell, create a new code cell, then paste the copied code into the new code cell.
+### Deleting Cells
 Sometimes, you may find you want to delete a code or markdown cell.
-
-To delete a cell, click on it to select it and then click the scissors / \sphinxstyleemphasis{cut selected cells} toolbar button.
-
-
-\paragraph{Deleting and moving lines of code in a code cell}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Deleting-and-moving-lines-of-code-in-a-code-cell}}
+To delete a cell, click on it to select it and then click the scissors / *cut selected cells* toolbar button.
+### Deleting and moving lines of code in a code cell
 To delete one of more particular lines of code in a code cell, highlight just that line or lines of code and use the keyboard delete key to delete them.
-
-To move one or more lines of code in a code cell, highlight them to select them, cut them using your normal keyboard cut command (for example, \sphinxcode{\sphinxupquote{ctrl\sphinxhyphen{}x}} or \sphinxcode{\sphinxupquote{cmd\sphinxhyphen{}x}}), place the cursor where you want them to go, and paste them using your normal keyboard paste command (for example, \sphinxcode{\sphinxupquote{ctrl\sphinxhyphen{}v}} or \sphinxcode{\sphinxupquote{cmd\sphinxhyphen{}v}}).
-
-
-\subsubsection{1.5 Activity: Working with comments}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1.5-Activity:-Working-with-comments}}
-In a computer programme, a \sphinxstyleemphasis{comment} refers to a line of explanatory text that is not executed when the programme runs. As such, it does not have to conform to the syntax of the programming language once it has be identified as a comment.
-
-In a Python programme, a comment is identified by prefixing a line of text or a line of code with a \sphinxcode{\sphinxupquote{\#}} (a “hash”, or in US English, “pound”) character.
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} A Python comment line is prefixed by a \PYGZsh{} (hash) character}
-\end{sphinxVerbatim}
-
+To move one or more lines of code in a code cell, highlight them to select them, cut them using your normal keyboard cut command (for example, `ctrl-x` or `cmd-x`), place the cursor where you want them to go, and paste them using your normal keyboard paste command (for example, `ctrl-v` or `cmd-v`).
+## 1.5 Activity: Working with comments
+In a computer programme, a *comment* refers to a line of explanatory text that is not executed when the programme runs. As such, it does not have to conform to the syntax of the programming language once it has be identified as a comment.
+In a Python programme, a comment is identified by prefixing a line of text or a line of code with a `#` (a "hash", or in US English, "pound") character.
+```python
+# A Python comment line is prefixed by a # (hash) character
+```
 If you run the following code cell, the contents of which should look like this:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} This is a comment}
-
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Hello}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
-
-\PYG{c+c1}{\PYGZsh{}print(\PYGZdq{}Commented out code lines are not executed.\PYGZdq{})}
-\end{sphinxVerbatim}
-
-you will see that the first commented out line is ignored, the second line prints out the word \sphinxcode{\sphinxupquote{Hello}}, and the third line is also ignored.
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZsh{} This is a comment
-
-print(\PYGZsq{}Hello\PYGZsq{})
-
-\PYGZsh{}print(\PYGZdq{}Commented out code lines are not executed.\PYGZdq{})
-\end{sphinxVerbatim}
-}
-
-\sphinxstyleemphasis{Uncommenting} a line refers to removing the initial character that identifies the line as a comment line.
-
-\sphinxstylestrong{DO}: \sphinxstyleemphasis{un}comment the second print statement in the code cell above by deleting the \sphinxcode{\sphinxupquote{\#}} character in from of it, and rerun the code cell. You should see that both messages are displayed.
-
-If a comment line would work in uncommented form as a line of code, rather than being a more general line of human readable text, it will often be referred to as being “commented out”.
-
-If you hear the phrase “comment out that line”, it thus refers to leaving the line in the programme, but prefixing it with the comment character so that the line is not exectuted when the programme is run.
-
-\sphinxstylestrong{DO}: comment out the first print statement in the code cell above by prefixing it with the \sphinxcode{\sphinxupquote{\#}} comment character and rerun the cell. This time you should only see the second print message being displayed.
-
-\sphinxstylestrong{DO}: finally, uncomment the first (text comment) line in the code cell above and run the cell. This time, an error will be thrown because the first line is \sphinxstyleemphasis{not} a valid line of Python code.
-
-
-\paragraph{Using Comments}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Using-Comments}}
+```python
+# This is a comment
+print('Hello')
+#print("Commented out code lines are not executed.")
+```
+you will see that the first commented out line is ignored, the second line prints out the word `Hello`, and the third line is also ignored.
+```python
+# This is a comment
+print('Hello')
+#print("Commented out code lines are not executed.")
+```
+*Uncommenting* a line refers to removing the initial character that identifies the line as a comment line.
+__DO__: *un*comment the second print statement in the code cell above by deleting the `#` character in from of it, and rerun the code cell. You should see that both messages are displayed.
+If a comment line would work in uncommented form as a line of code, rather than being a more general line of human readable text, it will often be referred to as being "commented out".
+If you hear the phrase "comment out that line", it thus refers to leaving the line in the programme, but prefixing it with the comment character so that the line is not exectuted when the programme is run.
+__DO__: comment out the first print statement in the code cell above by prefixing it with the `#` comment character and rerun the cell. This time you should only see the second print message being displayed.
+__DO__: finally, uncomment the first (text comment) line in the code cell above and run the cell. This time, an error will be thrown because the first line is *not* a valid line of Python code.
+### Using Comments
 Comments of often used to document particular lines of code to clarify or explain their role in a program. It is good practice to keep comments as meaningful as possible.
-
-
-\paragraph{Block Comments}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Block-Comments}}
-The phrase \sphinxstyleemphasis{block comment}, or the plural \sphinxstyleemphasis{comments}, is taken to refer to continous explanatory comment text that extends over several lines.
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZsh{} Multiple consecutive lines of comments are often referred to
-\PYGZsh{} as \PYGZdq{}block comments\PYGZdq{}.
-\PYGZsh{}
-\PYGZsh{} The syntax of some programming languages allows block comments to be defined
-\PYGZsh{} simply by using special character sequences at the start and end of the comment block.
-\PYGZsh{}
-\PYGZsh{} In Python, one widely used convention is to delimit each line as its own comment line.
-
-\PYGZsq{}\PYGZsq{}\PYGZsq{}
-Multi\PYGZhy{}line text strings can also be used as a way of \PYGZdq{}escaping\PYGZdq{} lines of text
+### Block Comments
+The phrase *block comment*, or the plural *comments*, is taken to refer to continous explanatory comment text that extends over several lines.
+```python
+# Multiple consecutive lines of comments are often referred to
+# as "block comments".
+#
+# The syntax of some programming languages allows block comments to be defined
+# simply by using special character sequences at the start and end of the comment block.
+#
+# In Python, one widely used convention is to delimit each line as its own comment line.
+'''
+Multi-line text strings can also be used as a way of "escaping" lines of text
 so that it is not executed.
-
 Such strings are identified by using three single (or double) quotes at the start of the
 text string, and three matching single (or double) quotes at the end of the string.
-
 If a text string appears as the last item in a Jupyter notebook code cell,
 it will be returned and displayed as the cell output if the cell is run.
-
 Run this code cell to see what I mean...
-\PYGZsq{}\PYGZsq{}\PYGZsq{}
-\end{sphinxVerbatim}
-}
-
-
-\paragraph{Using comments in other ways}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Using-comments-in-other-ways}}
+'''
+```
+### Using comments in other ways
 As well as being used to annotate a program with helpful information, comments can also be used to provide visual clues to the division of lines or chunks of code. For example, you might use a comment to identify separate sections of programme from each other. This technique can be used to make your programs easier to read.
-
-
-\paragraph{Using Notebook Markdown Cells to Narrate a Programme Code and Programme Development}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Using-Notebook-Markdown-Cells-to-Narrate-a-Programme-Code-and-Programme-Development}}
-As well as commenting code within a code cell, you can also make notes in a Jupyter notebook’s markdown cells. For example, you might use markdown cells:
-\begin{itemize}
-\item {} 
-to describe what you aim to achieve with the code in a following code cell;
-
-\item {} 
-to describe the output produced by running a prior code cell;
-
-\item {} 
-to reflect on the behaviour of a code executed in a prior code cell, for example, if it does not work as expected.
-
-\end{itemize}
-
-Remember, the \sphinxstyleemphasis{notebooks are yours}, so use them for making your own notes as you work through them.
-
-
-\paragraph{Saving a RoboLab program}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Saving-a-RoboLab-program}}
+### Using Notebook Markdown Cells to Narrate a Programme Code and Programme Development
+As well as commenting code within a code cell, you can also make notes in a Jupyter notebook's markdown cells. For example, you might use markdown cells:
+- to describe what you aim to achieve with the code in a following code cell;
+- to describe the output produced by running a prior code cell;
+- to reflect on the behaviour of a code executed in a prior code cell, for example, if it does not work as expected.
+Remember, the *notebooks are yours*, so use them for making your own notes as you work through them.
+### Saving a RoboLab program
 When writing notebooks it is good practice to save them periodically.
-
-Notebooks are typically saved with the \sphinxcode{\sphinxupquote{.ipynb}} filetype suffix. The name of the file is taken from the name set in the notebook header. (You can change the notebook name by clicking on the notebook name, which will pop up a \sphinxstyleemphasis{Rename notebook} dialogue.
-
-\sphinxincludegraphics[width=600\sphinxpxdimen]{{Section_00_01_-_Jupyter_Notebook_rename}.png}
-
-When you make changes to a notebook, either by editing a code or markdown cell, or by running one or more code cells, you may notice that an \sphinxcode{\sphinxupquote{(unsaved changes)}} message appears at the top of the notebook
-
-\sphinxincludegraphics[width=600\sphinxpxdimen]{{content/01_Robot_Lab/../images/Section_00_01_-_unsavedchanges}.png}
-
+Notebooks are typically saved with the `.ipynb` filetype suffix. The name of the file is taken from the name set in the notebook header. (You can change the notebook name by clicking on the notebook name, which will pop up a *Rename notebook* dialogue.
+<img src="../images/Section_00_01_-_Jupyter_Notebook_rename.png" width=600 />
+When you make changes to a notebook, either by editing a code or markdown cell, or by running one or more code cells, you may notice that an `(unsaved changes)` message appears at the top of the notebook
+<img src="../images/Section_00_01_-_unsaved changes.png" width=600 />
 The notebook will be automatically saved every minute or two. When it is autosaved saved, the status will change:
-
-\sphinxincludegraphics[width=600\sphinxpxdimen]{{Section_00_01_-_autosaved}.png}
-
-You can also do a “hard save” of your notebook by clicking on the \sphinxstyleemphasis{Save and checkpoint} notebook toolbar button or, from the \sphinxstyleemphasis{File} menu, seleting @Save and checkpoint\sphinxstyleemphasis{. You can also save the notebook to a new file name from the}File \sphinxhyphen{}\textgreater{} Save As…* menu option. The \sphinxstyleemphasis{File \sphinxhyphen{}\textgreater{} Make a Copy} option will create a copy of the current notebook.
-
-\sphinxincludegraphics[width=600\sphinxpxdimen]{{Section_00_01_-checkpointed}.png}
-
-Checkpoints are useful because they not only autosave the notebook to the current file, but they also save a hidden copy of the notebook in a checkpoints directory. The \sphinxstyleemphasis{File \sphinxhyphen{}\textgreater{} Revert to Checkpoint} menu option allows you to reload the previously checkpointed notebook. This is handy if you have made some changes to your notebook, those changes have been autosaved, and you find you want to revert to the previous version of the notebook where you made a conscious decision to save and checkpoint
-it.
-
-It’s not uncommon to see that you have been working on a noebook for quite some time since consciously saving it!
-
-\sphinxincludegraphics[width=600\sphinxpxdimen]{{Section_00_01_-_checkpoint}.png}
-
-
-\subsubsection{1.6 Activity: Completing the square}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:1.6-Activity:-Completing-the-square}}
+<img src="../images/Section_00_01_-_autosaved.png" width=600 />
+You can also do a "hard save" of your notebook by clicking on the *Save and checkpoint* notebook toolbar button or, from the *File* menu, seleting @Save and checkpoint*. You can also save the notebook to a new file name from the *File -> Save As...* menu option. The *File -> Make a Copy* option will create a copy of the current notebook.
+<img src="../images/Section_00_01_-checkpointed.png" width=600 />
+Checkpoints are useful because they not only autosave the notebook to the current file, but they also save a hidden copy of the notebook in a checkpoints directory. The *File -> Revert to Checkpoint* menu option allows you to reload the previously checkpointed notebook. This is handy if you have made some changes to your notebook, those changes have been autosaved, and you find you want to revert to the previous version of the notebook where you made a conscious decision to save and checkpoint it.
+It's not uncommon to see that you have been working on a noebook for quite some time since consciously saving it!
+<img src="../images/Section_00_01_-_checkpoint.png" width=600 />
+## 1.6 Activity: Completing the square
 In this activity, you need to have the program you worked with in the previous activity already open in RoboLab. If you don’t, open it now by running the code cell that contains the simulator and simulator magic import commands:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{nbev3devsim} \PYG{k+kn}{import} \PYG{n}{ev3devsim\PYGZus{}nb} \PYG{k}{as} \PYG{n}{eds}
-\PYG{o}{\PYGZpc{}}\PYG{n}{load\PYGZus{}ext} \PYG{n}{nbev3devsim}
-\end{sphinxVerbatim}
-
+```python
+from nbev3devsim import ev3devsim_nb as eds
+%load_ext nbev3devsim
+```
 and the command to create and display the simulator widget:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{roboSim} \PYG{o}{=} \PYG{n}{eds}\PYG{o}{.}\PYG{n}{Ev3DevWidget}\PYG{p}{(}\PYG{p}{)}
-\PYG{n}{display}\PYG{p}{(}\PYG{n}{roboSim}\PYG{p}{)}
-\end{sphinxVerbatim}
-
-\sphinxstyleemphasis{TO DO \sphinxhyphen{} are we going to have a simulator button in the toolbar?}
-
+```python
+roboSim = eds.Ev3DevWidget()
+display(roboSim)
+```
+*TO DO - are we going to have a simulator button in the toolbar?*
 Make a copy of the earlier code cell in which you programmed the robot to draw one edge of a square and then turn through a right angle and paste it below:
-
-
-\bigskip\hrule\bigskip
-
 
 In the new code cell, copy the lines of code to drive the robot forward and turn through ninety degrees, and paste the copy below the original lines.
 
@@ -3842,171 +3364,162 @@ What do you think your programme will do now?
 
 Run the programme in the sinulator to find out.
 
-\sphinxstyleemphasis{Note that copying and pasting code is a tried and trusted technique. Do not be averse to reusing any code your have developed previously and that behaves as you expect.}
+*Note that copying and pasting code is a tried and trusted technique. Do not be averse to reusing any code your have developed previously and that behaves as you expect.*
+
+
+#### My Observations
+
 
 When I ran my version of the programme (see below) the robot drew two sides of a square as an L shape and had made the turn ready to start a third edge.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
+```python
+%%sim_magic_preloaded
 
-\PYGZsh{} Draw a square
+# Draw a square
 
 
-\PYGZsh{} First edge and turn
+# First edge and turn
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 
 
 
-\PYGZsh{} Second edge and turn
+# Second edge and turn
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
-\end{sphinxVerbatim}
-}
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 
 
-\paragraph{Extending your programme further}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Extending-your-programme-further}}
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+```
+
+### Extending your programme further
+
 Now extend your programme further so that the robot draws all four sides of a square.
 
-(Either modify your programme in an earlier code cell, or make a copy of the earlier code cell, paste it here, and work in the newly copied cell: your notebook, your rules…!)
+(Either modify your programme in an earlier code cell, or make a copy of the earlier code cell, paste it here, and work in the newly copied cell: your notebook, your rules...!)
 
-What do you notice about the programme? If you want to change the size of the square’s side length, for example, or modify the angle turned by the robot, how easy is it to modifiy your programme?
+What do you notice about the programme? If you want to change the size of the square's side length, for example, or modify the angle turned by the robot, how easy is it to modifiy your programme?
+
 
 Run your program several times, with the pen down and without clearing the trace between runs. Note how any errors compound as you run the programme multiple times.
 
-You may notice that it is easier to “tune” the value of the rotation count required to turn the robot through ninety degrees when the robot turns mutliple times, becuase it is easier to see where, and by how much, the turn undershoots or overshoots the right angle.
+You may notice that it is easier to "tune" the value of the rotation count required to turn the robot through ninety degrees when the robot turns mutliple times, becuase it is easier to see where, and by how much, the turn undershoots or overshoots the right angle.
 
 Increasing the length of the side of the square can also help reveal when the angle is slightly off the right angle.
 
 
-\subparagraph{My Observations}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:My-Observations}}
+#### My Observations
+
+
 Here is my programme. On multiple runs, it seems to overshoot the turn slightly.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic\PYGZus{}preloaded
+```python
+%%sim_magic_preloaded
 
-\PYGZsh{} Draw a square
+# Draw a square
 
 
-\PYGZsh{} First edge and turn
+# First edge and turn
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 
 
 
-\PYGZsh{} Second edge and turn
+# Second edge and turn
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 
 
-\PYGZsh{} Third edge and turn
-
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 
 
+# Third edge and turn
 
-\PYGZsh{} Fourth edge and turn
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 rotation
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}rotations(SpeedPercent(50), SpeedPercent(50), 1)
-
-
-\PYGZsh{} Set the robot to turn on the spot
-\PYGZsh{} and run for 1 rotation *of the wheels*
-tank\PYGZus{}turn.on\PYGZus{}for\PYGZus{}rotations(\PYGZhy{}100, SpeedPercent(75), 0.846)
-\end{sphinxVerbatim}
-}
-
-In terms of the programme’s design, I used comments to split out the code for each side, but there does seem to be a lot of repetition. If I want to change the side length or the angle turned, I need to make changes in lots of different places. If I had to draw a regular shape with twenty or thirty sides, things would start to get really unwieldly!
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
 
 
-\subsubsection{Summary}
-\label{\detokenize{content/01_Robot_Lab/Section_00_01:Summary}}
+
+# Fourth edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+```
+
+In terms of the programme's design, I used comments to split out the code for each side, but there does seem to be a lot of repetition. If I want to change the side length or the angle turned, I need to make changes in lots of different places. If I had to draw a regular shape with twenty or thirty sides, things would start to get really unwieldly!
+
+## Summary
+
+
 In this notebook you have learned how to make use of the notebooks for creating your own simulated robot control programmes and running them in the robot simulator.
 
 You have seen how sequential programmes can be used to instruct a robot to perform a series of tasks, one after the other.
 
 For simple, rote tasks, that may already be quite useful. But in the approach we have taken so far, there does appear to be a lot of repetition in the code.
 
-Surely there’s a better way..?
+Surely there's a better way..?
 
 
-\bigskip\hrule\bigskip
-
-
-\#\# Addendum
+## Addendum
 
 The following might be useful as a redux later on to this activity; it uses the gyro to perform the turn with quite a nice graceful turn.
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYGZpc{}\PYGZpc{}sim\PYGZus{}magic
-from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C
-from ev3dev2.sensor import INPUT\PYGZus{}4
+```python
+%%sim_magic
+from ev3dev2.motor import MoveTank, SpeedPercent, OUTPUT_B, OUTPUT_C
+from ev3dev2.sensor import INPUT_4
 from ev3dev2.sensor.lego import GyroSensor
 
-\PYGZsh{} Sequential program with gyro turn
+# Sequential program with gyro turn
 
-tank\PYGZus{}drive = MoveTank(OUTPUT\PYGZus{}B, OUTPUT\PYGZus{}C)
+tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
 
-time\PYGZus{}1s = 1
+time_1s = 1
 
-\PYGZsh{} Set the left and right motors in a forward direction
-\PYGZsh{} and run for 1 second
-tank\PYGZus{}drive.on\PYGZus{}for\PYGZus{}seconds(SpeedPercent(50), SpeedPercent(50), time\PYGZus{}1s)
+# Set the left and right motors in a forward direction
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50), SpeedPercent(50), time_1s)
 
 
-gyro = GyroSensor(INPUT\PYGZus{}4)
+gyro = GyroSensor(INPUT_4)
 
-target\PYGZus{}angle = gyro.angle + 90
-tank\PYGZus{}drive.on(SpeedPercent(50), SpeedPercent(\PYGZhy{}50))
-while gyro.angle \PYGZlt{} target\PYGZus{}angle:
+target_angle = gyro.angle + 90
+tank_drive.on(SpeedPercent(50), SpeedPercent(-50))
+while gyro.angle < target_angle:
     pass
-\end{sphinxVerbatim}
-}
+```
+---
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -5824,56 +5337,53 @@ YouTubeVideo(\PYGZsq{}mGgMZpGYiy8\PYGZsq{})
 What, me, dodgy goth? Goth hippy groover, more like…;\sphinxhyphen{})
 
 
-\subsection{3 Robot Lab challenges}
-\label{\detokenize{content/02_Robot_Lab/Section_00_03:3-Robot-Lab-challenges}}\label{\detokenize{content/02_Robot_Lab/Section_00_03::doc}}
+
+---
+# 3 Robot Lab challenges
+
+
 Here you are given a number of challenges to do. These challenges are a bit different from the activities you did earlier in RoboLab sessions. We leave you to work out the challenges for yourself, although you are encouraged to use the forums if you need help or if you want to share or discuss any of your ideas with other students.
 
-The purpose of the challenges is to allow you to try your hand at writing your own RoboLab programs. Don’t spend too much time on this work. If you get stuck, take a break: it’s surprising how often a solution to a programming problem comes to mind if you take a few minutes away from the screen and the keyboard and do something completely different instead.
+The purpose of the challenges is to allow you to try your hand at writing your own RoboLab programs. Don’t spend too much time on this work. If you get stuck, take a break: it's surprising how often a solution to a programming problem comes to mind if you take a few minutes away from the screen and the keyboard and do something completely different instead.
 
 The challenges in the next notebook are more difficult and are completely optional. They generally require you to have had some computer programming experience before you started this module.
 
-In the meantime, once you have finished RoboLab Session 3 I suggest you take a well\sphinxhyphen{}earned break before going back to the website to complete Study week 3.
+In the meantime, once you have finished RoboLab Session 3 I suggest you take a well-earned break before going back to the website to complete Study week 3.
 
 
-\subsubsection{Challenge: Moving Simon forwards}
-\label{\detokenize{content/02_Robot_Lab/Section_00_03:Challenge:-Moving-Simon-forwards}}
+### Challenge: Moving Simon forwards
+
 Write a RobotLab program to make the Simon robot move forwards for two seconds.
 
 
-\subsubsection{Challenge: Traversing a triangle}
-\label{\detokenize{content/02_Robot_Lab/Section_00_03:Challenge:-Traversing-a-triangle}}
+### Challenge: Traversing a triangle
+<div xmlns:str="http://exslt.org/strings" style="background:lightgreen">
+
+![figure ../tm129-19J-images/tm129_portfolio_activity_32.png](../images/tm129_portfolio_activity_32.png) Please note that you must complete and submit the 'Traversing a triangle' activity as part of your ePortfolio.
+</div>
+
+Write a program to make the simulated program trace out a triangular path. Run the program in pen-down mode by checking the pen down checkbox in the simulator and grab a screenshot of the code + simulator output.
+
+__TO DO: need some guidance on taking screenshots etc__
 
 
-\sphinxincludegraphics[width=32\sphinxpxdimen,height=32\sphinxpxdimen]{{tm129_portfolio_activity_32}.png} Please note that you must complete and submit the ‘Traversing a triangle’ activity as part of your ePortfolio.
+![An outline triangle.](../images/tm129_rob_p3_f021.gif)
 
 
-
-Write a program to make the simulated program trace out a triangular path. Run the program in pen\sphinxhyphen{}down mode by checking the pen down checkbox in the simulator and grab a screenshot of the code + simulator output.
-
-\sphinxstylestrong{TO DO: need some guidance on taking screenshots etc}
-
-\sphinxincludegraphics[width=107\sphinxpxdimen,height=108\sphinxpxdimen]{{tm129_rob_p3_f021}.gif}
+---
 
 
-\bigskip\hrule\bigskip
-
-
-
-\bigskip\hrule\bigskip
-
-
-
-\subsubsection{Challenge: Making a countdown program}
-\label{\detokenize{content/02_Robot_Lab/Section_00_03:Challenge:-Making-a-countdown-program}}
+\subsection{Challenge: Making a countdown program}
+\label{\detokenize{content/02_Robot_Lab/Section_00_03:Challenge:-Making-a-countdown-program}}\label{\detokenize{content/02_Robot_Lab/Section_00_03::doc}}
 Write a RoboLab program that counts down from 10 to 0 and finishes by saying ‘OK’.
 
 
-\paragraph{Question}
+\subsubsection{Question}
 \label{\detokenize{content/02_Robot_Lab/Section_00_03:Question}}
 Would you like a hint?
 
 
-\paragraph{Answer}
+\subsubsection{Answer}
 \label{\detokenize{content/02_Robot_Lab/Section_00_03:Answer}}
 The simulator speech engine can only speak “strings” not digits. So you need to pass in numbers as a string, such as \sphinxcode{\sphinxupquote{\textquotesingle{}2\textquotesingle{}}}, \sphinxstyleemphasis{not} as a literal numeric value, such as \sphinxcode{\sphinxupquote{3}}.
 
@@ -5882,19 +5392,19 @@ The simulator speech engine can only speak “strings” not digits. So you need
 
 
 
-\subsubsection{Challenge: Traversing a hook}
+\subsection{Challenge: Traversing a hook}
 \label{\detokenize{content/02_Robot_Lab/Section_00_03:Challenge:-Traversing-a-hook}}
 Write a RoboLab program to make the simulated robot trace out the following path: going up the screen, making three turns to the right and ending up crossing its original path, as shown below.
 
 \sphinxincludegraphics[width=104\sphinxpxdimen,height=105\sphinxpxdimen]{{tm129_rob_p3_f022}.jpg}
 
 
-\paragraph{Question}
+\subsubsection{Question}
 \label{\detokenize{content/02_Robot_Lab/Section_00_03:id1}}
 Would you like a hint?
 
 
-\paragraph{Answer}
+\subsubsection{Answer}
 \label{\detokenize{content/02_Robot_Lab/Section_00_03:id2}}
 It will help to create three constants, \sphinxcode{\sphinxupquote{longTime}}, \sphinxcode{\sphinxupquote{shortTime}} and \sphinxcode{\sphinxupquote{turnTime}}. You could make \sphinxcode{\sphinxupquote{longTime}} about twice as long as \sphinxcode{\sphinxupquote{shortTime}}. Use the \sphinxcode{\sphinxupquote{tank\_drive()}} construct for the movement up the screen. Since this is long, use the constant \sphinxcode{\sphinxupquote{longTime}}. I used the \sphinxcode{\sphinxupquote{tank\_turn()}} command to make the robot turn for a specified number of wheel rotations.
 
