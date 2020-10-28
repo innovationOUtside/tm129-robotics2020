@@ -5,19 +5,12 @@ ARG TM129_VCE_TOKEN=letmein
 ENV JUPYTER_TOKEN $TM129_VCE_TOKEN
 
 
-# Remove tutor notes
-RUN rm -rf content/00*
-
-# Other tidying
-RUN rm README.md
+# Tidying
 RUN mv content/README_FIRST.ipynb ./README_FIRST.ipynb
-RUN rm -rf outreach
-RUN rm -rf production
-RUN rm -rf release
+RUN rm README.md && rm -rf content/00* && rm -rf outreach && rm -rf production && rm -rf release
 
 # Setup search 
-RUN rm -f $HOME/.nbsearch/notebooks.sqlite
-RUN nbsearch index -p $HOME/content/notebooks
+RUN rm -f $HOME/.nbsearch/notebooks.sqlite && nbsearch index -p $HOME/content/notebooks
 
 
 
