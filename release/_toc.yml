@@ -1,0 +1,10 @@
+# Chapters in this part will not be numbered
+- part: 01. Introducing notebooks and the RoboLab environment
+  chapters:
+  - file: 01. Introducing notebooks and the RoboLab environment/01.1 Jupyter environment
+  - file: 01. Introducing notebooks and the RoboLab environment/01.2 Exploring the notebook environment
+
+- part: 07. Neural networks
+  chapters:
+  - file: 07. Neural networks/07.1 Introducing neural networks
+  - file: 07. Neural networks/07.2 Multidimensional data and the MLP
