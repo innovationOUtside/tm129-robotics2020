@@ -1,2 +1,2 @@
 #git+https://github.com/innovationOUtside/ou-tm129-py.git
-ou-tm129-py
+ou-tm129-py>=
