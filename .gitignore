@@ -1,5 +1,5 @@
 .DS_Store
-
+content/.old
 release/TM*
 ANN_*
 LIDAR-*
