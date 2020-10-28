@@ -6,7 +6,9 @@ ENV JUPYTER_TOKEN $TM129_VCE_TOKEN
 
 
 # Remove tutor notes
-rm -rf content/00*
+RUN rm -rf content/00*
+RUN rm README.md
+RUN mv content/README_FIRST.ipynb ./README_FIRST.ipynb
 
 # Setup search 
 RUN rm -f $HOME/.nbsearch/notebooks.sqlite
