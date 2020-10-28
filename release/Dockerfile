@@ -7,8 +7,13 @@ ENV JUPYTER_TOKEN $TM129_VCE_TOKEN
 
 # Remove tutor notes
 RUN rm -rf content/00*
+
+# Other tidying
 RUN rm README.md
 RUN mv content/README_FIRST.ipynb ./README_FIRST.ipynb
+RUN rm -rf outreach
+RUN rm -rf production
+RUN rm -rf release
 
 # Setup search 
 RUN rm -f $HOME/.nbsearch/notebooks.sqlite
