@@ -25,6 +25,13 @@ jobs:
     - name: checkout files in repo
       uses: actions/checkout@master
 
+    - name: clean build repo of production cruft
+      run: |
+        mv content/README_FIRST.ipynb ./README_FIRST.ipynb
+        rm README.md && rm -rf content/00* && rm -rf outreach && rm -rf production && rm -rf release
+        rm -rf .VM && rm -rf .images && rm -rf && rm -rf .md
+        
+        
     - name: try-local-build
       #uses: ouseful-PR/repo2docker-action@master #forked and tweaked
       uses: jupyterhub/repo2docker-action@master
