@@ -9,6 +9,14 @@ name: Build Notebook Container
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Push to dockerhub'  
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -18,7 +26,8 @@ jobs:
       uses: actions/checkout@master
 
     - name: try-local-build
-      uses: ouseful-PR/repo2docker-action@master #forked and tweaked
+      #uses: ouseful-PR/repo2docker-action@master #forked and tweaked
+      uses: jupyterhub/repo2docker-action@master
       with:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
