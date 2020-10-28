@@ -1,2 +1,3 @@
 #git+https://github.com/innovationOUtside/ou-tm129-py.git
-ou-tm129-py>=0.0.3
+nbev3devsim>=0.0.8
+ou-tm129-py>=0.0.6
