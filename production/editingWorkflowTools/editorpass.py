@@ -16,14 +16,20 @@
 #
 
 word_replacement = {
-    r"\b([Pp]+)rogramme\b": r"\1rogram"
+    r"\b([Pp]+)rogramme(s?)\b": r"\1rogram\2"
 }
 case_replacement = {
-    r"\b([Pp]+)rogramme\b": r"\1rogram",
-    'markdown': 'Markdown',
+    'markdown': 'Markdown',  # Completely breaks jupytext header
     'RobotLab': 'RoboLab',
-    'RoboLab': 'RoboLab'
+    'RoboLab': 'RoboLab',
+    'format_name: Markdown': 'format_name: markdown',
+    ' mnist': ' MNIST',
+    'mlp': 'MLP'
 }
+
+# +
+# If not magic / only in md cell or code comment: 'Javascript': 'JavaScript'
+# -
 
 # Constraints:
 #
@@ -31,7 +37,7 @@ case_replacement = {
 #     - we shouldn't break things through stemming (eg *programmer* should not be changed to *programer*);
 
 import re
-re.sub(r"\b([Pp]+)rogramme\b", r"\1rogram", "The programme? It was a programme programmed by a programmer, and we called it 'The Programme'")
+re.sub(r"\b([Pp]+)rogramme(s?)\b", r"\1rogram\2", "The programme? It was a programme, one of several programmes, programmed by a programmer, and we called it 'The Programme'")
 
 
 def process_typos(txt, replacer, case):
@@ -55,6 +61,10 @@ print(process_typos(s, word_replacement))
 # ## Headers
 #
 # Some routines for cleaning headers
+#
+# TO DO - set Activity as a third level heading.
+#
+# TO DO - answer at level 4 with *Click the arrow in the sidebar or run this cell to reveal the answer.* which makes it accessible (top tip via Jonathan Darch).
 
 # Replace dash in title
 re.sub(r" - ", r" —  ", "# The dash - is not liked")
@@ -137,7 +147,7 @@ def _dir_handler(path):
 
 
 # +
-path='../content/05_Robot_Lab'
+path='../content/07_Robot_Lab'
 
 for fn in _dir_handler(path):
     # Read file

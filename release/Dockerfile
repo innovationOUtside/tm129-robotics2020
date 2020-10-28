@@ -4,9 +4,14 @@ FROM ousefuldemos/tm129-robotics2020:latest
 ARG TM129_VCE_TOKEN=letmein
 ENV JUPYTER_TOKEN $TM129_VCE_TOKEN
 
+
+# Remove tutor notes
+rm -rf content/00*
+
 # Setup search 
 RUN rm -f $HOME/.nbsearch/notebooks.sqlite
 RUN nbsearch index -p $HOME/content/notebooks
+
 
 
 #The ousefuldemos/tm129-robotics2020:latest is built from the repo

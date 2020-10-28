@@ -51,7 +51,7 @@ Session 01 — RoboLab
     :maxdepth: 2
     :glob:
 
-    content/01_Robot_Lab/*
+    content/01.\ Introducing\ notebooks\ and\ the\ RoboLab\ environment/*
 
 
 
@@ -62,7 +62,7 @@ Session 02 — RoboLab
     :maxdepth: 2
     :glob:
 
-    content/02_Robot_Lab/*
+    content/02.\ Getting\ started\ with\ robot\ and\ Python\ programming/*
 
 
 Session 03 — RoboLab
@@ -73,7 +73,7 @@ Session 03 — RoboLab
     :maxdepth: 2
     :glob:
 
-    content/03_Robot_Lab/*
+    content/03.\ Controlling\ program\ execution\ flow/*
     
     
  
@@ -85,4 +85,4 @@ Session 04 — RoboLab
     :maxdepth: 2
     :glob:
 
-    content/04_Robot_Lab/*
+    content/04.\ Not\ quite\ intelligent\ robots/*
