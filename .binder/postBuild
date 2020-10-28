@@ -1,5 +1,6 @@
 # ----- TM129 repo2docker: postBuild ---
 
+pip install --upgrade git+https://github.com/innovationOUtside/ou-tm129-py.git
 
 # Copy in a datestamp for start of postBuild activity
 echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
