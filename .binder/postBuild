@@ -3,6 +3,10 @@
 # Copy in a datestamp for start of postBuild activity
 echo "postBuild start time: $(date)" >> $CONDA_DIR/tm129_image_build_time.txt
 
+
+# Install external requirements
+pip install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp37-cp37m-linux_x86_64.whl
+
 # Install and enable extensions
 
 INSTALL_PREFIX=sys-prefix  #user
