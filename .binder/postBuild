@@ -21,6 +21,7 @@ pip install git+https://github.com/innovationOUtside/nb_cell_dialog.git
 
 # Search
 pip install git+https://github.com/conery/nbscan.git
+pip install git+https://github.com/ouseful-testing/nbsearch.git
 
 #Simulator
 #git+https://github.com/innovationOUtside/nbev3devsim.git
@@ -34,7 +35,6 @@ pip install git+https://github.com/innovationOUtside/serverproxy_tfjs_demos.git
 
 # Diagramming
 pip install git+https://github.com/innovationOUtside/flowchart_js_jp_proxy_widget.git
-
 
 
 # Install and enable extensions
