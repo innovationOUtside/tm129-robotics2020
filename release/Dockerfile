@@ -6,11 +6,11 @@ ENV JUPYTER_TOKEN $TM129_VCE_TOKEN
 
 
 # Tidying
-RUN mv content/README_FIRST.ipynb ./README_FIRST.ipynb
-RUN rm README.md && rm -rf content/00* && rm -rf outreach && rm -rf production && rm -rf release
+#RUN mv content/README_FIRST.ipynb ./README_FIRST.ipynb
+#RUN rm README.md && rm -rf content/00* && rm -rf outreach && rm -rf production && rm -rf release
 
 # Setup search 
-RUN rm -f $HOME/.nbsearch/notebooks.sqlite && nbsearch index -p $HOME/content/notebooks
+RUN rm -f $HOME/.nbsearch/notebooks.sqlite && nbsearch index -p ./content
 
 
 
