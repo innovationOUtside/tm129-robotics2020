@@ -42,7 +42,7 @@ Create a directory to share into the container somewhere, eg `~/TM129VCE`
 
 ### Docker dashboard instructions
 
-From the images tab, create a new container (`tm351vce`), use port: `8129`, select the `TM129VCE` directory you want to to share and mount it onto `/home/jovyan/shared` inside the container:
+From the images tab, create a new container (`tm129vce`), use port: `8129`, select the `TM129VCE` directory you want to to share and mount it onto `/home/jovyan/shared` inside the container:
 
 ![](.images/docker_dashboard_images_list.png)
 
