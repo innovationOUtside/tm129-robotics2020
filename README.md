@@ -1,7 +1,9 @@
 # tm129-robotics2020
 Repo to explore the drafting of updated robotics activities for the OU module TM129.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master)
+View this repo: [![Binder](https://mybinder.org/badge_logo.svg)](https://gke.mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master)
+
+Run a "clean" version of the container as distributed to students: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ouseful-demos/tm129-lite/HEAD)
 
 Neural net demos: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/innovationOUtside/tm129-robotics2020/master?filepath=content%2F07.%20Neural%20networks)
 
