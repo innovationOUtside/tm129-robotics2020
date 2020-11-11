@@ -480,4 +480,6 @@ When run via the jupyter-server-proxy configuration, if the search index paths a
 
 <!-- #region slideshow={"slide_type": "notes"} -->
 *To support the presentation, I also set up a demo using a Digital Ocean server. The server was deployed with a TLJH JupyterHub server with a first-use authenticator and a Dockerspawner launching the `ousefulcoursecontainers/ou-tm129:current` container. For a recipe on setting up the server, see [here](https://github.com/ouseful-demos/ou-rclub/blob/master/README.md#multi-user-jupyterhub-server-used-for-the-tutorial). It takes about 10 minutes to set up and costs about 5p an hour for a reasonable server could enough to let seminar participants have a quick play. In my opinion, this sort of facility should be available as a matter of course as a self-service option using an OU hosted server.*
+
+See also: an earlier (and more expansive / longer) set of [annotated slides / seminar notes on the TM129 Robotics practical activities rewrite](https://github.com/innovationOUtside/tm129-robotics2020/blob/master/outreach/seminar_tm129_robotics_overview.md).
 <!-- #endregion -->
