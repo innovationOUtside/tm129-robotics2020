@@ -443,7 +443,7 @@ Stephen Downes (OLDaily), *pers. comm.*
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "notes"} -->
-*According to posts on my personal blog, Docker seems to have properly come to my attention as a possible technology for distributing software to distance education students in [January 2015](https://blog.ouseful.info/2015/01/14/using-docker-to-build-course-vms/) with an experimental docker-compose solution. Although Docker was still far from ready to be put to such purposes in any meaningful way at that time, particularly in terms of robust cross-platform/desktop support, I think a potential adoption path was already identifiable at the time. Almost five years on, it seems we're finally starting to explore how effective this might be in practice...*
+*According to posts on my personal blog, Docker seems to have properly come to my attention as a possible technology for distributing software to distance education students in [January 2015](https://blog.ouseful.info/2015/01/14/using-docker-to-build-course-vms/) with an experimental docker-compose solution. Although Docker was still far from ready to be put to such purposes in any meaningful way at that time, particularly in terms of robust cross-platform/desktop support, I think a potential adoption path was already identifiable at the time. Over five years on, it seems we're finally starting to explore how effective this might be in practice...*
 <!-- #endregion -->
 
 <!-- #region slideshow={"slide_type": "slide"} -->
