@@ -30,10 +30,6 @@ from ou_tm129_py import test_install
 test_install()
 ```
 
-```python
-!ls -al .images/
-```
-
 ## Making the notebooks shareable
 
 The VCE comes pre-packaged with the notebooks used to support the TM129 Robotics block practical activities.
