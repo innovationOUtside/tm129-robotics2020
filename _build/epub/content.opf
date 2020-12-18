@@ -12,8 +12,8 @@
     <dc:publisher>No publisher provided.</dc:publisher>
     <dc:rights>The Open University, 2020</dc:rights>
     <dc:identifier id="unknown">unknown</dc:identifier>
-    <dc:date>2020-10-28T16:25:58Z</dc:date>
-    <meta property="dcterms:modified">2020-10-28T16:25:58Z</meta>
+    <dc:date>2020-12-18T12:00:07Z</dc:date>
+    <meta property="dcterms:modified">2020-12-18T12:00:07Z</meta>
     <meta property="ibooks:version">0.0.1</meta>
     <meta property="ibooks:specified-fonts">true</meta>
     <meta property="ibooks:binding">true</meta>
@@ -25,143 +25,143 @@
     <item id="epub-0" href="DEVELOPER.xhtml" media-type="application/xhtml+xml" />
     <item id="epub-1" href="genindex.xhtml" media-type="application/xhtml+xml" />
     <item id="epub-2" href="index.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-3" href=".doctrees/images/564aeb29a2e0a759592d48f87044710bf7928b8a/badge_logo.svg" media-type="image/svg+xml" />
-    <item id="epub-4" href=".doctrees/images/ad65adc91e01fbeba2e2dbee7dd0532efbbe15d2/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" media-type="image/jpeg" />
-    <item id="epub-5" href=".doctrees/images/b91d2d0b83a966a720cdfb7694863692e6364526/03803416f197f52b725c20fbe4d65ae9fac8eb55.jpg" media-type="image/jpeg" />
-    <item id="epub-6" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_12_0.png" media-type="image/png" />
-    <item id="epub-7" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_14_0.png" media-type="image/png" />
-    <item id="epub-8" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_16_0.png" media-type="image/png" />
-    <item id="epub-9" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_17_1.png" media-type="image/png" />
-    <item id="epub-10" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_18_0.png" media-type="image/png" />
-    <item id="epub-11" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_19_1.png" media-type="image/png" />
-    <item id="epub-12" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_20_1.png" media-type="image/png" />
-    <item id="epub-13" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_21_0.png" media-type="image/png" />
-    <item id="epub-14" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_22_0.png" media-type="image/png" />
-    <item id="epub-15" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_23_2.png" media-type="image/png" />
-    <item id="epub-16" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_25_0.png" media-type="image/png" />
-    <item id="epub-17" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_5_0.png" media-type="image/png" />
-    <item id="epub-18" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_7_0.png" media-type="image/png" />
-    <item id="epub-19" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_9_0.png" media-type="image/png" />
-    <item id="epub-20" href=".doctrees/nbsphinx/content_images_PIL_image_text_3_0.png" media-type="image/png" />
-    <item id="epub-21" href="_images/00_01_ContainDS_binderhub.png" media-type="image/png" />
-    <item id="epub-22" href="_images/00_01_ContainDS_local.png" media-type="image/png" />
-    <item id="epub-23" href="_images/00_01_ContainDS_robolab_running.png" media-type="image/png" />
-    <item id="epub-24" href="_images/00_01_ContainDS_standard_run.png" media-type="image/png" />
-    <item id="epub-25" href="_images/00_01_ContainDS_tm129_download.png" media-type="image/png" />
-    <item id="epub-26" href="_images/00_01_ContainDS_tm129_downloading.png" media-type="image/png" />
-    <item id="epub-27" href="_images/00_01_EV3DEV_Python_Simulator-config_robot.png" media-type="image/png" />
-    <item id="epub-28" href="_images/00_01_accessibility_display.png" media-type="image/png" />
-    <item id="epub-29" href="_images/00_01_cell_run_error_message.png" media-type="image/png" />
-    <item id="epub-30" href="_images/00_01_cell_run_status.png" media-type="image/png" />
-    <item id="epub-31" href="_images/00_01_cell_run_status_running.png" media-type="image/png" />
-    <item id="epub-32" href="_images/00_01_containds_built_container.png" media-type="image/png" />
-    <item id="epub-33" href="_images/00_01_containds_stopRemove.png" media-type="image/png" />
-    <item id="epub-34" href="_images/00_01_highlighter.png" media-type="image/png" />
-    <item id="epub-35" href="_images/00_01_jupyter_nb_edit_shortcuts.png" media-type="image/png" />
-    <item id="epub-36" href="_images/00_01_jupyter_nb_homepage.png" media-type="image/png" />
-    <item id="epub-37" href="_images/00_01_jupyter_nb_homepage1.png" media-type="image/png" />
-    <item id="epub-38" href="_images/00_01_jupyter_nb_shortcuts.png" media-type="image/png" />
-    <item id="epub-39" href="_images/00_01_jupyterlab_example.png" media-type="image/png" />
-    <item id="epub-40" href="_images/00_01_local_workspace.png" media-type="image/png" />
-    <item id="epub-41" href="_images/00_01_nb_extensions_accessibility.png" media-type="image/png" />
-    <item id="epub-42" href="_images/00_01_nbextension_config.png" media-type="image/png" />
-    <item id="epub-43" href="_images/00_01_simple_nb_home.png" media-type="image/png" />
-    <item id="epub-44" href="_images/03803416f197f52b725c20fbe4d65ae9fac8eb55.jpg" media-type="image/jpeg" />
-    <item id="epub-45" href="_images/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" media-type="image/jpeg" />
-    <item id="epub-46" href="_images/EV3DEV_Python_Simulator.png" media-type="image/png" />
-    <item id="epub-47" href="_images/EV3DEV_Python_Simulator_robot.png" media-type="image/png" />
-    <item id="epub-48" href="_images/Jupyter_Notebook_token.png" media-type="image/png" />
-    <item id="epub-49" href="_images/Section_00_01_-_Jupyter_Notebook_rename.png" media-type="image/png" />
-    <item id="epub-50" href="_images/Section_00_01_-_autosaved.png" media-type="image/png" />
-    <item id="epub-51" href="_images/Section_00_01_-_checkpoint.png" media-type="image/png" />
-    <item id="epub-52" href="_images/Section_00_01_-checkpointed.png" media-type="image/png" />
-    <item id="epub-53" href="_images/Section_00_02_-_Jupyter_Notebook.png" media-type="image/png" />
-    <item id="epub-54" href="_images/Section_00_03_-_charting.png" media-type="image/png" />
-    <item id="epub-55" href="_images/badge_logo.svg" media-type="image/svg+xml" />
-    <item id="epub-56" href="_images/content_backgrounds_Background_Image_Generator_12_0.png" media-type="image/png" />
-    <item id="epub-57" href="_images/content_backgrounds_Background_Image_Generator_14_0.png" media-type="image/png" />
-    <item id="epub-58" href="_images/content_backgrounds_Background_Image_Generator_16_0.png" media-type="image/png" />
-    <item id="epub-59" href="_images/content_backgrounds_Background_Image_Generator_17_1.png" media-type="image/png" />
-    <item id="epub-60" href="_images/content_backgrounds_Background_Image_Generator_18_0.png" media-type="image/png" />
-    <item id="epub-61" href="_images/content_backgrounds_Background_Image_Generator_19_1.png" media-type="image/png" />
-    <item id="epub-62" href="_images/content_backgrounds_Background_Image_Generator_20_1.png" media-type="image/png" />
-    <item id="epub-63" href="_images/content_backgrounds_Background_Image_Generator_21_0.png" media-type="image/png" />
-    <item id="epub-64" href="_images/content_backgrounds_Background_Image_Generator_22_0.png" media-type="image/png" />
-    <item id="epub-65" href="_images/content_backgrounds_Background_Image_Generator_23_2.png" media-type="image/png" />
-    <item id="epub-66" href="_images/content_backgrounds_Background_Image_Generator_25_0.png" media-type="image/png" />
-    <item id="epub-67" href="_images/content_backgrounds_Background_Image_Generator_5_0.png" media-type="image/png" />
-    <item id="epub-68" href="_images/content_backgrounds_Background_Image_Generator_7_0.png" media-type="image/png" />
-    <item id="epub-69" href="_images/content_backgrounds_Background_Image_Generator_9_0.png" media-type="image/png" />
-    <item id="epub-70" href="_images/content_images_PIL_image_text_3_0.png" media-type="image/png" />
-    <item id="epub-71" href="_images/ev3-jupyter-arch.png" media-type="image/png" />
-    <item id="epub-72" href="_images/ev3dev-codearchitecture.png" media-type="image/png" />
-    <item id="epub-73" href="_images/nbev3devsim_example_code_cell_annotated.png" media-type="image/png" />
-    <item id="epub-74" href="_images/nbev3devsim_in_notebook_annotated.png" media-type="image/png" />
-    <item id="epub-75" href="_images/nbev3devsim_overview.png" media-type="image/png" />
-    <item id="epub-76" href="_images/nogbad_ev3.jpg" media-type="image/jpeg" />
-    <item id="epub-77" href="_images/notebook_markdown_and_code_cell.png" media-type="image/png" />
-    <item id="epub-78" href="_images/plotly_sensor_false_positive.png" media-type="image/png" />
-    <item id="epub-79" href="_images/tm129_portfolio_activity_32.png" media-type="image/png" />
-    <item id="epub-80" href="_images/tm129_rob_p2_f007.jpg" media-type="image/jpeg" />
-    <item id="epub-81" href="_images/tm129_rob_p3_f021.gif" media-type="image/gif" />
-    <item id="epub-82" href="_images/tm129_rob_p3_f022.jpg" media-type="image/jpeg" />
-    <item id="epub-83" href="_images/tm129_rob_p3_f023.gif" media-type="image/gif" />
-    <item id="epub-84" href="_images/tm129_rob_p3_f024.gif" media-type="image/gif" />
-    <item id="epub-85" href="_images/tm129_rob_p3_f025.gif" media-type="image/gif" />
-    <item id="epub-86" href="_images/tm129_rob_p4_f008.gif" media-type="image/gif" />
-    <item id="epub-87" href="_static/basic.css" media-type="text/css" />
-    <item id="epub-88" href="_static/epub.css" media-type="text/css" />
-    <item id="epub-89" href="_static/file.png" media-type="image/png" />
-    <item id="epub-90" href="_static/minus.png" media-type="image/png" />
-    <item id="epub-91" href="_static/plus.png" media-type="image/png" />
-    <item id="epub-92" href="_static/pygments.css" media-type="text/css" />
-    <item id="epub-93" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-94" href="content/00_READ_ME_FIRST/Section.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-95" href="content/00_READ_ME_FIRST/Section_00_01_Introduction.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-96" href="content/00_READ_ME_FIRST/Section_00_02_Workload.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-97" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-98" href="content/00_READ_ME_FIRST/Section_00_04_Writing_Code.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-99" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-100" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-101" href="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-102" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-103" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-104" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-105" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-106" href="content/01_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-107" href="content/01_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-108" href="content/02_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-109" href="content/02_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-110" href="content/02_Robot_Lab/Section_00_03.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-111" href="content/02_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-112" href="content/03_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-113" href="content/03_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-114" href="content/03_Robot_Lab/Section_00_03.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-115" href="content/03_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-116" href="content/03_Robot_Lab/Section_00_05.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-117" href="content/04_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-118" href="content/04_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-119" href="content/04_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-120" href="content/backgrounds/Background Image Generator.xhtml" media-type="application/xhtml+xml" />
-    <item id="epub-121" href="content/images/PIL image text.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-3" href=".doctrees/images/1ea3b1333dd4fd02d9da2dcc33ab80396865c958/c53cdc014b400ca60be7a0105c4145726776879f.jpg" media-type="image/jpeg" />
+    <item id="epub-4" href=".doctrees/images/564aeb29a2e0a759592d48f87044710bf7928b8a/badge_logo.svg" media-type="image/svg+xml" />
+    <item id="epub-5" href=".doctrees/images/ad65adc91e01fbeba2e2dbee7dd0532efbbe15d2/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" media-type="image/jpeg" />
+    <item id="epub-6" href=".doctrees/images/b91d2d0b83a966a720cdfb7694863692e6364526/03803416f197f52b725c20fbe4d65ae9fac8eb55.jpg" media-type="image/jpeg" />
+    <item id="epub-7" href=".doctrees/images/f8e611524769698fe5e0b84da919eb454146ff1c/c388562b622a14a53d5f64193c02b536f7a91f88.jpg" media-type="image/jpeg" />
+    <item id="epub-8" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_12_0.png" media-type="image/png" />
+    <item id="epub-9" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_14_0.png" media-type="image/png" />
+    <item id="epub-10" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_16_0.png" media-type="image/png" />
+    <item id="epub-11" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_17_1.png" media-type="image/png" />
+    <item id="epub-12" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_18_0.png" media-type="image/png" />
+    <item id="epub-13" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_19_1.png" media-type="image/png" />
+    <item id="epub-14" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_20_1.png" media-type="image/png" />
+    <item id="epub-15" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_21_0.png" media-type="image/png" />
+    <item id="epub-16" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_22_0.png" media-type="image/png" />
+    <item id="epub-17" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_23_2.png" media-type="image/png" />
+    <item id="epub-18" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_25_0.png" media-type="image/png" />
+    <item id="epub-19" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_5_0.png" media-type="image/png" />
+    <item id="epub-20" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_7_0.png" media-type="image/png" />
+    <item id="epub-21" href=".doctrees/nbsphinx/content_backgrounds_Background_Image_Generator_9_0.png" media-type="image/png" />
+    <item id="epub-22" href=".doctrees/nbsphinx/content_images_PIL_image_text_3_0.png" media-type="image/png" />
+    <item id="epub-23" href="_images/00_01_ContainDS_binderhub.png" media-type="image/png" />
+    <item id="epub-24" href="_images/00_01_ContainDS_local.png" media-type="image/png" />
+    <item id="epub-25" href="_images/00_01_ContainDS_robolab_running.png" media-type="image/png" />
+    <item id="epub-26" href="_images/00_01_ContainDS_standard_run.png" media-type="image/png" />
+    <item id="epub-27" href="_images/00_01_ContainDS_tm129_download.png" media-type="image/png" />
+    <item id="epub-28" href="_images/00_01_ContainDS_tm129_downloading.png" media-type="image/png" />
+    <item id="epub-29" href="_images/00_01_EV3DEV_Python_Simulator-config_robot.png" media-type="image/png" />
+    <item id="epub-30" href="_images/00_01_accessibility_display.png" media-type="image/png" />
+    <item id="epub-31" href="_images/00_01_cell_run_error_message.png" media-type="image/png" />
+    <item id="epub-32" href="_images/00_01_cell_run_status.png" media-type="image/png" />
+    <item id="epub-33" href="_images/00_01_cell_run_status_running.png" media-type="image/png" />
+    <item id="epub-34" href="_images/00_01_containds_built_container.png" media-type="image/png" />
+    <item id="epub-35" href="_images/00_01_containds_stopRemove.png" media-type="image/png" />
+    <item id="epub-36" href="_images/00_01_highlighter.png" media-type="image/png" />
+    <item id="epub-37" href="_images/00_01_jupyter_nb_edit_shortcuts.png" media-type="image/png" />
+    <item id="epub-38" href="_images/00_01_jupyter_nb_homepage.png" media-type="image/png" />
+    <item id="epub-39" href="_images/00_01_jupyter_nb_homepage1.png" media-type="image/png" />
+    <item id="epub-40" href="_images/00_01_jupyter_nb_shortcuts.png" media-type="image/png" />
+    <item id="epub-41" href="_images/00_01_jupyterlab_example.png" media-type="image/png" />
+    <item id="epub-42" href="_images/00_01_local_workspace.png" media-type="image/png" />
+    <item id="epub-43" href="_images/00_01_nb_extensions_accessibility.png" media-type="image/png" />
+    <item id="epub-44" href="_images/00_01_nbextension_config.png" media-type="image/png" />
+    <item id="epub-45" href="_images/00_01_simple_nb_home.png" media-type="image/png" />
+    <item id="epub-46" href="_images/03803416f197f52b725c20fbe4d65ae9fac8eb55.jpg" media-type="image/jpeg" />
+    <item id="epub-47" href="_images/3a0334d3b1eca3f922a412053ef5c495be85b6d6.jpg" media-type="image/jpeg" />
+    <item id="epub-48" href="_images/EV3DEV_Python_Simulator.png" media-type="image/png" />
+    <item id="epub-49" href="_images/EV3DEV_Python_Simulator_robot.png" media-type="image/png" />
+    <item id="epub-50" href="_images/Jupyter_Notebook_token.png" media-type="image/png" />
+    <item id="epub-51" href="_images/Section_00_01_-_Jupyter_Notebook_rename.png" media-type="image/png" />
+    <item id="epub-52" href="_images/Section_00_01_-_autosaved.png" media-type="image/png" />
+    <item id="epub-53" href="_images/Section_00_01_-_checkpoint.png" media-type="image/png" />
+    <item id="epub-54" href="_images/Section_00_01_-checkpointed.png" media-type="image/png" />
+    <item id="epub-55" href="_images/Section_00_02_-_Jupyter_Notebook.png" media-type="image/png" />
+    <item id="epub-56" href="_images/Section_00_03_-_charting.png" media-type="image/png" />
+    <item id="epub-57" href="_images/badge_logo.svg" media-type="image/svg+xml" />
+    <item id="epub-58" href="_images/c388562b622a14a53d5f64193c02b536f7a91f88.jpg" media-type="image/jpeg" />
+    <item id="epub-59" href="_images/content_backgrounds_Background_Image_Generator_12_0.png" media-type="image/png" />
+    <item id="epub-60" href="_images/content_backgrounds_Background_Image_Generator_14_0.png" media-type="image/png" />
+    <item id="epub-61" href="_images/content_backgrounds_Background_Image_Generator_16_0.png" media-type="image/png" />
+    <item id="epub-62" href="_images/content_backgrounds_Background_Image_Generator_17_1.png" media-type="image/png" />
+    <item id="epub-63" href="_images/content_backgrounds_Background_Image_Generator_18_0.png" media-type="image/png" />
+    <item id="epub-64" href="_images/content_backgrounds_Background_Image_Generator_19_1.png" media-type="image/png" />
+    <item id="epub-65" href="_images/content_backgrounds_Background_Image_Generator_20_1.png" media-type="image/png" />
+    <item id="epub-66" href="_images/content_backgrounds_Background_Image_Generator_21_0.png" media-type="image/png" />
+    <item id="epub-67" href="_images/content_backgrounds_Background_Image_Generator_22_0.png" media-type="image/png" />
+    <item id="epub-68" href="_images/content_backgrounds_Background_Image_Generator_23_2.png" media-type="image/png" />
+    <item id="epub-69" href="_images/content_backgrounds_Background_Image_Generator_25_0.png" media-type="image/png" />
+    <item id="epub-70" href="_images/content_backgrounds_Background_Image_Generator_5_0.png" media-type="image/png" />
+    <item id="epub-71" href="_images/content_backgrounds_Background_Image_Generator_7_0.png" media-type="image/png" />
+    <item id="epub-72" href="_images/content_backgrounds_Background_Image_Generator_9_0.png" media-type="image/png" />
+    <item id="epub-73" href="_images/content_images_PIL_image_text_3_0.png" media-type="image/png" />
+    <item id="epub-74" href="_images/ev3-jupyter-arch.png" media-type="image/png" />
+    <item id="epub-75" href="_images/ev3dev-codearchitecture.png" media-type="image/png" />
+    <item id="epub-76" href="_images/nbev3devsim_example_code_cell_annotated.png" media-type="image/png" />
+    <item id="epub-77" href="_images/nbev3devsim_in_notebook_annotated.png" media-type="image/png" />
+    <item id="epub-78" href="_images/nbev3devsim_overview.png" media-type="image/png" />
+    <item id="epub-79" href="_images/nogbad_ev3.jpg" media-type="image/jpeg" />
+    <item id="epub-80" href="_images/notebook_markdown_and_code_cell.png" media-type="image/png" />
+    <item id="epub-81" href="_images/plotly_sensor_false_positive.png" media-type="image/png" />
+    <item id="epub-82" href="_images/tm129_portfolio_activity_32.png" media-type="image/png" />
+    <item id="epub-83" href="_images/tm129_rob_p2_f007.jpg" media-type="image/jpeg" />
+    <item id="epub-84" href="_images/tm129_rob_p3_f021.gif" media-type="image/gif" />
+    <item id="epub-85" href="_images/tm129_rob_p3_f022.jpg" media-type="image/jpeg" />
+    <item id="epub-86" href="_images/tm129_rob_p3_f023.gif" media-type="image/gif" />
+    <item id="epub-87" href="_images/tm129_rob_p3_f024.gif" media-type="image/gif" />
+    <item id="epub-88" href="_images/tm129_rob_p3_f025.gif" media-type="image/gif" />
+    <item id="epub-89" href="_images/tm129_rob_p4_f008.gif" media-type="image/gif" />
+    <item id="epub-90" href="_static/basic.css" media-type="text/css" />
+    <item id="epub-91" href="_static/epub.css" media-type="text/css" />
+    <item id="epub-92" href="_static/file.png" media-type="image/png" />
+    <item id="epub-93" href="_static/minus.png" media-type="image/png" />
+    <item id="epub-94" href="_static/plus.png" media-type="image/png" />
+    <item id="epub-95" href="_static/pygments.css" media-type="text/css" />
+    <item id="epub-96" href="content/00_NOTES_FOR_TUTORS/GETTING_STARTED.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-97" href="content/00_READ_ME_FIRST/Section.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-98" href="content/00_READ_ME_FIRST/Section_00_01_Introduction.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-99" href="content/00_READ_ME_FIRST/Section_00_02_Workload.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-100" href="content/00_READ_ME_FIRST/Section_00_03_Accessibility.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-101" href="content/00_READ_ME_FIRST/Section_00_04_Writing_Code.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-102" href="content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-103" href="content/00_READ_ME_FIRST/Section_00_06_RoboLab_Environment.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-104" href="content/00_SOFTWARE_GUIDE/Section_00_01_Jupyter_environment.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-105" href="content/00_SOFTWARE_GUIDE/Section_00_02-nb3devsim.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-106" href="content/00_SOFTWARE_GUIDE/Section_00_02_ev3devsim_simulator_overview.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-107" href="content/00_SOFTWARE_GUIDE/Section_00_03_quick_practical_tour.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-108" href="content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-109" href="content/01_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-110" href="content/01_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-111" href="content/02_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-112" href="content/02_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-113" href="content/02_Robot_Lab/Section_00_03.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-114" href="content/02_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-115" href="content/03_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-116" href="content/03_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-117" href="content/03_Robot_Lab/Section_00_03.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-118" href="content/03_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-119" href="content/03_Robot_Lab/Section_00_05.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-120" href="content/04_Robot_Lab/Section_00_01.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-121" href="content/04_Robot_Lab/Section_00_02.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-122" href="content/04_Robot_Lab/Section_00_04.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-123" href="content/backgrounds/Background Image Generator.xhtml" media-type="application/xhtml+xml" />
+    <item id="epub-124" href="content/images/PIL image text.xhtml" media-type="application/xhtml+xml" />
   </manifest>
   <spine toc="ncx" page-progression-direction="ltr">
     <itemref idref="epub-2" />
-    <itemref idref="epub-93" />
-    <itemref idref="epub-94" />
-    <itemref idref="epub-95" />
     <itemref idref="epub-96" />
     <itemref idref="epub-97" />
     <itemref idref="epub-98" />
     <itemref idref="epub-99" />
+    <itemref idref="epub-100" />
     <itemref idref="epub-101" />
     <itemref idref="epub-102" />
-    <itemref idref="epub-103" />
     <itemref idref="epub-104" />
     <itemref idref="epub-105" />
+    <itemref idref="epub-106" />
     <itemref idref="epub-107" />
     <itemref idref="epub-108" />
-    <itemref idref="epub-109" />
     <itemref idref="epub-110" />
     <itemref idref="epub-111" />
     <itemref idref="epub-112" />
@@ -172,12 +172,15 @@
     <itemref idref="epub-117" />
     <itemref idref="epub-118" />
     <itemref idref="epub-119" />
+    <itemref idref="epub-120" />
+    <itemref idref="epub-121" />
+    <itemref idref="epub-122" />
     <itemref idref="epub-1" />
     <itemref idref="epub-0" linear="no" />
-    <itemref idref="epub-100" linear="no" />
-    <itemref idref="epub-106" linear="no" />
-    <itemref idref="epub-120" linear="no" />
-    <itemref idref="epub-121" linear="no" />
+    <itemref idref="epub-103" linear="no" />
+    <itemref idref="epub-109" linear="no" />
+    <itemref idref="epub-123" linear="no" />
+    <itemref idref="epub-124" linear="no" />
   </spine>
   <guide>
     <reference type="toc" title="Table of Contents" href="index.xhtml" />

@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1 Introduction to loops and branches &#8212; TM129 Robotics Practical Activities  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -317,7 +317,7 @@ roboSim.element.dialog();
 <h2>2.1 An introduction to loops in computer programs<a class="headerlink" href="#2.1-An-introduction-to-loops-in-computer-programs" title="Permalink to this headline">¶</a></h2>
 <p>To illustrate the idea of a loop it is helpful to use a swimming analogy. Suppose you want to swim 20 lengths of a swimming pool. The chances are you will want to monitor your progress by keeping count of the number of lengths you complete. So, at the start, your personal counter (you) will be set to ‘0’. After one length of the pool you add 1 to your counter. You also ask yourself ‘have I done 20 lengths yet?’ If the answer is ‘no’, you ‘loop back’ to swim another length. On completion of the
 second length you add 1 to your counter and ask yourself the question again. If the answer is ‘no’ you loop back and repeat the process once more. You keep going like this until the answer to the question is ‘yes’, at which point you will have completed 20 lengths of the pool and the loop will end:</p>
-<p><a class="reference external" href="https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9"><img alt="image1" src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9" /></a></p>
+<img alt="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblx0QShTdGFydCkgLS0-IEJbU2V0IHRoZSBjb3VudCB0byAwXVxuXHRCIC0tPiBDW1N3aW0gYSBsZW5ndGhdXG5cdEMgLS0-IERbQWRkIDEgdG8gdGhlIGNvdW50XVxuICAgIEQgLS0-IEV7SXMgdGhlPGJyLz5jb3VudCBsZXNzPGJyLz50aGFuIDIwP31cbiAgICBFIC0tPiB8WWVzfCBDXG4gICAgRSAtLT4gfE5vfCBGKEVuZClcblx0XHRcdFx0XHQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ" src="https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblx0QShTdGFydCkgLS0-IEJbU2V0IHRoZSBjb3VudCB0byAwXVxuXHRCIC0tPiBDW1N3aW0gYSBsZW5ndGhdXG5cdEMgLS0-IERbQWRkIDEgdG8gdGhlIGNvdW50XVxuICAgIEQgLS0-IEV7SXMgdGhlPGJyLz5jb3VudCBsZXNzPGJyLz50aGFuIDIwP31cbiAgICBFIC0tPiB8WWVzfCBDXG4gICAgRSAtLT4gfE5vfCBGKEVuZClcblx0XHRcdFx0XHQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ" />
 Mermaid code https://mermaid-js.github.io/mermaid-live-editor/
 The mermaid editor is supposed to encode/decode base 64 strings
 but I can't get my own encoder/decoder to work to encode/decode things the same way?
@@ -1082,7 +1082,7 @@ while n &lt;= 10:
       &copy;The Open University, 2020.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

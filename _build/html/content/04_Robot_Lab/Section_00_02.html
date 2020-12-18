@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2 Line followers &#8212; TM129 Robotics Practical Activities  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -298,7 +298,6 @@ div.rendered_html tbody tr:hover {
 <p>The challenge is to write a RoboLab program to make the robot follow the line until it reaches the red bar. Make sure you still have the <em>Lollipop</em> background loaded in to the simulator. Before you can do the programming you will need to collect some data to calibrate the sensor responses to the various colours.</p>
 <p>One approach to keeping the robot on track is to get it to read the light sensor. If the light sensor shows grey, the robot needs to turn back towards the edge of the line, that is, turn to its right. If it shows black then the robot is already over the black line and needs to turn back to the left to find the edge again.</p>
 <p>(TO DO - FIX - The following image is rotated 90 degrees counter-clockwise compared to the bacground in the simulator.)</p>
-<p><img alt="The image used as a background for the line-follower program. This has a grey background on which is a lollipop shape, drawn hanging downward as a black outline. The robot starts at the stick, must follow the line across the screen to the left, around the head of the lollipop and back up the stick. The start/end is marked by a transverse broad red line; a transverse yellow line occurs mid way along the straight path. The yellow line is drawn behind the black lollipop so the black line is unbroken at this point; the red line is drawn across the end of the black line." src="content/04_Robot_Lab/../images/tm129_rob_p6_f006.jpg" /></p>
 <p>The challenge is complicated by the presence of a yellow line, which the robot must ignore.</p>
 <p>### Calibrating the Required Sensor Readings</p>
 <p>You first need to record the light sensor readings associated with each of the coloured bands on the chart, as well as for the black line and the grey background.</p>
@@ -461,7 +460,7 @@ background image and fill in a table like Table 2.1.</p>
       &copy;The Open University, 2020.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

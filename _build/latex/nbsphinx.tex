@@ -214,7 +214,7 @@
 
 
 \title{TM129 Robotics Practical Activities}
-\date{Oct 28, 2020}
+\date{Dec 18, 2020}
 \release{}
 \author{Tony Hirst}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -437,7 +437,7 @@ All of the styles are saved into local storage when refreshing the page. This me
 \label{\detokenize{content/00_READ_ME_FIRST/Section_00_03_Accessibility:Enabling-the-Accessibility-Extension}}
 The accessibility is \sphinxstylestrong{disabled} in the RoboLab environment by default. To use the accessibility extension, you need to enable it first. You can do this from the \sphinxcode{\sphinxupquote{nbextensions}} tab on the notebook homepage: check the \sphinxcode{\sphinxupquote{Accessibility toolbar}} extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.
 
-\sphinxincludegraphics[width=2344\sphinxpxdimen,height=1326\sphinxpxdimen]{{00_01_nb_extensions_accessibility}.png}
+\noindent\sphinxincludegraphics[width=2344\sphinxpxdimen,height=1326\sphinxpxdimen]{{00_01_nb_extensions_accessibility}.png}
 
 Check the \sphinxhref{https://github.com/uclixnjupyternbaccessibility/accessibility\_toolbar\#toolbar-summary}{accessibility toolbar documentation} for more information.
 
@@ -448,7 +448,7 @@ The Module Team welcome feedback on these features.
 \label{\detokenize{content/00_READ_ME_FIRST/Section_00_03_Accessibility:Colours-and-fonts}}
 If you wish to change the font and interface colours used in RoboLab to improve readability, the accessibility toolbar allows you to select the font style, size and colour. You can also modify the line spacing and spacing between individual characters.
 
-\sphinxincludegraphics[width=1051\sphinxpxdimen,height=510\sphinxpxdimen]{{00_01_accessibility_display}.png}
+\noindent\sphinxincludegraphics[width=1051\sphinxpxdimen,height=510\sphinxpxdimen]{{00_01_accessibility_display}.png}
 
 The font style applies to \sphinxstyleemphasis{all} text elements within the notebook itself. This includes the contents of markdown (text) cells, code cells and code cell outputs.
 
@@ -461,11 +461,11 @@ You can also save a style you have defined from the \sphinxcode{\sphinxupquote{A
 \label{\detokenize{content/00_READ_ME_FIRST/Section_00_03_Accessibility:Keyboard-interface}}
 The Jupyter notebook interface supports a wide range of pre\sphinxhyphen{}defined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the \sphinxcode{\sphinxupquote{Keyboard shortcuts}} item from the notebook \sphinxcode{\sphinxupquote{Help}} menu or via the \sphinxcode{\sphinxupquote{ESC\sphinxhyphen{}h}} keyboard shortcut.
 
-\sphinxincludegraphics[width=1370\sphinxpxdimen,height=1154\sphinxpxdimen]{{00_01_jupyter_nb_shortcuts}.png}
+\noindent\sphinxincludegraphics[width=1370\sphinxpxdimen,height=1154\sphinxpxdimen]{{00_01_jupyter_nb_shortcuts}.png}
 
 You can also add additional shortcuts and/or edit exist shortcuts via the \sphinxcode{\sphinxupquote{Edit Keyboard shortcuts}} menu item.
 
-\sphinxincludegraphics[width=1358\sphinxpxdimen,height=1142\sphinxpxdimen]{{00_01_jupyter_nb_edit_shortcuts}.png}
+\noindent\sphinxincludegraphics[width=1358\sphinxpxdimen,height=1142\sphinxpxdimen]{{00_01_jupyter_nb_edit_shortcuts}.png}
 
 \sphinxstylestrong{TO DO: is Jyro keyboard accessible??}
 
@@ -702,7 +702,7 @@ When the container is running, go to \sphinxcode{\sphinxupquote{localhost:8129}}
 
 Use the token \sphinxcode{\sphinxupquote{letmein}} to access the server (you should only need to do this once).
 
-\sphinxincludegraphics[width=1786\sphinxpxdimen,height=1576\sphinxpxdimen]{{Jupyter_Notebook_token}.png}
+\noindent\sphinxincludegraphics[width=1786\sphinxpxdimen,height=1576\sphinxpxdimen]{{Jupyter_Notebook_token}.png}
 
 
 \subparagraph{What to do if the Token isn’t set or doesn’t work}
@@ -791,11 +791,11 @@ MacOS: the application will be installed into your \sphinxcode{\sphinxupquote{Ap
 
 Open the ContainDS application, select the \sphinxcode{\sphinxupquote{Docker}} tab and search for \sphinxcode{\sphinxupquote{tm129}}. Select the \sphinxcode{\sphinxupquote{tm129\sphinxhyphen{}robotics2020}} image.
 
-\sphinxincludegraphics[width=2146\sphinxpxdimen,height=956\sphinxpxdimen]{{00_01_ContainDS_tm129_download}.png}
+\noindent\sphinxincludegraphics[width=2146\sphinxpxdimen,height=956\sphinxpxdimen]{{00_01_ContainDS_tm129_download}.png}
 
 If you have not previously downloaded the image, ContainDS will download it for you:
 
-\sphinxincludegraphics[width=1694\sphinxpxdimen,height=1016\sphinxpxdimen]{{00_01_ContainDS_tm129_downloading}.png}
+\noindent\sphinxincludegraphics[width=1694\sphinxpxdimen,height=1016\sphinxpxdimen]{{00_01_ContainDS_tm129_downloading}.png}
 
 Do not be concerned if the download percentage indicator sometimes goes down as well as up — the downloader is actually downloading multiple items at once. (The container image is made up from several layers, each of which is downloaded separately, before they are combined in the final image.)
 
@@ -803,13 +803,13 @@ When everything had downloded, you may find your computer appears to be doing no
 
 Once downloaded, you will be prompted for a method of starting the container. Select “Standard”:
 
-\sphinxincludegraphics[width=980\sphinxpxdimen,height=298\sphinxpxdimen]{{00_01_ContainDS_standard_run}.png}
+\noindent\sphinxincludegraphics[width=980\sphinxpxdimen,height=298\sphinxpxdimen]{{00_01_ContainDS_standard_run}.png}
 
 The container will now be launched and a log trace displayed.
 
 At this point, you need to \sphinxcode{\sphinxupquote{STOP}} the container and remove it:
 
-\sphinxincludegraphics[width=1636\sphinxpxdimen,height=1196\sphinxpxdimen]{{00_01_containds_stopRemove}.png}
+\noindent\sphinxincludegraphics[width=1636\sphinxpxdimen,height=1196\sphinxpxdimen]{{00_01_containds_stopRemove}.png}
 
 Now create a running version of the container from the \sphinxstyleemphasis{local} Docker image. This will allow you to share a local directory into the container as well as clicking through directly to the notebook homep{[}age in your browser.
 
@@ -818,17 +818,17 @@ Now create a running version of the container from the \sphinxstyleemphasis{loca
 \label{\detokenize{content/00_READ_ME_FIRST/Section_00_05_Accessing_RoboLab:Using-ContainDS-To-Run-the-Open-Computing-Lab-Environment-from-a-Local-Docker-Image}}
 Click on the \sphinxcode{\sphinxupquote{+NEW}} button and then select the \sphinxcode{\sphinxupquote{Docker}} tab and then the \sphinxcode{\sphinxupquote{Local Images}} tab:
 
-\sphinxincludegraphics[width=2136\sphinxpxdimen,height=946\sphinxpxdimen]{{00_01_ContainDS_local}.png}
+\noindent\sphinxincludegraphics[width=2136\sphinxpxdimen,height=946\sphinxpxdimen]{{00_01_ContainDS_local}.png}
 
 \sphinxcode{\sphinxupquote{SELECT}} the local copy of the \sphinxcode{\sphinxupquote{tm129\sphinxhyphen{}robotics2020}} container which will open the container workspace configuration page:
 
-\sphinxincludegraphics[width=1248\sphinxpxdimen,height=1064\sphinxpxdimen]{{00_01_local_workspace}.png}
+\noindent\sphinxincludegraphics[width=1248\sphinxpxdimen,height=1064\sphinxpxdimen]{{00_01_local_workspace}.png}
 
 Set the path to the directory on your host computer that you want to share into the container. This will create a \sphinxcode{\sphinxupquote{notebooks}} directory in that directory that will be mapped onto the \sphinxcode{\sphinxupquote{notebooks}} directory visible from the notebook homepage.
 
 When you \sphinxcode{\sphinxupquote{CREATE}} the container, it will run automatically. Clicking the \sphinxcode{\sphinxupquote{WEB}} link should take you to the notebook home page in your browser. \sphinxstyleemphasis{(Note that the file listing in the screenshot may differ from the file listing you see.)}
 
-\sphinxincludegraphics[width=2114\sphinxpxdimen,height=388\sphinxpxdimen]{{00_01_simple_nb_home}.png}
+\noindent\sphinxincludegraphics[width=2114\sphinxpxdimen,height=388\sphinxpxdimen]{{00_01_simple_nb_home}.png}
 
 When you save your notebooks, they will be saved into the shared directory on your own computer.
 
@@ -845,7 +845,7 @@ Enter the name of the source repository:
 
 and click the \sphinxcode{\sphinxupquote{LAUNCH}} button.
 
-\sphinxincludegraphics[width=1962\sphinxpxdimen,height=1208\sphinxpxdimen]{{00_01_ContainDS_binderhub}.png}
+\noindent\sphinxincludegraphics[width=1962\sphinxpxdimen,height=1208\sphinxpxdimen]{{00_01_ContainDS_binderhub}.png}
 
 As the image is built, you will see several temporary containers being created and destroed along the way. Note that the build process may take some time (up to 10 minutes or more).
 
@@ -853,7 +853,7 @@ Once the image has been built, a running container will be launched from it.
 
 Click on the \sphinxcode{\sphinxupquote{WEB}} link and you should be taken directly to the notebook homepage in your browser without needing to provide any notebook server token yourself.
 
-\sphinxincludegraphics[width=2138\sphinxpxdimen,height=886\sphinxpxdimen]{{00_01_containds_built_container}.png}
+\noindent\sphinxincludegraphics[width=2138\sphinxpxdimen,height=886\sphinxpxdimen]{{00_01_containds_built_container}.png}
 
 \sphinxcode{\sphinxupquote{STOP}} and remove the container, and then run it from a Local Docker Image; this will allow you to share a local directory into the container and directly click through to the notebook server homepage in your browser.
 
@@ -1274,21 +1274,21 @@ Jupyter notebooks are are widely used interactive environment for writing “lit
 
 The notebook homepage provides a simple listing of files in a particular directory. Additional tabs allow you to monitor currently running notebooks and configure user\sphinxhyphen{}enabled extensions that can be used to customise your notebook environment.
 
-\sphinxincludegraphics[width=2160\sphinxpxdimen,height=564\sphinxpxdimen]{{00_01_jupyter_nb_homepage}.png}
+\noindent\sphinxincludegraphics[width=2160\sphinxpxdimen,height=564\sphinxpxdimen]{{00_01_jupyter_nb_homepage}.png}
 
 Clicking on a file of an appropriate type will open it as an interactive Jupyter notebook.
 
 Notebooks are structured using the notion of different sorts of “cell”. For example, \sphinxstyleemphasis{markdown cells} are used to contain explanatory text written using the simple text based markdown script. Executable \sphinxstyleemphasis{code cells} can be used to declare executable Python code, the outputs of which can be displayed as \sphinxstyleemphasis{code cell outputs}.
 
-\sphinxincludegraphics[width=1802\sphinxpxdimen,height=562\sphinxpxdimen]{{notebook_markdown_and_code_cell}.png}
+\noindent\sphinxincludegraphics[width=1802\sphinxpxdimen,height=562\sphinxpxdimen]{{notebook_markdown_and_code_cell}.png}
 
 As well as supporting general computation, code cells are also used to create and display a simulator output:
 
-\sphinxincludegraphics[width=1736\sphinxpxdimen,height=1426\sphinxpxdimen]{{nbev3devsim_in_notebook_annotated}.png}
+\noindent\sphinxincludegraphics[width=1736\sphinxpxdimen,height=1426\sphinxpxdimen]{{nbev3devsim_in_notebook_annotated}.png}
 
 In addition, code cells can contain code that is “downloaded” to the simulator when the code cell is run:
 
-\sphinxincludegraphics[width=1948\sphinxpxdimen,height=894\sphinxpxdimen]{{nbev3devsim_example_code_cell_annotated}.png}
+\noindent\sphinxincludegraphics[width=1948\sphinxpxdimen,height=894\sphinxpxdimen]{{nbev3devsim_example_code_cell_annotated}.png}
 
 Markdown and code cells can be edited and saved interactively via the notebook’s browser interface.
 
@@ -1296,7 +1296,7 @@ As well as the notebook environment, a more complex “lab” or “integrated d
 
 The following shows a JupyterLab set up based around another notebook based simulator, the \sphinxcode{\sphinxupquote{Jyro}} robot simulator. At the current time, the simulator used for the RoboLab activities do not work using the “torn off” simulator output window display mode shown below.
 
-\sphinxincludegraphics[width=2648\sphinxpxdimen,height=1416\sphinxpxdimen]{{00_01_jupyterlab_example}.png}
+\noindent\sphinxincludegraphics[width=2648\sphinxpxdimen,height=1416\sphinxpxdimen]{{00_01_jupyterlab_example}.png}
 
 Whilst you are welcome to make use of the JupyterLab environment, we will tend to stick to the simple notebook interface for the module activities.
 
@@ -1332,7 +1332,7 @@ A wide range of notebook extensions are installed in the RoboLab environment, al
 
 You can enable and disable extensions, as well as further configuring certain extensions, via the extensions configurator. This can be accessed from the notebook homepage or from the \sphinxcode{\sphinxupquote{nbextensions config}} option in the \sphinxcode{\sphinxupquote{Edit}} menu of an opened notebook.
 
-\sphinxincludegraphics[width=1858\sphinxpxdimen,height=1440\sphinxpxdimen]{{00_01_nbextension_config}.png}
+\noindent\sphinxincludegraphics[width=1858\sphinxpxdimen,height=1440\sphinxpxdimen]{{00_01_nbextension_config}.png}
 
 You are welcome to explore the available extensions, or even add further ones of your own, to personalise your notebook environment, but we will not discuss them further here.
 
@@ -1358,7 +1358,7 @@ Layout is subject to change…
 
 
 
-\sphinxincludegraphics[width=2518\sphinxpxdimen,height=1592\sphinxpxdimen]{{nbev3devsim_overview}.png}
+\noindent\sphinxincludegraphics[width=2518\sphinxpxdimen,height=1592\sphinxpxdimen]{{nbev3devsim_overview}.png}
 
 An expanded range of predefined worlds is available that can be loaded into the simulator, as image files, from a drop down menu. (Source code for generating the background image files is also available in a notebook in the \sphinxcode{\sphinxupquote{backgrounds/}} directory.) When some worlds are loaded in, the robot’s initial (default) location in that world is also specified; other robot settings, such as the positioning of the sensors, may also be initialised when a particular backgound is loaded.
 
@@ -1537,7 +1537,7 @@ Note: LEGO’s more recent Mindstorms NXT kits differ from the RCX version descr
 
 The robot in Figure 2.2 is built around the LEGO Mindstorms RCX ‘brick’ which is shown in more detail in Figure 2.3. Inside the RCX brick there is a microprocessor and other circuitry. Think of it as a small computer. Built into the brick are three ‘sensor input ports’ labelled 1, 2 and 3, and three ‘actuator output ports’ labelled A, B and C, which are capable of powering motors.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f021}.jpg}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f021}.jpg}
 
 Figure 2.3 The RCX controller ‘brick’
 
@@ -1550,7 +1550,7 @@ RobotLab assumes that the simulated robot works like an RCX brick. This means th
 
 Although I have described the simulated robot in terms of a simple Lego robot, similar considerations would apply to other robotics systems. The control subsystem of any robot is usually flexible and designed to be configured with a variety of sensors and actuators.
 
-\sphinxincludegraphics[width=4608\sphinxpxdimen,height=2592\sphinxpxdimen]{{nogbad_ev3}.jpg}
+\noindent\sphinxincludegraphics[width=4608\sphinxpxdimen,height=2592\sphinxpxdimen]{{nogbad_ev3}.jpg}
 
 {[}Credit: Nigel Gibson / @nogbad{]}
 
@@ -1640,7 +1640,7 @@ The simulated robot itself is configured according to a simple set\sphinxhyphen{
 
 The configuration can be updated via a pop\sphinxhyphen{}up window in the simulator.
 
-\sphinxincludegraphics[width=1262\sphinxpxdimen,height=736\sphinxpxdimen]{{00_01_EV3DEV_Python_Simulator-config_robot}.png}
+\noindent\sphinxincludegraphics[width=1262\sphinxpxdimen,height=736\sphinxpxdimen]{{00_01_EV3DEV_Python_Simulator-config_robot}.png}
 
 The robot configuration file is a JSON (Javascript Object Notation) object definition:
 
@@ -2030,8 +2030,6 @@ From the chart, can you read off the values for each band?
 \sphinxstyleemphasis{Click the arrow in the sidebar to reveal the answer.}
 
 The following diagram shows the result of showing the real time data logging chart:
-
-\sphinxincludegraphics[width=1966\sphinxpxdimen,height=1150\sphinxpxdimen]{{Section_00_03_-_charting}.png}
 
 As the robot progresses across the bands, the bars that it encounters get progressively darker, so the sensor readings reduce. Between the bands, as the robot crosses the white background, the sensor reading go back up to their initial, maximum reading.
 
@@ -2638,7 +2636,7 @@ Keyboard: Alt, W, 3
 
 The \sphinxcode{\sphinxupquote{Controls}} window is shown in Figure 4.1. This control panel, also called the \sphinxstyleemphasis{simulator remote control unit}, can be repositioned on any part of the screen. Click and drag on the \sphinxcode{\sphinxupquote{Controls}} window title to move it to a convenient position beside the \sphinxcode{\sphinxupquote{Simulator}} window.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040}.jpg}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040}.jpg}
 
 Figure 4.1 The RobotLab simulator remote control unit
 
@@ -2687,7 +2685,7 @@ Keyboard: Shortcuts are given in Table 4.1
 
 You click on the forward arrow to switch both motors on and drive the simulated robot forwards. You click on the backward arrow to drive it backwards, etc. And you click on the black square in the centre of the direction controls to turn both motors off and stop the robot.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f043}.png}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f043}.png}
 
 Figure 4.2 The direction of the wheels set by the controller
 
@@ -2701,7 +2699,7 @@ The second indicators, up or down arrows, show whether the motor is switched to 
 
 The sliders give the power level for each motor, which ultimately corresponds to the speed with which the motor turns. Leave these at their maximum levels for now.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f044}.jpg}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f044}.jpg}
 
 Figure 4.3 Controlling the simulated motor power
 
@@ -2766,7 +2764,7 @@ To move the robot, left\sphinxhyphen{}click and hold down the cursor on the robo
 \label{\detokenize{content/00_SOFTWARE_GUIDE/Section_00_04_LEGACY_UNUSED_IGNORE:4.2-Activity:-More-remote-control}}
 In the \sphinxcode{\sphinxupquote{Controls}} window there is also a set of indicators for each sensor (1, 2, 3) (Figure 4.4). The indicators show the readings provided by sensors connected to the relevant input ports.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040}.jpg}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f040}.jpg}
 
 Figure 4.4 The RobotLab simulator remote control unit
 
@@ -2797,7 +2795,7 @@ or click on the Show trail \sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../
 
 Drive the robot over the grey areas, and one and half times round the red blocks as shown. It’s more tricky than it looks. My attempt is shown in Figure 4.5.
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f046}.jpg}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f046}.jpg}
 
 Figure 4.5 Negotiating the red blocks in pen\sphinxhyphen{}down mode
 
@@ -2820,7 +2818,7 @@ Table 4.1 Remote control short\sphinxhyphen{}cut keys
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f11a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f11a}.gif}
 
 Veer left
 
@@ -2830,7 +2828,7 @@ Ctrl+7
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f12a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f12a}.gif}
 
 Forward
 
@@ -2840,7 +2838,7 @@ Ctrl+8
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f13a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f13a}.gif}
 
 Veer right
 
@@ -2854,7 +2852,7 @@ Ctrl+9
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f14a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f14a}.gif}
 
 Spin left
 
@@ -2864,7 +2862,7 @@ Ctrl+4
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f15a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f15a}.gif}
 
 Stop
 
@@ -2874,7 +2872,7 @@ Ctrl+5
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f16a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f16a}.gif}
 
 Spin right
 
@@ -2888,7 +2886,7 @@ Ctrl+6
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f17a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f17a}.gif}
 
 Back left
 
@@ -2898,7 +2896,7 @@ Ctrl+1
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f18a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f18a}.gif}
 
 Backward
 
@@ -2908,7 +2906,7 @@ Ctrl+2
 
 
 
-\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f19a}.gif}
+\noindent\sphinxincludegraphics{{content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f19a}.gif}
 
 Back right
 
@@ -3949,7 +3947,7 @@ Loops and branches are powerful constructs in programming, and they are used ext
 To illustrate the idea of a loop it is helpful to use a swimming analogy. Suppose you want to swim 20 lengths of a swimming pool. The chances are you will want to monitor your progress by keeping count of the number of lengths you complete. So, at the start, your personal counter (you) will be set to ‘0’. After one length of the pool you add 1 to your counter. You also ask yourself ‘have I done 20 lengths yet?’ If the answer is ‘no’, you ‘loop back’ to swim another length. On completion of the
 second length you add 1 to your counter and ask yourself the question again. If the answer is ‘no’ you loop back and repeat the process once more. You keep going like this until the answer to the question is ‘yes’, at which point you will have completed 20 lengths of the pool and the loop will end:
 
-\sphinxhref{https://mermaid-js.github.io/mermaid-live-editor/\#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBKFN0YXJ0KSAtLT4gQltTZXQgY291bnRlciB0byAwXVxuICAgIEIgLS0-IENbIyBEcmF3IHNpZGU8YnIvPi4uLmNvZGUuLi5dXG4gICAgQyAtLT4gRFsjIFR1cm4gbmluZXR5IGRlZ3JlZXM8YnIvPi4uLmNvZGUuLi5dXG4gICAgRCAtLT4gRVtBZGQgMSB0byBjb3VudGVyXVxuICAgIEUgLS0-IEZ7SXMgdGhlIGNvdW50ZXIgPCA0fVxuICAgIEYgLS0-IHxZZXN8IENcbiAgICBGIC0tPiB8Tm98IEcoRW5kKSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9}{\sphinxincludegraphics[width=245\sphinxpxdimen,height=777\sphinxpxdimen]{{3a0334d3b1eca3f922a412053ef5c495be85b6d6}.jpg}}
+\noindent\sphinxincludegraphics[width=800\sphinxpxdimen,height=165\sphinxpxdimen]{{c388562b622a14a53d5f64193c02b536f7a91f88}.jpg}
 
 
 
@@ -4866,7 +4864,7 @@ say based on the value of the sensor reading.
 \label{\detokenize{content/02_Robot_Lab/Section_00_02:Working-through-the-programme-flow}}
 The following flow chart shows how the flow of control passes through the programme.
 
-\sphinxincludegraphics[width=371\sphinxpxdimen,height=823\sphinxpxdimen]{{03803416f197f52b725c20fbe4d65ae9fac8eb55}.jpg}
+\noindent\sphinxincludegraphics[width=371\sphinxpxdimen,height=823\sphinxpxdimen]{{03803416f197f52b725c20fbe4d65ae9fac8eb55}.jpg}
 
 Although the \sphinxcode{\sphinxupquote{while}} command does appear to offer some sort of branch like behaviour, will still think of it as a sequential style operator becuase the flow of control keeps trying to move in the same forwards direction.
 
@@ -5426,7 +5424,7 @@ These challenges are more difficult, so we’ve made them optional. If you want 
 \label{\detokenize{content/02_Robot_Lab/Section_00_04:Challenge:-Traversing-a-multi-square}}
 Write a RoboLab program to make the simulated robot trace out the following path:
 
-\sphinxincludegraphics[width=105\sphinxpxdimen,height=106\sphinxpxdimen]{{tm129_rob_p3_f023}.gif}
+\noindent\sphinxincludegraphics[width=105\sphinxpxdimen,height=106\sphinxpxdimen]{{tm129_rob_p3_f023}.gif}
 
 A geometric shape. This is a complex path traced out by repeatedly moving forward and turning to the right. The path crosses over itself, forming a square loop at one end; this is then repeated until the path joins up with the beginning again. Overall the net effect is to produce a pattern that can be seen as five identical squares; one is placed centrally and the other four placed at each corner, diagonally outside so only the corner of each surrounding square meets a corner of the central
 square.
@@ -5441,7 +5439,7 @@ You can repeat the path of the ‘Traversing a hook’ challenge in notebook ??.
 \label{\detokenize{content/02_Robot_Lab/Section_00_04:Challenge:-Making-a-Spirograph-drawing}}
 When you were a child you might have played with Spirograph, in which case you might recognise the pattern below which is constructed from multiple rotated triangles overlaid on top of each other: \sphinxstyleemphasis{did RobotLab have pen up/pen down commands?}
 
-\sphinxincludegraphics[width=97\sphinxpxdimen,height=97\sphinxpxdimen]{{tm129_rob_p3_f024}.gif}
+\noindent\sphinxincludegraphics[width=97\sphinxpxdimen,height=97\sphinxpxdimen]{{tm129_rob_p3_f024}.gif}
 
 A Spirograph pattern. This is a series of about 30 lines, inscribed across a circle but not through the centre; the overall pattern is of a rosette with many triangular petals surrounding an inner circle.
 
@@ -5457,7 +5455,7 @@ A \sphinxcode{\sphinxupquote{for..in..}} or \sphinxcode{\sphinxupquote{while..}}
 \label{\detokenize{content/02_Robot_Lab/Section_00_04:Challenge:-Writing-a-script-_u2018A_u2019-character}}
 Make the simulated robot trace out the letter A in script form as illustrated below, and to say ‘A’:
 
-\sphinxincludegraphics[width=98\sphinxpxdimen,height=125\sphinxpxdimen]{{tm129_rob_p3_f025}.gif}
+\noindent\sphinxincludegraphics[width=98\sphinxpxdimen,height=125\sphinxpxdimen]{{tm129_rob_p3_f025}.gif}
 
 A pattern that looks like a capital letter A, hand drawn without lifting pen from paper. This could be done by starting at the base of the left limb, drawing up to the point, down the right limb, and then in a sweeping curve up and left to a point to the left of the letter, and finally straight across to form the cross bar.
 
@@ -5535,7 +5533,7 @@ An environment for the simulated robot to navigate is shown below, based on the 
 
 The idea is that the robot must get to the target satellite from its original starting point by avoiding the obstacles in its direct path.
 
-\sphinxincludegraphics[width=1714\sphinxpxdimen,height=1020\sphinxpxdimen]{{Section_00_02_-_Jupyter_Notebook}.png}
+\noindent\sphinxincludegraphics[width=1714\sphinxpxdimen,height=1020\sphinxpxdimen]{{Section_00_02_-_Jupyter_Notebook}.png}
 
 The following programme should drive the robot from its starting point, to the target, whilst avoiding the obstacles. We define the obstacle as being avoided if it is not crossed by the robot’s \sphinxstyleemphasis{pen down} trail.
 
@@ -5805,8 +5803,6 @@ display(roboSim)
 \subsection{4 Emergent behaviour: Braitenberg’s vehicles}
 \label{\detokenize{content/03_Robot_Lab/Section_00_03:4-Emergent-behaviour:-Braitenberg_u2019s-vehicles}}\label{\detokenize{content/03_Robot_Lab/Section_00_03::doc}}
 In Study week 2 you came across Valentino Braitenberg’s ideas on the behaviour of robots \sphinxstyleemphasis{emerging} from the way they are wired up. The figure belows shows two ways of connecting sensors to motors. In (a), the left sensor is connected to the left motor and the right sensor is connected to the right motor. In (b) these connections are reversed.
-
-\sphinxincludegraphics[width=480\sphinxpxdimen,height=156\sphinxpxdimen]{{tm129_rob_p4_f008}.gif}
 
 
 \subsubsection{4.1 Activity: Testing Braitenberg’s vehicles}
@@ -7343,8 +7339,6 @@ One approach to keeping the robot on track is to get it to read the light sensor
 
 (TO DO \sphinxhyphen{} FIX \sphinxhyphen{} The following image is rotated 90 degrees counter\sphinxhyphen{}clockwise compared to the bacground in the simulator.)
 
-\sphinxincludegraphics{{content/04_Robot_Lab/../images/tm129_rob_p6_f006}.jpg}
-
 The challenge is complicated by the presence of a yellow line, which the robot must ignore.
 
 \#\#\# Calibrating the Required Sensor Readings
@@ -7693,7 +7687,7 @@ We can now create a plotly chart using \sphinxstyleemphasis{markers} to identify
 
 Here’s a screenshot of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:
 
-\sphinxincludegraphics[width=700\sphinxpxdimen,height=450\sphinxpxdimen]{{plotly_sensor_false_positive}.png}
+\noindent\sphinxincludegraphics[width=700\sphinxpxdimen,height=450\sphinxpxdimen]{{plotly_sensor_false_positive}.png}
 
 \sphinxstylestrong{TO DO: should long desc text only be for partially sighted students, or does it actually make things easier for all students? Here’s an example of using a long desc style description in the main body of the teaching material.}
 
@@ -7706,7 +7700,7 @@ The sensor value is calculated as some function of the value of several pixels i
 
 In fact, the \sphinxcode{\sphinxupquote{.reflected\_light()}} mode is \sphinxstyleemphasis{not} a good indicator of colour at all. What happens if you run the robot over the \sphinxstyleemphasis{Coloured\_bands} background, for example, logging the reflected light sensor data as you so so? (Either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.)
 
-\sphinxincludegraphics{{content/04_Robot_Lab/../images/tm129_rob_p6_f014}.jpg}
+\noindent\sphinxincludegraphics{{content/04_Robot_Lab/../images/tm129_rob_p6_f014}.jpg}
 
 A diagram which shows the graph previously described, below which a diagram shows the black line (actually shown as dark grey) highly enlarged. A series of circles is also shown starting on the pale grey background and continuing across the black line and then back on to the grey. These represent the position of the sensor each time a reading is taken, and an arrow leads from each circle indicating a sensor reading to the corresponding point plotted on the graph. Most of these circles are wholly
 on either the grey or the black line and produce a correspondingly high (80\sphinxhyphen{}95) or a low (20\sphinxhyphen{}30) reading. However, one circle straddles the edge of the line, so half of the interior is black and the other half grey. This produces an intermediate sensor value of 50.

@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4 The design engineer as detective</title>
-    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" /> 
   </head><body>
 
     <div class="document">
@@ -480,14 +480,14 @@ cf.go_offline()
 </div>
 </div>
 <p>Here’s a screenshot of the trace of light readings I got as the simulated robot went from the grey background, over the black line and back to the grey background:</p>
-<p><img alt="image1" src="../../_images/plotly_sensor_false_positive.png" /></p>
+<img alt="../../_images/plotly_sensor_false_positive.png" src="../../_images/plotly_sensor_false_positive.png" />
 <p><strong>TO DO: should long desc text only be for partially sighted students, or does it actually make things easier for all students? Here’s an example of using a long desc style description in the main body of the teaching material.</strong></p>
 <p>The vertical scale shows sensor values on a vertical y-axis scale ranging 0-85 or so (the actual readings in principle range form 0..100 per cent). The horizontal scale is a time base showing a time of 0 to 2 seconds, with a plot every 0.02s (that is, about every fiftieth of a second. The sensor readings are also joined to form a line. The line starts with high values, starting at a y value of just over 80. There is then an abrupt fall in the values until they reach a low point of 0 for 3
 samples, followed by a return to the high values around 80. On the diagram, I have marked a horizontal band highlighting values between</p>
 <p>This chart helps to explain why my original program did not work as intended. On the right of the black line, in the transition from black to grey, the simulated robot has recorded a value of about 34, within the thresholded band value I was using to identify the red line.</p>
 <p>The sensor value is calculated as some function of the value of several pixels in view of the sensor at any one time and it just so happens that the calculation may return a reading I had associated with the red line.</p>
 <p>In fact, the <code class="docutils literal notranslate"><span class="pre">.reflected_light()</span></code> mode is <em>not</em> a good indicator of colour at all. What happens if you run the robot over the <em>Coloured_bands</em> background, for example, logging the reflected light sensor data as you so so? (Either chart the data in the simulator to review it, or grab the datalog into the notebook and view it here at you leisure.)</p>
-<p><img alt="figure ../tm129-19J-images/tm129_rob_p6_f014.jpg" src="content/04_Robot_Lab/../images/tm129_rob_p6_f014.jpg" /></p>
+<img alt="figure ../tm129-19J-images/tm129_rob_p6_f014.jpg" src="content/04_Robot_Lab/../images/tm129_rob_p6_f014.jpg" />
 <p>A diagram which shows the graph previously described, below which a diagram shows the black line (actually shown as dark grey) highly enlarged. A series of circles is also shown starting on the pale grey background and continuing across the black line and then back on to the grey. These represent the position of the sensor each time a reading is taken, and an arrow leads from each circle indicating a sensor reading to the corresponding point plotted on the graph. Most of these circles are wholly
 on either the grey or the black line and produce a correspondingly high (80-95) or a low (20-30) reading. However, one circle straddles the edge of the line, so half of the interior is black and the other half grey. This produces an intermediate sensor value of 50.</p>
 <p>This is a tough lesson. What ought to be easily classified as either a black or white sensor reading is ambiguously somewhere in the middle. The value of 50% is exactly in the range that the program interprets as red. The assumption underlying the program that a sensor reading of 50% indicates red is clearly incorrect, and another approach is required.</p>

@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1.5 Gaining Access to the RoboLab Environment &#8212; TM129 Robotics Practical Activities  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -130,7 +130,7 @@ c:<span class="math">\tm`129share:nbsphinx-math:</span>notebooks`:c:<span class=
 </ul>
 <p>When the container is running, go to <code class="docutils literal notranslate"><span class="pre">localhost:8129</span></code> in your browser (if that doesn’t work, try <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8129</span></code>) and you should see a running notebook server there.</p>
 <p>Use the token <code class="docutils literal notranslate"><span class="pre">letmein</span></code> to access the server (you should only need to do this once).</p>
-<p><img alt="image1" src="../../_images/Jupyter_Notebook_token.png" /></p>
+<img alt="../../_images/Jupyter_Notebook_token.png" src="../../_images/Jupyter_Notebook_token.png" />
 <div class="section" id="What-to-do-if-the-Token-isn’t-set-or-doesn’t-work">
 <h4>What to do if the Token isn’t set or doesn’t work<a class="headerlink" href="#What-to-do-if-the-Token-isn’t-set-or-doesn’t-work" title="Permalink to this headline">¶</a></h4>
 <p>As a simple security measure, the notebook server requires a token or password the first time the server is accessed from a particular web browser.</p>
@@ -183,27 +183,27 @@ c:<span class="math">\tm`129share:nbsphinx-math:</span>notebooks`:c:<span class=
 <h2>Using ContainDS to Install the Prebuilt Open Computing Lab Container Image<a class="headerlink" href="#Using-ContainDS-to-Install-the-Prebuilt-Open-Computing-Lab-Container-Image" title="Permalink to this headline">¶</a></h2>
 <p><em>Note that in this approach, you will</em><strong>not</strong><em>be able to synchronise files inside the container with a persistent directory on your desktop.</em></p>
 <p>Open the ContainDS application, select the <code class="docutils literal notranslate"><span class="pre">Docker</span></code> tab and search for <code class="docutils literal notranslate"><span class="pre">tm129</span></code>. Select the <code class="docutils literal notranslate"><span class="pre">tm129-robotics2020</span></code> image.</p>
-<p><img alt="Screenshot of the ContainDS Docker image selection tab showing how to select the TM129 image." src="../../_images/00_01_ContainDS_tm129_download.png" /></p>
+<img alt="Screenshot of the ContainDS Docker image selection tab showing how to select the TM129 image." src="../../_images/00_01_ContainDS_tm129_download.png" />
 <p>If you have not previously downloaded the image, ContainDS will download it for you:</p>
-<p><img alt="Screenshot showing the ContainDS Docker image download progress display indicating the percentage completion of one of the layers in the current download." src="../../_images/00_01_ContainDS_tm129_downloading.png" /></p>
+<img alt="Screenshot showing the ContainDS Docker image download progress display indicating the percentage completion of one of the layers in the current download." src="../../_images/00_01_ContainDS_tm129_downloading.png" />
 <p>Do not be concerned if the download percentage indicator sometimes goes down as well as up — the downloader is actually downloading multiple items at once. (The container image is made up from several layers, each of which is downloaded separately, before they are combined in the final image.)</p>
 <p>When everything had downloded, you may find your computer appears to be doing nothing for a minute or two, or even appears to get stuck just short of a 100% complete donwload. <em>Don’t Panic!</em> The downloaded layers are all compressed files, and it may take some time for your computer to unzip them all.</p>
 <p>Once downloaded, you will be prompted for a method of starting the container. Select “Standard”:</p>
-<p><img alt="Screenshot showing the ContainDS dialogue for how to start a Docker container, with three buttons displayed: force a Jupyter start command (“Force Jupyter”), let the container run from its own start command (“Standard”, shown as the option to select) or “Cancel”." src="../../_images/00_01_ContainDS_standard_run.png" /></p>
+<img alt="Screenshot showing the ContainDS dialogue for how to start a Docker container, with three buttons displayed: force a Jupyter start command (“Force Jupyter”), let the container run from its own start command (“Standard”, shown as the option to select) or “Cancel”." src="../../_images/00_01_ContainDS_standard_run.png" />
 <p>The container will now be launched and a log trace displayed.</p>
 <p>At this point, you need to <code class="docutils literal notranslate"><span class="pre">STOP</span></code> the container and remove it:</p>
-<p><img alt="Screenshot showing a ContainDS running container with the run log displayed and a dialogue raised by clicking the container close button offering tow buttons, one with the option to “Cancel”, the other with the option to “Remove”, which is to say, stop and remove, the running container." src="../../_images/00_01_containds_stopRemove.png" /></p>
+<img alt="Screenshot showing a ContainDS running container with the run log displayed and a dialogue raised by clicking the container close button offering tow buttons, one with the option to “Cancel”, the other with the option to “Remove”, which is to say, stop and remove, the running container." src="../../_images/00_01_containds_stopRemove.png" />
 <p>Now create a running version of the container from the <em>local</em> Docker image. This will allow you to share a local directory into the container as well as clicking through directly to the notebook homep[age in your browser.</p>
 </div>
 <div class="section" id="Using-ContainDS-To-Run-the-Open-Computing-Lab-Environment-from-a-Local-Docker-Image">
 <h2>Using ContainDS To Run the Open Computing Lab Environment from a Local Docker Image<a class="headerlink" href="#Using-ContainDS-To-Run-the-Open-Computing-Lab-Environment-from-a-Local-Docker-Image" title="Permalink to this headline">¶</a></h2>
 <p>Click on the <code class="docutils literal notranslate"><span class="pre">+NEW</span></code> button and then select the <code class="docutils literal notranslate"><span class="pre">Docker</span></code> tab and then the <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">Images</span></code> tab:</p>
-<p><img alt="Screenshot of ContainDS “Local Images” tab on ContainDS Docker tab page showing selection of TM129 image." src="../../_images/00_01_ContainDS_local.png" /></p>
+<img alt="Screenshot of ContainDS “Local Images” tab on ContainDS Docker tab page showing selection of TM129 image." src="../../_images/00_01_ContainDS_local.png" />
 <p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> the local copy of the <code class="docutils literal notranslate"><span class="pre">tm129-robotics2020</span></code> container which will open the container workspace configuration page:</p>
-<p><img alt="Screenshot of ContainDS container workspace configuration page reached by selecting a local container image from “Local Images” tab on ContainDS Docker tab page." src="../../_images/00_01_local_workspace.png" /></p>
+<img alt="Screenshot of ContainDS container workspace configuration page reached by selecting a local container image from “Local Images” tab on ContainDS Docker tab page." src="../../_images/00_01_local_workspace.png" />
 <p>Set the path to the directory on your host computer that you want to share into the container. This will create a <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory in that directory that will be mapped onto the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory visible from the notebook homepage.</p>
 <p>When you <code class="docutils literal notranslate"><span class="pre">CREATE</span></code> the container, it will run automatically. Clicking the <code class="docutils literal notranslate"><span class="pre">WEB</span></code> link should take you to the notebook home page in your browser. <em>(Note that the file listing in the screenshot may differ from the file listing you see.)</em></p>
-<p><img alt="Screenshot of Jupyter notebook homepage" src="../../_images/00_01_simple_nb_home.png" /></p>
+<img alt="Screenshot of Jupyter notebook homepage" src="../../_images/00_01_simple_nb_home.png" />
 <p>When you save your notebooks, they will be saved into the shared directory on your own computer.</p>
 </div>
 <div class="section" id="Using-ContainDS-to-Build-and-Run-a-RoboLab-Container-from-Scratch">
@@ -213,11 +213,11 @@ c:<span class="math">\tm`129share:nbsphinx-math:</span>notebooks`:c:<span class=
 <p>Enter the name of the source repository:</p>
 <p><code class="docutils literal notranslate"><span class="pre">innovationOUtside/tm129-robotics2020</span></code></p>
 <p>and click the <code class="docutils literal notranslate"><span class="pre">LAUNCH</span></code> button.</p>
-<p><img alt="Screenshot of ContainDS application showing the Binder build configuration screen and temporary build process containers in container sidebar." src="../../_images/00_01_ContainDS_binderhub.png" /></p>
+<img alt="Screenshot of ContainDS application showing the Binder build configuration screen and temporary build process containers in container sidebar." src="../../_images/00_01_ContainDS_binderhub.png" />
 <p>As the image is built, you will see several temporary containers being created and destroed along the way. Note that the build process may take some time (up to 10 minutes or more).</p>
 <p>Once the image has been built, a running container will be launched from it.</p>
 <p>Click on the <code class="docutils literal notranslate"><span class="pre">WEB</span></code> link and you should be taken directly to the notebook homepage in your browser without needing to provide any notebook server token yourself.</p>
-<p><img alt="Screenshot of ContainDS application showing location of WEB button to launch notebook in browser." src="../../_images/00_01_containds_built_container.png" /></p>
+<img alt="Screenshot of ContainDS application showing location of WEB button to launch notebook in browser." src="../../_images/00_01_containds_built_container.png" />
 <p><code class="docutils literal notranslate"><span class="pre">STOP</span></code> and remove the container, and then run it from a Local Docker Image; this will allow you to share a local directory into the container and directly click through to the notebook server homepage in your browser.</p>
 </div>
 <div class="section" id="Obtaining-the-RoboLab-Instructional-Materials">
@@ -377,7 +377,7 @@ c:<span class="math">\tm`129share:nbsphinx-math:</span>notebooks`:c:<span class=
       &copy;The Open University, 2020.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

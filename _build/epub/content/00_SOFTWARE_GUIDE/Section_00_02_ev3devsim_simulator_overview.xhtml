@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The ev3devsim Simulator</title>
-    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" /> 
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/epub.css" type="text/css" /> 
   </head><body>
 
     <div class="document">
@@ -48,14 +48,14 @@
 <p>In fact, RobotLab was originally designed to work with LEGO Mindstorms RCX robots. Robots as simple as this are very useful for getting hands-on experience with robotics, but naturally they have some limitations compared with more sophisticated (and complex) robot systems. Some of the features of RobotLab and Simon will make more sense if you know a little bit about a simple robot system such as the LEGO Mindstorms RCX kit.</p>
 <div xmlns:str="http://exslt.org/strings" style="background:lightblue"><p><p>Note: LEGO’s more recent Mindstorms NXT kits differ from the RCX version described here</p>
 </p></div><p>The robot in Figure 2.2 is built around the LEGO Mindstorms RCX ‘brick’ which is shown in more detail in Figure 2.3. Inside the RCX brick there is a microprocessor and other circuitry. Think of it as a small computer. Built into the brick are three ‘sensor input ports’ labelled 1, 2 and 3, and three ‘actuator output ports’ labelled A, B and C, which are capable of powering motors.</p>
-<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f021.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f021.jpg" /></p>
+<img alt="figure ../tm129-19J-images/tm129_rob_p1_f021.jpg" src="content/00_SOFTWARE_GUIDE/../tm129-19J-images/tm129_rob_p1_f021.jpg" />
 <p>Figure 2.3 The RCX controller ‘brick’</p>
 <p>The RCX controller ‘brick’, seen from above. This is a large piece of yellow Lego, about 8 x 14 studs in size. At the centre is a control panel with a small LCD screen surrounded by four buttons: these are labelled On-Off, Run, Prgm (Program) and View. Above the control panel are three sensor input ports, labelled 1, 2, 3. These take the form of 2 × 2 studs which are partly metallic. Below the control panel are three actuator output ports, labelled A, B, C. These also are 2 × 2 studs which are
 partly metallic.</p>
 <p>The <em>ports</em> are interfaces to the external world. Sensors can be attached to the input ports, allowing information about the environment to enter the computer. Motors and other actuators can be attached to the output ports, and the brick can switch them on and off and control their direction and power.</p>
 <p>RobotLab assumes that the simulated robot works like an RCX brick. This means that RobotLab needs to know what kinds of sensors and actuators are being used, and how the (simulated) RCX is ‘configured’. You will see how this is done later.</p>
 <p>Although I have described the simulated robot in terms of a simple Lego robot, similar considerations would apply to other robotics systems. The control subsystem of any robot is usually flexible and designed to be configured with a variety of sensors and actuators.</p>
-<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f005.jpg" src="../../_images/nogbad_ev3.jpg" /></p>
+<img alt="figure ../tm129-19J-images/tm129_rob_p1_f005.jpg" src="../../_images/nogbad_ev3.jpg" />
 <p>[Credit: Nigel Gibson / &#64;nogbad]</p>
 </div>
 <div class="section" id="Simulator-Overview">
@@ -100,7 +100,7 @@ docs</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ultrasonic</span></code>: the orientation and physical location on the robot of the ultrasonic sensor on <code class="docutils literal notranslate"><span class="pre">INPUT</span> <span class="pre">1</span></code> (by default, in the front center of the robot at (<code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>) with angle <code class="docutils literal notranslate"><span class="pre">0</span></code> degrees relative to the front/back robot center-line).</p></li>
 </ul>
 <p>The configuration can be updated via a pop-up window in the simulator.</p>
-<p><img alt="Example of ev3devsim robot configuration window. SUBJECT TO CHANGE" src="../../_images/00_01_EV3DEV_Python_Simulator-config_robot.png" /></p>
+<img alt="Example of ev3devsim robot configuration window. SUBJECT TO CHANGE" src="../../_images/00_01_EV3DEV_Python_Simulator-config_robot.png" />
 <p>The robot configuration file is a JSON (Javascript Object Notation) object definition:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;wheeldiameter&quot;</span><span class="o">:</span> <span class="mf">56</span><span class="p">,</span>
