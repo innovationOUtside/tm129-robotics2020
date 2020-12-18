@@ -1,8 +1,8 @@
 #Vagrantfile for building machine from build scripts
 
 #Set the environment variable from the command line used to call vagrant for:
-# - password for authenticated notebook services (default is: tm129)
-#export VM_NB_TMP_PASS="tm129"
+# - password for authenticated notebook services (default is: letmein)
+#export VM_NB_TMP_PASS="letmein"
 
 
 # Change the path in the SHARED_FOLDER_PATH setting below (default: "."):

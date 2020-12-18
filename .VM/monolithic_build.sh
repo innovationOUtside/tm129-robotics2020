@@ -133,3 +133,15 @@ apt-get clean -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
 echo "...tidy up done"
+
+# Content stash
+echo "Stash content.."
+mkdir -p /opt/contentStash
+#Bake test notebooks into the VM
+cp -r content/ /opt/contentStash
+cp -r $BUILDDIR/backgrounds /opt/contentStash/nb_backgrounds
+# Hack
+mkdir -p /nb_backgrounds
+chown oustudent /nb_backgrounds
+chmod u+rw /nb_backgrounds
+echo "...content stashed."
