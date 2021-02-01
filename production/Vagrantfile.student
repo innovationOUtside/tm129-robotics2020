@@ -88,7 +88,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, :inline => <<-SH
 
-    #if [ ! -f /vagrant/.firstrun_nbcopy.done ]; then
+    if [ ! -f /vagrant/.firstrun_nbcopy.done ]; then
         # Trust notebooks in immediate child directories of notebook directory
         #files=(`find /opt/notebooks/* -maxdepth 2 -name "*.ipynb"`)
         #if [ ${#files[@]} -gt 0 ]; then
@@ -96,8 +96,11 @@ Vagrant.configure("2") do |config|
         #    jupyter trust /opt/notebooks/*/*.ipynb;
         #fi
         #cp -r /opt/notebooks/. /vagrant/notebooks
-        #touch /vagrant/.firstrun_nbcopy.done
-    #fi
+        cp -ra /opt/contentStash/. /vagrant/notebooks
+        chown -R oustudent /vagrant/notebooks/
+        jupyter trust /vagrant/notebooks/*/*/*.ipynb
+        touch /vagrant/.firstrun_nbcopy.done
+    fi
    SH
    
 end
