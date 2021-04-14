@@ -1,4 +1,6 @@
 .DS_Store
+0*.html
+notebooks/
 content/.old
 release/TM*
 ANN_*
