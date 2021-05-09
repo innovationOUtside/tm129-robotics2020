@@ -25,6 +25,10 @@ docker build --tag ousefulcoursecontainers/ou-tm129:current .
 docker push ousefulcoursecontainers/ou-tm129:current
 ```
 
+You can rename/retag an image as per eg:
+
+`docker image tag ousefulcoursecontainers/ou-tm129:current ousefulcoursecontainers/ou-tm129:20J`
+
 The [`release/Dockerfile`](https://github.com/innovationOUtside/tm129-robotics2020/blob/master/release/Dockerfile) is likely to become a work in progress that does things like tidy up the container. At some point, the housekeeping will then be pushed back into the Github Action; I may also create another Github Action, or extend the original one, to perform the above steps to publish the release container.
 
 A proper tagging strategy and automation route for images creating and publishing images released to students also needs figuring out.
