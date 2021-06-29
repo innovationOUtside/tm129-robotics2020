@@ -46,3 +46,4 @@ jobs:
         pull: true
         push: true
         tags: ${{ steps.meta.outputs.tags }}
+        context: .
