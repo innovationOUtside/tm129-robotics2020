@@ -9,6 +9,11 @@ packages:
   pip:
     - nbev3devsim>=0.0.9
     - ou-tm129-py>=0.0.8
+    - git+https://github.com/ouseful-PR/Hand-Written-Digit-Recognition.git
+    - git+https://github.com/innovationOUtside/nb_tensorflow_playground_serverproxy.git
+    - git+https://github.com/innovationOUtside/nb_tensorspace_server_proxy.git
+    - git+https://github.com/innovationOUtside/serverproxy_convnet_mnist.git
+    - git+https://github.com/innovationOUtside/serverproxy_tfjs_demos.git
 content:
   - source: content
     target: content
