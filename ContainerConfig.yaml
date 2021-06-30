@@ -6,6 +6,12 @@ base: "3.7"
 packages:
   apt:
     - build-essential
+    - zip
+    - unzip
+    - libcairo2
+    - aspell
+    - hunspell
+    - fonts-humor-sans
   pip:
     - nbev3devsim>=0.0.9
     - ou-tm129-py>=0.0.8
@@ -22,3 +28,26 @@ scripts:
   build:
     - commands: |
         pip3 install --index-url https://google-coral.github.io/py-repo/ tflite_runtime
+    - commands: |
+        jupyter contrib nbextension install
+        jupyter nbextensions_configurator enable
+
+        jupyter nbextension enable skip-traceback/main
+        jupyter nbextension enable collapsible_headings/main
+        jupyter nbextension enable highlighter/highlighter
+        jupyter nbextension enable spellchecker/main
+
+        git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
+        jupyter nbextension install accessibility_toolbar
+        jupyter nbextension enable accessibility_toolbar/main
+        rm -rf accessibility_toolbar
+
+        jupyter serverextension enable --py nbzip
+        jupyter nbextension install --py nbzip
+        jupyter nbextension enable --py nbzip
+
+        jupyter nbextension install --py nbtutor
+        jupyter nbextension enable --py nbtutor
+
+        jupyter nbextension install --py jupyter_wysiwyg
+        jupyter nbextension enable --py jupyter_wysiwyg
