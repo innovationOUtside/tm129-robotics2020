@@ -20,6 +20,8 @@ packages:
     - git+https://github.com/innovationOUtside/nb_tensorspace_server_proxy.git
     - git+https://github.com/innovationOUtside/serverproxy_convnet_mnist.git
     - git+https://github.com/innovationOUtside/serverproxy_tfjs_demos.git
+    - git+https://github.com/innovationOUtside/nb_cell_diff.git
+    - git+https://github.com/innovationOUtside/nb_cell_dialog.git
 content:
   - source: content
     target: content
