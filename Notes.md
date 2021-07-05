@@ -13,3 +13,9 @@
 ----
 
 * There are a number of "Click the arrow in the sidebar or run this cell to reveal the optional activity." where the optional stuff is already shown. Unclear what to do here.
+
+02
+==
+
+02.1
+----
