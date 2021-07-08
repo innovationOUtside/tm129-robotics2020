@@ -2,7 +2,7 @@ module:
   code: TM129-Robotics
   presentation: 21J
 type: jupyter-notebook
-base: "3.8"
+base: "3.7"
 packages:
   apt:
     - build-essential
