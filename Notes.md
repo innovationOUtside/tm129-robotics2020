@@ -21,3 +21,11 @@
 ----
 
 * The ultrasonic sensor is not showing for me in the chart view
+
+07
+==
+
+07.1
+----
+
+* 14x14 model is trained on sklearn 0.23.2, but now running 0.24.2
