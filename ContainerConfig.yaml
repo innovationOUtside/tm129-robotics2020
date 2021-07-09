@@ -27,6 +27,9 @@ content:
   - source: content
     target: content
     overwrite: never
+  - source: .jupyter
+    target: .jupyter
+    overwrite: always
 scripts:
   build:
     - commands: |
