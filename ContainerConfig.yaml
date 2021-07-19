@@ -38,17 +38,17 @@ scripts:
         jupyter contrib nbextension install
         jupyter nbextensions_configurator enable
 
-        jupyter nbextension enable --py --sys-prefix skip-traceback/main
-        jupyter nbextension enable --py --sys-prefix collapsible_headings/main
-        jupyter nbextension enable --py --sys-prefix highlighter/highlighter
-        jupyter nbextension enable --py --sys-prefix spellchecker/main
+        jupyter nbextension enable --sys-prefix skip-traceback/main
+        jupyter nbextension enable --sys-prefix collapsible_headings/main
+        jupyter nbextension enable --sys-prefix highlighter/highlighter
+        jupyter nbextension enable --sys-prefix spellchecker/main
 
         git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
         jupyter nbextension install accessibility_toolbar
         jupyter nbextension enable --sys-prefix accessibility_toolbar/main
         rm -rf accessibility_toolbar
 
-        jupyter serverextension enable --py nbzip
+        jupyter serverextension enable --py --sys-prefix nbzip
         jupyter nbextension install --py --sys-prefix nbzip
         jupyter nbextension enable --py --sys-prefix nbzip
 
