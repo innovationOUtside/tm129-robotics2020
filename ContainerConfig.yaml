@@ -45,7 +45,7 @@ scripts:
 
         git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
         jupyter nbextension install accessibility_toolbar
-        jupyter nbextension enable --py --sys-prefix accessibility_toolbar/main
+        jupyter nbextension enable --sys-prefix accessibility_toolbar/main
         rm -rf accessibility_toolbar
 
         jupyter serverextension enable --py nbzip
