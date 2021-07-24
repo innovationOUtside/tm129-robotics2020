@@ -122,7 +122,7 @@ Please contact the Module Team if you discover that the material does not work w
 
 
 ## 1.3 Spell checking <!-- JD: again, this appears to be available by default in the hosted notebooks. -->
-A spell checker is also available to check spelling in notebook markdown cells. Enable the `spellchecker` notebook extension [[direct link](/nbextensions/?nbextension=spellchecker/main])] or the spell checker via the *Accessibility Toolbar Extension*.
+A spell checker is also available to check spelling in notebook markdown cells. Enable the [[`spellchecker` notebook extension](/nbextensions/?nbextension=spellchecker/main])] or the spell checker via the *Accessibility Toolbar Extension*.
 
 
 ## 1.4 Installing the software
