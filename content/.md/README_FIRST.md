@@ -14,7 +14,7 @@ jupyter:
     name: python3
 ---
 
-# Welcome to the TM129 Robotics Block
+# Welcome to the TM129 Robotics block
 
 If you're reading this via the TM129 Virtual Computing Environment (the `TM129VCE`) you should be all set to go.
 
@@ -34,7 +34,7 @@ test_install()
 
 *This section __only__ applies to running the VCE using a local Docker installation. If you are accessing this notebook via an online server, you can ignore this section.*
 
-The TM129 VCE comes pre-packaged with the notebooks used to support the TM129 robotics block practical activities.
+The TM129 VCE comes pre-packaged with the notebooks used to support the TM129 Robotics block practical activities.
 
 When you created the VCE container, if you mounted a shared folder into the VCE, such as the folder `/home/jovyan/shared`, you will be able to copy the distributed notebooks into that folder.
 
