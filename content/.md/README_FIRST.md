@@ -71,3 +71,5 @@ When the package has finished installing:
 
 - from the notebook *Kernel* menu, select *Restart*
 - click in the `test_install()` cell near the start of this notebook and run it again; the tests should now pass correctly.
+
+<!-- JD: Given that this is a README file, I would have expected it to say what I should do next. I.e. which notebook should I look at first? 00 or 01? -->
