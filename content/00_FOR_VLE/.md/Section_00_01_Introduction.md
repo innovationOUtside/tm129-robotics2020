@@ -58,7 +58,7 @@ If you struggle to use the simulator for any reason, including but not limited t
 
 ### Keyboard interface
 
-The Jupyter notebook interface supports a wide range of pre-defined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the `Keyboard shortcuts` item from the notebook `Help` menu or via the `ESC-h` keyboard shortcut.
+The Jupyter notebook interface supports a wide range of predefined keyboard shortcuts to menu and toolbar options. The shortcuts can be displayed using the `Keyboard shortcuts` item from the notebook `Help` menu or via the `ESC-h` keyboard shortcut.
 
 ![Screenshot of the Jupyter keyboard shortcuts help page previewing the Command Mode cell options.](../images/00_01_jupyter_nb_shortcuts.png)
 
