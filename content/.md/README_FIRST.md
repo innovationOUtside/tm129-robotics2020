@@ -16,13 +16,13 @@ jupyter:
 
 # Welcome to the TM129 Robotics block
 
-If you're reading this via the TM129 Virtual Computing Environment (the `TM129VCE`) you should be all set to go.
+If you’re reading this via the TM129 virtual computing environment (the `TM129VCE`) you should be all set to go.
 
-But first let's do a quick test to check everything's working.
+But first let’s do a quick test to check everything’s working.
 
 Click in the text box below, which contains a line of programming code, and then click on the *Run* button in the toolbar at the top of the screen to execute the code.
 
-If you don't see an error message, or you see a message saying something is missing or not installed, go to the *Installing missing requirements* section below.
+If you don’t see an error message, or you see a message saying something is missing or not installed, go to the *Installing missing requirements* section below.
 
 ```python
 from ou_tm129_py import test_install
