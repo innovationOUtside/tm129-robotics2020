@@ -94,7 +94,7 @@ The Jupyter environment includes an [accessibility toolbar extension](https://gi
 
 #### Enabling the Accessibility Extension
 
-The accessibility is __disabled__ in the RoboLab environment by default.<!-- JD: this appears to be enabled by default in the hosted notebooks. --> To use the accessibility extension, you need to enable it first. You can do this from the `Nbextensions` tab on the notebook homepage: tick the `Accessibility Toolbar` extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.
+The accessibility is __disabled__ in the RoboLab environment by default.<!-- JD: this appears to be enabled by default in the hosted notebooks. --> To use the accessibility extension, you need to enable it first. You can do this from the `Nbextensions` tab on the notebook home page: tick the `Accessibility Toolbar` extension to enable the toolbar. When you open a new notebook, the toolbar should be displayed.
 
 ![Screenshot of the nbextensions confgurator showing the location of the Accessibility Toolbar.](../images/00_01_nb_extensions_accessibility.png)
 
