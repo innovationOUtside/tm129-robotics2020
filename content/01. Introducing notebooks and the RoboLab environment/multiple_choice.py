@@ -47,7 +47,7 @@ def create_multipleChoice_widget(description, options, correct_answer, msg=None)
     
     return widgets.VBox([description_out, alternativ, check, feedback_out])
 
-Q1 = create_multipleChoice_widget('What happens to the robot when you turn the motors on at a specified speed',
-                                  ['The robot instantaneously travels at that speed?',
+Q1 = create_multipleChoice_widget('What happens to the robot when you turn the motors on at a specified speed?',
+                                  ['The robot instantaneously travels at that speed.',
                                    'Is it coffee time yet?'],
-                                  'The robot accelerates up to that speed', {'incorrect':'If the robot has non-zero mass, it cannot accelerate at an infinite rate: it will take take to accelerate up to the desired speed.'})
+                                  'The robot accelerates up to that speed.', {'incorrect':'If the robot has non-zero mass, it cannot accelerate at an infinite rate: it will take time to accelerate up to the desired speed.'})
