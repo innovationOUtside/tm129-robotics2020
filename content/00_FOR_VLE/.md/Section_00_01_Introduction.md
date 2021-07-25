@@ -109,7 +109,7 @@ If you wish to change the font and interface colours used in RoboLab to improve 
 
 ![Screenshot of the colours and fonts menu dropped down from the text / A button in the group of Accessibility Toolbar buttons.](../images/00_01_accessibility_display.png)
  
-The font style applies to *all* text elements within the notebook itself. This includes the contents of markdown (text) cells, code cells and code cell outputs.
+The font style applies to *all* text elements within the notebook itself. This includes the contents of Markdown (text) cells, code cells and code cell outputs.
 
 The toolbar can also be used to control the notebook’s background colour and the cell background colour.
 
@@ -122,7 +122,7 @@ Please contact the Module Team if you discover that the material does not work w
 
 
 ## 1.3 Spell checking <!-- JD: again, this appears to be available by default in the hosted notebooks. -->
-A spell checker is also available to check spelling in notebook markdown cells. Enable the [`spellchecker` notebook extension](/nbextensions/?nbextension=spellchecker/main) or the spell checker via the *Accessibility Toolbar Extension*.
+A spell checker is also available to check spelling in notebook Markdown cells. Enable the [`spellchecker` notebook extension](/nbextensions/?nbextension=spellchecker/main) or the spell checker via the *Accessibility Toolbar Extension*.
 
 
 ## 1.4 Installing the software
