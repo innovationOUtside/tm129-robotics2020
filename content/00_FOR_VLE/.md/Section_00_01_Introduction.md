@@ -17,16 +17,15 @@ Welcome to this introduction to the practical activities associated with Robotic
 
 The aim of the practical sessions is to introduce you to some of the ways in which we can program a simple simulated robot running inside a two-dimensional world simulator – RoboLab – in your web browser. You will also have the opportunity to try out some simple artificial intelligence and machine learning programs.
 
-The main environment provided for working through the activities is a customised Jupyter notebook environment provided by a virtual computing environment (VCE) that you will run on your own computer. Jupyter notebooks were originally designed to support reproducible computational data analysis and research. They are now commonly used across a wide range of disciplines, and are increasingly used to support interactive code-based tutorials as well as distributing teaching materials.
+The main environment provided for working through the activities is a customised Jupyter notebook environment provided by a virtual computing environment (VCE) that you will run on your own computer or online on Compute Home. Jupyter notebooks were originally designed to support reproducible computational data analysis and research. They are now commonly used across a wide range of disciplines, and are increasingly used to support interactive code-based tutorials as well as distributing teaching materials.
 
 The programming language you will be using in this block is the Python programming language. If you have not used the Python programming language before, or even if you haven’t done *any* programming before, *DON’T PANIC*. We have tried to take a pragmatic approach to demonstrating how use to Python code to *get things done*, and the provided examples show you all you need to know to program the simulated robot yourself.
 
-You will also learn how to use simple command-line style commands in the form of IPython magics (yes, they really are called that!) that allow us to perform various housekeeping acts. In the way they are formed and use ‘switches’ to modify and extend the behaviour of the magic command, they are reminiscent of many Linux command-line commands.
+You will also learn how to use simple command-line style commands in the form of IPython magics (yes, they really are called that!) that allow us to perform various housekeeping acts. In the way they are formed and use ‘switches’ to modify and extend the behaviour of the magic command, they are reminiscent of many Linux command-line commands. <!-- JD: this last sentence has been deleted, but I think it's useful to keep, especially as students will now have just studied the Linux command line in the previous block. -->
 
 Although the interface to the programming activities is provided through a web browser (most reliably, the Chrome web browser), the software supporting the activities runs inside a virtual environment. <!-- JD: (Given that the robotics block is now the final block, students will already have learnt about virtual machines in the OS block. Hence the removal here of the comment about learning more about virtual machines later in the module.) -->
 
-<!-- JD: Does the following paragraph need updating? Is the default going to be for students to use Docker, or the hosted solution? -->
-To run the virtual environment locally, you will need to install the Docker application (we’ll provide full guidance around this). It is also possible to run the application using free or paid for services on the web, and we provide some guidance on how to do this. However, you should be aware that free services may not always be available or reliable, and some are ‘free’ only in exchange for something else, such as personal registration data.
+To run the virtual environment locally, you will need to install the Docker application (we’ll provide full guidance around this).
 
 
 ## 1.1 Workload
@@ -46,7 +45,7 @@ Challenges implicitly incorporate some performance measure that you can use to r
 
 ### Assessment
 
-We hope that by the end of the RoboLab practical sessions you understand some of the basic ideas and can program the simulated robot to do some basic tasks. This should ensure that you can do the assignment and complete the block satisfactorily. The assessment will not include any material covered in optional practical activities.
+We hope that by the end of the RoboLab practical sessions you understand some of the basic ideas and can program the simulated robot to do some basic tasks. This should ensure that you can do the assignment and complete the block satisfactorily. The assessment will not include any material covered in the optional practical activities.
 
 
 ## 1.2 Accessibility
