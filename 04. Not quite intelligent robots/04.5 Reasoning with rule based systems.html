@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Reasoning with rule based systems — Durable Rules Engine &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Introduction to sensor based control" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html" />
+    <link rel="prev" title="4 Reasoning with Eliza" href="04.4%20Reasoning%20with%20Eliza.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04. Not quite intelligent robots/04.5 Reasoning with rule based systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/04. Not quite intelligent robots/04.5 Reasoning with rule based systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   5 Reasoning with rule based systems — Durable Rules Engine
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representing-and-using-knowledge-and-beliefs">
+   5.1 Representing and using knowledge and beliefs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-the-durable-rules-engine">
+   5.2 Introducing the Durable Rules Engine
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-the-durable-rules-engine">
+     5.2.1 Setting up the Durable Rules Engine
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-a-ruleset">
+     5.2.2 Defining a ruleset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding-rules-using-the-durable-rules-framework-optional">
+     5.2.3 Encoding rules using the durable-rules framework (optional)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-simplified-route-to-declaring-durable-rules-rules">
+     5.2.4 A simplified route to declaring durable-rules rules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asserting-facts">
+     5.2.5 Asserting facts
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-new-ruleset-with-multiple-rules">
+     5.2.6 Creating a new ruleset with multiple rules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-ruleset-with-different-rules-that-test-the-same-condition">
+     5.2.7 A ruleset with different rules that test the same condition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-ruleset-with-rules-that-test-multiple-conditions-optional">
+     5.2.6 A ruleset with rules that test multiple conditions (optional)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trying-out-another-ruleset-optional">
+   5.3 Trying out another ruleset (optional)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#talking-notebooks">
+     5.3.1 Talking notebooks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-support-for-speaking-rules">
+     5.3.2 Adding support for speaking rules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#listening-to-rules-as-they-reason">
+     5.3.3 Listening to rules as they reason
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-general-forms-of-rules">
+   5.4 More general forms of rules
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#facts-versus-events">
+     5.4.1 Facts versus events
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-might-rules-be-useful-in-a-robot-context">
+   5.5 How might rules be useful in a robot context?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   5.6 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reasoning-with-rule-based-systems-durable-rules-engine">
+<h1>5 Reasoning with rule based systems — Durable Rules Engine<a class="headerlink" href="#reasoning-with-rule-based-systems-durable-rules-engine" title="Permalink to this headline">¶</a></h1>
+<p>In the sense–act model, agents (or robots) typically perform an action as a direct response of a sensory input. In the ‘sense–think–act’ model, there is an element of deliberation in which the agent makes a <em>choice</em> about what action to perform based not just on the sensory input but also other factors.</p>
+<p>In the simplest case, this might be a value against which the input is compared, or it might be a much more elaborate decision process involving a wide range of factors.</p>
+<p>In the previous notebook, you met a simple conversational rule based agent in the form of Eliza. In this notebook, you will explore one possible architecture for implementing a deliberative “think” model in the form of a more generic rule based system within which you can write your own sets of rules.</p>
+<p>Understanding the particular details of this notebook is not necessary for successful completion of this module. The aim is more for you to develop a broad understanding of the nature and potential power of a rule-based system.</p>
+</div>
+<div class="section" id="representing-and-using-knowledge-and-beliefs">
+<h1>5.1 Representing and using knowledge and beliefs<a class="headerlink" href="#representing-and-using-knowledge-and-beliefs" title="Permalink to this headline">¶</a></h1>
+<p>Artificial intelligence and robotics have the major problem of <em>representing</em> facts and <em>knowledge</em>, or at least, <em>beliefs</em> inside machines.</p>
+<p>In humans, we have a vast amount of knowledge in our brains. This knowledge is distributed over the brain, rather than each fact being neatly stored in a single memory unit.</p>
+<p>The structure of the human brain is completely different from the structure of a robot’s or a real computer’s ‘brain’, and roboticists have found it very difficult to implant a wide range of experiences (real-world data) into robot brains. Whilst significant progress has been made in artificial intelligence (AI) and machine learning (ML) approaches in recent years by using ever-more computational resources, these achievements are often quite limited in terms of domain or general applicability. They can also be hugely expensive in terms of the amount of data and computational effort, as well as the energy used to power the underlying computers that are required to create them. Ever larger and more complex natural-language processing (NLP) models are also proving effective in parsing natural-language statements and generating natural-language texts, albeit often in a ‘free-writing’ sense.</p>
+<p>An alternative to the ‘self-learning’ neural network style of artificial intelligence, which you will meet later in the block, are approaches in which we try to <em>explicitly</em> encode knowledge using an approach known as <em>rule-based systems</em>.</p>
+</div>
+<div class="section" id="introducing-the-durable-rules-engine">
+<h1>5.2 Introducing the Durable Rules Engine<a class="headerlink" href="#introducing-the-durable-rules-engine" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://github.com/jruizgit/rules">Durable Rules Engine</a> is a <em>polyglot</em> framework for creating rule-based systems capable of reasoning over large collections of factual statements.</p>
+<p>To say that the framework is <em>polyglot</em> means that we can write programs for the same framework using different programming languages, specifically Python, Node.js (a flavour of JavaScript) and Ruby. Underneath, the same rules engine (which itself happens to be written in the C programming language) processes the facts and the rules to allow the system to reason.</p>
+<p>Note that the Durable Rules Engine (durable-rules) is <em>not</em> available directly within our robot simulator programs. Instead, we call on it via the full Python environment associated with code cells that are not prefaced by the simulator magic.</p>
+<p>The engine itself is rather more powerful than the engine used in the Eliza program example and can accept a wide range of rule definitions. It also makes use of a knowledge base of asserted facts (as well as ephemeral events) that are reasoned against using the rules.</p>
+<p>To see how this more comprehensive version of a rule-based system works, let’s consider the example of reasoning over a set of ‘facts’ that are asserted as <em>subject predicate object</em> statements. Separate rules parse one or more of these statements and then try to make general additional statements as a logical consequence.</p>
+<p>In many formal studies of intelligent agents, ‘knowledge’ is defined as ‘justified true belief’. An agent may ‘believe’ a fact, but that is only classed as ‘knowledge’:</p>
+<ul class="simple">
+<li><p>if the fact is true</p></li>
+<li><p>if the agent is justified in having the belief (that is, there is a good reason why it has that belief).</p></li>
+</ul>
+<p>Facts might take the form <em>Sam is a student</em> where <em>Sam</em> is the subject of the statement, <em>student</em> is the object of the statement, and <em>is a</em> is a <em>predicate</em> that defines some sort of relationship between the subject and the object.</p>
+<p>Rules test statements, and if they match the rule condition then the rule asserts another fact.</p>
+<p>For example, <em>if Sam is a student, then Sam can use the module forums</em>.</p>
+<p>Let’s see how that works in practice. Note that the following treatment uses a simplification of the syntax used by default in the durable-rules framework. (There is just too much clutter in the original syntax to see what’s going on!)</p>
+<div class="section" id="setting-up-the-durable-rules-engine">
+<h2>5.2.1 Setting up the Durable Rules Engine<a class="headerlink" href="#setting-up-the-durable-rules-engine" title="Permalink to this headline">¶</a></h2>
+<p>Let’s import the packages we need and enable some magic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">durable.lang</span> <span class="kn">import</span> <span class="n">ruleset</span><span class="p">,</span> <span class="n">when_all</span><span class="p">,</span> <span class="n">assert_fact</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">m</span>
+<span class="kn">from</span> <span class="nn">durable_rules_tools.rules_utils</span> <span class="kn">import</span> <span class="n">new_ruleset</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Subject</span>
+
+<span class="o">%</span><span class="k">reload_ext</span> durable_rules_tools
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Some of the code used to define the rulesets looks quite cluttered. Much of the code is “boilerplate” code and you do not need to know how to write it yourself. Instead, try to focus on the content of the rules and accept the code machinery around it as a given.</em></p>
+</div>
+<div class="section" id="defining-a-ruleset">
+<h2>5.2.2 Defining a ruleset<a class="headerlink" href="#defining-a-ruleset" title="Permalink to this headline">¶</a></h2>
+<p>The ruleset definition syntax is little bewildering, so just try to see the structural patterns that the various bits of syntax make.</p>
+<p>So, let’s take a deep breath and dive in, looking at this pseudo-code abstraction of a possible rule:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if ?PERSON is student
+    then ?PERSON can use forums
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">?PERSON</span></code> is a variable representing the subject, <em>forums</em> is the object, and <em>can use</em> is the predicate.</p>
+</div>
+<div class="section" id="encoding-rules-using-the-durable-rules-framework-optional">
+<h2>5.2.3 Encoding rules using the durable-rules framework (optional)<a class="headerlink" href="#encoding-rules-using-the-durable-rules-framework-optional" title="Permalink to this headline">¶</a></h2>
+<p>We can encode this formal rule using the durable-rules framework as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@when_all</span><span class="p">(</span><span class="n">Subject</span><span class="p">(</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">cm_forum_use</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">Set</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;? : can use : forums&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> statements are known as Python <em>decorators</em>; but that’s all you need to know in case you want to look them up them further (further investigation is definitely <em>not required</em> and <em>not expected</em> of you for the purposes of this module). Just regard it as ‘syntactic sugar’ intended to make the rule a bit more readable than it might otherwise be. So go with the flow and just try to read the rules as some sort of structured pattern you can recognise as performing some sort of magic…</p>
+<p>The rule has the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@CONDITION</span>
+<span class="k">def</span> <span class="nf">RULENAME</span><span class="p">(</span><span class="n">TESTED_ASSERTION</span><span class="p">):</span>
+    <span class="n">ACTION</span>
+</pre></div>
+</div>
+<p>If you defocus your eyes, you can perhaps see how those elements might relate to a rule that could perhaps be more logically presented as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RULENAME</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">TESTED_ASSERTION</span> <span class="n">meets</span> <span class="n">CONDITION</span>
+  <span class="n">then</span> <span class="n">ACTION</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-simplified-route-to-declaring-durable-rules-rules">
+<h2>5.2.4 A simplified route to declaring durable-rules rules<a class="headerlink" href="#a-simplified-route-to-declaring-durable-rules-rules" title="Permalink to this headline">¶</a></h2>
+<p>To simplify rule creation, we can create a function that lets us declare simple rules that test facts relative to a specific subject, and assert new facts on the subject, in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">],</span>
+                   <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can use&#39;</span><span class="p">,</span> <span class="s1">&#39;forums&#39;</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s define the rule handler function so we can make use of it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You do not need to understand how the following code works</span>
+<span class="c1"># It is just something you will find convenient to use</span>
+<span class="c1"># as a provided function</span>
+<span class="k">def</span> <span class="nf">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span><span class="p">,</span> <span class="n">THEN_SUBJECT</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a simple rule to run with durable rules engine.&quot;&quot;&quot;</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="n">Subject</span><span class="p">(</span><span class="n">IF_SUBJECT</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">IF_SUBJECT</span><span class="p">[</span><span class="mi">1</span><span class="p">]))(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;? : </span><span class="si">{</span><span class="n">THEN_SUBJECT</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">THEN_SUBJECT</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="c1"># We don&#39;t use the comment,</span>
+    <span class="c1"># but it helps keep track of what the rule applies to</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the following cell to define a new ruleset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RULESET_1</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">RULESET_1</span><span class="p">):</span>
+    <span class="c1"># --- UTILITY RULES ---</span>
+    <span class="c1"># Display all asserted facts</span>
+    <span class="c1"># Just accept it as boilerplate!</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">)(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fact: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">object</span><span class="p">)))</span>
+    
+    <span class="c1"># --- USER RULES ---</span>
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;can use&quot;</span><span class="p">,</span> <span class="s2">&quot;forums&quot;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span><span class="s1">&#39;student_forum_use&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="asserting-facts">
+<h2>5.2.5 Asserting facts<a class="headerlink" href="#asserting-facts" title="Permalink to this headline">¶</a></h2>
+<p>We can now assert a couple of facts, and see what conclusions can be draw about them from an application of the rules.</p>
+<p>Facts are asserted in the form: <code class="docutils literal notranslate"><span class="pre">subject</span> <span class="pre">:</span> <span class="pre">predicate</span> <span class="pre">:</span> <span class="pre">object</span></code>.</p>
+<p>We assert facts in the context of a particular ruleset via a cell block magic, <code class="docutils literal notranslate"><span class="pre">%%assert_facts</span> <span class="pre">-r</span> <span class="pre">RULESET_NAME</span></code>.</p>
+<p>Run the following cell to assert some facts against the <code class="docutils literal notranslate"><span class="pre">RULESET_1</span></code> ruleset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET_1
+Sam : is : student
+Chris : is : course manager
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-new-ruleset-with-multiple-rules">
+<h2>5.2.6 Creating a new ruleset with multiple rules<a class="headerlink" href="#creating-a-new-ruleset-with-multiple-rules" title="Permalink to this headline">¶</a></h2>
+<p>We can’t easily add rules to a pre-existing ruleset, so let’s create another ruleset, building on ideas used in the first, that contains another rule:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RULESET_2</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">RULESET_2</span><span class="p">):</span>
+    <span class="c1"># --- UTILITY RULES ---</span>
+    <span class="c1"># Display all asserted facts</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">)(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fact: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">object</span><span class="p">)))</span>
+    
+    <span class="c1"># --- USER RULES ---</span>
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;course manager&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;can read&#39;</span><span class="p">,</span> <span class="s1">&#39;forum discussions&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;cm_forum_use&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># -- PREVIOUS RULES --</span>
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can use&#39;</span><span class="p">,</span> <span class="s1">&#39;forums&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;student_forum_use&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test our assertions again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET_2
+Sam : is : student
+Chris : is : course manager
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, course managers can <em>read</em> forum discussions, but students can <em>use</em> forums. What might that entail?</p>
+</div>
+<div class="section" id="a-ruleset-with-different-rules-that-test-the-same-condition">
+<h2>5.2.7 A ruleset with different rules that test the same condition<a class="headerlink" href="#a-ruleset-with-different-rules-that-test-the-same-condition" title="Permalink to this headline">¶</a></h2>
+<p>In the following set, we define two rules that test the same condition, but with different actions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RULESET_3</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">RULESET_3</span><span class="p">):</span>
+    <span class="c1"># --- UTILITY RULES ---</span>
+    <span class="c1"># Display all asserted facts</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">)(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fact: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">object</span><span class="p">)))</span>
+    
+    <span class="c1"># --- USER RULES ---</span>
+    
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;can use&quot;</span><span class="p">,</span> <span class="s2">&quot;forums&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can read&#39;</span><span class="p">,</span> <span class="s1">&#39;forum discussions&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;forum_read&#39;</span>  <span class="p">)</span>
+
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;can use&quot;</span><span class="p">,</span> <span class="s2">&quot;forums&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can post to&#39;</span><span class="p">,</span> <span class="s1">&#39;forum discussions&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;forum_read&#39;</span>  <span class="p">)</span>
+
+    <span class="c1"># -- PREVIOUS RULES --</span>
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;course manager&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can read&#39;</span><span class="p">,</span> <span class="s1">&#39;forum discussions&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;cm_forum_use&#39;</span>  <span class="p">)</span>
+    
+    <span class="n">create_simple_rule</span><span class="p">(</span><span class="n">IF_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">],</span>
+                       <span class="n">THEN_SUBJECT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can use&#39;</span><span class="p">,</span> <span class="s1">&#39;forums&#39;</span><span class="p">],</span>
+                       <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;student_forum_use&#39;</span> <span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>What can we determine now?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET_3
+Sam : is : student
+Chris : is : course manager
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the next level of complexity, we might want to draw some conclusions about multiple facts. Suppose, for example, that we wish to identify people who have ‘engaged’ with the forums. We might define such people as people who have read a forum post and who have posted to a forum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET_3
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-ruleset-with-rules-that-test-multiple-conditions-optional">
+<h2>5.2.6 A ruleset with rules that test multiple conditions (optional)<a class="headerlink" href="#a-ruleset-with-rules-that-test-multiple-conditions-optional" title="Permalink to this headline">¶</a></h2>
+<p>The rules we have seen so far test just a single condition, so how do we test <em>two</em> conditions?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if ?PERSON has read forum post AND ?PERSON has posted to forum
+then ?PERSON has engaged with forum
+</pre></div>
+</div>
+<p>This is where things start getting trickier, and where we shall finish our quick introduction to creating rules with the durable-rules framework.</p>
+<p><em>Note that you are not expected to write your own rules at this level of complexity. The intention is just to demonstrate that we can create such rules.</em></p>
+<p>First, we will create another simple helper function that defines a Python dictionary container subject, object and predicate terms and then uses the dictionary to assert a fact described by those terms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rule_assert_fact</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">subj</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Assert a (subject, predicate, object) fact.&quot;&quot;&quot;</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">assert_fact</span><span class="p">({</span><span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="n">subj</span><span class="p">,</span>
+                   <span class="s1">&#39;predicate&#39;</span><span class="p">:</span> <span class="n">pred</span><span class="p">,</span>
+                   <span class="s1">&#39;object&#39;</span><span class="p">:</span> <span class="n">obj</span> <span class="p">}</span>
+                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to define a rule that tests multiple conditions, we need to create need a temporary reference to a fact (for example, <code class="docutils literal notranslate"><span class="pre">c.first</span></code>) when the fact matches a rule. When testing the rule against other facts, we can then use those temporary references to see whether all the rule conditions are met:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RULESET_4</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">RULESET_4</span><span class="p">):</span>
+    
+    <span class="c1"># IF</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;has read&#39;</span><span class="p">,</span> <span class="s1">&#39;forum post&#39;</span><span class="p">),</span>
+             <span class="n">c</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;has posted to&#39;</span><span class="p">,</span> <span class="s1">&#39;forum&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">))(</span>
+    <span class="c1"># THEN</span>
+    <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">rule_assert_fact</span><span class="p">(</span><span class="n">c</span><span class="p">,</span>
+                               <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span>
+                               <span class="n">pred</span><span class="o">=</span> <span class="s1">&#39;has engaged with&#39;</span><span class="p">,</span>
+                               <span class="n">obj</span><span class="o">=</span><span class="s1">&#39;forum&#39;</span> <span class="p">))</span>
+
+    <span class="nd">@when_all</span><span class="p">(</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fact: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">object</span><span class="p">))</span>
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now test the following assertions to see who has been identified as engaging with the forums:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET_4
+
+Al : has read : forum post
+Al : has posted to : forum
+
+Sam : has posted to : forum
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hopefully, from these examples and the earlier Eliza example you have a feeling for how we can build up quite rich sequences of behaviour (conversations over time, logical reasoning over multiple facts, including over facts derived from earlier-presented facts) using quite simple rules. But while each rule might be quite simple, and the discrete actions performed by each rule might be quite simple, the emergent behaviour might be quite elaborate.</p>
+</div>
+</div>
+<div class="section" id="trying-out-another-ruleset-optional">
+<h1>5.3 Trying out another ruleset (optional)<a class="headerlink" href="#trying-out-another-ruleset-optional" title="Permalink to this headline">¶</a></h1>
+<p>Let’s try another example, this time using one of the example rulesets provided in the durable-rules documentation.</p>
+<p>We’ll also see how we can add another dimension to the rules and create a ruleset that speaks back to us.</p>
+<p>You’ve already seen how we can get the simulated robot to speak, but how might we go about getting our notebooks to talk to us?</p>
+<p><em>Once again, you are not expected to write your own rules at this level of complexity. The intention is simply to give you an impression of what sorts of thing we can achieve with a rule based system.</em></p>
+<div class="section" id="talking-notebooks">
+<h2>5.3.1 Talking notebooks<a class="headerlink" href="#talking-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>To get the robot to speak in the simulator, we make use of the browser’s JavaScript speech engine. This speech engine was also used to allow Eliza to speak. It’s not too hard to pull together a simple Python package, intended for use in Jupyter notebooks, that makes it easy for us to call this engine from a single line of Python code running via a notebook code cell that is not prefixed with the simulator magic.</p>
+<p>The following example demonstrates one such approach. The Python object that manages the speech actions also keeps track of how many messages have been posted and returns a visual count of utterances, alongside a transcript of each utterance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nb_simple_speech</span> <span class="kn">import</span> <span class="n">Speech</span><span class="p">,</span> <span class="n">browser_voicelist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create a speaker…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speaker</span> <span class="o">=</span> <span class="n">Speech</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And listen to them talk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;Hello, how are you?&#39;</span><span class="p">)</span>
+<span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;All well, I hope?&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the following code cell to display a list of available browser voices:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">browser_voicelist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>If no voices are listed your browser may not support the full range of speech commands. Try using a recent version of Google Chrome instead.</em></p>
+<p>Change the voice by setting the desired voice number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speaker</span><span class="o">.</span><span class="n">set_voice</span><span class="p">(</span><span class="mi">49</span><span class="p">)</span>
+<span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;I can change my voice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use the following command to reset the message count in the transcript:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speaker</span><span class="o">.</span><span class="n">reset_count</span><span class="p">()</span>
+<span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;hello again&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-support-for-speaking-rules">
+<h2>5.3.2 Adding support for speaking rules<a class="headerlink" href="#adding-support-for-speaking-rules" title="Permalink to this headline">¶</a></h2>
+<p>The following function will speak aloud the condition and action for some successfully fired rules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span><span class="p">,</span> <span class="n">THEN</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">rules</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&quot;&quot;&quot;Create a simple speaking rule to run with durable rules engine.&quot;&quot;&quot;</span>
+    <span class="n">rule_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;RULE_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule_name</span><span class="p">)</span>
+    
+    <span class="nd">@when_all</span><span class="p">(</span><span class="n">Subject</span><span class="p">(</span><span class="n">IF</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">IF</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">def</span> <span class="nf">rule_name</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Given </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">IF</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">IF</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">Set</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;? : </span><span class="si">{</span><span class="n">THEN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">THEN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;then </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">THEN</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">THEN</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># We don&#39;t use the comment,</span>
+    <span class="c1"># but it helps keep track of what the rule applies to</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="listening-to-rules-as-they-reason">
+<h2>5.3.3 Listening to rules as they reason<a class="headerlink" href="#listening-to-rules-as-they-reason" title="Permalink to this headline">¶</a></h2>
+<p>Now we can listen to the rules as they are fired, as well as seeing a report that shows the order in which they were fired.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RULESET</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">RULESET</span><span class="p">):</span>
+    
+    <span class="c1"># --- UTILITY RULES ---</span>
+    <span class="nd">@when_all</span><span class="p">(</span><span class="o">+</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Fact: </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">object</span><span class="p">))</span>
+
+    <span class="c1"># IF</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;eats&#39;</span><span class="p">,</span> <span class="s1">&#39;flies&#39;</span><span class="p">),</span>
+              <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;lives&#39;</span><span class="p">,</span> <span class="s1">&#39;water&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">))(</span>
+    <span class="c1"># THEN</span>
+    <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">rule_assert_fact</span><span class="p">(</span><span class="n">c</span><span class="p">,</span>
+                               <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span>
+                               <span class="n">pred</span><span class="o">=</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span>
+                               <span class="n">obj</span><span class="o">=</span><span class="s1">&#39;frog&#39;</span> <span class="p">))</span>
+    
+    
+    <span class="c1"># IF</span>
+    <span class="n">when_all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;eats&#39;</span><span class="p">,</span> <span class="s1">&#39;flies&#39;</span><span class="p">),</span>
+              <span class="n">Subject</span><span class="p">(</span><span class="s1">&#39;lives&#39;</span><span class="p">,</span> <span class="s1">&#39;land&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">subject</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">))(</span>
+    <span class="c1"># THEN</span>
+    <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">rule_assert_fact</span><span class="p">(</span><span class="n">c</span><span class="p">,</span>
+                               <span class="n">c</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">subject</span><span class="p">,</span>
+                               <span class="n">pred</span><span class="o">=</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span>
+                               <span class="n">obj</span><span class="o">=</span><span class="s1">&#39;chameleon&#39;</span> <span class="p">))</span>
+
+    
+    
+    <span class="n">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eats&#39;</span><span class="p">,</span> <span class="s1">&#39;worms&#39;</span><span class="p">],</span>
+                               <span class="n">THEN</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">])</span>
+
+    <span class="n">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;frog&#39;</span><span class="p">],</span>
+                               <span class="n">THEN</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">],</span>
+                               <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>  <span class="p">)</span>
+    
+    <span class="n">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;chameleon&#39;</span><span class="p">],</span>
+                               <span class="n">THEN</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;grey&#39;</span><span class="p">],</span>
+                               <span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;grey&#39;</span>  <span class="p">)</span>
+        
+    <span class="n">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">],</span>
+                               <span class="n">THEN</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">])</span>
+
+    <span class="n">create_simple_speaker_rule</span><span class="p">(</span><span class="n">IF</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">],</span>
+                               <span class="n">THEN</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;fly&#39;</span><span class="p">])</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s assert a fact and see (and hear!) how our rule based system reasons about it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">assert_facts</span> -r RULESET
+Kermit : eats : worms
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="more-general-forms-of-rules">
+<h1>5.4 More general forms of rules<a class="headerlink" href="#more-general-forms-of-rules" title="Permalink to this headline">¶</a></h1>
+<p>So far we have focused on reasoning about ‘facts’ in the form of statements with the form <em>subject predicate object</em>.</p>
+<p>But this actually represents a more complicated form of reasoning than the rules engine actually employs because the <em>atomic</em> smallest possible facts are not the <em>subject predicate object</em> triples at all, they are the individual properties: <code class="docutils literal notranslate"><span class="pre">{subject:</span> <span class="pre">SUBJECT}</span></code>, <code class="docutils literal notranslate"><span class="pre">{predicate:</span> <span class="pre">PREDICATE}</span></code> and <code class="docutils literal notranslate"><span class="pre">{object:</span> <span class="pre">OBJECT}</span></code>.</p>
+<div class="section" id="facts-versus-events">
+<h2>5.4.1 Facts versus events<a class="headerlink" href="#facts-versus-events" title="Permalink to this headline">¶</a></h2>
+<p>Facts persist, whereas <em>events</em> are retracted once they have been evaluated. Events are particularly useful in a robotics context, where we may want to respond to repeated sensor events.</p>
+<p>For example, imagine a case where we want to avoid a red line, because red lines indicate danger.</p>
+<p><em>Note that the rules defined in the following ruleset follow the decorator declaration convention. Relax your eyes, and let the IF..THEN.. pattern formed by the syntax of each rule reveal itself to you.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">durable.lang</span> <span class="kn">import</span> <span class="n">post</span>
+
+<span class="n">EVENTRULESET</span> <span class="o">=</span> <span class="n">new_ruleset</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">ruleset</span><span class="p">(</span><span class="n">EVENTRULESET</span><span class="p">):</span>
+    <span class="c1"># this rule will trigger as soon as three events match the condition</span>
+    <span class="nd">@when_all</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">color</span><span class="o">==</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">see_red</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I see red&#39;</span><span class="p">)</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">assert_fact</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;danger&#39;</span><span class="p">})</span>
+        
+    <span class="nd">@when_all</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">color</span><span class="o">!=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">not_red</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I see </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">m</span><span class="o">.</span><span class="n">color</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">assert_fact</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;safe&#39;</span><span class="p">})</span>
+
+    <span class="nd">@when_all</span><span class="p">(</span> <span class="n">m</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">dangerous</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;That is dangerous.&#39;</span><span class="p">)</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">retract_fact</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;danger&#39;</span><span class="p">})</span>
+        
+    <span class="nd">@when_all</span><span class="p">(</span> <span class="n">m</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;safe&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">safe</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="n">speaker</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;That is safe.&#39;</span><span class="p">)</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">retract_fact</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;safe&#39;</span><span class="p">})</span>
+          
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happens when if we detect a red colour?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span><span class="p">(</span><span class="n">EVENTRULESET</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How about if we detect a green colour?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span><span class="p">(</span><span class="n">EVENTRULESET</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we see red, then green quickly after?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post</span><span class="p">(</span><span class="n">EVENTRULESET</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span> <span class="p">});</span>
+<span class="n">post</span><span class="p">(</span><span class="n">EVENTRULESET</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span> <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-might-rules-be-useful-in-a-robot-context">
+<h1>5.5 How might rules be useful in a robot context?<a class="headerlink" href="#how-might-rules-be-useful-in-a-robot-context" title="Permalink to this headline">¶</a></h1>
+<p>Although we can easily create our own <code class="docutils literal notranslate"><span class="pre">if...</span></code> statements in the program downloaded to the simulator and control the robot’s behaviour that way, it may be more convenient to develop, and test, a large and possibly complex rule-based set of behaviours using a framework such as durable-rules.</p>
+<p>This may be achieved by capturing sensor values from the robot in the simulator, passing them back to the notebook’s Python context, passing them as events to the durable-rules ruleset, applying the rules to create some statement of a desired motor action, and then returning this instruction to the simulated robot for execution there.</p>
+<p>We will not pursue this approach further, here. However, you will have an opportunity to control the simulated robot in a similar way using a neural network running in the notebook context, rather than a rule-based system, in a later notebook.</p>
+</div>
+<div class="section" id="summary">
+<h1>5.6 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>The durable-rules framework provides an example of a system that can be used to generate a powerful rule-based reasoning system.</p>
+<p>Reasoning about a set of persistent facts, or ephemeral events, rule-based systems constructed using frameworks such as this can be used to implement a wide range of systems, from fraud-detection systems to systems that implement complex sets of business rules in a corporate context.</p>
+<p>Rule based systems can also be developed to implement actual robot controllers, with rules accepting events based on incoming sensor data as well as higher-level beliefs (that is, ‘facts’) derived from sensor data events and other facts.</p>
+<p><em>This completes the practical activities for this week.</em></p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04. Not quite intelligent robots"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="04.4%20Reasoning%20with%20Eliza.html" title="previous page">4 Reasoning with Eliza</a>
+    <a class='right-next' id="next-link" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html" title="next page">1. Introduction to sensor based control</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

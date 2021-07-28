@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2 Creating your own robot programs &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1 Constants and variables in programs" href="02.3%20General%20programming%20concepts.html" />
+    <link rel="prev" title="1 An introduction to programming robots" href="02.1%20Robot%20programming%20constructs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02. Getting started with robot and Python programming/02.2 Creating your own robot programs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/02. Getting started with robot and Python programming/02.2 Creating your own robot programs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-your-own-programs-getting-into-the-mind-of-the-robot">
+   2.1 Writing your own programs – getting into the ‘mind’ of the robot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-and-editing-your-own-programs">
+   2.2 Creating and editing your own programs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-copying-and-modifying-a-program">
+     2.2.1 Activity – Copying and modifying a program
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#copying-code-using-notebook-keyboard-shortcut-commands">
+     2.2.2 Copying code using notebook keyboard shortcut commands
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deleting-cells">
+     2.2.3 Deleting cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deleting-and-moving-lines-of-code-in-a-code-cell">
+     2.2.4 Deleting and moving lines of code in a code cell
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-comments">
+   2.3 Working with comments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-uncommenting-a-line-of-code">
+     2.3.1 Activity — Uncommenting a line of code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-commenting-out-a-line-of-code">
+     2.3.2 Activity — Commenting out a line of code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-uncommenting-an-invalid-line-of-code">
+     2.3.3 Activity — Uncommenting an invalid line of code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-comments">
+   2.4 Using comments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#block-comments">
+     2.4.1 Block comments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-comments-in-other-ways">
+     2.4.2 Using comments in other ways
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-notebook-markdown-cells-to-narrate-a-program-code-and-program-development">
+   2.5 Using notebook Markdown cells to narrate a program code and program development
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-a-robolab-program">
+   2.6 Saving a RoboLab program
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-your-own-program-from-scratch">
+   2.7 Creating your own program from scratch
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-drawing-a-square">
+     2.7.1 Activity – Drawing a square
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#my-observations">
+       My observations
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-on-a-previously-developed-computer-program">
+   2.8 Building on a previously developed computer program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-extending-your-program-further">
+     2.8.1 Activity — Extending your program further
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       My observations
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.9 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="creating-your-own-robot-programs">
+<h1>2 Creating your own robot programs<a class="headerlink" href="#creating-your-own-robot-programs" title="Permalink to this headline">¶</a></h1>
+<p>Having started to learn how to control the movement of the simulated robot in general in the previous notebook, let’s see if you can get it to perform some more specific actions, such as moving around a square course.</p>
+<p>Work through the instructions carefully and slowly. It is important that you complete each step successfully before moving on to the next.</p>
+<div class="section" id="writing-your-own-programs-getting-into-the-mind-of-the-robot">
+<h2>2.1 Writing your own programs – getting into the ‘mind’ of the robot<a class="headerlink" href="#writing-your-own-programs-getting-into-the-mind-of-the-robot" title="Permalink to this headline">¶</a></h2>
+<p>When trying to understand, or write your own, robot programs, it can be helpful to ‘play robot’. This means that you put yourself in the place of the robot and act out (or at least imagine) what you or the robot would do when executing each statement of the program. If you have the help of a friend, get them to read out the program statements to you one at a time.</p>
+</div>
+<div class="section" id="creating-and-editing-your-own-programs">
+<h2>2.2 Creating and editing your own programs<a class="headerlink" href="#creating-and-editing-your-own-programs" title="Permalink to this headline">¶</a></h2>
+<p>As we’re going to be writing RoboLab programs, we need to set up the lab and load the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you download and run the following program in the simulator, then you will find that it drives the robot forward a short way and then turns on the spot for more than a right angle (ninety degrees, or a quarter of one complete rotation).</p>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">-x</span></code>, <code class="docutils literal notranslate"><span class="pre">-y</span></code> and <code class="docutils literal notranslate"><span class="pre">-a</span></code> switches in the magic used to download the program to the simulator specify the original location and orientation of the robot in the simulator.</em></p>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">-p</span></code> switch enables pen down mode, to leave a trace of where the robot has moved.</em></p>
+<p><em>the <code class="docutils literal notranslate"><span class="pre">-C</span></code> switch clears any previously made traces.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -x 200 -y 700 -a 0 -p -C
+
+# Set the left and right motors
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 2 rotation *of the wheels*
+tank_turn.on_for_rotations(100,
+                           SpeedPercent(75), 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>If you want to be able to refer to a code cell from earlier in the notebook, you may find it useful to pop the cell out into a floating widget by clicking on the cell to select it and then clicking the <code class="docutils literal notranslate"><span class="pre">&gt;_</span></code> toolbar button.</em></p>
+<div class="section" id="activity-copying-and-modifying-a-program">
+<h3>2.2.1 Activity – Copying and modifying a program<a class="headerlink" href="#activity-copying-and-modifying-a-program" title="Permalink to this headline">¶</a></h3>
+<p>We can edit a code cell directly to add additional lines to it, or we may want to retain our original code (for reference) and create a new program based on an earlier one.</p>
+<p>We can grab a copy of a code cell by:</p>
+<ul class="simple">
+<li><p>clicking on it to select it</p></li>
+<li><p>clicking the <em>copy selected cells</em> button in the toolbar</p></li>
+<li><p>clicking the <em>paste cells below</em> toolbar button to place a copy of the cell in a new cell</p></li>
+<li><p>select the new cell and use the arrow keys to move it to a location of your choosing.</p></li>
+</ul>
+<p>Select the code cell above by clicking on it, use the toolbar button to copy it, single-click on this Markdown cell to provide the current location, then click on the toolbar paste button to copy the code cell below this one.</p>
+<p>Modify the program in your newly created cell so that the robot turns through a right angle (or as close as you can get it without spending too much time!).</p>
+<p>To what extent does the turn speed setting affect the controllability of the robot? If you change the speed, do you need to modify the turn time as well?</p>
+<p>Test your code by running the code cell to download the code to the simulator, and then run it in the simulator.</p>
+<p>You may find that using the pen trace helps you see how far the robot has turned.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -x 200 -y 700 -a 0 -p -C
+
+# Set the left and right motors
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(75), 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your own observations here about the extent to which you could accurately control the robot’s turning behaviour, for example, at different turn speeds.</em></p>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal the settings I used.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -x 200 -y 800 -a 0 -p -C
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(15), 1.6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>With these settings, on my computer, I found I could turn the robot through about ninety degrees by setting the number of wheel rotations on the turn step to between 1.5 and 1.7 for a speed of 75%.</p>
+<p>The slower the robot moved, the more controllable it appeared to be. The angle of turn required was independent of the turn speed.</p>
+<p>It was virtually impossible to get it to turn exactly 90 degrees: the simulator does not appear to work at such a fine level of detail</p>
+</div>
+</div>
+<div class="section" id="copying-code-using-notebook-keyboard-shortcut-commands">
+<h3>2.2.2 Copying code using notebook keyboard shortcut commands<a class="headerlink" href="#copying-code-using-notebook-keyboard-shortcut-commands" title="Permalink to this headline">¶</a></h3>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">Esc-C</span></code> keyboard shortcut to copy a selected cell and <code class="docutils literal notranslate"><span class="pre">Esc-V</span></code> to paste a copied cell immediately below the currently selected cell.</p>
+<p>Alternatively, you can highlight and select code <em>within</em> a code cell and then use the keyboard copy and paste commands to copy the code from the original cell, create a new code cell, then paste the copied code into the new code cell.</p>
+</div>
+<div class="section" id="deleting-cells">
+<h3>2.2.3 Deleting cells<a class="headerlink" href="#deleting-cells" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, you may find you want to delete a code or Markdown cell.</p>
+<p>To delete a cell, click on it to select it and then click the scissors (<em>cut selected cells</em>) toolbar button.</p>
+</div>
+<div class="section" id="deleting-and-moving-lines-of-code-in-a-code-cell">
+<h3>2.2.4 Deleting and moving lines of code in a code cell<a class="headerlink" href="#deleting-and-moving-lines-of-code-in-a-code-cell" title="Permalink to this headline">¶</a></h3>
+<p>To delete one of more particular lines of code in a code cell, highlight just that line or lines of code then use the keyboard delete key to delete them.</p>
+<p>To move one or more lines of code in a code cell, first highlight them to select them. Next, cut then using your normal keyboard cut command (for example, <code class="docutils literal notranslate"><span class="pre">Ctrl-X</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd-X</span></code>), place the cursor where you want them to go then and paste them using your normal keyboard paste command (for example, <code class="docutils literal notranslate"><span class="pre">Ctrl-V</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd-V</span></code>).</p>
+</div>
+</div>
+<div class="section" id="working-with-comments">
+<h2>2.3 Working with comments<a class="headerlink" href="#working-with-comments" title="Permalink to this headline">¶</a></h2>
+<p>In a computer program, a <em>comment</em> refers to a line of explanatory text that is not executed when the program runs. As such, it does not have to conform to the syntax of the programming language once it has been identified as a comment.</p>
+<p><em>In the following activities, you may notice that the code cells are <strong>not</strong> prefixed using simulator magic commands.</em></p>
+<p><em>Instead, the Python code contained in the cells is executed in the full Python environment associated with the notebook kernel when the code cell is run.</em></p>
+<p>In a Python program, a comment is identified by prefixing a line of text or a line of code with a <code class="docutils literal notranslate"><span class="pre">#</span></code> (a ‘hash’ or, in US English, a ‘pound’) character.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A Python comment line is prefixed by a # (hash) character</span>
+</pre></div>
+</div>
+<p>If you run the following code cell, the contents of which should look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">#print(&quot;Commented out code lines are not executed.&quot;)</span>
+</pre></div>
+</div>
+<p>you will see that the first commented-out line is ignored, the second line prints out the word <code class="docutils literal notranslate"><span class="pre">Hello</span></code>, and the third line is also ignored.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">#print(&quot;Commented out code lines are not executed.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Uncommenting</em> a line refers to removing the initial character that identifies the line as a comment line.</p>
+<div class="section" id="activity-uncommenting-a-line-of-code">
+<h3>2.3.1 Activity — Uncommenting a line of code<a class="headerlink" href="#activity-uncommenting-a-line-of-code" title="Permalink to this headline">¶</a></h3>
+<p>In the following code cell, <em>un</em>comment the second print statement in the code cell above by deleting the <code class="docutils literal notranslate"><span class="pre">#</span></code> character in front of it, and then run the code cell. You should see that both messages are displayed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">#print(&quot;Commented out code lines are not executed.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a comment line would work in uncommented form as a line of code, rather than being a more general line of human-readable text, then it will often be referred to as being ‘commented out’.</p>
+<p>If you hear the phrase ‘comment out that line’, it thus refers to leaving the line in the program, but prefixing it with the comment character so that the line is not executed when the program is run.</p>
+</div>
+<div class="section" id="activity-commenting-out-a-line-of-code">
+<h3>2.3.2 Activity — Commenting out a line of code<a class="headerlink" href="#activity-commenting-out-a-line-of-code" title="Permalink to this headline">¶</a></h3>
+<p>Comment out the first print statement in the code cell below by prefixing it with the <code class="docutils literal notranslate"><span class="pre">#</span></code> comment character. Run the cell. This time you should only see the second print message being displayed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">#print(&quot;Commented out code lines are not executed.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-uncommenting-an-invalid-line-of-code">
+<h3>2.3.3 Activity — Uncommenting an invalid line of code<a class="headerlink" href="#activity-uncommenting-an-invalid-line-of-code" title="Permalink to this headline">¶</a></h3>
+<p>Uncomment the first (text comment) line in the code cell below and run the cell. This time, an error will be thrown because the first line is <em>not</em> a valid line of Python code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">#print(&quot;Commented out code lines are not executed.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When developing your own programs, or reading other people’s code, you may find broken lines of code have been left in a program, albeit commented out, often with additional commments alongside, as a note the programmer has left to themselves.</p>
+<p>Using print statements to display variable values as a program executes, and then commenting them out when you want to use the program in anger without debugging statements on display, provides a simple tried and tested technique for quickly debugging programs.</p>
+<p>Professional developers use a wide range of tools to help them debug their programs as they create them. These include variable inspectors and breakpoint tools that allow the program execution to be stopped and inspected at various points. Using such tools is beyond the scope of this module.</p>
+</div>
+</div>
+<div class="section" id="using-comments">
+<h2>2.4 Using comments<a class="headerlink" href="#using-comments" title="Permalink to this headline">¶</a></h2>
+<p>Comments are often used to document particular lines of code to clarify or explain their role in a program. It is good practice to keep comments as meaningful as possible.</p>
+<div class="section" id="block-comments">
+<h3>2.4.1 Block comments<a class="headerlink" href="#block-comments" title="Permalink to this headline">¶</a></h3>
+<p>The phrase <em>block comment</em>, or the plural <em>comments</em>, is taken to refer to continuous explanatory comment text that extends over several lines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiple consecutive lines of comments are</span>
+<span class="c1"># often referred to as &#39;block comments&#39;.</span>
+<span class="c1">#</span>
+<span class="c1"># The syntax of some programming languages </span>
+<span class="c1"># allows block comments to be defined simply by</span>
+<span class="c1">#using special character sequences at the start</span>
+<span class="c1"># and end of the comment block.</span>
+<span class="c1">#</span>
+<span class="c1"># In Python, one widely used convention is </span>
+<span class="c1"># to delimit each line as its own comment line.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Multi-line text strings can also be used as a way</span>
+<span class="sd">of &#39;escaping&#39; lines of text so that it is not executed. </span>
+
+<span class="sd">Such strings are identified by using three single</span>
+<span class="sd">(or double) quotes at the start of the text string,</span>
+<span class="sd">and three matching single (or double) quotes at</span>
+<span class="sd">the end of the string.</span>
+
+<span class="sd">If a text string appears as the last item in a</span>
+<span class="sd">Jupyter notebook code cell, it will be returned </span>
+<span class="sd">and displayed as the cell output if the cell is run.</span>
+
+<span class="sd">Run this code cell to see what I mean...</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-comments-in-other-ways">
+<h3>2.4.2 Using comments in other ways<a class="headerlink" href="#using-comments-in-other-ways" title="Permalink to this headline">¶</a></h3>
+<p>As well as being used to annotate a program with helpful information, comments can also be used to provide visual clues to the division of lines or chunks of code. For example, you might use a comment to identify separate sections of a program from each other. This technique can be used to make your programs easier to read.</p>
+</div>
+</div>
+<div class="section" id="using-notebook-markdown-cells-to-narrate-a-program-code-and-program-development">
+<h2>2.5 Using notebook Markdown cells to narrate a program code and program development<a class="headerlink" href="#using-notebook-markdown-cells-to-narrate-a-program-code-and-program-development" title="Permalink to this headline">¶</a></h2>
+<p>As well as commenting code within a code cell, you can also make notes in a Jupyter notebook’s Markdown cells. For example, you might use Markdown cells:</p>
+<ul class="simple">
+<li><p>to describe what you aim to achieve with the code in a following code cell</p></li>
+<li><p>to describe the output produced by running a previous code cell</p></li>
+<li><p>to reflect on the behaviour of code executed in a previous code cell; for example, if it does not work as expected.</p></li>
+</ul>
+<p>Remember that the <em>notebooks are yours</em>, so use them for making your own notes as you work through them.</p>
+<p>You may notice that in some activities, cells are distinguished by a yellow background. These cells are prompts for you to make your own notes.</p>
+<p>For example, you may wish to make some notes in the following cell about why it might be useful to make notes in the notebooks…</p>
+<p><em>Double-click this Markdown cell to edit it. ‘Run’ the cell to render the Markdown as styled HTML text.</em></p>
+<p><em>Add some of your own thoughts here about why it might be useful to add your own notes to the Jupyter notebooks.</em></p>
+<p>If you create your own cells in the notebook, either code cells or Markdown cells, you may want to highlight them with the yellow background so that you can easily find them again. You can do this as follows. Create a new cell by clicking on the <code class="docutils literal notranslate"><span class="pre">+</span></code> button in the notebook toolbar. To change it from the default code cell to a Markdown cell, press <code class="docutils literal notranslate"><span class="pre">Esc-M</span></code> while the cell is selected or use the cell type drop-down list in the notebook toolbar to change the cell type to <em>Markdown</em>. Add some content to it and then, with the cell selected, click on the person (<em>Toggle cell student</em>) button in the toolbar to toggle the yellow background on and off.</p>
+</div>
+<div class="section" id="saving-a-robolab-program">
+<h2>2.6 Saving a RoboLab program<a class="headerlink" href="#saving-a-robolab-program" title="Permalink to this headline">¶</a></h2>
+<p>When writing notebooks it is good practice to save them periodically.</p>
+<p>Notebooks are typically saved with the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> filetype suffix. The name of the file is taken from the name set in the notebook header at the very top of the page. (You can change the notebook name by clicking on the notebook name, which will pop up a <em>Rename Notebook</em> dialogue box:</p>
+<img src="../images/Section_00_01_-_Jupyter_Notebook_rename.png" width=600 />
+<p>When you make changes to a notebook, either by editing a code or Markdown cell, or by running one or more code cells, you may notice that an <code class="docutils literal notranslate"><span class="pre">(unsaved</span> <span class="pre">changes)</span></code> message appears at the top of the notebook:</p>
+<img src="../images/Section_00_01_-_unsaved changes.png" width=600 />
+<p>The notebook will be automatically saved every minute or two. When it is autosaved, the status will change:</p>
+<img src="../images/Section_00_01_-_autosaved.png" width=600 />
+<p>You can also do a ‘hard save’ of your notebook by clicking on the <em>Save and Checkpoint</em> notebook toolbar button or, from the <em>File</em> menu by selecting <em>Save and Checkpoint</em>. You can also save the notebook to a new file name from the <em>File</em> &gt; <em>Save as…</em> menu option. The <em>File</em> &gt; <em>Make a Copy</em> option will create a copy of the current notebook.</p>
+<img src="../images/Section_00_01_-checkpointed.png" width=600 />
+<p>Checkpoints are useful because they not only autosave the notebook to the current file, but they also save a hidden copy of the notebook in a checkpoints directory. The <em>File</em> &gt; <em>Revert to Checkpoint</em> menu option allows you to reload the previously checkpointed notebook. This is handy if you have made some changes to your notebook and those changes have been autosaved, but you find you want to revert to the previous version of the notebook where you made a conscious decision to save and checkpoint it.</p>
+<p>It’s not uncommon to see that you have been working on a notebook for quite some time since consciously saving it!</p>
+<img src="../images/Section_00_01_-_checkpoint.png" width=600 />
+</div>
+<div class="section" id="creating-your-own-program-from-scratch">
+<h2>2.7 Creating your own program from scratch<a class="headerlink" href="#creating-your-own-program-from-scratch" title="Permalink to this headline">¶</a></h2>
+<p>In the first part of this notebook, you learned how to create a simple program to turn the robot through ninety degrees, before exploring in a little more detail how to use some of the notebook’s editing features to create new programs based on previous ones. You also saw how code comments could be used to help structure a program and make it more readable.</p>
+<p>In this section, you will have an opportunity to try to put all those pieces together to create your own program, from scratch.</p>
+<div class="section" id="activity-drawing-a-square">
+<h3>2.7.1 Activity – Drawing a square<a class="headerlink" href="#activity-drawing-a-square" title="Permalink to this headline">¶</a></h3>
+<p>Make a copy of the earlier code cell in which you programmed the robot to draw a straight line then turn through a right angle and paste it below:</p>
+<hr class="docutils" />
+<p>In the new code cell, copy the lines of code to drive the robot forward and turn through ninety degrees, and paste the copied lines of code below the original lines <em>in the same code cell</em>.</p>
+<p>What do you think your program will do now?</p>
+<p>Run the program in the simulator to find out.</p>
+<p><em>Note that copying and pasting code is a tried-and-trusted technique. Do not be averse to reusing any code your have developed previously and that behaves as you expect.</em></p>
+<div class="section" id="my-observations">
+<h4>My observations<a class="headerlink" href="#my-observations" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal my observations.</em></p>
+<p>When I ran my version of the program (see below), the robot drew two sides of a square as an L shape and had made the turn ready to start a third edge.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -x 500 -y 500 -a 0 -p -C
+
+# Draw a square
+
+
+# First edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 1.68)
+
+
+
+# Second edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 1.68)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-on-a-previously-developed-computer-program">
+<h2>2.8 Building on a previously developed computer program<a class="headerlink" href="#building-on-a-previously-developed-computer-program" title="Permalink to this headline">¶</a></h2>
+<p>Trying to build a complex program in one go is a risky strategy. There are many factors that can prevent a program from working correctly, including:</p>
+<ul class="simple">
+<li><p><em>syntax errors</em>: characters in the wrong place, or incorrectly typed package or variable names</p></li>
+<li><p><em>logical errors</em>: for example, if your program uses logical tests, these may not be tested as intended, or the wider logic of the program may be incorrect.</p></li>
+</ul>
+<p>For this reason, it often makes sense to start small and then test increasingly elaborate versions of your program by incrementally adding a line or two of code at a time, checking that things are still working as you’d expect as you add additional steps to your program.</p>
+<div class="section" id="activity-extending-your-program-further">
+<h3>2.8.1 Activity — Extending your program further<a class="headerlink" href="#activity-extending-your-program-further" title="Permalink to this headline">¶</a></h3>
+<p>Building on the program you developed in the previous activity, extend your program further so that the robot draws all four sides of a square.</p>
+<p>(Either modify your program in an earlier code cell, or make a copy of the earlier code cell, paste it here, and work in the newly copied cell: your notebook, your rules…!)</p>
+<p>You may find it convenient to make some notes first about how the new goal (to draw four sides of the square) relates to the previous goal, and what you need to change about your original program so that it performs the new task.</p>
+<p><em>Make your notes here.</em></p>
+<p>When you have created your extended/modified program, download it to the simulator and run it to test that it works.</p>
+<p>Run your program several times, with the pen down and without clearing the trace between runs. Note how any errors compound as you run the program multiple times.</p>
+<p>You may notice that it is easier to ‘tune’ the value of the rotation count required to turn the robot through ninety degrees when the robot turns multiple times, because it is easier to see where, and by how much, the turn undershoots or overshoots the right angle.</p>
+<p>Increasing the length of the side of the square can also help reveal when the angle is slightly off the right angle.</p>
+<p>Also note that you may not be able to get the robot to create a perfect square. (Don’t spend too long trying to achieve this!) You will learn in a later notebook how to get the robot to turn through a right angle in a more accurate and controllable way.</p>
+<p><strong>Reflection</strong>: Having written your program, what do you notice about it? If you want to change the size of the square’s side length, for example, or modify the angle turned by the robot, how easy is it to modify your program?</p>
+<p><em>Record your thoughts and observations about how easy your program is to extend and maintain here.</em></p>
+<div class="section" id="id1">
+<h4>My observations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal my observations.</em></p>
+<p>Here is my program. On multiple runs, it seems to overshoot the turn slightly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span>
+
+# Draw a square
+
+
+# First edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+
+
+
+# Second edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+
+
+# Third edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+
+
+
+# Fourth edge and turn
+
+# Set the left and right motors in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 1)
+
+
+# Set the robot to turn on the spot
+# and run for 1 rotation *of the wheels*
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 0.846)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In terms of the program’s design, I used comments to split up the code for each side, but there does seem to be a lot of repetition. If I want to change the side length or the angle turned, I need to make changes in lots of different places. If I had to draw a regular shape with twenty or thirty sides, things would start to get really unwieldy!</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>2.9 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook you have learned how to make use of the notebooks for creating your own simulated robot control programs and running them in the robot simulator.</p>
+<p>You have seen how sequential programs can be used to instruct a robot to perform a series of tasks, one after the other.</p>
+<p>For simple, rote tasks, that may already be quite useful. But in the approach we have taken so far, there does appear to be a lot of repetition in the code.</p>
+<p>Surely there’s a better way…?</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./02. Getting started with robot and Python programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="02.1%20Robot%20programming%20constructs.html" title="previous page">1 An introduction to programming robots</a>
+    <a class='right-next' id="next-link" href="02.3%20General%20programming%20concepts.html" title="next page">3.1 Constants and variables in programs</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

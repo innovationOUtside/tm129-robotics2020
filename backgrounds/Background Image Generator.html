@@ -1,0 +1,1902 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Background Images for ev3devsim Robot Simulator &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/backgrounds/Background Image Generator.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/backgrounds/Background Image Generator.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blank-image">
+   Blank Image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#greys">
+   Greys
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coloured-bands">
+   Coloured Bands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grey-and-black">
+   Grey and Black
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#square">
+   Square
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loop">
+   Loop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-gradient">
+   Linear Gradient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#radial-gradient-braitenberg">
+   Radial Gradient (Braitenberg)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#line-follower">
+   Line Follower
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zooming-widget">
+     Zooming widget
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sensor-diameter-test">
+   Sensor Diameter Test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-sensor-shapes">
+   Simple sensor shapes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mnist-images">
+   MNIST Images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elevation-and-contours">
+   Elevation and Contours
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-lidar">
+     Raster Lidar
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="generate-background-images-for-ev3devsim-robot-simulator">
+<h1>Generate Background Images for <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Robot Simulator<a class="headerlink" href="#generate-background-images-for-ev3devsim-robot-simulator" title="Permalink to this headline">¶</a></h1>
+<p>Simple routes for generating png files for use in <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> robot simulator.</p>
+<p>Image size: width 2362px, height 1143px.</p>
+<p><em>Could be useful to support interactive canvas drawing of backgrounds too?</em></p>
+<p>In the Docker container, background originals are in <code class="docutils literal notranslate"><span class="pre">/srv/conda/envs/notebook/lib/python3.7/site-packages/nbev3devsim/backgrounds/</span></code>. Find paths via: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">site</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">I</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+
+
+<span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;RGB&#39;</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2362</span><span class="p">,</span> <span class="mi">1143</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is possible to add metadata text to PNG images (<a class="reference external" href="https://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_PNG_files">docs</a>; <a class="reference external" href="https://stackoverflow.com/a/58399815/454773">example</a>), which could provide a way of getting config information into the simulator setup. As well as writing metadata into the image, we also need to extract it (using something like <a class="reference external" href="https://github.com/hometlt/png-metadata">this</a> maybe?).</p>
+<div class="section" id="blank-image">
+<h2>Blank Image<a class="headerlink" href="#blank-image" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_blank.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="greys">
+<h2>Greys<a class="headerlink" href="#greys" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_greys.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">x_init</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">x_width</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">x_gap</span> <span class="o">=</span> <span class="n">x_width</span>
+<span class="n">y_init</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">y_height</span> <span class="o">=</span> <span class="mi">750</span>
+<span class="n">diam</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">fill</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gainsboro&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">]:</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">x_init</span><span class="p">,</span> <span class="n">y_init</span><span class="p">),</span> <span class="p">(</span><span class="n">x_init</span><span class="o">+</span><span class="n">x_width</span><span class="p">,</span> <span class="n">y_init</span><span class="o">+</span><span class="n">y_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+    <span class="n">x_init</span> <span class="o">=</span> <span class="n">x_init</span> <span class="o">+</span> <span class="n">x_width</span> <span class="o">+</span> <span class="n">x_gap</span>
+<span class="c1">#draw.rectangle([(800, 300), (1000, 900)], fill=&#39;gainsboro&#39;)</span>
+<span class="c1">#draw.rectangle([(1200, 300), (1400, 900)], fill=&#39;lightgrey&#39;)</span>
+<span class="c1">#draw.rectangle([(1600, 300), (1800, 900)], fill=&#39;grey&#39;)</span>
+<span class="c1">#draw.rectangle([(2000, 300), (2200, 900)], fill=&#39;black&#39;)</span>
+
+
+<span class="n">y_h</span> <span class="o">=</span> <span class="n">y_init</span> <span class="o">+</span> <span class="n">diam</span>
+<span class="k">for</span> <span class="n">fill</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">]:</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">x_init</span><span class="p">,</span> <span class="n">y_h</span><span class="p">,</span> <span class="n">x_init</span> <span class="o">+</span> <span class="n">diam</span><span class="p">,</span> <span class="n">y_h</span> <span class="o">+</span> <span class="n">diam</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">fill</span><span class="p">)</span>
+    <span class="n">y_h</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">diam</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_6_0.png" src="../_images/Background Image Generator_6_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="coloured-bands">
+<h2>Coloured Bands<a class="headerlink" href="#coloured-bands" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_coloured_bands.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">x_init</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">x_width</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">x_gap</span> <span class="o">=</span> <span class="n">x_width</span>
+<span class="n">y_init</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">y_height</span> <span class="o">=</span> <span class="mi">600</span>
+
+<span class="k">for</span> <span class="n">fill</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span> <span class="s1">&#39;#000000&#39;</span><span class="p">]:</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">x_init</span><span class="p">,</span> <span class="n">y_init</span><span class="p">),</span> <span class="p">(</span><span class="n">x_init</span><span class="o">+</span><span class="n">x_width</span><span class="p">,</span> <span class="n">y_init</span><span class="o">+</span><span class="n">y_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+    <span class="n">x_init</span> <span class="o">=</span> <span class="n">x_init</span> <span class="o">+</span> <span class="n">x_width</span> <span class="o">+</span> <span class="n">x_gap</span>
+    
+<span class="c1">#draw.rectangle([(800, 300), (1000, 900)], fill=&#39;#FF0000&#39;)</span>
+<span class="c1">#draw.rectangle([(1200, 300), (1400, 900)], fill=&#39;#00FF00&#39;)</span>
+<span class="c1">#draw.rectangle([(1600, 300), (1800, 900)], fill=&#39;#0000FF&#39;)</span>
+<span class="c1">#draw.rectangle([(2000, 300), (2200, 900)], fill=&#39;#000000&#39;)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_8_0.png" src="../_images/Background Image Generator_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_rainbow_bands.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">_delta_w</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">_w</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">y_init</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">y_height</span> <span class="o">=</span> <span class="mi">600</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FFFF&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF00FF&#39;</span><span class="p">,</span> <span class="s1">&#39;#FFFF00&#39;</span><span class="p">,</span> <span class="s1">&#39;#000000&#39;</span><span class="p">]:</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_w</span><span class="p">,</span> <span class="n">y_init</span><span class="p">),</span> <span class="p">(</span><span class="n">_w</span><span class="o">+</span><span class="n">_delta_w</span><span class="p">,</span> <span class="n">y_init</span><span class="o">+</span><span class="n">y_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">_w</span> <span class="o">+=</span> <span class="n">_delta_w</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_9_0.png" src="../_images/Background Image Generator_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="grey-and-black">
+<h2>Grey and Black<a class="headerlink" href="#grey-and-black" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_grey_and_black.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">striped_band</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">long_band</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">band_height</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">left_origin</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">band_width</span> <span class="o">=</span> <span class="mi">400</span>
+
+<span class="c1">#Black band</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">left_origin</span><span class="p">,</span> <span class="n">long_band</span><span class="p">),</span> <span class="p">(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">long_band</span> <span class="o">+</span> <span class="n">band_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1">#Light grey / black / grey band</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">left_origin</span><span class="p">,</span> <span class="n">striped_band</span><span class="p">),</span> <span class="p">(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span> <span class="o">+</span> <span class="n">band_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span><span class="p">),</span> <span class="p">(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span> <span class="o">+</span> <span class="n">band_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span><span class="p">),</span> <span class="p">(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span> <span class="o">+</span> <span class="n">band_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;gainsboro&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span><span class="p">),</span> <span class="p">(</span><span class="n">left_origin</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">band_width</span><span class="p">,</span> <span class="n">striped_band</span> <span class="o">+</span> <span class="n">band_height</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_11_0.png" src="../_images/Background Image Generator_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="square">
+<h2>Square<a class="headerlink" href="#square" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_square.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">800</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+  
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">1300</span><span class="p">,</span> <span class="mi">1100</span><span class="p">)],</span> <span class="n">outline</span> <span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> 
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_13_0.png" src="../_images/Background Image Generator_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="loop">
+<h2>Loop<a class="headerlink" href="#loop" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://stackoverflow.com/questions/7787375/python-imaging-library-pil-drawing-rounded-rectangle-with-gradient/50145023#50145023</span>
+<span class="c1">#from PIL.ImageDraw import ImageDraw</span>
+
+<span class="k">def</span> <span class="nf">rounded_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">corner_radius</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">upper_left_point</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">bottom_right_point</span> <span class="o">=</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">upper_left_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">upper_left_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">upper_left_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span><span class="p">,</span> <span class="n">upper_left_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="p">(</span><span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span><span class="p">,</span> <span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">],</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pieslice</span><span class="p">([</span><span class="n">upper_left_point</span><span class="p">,</span> <span class="p">(</span><span class="n">upper_left_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">upper_left_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)],</span>
+        <span class="mi">180</span><span class="p">,</span>
+        <span class="mi">270</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pieslice</span><span class="p">([(</span><span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span> <span class="n">bottom_right_point</span><span class="p">],</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">90</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pieslice</span><span class="p">([(</span><span class="n">upper_left_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">upper_left_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+        <span class="mi">90</span><span class="p">,</span>
+        <span class="mi">180</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pieslice</span><span class="p">([(</span><span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">upper_left_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">bottom_right_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">upper_left_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">corner_radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)],</span>
+        <span class="mi">270</span><span class="p">,</span>
+        <span class="mi">360</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+        <span class="n">outline</span><span class="o">=</span><span class="n">outline</span>
+    <span class="p">)</span>
+
+
+<span class="n">ImageDraw</span><span class="o">.</span><span class="n">ImageDraw</span><span class="o">.</span><span class="n">rounded_rectangle</span> <span class="o">=</span> <span class="n">rounded_rectangle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_loop.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rounded_rectangle</span><span class="p">([(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)],</span> <span class="mi">80</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rounded_rectangle</span><span class="p">([(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="p">(</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">900</span><span class="p">)],</span> <span class="mi">50</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_16_0.png" src="../_images/Background Image Generator_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_two_shapes.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rounded_rectangle</span><span class="p">([(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">900</span><span class="p">)],</span> <span class="mi">80</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rounded_rectangle</span><span class="p">([(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">800</span><span class="p">)],</span> <span class="mi">50</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+
+<span class="n">outline</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># line thickness</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">1700</span><span class="p">,</span> <span class="mi">900</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="mi">1200</span><span class="o">+</span><span class="n">outline</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">outline</span><span class="p">,</span> <span class="mi">1700</span><span class="o">-</span><span class="n">outline</span><span class="p">,</span> <span class="mi">900</span><span class="o">-</span><span class="n">outline</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_17_0.png" src="../_images/Background Image Generator_17_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="linear-gradient">
+<h2>Linear Gradient<a class="headerlink" href="#linear-gradient" title="Permalink to this headline">¶</a></h2>
+<p>A graduated grey background that is black at the bottom and white at the top.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_linear_grey.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="c1"># White edge</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+<span class="c1">#Black edge</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+
+<span class="n">_scaler</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">/</span><span class="mi">256</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">100</span><span class="p">)):</span>
+    <span class="n">_y</span> <span class="o">=</span> <span class="mi">255</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="mi">255</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">200</span><span class="p">))</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="n">_y</span><span class="p">,</span><span class="n">_y</span><span class="p">,</span><span class="n">_y</span><span class="p">))</span>
+
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_19_0.png" src="../_images/Background Image Generator_19_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="radial-gradient-braitenberg">
+<h2>Radial Gradient (Braitenberg)<a class="headerlink" href="#radial-gradient-braitenberg" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+
+<span class="n">innerBlue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span> <span class="c1">#Color at the center</span>
+<span class="n">outerBlue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span> <span class="c1">#Color at the corners</span>
+<span class="n">blues</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;_backgrounds/_radial_blue.png&#39;</span><span class="p">,</span> <span class="n">innerBlue</span><span class="p">,</span> <span class="n">outerBlue</span><span class="p">)</span>
+
+<span class="n">innerRed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span> <span class="c1">#Color at the center</span>
+<span class="n">outerRed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1">#Color at the corners</span>
+<span class="n">reds</span> <span class="o">=</span> <span class="p">(</span><span class="n">_backgrounds</span><span class="o">/</span><span class="s1">&#39;_radial_red.png&#39;</span><span class="p">,</span> <span class="n">innerRed</span><span class="p">,</span> <span class="n">outerRed</span><span class="p">)</span>
+
+<span class="n">innerGrey</span> <span class="o">=</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]</span> <span class="c1">#Color at the center</span>
+<span class="n">outerGrey</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1">#Color at the corners</span>
+<span class="n">greys</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;_backgrounds/_radial_grey.png&#39;</span><span class="p">,</span> <span class="n">innerGrey</span><span class="p">,</span> <span class="n">outerGrey</span><span class="p">)</span>
+
+
+<span class="c1">#https://stackoverflow.com/a/30669765/454773</span>
+<span class="k">def</span> <span class="nf">radial</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">radial_config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a radial gradient image.&quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">innerColor</span><span class="p">,</span> <span class="n">outerColor</span><span class="p">)</span> <span class="o">=</span> <span class="n">radial_config</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+
+            <span class="c1">#Find the distance to the center</span>
+            <span class="n">distanceToCenter</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="c1">#Make it on a scale from 0 to 1</span>
+            <span class="n">distanceToCenter</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">distanceToCenter</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+            <span class="c1">#Make non-linear</span>
+            <span class="c1">#distanceToCenter = math.sqrt(distanceToCenter)</span>
+            <span class="n">distanceToCenter</span> <span class="o">=</span> <span class="n">distanceToCenter</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+            
+            <span class="c1">#Calculate r, g, and b values</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">outerColor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">distanceToCenter</span> <span class="o">+</span> <span class="n">innerColor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distanceToCenter</span><span class="p">)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">outerColor</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">distanceToCenter</span> <span class="o">+</span> <span class="n">innerColor</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distanceToCenter</span><span class="p">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">outerColor</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">distanceToCenter</span> <span class="o">+</span> <span class="n">innerColor</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">distanceToCenter</span><span class="p">)</span>
+
+            <span class="c1">#Place the pixel        </span>
+            <span class="n">img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span> 
+    
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="n">img</span>
+
+<span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">radial</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">blues</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">radial</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">reds</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">radial</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">greys</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_21_0.png" src="../_images/Background Image Generator_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="line-follower">
+<h2>Line Follower<a class="headerlink" href="#line-follower" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_line_follower_track.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span>  <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+<span class="c1">#Size of Bounding Box for ellipse</span>
+<span class="n">eX</span><span class="p">,</span> <span class="n">eY</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">400</span>
+
+<span class="n">inset</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">outerBox</span> <span class="o">=</span>  <span class="p">(</span><span class="n">inset</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">eY</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">inset</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">eY</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">exitBox1</span> <span class="o">=</span> <span class="p">(</span><span class="n">inset</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">4000</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">50</span> <span class="p">)</span>
+<span class="n">exitBox2</span> <span class="o">=</span> <span class="p">(</span><span class="n">inset</span> <span class="o">-</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">4000</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span> <span class="p">)</span>
+
+<span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">outerBox</span><span class="p">,</span> <span class="n">outline</span> <span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="n">inset</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">40</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">49</span><span class="p">,</span> <span class="n">inset</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">22</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span>
+
+
+<span class="n">_ly</span> <span class="o">=</span> <span class="o">-</span><span class="mi">22</span>
+<span class="n">_lx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">22</span>
+<span class="n">_lh</span> <span class="o">=</span> <span class="mi">95</span>
+<span class="n">_lo</span> <span class="o">=</span> <span class="o">-</span><span class="mi">75</span>
+
+<span class="c1"># Arc: bounding box, start angle, end angle</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">((</span><span class="n">inset</span> <span class="o">+</span> <span class="n">_lx</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">_ly</span><span class="p">,</span>
+          <span class="n">inset</span> <span class="o">+</span> <span class="n">_lx</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">_ly</span> <span class="o">+</span> <span class="n">_lh</span> <span class="p">),</span>
+         <span class="n">start</span> <span class="o">=</span> <span class="mi">180</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">270</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">((</span><span class="n">inset</span> <span class="o">+</span> <span class="n">_lx</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">_ly</span> <span class="o">+</span> <span class="n">_lo</span><span class="p">,</span>
+          <span class="n">inset</span> <span class="o">+</span> <span class="n">_lx</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">_ly</span> <span class="o">+</span> <span class="n">_lh</span> <span class="o">+</span> <span class="n">_lo</span><span class="p">),</span>
+         <span class="n">start</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">180</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># This needs fixing properly / relatively; maybe even some sums!</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="mi">1700</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1700</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">200</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span> 
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="n">inset</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span><span class="mi">15</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1900</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span> 
+<span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">((</span><span class="mi">1900</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1900</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">200</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span> 
+ 
+
+<span class="c1">#draw.rectangle([(800, 300), (1000, 900)], fill=&#39;gainsboro&#39;)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_23_0.png" src="../_images/Background Image Generator_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install noisify
+<span class="kn">from</span> <span class="nn">noisify.recipes</span> <span class="kn">import</span> <span class="n">human_error</span><span class="p">,</span> <span class="n">machine_error</span>
+<span class="n">combined_noise</span> <span class="o">=</span> <span class="n">machine_error</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="n">human_error</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combined_noise</span><span class="p">(</span><span class="n">img</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting noisify
+  Downloading noisify-1.0-py3-none-any.whl (28 kB)
+Installing collected packages: noisify
+Successfully installed noisify-1.0
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<img alt="../_images/Background Image Generator_24_1.png" src="../_images/Background Image Generator_24_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageFilter</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">img</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">BLUR</span><span class="p">)</span> <span class="c1"># BLUR, SMOOTH</span>
+
+<span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_25_0.png" src="../_images/Background Image Generator_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://stackoverflow.com/a/59991417/454773</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">add_salt_and_pepper</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+
+    <span class="c1"># add salt</span>
+    <span class="n">nb_salt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">amount</span> <span class="o">*</span> <span class="n">output</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nb_salt</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">]</span>
+    <span class="n">output</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">coords</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># add pepper</span>
+    <span class="n">nb_pepper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">amount</span><span class="o">*</span> <span class="n">output</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nb_pepper</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">]</span>
+    <span class="n">output</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">coords</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">add_salt_and_pepper</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_26_0.png" src="../_images/Background Image Generator_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noisy_image</span> <span class="o">=</span> <span class="n">add_salt_and_pepper</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">noisy_image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;_backgrounds/_noisy</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">noisy_image</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_27_0.png" src="../_images/Background Image Generator_27_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cropped image </span>
+<span class="n">border</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">start_x</span> <span class="o">=</span> <span class="n">inset</span><span class="o">+</span><span class="mi">50</span>
+<span class="n">im1</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">start_x</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span> <span class="n">start_x</span> <span class="o">+</span> <span class="n">eX</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">border</span><span class="p">))</span> 
+<span class="n">resize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> 
+<span class="n">im1</span> <span class="o">=</span> <span class="n">im1</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">resize</span><span class="p">)</span>  
+<span class="n">im1</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_28_0.png" src="../_images/Background Image Generator_28_0.png" />
+</div>
+</div>
+<div class="section" id="zooming-widget">
+<h3>Zooming widget<a class="headerlink" href="#zooming-widget" title="Permalink to this headline">¶</a></h3>
+<p>May be better to do this in js? eg this looks nice, but how accessible is it? <a class="reference external" href="https://mark-rolich.github.io/Magnifier.js/">https://mark-rolich.github.io/Magnifier.js/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+    
+<span class="nd">@interact</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">border</span><span class="p">),</span>
+          <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">border</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">border</span><span class="p">),</span>
+          <span class="n">border</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;5px&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;20px&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;30px&#39;</span><span class="p">,</span><span class="mi">30</span><span class="p">)],</span>
+          <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">image_zoom</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="s2">&quot;10px&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Zoom into part of image.&quot;&quot;&quot;</span>
+
+    <span class="n">im1</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span>
+                    <span class="n">x</span> <span class="o">+</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">border</span><span class="p">))</span> 
+    <span class="n">resize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> 
+    <span class="n">im1</span> <span class="o">=</span> <span class="n">im1</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">resize</span><span class="p">)</span>
+    <span class="n">im2</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
+  
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">x</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="n">border</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">border</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">border</span><span class="p">)],</span>
+                   <span class="n">outline</span> <span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+
+    <span class="n">display</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5b81886ba58b483db94c23bd48abbb08", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<p>### Filtering</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">MedianFilter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_33_0.png" src="../_images/Background Image Generator_33_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sensor-diameter-test">
+<h2>Sensor Diameter Test<a class="headerlink" href="#sensor-diameter-test" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_sensor_diameter_test.png&#39;</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">_band_thickness</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">_band_length</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">_band_gap</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">_band_gap_h</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">_xh0</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">_xh</span> <span class="o">=</span> <span class="n">_xh0</span>
+<span class="n">_band_x0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">_band_y0</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">_x</span> <span class="o">=</span> <span class="n">_band_x0</span>
+<span class="n">_y</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">bands</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot a series of bands.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">_band_y0</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">_band_gap_h</span>
+        <span class="n">_xh</span> <span class="o">=</span> <span class="n">_xh0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">_band_gap_h</span> <span class="o">-</span> <span class="n">_band_thickness</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span>
+                        <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_band_length</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">_band_thickness</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="n">colour</span><span class="p">)</span>
+        
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_xh</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">_xh</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">_band_thickness</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span> <span class="n">fill</span><span class="o">=</span><span class="n">colour</span><span class="p">)</span>
+        
+        <span class="n">_xh</span> <span class="o">=</span> <span class="n">_xh</span> <span class="o">+</span> <span class="n">_band_gap_h</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_xh</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">_xh</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">_band_thickness</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span> <span class="n">fill</span><span class="o">=</span><span class="n">colour</span><span class="p">)</span>
+
+<span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">_xh</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">_band_y0</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">_xh</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">_band_y0</span><span class="o">+</span><span class="mi">5</span><span class="p">),</span> <span class="n">outline</span> <span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">_xh</span><span class="o">+</span><span class="mi">35</span><span class="p">,</span> <span class="n">_band_y0</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">_xh</span><span class="o">+</span><span class="mi">45</span><span class="p">,</span> <span class="n">_band_y0</span><span class="o">+</span><span class="mi">5</span><span class="p">),</span> <span class="n">outline</span> <span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="n">bands</span><span class="p">()</span>
+
+<span class="n">_band_y0</span> <span class="o">=</span> <span class="n">_y</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">_band_gap</span>
+<span class="n">_xh0</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">bands</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+    
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_36_0.png" src="../_images/Background Image Generator_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="simple-sensor-shapes">
+<h2>Simple sensor shapes<a class="headerlink" href="#simple-sensor-shapes" title="Permalink to this headline">¶</a></h2>
+<p>Test track that contains some simple shapes along a line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_simple_shapes.png&#39;</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">_side</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">_x_delta</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">_y_delta</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="n">_centre_offset_x</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">_centre_offset_y</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="k">def</span> <span class="nf">_polygon_square</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">mod</span><span class="o">=-</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">_side</span> <span class="o">=</span> <span class="n">_side</span> <span class="o">+</span> <span class="n">mod</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span> <span class="o">-</span> <span class="n">mod</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span> <span class="o">-</span> <span class="n">mod</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_circle</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">mod</span><span class="o">=-</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">_side</span> <span class="o">=</span> <span class="n">_side</span> <span class="o">+</span> <span class="n">mod</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span> <span class="o">-</span> <span class="n">mod</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span> <span class="o">-</span> <span class="n">mod</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">ellipse</span><span class="p">((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_equitriangle1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_equitriangle2</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_equitriangle3</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_y</span><span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_equitriangle4</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">_y</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">polygon_narrow_rectangle</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="o">/</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_side</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span><span class="n">_side</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">polygon_diamond1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">_offset</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(((</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">),</span> <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_offset</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span><span class="p">),</span>  <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_offset</span><span class="p">,</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">_x</span> <span class="o">+</span> <span class="n">_offset</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_y</span> <span class="p">)),</span> <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">_enc_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">_enc_y</span> <span class="o">=</span> <span class="mi">33</span><span class="p">):</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_centre_offset_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_centre_offset_y</span>
+    <span class="n">_x</span> <span class="o">+=</span> <span class="n">_enc_x</span>
+    <span class="n">_y</span> <span class="o">+=</span> <span class="n">_enc_y</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">),</span> <span class="p">(</span><span class="n">_x</span><span class="o">+</span><span class="mi">18</span><span class="p">,</span> <span class="n">_y</span><span class="o">+</span><span class="mi">24</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">))</span>
+
+    
+<span class="n">cmap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;square&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;equitri1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;equitri2&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;equitri3&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;equitri4&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;diamond1&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">cmap</span><span class="p">:</span>
+    <span class="n">cmap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cmap</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="mi">255</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">cmap</span><span class="p">))</span>
+
+<span class="n">_x</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">_y</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1">#Square</span>
+<span class="n">_polygon_square</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;square&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">_x += _x_delta</span>
+<span class="sd">_y += _y_delta</span>
+<span class="sd">#Circle</span>
+<span class="sd">polygon_circle(_x, _y, _side, draw)</span>
+<span class="sd">print(_x, _y, &#39;circle&#39;)</span>
+<span class="sd">encoder(_x, _y, cmap[&#39;circle&#39;] )</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># Equilateral triangle 1</span>
+<span class="n">polygon_equitriangle1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;equitri1&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;equitri1&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># Equilateral triangle 2</span>
+<span class="n">polygon_equitriangle2</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;equitri2&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;equitri2&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># Equilateral triangle 3</span>
+<span class="n">polygon_equitriangle3</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;equitri3&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;equitri3&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># Equilateral triangle 4</span>
+<span class="n">polygon_equitriangle4</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;equitri4&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;equitri4&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">_x += _x_delta</span>
+<span class="sd">_y += _y_delta</span>
+<span class="sd">#Narrow rectangle</span>
+<span class="sd">polygon_narrow_rectangle(_x, _y, _side, draw)</span>
+<span class="sd">print(_x, _y, &#39;rect&#39;)</span>
+<span class="sd">encoder(_x, _y, cmap[&#39;rect&#39;] )</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># diamond 1</span>
+<span class="n">polygon_diamond1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="s1">&#39;diamond1&#39;</span><span class="p">)</span>
+<span class="n">encoder</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">cmap</span><span class="p">[</span><span class="s1">&#39;diamond1&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+
+<span class="c1">#Test track</span>
+<span class="n">_x</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">_y</span> <span class="o">=</span> <span class="mi">400</span>
+
+<span class="c1"># Equilateral triangle 1</span>
+<span class="n">polygon_equitriangle1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+
+<span class="c1"># diamond 1</span>
+<span class="n">polygon_diamond1</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+
+<span class="c1">#Square</span>
+<span class="n">_polygon_square</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+
+
+<span class="n">_x</span> <span class="o">+=</span> <span class="n">_x_delta</span>
+<span class="n">_y</span> <span class="o">+=</span> <span class="n">_y_delta</span>
+<span class="c1"># Equilateral triangle 2</span>
+<span class="n">polygon_equitriangle2</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">draw</span><span class="p">)</span>
+
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 200 square
+280 200 equitri1
+360 200 equitri2
+440 200 equitri3
+520 200 equitri4
+600 200 diamond1
+</pre></div>
+</div>
+<img alt="../_images/Background Image Generator_38_1.png" src="../_images/Background Image Generator_38_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sides</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">_side</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">_x</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">_y</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;_backgrounds/_regular_shapes.png&#39;</span>
+
+
+<span class="c1"># The side lengths are not right</span>
+<span class="c1"># Ideally want to fix the origin in the centre then have all polygons inside same radius circumcircle</span>
+<span class="c1"># Also fix rotation angle</span>
+<span class="k">def</span> <span class="nf">regular_polygon</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Draw a regular polygon&quot;&quot;&quot;</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">sides</span> <span class="p">))</span> <span class="o">*</span> <span class="n">_side</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">_y</span> <span class="o">=</span> <span class="n">_y</span> <span class="o">+</span> <span class="n">_side</span>
+    
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sides</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">sides</span>
+        <span class="n">coords</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">_x</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">_y</span> <span class="o">-</span> <span class="n">r</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">img</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="n">draw</span><span class="o">.</span><span class="n">polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">img</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">regular_polygon</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">regular_polygon</span><span class="p">(</span><span class="n">sides</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">_side</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">regular_polygon</span><span class="p">(</span><span class="n">sides</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">_side</span><span class="p">,</span> <span class="n">_x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">_side</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>173.20508075688772
+141.42135623730948
+117.55705045849463
+</pre></div>
+</div>
+<img alt="../_images/Background Image Generator_39_1.png" src="../_images/Background Image Generator_39_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a and b incoming: </span><span class="si">{</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a and b outgoing: </span><span class="si">{</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a and b incoming: (0, 1)
+a and b outgoing: (1, 1)
+a and b incoming: (1, 1)
+a and b outgoing: (1, 2)
+a and b incoming: (1, 2)
+a and b outgoing: (2, 3)
+a and b incoming: (2, 3)
+a and b outgoing: (3, 5)
+a and b incoming: (3, 5)
+a and b outgoing: (5, 8)
+a and b incoming: (5, 8)
+a and b outgoing: (8, 13)
+a and b incoming: (8, 13)
+a and b outgoing: (13, 21)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mnist-images">
+<h2>MNIST Images<a class="headerlink" href="#mnist-images" title="Permalink to this headline">¶</a></h2>
+<p>To fit in a 14 x 14 grid</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Background Image Generator.ipynb&#39;   jupytergraffiti_data
+ _backgrounds			     Kristi.ttf
+ db.sqlite3			     mnist_batch_0_labels.txt
+ db.sqlite3-shm			     mnist_batch_0.png
+ db.sqlite3-wal			     out.png
+&#39;Flowchart Generator.ipynb&#39;	     TreasureMap.ipynb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">I</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+
+<span class="n">filename</span><span class="o">=</span><span class="s1">&#39;_backgrounds/_number_sheet.png&#39;</span>
+
+<span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;RGB&#39;</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2362</span><span class="p">,</span> <span class="mi">1143</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1">#Load in the image data file</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mnist_batch_0.png&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="c1"># The labels.txt file contains 3000 digit labels in the same order as the image data file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mnist_batch_0_labels.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># If we convert the image data to a one dimensional array (i.e. a list of values)</span>
+<span class="c1"># the first 784 elements will represent the contents of the first row</span>
+<span class="c1"># That is, a linear representation of the first 28 x 28 pixel sized handwritten digit image</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">getdata</span><span class="p">())[:</span><span class="mi">784</span><span class="p">])</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Turn the image data into a multidimensional array</span>
+<span class="c1"># of 3000 separate 28 x 28 arrays</span>
+<span class="n">images_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+
+<span class="c1">#Get the third item (index value 2), that is, the third 28 x 28 image data array</span>
+<span class="n">image_array</span> <span class="o">=</span> <span class="n">images_array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># And convert it to an image</span>
+<span class="n">image_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image_array</span><span class="p">)</span>
+
+<span class="c1"># Then display it</span>
+<span class="n">image_image</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">img_cnt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images_array</span><span class="p">)</span>
+
+
+<span class="n">_x_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>
+<span class="n">_y_offset</span> <span class="o">=</span> <span class="mi">6</span>
+
+
+<span class="k">def</span> <span class="nf">coded_square</span><span class="p">(</span><span class="n">draw</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a simple coded square in the centre&quot;&quot;&quot;</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([</span><span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([</span><span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([</span><span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([</span><span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">offset</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="mi">255</span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="mi">255</span><span class="o">-</span><span class="n">h</span><span class="p">))</span>              
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+        <span class="n">_img</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">img_cnt</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">images_array</span><span class="p">[</span><span class="n">_img</span><span class="p">]</span>
+        <span class="n">img_N</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span>
+        <span class="n">img_Ns</span> <span class="o">=</span> <span class="n">img_N</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">img_Ns</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="o">+</span><span class="n">_x_offset</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="o">+</span><span class="n">_y_offset</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+        <span class="c1">#draw.text((100+i*100, 40+j*100), str(z[_img]), fill=(0,0,0))</span>
+        
+        <span class="c1"># We can draw a square with grey scale values that encode the training set value</span>
+        <span class="n">_x</span><span class="p">,</span> <span class="n">_y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">40</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">_img</span><span class="p">]</span> <span class="o">*</span> <span class="mi">25</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">([(</span><span class="n">_x</span><span class="o">+</span><span class="mi">38</span><span class="o">+</span><span class="n">_x_offset</span><span class="p">,</span> <span class="n">_y</span><span class="o">+</span><span class="mi">7</span><span class="o">+</span><span class="n">_y_offset</span><span class="p">),</span>
+                        <span class="p">(</span><span class="n">_x</span><span class="o">+</span><span class="mi">58</span><span class="o">+</span><span class="n">_x_offset</span><span class="p">,</span> <span class="n">_y</span><span class="o">+</span><span class="mi">30</span><span class="o">+</span><span class="n">_y_offset</span><span class="p">)],</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">))</span>
+
+        <span class="c1">#coded_square(draw, _x+38+_x_offset, _y+7+_y_offset, h)</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">I</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18, 18, 18, 126, 136, 175, 26, 166, 255, 247, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 36, 94, 154, 170, 253, 253, 253, 253, 253, 225, 172, 253, 242, 195, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49, 238, 253, 253, 253, 253, 253, 253, 253, 253, 251, 93, 82, 82, 56, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 219, 253, 253, 253, 253, 253, 198, 182, 247, 241, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 156, 107, 253, 253, 205, 11, 0, 43, 154, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1, 154, 253, 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 139, 253, 190, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 190, 253, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 241, 225, 160, 108, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 240, 253, 253, 119, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 186, 253, 253, 150, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 93, 252, 253, 187, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 249, 253, 249, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 130, 183, 253, 253, 207, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 148, 229, 253, 253, 253, 250, 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 114, 221, 253, 253, 253, 253, 201, 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 66, 213, 253, 253, 253, 253, 198, 81, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 171, 219, 253, 253, 253, 253, 195, 80, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55, 172, 226, 253, 253, 253, 253, 244, 133, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 136, 253, 253, 253, 212, 135, 132, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</pre></div>
+</div>
+<img alt="../_images/Background Image Generator_43_1.png" src="../_images/Background Image Generator_43_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="elevation-and-contours">
+<h2>Elevation and Contours<a class="headerlink" href="#elevation-and-contours" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install elevation</span>
+<span class="c1">#!conda install -y  -c conda-forge gdal</span>
+<span class="c1">#https://www.earthdatascience.org/tutorials/visualize-digital-elevation-model-contours-matplotlib/</span>
+
+
+<span class="c1">#Maybe get topographical data for other planets, eg via recipe in:</span>
+<span class="c1"># https://github.com/eleanorlutz/topography_atlas_of_space</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">elevation</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!wget https://planetarymaps.usgs.gov/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># GIven lat long and bounding box, find other coords</span>
+<span class="c1">#https://stackoverflow.com/a/238558/454773</span>
+<span class="c1"># degrees to radians</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">deg2rad</span><span class="p">(</span><span class="n">degrees</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">degrees</span><span class="o">/</span><span class="mf">180.0</span>
+<span class="c1"># radians to degrees</span>
+<span class="k">def</span> <span class="nf">rad2deg</span><span class="p">(</span><span class="n">radians</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">180.0</span><span class="o">*</span><span class="n">radians</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># Semi-axes of WGS-84 geoidal reference</span>
+<span class="n">WGS84_a</span> <span class="o">=</span> <span class="mf">6378137.0</span>  <span class="c1"># Major semiaxis [m]</span>
+<span class="n">WGS84_b</span> <span class="o">=</span> <span class="mf">6356752.3</span>  <span class="c1"># Minor semiaxis [m]</span>
+
+<span class="c1"># Earth radius at a given latitude, according to the WGS-84 ellipsoid [m]</span>
+<span class="k">def</span> <span class="nf">WGS84EarthRadius</span><span class="p">(</span><span class="n">lat</span><span class="p">):</span>
+    <span class="c1"># http://en.wikipedia.org/wiki/Earth_radius</span>
+    <span class="n">An</span> <span class="o">=</span> <span class="n">WGS84_a</span><span class="o">*</span><span class="n">WGS84_a</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="n">Bn</span> <span class="o">=</span> <span class="n">WGS84_b</span><span class="o">*</span><span class="n">WGS84_b</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="n">Ad</span> <span class="o">=</span> <span class="n">WGS84_a</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="n">Bd</span> <span class="o">=</span> <span class="n">WGS84_b</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="n">An</span><span class="o">*</span><span class="n">An</span> <span class="o">+</span> <span class="n">Bn</span><span class="o">*</span><span class="n">Bn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Ad</span><span class="o">*</span><span class="n">Ad</span> <span class="o">+</span> <span class="n">Bd</span><span class="o">*</span><span class="n">Bd</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># Bounding box surrounding the point at given coordinates,</span>
+<span class="c1"># assuming local approximation of Earth surface as a sphere</span>
+<span class="c1"># of radius given by WGS84</span>
+<span class="k">def</span> <span class="nf">boundingBox</span><span class="p">(</span><span class="n">latitudeInDegrees</span><span class="p">,</span> <span class="n">longitudeInDegrees</span><span class="p">,</span> <span class="n">halfSideInM_x</span><span class="p">,</span> <span class="n">halfSideInM_y</span><span class="p">):</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">deg2rad</span><span class="p">(</span><span class="n">latitudeInDegrees</span><span class="p">)</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">deg2rad</span><span class="p">(</span><span class="n">longitudeInDegrees</span><span class="p">)</span>
+
+    <span class="c1"># Radius of Earth at given latitude</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">WGS84EarthRadius</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="c1"># Radius of the parallel at given latitude</span>
+    <span class="n">pradius</span> <span class="o">=</span> <span class="n">radius</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+
+    <span class="n">latMin</span> <span class="o">=</span> <span class="n">lat</span> <span class="o">-</span> <span class="n">halfSideInM_y</span><span class="o">/</span><span class="n">radius</span>
+    <span class="n">latMax</span> <span class="o">=</span> <span class="n">lat</span> <span class="o">+</span> <span class="n">halfSideInM_y</span><span class="o">/</span><span class="n">radius</span>
+    <span class="n">lonMin</span> <span class="o">=</span> <span class="n">lon</span> <span class="o">-</span> <span class="n">halfSideInM_x</span><span class="o">/</span><span class="n">pradius</span>
+    <span class="n">lonMax</span> <span class="o">=</span> <span class="n">lon</span> <span class="o">+</span> <span class="n">halfSideInM_x</span><span class="o">/</span><span class="n">pradius</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">latMin</span><span class="p">),</span> <span class="n">rad2deg</span><span class="p">(</span><span class="n">lonMin</span><span class="p">),</span> <span class="n">rad2deg</span><span class="p">(</span><span class="n">latMax</span><span class="p">),</span> <span class="n">rad2deg</span><span class="p">(</span><span class="n">lonMax</span><span class="p">))</span>
+
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">boundingBox</span><span class="p">(</span><span class="mf">40.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">121.5</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">cc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">cc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;-121.77943112487553 40.29435572326941 -121.22056887512448 40.70564427673059&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data from NASA&#39;s Shuttle Radar Topography Mission </span>
+<span class="c1"># latitude 41.15 and longitude -122.6, near Mt. Shasta in North California</span>
+
+
+<span class="c1">#!eio clip -o Shasta-30m-DEM.tif --bounds -123 41 -122 42 </span>
+<span class="o">!</span>eio clip -o Shasta-30m-DEM.tif --bounds <span class="nv">$cc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>make: Entering directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+make: Nothing to be done for &#39;download&#39;.
+make: Leaving directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+make: Entering directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+make: Nothing to be done for &#39;all&#39;.
+make: Leaving directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+make: Entering directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+cp SRTM1.vrt SRTM1.0a65a2716e3c422da8174fb86a34ea65.vrt
+make: Leaving directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+make: Entering directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+gdal_translate -q -co TILED=YES -co COMPRESS=DEFLATE -co ZLEVEL=9 -co PREDICTOR=2 -projwin -121.77943112487553 40.70564427673059 -121.22056887512448 40.29435572326941 SRTM1.0a65a2716e3c422da8174fb86a34ea65.vrt /home/jovyan/notebooks/content/backgrounds/Shasta-30m-DEM.tif
+proj_context_get_database_path: Open of /srv/conda/envs/notebook/share/proj failed
+ERROR 1: PROJ: proj_create_from_database: Open of /srv/conda/envs/notebook/share/proj failed
+rm -f SRTM1.0a65a2716e3c422da8174fb86a34ea65.vrt
+make: Leaving directory &#39;/home/jovyan/.cache/elevation/SRTM1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>gdaldem color-relief jotunheimen.tif 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;Shasta-30m-DEM.tif&quot;</span>
+<span class="n">gdal_data</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">gdal_band</span> <span class="o">=</span> <span class="n">gdal_data</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nodataval</span> <span class="o">=</span> <span class="n">gdal_band</span><span class="o">.</span><span class="n">GetNoDataValue</span><span class="p">()</span>
+
+<span class="c1"># convert to a numpy array</span>
+<span class="n">data_array</span> <span class="o">=</span> <span class="n">gdal_data</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="n">data_array</span>
+
+<span class="c1"># replace missing values if necessary</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">data_array</span> <span class="o">==</span> <span class="n">nodataval</span><span class="p">):</span>
+    <span class="n">data_array</span><span class="p">[</span><span class="n">data_array</span> <span class="o">==</span> <span class="n">nodataval</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Plot our data with Matplotlib&#39;s &#39;contourf&#39;</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2362</span><span class="p">,</span> <span class="mi">1143</span><span class="p">)</span>
+
+<span class="c1">#https://stackoverflow.com/a/13714720/454773</span>
+
+<span class="c1">#fig = plt.figure(figsize=(size[0]/100, size[1]/100), dpi=100)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">data_array</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;magma&quot;</span><span class="p">,</span> <span class="c1"># inferno, viridis, plasma, magma, cividis</span>
+            <span class="n">levels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)))</span>
+<span class="c1">#plt.title(&quot;Elevation Contours of Mt. Shasta&quot;)</span>
+<span class="c1">#cbar = plt.colorbar()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="c1">#.set_aspect(&#39;equal&#39;, adjustable=&#39;box&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">get_size_inches</span><span class="p">()</span><span class="o">*</span><span class="n">fig</span><span class="o">.</span><span class="n">dpi</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">((</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Topo_map.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_52_0.png" src="../_images/Background Image Generator_52_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2362</span><span class="o">/</span> <span class="mi">1143</span><span class="p">,</span> <span class="mf">432.</span><span class="o">/</span> <span class="mf">288.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.0664916885389326, 1.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="raster-lidar">
+<h3>Raster Lidar<a class="headerlink" href="#raster-lidar" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install rasterio</span>
+<span class="c1">#%pip install shapely</span>
+<span class="c1">#%pip install earthpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://www.earthdatascience.org/workshops/gis-open-source-python/open-lidar-raster-python/</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">rasterio</span> <span class="k">as</span> <span class="nn">rio</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show_hist</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">mapping</span>
+<span class="kn">from</span> <span class="nn">rasterio.mask</span> <span class="kn">import</span> <span class="n">mask</span>
+
+<span class="kn">import</span> <span class="nn">earthpy</span> <span class="k">as</span> <span class="nn">et</span>
+<span class="kn">import</span> <span class="nn">earthpy.spatial</span> <span class="k">as</span> <span class="nn">es</span>
+<span class="kn">import</span> <span class="nn">earthpy.plot</span> <span class="k">as</span> <span class="nn">ep</span>
+
+<span class="c1"># set home directory and download data</span>
+<span class="n">et</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;spatial-vector-lidar&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">HOME</span><span class="p">,</span> <span class="s1">&#39;earth-analytics&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls data/spatial-vector-lidar/california/neon-soap-site/2013/lidar
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOAP_lidarCHM.tif	   SOAP_lidarDSM.tif
+SOAP_lidarCHM.tif.aux.xml  SOAP_lidarDTM.tif
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define path to digital terrain model</span>
+<span class="n">sjer_dtm_path</span> <span class="o">=</span> <span class="s2">&quot;data/spatial-vector-lidar/california/neon-soap-site/2013/lidar/SOAP_lidarDTM.tif&quot;</span>
+<span class="c1">#sjer_dtm_path = &quot;notebooks/content/uk_lidar_test.tif&quot;</span>
+<span class="c1"># open raster data</span>
+<span class="n">lidar_dem</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">sjer_dtm_path</span><span class="p">)</span>
+<span class="c1"># optional - view spatial extent</span>
+<span class="n">lidar_dem</span><span class="o">.</span><span class="n">bounds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BoundingBox(left=296906.0, bottom=4100038.0, right=300198.0, top=4101554.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/earth-analytics
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the dem using raster.io</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">lidar_dem</span><span class="p">,</span> 
+     <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Lidar Digital Elevation Model (DEM) </span><span class="se">\n</span><span class="s2"> Boulder Flood 2013&quot;</span><span class="p">,</span> 
+     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;test_lidar.png&quot;</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Background Image Generator_60_0.png" src="../_images/Background Image Generator_60_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># defra lidar</span>
+<span class="c1">#https://www.roger-pearse.com/weblog/2019/07/08/tutorial-how-to-download-the-lidar-datasets-from-the-uk-environment-agency-website/comment-page-1/</span>
+<span class="o">%</span><span class="k">cd</span> ~
+<span class="o">!</span>ls notebooks/content/LIDAR-DSM-2M-SZ68nw/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan
+sz6085_DSM_2M.asc  sz6187_DSM_2M.asc  sz6289_DSM_2M.asc  sz6486_DSM_2M.asc
+sz6086_DSM_2M.asc  sz6188_DSM_2M.asc  sz6385_DSM_2M.asc  sz6487_DSM_2M.asc
+sz6087_DSM_2M.asc  sz6189_DSM_2M.asc  sz6386_DSM_2M.asc  sz6488_DSM_2M.asc
+sz6088_DSM_2M.asc  sz6285_DSM_2M.asc  sz6387_DSM_2M.asc  sz6489_DSM_2M.asc
+sz6089_DSM_2M.asc  sz6286_DSM_2M.asc  sz6388_DSM_2M.asc
+sz6185_DSM_2M.asc  sz6287_DSM_2M.asc  sz6389_DSM_2M.asc
+sz6186_DSM_2M.asc  sz6288_DSM_2M.asc  sz6485_DSM_2M.asc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://gis.stackexchange.com/a/169494</span>
+<span class="o">!</span>gdal_translate notebooks/content/LIDAR-DSM-2M-SZ68nw/sz6187_DSM_2M.asc notebooks/content/uk_lidar_test.tif
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Input file size is 500, 500
+proj_context_get_database_path: Open of /srv/conda/envs/notebook/share/proj failed
+0...10...20...30...40...50...60...70...80...90...100 - done.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./backgrounds"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

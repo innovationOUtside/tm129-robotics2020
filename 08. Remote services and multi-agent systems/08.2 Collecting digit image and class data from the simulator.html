@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3 Recognising digits using a convolutional neural network (optional)" href="08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html" />
+    <link rel="prev" title="1 An introduction to remote services and multi-agent systems" href="08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08. Remote services and multi-agent systems/08.2 Collecting digit image and class data from the simulator.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08. Remote services and multi-agent systems/08.2 Collecting digit image and class data from the simulator.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-activity-collecting-image-sample-data-from-the-mnist-digits-background">
+   2.3.2 Optional activity — Collecting image sample data from the
+   <em>
+    MNIST_Digits
+   </em>
+   background
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-solution">
+     Example solution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.4 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>## 2. Collecting digit image and class data from the simulator</p>
+<p>If we wanted to collect image data from the background and then train a network using those images, we would need to generate the training label somehow. We could do this manually, looking at each image and then by observation recording the digit value, associating it with the image location co-ordinates. But could we also encode the digit value explicitly somehow?</p>
+<p>If you look carefully at the <em>MNIST_Digits</em> background in the simulator, you will see that alongside each digit is a solid coloured area. This area is a greyscale value that represents the value of the digit represented by the image. That is, it represents a training label for the digit.</p>
+<p><em>The greyscale encoding is quite a crude encoding method that is perhaps subject to noise. Another approach might be to use a simple QR code to encode the digit value.</em></p>
+<p>As usual, load in the simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clear the datalog just to ensure we have a clean datalog to work with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_data</span> --clear
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solid greyscale areas are arranged so that when the left light sensor is over the image, the right sensor is over the training label area.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b MNIST_Digits -O -R -AH -x 400 -y 50
+
+# Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+
+# This is essentially a command invocation
+# not just a print statement!
+print(&quot;image_data both&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can retrieve the last pair of images from the <code class="docutils literal notranslate"><span class="pre">roboSim.image_data()</span></code> dataframe using the <code class="docutils literal notranslate"><span class="pre">get_sensor_image_pair()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">zoom_img</span>
+<span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">get_sensor_image_pair</span>
+
+<span class="c1"># The sample pair we want from the logged image data</span>
+<span class="n">pair_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">left_img</span><span class="p">,</span> <span class="n">right_img</span> <span class="o">=</span> <span class="n">get_sensor_image_pair</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span>
+                                            <span class="n">pair_index</span><span class="p">)</span>
+
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">left_img</span><span class="p">),</span> <span class="n">zoom_img</span><span class="p">(</span><span class="n">right_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The image labels are encoded as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">greyscale_value</span> <span class="pre">=</span> <span class="pre">25</span> <span class="pre">*</span> <span class="pre">digit_value</span></code></p>
+<p>One way of decoding the label is as follows:</p>
+<ul class="simple">
+<li><p>divide each of the greyscale pixel values collected from the right-hand sensor array by 25</p></li>
+<li><p>take the median of these values and round to the nearest integer; <em>in a noise-free environment, using the median should give a reasonable estimate of the dominant pixel value in the frame</em></p></li>
+<li><p>ensure we have an integer by casting the result to an integer.</p></li>
+</ul>
+<p>The <em>pandas</em> package has some operators that can help us with that if we put all the data into a <em>pandas</em> <em>Series</em> (essentially, a single-column dataframe):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">get_training_label_from_sensor</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a training class label from a sensor image.&quot;&quot;&quot;</span>
+    <span class="c1"># Get the pixels data as a pandas series</span>
+    <span class="c1"># (similar to a single column dataframe)</span>
+    <span class="n">image_pixels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">getdata</span><span class="p">()))</span>
+
+    <span class="c1"># Divide each value in the first column (name: 0) by 25</span>
+    <span class="n">image_pixels</span> <span class="o">=</span> <span class="n">image_pixels</span> <span class="o">/</span> <span class="mi">25</span>
+
+    <span class="c1"># Find the median value</span>
+    <span class="n">pixels_median</span> <span class="o">=</span> <span class="n">image_pixels</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+    <span class="c1"># Find the nearest integer and return it</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span> <span class="n">pixels_median</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Try it out</span>
+<span class="n">get_training_label_from_sensor</span><span class="p">(</span><span class="n">right_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function will grab the right and left images from the datalog, decode the label from the right-hand image, and return the handwritten digit from the left light sensor along with the training label:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_training_data</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span> <span class="n">pair_index</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get training image and label from raw dataframe.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Get the left and right images</span>
+    <span class="c1"># at specified pair index</span>
+    <span class="n">left_img</span><span class="p">,</span> <span class="n">right_img</span> <span class="o">=</span> <span class="n">get_sensor_image_pair</span><span class="p">(</span><span class="n">raw_df</span><span class="p">,</span>
+                                            <span class="n">pair_index</span><span class="p">)</span>
+    
+    <span class="c1"># Find the training label value as the median</span>
+    <span class="c1"># value of the right habd image.</span>
+    <span class="c1"># Really, we should probably try to check that</span>
+    <span class="c1"># we do have a proper training image, for example</span>
+    <span class="c1"># by encoding a recognisable pattern </span>
+    <span class="c1"># such as a QR code</span>
+    <span class="n">training_label</span> <span class="o">=</span> <span class="n">get_training_label_from_sensor</span><span class="p">(</span><span class="n">right_img</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">training_label</span><span class="p">,</span> <span class="n">left_img</span>
+    
+
+<span class="c1"># Try it out</span>
+<span class="n">label</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">get_training_data</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span>
+                               <span class="n">pair_index</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Label: </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re actually taking quite a lot on trust in extracting the data from the dataframe in this way. Ideally, we would have unique identifiers that reliably associate the left and right images as having been sampled from the same location. As it is, we assume the left and right image datasets appear in that order, one after the other, so we can count back up the dataframe to collect different pairs of data.</p>
+<p>Load in our previously trained MLP classifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load model</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="n">MLP</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;mlp_mnist14x14.joblib&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now test that image against the classifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">image_class_predictor</span>
+
+<span class="n">image_class_predictor</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-testing-the-ability-to-recognise-images-slight-off-centre-in-the-image-array">
+<h1>2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array<a class="headerlink" href="#activity-testing-the-ability-to-recognise-images-slight-off-centre-in-the-image-array" title="Permalink to this headline">¶</a></h1>
+<p>Write a simple program to collect sample data at a particular location and then display the digit image and the decoded label value.</p>
+<p>Modify the <em>x</em> or <em>y</em>-co-ordinates used to locate the robot by a few pixel values away from the sampling point origins and test the ability of the network to recognise digits that are lightly off-centre in the image array.</p>
+<p>How well does the network perform?</p>
+<p><em>Hint: when you have run your program to collect the data in the simulator, run the <code class="docutils literal notranslate"><span class="pre">get_training_data()</span></code> function with the <code class="docutils literal notranslate"><span class="pre">roboSim.image_data()</span></code> to generate the test image and retrieve its decoded training label.</em></p>
+<p><em>Hint: use the <code class="docutils literal notranslate"><span class="pre">image_class_predictor()</span></code> function with the test image to see if the classifier can recognise the image.</em></p>
+<p><em>Hint: if you seem to have more data in the dataframe than you thought you had collected, did you remember to clear the datalog before collecting your data?</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here.</em></p>
+</div>
+<div class="section" id="optional-activity-collecting-image-sample-data-from-the-mnist-digits-background">
+<h1>2.3.2 Optional activity — Collecting image sample data from the <em>MNIST_Digits</em> background<a class="headerlink" href="#optional-activity-collecting-image-sample-data-from-the-mnist-digits-background" title="Permalink to this headline">¶</a></h1>
+<p>In this activity, you will need to collect a complete set of sample data from the simulator to test the ability of the network to correctly identify the handwritten digit images.</p>
+<p>Recall that the sampling positions are arranged along rows 100 pixels apart, starting at <em>x=100</em> and ending at <em>x=2000</em>;
+along columns 100 pixels apart, starting at <em>y=50</em> and ending at <em>y=1050</em>.</p>
+<p>Write a program to automate the collection of data at each of these locations.</p>
+<p>How would you then retrieve the handwritten digit image and it’s decoded training label?</p>
+<p><em>Hint: import the <code class="docutils literal notranslate"><span class="pre">time</span></code> package and use the <code class="docutils literal notranslate"><span class="pre">time.sleep</span></code> function to provide a short delay between each sample collection. You may also find it convenient to import the <code class="docutils literal notranslate"><span class="pre">trange</span></code> function to provide a progress bar indicator when iterating through the list of collection locations: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">tqdm.notebook</span> <span class="pre">import</span> <span class="pre">trange</span></code>.</em></p>
+<p><em>Your program design notes here.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your program code</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Describe here how you would retrieve the handwritten digit image and it’s decoded training label.</em></p>
+<div class="section" id="example-solution">
+<h2>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h2>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>To collect the data, I use two <code class="docutils literal notranslate"><span class="pre">range()</span></code> commands, one inside the other, to iterate through the <em>x</em> and <em>y</em>-coordinate values. The outer loop generates the <em>x</em> values and the inner loop generates the <em>y</em>-values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make use of the progress bar indicated range</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">trange</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Clear the datalog so we know it&#39;s empty</span>
+<span class="o">%</span><span class="k">sim_data</span> --clear
+
+
+<span class="c1"># Generate a list of integers with desired range and gap</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">max_value</span> <span class="o">=</span> <span class="mi">1050</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">_x</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">501</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+
+        <span class="o">%</span><span class="k">sim_magic</span> -R -x $_x -y $_y
+        <span class="c1"># Give the data time to synchronise</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now grab and view the data we have collected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_df</span> <span class="o">=</span> <span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">()</span>
+<span class="n">training_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_training_data()</span></code> function provides a convenient way of retrieving the handwritten digit image and the decoded training label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">get_training_data</span><span class="p">(</span><span class="n">training_df</span><span class="p">,</span> <span class="n">pair_index</span><span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">img</span><span class="p">),</span> <span class="n">label</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h1>2.4 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, you have automated the collection of hand-written digit and encoded label image data from the simulator and seen how this can be used to generate training data made up of scanned handwritten digit and image label pairs. In principle, we could use the image and test label data collected in this way as a training data set for an MLP or convolutional neural network.</p>
+<p>The next notebook in the series is optional and demonstrates the performance of a CNN on the MNIST dataset. The required content continues with a look at how we can start to collect image data using the simulated robot whilst it is on the move.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08. Remote services and multi-agent systems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html" title="previous page">1 An introduction to remote services and multi-agent systems</a>
+    <a class='right-next' id="next-link" href="08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html" title="next page">3 Recognising digits using a convolutional neural network (optional)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

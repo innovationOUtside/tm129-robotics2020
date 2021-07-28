@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1 An introduction to remote services and multi-agent systems &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array" href="08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html" />
+    <link rel="prev" title="7 Using a convolutional neural network to recognise images (optional)" href="../07.%20Neural%20networks/07.7%20Convolutional%20neural%20networks%20%28optional%29.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08. Remote services and multi-agent systems/08.1 Introducing remote services and multi-agent systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08. Remote services and multi-agent systems/08.1 Introducing remote services and multi-agent systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-a-pre-trained-mlp-to-categorise-light-sensor-array-data-logged-from-the-simulator">
+   1.1 Using a pre-trained MLP to categorise light sensor array data logged from the simulator
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pushing-the-sensor-array-datalog-from-the-simulator-to-the-notebook">
+     1.1.1 Pushing the sensor array datalog from the simulator to the notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#previewing-the-sampled-sensor-array-data-optional">
+     1.1.2 Previewing the sampled sensor array data (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collecting-multiple-sample-images">
+     1.1.3 Collecting multiple sample images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-observing-the-effect-of-changing-threshold-value-when-converting-the-image-from-a-greyscale-to-a-black-and-white-image-optional">
+     1.1.4 Activity — Observing the effect of changing threshold value when converting the image from a greyscale to a black and white image (optional)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-the-robot-sampled-images-using-a-pre-retrained-mlp">
+   1.2 Testing the robot sampled images using a pre-retrained MLP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-in-a-previously-saved-mlp-model">
+     1.2.1 Loading in a previously saved MLP model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-pre-trained-classifier-to-recognise-sampled-images">
+     1.2.2 Using the pre-trained classifier to recognise sampled images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-collecting-image-sample-data-at-a-specific-location">
+     1.2.3 Activity — collecting image sample data at a specific location
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-discussion">
+       Example discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   1.3 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="an-introduction-to-remote-services-and-multi-agent-systems">
+<h1>1 An introduction to remote services and multi-agent systems<a class="headerlink" href="#an-introduction-to-remote-services-and-multi-agent-systems" title="Permalink to this headline">¶</a></h1>
+<p>In the previous session, you had an opportunity to experiment hands-on with some neural networks. You may have finished that lab session wondering how neural networks can be built into real robots, particularly low-cost robots rather than expensive cutting-edge robots found only in research labs. In this session, you will find out.</p>
+<p>The robot simulator we’re using was originally designed to simulate the behaviour of a Lego Mindstorms EV3 controlled robot. The EV3 brick is excellent for introductory robotics, but it has limitations in terms of processor speed and memory capacity. This makes it impractical to train anything other than a small neural network on a Lego EV3 robot, although we may be able to use pre-trained models to perform “on-device” classification tasks.</p>
+<p>In general, we are often faced with the problem that we may want to run powerful programs on low-cost hardware that really isn’t up to the job. Upgrading a robot with a more powerful processor might not be a solution because it adds cost and may demand extra electrical power or create heat management issues: driving a processor hard can generate a lot of heat, and you need to remove that heat somehow. Heatsinks are heavy and take up physical space, and cooling fans are heavy, take up space, and need access to power. As you add more mass, you need more powerful motors, which themselves add mass and require more power. Bigger batteries add more mass, so you can see where this argument leads…</p>
+<p>A possible alternative is to think about using remote services or <em>multi-agent</em> systems approaches. In either case, we might use a low-cost robot as a mobile agent to gather data and send that back to a more-powerful computer for processing.</p>
+<p>In the first case, we might think of the robot as a remote data collector, collecting data on our behalf and then returning that data to us in response to a request for it. In the RoboLab environment we might think of the notebook Python environment as our local computing environment and the robot as a remote service. Every so often, we might <em>pull</em> data from the robot by making a request for a copy of it from the notebook so that we can then analyse the data at our leisure. Alternatively, each time the robot collects a dataset, it might <em>push</em> a copy of the data to the notebook’s Python environment. In each case, we might think of this as “uploading” data from the simulated robot back to the notebook.</p>
+<p>The model is a bit like asking a research librarian for some specific information, the research librarian researching the topic, perhaps using resources you don’t have direct access to, and then the research librarian providing you with the information you requested.</p>
+<p>In a more dynamic multi-agent case, we might consider the robot and the notebook environment to be acting as peers sending messages as and when they can between each other. For example, we might have two agents: a Lego mobile robot and a personal computer (PC), or the simulated robot and the notebook.  In computational terms, <em>agents</em> are long-lived computational systems that can deliberate on the actions they may take in pursuit of their own goals based on their own internal state (often referred to as “beliefs”) and sensory inputs. Their actions are then performed by means of some sort of effector system that can act to change the state of the environment within which they reside.</p>
+<p>In a multi-agent system, two or more agents may work together to combine to perform some task that not only meets the (sub)goals of each individual agent, but that might also strive to attain some goal agreed on by each member of the multi-agent system. Agents may communicate by making changes to the environment, for example, by leaving a trail that other agents may follow (an effect known as <em>stigmergy</em>), or by passing messages between themselves directly.</p>
+<p>To a limited extent, we may view our simulated robot / Python system as a model for a simple multi-agent system where two agents — the robot, and the classifying neural network or deliberative rule-based system, for example — work together to perform the task of classifying and identifying patterns in some environment that the individual agents could not achieve by themselves. We let the robot do what it does best – move around while logging data – and then it actively sends the data back to the notebook Python environment for processing. The Python environment processes the data using a trained neural network, or perhaps a complex rule-based system, and sends back a message to the robot giving an appropriate response. In each case, the two agents act independently, sending messages to the other party when they have data or a classification to share, rather than just responding to requests for data or a particular service as they occur.</p>
+<p>In this session, we will explore how we might use the simulated robot as a remote data collector. Every so often, we will grab a copy of the logged data into the notebook Python environment and analyse it within the notebook.</p>
+<p><em>There is quite a lot of provided code in this week’s notebooks. You are not necessarily expected to be able to create this sort of code yourself. Instead, try to focus on the process of how various tasks are broken down into smaller discrete steps, as well as how small code fragments can be combined to create “higher-level” functions that perform ever more powerful tasks.</em></p>
+<div class="section" id="using-a-pre-trained-mlp-to-categorise-light-sensor-array-data-logged-from-the-simulator">
+<h2>1.1 Using a pre-trained MLP to categorise light sensor array data logged from the simulator<a class="headerlink" href="#using-a-pre-trained-mlp-to-categorise-light-sensor-array-data-logged-from-the-simulator" title="Permalink to this headline">¶</a></h2>
+<p>The <em>MNIST_Digits</em> simulator background includes various digit images from the MNIST dataset, arranged in a grid.</p>
+<p>Alongside each digit is a grey square, where the grey level is used to encode the actual label associated with the image. (You can see how the background was created in the <code class="docutils literal notranslate"><span class="pre">Background</span> <span class="pre">Image</span> <span class="pre">Generator.ipynb</span></code> notebook in the top-level <code class="docutils literal notranslate"><span class="pre">backgrounds</span></code> folder.)</p>
+<p>Typically, we use the light sensor to return a single value, such as the reflected light intensity value. However, in this notebook, you will use the light sensor as a simple low-resolution camera. Rather than returning a single value, the sensor returns an array of data containing the values associated individual pixel values from a sampled image. We can then use this square array of pixel data collected by the robot inside the simulator, rather than a single reflected-light value, as the basis for trying to detect what the robot can actually see.</p>
+<p><em>Note that this low resolution camera-like functionality is not supported by the real Lego light sensor.</em></p>
+<p>Let’s start by loading in the simulator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to collect the sensor image data, if the simulated robot program <code class="docutils literal notranslate"><span class="pre">print()</span></code> message starts with the word <code class="docutils literal notranslate"><span class="pre">image_data</span></code>, then we can send light sensor array data from the left, right or both light sensors to a datalog in the notebook Python environment.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-R</span></code> (<code class="docutils literal notranslate"><span class="pre">--autorun</span></code>) switch in the magic at the start of the following code cell will run the program in the simulator once it has been downloaded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b MNIST_Digits -OA -R -x 400 -y 50
+
+# Configure a light sensor
+colorLeft = ColorSensor(INPUT_2)
+
+# This is a command invocation rather than a print statement
+print(&quot;image_data left&quot;)
+# The command is responded to by
+# the &quot;Image data logged...&quot; message display
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we’re going to be collecting data from the simulator into the notebook Python environment, we should take the precaution of clearing the notebook datalog before we start using it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_data</span> --clear
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pushing-the-sensor-array-datalog-from-the-simulator-to-the-notebook">
+<h3>1.1.1 Pushing the sensor array datalog from the simulator to the notebook<a class="headerlink" href="#pushing-the-sensor-array-datalog-from-the-simulator-to-the-notebook" title="Permalink to this headline">¶</a></h3>
+<p>We can now run the data collection routine by calling a simple line magic that teleports the robot to a specific location, runs the data collection program (<code class="docutils literal notranslate"><span class="pre">-R</span></code>) and pushes the light sensor array data to the notebook Python environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -RA -x 400 -y 850
+
+<span class="c1"># Wait a moment to give data time to synchronise</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We may need to wait a few moments for the program to execute and the data to be sent to the notebook Python environment.</p>
+<p>In the current example, the simulator is <em>pushing</em> the light sensor array data to the notebook each time the robot sends a particular message to the simulator output window.</p>
+<p>With the data pushed from the simulator to the notebook Python environment, we should be able to see a dataframe containing the retrieved data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each row of the dataframe represents a single captured image from one of the light sensors.</p>
+</div>
+<div class="section" id="previewing-the-sampled-sensor-array-data-optional">
+<h3>1.1.2 Previewing the sampled sensor array data (optional)<a class="headerlink" href="#previewing-the-sampled-sensor-array-data-optional" title="Permalink to this headline">¶</a></h3>
+<p>Having grabbed the data, we can explore the data as rendered images.</p>
+<p>The data representing the image is a long list of RGB (red green, blue) values. We can generate an image from a
+specific row of the dataframe, given the row index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">generate_image</span><span class="p">,</span> <span class="n">zoom_img</span>
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># Get the last image in the dataframe</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span>
+                     <span class="n">index</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rgb&#39;</span><span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you don’t see a figure image displayed, check that the robot is placed over a figure by reviewing the sensor array display in the simulator. If the image is there, rerun the previous code cell to see if the data is now available. If it isn’t, rerun the data-collecting magic cell, wait a view seconds, and then try to view the zoomed image display.</p>
+<p>We can check the color depth of the image by calling the <code class="docutils literal notranslate"><span class="pre">.getbands()</span></code> method on it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">.</span><span class="n">getbands</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we might expect from the robot colour sensor, this is a tri-band, RGB image.</p>
+<p>Alternatively, we can generate an image directly as a greyscale image, either by setting the mode explicitly or by omitting it (<code class="docutils literal notranslate"><span class="pre">mode=greyscale</span></code> is the default setting):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span> <span class="n">index</span><span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">getbands</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The images we trained the network on were size 28 × 28 pixels. The raw images retrieved from the simulator sensor are slightly smaller, coming in at 20 × 20 pixels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The collected image also presents a square profile around the “circular” sensor view. We might thus reasonably decide that we are going to focus our attention on the 14 × 14 square area in the centre of the collected image, with top left pixel <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">3)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zoom_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of the advantages of using the Python <code class="docutils literal notranslate"><span class="pre">PIL</span></code> package is that a range of <em>methods</em> (that is, <em>functions</em>) are defined on each image object that allow us to manipulate it <em>as an image</em>. (We can then also access the data defining the transformed image <em>as data</em> if we need it in that format.)</p>
+<p>We can preview the area in our sampled image by cropping the image to the area of interest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span> <span class="n">index</span><span class="p">,</span>
+                    <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span> <span class="n">img</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If required, we can resize the image by passing the desired size to the <code class="docutils literal notranslate"><span class="pre">generate_image()</span></code> function via the <code class="docutils literal notranslate"><span class="pre">resize</span></code> parameter, setting it either to a specified size, such as <code class="docutils literal notranslate"><span class="pre">resize=(28,</span> <span class="pre">28)</span></code> (that is, 28 × 28 pixels) or back to the original, uncropped image size (<code class="docutils literal notranslate"><span class="pre">resize=('auto')</span></code>)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span> <span class="n">index</span><span class="p">,</span>
+                    <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span>
+                    <span class="n">resize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collecting-multiple-sample-images">
+<h3>1.1.3 Collecting multiple sample images<a class="headerlink" href="#collecting-multiple-sample-images" title="Permalink to this headline">¶</a></h3>
+<p>The <em>MINIST_Digits</em> simulator background contains a selection of handwritten digit images arranged in a sparse grid on the background which we shall refer to as image sampling point locations. These image locations within the background can be found at the following co-ordinates:</p>
+<ul class="simple">
+<li><p>along rows <code class="docutils literal notranslate"><span class="pre">100</span></code> pixels apart, starting at <code class="docutils literal notranslate"><span class="pre">x=100</span></code> and ending at <code class="docutils literal notranslate"><span class="pre">x=2000</span></code></p></li>
+<li><p>along columns <code class="docutils literal notranslate"><span class="pre">100</span></code> pixels apart, starting at <code class="docutils literal notranslate"><span class="pre">y=50</span></code> and ending at <code class="docutils literal notranslate"><span class="pre">y=1050</span></code>.</p></li>
+</ul>
+<p>We can collect images from this grid by using magic to teleport the robot to each sampling location and then automatically run the robot program to log the sensor data. For example, to collect images from one column of the background arrangement — that is, images with a particular <em>x</em> co-ordinate — we need to calculate the required <em>y</em>-values for each sampling point.</p>
+<p>To start, let’s just check we can generate the required <em>y</em>-values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a list of integers with desired range and gap</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">max_value</span> <span class="o">=</span> <span class="mi">1050</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To help us keep track of where we are in the sample collection, we can use a visual indicator such as a progress bar.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> Python package provides a wide range of tools for displaying progress bars in Python programs. For example the <code class="docutils literal notranslate"><span class="pre">tqdm.notebook.trange</span></code> function enhances the range iterator with an interactive progress bar that allows us to follow the progress of the iterator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Provide a progress bar when iterating through the range</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">trange</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="c1">#Wait a moment</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now create a simple script that will:</p>
+<ul class="simple">
+<li><p>clear the datalog;</p></li>
+<li><p>iterate through the desired <em>y</em> locations with a visual indicator of how much progress we have made;</p></li>
+<li><p>use line magic to locate the robot at each step and run the already downloaded image-sampling program.</p></li>
+</ul>
+<p>To access the value of the iterated <em>y</em> value in the magic, we need to prefix it with a <code class="docutils literal notranslate"><span class="pre">$</span></code> when we refer to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We need to add a short delay between iterations to give</span>
+<span class="c1"># the data time to synchronise</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Clear the datalog so we know it&#39;s empty</span>
+<span class="o">%</span><span class="k">sim_data</span> --clear
+
+<span class="k">for</span> <span class="n">_y</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="o">%</span><span class="k">sim_magic</span> -R -x 100 -y $_y
+    <span class="c1"># Give the data time to synchronise</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can view the collected samples via a <em>pandas</em> dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_data_df</span> <span class="o">=</span> <span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">()</span>
+<span class="n">image_data_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can access a centrally cropped black and white version of an image extracted from the retrieved data by index number  (<code class="docutils literal notranslate"><span class="pre">--index</span> <span class="pre">/</span> <span class="pre">-i</span></code>) by calling the <code class="docutils literal notranslate"><span class="pre">%sim_bw_image_data</span></code> magic, optionally setting the <code class="docutils literal notranslate"><span class="pre">--threshold</span> <span class="pre">/</span> <span class="pre">-t</span></code> value away from its default value of <code class="docutils literal notranslate"><span class="pre">127</span></code>. Using the <code class="docutils literal notranslate"><span class="pre">--nocrop</span> <span class="pre">/</span> <span class="pre">-n</span></code> flag will prevent the autocropping behaviour.</p>
+<p>We can  convert the image to a black and white image by setting pixels above a specified threshold value to white (<code class="docutils literal notranslate"><span class="pre">255</span></code>), otherwise colouring the pixel black (<code class="docutils literal notranslate"><span class="pre">0</span></code>) using the <code class="docutils literal notranslate"><span class="pre">generate_bw_image()</span></code> function. This will select a row from the datalog at a specific location and optionally crop it to a specific area. Pixel values greater than the threshold will be set to white (<code class="docutils literal notranslate"><span class="pre">255</span></code>) and pixel values equal to or below the threshold will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span>  <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">generate_bw_image</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">generate_bw_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span>
+                       <span class="n">index</span><span class="p">,</span>
+                       <span class="n">threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                       <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">%sim_bw_image_data</span></code> magic performs a similar operation and can also retrieve a random image from the collected data using the <code class="docutils literal notranslate"><span class="pre">--random</span> <span class="pre">/</span> <span class="pre">-r</span></code> flag. (The crop limits are also assumed by the magic.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cropped_bw_image</span> <span class="o">=</span> <span class="o">%</span><span class="k">sim_bw_image_data</span> --random --threshold 100
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">cropped_bw_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>End-user applications are simple applications created by users themselves to simplify the performance of certain tasks. Such applications may be brittle and only work in specific situations or circumstances. The code may not be as elegant, well engineered or maintainable as “production code” used in applications made available to other users. One of the advantages of learning to code is the ability to create your own end-user applications.</em></p>
+</div>
+<div class="section" id="activity-observing-the-effect-of-changing-threshold-value-when-converting-the-image-from-a-greyscale-to-a-black-and-white-image-optional">
+<h3>1.1.4 Activity — Observing the effect of changing threshold value when converting the image from a greyscale to a black and white image (optional)<a class="headerlink" href="#activity-observing-the-effect-of-changing-threshold-value-when-converting-the-image-from-a-greyscale-to-a-black-and-white-image-optional" title="Permalink to this headline">¶</a></h3>
+<p>Use the following end-user application to observe the effects of setting different threshold values when creating the black and white binarised version of the image from the original greyscale image data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">generate_bw_image</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+                 <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">bw_preview</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+               <span class="n">crop</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Optionally crop to the centre of the image</span>
+    <span class="n">_crop</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span> <span class="k">if</span> <span class="n">crop</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">_original_img</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    
+    <span class="c1"># Generate a black and white image</span>
+    <span class="n">_demo_img</span> <span class="o">=</span> <span class="n">generate_bw_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span>
+                                  <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+                                  <span class="n">crop</span><span class="o">=</span><span class="n">_crop</span><span class="p">)</span>
+    <span class="c1"># %sim_bw_image_data --index -1 --threshold 100 --crop 3.3,17,17</span>
+    <span class="n">zoom_img</span><span class="p">(</span> <span class="n">_original_img</span><span class="p">)</span>
+    <span class="n">zoom_img</span><span class="p">(</span> <span class="n">_demo_img</span> <span class="p">)</span>
+
+    <span class="c1"># Preview the actual sized image</span>
+    <span class="c1"># display(_original_img, _demo_img)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">sensor_image_focus()</span></code> function is another convenience function for returning the image in the centre of the sensor array.</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">sensor_image_focus</span>
+
+<span class="n">original_image</span> <span class="o">=</span> <span class="n">generate_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+<span class="n">focal_image</span> <span class="o">=</span> <span class="n">sensor_image_focus</span><span class="p">(</span> <span class="n">original_image</span> <span class="p">)</span>
+<span class="n">zoom_img</span><span class="p">(</span> <span class="n">focal_image</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-the-robot-sampled-images-using-a-pre-retrained-mlp">
+<h2>1.2 Testing the robot sampled images using a pre-retrained MLP<a class="headerlink" href="#testing-the-robot-sampled-images-using-a-pre-retrained-mlp" title="Permalink to this headline">¶</a></h2>
+<p>Having grabbed the image data, we can pre-process it as required and then present it to an appropriately trained neural network to see if the network can identify the digit it represents.</p>
+<div class="section" id="loading-in-a-previously-saved-mlp-model">
+<h3>1.2.1 Loading in a previously saved MLP model<a class="headerlink" href="#loading-in-a-previously-saved-mlp-model" title="Permalink to this headline">¶</a></h3>
+<p>Rather than train a new model, we can load in an MLP we have trained previously. Remember that when using a neural network model, we need to make sure that we know how many inputs it expects, which in our case matches the size of presented images.</p>
+<p>You can either use the pre-trained model that is provided in the same directory as this notebook (<code class="docutils literal notranslate"><span class="pre">mlp_mnist14x14.joblib</span></code>), or use your own model created in an earlier notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load model</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="n">MLP</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;mlp_mnist14x14.joblib&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the configuration of the MLP:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">network_structure</span>
+<span class="n">network_structure</span><span class="p">(</span><span class="n">MLP</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The 196 input features correspond to an input grid of 14 × 14 pixels.</p>
+<p><em>For a square array, we get the side length as the square root of the number of features.</em></p>
+</div>
+<div class="section" id="using-the-pre-trained-classifier-to-recognise-sampled-images">
+<h3>1.2.2 Using the pre-trained classifier to recognise sampled images<a class="headerlink" href="#using-the-pre-trained-classifier-to-recognise-sampled-images" title="Permalink to this headline">¶</a></h3>
+<p>What happens if we now try to recognise images sampled from the simulator light sensor array using our previously trained MLP classifier?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">image_class_predictor</span>
+
+<span class="c1"># Get a random image index value</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        
+<span class="c1"># Generate the test image as a black and white image</span>
+<span class="n">test_image</span> <span class="o">=</span> <span class="n">generate_bw_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span>
+                               <span class="n">threshold</span><span class="o">=</span><span class="mi">127</span><span class="p">,</span>
+                               <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+
+<span class="c1"># Display a zoomed version of the test image</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">test_image</span><span class="p">)</span>
+
+<span class="c1"># Print the class prediction report</span>
+<span class="n">image_class_predictor</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">test_image</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_image2</span> <span class="o">=</span> <span class="o">%</span><span class="k">sim_bw_image_data</span> --index -1 
+<span class="c1"># Display a zoomed version of the test image</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">test_image2</span><span class="p">)</span>
+
+<span class="c1"># Print the class prediction report</span>
+<span class="n">image_class_predictor</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">test_image2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How well did the classifier perform?</p>
+<p><em>Make your own notes and observations about the MLP’s performance here. If anything strikes you as unusual, why do you think the MLP is performing the way it is?</em></p>
+<p>We can create a simple interactive application to test the other images more easily:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact_manual</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+                 <span class="n">index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">test_image</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">show_image</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Create the test image</span>
+    <span class="n">test_image</span> <span class="o">=</span> <span class="n">generate_bw_image</span><span class="p">(</span><span class="n">image_data_df</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> 
+                                   <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+                                   <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+    
+    <span class="c1"># Generate class prediction chart</span>
+    <span class="n">image_class_predictor</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">test_image</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">show_image</span><span class="p">:</span>
+        <span class="n">zoom_img</span><span class="p">(</span><span class="n">test_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In general, how well does the classifier appear to perform?</p>
+<p><em>Record your own notes and observations about the behaviour and performance of the MLP here.</em></p>
+</div>
+<div class="section" id="activity-collecting-image-sample-data-at-a-specific-location">
+<h3>1.2.3 Activity — collecting image sample data at a specific location<a class="headerlink" href="#activity-collecting-image-sample-data-at-a-specific-location" title="Permalink to this headline">¶</a></h3>
+<p>Write a simple line magic command to collect the image data for the handwritten digit centred on the location <code class="docutils literal notranslate"><span class="pre">(600,</span> <span class="pre">750)</span></code>.</p>
+<p>Note that you may need to wait a short time between running the data collection program and trying to view it.</p>
+<p>Display a zoomed version of the image in the notebook. By observation, what digit does it represent?</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">image_class_predictor()</span></code> function, how does the trained MLP classify the image? Does this match your observation?</p>
+<p>Increase the light sensor noise in the simulator to its maximum value and collect and test the data again. How well does the network perform this time?</p>
+<p><em>Hint: data is collected into a dataframe returned by calling <code class="docutils literal notranslate"><span class="pre">roboSim.image_data()</span></code>.</em></p>
+<p><em>Hint: remember that you need to crop the image to a 14 × 14 array.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your image-sampling code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your image-viewing code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>From your own observation, record which digit is represented by the image here.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How does the trained MLP classify the image?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>How well does the prediction match your observation? Is the MLP confident in its prediction?</em></p>
+<p>Increase the level of light sensor noise to its maximum value and re-run the experiment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Collect data with noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preview image with noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Classify image with noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Add your own notes and observations on how well the network performed the classification task in the presence of sensor noise here.</em></p>
+<div class="section" id="example-discussion">
+<h4>Example discussion<a class="headerlink" href="#example-discussion" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example discussion.</em></p>
+<p>We can collect the image data by calling the <code class="docutils literal notranslate"><span class="pre">%sim_magic</span></code> with the <code class="docutils literal notranslate"><span class="pre">-R</span></code> switch so that it runs the current program directly. We also need to set the location using the <code class="docutils literal notranslate"><span class="pre">-x</span></code> and <code class="docutils literal notranslate"><span class="pre">-y</span></code> parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -R -x 600 -y 750
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data is available in a dataframe returned by calling <code class="docutils literal notranslate"><span class="pre">roboSim.image_data()</span></code>.</p>
+<p>To view the result, we can zoom the display of the last-collected image in the notebook synched datalog.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get data for the last image in the dataframe</span>
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> 
+<span class="n">my_img</span> <span class="o">=</span> <span class="n">generate_bw_image</span><span class="p">(</span><span class="n">roboSim</span><span class="o">.</span><span class="n">image_data</span><span class="p">(),</span> <span class="n">index</span><span class="p">,</span>
+                        <span class="n">crop</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+<span class="n">zoom_img</span><span class="p">(</span><span class="n">my_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By my observation, the digit represented by the image at the specified location is a figure <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<p>The trained MLP classifies the object as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_class_predictor</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">my_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This appears to match my prediction.</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>1.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how we can use the robot’s light sensor as a simple low-resolution camera to sample handwritten digit images from the background. Collecting the data from the robot, we can then convert it to an image and pre-process it before testing it with a pre-trained multi-layer perceptron.</p>
+<p>Using captured images that are slightly offset from the centre of the image array essentially provides us with a “jiggled” image, which tends to increase the classification error.</p>
+<p>You have also seen how we can automate the way the robot collects image data by “teleporting” the robot to a particular location and then sampling the data there.</p>
+<p>In the next notebook, you will see how we can use this automation approach to collect image and class data “in bulk” from the simulator.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08. Remote services and multi-agent systems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../07.%20Neural%20networks/07.7%20Convolutional%20neural%20networks%20%28optional%29.html" title="previous page">7 Using a convolutional neural network to recognise images (optional)</a>
+    <a class='right-next' id="next-link" href="08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html" title="next page">2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

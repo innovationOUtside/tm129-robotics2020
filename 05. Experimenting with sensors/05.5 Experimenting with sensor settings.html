@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Experimenting with sensor settings &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6 The RoboLab Grand Prix Challenge" href="05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html" />
+    <link rel="prev" title="4 Challenge – Coping with noise" href="05.4%20Challenge%20-%20coping%20with%20noise.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05. Experimenting with sensors/05.5 Experimenting with sensor settings.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05. Experimenting with sensors/05.5 Experimenting with sensor settings.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-the-experimental-environment">
+   5.1 Setting up the experimental environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-the-height-of-the-sensor">
+   5.1.1 Changing the height of the sensor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-exploring-the-effect-of-raising-and-lowering-the-sensor">
+     5.1.2 Activity – Exploring the effect of raising and lowering the sensor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trading-off-physical-settings-and-code-settings">
+   5.2 Trading off physical settings and code settings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-exploring-the-effect-of-the-light-sensor-diameter-on-the-line-following-behaviour-optional">
+     5.2.1 Challenge – Exploring the effect of the light sensor diameter on the line-following behaviour (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-making-this-robot-control-strategy-faster-optional">
+     5.2.2 Challenge – Making this robot control strategy faster (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-the-effect-of-simulated-noise-sensors-of-various-diameters-optional">
+     5.2.3 Activity – The effect of simulated noise sensors of various diameters (optional)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   5.3 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="experimenting-with-sensor-settings">
+<h1>5 Experimenting with sensor settings<a class="headerlink" href="#experimenting-with-sensor-settings" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, you will experiment with a simulated equivalent to raising and lowering a downward facing light sensor on a physical robot.</p>
+<p>The effect of changing the sensor height is modeled by changing the field of view of the sensor: the more the sensor is raised, the more it can see.</p>
+<p>A more complex model would use a weighted average that weights contributions from pixels near the edge of the sensor less that pixels near the center of the sensor view, but our model is a simple one and all pixels in view are weighted equally.</p>
+<div class="section" id="setting-up-the-experimental-environment">
+<h2>5.1 Setting up the experimental environment<a class="headerlink" href="#setting-up-the-experimental-environment" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Sensor_Diameter_Test</em> background contains two sets of horizontal parallel lines and two sets of parallel vertical lines. The first group of lines are coloured black and have increasing thickness going down and across the page. The second group of lines also increase in thickness and are colored red.</p>
+<p>We will use these different lines as a test bed for evaluating how different ‘height settings’ of the downward-facing light sensor affect its performance.</p>
+<p>But first things first. Load in the simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>And then preview the background in the <em>Simulator world</em> along with the <em>Sensor array</em> view, placing the robot at location <code class="docutils literal notranslate"><span class="pre">(420,</span> <span class="pre">915)</span></code> and orientation <code class="docutils literal notranslate"><span class="pre">90</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -b Sensor_Diameter_Test -x 420 -y 915 -a 90 -HA
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see the robot is positioned with its sensors over crossing points of some black lines; pale coloured edging creates a circular focal view in each sensor display, which makes the detected lines look like cross hairs.</p>
+</div>
+<div class="section" id="changing-the-height-of-the-sensor">
+<h2>5.1.1 Changing the height of the sensor<a class="headerlink" href="#changing-the-height-of-the-sensor" title="Permalink to this headline">¶</a></h2>
+<p>The sensor diameter corresponds to the width of view of the sensor, which we are using to model the height of the sensor: if the sensor has a fixed diameter, then if we lift it up it will see more of the background.</p>
+<p>Increasing the diameter models the effect of raising the sensor, and so the display for <code class="docutils literal notranslate"><span class="pre">sensor2</span></code> appears to ‘zoom out’, and the circle looks smaller.</p>
+<p>(Think what happens if you shine a torch against a wall. If you are far from the wall, then you may see a large blurry pool of light on the wall; as you walk towards the wall, the patch of light reduces in diameter and has sharper edges.)</p>
+<p>A further indication that the sensor “height” has changed is that the circle on the robot that identifies the sensor has also got larger.</p>
+<p>The <em>Sensor_Diameter_Config</em> robot configuration (which can be selected using the <code class="docutils literal notranslate"><span class="pre">--robotSetup</span> <span class="pre">/</span> <span class="pre">-r</span></code> magic switch, configures the sensors to use different sensor heights to give it a wide view. Specifically:</p>
+<ul class="simple">
+<li><p>the left sensor is <em>raised</em> to give it an even wider field of view;</p></li>
+<li><p>the right sensor is <em>lowered</em> to give it narrower field view.</p></li>
+</ul>
+<p>Run the following code cell to configure the simulator using these settings and observe how the <em>Sensor array</em> view has now changed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -r Sensor_Diameter_Config -b Sensor_Diameter_Test -x 420 -y 915 -a 90 -HA
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-exploring-the-effect-of-raising-and-lowering-the-sensor">
+<h3>5.1.2 Activity – Exploring the effect of raising and lowering the sensor<a class="headerlink" href="#activity-exploring-the-effect-of-raising-and-lowering-the-sensor" title="Permalink to this headline">¶</a></h3>
+<p>Use the <em>Sensor_Diameter_Config</em> robot configuration to give the robot an eccentric eye view of the world, where one light sensor is mounted high and the other is mounted low.</p>
+<p>The aim of this activity is to log the light sensor values as the robot drives across the test lines and see how the recorded data values compare.</p>
+<p>Display the light sensor values directly in the simulator chart display (click the <em>Chart</em> display toggle button, then tick <em>Left light</em> and <em>Right light</em>), or grab the data values into the notebook datalog and view them in the notebook.</p>
+<p>If you analyse the values in the notebook, then you should make sure you clear the datalog before collecting any data from the simulator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the datalog</span>
+<span class="o">%</span><span class="k">sim_data</span> --clear
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create your own program to drive the robot horizontally across the vertical bars, logging data from both light sensors as it does so. Drive the robot at least over all the black lines. Experiment with setting different speeds for the robot as it crosses the lines to see what effect, if any, that has on the readings you obtain.</p>
+<p>Having collected the data, you can grab the datalog in to <em>pandas</em> dataframe in the notebook using some magic:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="o">%</span><span class="n">sim_data</span>
+</pre></div>
+</div>
+<p>The data in the dataframe can be visualised using the <em>seaborn</em> charting package:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># A line plot is a sensible chart type to use</span>
+<span class="c1"># to plot the time series data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+                  <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                  <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+                  <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following code cell correctly configures the robot’s initial starting point as <code class="docutils literal notranslate"><span class="pre">(200,</span> <span class="pre">645)</span></code> and orientation as <code class="docutils literal notranslate"><span class="pre">0</span></code>. Additionally, you can pass in <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">Sensor_Diameter_Config</span></code> if you want to set the sensor diameters automatically.</p>
+<p>Download the program to the simulator then run it using the <em>Simulator controls</em> <code class="docutils literal notranslate"><span class="pre">Run</span></code> control.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Sensor_Diameter_Test -r Sensor_Diameter_Config -AO -x 200 -y 645 -a 0
+# YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Add your observations about the results, including the effect of the speed of the robot on the sensor values recorded. How might this effect the degree to which you can effectively control the robot?</em></p>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to view and example program and sampled data.</em></p>
+<p>As well as viewing the data live by enabling the chart display and selecting the <em>Left light</em> and <em>Right light</em> traces, I’m also going to grab data into the datalog and then analyse it; so I’ll start by clearing the datalog.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_data</span> --clear
+</pre></div>
+</div>
+</div>
+</div>
+<p>For my program, I’m just going to drive the robot forwards, albeit relatively slowly, logging the data in an infinite while loop. As a stopping condition, I’ll break out of the while loop if I explicitly see red.</p>
+<p>Note that in my stopping condition test, I have grabbed the sensor reading into a variable <code class="docutils literal notranslate"><span class="pre">sample</span></code> and then checked its components. If I test <code class="docutils literal notranslate"><span class="pre">colorRight.rgb[0]</span></code> and then <code class="docutils literal notranslate"><span class="pre">colorRight.rgb[1]</span></code> then there’s always a chance the <code class="docutils literal notranslate"><span class="pre">colorRight.rgb</span></code> value will have been updated between testing the first component and the second.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -AOc -b Sensor_Diameter_Test -r Sensor_Diameter_Config -x 200 -y 645 -a 0 -r Sensor_Diameter_Config
+
+#Start off with a slowish speed of 20
+speed = 20
+
+tank_drive.on(SpeedPercent(speed), SpeedPercent(speed))
+
+while True:
+    #Stopping condition on red line
+    sample = colorRight.rgb
+    if (sample[0]==255 and sample[1]&lt;255):
+        break
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print(&#39;Light_left: &#39; + str(intensity_left))
+    print(&#39;Light_right: &#39; + str(intensity_right))
+
+    
+say(&quot;All done&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>I can use the following code to grab the datalog into a dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Grab the logged data into a pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="o">%</span><span class="k">sim_data</span>
+
+<span class="c1">#Preview the first few rows of the dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> to display a line chart of the results, I can see that the traces from each sensor seem to differ:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># A line plot is a sensible chart type to use</span>
+<span class="c1"># to plot the time series data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+                  <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                  <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+                  <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Limit the x axis range </span>
+<span class="c1"># to get a better view of the chart</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In particular:</p>
+<ul class="simple">
+<li><p>the left-hand light sensor (<code class="docutils literal notranslate"><span class="pre">sensor1</span></code>, large diameter, raised high) has ‘smeared’ values and does not register very low values for the black lines</p></li>
+<li><p>the right-hand light sensor (<code class="docutils literal notranslate"><span class="pre">sensor2</span></code>, small diameter, closer to the background) has much ‘spikier’ values and does report much lower sensor readings when crossing the black lines.</p></li>
+</ul>
+<p>If I speed up the robot, then the right-hand light sensor, which has a small diameter and is close to the ground, may miss the narrower black line altogether as it drives over the it.</p>
+</div>
+</div>
+</div>
+<div class="section" id="trading-off-physical-settings-and-code-settings">
+<h2>5.2 Trading off physical settings and code settings<a class="headerlink" href="#trading-off-physical-settings-and-code-settings" title="Permalink to this headline">¶</a></h2>
+<p>In a real physical robot, we may be able to tune elements of the physical set-up, as well as the code, to get the robot to perform as we require.</p>
+<p>As designers and engineers, it may often be the case that a problem that is hard to solve in one domain – for example, in the creation of a computer control program – can be simplified by making changes to the physical robot.</p>
+<p>On the other hand, we may be able to accommodate fiddly aspects of a robot’s physical set-up by simple software fixes.</p>
+<p>We can model a similar sort of interaction in the simulator by varying elements of the robot configuration as well as program parameters.</p>
+<div class="section" id="challenge-exploring-the-effect-of-the-light-sensor-diameter-on-the-line-following-behaviour-optional">
+<h3>5.2.1 Challenge – Exploring the effect of the light sensor diameter on the line-following behaviour (optional)<a class="headerlink" href="#challenge-exploring-the-effect-of-the-light-sensor-diameter-on-the-line-following-behaviour-optional" title="Permalink to this headline">¶</a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">Lollipop</span></code> background and the program you previously created to complete the associated challenge, modify the light sensor setting of the sensor you have used in your program and re-run it.</p>
+<p>Does the increased or decreased the diameter of the sensor available from the <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">Sensor_Diameter_Config</span></code> robot configuration affect the performance of the program? (Depending which side of the line you follow, you can test both sensors.)</p>
+<p>Are there any changes you can make in the program to compensate for changes in the robot’s physical sensor configuration?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Lollipop
+
+# YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Your notes and observations here.</em></p>
+</div>
+<div class="section" id="challenge-making-this-robot-control-strategy-faster-optional">
+<h3>5.2.2 Challenge – Making this robot control strategy faster (optional)<a class="headerlink" href="#challenge-making-this-robot-control-strategy-faster-optional" title="Permalink to this headline">¶</a></h3>
+<p>Can you tune the robot’s physical set-up to allow you to write a program that allows the robot to more quickly complete the <em>Lollipop</em> challenge?</p>
+<p><em>If you take this challenge, be careful not to spend more than 10-15 minutes on it.</em></p>
+</div>
+<div class="section" id="activity-the-effect-of-simulated-noise-sensors-of-various-diameters-optional">
+<h3>5.2.3 Activity – The effect of simulated noise sensors of various diameters (optional)<a class="headerlink" href="#activity-the-effect-of-simulated-noise-sensors-of-various-diameters-optional" title="Permalink to this headline">¶</a></h3>
+<p>You have already seen how sensor noise may affect the performance of a sensor and the performance of a software control program.</p>
+<p>If you are curious, spend ten or fifteen minutes exploring how the different levels of sensor noise affect the ranges and ‘stability’ of readings you can get for sensors of different diameters or simulated heights above the background.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>5.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have experimented with setting the diameter of the light sensor to model raising it or lowering it and changing its field of view over the background area.</p>
+<p>You have seen how this physical setting may influence the performance of the sensor and the ability of the robot to perceive things in its environment that are used to determine the way the robot is controlled.</p>
+<p>You may also have explored how this setting affects the sensitivity of the sensor relative to a particular level of noise.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05. Experimenting with sensors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="05.4%20Challenge%20-%20coping%20with%20noise.html" title="previous page">4 Challenge – Coping with noise</a>
+    <a class='right-next' id="next-link" href="05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html" title="next page">6 The RoboLab Grand Prix Challenge</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

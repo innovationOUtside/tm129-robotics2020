@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Messaging in multi-agent systems &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6 Conclusion" href="08.6%20Conclusion.html" />
+    <link rel="prev" title="4 Recognising patterns on the move" href="08.4%20Recognising%20patterns%20on%20the%20move.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/08. Remote services and multi-agent systems/08.5 Messaging in multi-agent systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08. Remote services and multi-agent systems/08.5 Messaging in multi-agent systems.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ros-the-robot-operating-system">
+   5.1 ROS — the Robot Operating System
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#communicating-between-the-notebook-and-the-robot">
+     5.1.1 Communicating between the notebook and the robot
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-a-simple-message-handler">
+     5.1.2  Defining a simple message handler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#passing-state">
+     5.1.3 Passing state
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extending-the-message-parser">
+     5.1.4 Extending the message parser
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-reviewing-the-inter-agent-message-protocol-and-communication-activity">
+     5.1.5 Activity — Reviewing the inter-agent message protocol and communication activity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-interpretation">
+       Example interpretation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#putting-the-pieces-together-a-multi-agent-system">
+   5.2 Putting the pieces together — a multi-agent system
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-image-classifier-agent">
+     5.2.1 The image classifier agent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   5.3 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="messaging-in-multi-agent-systems">
+<h1>5 Messaging in multi-agent systems<a class="headerlink" href="#messaging-in-multi-agent-systems" title="Permalink to this headline">¶</a></h1>
+<p>In the previous notebooks in this session, you have seen how we can pull data collected in the simulator into the notebook’s Python environment, and then analyse it in that environment at our convenience.</p>
+<p>In particular, we could convert the raw data to an image-based representation, as well as presenting it as raw data to a pre-trained multi-layer perceptron (MLP) or a pre-trained convolutional neural network (CNN).</p>
+<p>We could also capture and decode test labels for the images, allowing us to train a classifier neural network purely using information retrieved from the simulated robot.</p>
+<p>To simplify data collection matters in the original experiments, we “teleported” the robot to specific sampling locations, rather than expecting it to explore the environment and try to detect images on its own.</p>
+<p>In the previous notebook, you saw how we could collect data “on the move”, getting the robot to drive over a set of test images and collecting the data as it did so. We then retrieved this data from a synchronised datalog in the Python environment when we had completed the data collection activity.</p>
+<p>In this notebook, we will try to make things even more dynamic. In particular, we will make use of a communication mechanism where the robot can send data back to the notebook environment for analysis. When the analysis is complete, a message will then be sent from the notebook Python environment back to the robot identifying how the supposed image was classified.</p>
+<div class="section" id="ros-the-robot-operating-system">
+<h2>5.1 ROS — the Robot Operating System<a class="headerlink" href="#ros-the-robot-operating-system" title="Permalink to this headline">¶</a></h2>
+<p><em>ROS</em>, the <em>Robot Operating System</em>, provides one possible architecture for implementing a dynamic message-passing architecture. In a ROS environment, separate <em>nodes</em> publish details of one or more <em>services</em> they can perform along with <em>topics</em> that act as the nodes address that other nodes can subscribe to. Nodes then pass messages between each other in order to perform a particular task. The ROS architecture is rather elaborate for our needs, however, so we shall use a much simpler and more direct approach.</p>
+<p><em>How messages are exchanged is governed by a <code class="docutils literal notranslate"><span class="pre">protocol</span></code> that defines what the messages mean, and how the agents should take turns in sending and receiving.</em></p>
+<p><em>The protocol should also handle cases where messages get lost, since no communication channel is fully reliable. For example, infrared messages could be lost if the robot wanders out of range or just faces the wrong way.</em></p>
+<p>The approach we will use, although a much simpler approach than the full ROS architecture, will also be based on a message-passing approach. To implement the communication system, we need to define a “message” handler in the notebook’s Python environment that can accept messages sent from the simulated robot, perform some sort of analysis task on the received data, and then provide a response back to the simulated robot.</p>
+<div class="section" id="communicating-between-the-notebook-and-the-robot">
+<h3>5.1.1 Communicating between the notebook and the robot<a class="headerlink" href="#communicating-between-the-notebook-and-the-robot" title="Permalink to this headline">¶</a></h3>
+<p>A simple diagram helps to explain the architecture we are using.</p>
+<p>We’ll create the diagram using the <code class="docutils literal notranslate"><span class="pre">%%blockdiag</span></code> magic you met previously. Let’s load it in and enable it first:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> blockdiag_magic
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the written image description in the following code cell, can you visualise in your mind’s eye what the simplified architecture looks like?</p>
+<p>Run the following cell to generate the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">blockdiag</span>
+
+robot [label = &quot;Robot&quot;];
+python [label = &quot;Python message\nhandler&quot;];
+mlp [label = &quot;Neural network&quot;];
+
+
+
+robot &lt;-&gt; python &lt;-&gt; mlp;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The diagram shows three boxes:</p>
+<ul class="simple">
+<li><p>the first box, labeled <em>Robot</em>, is connected by a double-headed arrow to the second box, labeled <em>Python message handler</em>; (the <code class="docutils literal notranslate"><span class="pre">\n</span></code> character in the second label represents a line break)</p></li>
+<li><p>the second box is connected by another double-headed arrow to the third box, labelled <em>Neural network</em>.</p></li>
+</ul>
+<p>The figure is intended to convey the idea that the robot sends a message to a message handler running in the notebook’s Python environment, which presents the decoded message contents to a neural network. The network classifies the data, passes the classification “back” to the message handler, and this in turn passes a response message back to the simulated robot.</p>
+</div>
+<div class="section" id="defining-a-simple-message-handler">
+<h3>5.1.2  Defining a simple message handler<a class="headerlink" href="#defining-a-simple-message-handler" title="Permalink to this headline">¶</a></h3>
+<p>Inside the robot, a simple mechanism is already defined that allows the robot to send a message to the Python environment, but there is nothing defined on the Python end to handle it.</p>
+<p>To set it up, load the simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Get the simulator</span>
+<span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the settings menu in the simulator, enable the <em>Collaborative</em> option. Alternatively, use the <code class="docutils literal notranslate"><span class="pre">--collab</span> <span class="pre">/</span> <span class="pre">-L</span></code> magic flag:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --collab -HWZ
+</pre></div>
+</div>
+</div>
+</div>
+<p>Enabling the <em>Collaborative</em> mode means that when messages are printed to the simulator output window prefixed by the label <code class="docutils literal notranslate"><span class="pre">PY::</span></code>, they are also passed to the Python environment.</p>
+<p>We can create custom handlers on the Python notebook side that can pick up messages sent from the simulator and return a response to the simulator.</p>
+<p>We do this in three steps.</p>
+<p>First, we define a function that can <em>parse</em> messages sent from the robot. We can use a <em>regular expression</em> to help us parse the original message (<code class="docutils literal notranslate"><span class="pre">re.search()</span></code>), and then use a very unsafe method (<code class="docutils literal notranslate"><span class="pre">eval()</span></code>) to try to parse the message as a Python data structure.</p>
+<p><em>You are not expected to be able to create your own regular expressions in order to successfully complete the module.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">simple_parser</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple message parser.&quot;&quot;&quot;</span>
+    <span class="c1"># Match messages that start &quot;PY::&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^PY::(.+)&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="c1"># Get the matched text string</span>
+        <span class="n">match_str</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Try to cast it to a Python object</span>
+        <span class="c1"># Note - this is very insecure and not</span>
+        <span class="c1"># a secure thing to do!</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">match_str</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">match_str</span>
+        <span class="k">return</span> <span class="n">obj</span>
+    <span class="c1"># No match, so return None</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">simple_parser</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Regular expression pattern matchers capable of matching particular string patterns are found in many programming languages.</em></p>
+<p><em>Regular expressions use a special vocabulary of terms for matching string elements, including <code class="docutils literal notranslate"><span class="pre">^</span></code> to represent the start of a string, <code class="docutils literal notranslate"><span class="pre">.</span></code> to represent any character, <code class="docutils literal notranslate"><span class="pre">+</span></code> to represent one or more of the preceding character, and <code class="docutils literal notranslate"><span class="pre">*</span></code> to represent zero or more of the preceding character. Bracketed items can be “captured” into matched groups.</em></p>
+<p><em>Covering regular expressions in any further detail is outside the scope of this module.</em></p>
+<p>Run the following code cell to test the simple parser agent against various text messages. <em>Feel free to come up with your own test messages.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_messages</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PY::1&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY::[1, 2, 3]&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY:: {&#39;int&#39;: 1, &#39;str&#39;: &#39;string&#39;}&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY::my message&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;my message&quot;</span>
+                 <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">test_messages</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Original: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">simple_parser</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parsed: </span><span class="si">{</span><span class="n">simple_parser</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">simple_parser</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice how the parser takes the message and then tries to parse it as Python objects where it can. This includes casting items to numerical integers, lists, dictionaries and, the final default type, strings.</p>
+<p>Second, we need to define a <code class="docutils literal notranslate"><span class="pre">responder()</span></code> function. This function should accept a message object, parse it, do something with it, and provide a response.</p>
+<p>We’ll also add an ability to log what the Python side sees and return it in a log file, <code class="docutils literal notranslate"><span class="pre">logger.txt</span></code>.</p>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">seqdiag</span></code> block magic is of a similar kind to the <code class="docutils literal notranslate"><span class="pre">blockdiag</span></code> magic and creates another diagram type, in this case a <strong>sequence diagram</strong>. The diagram shows how messages are passed in order between different actors in a communication system.</em></p>
+<p><em>Time starts at the top of the diagram and increases as you read down the diagram. The arrows show how messages pass from one actor to another. The increasing time dimension highlights the sequential order in which messages are passed.</em></p>
+<p>Our protocol will look something like the following (run the code cell to render the sequence diagram):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">seqdiag</span>
+default_fontsize = 24;
+edge_length = 220;
+activation = none;
+
+robot  -&gt; responder [label = &quot;PY::message&quot;];
+responder -&gt; parser;
+responder &lt;- parser;
+responder --&gt; logger [label = &quot;log message\nand response&quot;];
+robot &lt;- responder [label = &quot;Python\nsaw(message)&quot;];
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the sequence diagram, the <em>robot</em> passes a message to the <em>responder</em>, which handles the message by passing it to a <em>parser</em>. The parsed message is returned to the <em>responder</em>, which creates an entry in a <em>logger</em> log file and sends a response back to the <em>robot</em>.</p>
+<p>The following command will clear the logfile if it has already been written to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> logger.txt
+<span class="c1"># Responder logfile</span>
+<span class="c1"># -----------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the responder itself, this might be as simple as returning a message that essentially echoes the parsed message passed to the function with a simple text wrapper:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a simple logfile output.&quot;&quot;&quot;</span>
+    <span class="c1"># Log the response to a file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;logger.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Received message: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Response: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;---</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">echo_responder</span><span class="p">(</span><span class="n">msg_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Echo the original message in a simple message.&quot;&quot;&quot;</span>
+    <span class="c1"># Parse the message</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">msg_object</span><span class="p">)</span>
+
+    <span class="c1"># Do something with the message here...</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Python saw &gt;&gt; </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1"> &lt;&lt; that...&#39;</span>
+
+    <span class="c1"># Write to the logger</span>
+    <span class="n">logger</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+    <span class="c1"># Return the response</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The third thing we need to do is configure the <code class="docutils literal notranslate"><span class="pre">roboSim</span></code> Python object to use the <code class="docutils literal notranslate"><span class="pre">responder()</span></code> function we have just defined as the message handler. This will handle messages sent from the simulated robot (that is, messages starting with <code class="docutils literal notranslate"><span class="pre">PY::</span></code> that are <code class="docutils literal notranslate"><span class="pre">print</span></code>ed to the output window with the simulator in <em>Collaborative</em> mode).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roboSim</span><span class="o">.</span><span class="n">pyresponder</span> <span class="o">=</span> <span class="n">echo_responder</span>
+
+<span class="c1"># Flush any garbage already on the line...</span>
+<span class="o">%</span><span class="k">sim_magic</span> --refresh
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clear the logfile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> logger.txt
+<span class="c1"># Responder logfile</span>
+<span class="c1"># -----------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we should be able to send messages from the robot to the Python environment, handle them on the Python side, and then send a response back to the robot. The message sent back to the robot is displayed in the output window:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -ROHW --collab
+import time
+
+for i in range(5):
+    
+    print(&quot;Robot says&quot;, str(i))
+    if not i%2:
+        print(&quot;PY::&quot;+str(i))
+        
+    # We need some physical time to elapse
+    # to give time for the messages to propagate
+    time.sleep(1)
+
+say(&quot;all done&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wait until the program has completed its run (you should hear it say <em>all done</em> at the end).</p>
+<p>If you now review the contents of the simulator output window, you can see how the robot starts by sending a message:</p>
+<p><code class="docutils literal notranslate"><span class="pre">PY::0</span></code></p>
+<p>and the Python process then responds:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">saw</span> <span class="pre">&gt;&gt;</span> <span class="pre">0</span> <span class="pre">&lt;&lt;</span> <span class="pre">that...</span></code></p>
+<p>The robot then sends several further messages that the Python agent responds to appropriately.</p>
+<p>We can also view the logfile to see a report from the Python side of the transaction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cat</span> logger.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="passing-state">
+<h3>5.1.3 Passing state<a class="headerlink" href="#passing-state" title="Permalink to this headline">¶</a></h3>
+<p>Passing messages is all very well, but can we go a step further? Can we pass <em>data objects</em> between the robot and the Python environment, and back again?</p>
+<p>Let’s start by adding another level of indirection to our program. In this case, let’s create a simple agent that takes a parsed message object, does something to it (which in this case isn’t very interesting!) and passes a modified object back:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_echo_agent</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple echo agent.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Suppose we have a dictionary response</span>
+    <span class="c1"># Just echo that back</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Py saw: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">simple_echo_agent</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following responder works in the following way:</p>
+<ul class="simple">
+<li><p>it parses a message received from the robot</p></li>
+<li><p>it passes the parsed message to an agent, which does something with it</p></li>
+<li><p>it gets a response back from the agent</p></li>
+<li><p>it encodes the agent’s response so that it can be used in our message protocol</p></li>
+<li><p>it responds to the robot.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">seqdiag</span>
+default_fontsize = 24;
+edge_length = 220;
+
+activation = none;
+robot  -&gt; responder [label = &quot;PY::message&quot;];
+responder -&gt; agent -&gt; parser [label=&#39;message&#39;];
+agent &lt;- parser [label=&#39;object&#39;];
+responder &lt;- agent [label=&#39;response&#39;];
+responder --&gt; logger [label = &quot;log message\nand response&quot;];
+robot &lt;- responder [label = &quot;JSON::response&quot;];
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the sequence diagram, the <em>robot</em> passes a message to the <em>responder</em>, which passes it on to the <em>agent</em>. The agent gets the message parsed by the <em>parser</em> and passes a response object back to the <em>responder</em>. The <em>responder</em> creates a log entry and sends a response back to the <em>robot</em>.</p>
+<p><em>JavaScript Object Notation (JSON)</em> is a text based format for serialising JavaScript objects as text strings. These text strings can be easily communicated over computer networks. JSON data is widely used to pass data between webservers and web browsers.</p>
+<p>Here’s an implementation of the JavaScript Object Notation (JSON) message handling responder:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">def</span> <span class="nf">json_responder</span><span class="p">(</span><span class="n">msg_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Echo the original message as JSON.&quot;&quot;&quot;</span>
+    <span class="c1"># Pass the message to an agent who will</span>
+    <span class="c1"># parse the message, act on it and provide</span>
+    <span class="c1"># a response</span>
+    <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="p">(</span><span class="n">parser</span><span class="p">(</span><span class="n">msg_object</span><span class="p">))</span>
+    
+    <span class="c1"># Get the agents response and wrap it as a message</span>
+    <span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">agent_response</span><span class="p">}</span>
+    
+    <span class="c1"># Convert that object to a serialised</span>
+    <span class="c1"># JSON message (a text string)</span>
+    <span class="n">json_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+    <span class="c1"># On the robot side, we can parse this</span>
+    <span class="c1"># text message to recreate a JavaScript object</span>
+
+    <span class="c1"># Create a response that works with</span>
+    <span class="c1"># our message protocol</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;JSON::</span><span class="si">{</span><span class="n">json_string</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="c1"># Write to the logger</span>
+    <span class="n">logger</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+    
+    <span class="c1"># Return the response</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that message handler works on some test messages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_messages</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PY::my message&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY:: [1,2,3]&quot;</span><span class="p">,</span>
+                 <span class="s1">&#39;PY::{&quot;key&quot;: &quot;value&quot;}&#39;</span><span class="p">,</span>
+                 <span class="s2">&quot;my message&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">test_messages</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Original: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">json_responder</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Response: </span><span class="si">{</span><span class="n">json_responder</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, the parser returns a Python object to the responder, which creates a JSON string representation of it that can be passed back to the simulated robot as a simple text message.</p>
+<p>Let’s hook that responder up as a new responder to the robot’s messages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">roboSim</span><span class="o">.</span><span class="n">pyresponder</span> <span class="o">=</span> <span class="n">json_responder</span>
+
+<span class="c1"># Flush any garbage already on the line...</span>
+<span class="o">%</span><span class="k">sim_magic</span> --refresh
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clear the logfile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> logger.txt
+<span class="c1"># Responder logfile</span>
+<span class="c1"># -----------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s try out our new responder and see if we can:</p>
+<ul class="simple">
+<li><p>pass a JavaScript object from the robot, as a JSON string, to the Python environment</p></li>
+<li><p>decode the string, do something with it, create a JSON-encoded response and send it back to the robot</p></li>
+<li><p>parse the received message as a JavaScript object.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -ROHW --collab
+import ev3dev2_glue as glue
+import time
+
+for i in range(5):
+    # The robot prints a message
+    # This will not be responded to
+    print(&quot;Robot says&quot;, str(i))
+    
+    if not i%2:
+        # Display a message that is sent to Python
+        print(&quot;PY::&quot;+str(i))
+        # Any response will be displayed in
+        # the output display
+    
+    # The returned message is added to
+    # an internal message queue 
+    msg_queue = glue.pyState()
+    print(&#39;Message queue&#39;, msg_queue)
+    time.sleep(1)
+
+msg_queue = glue.pyState()
+print(&#39;Message queue&#39;,msg_queue)
+print(&quot;Last message&quot;, msg_queue[&quot;messages&quot;][-1])
+
+py_msg = str(msg_queue[&quot;messages&quot;][-1][&#39;message&#39;])
+say(&quot;Last Python message was ...&quot;+py_msg)
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we run this program in the simulator, the robot sends a message such as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">PY::0</span></code></p>
+<p>The Python agent receives the message and responds with a message of the form:</p>
+<p><code class="docutils literal notranslate"><span class="pre">JSON::{&quot;message&quot;:</span> <span class="pre">&quot;Py</span> <span class="pre">saw:</span> <span class="pre">0&quot;}</span></code></p>
+<p>The response is decoded by the robot as the JavaScript object <code class="docutils literal notranslate"><span class="pre">{&quot;message&quot;:</span> <span class="pre">&quot;Py</span> <span class="pre">saw:</span> <span class="pre">0&quot;}</span></code> and added to the end of a <code class="docutils literal notranslate"><span class="pre">messages</span></code> list. We can then access the messages as required.</p>
+<p>Again, we can also view the logfile giving the Python agent’s perspective:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cat</span> logger.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extending-the-message-parser">
+<h3>5.1.4 Extending the message parser<a class="headerlink" href="#extending-the-message-parser" title="Permalink to this headline">¶</a></h3>
+<p>Let’s now look at how we might retrieve real-time sensor data in our message-passing system.</p>
+<p>As well as the <code class="docutils literal notranslate"><span class="pre">PY::</span></code> message processor, the robot also has a special <code class="docutils literal notranslate"><span class="pre">IMG_DATA</span></code> message processor. Printing the message <code class="docutils literal notranslate"><span class="pre">IMG_DATA</span></code> to the simulator output window causes a special message to be passed to the Python environment. This message starts with the phrase <code class="docutils literal notranslate"><span class="pre">IMG_DATA::</span></code>, followed by the sensor data.</p>
+<p>We need to extend our parser to handle this message:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">image_parser</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple message parser with image parsing support.&quot;&quot;&quot;</span>
+    <span class="c1"># Match messages that start &quot;PY::&quot; or &quot;IMG_DATA::&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(IMG_DATA|PY)::(.+)&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="c1"># Get the matched text string</span>
+        <span class="c1"># Try to cast it to a Python object</span>
+        <span class="c1"># Note - this is very insecure and not</span>
+        <span class="c1"># a secure thing to do!</span>
+        <span class="n">match_str</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">match_str</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">match_str</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;typ&#39;</span><span class="p">:</span><span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="n">obj</span><span class="p">}</span>
+    
+    <span class="c1"># No match, so return None</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">image_parser</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s just test that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_messages</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PY::1&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY::[1, 2, 3]&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY:: {&#39;int&#39;: 1, &#39;str&#39;: &#39;string&#39;}&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;PY::my message&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;IMG_DATA::{&#39;k1&#39;:[1,2,3], &#39;k2&#39;:[4,5,6]}&quot;</span>
+                 <span class="p">]</span>
+
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">test_messages</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Original: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parser</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Parsed: </span><span class="si">{</span><span class="n">parser</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">parser</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe how our new <code class="docutils literal notranslate"><span class="pre">image_parser()</span></code> function can cope with the original <code class="docutils literal notranslate"><span class="pre">PY::</span></code> prefixed messages and the new <code class="docutils literal notranslate"><span class="pre">IMG_DATA::</span></code> prefixed message type.</p>
+<p>Now let’s see if we can parse and return some actual image data.</p>
+<p>First, clear the logfile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> logger.txt
+<span class="c1"># Responder logfile</span>
+<span class="c1"># -----------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s see if we can collect an image data sample. Note that we are still using the <code class="docutils literal notranslate"><span class="pre">json_responder()</span></code> but with the <code class="docutils literal notranslate"><span class="pre">image_parser</span></code> (as set by <code class="docutils literal notranslate"><span class="pre">parser</span> <span class="pre">=</span> <span class="pre">image_parser</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Simple_Shapes --collab -ARO -x 520 -y 900
+import time
+
+print(&quot;PY::{&#39;test_key&#39;:&#39;test value&#39;}&quot;)
+
+# Give the messages time to pass
+time.sleep(1)
+print(&quot;IMG_DATA&quot;)
+
+time.sleep(1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should hopefully see an echo of a large amount of sensor data appear in the simulator output window. We should also be able to see it in the Python logfile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cat</span> logger.txt
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-reviewing-the-inter-agent-message-protocol-and-communication-activity">
+<h3>5.1.5 Activity — Reviewing the inter-agent message protocol and communication activity<a class="headerlink" href="#activity-reviewing-the-inter-agent-message-protocol-and-communication-activity" title="Permalink to this headline">¶</a></h3>
+<p>At this point, let’s quickly recap the messaging protocol we have defined by way of another sequence diagram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">seqdiag</span>
+default_fontsize = 24;
+edge_length = 220;
+activation = none;
+
+robot  -&gt; responder [label = &quot;IMG_DATA::data&quot;];
+responder -&gt; agent -&gt; parser [label=&#39;message&#39;];
+agent &lt;- parser [label=&#39;object&#39;];
+agent -&gt; MLP [label=&#39;object&#39;];
+agent &lt;- MLP [label=&#39;classification&#39;];
+responder &lt;- agent [label=&#39;response&#39;];
+responder --&gt; logger [label = &quot;log message and response&quot;];
+robot &lt;- responder [label = &quot;JSON::response&quot;];
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>In your own words, describe the sequence of message-passing actions depicted by the sequence diagram here.</em></p>
+<div class="section" id="example-interpretation">
+<h4>Example interpretation<a class="headerlink" href="#example-interpretation" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example interpretation.</em></p>
+<p>In the sequence diagram, the <em>robot</em> passes a message (<code class="docutils literal notranslate"><span class="pre">IMG_DATA</span></code>) containing image data to the Python <em>agent</em>. The <em>agent</em> has the message parsed by the <em>parser</em>, converts the response to an image pair, and passes one of the images to the <em>MLP</em> neural network. The <em>MLP</em> classifies the image and returns a prediction to the <em>agent</em>. The <em>agent</em> creates a response and passes it to the <em>responder</em>, which encodes the response as a text message and sends it to the <em>robot</em>. The robot then parses the message as a JavaScript object and uses it as required.</p>
+</div>
+</div>
+</div>
+<div class="section" id="putting-the-pieces-together-a-multi-agent-system">
+<h2>5.2 Putting the pieces together — a multi-agent system<a class="headerlink" href="#putting-the-pieces-together-a-multi-agent-system" title="Permalink to this headline">¶</a></h2>
+<p>With our message protocol defined, let’s see if we can now create a multi-agent system where the robot collects some image data and passes it to the Python agent. The Python agent should then decode the image data, present it to a pre-trained multi-layer perceptron neural network, and identify a presented shape. The Python agent should then inform the robot about the shape of the object the robot can see.</p>
+<div class="section" id="the-image-classifier-agent">
+<h3>5.2.1 The image classifier agent<a class="headerlink" href="#the-image-classifier-agent" title="Permalink to this headline">¶</a></h3>
+<p>To perform the recognition task, we need to implement our agent. The agent will take the image data and place it in a two row dataframe in the correct form. Then it will generate an image pair from the dataframe, and present the left-hand shape image to the neural network. The neural network will return a shape prediction and this will be passed in a message back to the robot.</p>
+<p>First, lets load in a pre-trained shape recognising MLP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="n">MLP</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;mlp_shapes_14x14.joblib&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And let’s set up the category labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the classes</span>
+<span class="n">shapemap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;square&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;right facing triangle&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;left facing triangle&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s1">&#39;downwards facing triangle&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s1">&#39;upwards facing triangle&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s1">&#39;diamond&#39;</span><span class="p">:</span> <span class="mi">5</span>
+           <span class="p">}</span>
+
+<span class="n">codemap</span> <span class="o">=</span> <span class="p">{</span><span class="n">shapemap</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">shapemap</span><span class="p">}</span>
+<span class="n">codemap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">get_sensor_image_pair</span><span class="p">,</span> <span class="n">image_data_to_array</span>
+<span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">zoom_img</span><span class="p">,</span> <span class="n">image_data_to_array</span><span class="p">,</span> <span class="n">image_from_array</span>
+<span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">class_predict_from_image</span>
+
+<span class="k">def</span> <span class="nf">shape_recognising_agent</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Shape recognising agent.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;typ&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IMG_DATA&#39;</span><span class="p">:</span>
+        <span class="n">pair_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">image_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;side&#39;</span><span class="p">:</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;vals&#39;</span><span class="p">:</span> <span class="n">roboSim</span><span class="o">.</span><span class="n">process_raw_image_data</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;obj&#39;</span><span class="p">][</span><span class="s1">&#39;left&#39;</span><span class="p">])},</span>
+                                   <span class="p">{</span><span class="s1">&#39;side&#39;</span><span class="p">:</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;vals&#39;</span><span class="p">:</span> <span class="n">roboSim</span><span class="o">.</span><span class="n">process_raw_image_data</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;obj&#39;</span><span class="p">][</span><span class="s1">&#39;right&#39;</span><span class="p">])}])</span>
+        
+        <span class="n">left_img</span><span class="p">,</span> <span class="n">right_img</span> <span class="o">=</span> <span class="n">get_sensor_image_pair</span><span class="p">(</span><span class="n">image_data</span><span class="p">,</span>
+                                            <span class="n">pair_index</span><span class="p">)</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">class_predict_from_image</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="n">left_img</span><span class="p">)</span>
+    <span class="c1"># Suppose we have a dictionary response</span>
+    <span class="c1"># Just echo that back</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;report&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Agent says: I saw </span><span class="si">{</span><span class="n">codemap</span><span class="p">[</span><span class="n">prediction</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="n">codemap</span><span class="p">[</span><span class="n">prediction</span><span class="p">]}</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">shape_recognising_agent</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s see if we can help the robot recognise a shape:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Simple_Shapes --collab -ARO -x 520 -y 900
+import time
+
+print(&quot;IMG_DATA&quot;)
+# Give the messages time to pass
+time.sleep(3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try another:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --collab -ARO -x 200 -y 900
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try a slightly more elaborate handler on the robot side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Simple_Shapes --collab -ARO -x 520 -y 900
+import time
+import ev3dev2_glue as glue
+
+print(&quot;IMG_DATA&quot;)
+# Give the messages time to pass
+time.sleep(1)
+
+msg_queue = glue.pyState()
+print(msg_queue)
+# Get the last message
+possible_shape = msg_queue[&#39;messages&#39;][-1][&#39;message&#39;][&#39;shape&#39;]
+say(&quot;Is that a &quot; + possible_shape )
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the following code cell several times to test the robot on different randomly sampled shapes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random_shape_x</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mi">80</span>
+
+<span class="o">%</span><span class="k">sim_magic</span> --collab -ARO -x 200 -y 900
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here about how well the robot performed.</em></p>
+<p><em>Note down any other ideas you have about how a robot might be able to cooperate with other agents as part of a multi-agent system.</em></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>5.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how we can create a simple protocol that allows the passage of messages between the robot and Python agent in a simple multi-agent system. The Python agent picks up the message received from the robot, parses it and decodes it as an image. The image is then classified by an MLP and the agent responds to the robot with a predicted image classification.</p>
+<p>You also saw how we can use a particular type of diagram, often referred to as a <em>sequence diagram</em>, to describe the passage of messages between several different actors in a communication system. Specialised diagram types play a significant role in many engineering disciplines for depicting in a structured way a visual description of a system or a visual summary of its anticipated operational behaviour.</p>
+<p>Whilst we only considered how our Python agent might call on a neural network to support our remote simulated robot agent, you might also conclude, correctly, that we could also use a “traditional” sequential program, or even a rule based system, to perform “off-board” tasks on behalf of the robot.</p>
+<p>This largely completes our journey into the world of introductory robot programming and neural networks. All that remains now is for you to read through the final notebook and recap the journey we have taken over the last few weeks.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08. Remote services and multi-agent systems"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="08.4%20Recognising%20patterns%20on%20the%20move.html" title="previous page">4 Recognising patterns on the move</a>
+    <a class='right-next' id="next-link" href="08.6%20Conclusion.html" title="next page">6 Conclusion</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

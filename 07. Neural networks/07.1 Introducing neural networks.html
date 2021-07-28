@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1 Introducing neural networks &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2 Multidimensional data and the MLP" href="07.2%20Multidimensional%20data%20and%20the%20MLP.html" />
+    <link rel="prev" title="4 Keeping track of direction — which way are we heading?" href="../06.%20Where%20in%20the%20world%20are%20we/06.4%20Keeping%20track%20of%20direction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/07. Neural networks/07.1 Introducing neural networks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/07. Neural networks/07.1 Introducing neural networks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-sense-of-images">
+   1.1 Making sense of images
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-example-image-tagging-demo">
+     1.1.1 Activity – Example image tagging demo
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-recognising-a-static-pose-in-an-image">
+     1.1.2 Activity – Recognising a static pose in an image
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-learning">
+     1.2 Transfer learning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#activity-training-your-own-image-or-audio-classifier-optional">
+       1.2.1 Activity — Training your own image or audio classifier (optional)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     1.3 Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introducing-neural-networks">
+<h1>1 Introducing neural networks<a class="headerlink" href="#introducing-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>You have already been introduced to neural networks in the study materials: now you are going to have an opportunity to play with them in practice.</p>
+<p>Neural networks can solve subtle pattern-recognition problems, which are very important in robotics. Although many of the activities are presented outside the robotics context, we will also try to show how they can be used to support robotics-related problems.</p>
+<p>In this session, you will get hands-on experience of using a variety of neural networks, and you will build and train neural networks to perform specific tasks, particularly in the area of image classification.</p>
+</div>
+<div class="section" id="making-sense-of-images">
+<h1>1.1 Making sense of images<a class="headerlink" href="#making-sense-of-images" title="Permalink to this headline">¶</a></h1>
+<p>In recent years, great advances have been made in generating powerful neural network-based models often referred to as ‘deep learning’ models. But neural networks have been around for over 50 years, with advances every few years, often reflecting advances in computing and, more recently, the ready availability of large amounts of raw training data. These advances were then followed by long periods of ‘AI Winter’ when not much progress appeared to be being made.</p>
+<p>The XKCD cartoon, <a class="reference external" href="https://xkcd.com/1425/"><em>Tasks</em></a> was first published in 2014. As is typical of XKCD cartoons, hovering over the cartoon reveals some hidden caption text. In this particular case: ‘<em>In the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they’d have the problem solved by the end of the summer. Half a century later, we’re still working on it</em>.’</p>
+<p><a class="reference external" href="https://xkcd.com/1425/"><img alt="" src="../_images/xkcd_tasks.png" /></a></p>
+<p>At the time (this is only a few short years ago, remember), recognising arbitrary items in images was still a hard task and the sentiment of this cartoon rang true. But within a few months, advances in neural network research meant that AI models capable of performing similar tasks, albeit crudely and with limited success, had started to appear. Today, photographs are routinely tagged with labels that identify what can be seen in the photograph using much larger, much more powerful, and much more effective AI models.</p>
+<p>However, identifying individual objects in an image on the one hand, and being able to generate a sensible caption that describes the image, is a different matter. A quick web search today will undoubtedly turn up some very enticing demos out there of automated caption generators. But ‘reading the scene’ presented by a picture and generating a caption from a set of keywords or tags associated with items that can be recognised in the image is an altogether more complex task: as well as performing the object recognition task correctly, we also need to be able to identify the relationships that exist between the different parts of the image; and do that in a meaningful way.</p>
+<div class="section" id="activity-example-image-tagging-demo">
+<h2>1.1.1 Activity – Example image tagging demo<a class="headerlink" href="#activity-example-image-tagging-demo" title="Permalink to this headline">¶</a></h2>
+<p>There are many commercial image-tagging services available on the web that are capable of tagging uploaded images or images that can be identified by a web URL.</p>
+<p>Try one or more of the following services to get a feel for what sorts of service are available and how effective they are at tagging an image based on its visual content, recording your own summary and observations about what sorts of services are provided in the markdown cell below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://demos.algorithmia.com/image-tagger">Algorithmia</a></p></li>
+<li><p><a class="reference external" href="https://imagga.com/auto-tagging-demo">Imagga</a></p></li>
+<li><p><a class="reference external" href="https://pixolution.io/keyword-suggestion">Pixolution</a></p></li>
+<li><p><a class="reference external" href="https://demo.sensifai.com/">Sensifai</a></p></li>
+<li><p><a class="reference external" href="https://demo.ximilar.com/">Ximilar (demo 1 – generic tagging)</a></p></li>
+<li><p><a class="reference external" href="https://demo.ximilar.com/fashion/fashion-tagging">Ximilar (demo 2 – fashion tagging)</a></p></li>
+</ul>
+<p><strong>Do not spend more than 10 minutes on this activity.</strong></p>
+<p><em>If you discover any additional demo services, or if you find that any of the above services seem to have either stopped working, or disappeared, please let us know via the module forums.</em></p>
+<p><em>Double-click this cell to edit it and record your own summary and observations about what sorts of services are provided by one or more of the applications linked to above.</em></p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>Which website(s) did you try?</p></li>
+<li><p>What sort of application or service does the website provide?</p></li>
+<li><p>How well did it perform? For example, if the service was tagging an image, did it appear to tag any particular sorts of image incorrectly?</p></li>
+</ul>
+<p>What benefits can you imagine from using such a service? What risks might be associated with using such a service?</p>
+<p>To what extent would you trust such a service for tagging:</p>
+<ul class="simple">
+<li><p>your own photos to help you rediscover them</p></li>
+<li><p>stock items in a commercial retail setting</p></li>
+<li><p>medical images (CT scans, X-rays, etc.)</p></li>
+<li><p>images of people in a social network</p></li>
+<li><p>images of people in a police surveillance setting.</p></li>
+</ul>
+<p>What risks, if any, might be associated with using such a service in each of those settings?</p>
+</div>
+<div class="section" id="activity-recognising-a-static-pose-in-an-image">
+<h2>1.1.2 Activity – Recognising a static pose in an image<a class="headerlink" href="#activity-recognising-a-static-pose-in-an-image" title="Permalink to this headline">¶</a></h2>
+<p>As well as tagging images, properly trained models can recognise individual people’s faces in photos (and not just of celebrities!) and human poses within a photograph.</p>
+<p>Click through to the following web location to see an example of a neural network model running in your web browser to recognise the pose of several different people across a set of images: <a class="reference external" href="https://pose-animator-demo.firebaseapp.com/static_image.html">https://pose-animator-demo.firebaseapp.com/static_image.html</a> [<em>Chrome browser required</em>]</p>
+</div>
+<div class="section" id="transfer-learning">
+<h2>1.2 Transfer learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">¶</a></h2>
+<p>Creating a neural network capable of recognising a particular image can take a lot of data and a lot of computing power. The training process typically involves showing the network being trained:</p>
+<ul class="simple">
+<li><p>an image</p></li>
+<li><p>a label that says how we want the image to be recognised.</p></li>
+</ul>
+<p>During training, the neural network, which is often referred to as a <em>model</em> (that is, a <em>statistical model</em>), is presented with the image and asked what label is associated with that image. If the network’s suggested label matches the training label, then the network model is ‘rewarded’ and its parameters updated so that it is more likely to give that desired answer for that sort of image in future. If the prediction does not match the training label, then the model parameters are updated so that the model is less likely to make that incorrect prediction in future and more likely to assign the correct training label.</p>
+<p>The effectiveness of the model is then tested on images it has not seen before, and its predictions checked against the correct labels.</p>
+<p>A process known as ‘transfer learning’ allows a model trained on one set of images to be ‘topped up’ with additional training based on image/label pairs from images it has not seen or been trained on before.</p>
+<p>The pre-trained model already knows how to identify lots of different unique ‘features’ that might be contained within an image. These features may be quite abstract; for example, the network might be able to recognise straight lines, or right angles, or several distinguishable points positioned in a particular way relative to each other, or other patterns that defy explanation (to us, at least).</p>
+<p>When transfer learning is used to further train the model, combinations of the features it can already detect are used to create new feature combinations. The new combinations are better able to identify patterns in the specific image collections used to “top-up” the training of the network.</p>
+<div class="section" id="activity-training-your-own-image-or-audio-classifier-optional">
+<h3>1.2.1 Activity — Training your own image or audio classifier (optional)<a class="headerlink" href="#activity-training-your-own-image-or-audio-classifier-optional" title="Permalink to this headline">¶</a></h3>
+<p>Although it can take <em>a lot</em> of data and <em>a lot</em> of computational effort to train a model, topping up a model with transfer learning applied to a previously trained model can be achieved quite simply.</p>
+<p>In this (optional) activity, you can top-up a pre-trained model to distinguish between two or more categories of image or sound of your own devising. The <a class="reference external" href="https://blog.google/technology/ai/teachable-machine/">tutorial here</a> describes a process for training a neural network to distinguish between images representing two different situations.</p>
+<p>You can train your own neural network by:</p>
+<ul class="simple">
+<li><p>uploading your own images (or capture some images from a camera attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: <a class="reference external" href="https://teachablemachine.withgoogle.com/train/image">https://teachablemachine.withgoogle.com/train/image</a></p></li>
+<li><p>uploading your own audio files (or capture some audio from a microphone attached to your computer) and assign them to two or more categories you have defined yourself, then train the model to distinguish between them: <a class="reference external" href="https://teachablemachine.withgoogle.com/train/audio">https://teachablemachine.withgoogle.com/train/audio</a>.</p></li>
+</ul>
+<p><em>Large social networking services such as Facebook train classifiers on uploaded images and tags to identify people in uploaded photographs. Whenever you tag people in a photograph uploaded to such services, you are helping train the classifiers operated by those companies.</em></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>1.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook you have seen how we can use a third-party application to recognise different objects within an image and return human-readable labels that can be used to ‘tag’ the image. These applications use large, pre-trained neural networks to perform the object-recognition task.</p>
+<p>You have also been introduced to the idea that we can take a pre-trained neural network model and use an approach called <em>transfer learning</em> to ‘top it up’ with a bit of extra learning. This allows a network trained to distinguish items in one dataset to draw on that prior learning to recognise differences between additional categories of input image that we have provided it with.</p>
+<p>In the following notebooks you will have an opportunity to train your own neural network, from scratch, on a simple classification task.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07. Neural networks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../06.%20Where%20in%20the%20world%20are%20we/06.4%20Keeping%20track%20of%20direction.html" title="previous page">4 Keeping track of direction — which way are we heading?</a>
+    <a class='right-next' id="next-link" href="07.2%20Multidimensional%20data%20and%20the%20MLP.html" title="next page">2 Multidimensional data and the MLP</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

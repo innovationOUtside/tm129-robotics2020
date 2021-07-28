@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 Using a convolutional neural network to recognise images (optional) &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1 An introduction to remote services and multi-agent systems" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html" />
+    <link rel="prev" title="6 Inside the mind of a neural network" href="07.6%20Inside%20the%20mind%20of%20a%20neural%20network.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/07. Neural networks/07.7 Convolutional neural networks (optional).ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/07. Neural networks/07.7 Convolutional neural networks (optional).ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolutional-neural-networks">
+   7.1 Convolutional neural networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recognising-handwritten-digits-provided-by-you">
+   7.2 Recognising handwritten digits provided by you
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-handwritten-digit-recogniser">
+   7.3 Training a handwritten digit recogniser
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inside-the-mind-of-a-convolutional-neural-network-mnist-handwritten-digit-recogniser">
+   7.4 Inside the mind of a convolutional neural network MNIST handwritten digit recogniser
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   7.5 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>This notebook contains optional study material. You are not required to work through it in order to meet the learning objectives or complete the assessments associated with this module.</strong></p>
+<p><em>This notebook demonstrates the use of another neural network architecture, specifically, a convolutional neural network (CNN). Networks of this type often demonstrate far more robust behaviour than multi-layer perceptrons when it comes to classifying data such as images.</em></p>
+<div class="section" id="using-a-convolutional-neural-network-to-recognise-images-optional">
+<h1>7 Using a convolutional neural network to recognise images (optional)<a class="headerlink" href="#using-a-convolutional-neural-network-to-recognise-images-optional" title="Permalink to this headline">¶</a></h1>
+<p>In the previous notebooks, you saw how a neural network could partition points arranged in a two-dimensional space into distinct groups. In this notebook, you will explore how a neural network can be trained to recognise a variety of images, where each image is represented as a set of pixel values arranged in a two-dimensional array.</p>
+<p>The dataset you will use is the MNIST database that you met in an earlier notebook.</p>
+<div class="section" id="convolutional-neural-networks">
+<h2>7.1 Convolutional neural networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>Whilst an MLP can cope with distinguishing digits as a result of training on the MNIST handwritten digits datasets, it starts to struggle with more complex image-recognition tasks.</p>
+<p>In recent years, a different neural network model that is ideally suited to image-recognition problems has come to the fore. Known as a <em>convolutional neural network</em> (CNN), we will not explore its architecture in any formal way, other than to note a couple of differences to the MLP architecture.</p>
+<p>In the first case, whereas the multi-layer perceptron is a fully connected network, the CNN is only sparsely connected.</p>
+<p>In the second case, an MLP would typically present an image to a network in the form of a single column vector equal to the size of the image in pixels, with each input pixel connected to every node in the first hidden layer. This means that every node in the first hidden layer sees every pixel in the image, no matter how far apart they are.</p>
+<p>In a CNN, a smaller grid is used to filter localised areas of the image, preserving information about the local relationship between certain pixels. As we go deeper into the CNN’s hidden layer, this filtering structure repeats, with each neuron only seeing outputs from a selection of neighbouring nodes in the previous layer.</p>
+<p>Something else you may notice in what follows is the word “tensor” appearing again. A <em>tensor</em> is a multidimensional array of numbers (often, a <em>large</em> multidimensional array) and it hints at how the data is passed into, and flows through, a network. That is about as much as I’m going to tell you for the purposes of this module. If you want to know more, <a class="reference external" href="http://www.open.ac.uk/courses/modules/t194">T194 <em>Engineering: mathematics, modelling, applications</em></a> starts you on a gentle path by introducing the idea of matrices, ideas which are further developed in <a class="reference external" href="http://www.open.ac.uk/courses/modules/mst210">MST210 <em>Mathematical methods, models and modelling</em></a> (It’s not for no reason that a lot of people who work with neural networks have a strong background in mathematics.) The third-level module TM358 <em>Machine learning and artificial intelligence</em> looks in more detail about the machine-learning relevance.</p>
+</div>
+<div class="section" id="recognising-handwritten-digits-provided-by-you">
+<h2>7.2 Recognising handwritten digits provided by you<a class="headerlink" href="#recognising-handwritten-digits-provided-by-you" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="xref myst">handwritten digit recogniser</span> application allows you to write a digit in a small interactive canvas and then see if a pretrained network can recognise it. <strong>If the direct link does not work, then from the notebook home page <code class="docutils literal notranslate"><span class="pre">New</span></code> menu select the <code class="docutils literal notranslate"><span class="pre">nb_handwritten_digit</span></code> option.</strong></p>
+<p>Within the application:</p>
+<ul class="simple">
+<li><p><em>click in the canvas area</em></p></li>
+<li><p><em>with your mouse button held down, write a single digit in the range 0 to 9</em></p></li>
+<li><p><em>click on the <code class="docutils literal notranslate"><span class="pre">Predict</span></code> button</em>.</p></li>
+</ul>
+<p>Does the application recognise the digit correctly? Press the <code class="docutils literal notranslate"><span class="pre">Clear</span></code> button to clear the canvas and have another go.</p>
+<p><em>The application may take a minute or two completely load because it needs to load a large model file into the browser. If it doesn’t recognise your digit at first, wait a few moments and then try again. If for some reason it doesn’t work at all, or the application doesn’t display, then try the <a class="reference external" href="https://bensonruan.com/handwritten-digit-recognition-with-tensorflow-js/">original version on the web</a>.</em></p>
+</div>
+<div class="section" id="training-a-handwritten-digit-recogniser">
+<h2>7.3 Training a handwritten digit recogniser<a class="headerlink" href="#training-a-handwritten-digit-recogniser" title="Permalink to this headline">¶</a></h2>
+<p>Several researchers have created interactive, browser-based demonstrations that are capable of training a neural network to recognise the MNIST digits.</p>
+<p>The underlying code – and text – for these is licensed under an open license, which means we can redistribute them, and even edit the original versions, with due acknowledgement.</p>
+<ul class="simple">
+<li><p><span class="xref myst"><em>ConvNetJS MNIST demo</em></span>: this is a fascinating example of training a network in the web browser using a JavaScript based neural network package, and visualising the effects as the network trains. <strong>If the direct link does not work, from the notebook home page <code class="docutils literal notranslate"><span class="pre">New</span></code> menu, select the <code class="docutils literal notranslate"><span class="pre">convnet_mnist</span></code> option.</strong> The training should start automatically a moment or two after the page loads. If you scroll down in the page, you will see in real time how the performance of the network improves as it is trained. It was originally developed by Andrej Karpathy whilst he was a PhD student at Stanford University. If you would like to visit the original, it is still available <a class="reference external" href="https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html">here</a>.</p></li>
+<li><p><span class="xref myst"><em>walked through training example</em></span>: this example is taken from the <em>tensorflow.js</em> “tfjs-vis” demos (<a class="reference external" href="https://github.com/tensorflow/tfjs/tree/master/tfjs-vis">code</a>; <a class="reference external" href="https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html">original demo</a>). <strong>If the direct link does not work, from the notebook home page <code class="docutils literal notranslate"><span class="pre">New</span></code> menu, select the <code class="docutils literal notranslate"><span class="pre">tfjs_mnist</span></code> option.</strong> It walks you through an example of training a neural network to recognise the MNIST digits, showing how the error value reduces over time.</p></li>
+</ul>
+<p>Spend a few minutes looking through each of the demos. There is too much detail for us to review in this module, but it may give you a taste of what working with machine learning models at a technical level involves.</p>
+</div>
+<div class="section" id="inside-the-mind-of-a-convolutional-neural-network-mnist-handwritten-digit-recogniser">
+<h2>7.4 Inside the mind of a convolutional neural network MNIST handwritten digit recogniser<a class="headerlink" href="#inside-the-mind-of-a-convolutional-neural-network-mnist-handwritten-digit-recogniser" title="Permalink to this headline">¶</a></h2>
+<p>This final demonstration is an example of a three-dimensional interactive visualisation that allows you to explore how a convolutional neural network filters certain features of an input image: <span class="xref myst">TensorSpace Playground - interaction guide</span>. <strong>If the direct link does not work, from the notebook home page <code class="docutils literal notranslate"><span class="pre">New</span></code> menu, select the <code class="docutils literal notranslate"><span class="pre">nb_tensorspace_playground</span></code> option.</strong></p>
+<p>The following activities are both available from the <em>TensorSpace Playground</em> home page:</p>
+<ul class="simple">
+<li><p><span class="xref myst"><em>TensorSpace Playground - trained MNIST demo</em></span>: in this first example, you can explore a trained network, providing your own handwritten digit as an input to the network and then peering inside the network to see how it encodes, then decodes, various features in making its decision;</p></li>
+<li><p><span class="xref myst">TensorSpace Playground - training demo</span>: in this example (which could take a few seconds to load the necessary training data before it will run) you can load in a test example, then reset and train the network. You know the network is being trained if you can see the <em>Training Metrics</em> values updating. If you look at the output layer of the network then you can see the network start to home in on the correct output result as the network is trained.</p></li>
+</ul>
+<p><em>To install the packages for running these demos locally in your own notebook environment, you can find the installers at the following locations:</em></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ouseful-PR/Hand-Written-Digit-Recognition"><em><code class="docutils literal notranslate"><span class="pre">ouseful-PR/Hand-Written-Digit-Recognition</span></code></em></a></p></li>
+<li><p><a class="reference external" href="https://github.com/innovationOUtside/serverproxy_convnet_mnist"><em><code class="docutils literal notranslate"><span class="pre">innovationOUtside/serverproxy_convnet_mnist</span></code></em></a></p></li>
+<li><p><a class="reference external" href="https://github.com/innovationOUtside/serverproxy_tfjs_demos"><em><code class="docutils literal notranslate"><span class="pre">innovationOUtside/serverproxy_tfjs_demos</span></code></em></a></p></li>
+<li><p><a class="reference external" href="https://github.com/innovationOUtside/nb_tensorspace_server_proxy"><em><code class="docutils literal notranslate"><span class="pre">innovationOUtside/nb_tensorspace_server_proxy</span></code></em></a></p></li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2>7.5 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how we can train a different sort of neural network to the MLP, known as a convolutional neural network (CNN), to recognise handwritten images from a set of training examples. You have also had a peak inside the mind of such a network, exploring how each of the nodes in each of the layers recognises (and essentially looks for and ‘sees’) different abstract patterns of features in the input, before the network as a whole uses these recognisable (though not necessarily visually meaningful, to us at least) patterns to come to a decision about what the input image represents.</p>
+<p>If you had to write a set of explicit, handwritten rules to perform such a discrimination task, I think you would find it very challenging indeed. But whilst we can see that each node of the network is recognising <em>something</em>, it may not be obvious to us what it is in any human meaningful way.</p>
+<p><em>This completes the practical activities for this week.</em></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07. Neural networks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="07.6%20Inside%20the%20mind%20of%20a%20neural%20network.html" title="previous page">6 Inside the mind of a neural network</a>
+    <a class='right-next' id="next-link" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html" title="next page">1 An introduction to remote services and multi-agent systems</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

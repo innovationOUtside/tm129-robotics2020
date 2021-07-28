@@ -1,0 +1,1166 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 Branches &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4 Example robot control programs" href="03.4%20Example%20robot%20control%20programs.html" />
+    <link rel="prev" title="2. Program control flow using a while... loop" href="03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03. Controlling program execution flow/03.3 Program control flow using branches.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03. Controlling program execution flow/03.3 Program control flow using branches.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-if-without-an-else">
+   3.1 An
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if...
+    </span>
+   </code>
+   without an
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     else...
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-an-if-on-its-own">
+     3.1.1 Activity – An
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if
+      </span>
+     </code>
+     on its own
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#discussion">
+       Discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-single-branch-if-else">
+   3.2 A single branch —
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if..else..
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-stepping-through-an-if-else-statement">
+     3.2.1 Activity – Stepping through an
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if...else...
+      </span>
+     </code>
+     statement
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#combining-loops-and-branching-statements">
+   3.3 Combining loops and branching statements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-conditional-statements-inside-a-loop">
+     3.3.1 Using conditional statements inside a loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nested-if-statements">
+     3.3.2 Nested
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if
+      </span>
+     </code>
+     statements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-conditions-using-if-elif-else">
+   3.4 Multiple conditions using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     if...elif...else...
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-control-flow-statements-in-robot-programs">
+   3.5 Using control flow statements in robot programs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-detecting-black-and-grey">
+     3.5.1 Activity – Detecting black and grey
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-combining-loops-and-branching-statements">
+     3.5.2 Activity – Combining loops and branching statements
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-discussion">
+       Example discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-three-shades-of-grey">
+     3.5.3 Challenge – Three shades of grey
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hint-click-the-arrow-in-the-sidebar-or-run-this-cell-to-reveal-a-hint">
+       Hint: click the arrow in the sidebar or run this cell to reveal a hint.
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#noise-and-variation-in-real-and-simulated-robots">
+   3.6 Noise and variation in real and simulated robots
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   3.7 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="branches">
+<h1>3 Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h1>
+<p>So far we have concentrated mainly on sequential programs with a single pathway through them, where the flow of control proceeds through the program statements in linear sequence, except when it encounters a loop element. If a loop is encountered, then the control flow is redirected back ‘up’ the program to the start of a loop block.</p>
+<p>However, in several of the notebooks, you have also seen how a conditional <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement can be used to optionally pass control to a set of instructions in the sequential program <em>if</em> a particular condition is met.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement fits the sequential program model by redirecting control flow, albeit briefly, to a set of ‘extra’ commands if the conditional test evaluates to true.</p>
+<p>A sequential program will always follow the same sequentially ordered path. But to be useful, a robot program will often need to make decisions and behave differently in different circumstances. To do this, the program has to have alternative <em>branches</em> in the program flow where it can follow different courses of action depending on some conditional test.</p>
+<p>Although the <code class="docutils literal notranslate"><span class="pre">while</span></code> command does appear to offer some sort of branch-like behaviour, we still think of it as a sequential-style operator because the flow of control keeps trying to move in the same forwards direction.</p>
+<p><em>In other programming languages, this construct may be referred to as an <code class="docutils literal notranslate"><span class="pre">if...then</span></code> statement. In Python, the colon following the test condition(s) can be read as ‘then’, or the ‘then’ can just be assumed.</em></p>
+<p>We’ll be trying out some conditional statements using <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> to step through some simple programs as we execute them, so let’s load it in now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> nbtutor
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="an-if-without-an-else">
+<h2>3.1 An <code class="docutils literal notranslate"><span class="pre">if...</span></code> without an <code class="docutils literal notranslate"><span class="pre">else...</span></code><a class="headerlink" href="#an-if-without-an-else" title="Permalink to this headline">¶</a></h2>
+<p>It is sometimes useful to have just a single branch to the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement. Python provides a simple <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement for this purpose, which you may recall from previous notebooks.</p>
+<div class="section" id="activity-an-if-on-its-own">
+<h3>3.1.1 Activity – An <code class="docutils literal notranslate"><span class="pre">if</span></code> on its own<a class="headerlink" href="#activity-an-if-on-its-own" title="Permalink to this headline">¶</a></h3>
+<p>Run the following code cell as it stands, with the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable taking the initial value <code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code>). Can you predict what will happen?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%nbtutor --reset --force</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Are you ready?&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x equals 1&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All done...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Try to predict what will happen if you change the initial value and run the cell again.</p>
+<p><em>Double-click this cell to edit it and record your own prediction</em></p>
+<p>Run the code cell above again with a modified initial value. Was your prediction about what would happen correct? Make a note in the cell below about how successful your prediction was. If your prediction was incorrect, try to explain why you think your prediction was different to how the program actually behaved.</p>
+<p><em>Double-click this cell to edit it to record notes on the success or otherwise of your own prediction.</em></p>
+<p>Uncomment the <em>%%nbtutor</em> magic and run the code cell using different values of <code class="docutils literal notranslate"><span class="pre">x</span></code>, observing how the program flow progresses in each case.</p>
+<div class="section" id="discussion">
+<h4>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal my observations.</em></p>
+<p>With the initial value of the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> set to <code class="docutils literal notranslate"><span class="pre">1</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code>) the program displayed the messages <em>Are you ready?</em>, <em>x equals 1</em> and <em>All done…</em> because the <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement evaluated the <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">1</span></code> test condition as <code class="docutils literal notranslate"><span class="pre">True</span></code> and passed control <em>into</em> the <code class="docutils literal notranslate"><span class="pre">if...</span></code> block.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">x</span></code> was initialised to a different value, for example as <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">2</span></code>, only the messages <em>Are you ready?</em> and <em>All done…</em> were displayed because the <code class="docutils literal notranslate"><span class="pre">if...</span></code> conditional test failed and redirected control flow to the first statement <em>after</em> the <code class="docutils literal notranslate"><span class="pre">if...</span></code> block.</p>
+</div>
+</div>
+</div>
+<div class="section" id="a-single-branch-if-else">
+<h2>3.2 A single branch — <code class="docutils literal notranslate"><span class="pre">if..else..</span></code><a class="headerlink" href="#a-single-branch-if-else" title="Permalink to this headline">¶</a></h2>
+<p>On it’s own, an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement will test a condition and, if the condition evaluates as <code class="docutils literal notranslate"><span class="pre">True</span></code> will then evaluate the code block within the if statement, otherwise passing control to the next program statement.</p>
+<p>If we wanted to choose alternative actions depending on the evaluation of a particular condition, we <em>could</em> create multiple <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, one to handle each outcome:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">raining</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Take your coat&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">raining</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Looks like a nice day.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, we can use an <code class="docutils literal notranslate"><span class="pre">if..else</span></code> statement to take one path if the condition evaluates as <code class="docutils literal notranslate"><span class="pre">True</span></code>, otherwise (<code class="docutils literal notranslate"><span class="pre">else</span></code>) perform the alternative action:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">raining</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Take your coat&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Looks like a nice day.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the branching <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> operator, the program control flow takes one of two different ‘forward-flowing’ paths depending on whether the conditional statement evaluated as part of the <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement evaluates to true or false. If it evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the statements in the first if block of code are evaluated; if the condition evaluates to <code class="docutils literal notranslate"><span class="pre">False</span></code>, then the statements in the else block are evaluated. In both cases, control then flows forwards to the next statement after the <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> block.</p>
+<div class="section" id="activity-stepping-through-an-if-else-statement">
+<h3>3.2.1 Activity – Stepping through an <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> statement<a class="headerlink" href="#activity-stepping-through-an-if-else-statement" title="Permalink to this headline">¶</a></h3>
+<p>In this activity we will look at a simple branching program to explore how <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> works in more detail.</p>
+<p>If you were to run the following code in a code cell, what do you think will happen?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x equals 1&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x does not equal 1&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All done...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Double-click this cell to edit it and make your prediction here.</em></p>
+<p>Once you have made your prediction, run the following cell. In the cell beneath it, record what happened and how it compared to your prediction.</p>
+<p><em>You may find it informative to use <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> to step through each line of code in turn to see how the program flow progresses. To do this, uncomment the <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code> magic in the first line of the code cell by deleting the <code class="docutils literal notranslate"><span class="pre">#</span></code> at the start of the line before running the code cell.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%nbtutor --reset --force</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x equals 1&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x does not equal 1&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All done...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Double-click this cell to edit it to record here what happened when you ran the code in the above cell. Did its behaviour match your prediction?</em></p>
+<p>What do you think will happen when you run the following code cell?</p>
+<p>Run the cell and use <em>nbtutor</em> to step through the program. How does the program flow differ from the case where <code class="docutils literal notranslate"><span class="pre">x</span></code> had the value <code class="docutils literal notranslate"><span class="pre">1</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">nbtutor</span> --reset --force
+x = 2
+
+if x == 1:
+    print(&quot;x equals 1&quot;)
+else:
+    print(&quot;x does not equal 1&quot;)
+
+print(&quot;All done...&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>Discussion<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal my observations.</em></p>
+<p>In the cell where <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">1</span></code>, I predicted that the program would print the message <em>‘x equals 1’</em> and then the message <em>‘All done…’</em>.</p>
+<p>Viewing the trace, I could see how the program started by initialising the <code class="docutils literal notranslate"><span class="pre">x</span></code> variable to the value <code class="docutils literal notranslate"><span class="pre">1</span></code>, then checked whether <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">1</span></code> (that is, whether <code class="docutils literal notranslate"><span class="pre">x</span></code> was equal to <code class="docutils literal notranslate"><span class="pre">1</span></code>); because it was, the program then moved onto the <code class="docutils literal notranslate"><span class="pre">print(&quot;x</span> <span class="pre">equals</span> <span class="pre">1&quot;)</span></code> statement and printed the first message. Then the program flow continued to the first instruction after the <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> block, which was the statement that printed the <em>‘All done…’</em> message.</p>
+<p>When I ran the program with a value of <code class="docutils literal notranslate"><span class="pre">x</span></code> other then <code class="docutils literal notranslate"><span class="pre">1</span></code>, the control passed from the <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement, where the conditional test evaluated as <code class="docutils literal notranslate"><span class="pre">False</span></code>, to the first line in the <code class="docutils literal notranslate"><span class="pre">else...</span></code> block, which printed the message <em>‘x does not equal 1’</em>, before moving onto the first line after the <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> block as before.</p>
+</div>
+</div>
+</div>
+<div class="section" id="combining-loops-and-branching-statements">
+<h2>3.3 Combining loops and branching statements<a class="headerlink" href="#combining-loops-and-branching-statements" title="Permalink to this headline">¶</a></h2>
+<p>It is important to be clear that the condition in a branching statement (<code class="docutils literal notranslate"><span class="pre">if...</span></code> or <code class="docutils literal notranslate"><span class="pre">if...else...</span></code>) is checked only when execution reaches that part of the program.</p>
+<p>In the examples above, you stepped through the programs and saw that execution passed through the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement only once. When creating useful robot programs, we often want conditions to be checked repeatedly. For example the robot may need to repeatedly check that it has not bumped into an obstacle, or whether it has found a bright or dark area.</p>
+<p>You have already seen how the <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop tests a condition at the start of a loop and then passes control to the statements inside the loop before looping back to test the <code class="docutils literal notranslate"><span class="pre">while...</span></code> condition again.</p>
+<div class="section" id="using-conditional-statements-inside-a-loop">
+<h3>3.3.1 Using conditional statements inside a loop<a class="headerlink" href="#using-conditional-statements-inside-a-loop" title="Permalink to this headline">¶</a></h3>
+<p>One commonly used robot programming design pattern is to embed conditional statements with an outer infinite control loop:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loop forever</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    
+    <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+        <span class="n">do_this</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">do_that</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">another_condition</span><span class="p">:</span>
+        <span class="n">do_something_else</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You may also recall from an earlier notebook that we also used an <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement to return the control flow back to the top of a loop before all the statements in the loop body had been executed, or break out of a loop early and pass control to the first statement after the loop block.</p>
+<p>This ability to combine loop and branching statements is very powerful and even a very simple program can produce quite complex robot behaviour.</p>
+</div>
+<div class="section" id="nested-if-statements">
+<h3>3.3.2 Nested <code class="docutils literal notranslate"><span class="pre">if</span></code> statements<a class="headerlink" href="#nested-if-statements" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you may want to develop quite a complicated reasoning path.</p>
+<p>In some cases, testing a compounded logical statement using Boolean logic operators may suit our purposes, but we are still limited by the fact that the conditional test must return a single <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span> <span class="o">=</span> <span class="s1">&#39;rain&#39;</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="s1">&#39;cold&#39;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">weather</span><span class="o">==</span><span class="s1">&#39;rain&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">temperature</span><span class="o">==</span><span class="s1">&#39;cold&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wear a coat&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">weather</span><span class="o">==</span><span class="s1">&#39;rain&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">temperature</span><span class="o">==</span><span class="s1">&#39;cold&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...and maybe a scarf too...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In other cases, we may need to make used of a so-called <strong>nested if</strong> statement, where we build up a ladder of if statements, one inside the other.</p>
+<p>For example, with the specified weather conditions, what does the program recommend you do?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span> <span class="o">=</span> <span class="s1">&#39;rain&#39;</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="s1">&#39;warm&#39;</span>
+<span class="n">windy</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">temperature</span><span class="o">==</span><span class="s1">&#39;warm&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s warm today...&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">weather</span><span class="o">==</span><span class="s2">&quot;rain&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">windy</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...but take a brolly&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">windy</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...and windy enough to fly a kite.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does it suggest if you change <code class="docutils literal notranslate"><span class="pre">windy</span> <span class="pre">=</span> <span class="pre">False</span></code> to <code class="docutils literal notranslate"><span class="pre">windy</span> <span class="pre">=</span> <span class="pre">True</span></code>?</p>
+<p><em>Other more elaborate variants of compounded or nested branching statements are supported in other languages, for example in the form of <code class="docutils literal notranslate"><span class="pre">case</span></code> or <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements that can select from multiple courses of action based on the element that is evaluated at the start of the statement.</em></p>
+</div>
+</div>
+<div class="section" id="multiple-conditions-using-if-elif-else">
+<h2>3.4 Multiple conditions using <code class="docutils literal notranslate"><span class="pre">if...elif...else...</span></code><a class="headerlink" href="#multiple-conditions-using-if-elif-else" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> statement allows us to creating a branching control flow statement that performs a conditional test and then chooses between two alternative outcomes depending on the result of the test.</p>
+<p>Python also supports a yet more complex branch construction in the form of an <code class="docutils literal notranslate"><span class="pre">if...elif...else...</span></code> statement that allows us to make multiple conditional tests. Run the following code cell and use <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> to explore the flow through the program.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">nbtutor</span> --reset --force
+
+days_of_week = [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;,
+                &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Sunday&#39;]
+
+for day in days_of_week:
+    print(f&#39;Today is {day}...&#39;)
+    
+    if day == &#39;Wednesday&#39;:
+        print(&#39;...half day closing&#39;)
+    elif day in [&#39;Saturday&#39;, &#39;Sunday&#39;]:
+        print(&#39;...the weekend&#39;)
+    else:
+        print(&#39;...a weekday&#39;)
+        
+print(&quot;And that&#39;s all the days of the week.&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also have multiple <code class="docutils literal notranslate"><span class="pre">elif</span></code> statements between the opening <code class="docutils literal notranslate"><span class="pre">if...</span></code> and the closing <code class="docutils literal notranslate"><span class="pre">else</span></code>.</p>
+<p>Read through the code in the following code cell. Try to work out what the program will do and how the control flow will pass though the program as it executes before you run the cell and step though the code using <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">nbtutor</span> --reset --force
+
+days_of_week = [&#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;,
+                &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Sunday&#39;]
+
+for day in days_of_week:
+    message = f&#39;Today is {day}...&#39;
+    print(message)
+    
+    if day == &#39;Monday&#39;:
+        feeling = &quot;...I don&#39;t like Mondays...&quot;
+    elif day == &#39;Tuesday&#39;:
+        feeling = &#39;...Ruby Tuesday&#39;
+    elif day == &#39;Friday&#39;:
+        feeling = &quot;...Friday I&#39;m In Love&quot;
+    else:
+        feeling = &quot;...I don&#39;t know a song title for that day&quot;
+    
+    print(feeling)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the previous code cell and step through its execution using <em>nbtutor</em>; observe how the control flow steps increasingly through the stack of <code class="docutils literal notranslate"><span class="pre">...elif...</span></code> tests as the <code class="docutils literal notranslate"><span class="pre">for...</span></code> loop iterates through the items in the <code class="docutils literal notranslate"><span class="pre">days_of_week</span></code> list.</p>
+<p>Note that there is no requirement that you test the same variable in each step. The different steps could test a different variable or range of variables.</p>
+<p>For example, in the following program we might decide what to take out with us on a walk based on a variety of conditions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raining</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="s1">&#39;warm&#39;</span>
+
+<span class="k">if</span> <span class="n">raining</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wear boots&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">temperature</span> <span class="o">==</span> <span class="s1">&#39;warm&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wear sandals&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wear shoes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Also note that there is an <em>order</em> in which we test the various conditions as the control passes through the <code class="docutils literal notranslate"><span class="pre">if...elif...</span></code> conditional tests. We can use this as an informal way of prioritising one behaviour over another:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">this_really_important_thing</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="k">elif</span> <span class="n">this_less_important_thing</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="k">elif</span> <span class="n">this</span> <span class="n">minor_thing</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-control-flow-statements-in-robot-programs">
+<h2>3.5 Using control flow statements in robot programs<a class="headerlink" href="#using-control-flow-statements-in-robot-programs" title="Permalink to this headline">¶</a></h2>
+<p>Branching operators, when combined with loop based control flow operators, mean we can construct a wide range of control strategies and behaviours for a mobile robot. In the following activities, you will see several such approaches.</p>
+<p>In order to get started, we need to load in the RoboLab simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-detecting-black-and-grey">
+<h3>3.5.1 Activity – Detecting black and grey<a class="headerlink" href="#activity-detecting-black-and-grey" title="Permalink to this headline">¶</a></h3>
+<p>Using the <em>Grey_and_black</em> background into the simulator, download the program to the simulator and then run it several times with the robot moved to different starting positions.</p>
+<p>What does the program cause the robot to do?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_and_black -x 400 -y 200
+
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+#Check the light sensor reading
+while sensor_value == 100:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity_pc
+    # and optionally display it
+    #print(sensor_value)
+    # We also (implicitly) keep driving forwards
+
+# When the reading is below 100
+# we have started to see something.
+# Drive a little way onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 0.2)
+
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity_pc
+# and optionally display it
+#print(sensor_value)
+
+# Now make a decision about what we see
+if sensor_value &lt; 50:
+    say(&quot;I see black&quot;)
+else:
+    say(&quot;I see grey&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Double click this cell to edit it and add your description here.</em></p>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The robot moves forward over the white background until it reaches the grey or black area. If the background is black, then the robot says <em>black</em>; otherwise, it says <em>grey</em>.</p>
+<p>The program works by driving the robot forwards and continues in that direction while it is over the white background (a reflected light sensor reading of 100). When the light sensor reading goes below the white background value of 100, control passes out of the while loop and on to the statement that drives the robot forwards a short distance further (0.2 wheel rotations) to ensure the sensor is fully over the band. The robot then checks its sensor reading again, and makes a decision about what to say based on the value of the sensor reading.</p>
+</div>
+</div>
+<div class="section" id="activity-combining-loops-and-branching-statements">
+<h3>3.5.2 Activity – Combining loops and branching statements<a class="headerlink" href="#activity-combining-loops-and-branching-statements" title="Permalink to this headline">¶</a></h3>
+<p>Can you predict what the following program will cause the robot to do when it is downloaded and run in the simulator using the <em>Loop</em> background with the robot initially placed inside the loop ?</p>
+<p><em>Double click this cell to edit it and record your prediction.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Loop -x 500
+
+tank_drive.on(SpeedPercent(30), SpeedPercent(30))
+
+while True:
+    if colorLeft.reflected_light_intensity_pc &lt; 100:
+        tank_drive.on_for_rotations(SpeedPercent(-30),
+                                    SpeedPercent(-30), 2)
+
+        tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+        tank_drive.on(SpeedPercent(30), SpeedPercent(30))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Download the program to the simulator and run it there to check your prediction. After a minute or two, stop the program from executing.</p>
+<p>How does the behaviour of the program lead to the robot’s emergent behaviour in the simulator?</p>
+<div class="section" id="example-discussion">
+<h4>Example discussion<a class="headerlink" href="#example-discussion" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example discussion.</em></p>
+<p>When the program runs, the robot will explore the inside of the black oval, remaining inside it and reversing direction each time it encounters the black line.</p>
+<p>The program is constructed from an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement inside a <em>forever</em> loop. The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement checks the light sensor reading; when this is low (which it will be when the black line is reached) the motor direction is reversed.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> loop is a so-called <em>infinite loop</em> that will run indefinitely. In this case it is useful because we want the robot to continue to keep on behaving in the same way as the program runs.</p>
+<p>In other circumstances, we might want the loop to continue only while some condition holds true. In such cases, using the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement to test the truth of a conditional statement is more useful.</p>
+</div>
+</div>
+<div class="section" id="challenge-three-shades-of-grey">
+<h3>3.5.3 Challenge – Three shades of grey<a class="headerlink" href="#challenge-three-shades-of-grey" title="Permalink to this headline">¶</a></h3>
+<p>An earlier activity provided an example of a program that used an <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> statement to distinguish between black and grey areas. The background (loaded into the simulator as the <em>Grey_and_black</em> background) actually contains four different shades: black, dark grey, medium grey and light grey. Can you construct a program that will report which shade the robot encounters?</p>
+<p>A copy of the original program is provided below as a starting point. You will need to extend the code so that it can decide between three grey alternatives as well as the black band and say which band it saw.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_and_black
+
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+#Check the light sensor reading
+while sensor_value == 100:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity_pc
+    # and display it
+    print(sensor_value)
+
+# When the reading is below 100
+# we have started to see something.
+# Drive a little way onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
+
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity_pc
+# and display it
+print(sensor_value)
+
+# Now make a decision about what we see
+if sensor_value &lt; 50:
+    say(&quot;I see black&quot;)
+else:
+    say(&quot;I see grey&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you have modified the code, run the cell to download it to the simulator, ensure the <em>Grey_and_black</em> background is loaded, and then run the program in the simulator for various starting positions of the robot. Does it behave as you intended?</p>
+<p><em>Use this cell to record your own notes and predictions related to this challenge.</em></p>
+<div class="section" id="hint-click-the-arrow-in-the-sidebar-or-run-this-cell-to-reveal-a-hint">
+<h4>Hint: click the arrow in the sidebar or run this cell to reveal a hint.<a class="headerlink" href="#hint-click-the-arrow-in-the-sidebar-or-run-this-cell-to-reveal-a-hint" title="Permalink to this headline">¶</a></h4>
+<p>The original program uses an <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> condition to distinguish between black and grey reflected light readings. An <code class="docutils literal notranslate"><span class="pre">...elif...</span></code> statement lets you test alternative values within the same <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> block.</p>
+<p>To identify the values to use in the condition statements, inspect the simulator output window messages to see what sensor values are reported when the robot goes over different bands.</p>
+</div>
+<div class="section" id="id2">
+<h4>Example solution<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to display an example solution.</em></p>
+<p>The robot sees the following values over each of the grey bands:</p>
+<ul class="simple">
+<li><p>light grey: ~86</p></li>
+<li><p>medium grey: ~82</p></li>
+<li><p>dark grey: ~50</p></li>
+<li><p>black: 0</p></li>
+</ul>
+<p>Generally, when we see lots of decimal places, we assume that the chances of ever seeing exactly the same sequence of numbers may be unlikely, so rather than testing for an exact match, we use one or more threshold tests to see if the number lies within a particular <em>range</em> of values, or is above a certain minimum value.</p>
+<p>If we assume those sensor readings are reliable, and the same value is always reported for each of those bands, then we can make the make the following decisions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="mi">86</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;light grey&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="mi">82</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;medium grey&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dark grey&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can make the test even more reliable by setting the threshold test values to values that are halfway between the expected values for a particular band. For example, 84, rather than 82, for distinguishing between light and medium grey; 66 rather than 82 for distinguishing between dark and medium grey; and 25 rather than 50 for distinguishing between black and dark grey.</p>
+<p>This means that if there is a slight error in the reading, our thresholded test is likely to make the right decision about which side of the threshold value the (noisy) reading actually falls on.</p>
+<p>For example, if we have a value of <code class="docutils literal notranslate"><span class="pre">sensor_value</span> <span class="pre">=</span> <span class="pre">86</span></code> exactly, the conditional test <code class="docutils literal notranslate"><span class="pre">sensor_value</span> <span class="pre">&gt;</span> <span class="pre">86</span></code> will evaluate as <code class="docutils literal notranslate"><span class="pre">False</span></code> because the variable value 86 is not strictly greater than threshold value 86. But if the sensor value is <code class="docutils literal notranslate"><span class="pre">sensor_value</span> <span class="pre">=</span> <span class="pre">86.00000000000000000001</span></code>, the test will evaluate as <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_and_black
+
+# Start the robot driving forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+#Sample the light sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+
+#Check the light sensor reading
+while sensor_value == 100:
+    # Whilst we are on the white background
+    # update the reading
+    sensor_value = colorLeft.reflected_light_intensity
+    # and display it
+    print(sensor_value)
+
+# When the reading is below 100
+# we have started to see something.
+# Drive onto the band to get a good reading
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 0.2)
+
+#Check the sensor reading
+sensor_value = colorLeft.reflected_light_intensity
+# and display it
+print(sensor_value)
+
+# Now make a decision about what we see
+if sensor_value &gt;  86: 
+    say(&quot;I see light grey&quot;)
+elif sensor_value &gt; 82: 
+    say(&quot;I see medium grey&quot;)
+elif sensor_value &gt; 50: 
+    say(&quot;I see dark grey&quot;)
+else:
+    say(&quot;I see black&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other solutions are possible.</p>
+</div>
+</div>
+</div>
+<div class="section" id="noise-and-variation-in-real-and-simulated-robots">
+<h2>3.6 Noise and variation in real and simulated robots<a class="headerlink" href="#noise-and-variation-in-real-and-simulated-robots" title="Permalink to this headline">¶</a></h2>
+<p>One thing you might notice is that sometimes the robot may appear to give the “wrong answer” or an answer that diverges from the value you expect, when taking a particular measurement.  For example, if the sensor is not completely over a band it will give a reading that does not exactly match a value you used in your conditional tests.</p>
+<p>In a real robot, the sensors are also likely to be subject to various forms of environmental <em>noise</em>, such as electrical noise in the sensor, or perturbations in light readings caused by vibrations as the robot moves and slightly changes the height of the reflected sensor above the floor. (Shadows and variations in illumination can also affect light sensor readings.</p>
+<p>If you modify the position of the <em>Light sensor noise</em> slider in the simulator, you can see how the sensor readings are perturbed according to the amount of noise added.</p>
+<p>In the idealised world of a robot simulator, it may at first seem as if we don’t have to cope with the messiness of the physical world noise if we don’t want to. But even in a simulator, we find there are issues relating to precision in the way numbers are represented. For example, even if we think we have set a variable to a specific value, it may not actually be represented as that value at the machine level, as the following example shows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point_one</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># The `format()` function lets us to control</span>
+<span class="c1"># the output display of a variable</span>
+<span class="c1"># In the following case, we can display </span>
+<span class="c1"># the represented value 0.1 to 20 significant digits</span>
+<span class="nb">format</span><span class="p">(</span><span class="n">point_one</span><span class="p">,</span> <span class="s1">&#39;.20g&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will learn a little bit more about noise, and how to deal with it, later in the module.</p>
+</div>
+<div class="section" id="summary">
+<h2>3.7 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how <code class="docutils literal notranslate"><span class="pre">if...</span></code> statements can be used to make a variety of decisions and trigger a range of different actions based on one or more tested conditions. In particular:</p>
+<ul class="simple">
+<li><p>a simple <code class="docutils literal notranslate"><span class="pre">if...</span></code> statement lets us perform one or more actions once and once only if a single conditional test evaluates to true</p></li>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">if...else...</span></code> statement allows us to <em>branch</em> between two possible futures based on the whether a single conditional test evaluates to true; if it is true, do one action, if not, do the other</p></li>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">if...elif...else...</span></code> construction lets us run multiple different conditional tests. If the first test is true, do one thing, otherwise test the next thing, and if that is true, do something, otherwise, do another test, and so on. If all the other <code class="docutils literal notranslate"><span class="pre">elif...</span></code> tests evaluate to false, then do the final <code class="docutils literal notranslate"><span class="pre">else</span></code> condition.</p></li>
+</ul>
+<p>In the next notebook, you will have an opportunity to explore a few more ways us using control flow statements in the context of a robot control program.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03. Controlling program execution flow"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html" title="previous page">2. Program control flow using a <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop</a>
+    <a class='right-next' id="next-link" href="03.4%20Example%20robot%20control%20programs.html" title="next page">4 Example robot control programs</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

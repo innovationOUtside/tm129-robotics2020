@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Program control flow using a while... loop &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3 Branches" href="03.3%20Program%20control%20flow%20using%20branches.html" />
+    <link rel="prev" title="1. Introduction to program control flow" href="03.1%20Program%20control%20using%20for%20loops.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03. Controlling program execution flow/03.2 Program control using while loops and blocking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03. Controlling program execution flow/03.2 Program control using while loops and blocking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-while-loop">
+   2.1 The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     while
+    </span>
+   </code>
+   loop
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-generating-several-random-numbers-using-a-while-loop">
+     2.1.1 Activity — Generating several random numbers using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while
+      </span>
+     </code>
+     loop
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#infinite-loops">
+   2.2 Infinite loops
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-a-while-loop-in-the-simulator">
+   2.3 Using a
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     while
+    </span>
+   </code>
+   loop in the simulator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blocking-program-control-flow">
+   2.4 Blocking program control flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-counting-up-to-10">
+     2.4.1 Activity – Counting up to 10
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-the-program-wait">
+     2.4.2 Making the program wait
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blocking-behaviour-in-robot-control-programs">
+     2.4.3 Blocking behaviour in robot control programs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#travelling-a-specific-distance">
+   2.5 Travelling a specific distance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.6 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="program-control-flow-using-a-while-loop">
+<h1>2. Program control flow using a <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop<a class="headerlink" href="#program-control-flow-using-a-while-loop" title="Permalink to this headline">¶</a></h1>
+<p>In the previous notebook you learned how a <code class="docutils literal notranslate"><span class="pre">for..in..</span></code> loop could be used to iterate through a list of items, with a conditional test in the body of the loop providing an opportunity to either foreshorten code execution within the loop’s code block using a <code class="docutils literal notranslate"><span class="pre">continue</span></code> command, or break out of the loop using a <code class="docutils literal notranslate"><span class="pre">break</span></code> command.</p>
+<p>In this notebook, you learn how a <code class="docutils literal notranslate"><span class="pre">while</span></code> command combines loop control with it’s own conditional test.</p>
+<div class="section" id="the-while-loop">
+<h2>2.1 The <code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#the-while-loop" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop tests the truth of a statement on each iteration of the loop. In ‘pseudo-code’, the behaviour can be described as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">do</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">instructions</span> <span class="k">while</span> <span class="n">a</span> <span class="n">condition</span> <span class="n">holds</span> 
+
+ <span class="p">{</span> 
+
+ <span class="n">instruction</span> <span class="mi">1</span> 
+
+ <span class="n">instruction</span> <span class="mi">2</span> 
+
+ <span class="n">instruction</span> <span class="mi">3</span> 
+
+ <span class="n">instruction</span> <span class="mi">4</span> 
+
+ <span class="n">instruction</span> <span class="mi">5</span> 
+
+ <span class="n">etc</span> 
+
+ <span class="p">}</span> 
+</pre></div>
+</div>
+<p>In some respects the <code class="docutils literal notranslate"><span class="pre">while</span></code> resembles an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement in that if (while) the tested condition is true, then control passes into the body of the while statement block, and if it evaluates false, then control passes immediately to the next statement after the while block. However, <em>unlike</em> the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement, when all the statements inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> block have been executed, in sequential order, control does not then flow to the next statement after the while block: it passes back to the top of the while loop and the condition is re-evaluated.</p>
+<p>In this way, the program can keep repeating the lines of code inside the while block until some condition is met, or some condition fails.</p>
+<p>Note that if the conditionally tested value changes to a value that would cause the condition to evaluate as false whilst the program flow is inside the while block, the statements inside the while block will continue to execute in sequential order. Control only passes from the while statement to the statement after the while block at the point when control passes to the while statement and its condition is tested and found to evaluate as false.</p>
+<p>Let’s see an example of how to use a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop to help us keep track of whether we have counted up to a particular number yet. We’ll use <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> to illustrate what’s going on as the loop executes, so let’s load that magic in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">reload_ext</span> <span class="n">nbtutor</span>
+</pre></div>
+</div>
+<p>The following lines of code are rendered using language sensitive code styling within this markdown cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%nbtutor --reset --force</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+    
+<span class="c1">#Display the final value of counter</span>
+<span class="n">counter</span>
+</pre></div>
+</div>
+<p>Although it <em>looks</em> like code, we can’t execute it because it isn’t in a code cell.</p>
+<p>Copy the code and paste it into the empty code cell below (or create your own new code cell) and run the cell and observe what happens.</p>
+<p>Then uncomment the <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code>cell magic by deleting the <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol at the start of the first line and run it again to step through the code as it executes a line at a time.</p>
+<p>Observe how the program flow repeatedly moves from the last line of the code inside the <code class="docutils literal notranslate"><span class="pre">while</span></code> block back up to the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement, before going from the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement to the final <code class="docutils literal notranslate"><span class="pre">counter</span></code> statement when the conditional tests eventually evaluate as false.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paste a copy of the code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Typically, a package only needs to imported once into a notebook even if we call it from multiple calls.  However, if we run a cell run using the <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span> <span class="pre">--reset</span> <span class="pre">--force</span></code> magic, it creates a fresh Python environment with no previously set variables or imported packages for its code execution. In such a case, we would need to import the package again onto that specific cell.</p>
+<div class="section" id="activity-generating-several-random-numbers-using-a-while-loop">
+<h3>2.1.1 Activity — Generating several random numbers using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop<a class="headerlink" href="#activity-generating-several-random-numbers-using-a-while-loop" title="Permalink to this headline">¶</a></h3>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">random</span></code> function from the <code class="docutils literal notranslate"><span class="pre">random</span></code> package is capable of generating a random number between 0 and 1, as you will see if you run the following cell repeatedly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can think of this as a coin toss, where we toss ‘heads’ for values greater than or equal to 0.5, or ‘tails’ for values less than 0.5.</p>
+<p>Write a simple while loop that tests a simulated coin toss for as long as it tosses the equivalent of ‘heads’, printing ‘heads’ for each successful toss.</p>
+<p>Run the code cell several times to see what happens.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>To test the coin toss, we are looking for a random value of greater than or equal to 0.5, that is, a value of <code class="docutils literal notranslate"><span class="pre">random.random()</span> <span class="pre">&gt;=</span> <span class="pre">0.5</span></code>.</p>
+<p>We can use this as a conditional test in a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. In the body of the loop, we print ‘heads’ to show we are in the loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;heads&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we run the cell multiple times, then sometimes nothing is printed (if the ‘coin’ flips as ‘tails’, that is, the first random value is <em>less than</em> 0.5); at other times, we may get one or more ‘heads’ displayed. (The most I saw in several attempts was eight heads in a row!)</p>
+</div>
+</div>
+</div>
+<div class="section" id="infinite-loops">
+<h2>2.2 Infinite loops<a class="headerlink" href="#infinite-loops" title="Permalink to this headline">¶</a></h2>
+<p>We can create a special sort loop known as an <em>infinite loop</em> using the <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> construction, where the statement <code class="docutils literal notranslate"><span class="pre">True</span></code> <em>always</em> evaluates as <code class="docutils literal notranslate"><span class="pre">True</span></code> and so the loop repeats until the program is forced to stop or the flow is forced out of the loop and onto the next instruction using a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement.</p>
+<p>The following code cell demonstrates how to escape an otherwise infinite loop by using a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement. Run the cell to see how it works. Uncomment the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> magic to step through it a line at a time as it executes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%nbtutor --reset --force</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;We escaped at counter==</span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the expression <code class="docutils literal notranslate"><span class="pre">counter</span> <span class="pre">=</span> <span class="pre">counter</span> <span class="pre">+</span> <span class="pre">1</span></code> we explicitly set the new value of <code class="docutils literal notranslate"><span class="pre">counter</span></code> on the left hand side of the expression to be equal to the current value of <code class="docutils literal notranslate"><span class="pre">counter</span></code> incremented by <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>We could also use the equivalent expression <code class="docutils literal notranslate"><span class="pre">counter</span> <span class="pre">+=</span> <span class="pre">1</span></code>, which reads as “add the value on the right hand side of the expression to the numerical variable on the left hand side.</p>
+</div>
+<div class="section" id="using-a-while-loop-in-the-simulator">
+<h2>2.3 Using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop in the simulator<a class="headerlink" href="#using-a-while-loop-in-the-simulator" title="Permalink to this headline">¶</a></h2>
+<p>Being able to loop <em>whilst</em> a particular condition holds allows us to perform actions <em>until</em> that condition no longer holds.</p>
+<p>This may be particularly useful in a robot programming context, as the following simple example demonstrates.</p>
+<p>To start with, load the simulator into the notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the simulator reset the trace and select the <em>Grey_bands</em> background. (You can also disable the <em>Pen Down</em> control: we don’t need to keep track of where the robot has travelled for this activity.)</p>
+<p>Now run the following code cell to download the program to the simulator and then run it in the simulator, observing the behaviour of the robot. (If you have already not selected the  <em>Grey_bands</em> background, it should be automatically loaded by the magic invocation.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_bands
+
+# Drive the robot forwards
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+# For the sensor value, use the
+# reflected light intensity as a percentage
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+# Test the sensor value; loop while the
+# sensor value exceeds 85
+while sensor_value &gt; 85:
+    # Display the sensor value in the simulator output window
+    print(sensor_value)
+    # Update the sensor_value variable
+    # to the latest sensor reading
+    sensor_value = colorLeft.reflected_light_intensity_pc
+
+# The sensor value is now greater than 85 
+# so print a final message...
+print(&quot;I now see {}&quot;.format( sensor_value))
+
+# And explicitly turn the motors off 
+# to stop the simulated robot
+tank_drive.off()
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here about what the robot does when you run the program.</em></p>
+<p>When you run the program in the simulator, the robot should drive forwards until it encounters the second grey line, and then it should stop.</p>
+<p><em>By default, the robot will stop when the program ends, because the simulator run stops at the end of the program. However, it is good practice to explicitly turn the motors off yourself. By doing this, you know for sure what state the motors are in at the end of the program. In the above example, what would happen if, for some reason, the motor off command was omitted and the simulator carried on running even as the program execution had completed?</em></p>
+<p>The program works by checking the value from one of the robot’s sensors: a downward-facing light sensor, which you will meet in more detail in a later notebook. The sensor returns a ‘reflected light’ reading: a percentage value which relates to the colour of the background over which the robot is travelling. The simulator output display window shows the sensor value, starting at <code class="docutils literal notranslate"><span class="pre">100</span></code> when the robot is on the plain white background. This value is above the conditionally tested threshold value of <code class="docutils literal notranslate"><span class="pre">85</span></code> used in the original program’s <code class="docutils literal notranslate"><span class="pre">while</span></code> statement, and so the program continues looping round the while loop. When the robot encounters the first grey line, the sensor returns a lower value of just over 94 when I ran the program.</p>
+<p><em>Rather than testing and reporting the <code class="docutils literal notranslate"><span class="pre">colorLeft.reflected_light_intensity_pc</span></code> value directly, the program is constructed as it is because the sensor value may change in going from the <code class="docutils literal notranslate"><span class="pre">while</span></code> program step to the <code class="docutils literal notranslate"><span class="pre">print()</span></code> step. Even though computers may step between lines of code very quickly, they still take a finite time to do so.</em></p>
+<p>Try modifying the numerical value used in the <code class="docutils literal notranslate"><span class="pre">while</span></code> conditional test and downloading and running the modified program. Can you get the robot to stop as soon as it encounters the second medium grey band? How about on the third, dark grey line, or on the final, black line?</p>
+</div>
+<div class="section" id="blocking-program-control-flow">
+<h2>2.4 Blocking program control flow<a class="headerlink" href="#blocking-program-control-flow" title="Permalink to this headline">¶</a></h2>
+<p>One of the features of a sequential program is that control is passed in turn from one line of code to the next. Control passes when a particular line has finished executing. Typically, a line of code is evaluated in a just a few milliseconds (that is, thousandths of second), or even quicker. But some commands may take some considerable time before they complete their execution, and hold up the program’s execution until they have completed. Such statements are said to be <em>blocking</em>: they <em>block</em> the continued control flow for a non-trivial amount of time.</p>
+<p>You have already seen this in the form the <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> command. This delays the passage of control flow until the sleep period (in seconds) has elapsed. However any things that are “free-running”, such as switched on motors driving forwards or backwards, continue to run even as the blocking statements hold up progress of the program control flow.</p>
+<p>Let’s explore this in a slightly different context: what do we do when the robot is speaking?</p>
+<div class="section" id="activity-counting-up-to-10">
+<h3>2.4.1 Activity – Counting up to 10<a class="headerlink" href="#activity-counting-up-to-10" title="Permalink to this headline">¶</a></h3>
+<p>As well as programming the simulated robot to respond to a sensor value, we can also get it to count aloud.</p>
+<p>The following program, for example, when downloaded to the simulator, will cause the simulated robot to count aloud as well as printing the count value in the simulator <em>Output</em> display.</p>
+<p>Can you get the robot to count to 10, rather than 5?</p>
+<p>Also observe how the spoken count and the printed count values are displayed. Are they in synchronisation with each other?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --autorun -WO
+
+say(&quot;Listen to me count&quot;)
+
+count = 1
+
+while count &lt; 5:
+    say( count)
+    print( count )
+    count = count + 1
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here about when the spoken and printed counts occur relative to each other. How might you explain this behaviour?</em></p>
+</div>
+<div class="section" id="making-the-program-wait">
+<h3>2.4.2 Making the program wait<a class="headerlink" href="#making-the-program-wait" title="Permalink to this headline">¶</a></h3>
+<p>When you ran the previous program, you should have noticed that the printed count values appeared almost at the same time as each other, whereas the spoken count values were clearly spoken one after the other.</p>
+<p>By default, the preloaded <code class="docutils literal notranslate"><span class="pre">say()</span></code> command is <em>non-blocking</em>: phrases to be spoken are added to a “first in, first out” (FIFO) queue managed using a parallel running process running outside the simulator as part of your browser’s own control flow. Essentially, the <code class="docutils literal notranslate"><span class="pre">say()</span></code> command asks the browser to handle the spoken statement, and once it has made that request of the browser, it considers itself to have completed. At that point, it can pass control onto the next statement in the downloaded simulator program, even if the browser has not completed the actual speaking task.</p>
+<p>However, we can also get the <code class="docutils literal notranslate"><span class="pre">say()</span></code> function to operate in a <strong>blocking</strong> mode by passing the <code class="docutils literal notranslate"><span class="pre">wait=True</span></code> parameter to it. In this case, the <code class="docutils literal notranslate"><span class="pre">say()</span></code> command does <em>not</em> consider itself to have successfully completed until the provided phrase has been spoken. This means that it will not pass control to the next line of the downloaded program until the browser informs it that the phrase has been spoken.</p>
+<p>Run the following code cell to see this behaviour in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --autorun -WO
+
+say(&quot;Listen to me count&quot;)
+
+count = 1
+
+while count &lt; 5:
+    # The say() command by default will also print
+    # the message to the simulator Output display
+    say( count, wait=True)
+    count = count + 1
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here about when the spoken and printed count values appear relative to each other this time. How does this behaviour compare to previously? How do you explain the behaviour in each case?</em></p>
+</div>
+<div class="section" id="blocking-behaviour-in-robot-control-programs">
+<h3>2.4.3 Blocking behaviour in robot control programs<a class="headerlink" href="#blocking-behaviour-in-robot-control-programs" title="Permalink to this headline">¶</a></h3>
+<p>If you turn the simulated robot’s motors on, they continue running until either they are switched off by another statement in the program, or by the program completing.</p>
+<p>For example, as before, the following program will drive the robot forward until it sees the second grey line, at which point it will stop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_bands --autorun
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+while sensor_value &gt; 85:
+    sensor_value = colorLeft.reflected_light_intensity_pc
+</pre></div>
+</div>
+</div>
+</div>
+<p>But what happens if we start the robot driving forwards and then using a blocking <code class="docutils literal notranslate"><span class="pre">say(wait=True)</span></code> command at the start of the program?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_bands --autorun
+
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+say(&quot;&quot;&quot;My motors are now running,
+       so let&#39;s get this party started.
+       Here we go...&quot;&quot;&quot;,
+     wait=True)
+
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+while sensor_value &gt; 85:
+    sensor_value = colorLeft.reflected_light_intensity_pc
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations about what the robot does this time. Can you explain it’s behaviour?</em></p>
+<p>Some of the robot’s own motor operations are also blocking.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">.on_for_rotations()</span></code> command starts the motor and is then blocking until the motor has turned for the specified number of rotations, at which point the motor is switched off and control passes to the next statement of the program;</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">.on_for_seconds()</span></code> command starts the motor and is then blocking until  a specified amount of time has elapsed, at which point the motor is switched off and control passes to the next statement of the program.</p></li>
+</ul>
+<p>Using a blocking motor command can therefore provide an unwanted behaviour.</p>
+<p>For example, let’s run the motors for a bit before we pass control to the loop that should stop the robot at the third grey line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Grey_bands --autorun
+
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50),
+                            10)
+
+# The show=True parameter will also print the spoken message
+say(&quot;&quot;&quot;Start looping...&quot;&quot;&quot;)
+
+sensor_value = colorLeft.reflected_light_intensity_pc
+
+while sensor_value &gt; 85:
+    sensor_value = colorLeft.reflected_light_intensity_pc
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here describing what the robot does when the program is downloaded. How do you explain its behaviour?</em></p>
+</div>
+</div>
+<div class="section" id="travelling-a-specific-distance">
+<h2>2.5 Travelling a specific distance<a class="headerlink" href="#travelling-a-specific-distance" title="Permalink to this headline">¶</a></h2>
+<p>The blocking nature of some of the motor commands presents us with a challenge that might at first feel insurmountable: if we want the robot to drive forwards for a specified distance <code class="docutils literal notranslate"><span class="pre">.on_for_X()</span></code> command to turn the motors on for a specific time or number of rotations, <em>we can’t do anything else</em> during that time, such as collect sensor data, because the motor command will be blocking the flow of program control.</p>
+<p>However, the motor drive commands do provide us with <code class="docutils literal notranslate"><span class="pre">.left_motor.position</span></code> and <code class="docutils literal notranslate"><span class="pre">.right_motor.position</span></code> tacho values that describe how far each wheel has turned.</p>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, we could set up a program to drive the robot forwards in straight line, perhaps collecting some sensor data as it does so, until a particular distance, as tested by a condition in the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, has been traversed.</p>
+<p>For example, the following program will drive the robot forwards until the left motor tacho count reaches a value of 1000:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Empty_Map --autorun -ORH
+
+from time import sleep
+
+# Turn the motors on
+tank_drive.on(SpeedPercent(50), SpeedPercent(50))
+
+while int(tank_drive.left_motor.position) &lt; 1000:
+    print(&quot;Left motor value:&quot;, tank_drive.left_motor.position)
+    # We need some delay in the loop
+    # or the program will hang
+    sleep(0.1)
+    
+say(&quot;All done&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>2.6 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how we can control the way in which program statements are executed in a program using a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, which checks a condition at start of each loop and then either passes control to the first line inside the block if the condition evaluates <code class="docutils literal notranslate"><span class="pre">True</span></code>, with control return to the top of the loop, and another conditional test, once the code inside the loop has been evaluated. When the loop’s conditional test fails (that is, it evaluates as <code class="docutils literal notranslate"><span class="pre">False</span></code>) control is passed to the next statement in the program outside the while block.</p>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">for...in..</span></code> loop, control flow within a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop can also be interrupted using <code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code> statements.</p>
+<p>You also learned how certain statements are “blocking” of control flow, in that rather than being evaluated in a near instantaneous fashion, they may take some time to complete before passing control to the next program statement. Blocking commands include <code class="docutils literal notranslate"><span class="pre">time.sleep(s)</span></code>, <code class="docutils literal notranslate"><span class="pre">say(message,</span> <span class="pre">wait=True)</span></code> and the motor commands <code class="docutils literal notranslate"><span class="pre">.on_for_rotations()</span></code> and <code class="docutils literal notranslate"><span class="pre">.on_for_seconds()</span></code>.</p>
+<p>Using blocking statements within a robot control program can lead to behaviours that are not desired, not least because they may prevent the timely inspection of sensor values that are used to determine robot behaviour.</p>
+<p>In the next notebook, we’ll look in a bit more detail at one of the control flow statements you have already met in passing: the conditional <code class="docutils literal notranslate"><span class="pre">if</span></code> branch control flow statement.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03. Controlling program execution flow"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="03.1%20Program%20control%20using%20for%20loops.html" title="previous page">1. Introduction to program control flow</a>
+    <a class='right-next' id="next-link" href="03.3%20Program%20control%20flow%20using%20branches.html" title="next page">3 Branches</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

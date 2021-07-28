@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Introduction to sensor based control &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2 Sensor noise" href="05.2%20Sensor%20noise.html" />
+    <link rel="prev" title="5 Reasoning with rule based systems — Durable Rules Engine" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   1. Introduction to sensor based control
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05. Experimenting with sensors/05.1 Introducing sensor based control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05. Experimenting with sensors/05.1 Introducing sensor based control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-robot-control-using-sensors">
+   1.1 Simple robot control using sensors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-line-stopper">
+   1.1 A simple line stopper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#line-followers-and-edge-followers">
+   1.2 Line followers and edge followers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-line-follower-using-two-sensors">
+   1.2.1 A simple line follower using two sensors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-how-the-robot-sees-a-line-1">
+     1.2.2 Activity — how the robot sees a line 1
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-discussion">
+       Example discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-how-the-robot-sees-a-line-2">
+     1.2.3 Activity — how the robot sees a line 2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Example discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-how-the-robot-sees-a-line-3">
+     1.2.4 Activity — how the robot sees a line 3
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Example discussion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-seeing-what-the-robot-actually-sees">
+     1.2.5 Activity — Seeing what the robot actually sees
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-a-line-follower-program">
+   1.3 Writing a line-follower program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#taking-readings">
+     1.3.2 Taking readings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-readings">
+       Example readings
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-line-follower-program">
+   1.4 Creating a line-follower program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-writing-a-line-follower-program">
+     Challenge — writing a line-follower program
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-edge-follower-using-a-single-sensor">
+   2.4 A simple edge follower using a single sensor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-following-a-single-edge">
+     2.4.1 Activity – Following a single edge
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turning-a-control-strategy-into-code">
+     2.4.2 Turning a control strategy into code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-an-edge-follower-using-a-single-sensor">
+     2.4.3 Challenge – An edge follower using a single sensor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-sensor-based-control">
+<h1>1. Introduction to sensor based control<a class="headerlink" href="#introduction-to-sensor-based-control" title="Permalink to this headline">¶</a></h1>
+<p>In this session you will explore a range of simulator environments and sensor and motor drive noise settings, as well as modifying the robot configuration by changing the height of the simulated light sensor.</p>
+<p>Through your experiments, you will investigate the way the sensors behave and how this information can be used to control the robot.</p>
+<p><em>There’s quite a lot to get through this week, but next week’s activities are a bit lighter. So consider taking the two weeks together, and if you start to run out of study time,  roll some of this week’s notebooks into next week’s activity time.</em></p>
+<div class="section" id="simple-robot-control-using-sensors">
+<h2>1.1 Simple robot control using sensors<a class="headerlink" href="#simple-robot-control-using-sensors" title="Permalink to this headline">¶</a></h2>
+<p>You have already seen some earlier demonstrations of how we can use sensors to control the behaviour of our simulated robot, including how to stop when the robot encounters a black line. In this week’s activities, you will have an opportunity to explore in more detail how we can use sensors to control the robot’s behaviour.</p>
+<p>We’ll start with a quick recap of how detecting a simple change in the environment — the change from a white background to a black line — and how to act on that change.</p>
+<p>But then it’s time for you to take a plunge into the deep end, in terms of developing a more elaborate robot behaviour: following a line.</p>
+<p>So let’s load in the simulator in the normal way, and then get started:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+<span class="o">%</span><span class="k">load_ext</span> nbtutor
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-simple-line-stopper">
+<h2>1.1 A simple line stopper<a class="headerlink" href="#a-simple-line-stopper" title="Permalink to this headline">¶</a></h2>
+<p>You have already met this program in various guise: a simple program that stops the robot when it encounters a black line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Loop -RX
+
+# Turn the motors on
+speed = SpeedPercent(40)
+tank_drive.on(speed, speed)
+
+while colorLeft.reflected_light_intensity_pc &gt; 0:
+    # Keep on trucking...
+    pass
+
+say(&quot;Stopped at black line&quot;)
+# End the program
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>As a refresher, make some quick notes here about how this program implements the line stopping behaviour.</em></p>
+</div>
+<div class="section" id="line-followers-and-edge-followers">
+<h2>1.2 Line followers and edge followers<a class="headerlink" href="#line-followers-and-edge-followers" title="Permalink to this headline">¶</a></h2>
+<p>In this section you will investigate how a robot can be made to follow a desired path as it navigates its environment.</p>
+<p>When humans navigate around a house or a supermarket, we tend to use the information provided by their eyes to control our movements. Many simple robots do not have complex vision systems like us and instead have to rely on much simpler sensors. One of the most commonly used methods for navigation by robots is to use a simple light sensor to follow a line.</p>
+<p>The idea behind <em>line following</em> is that the environment has been adapted by the creation of a marked path that the robot can follow. For example, it could be a black line on a white background, or a wire embedded in the floor creating a magnetic field that can be detected by a Hall effect sensor.</p>
+<p>As well as following a line, we can also follow the <em>edge</em> of a line. You will have an opportunity to explore both forms of control.</p>
+</div>
+<div class="section" id="a-simple-line-follower-using-two-sensors">
+<h2>1.2.1 A simple line follower using two sensors<a class="headerlink" href="#a-simple-line-follower-using-two-sensors" title="Permalink to this headline">¶</a></h2>
+<p>In a simple visual line follower, we might use two light sensors along the front edge of the robot. Suppose the distance between the sensors slightly exceeds the thickness of a black line on a white background. With the robot placed over the line and straddling it, one sensor is on either side of the line.</p>
+<p>If the robot turns across the <em>left-hand</em> side of the line, then the sensor on the <em>right-hand</em> side of the robot will turn onto the line and detect black. This provides us with an error signal we can use to correct the path of the robot and turn it back onto the line. In this case, the control strategy would be to turn towards the right-hand side of the robot.</p>
+<div class="section" id="activity-how-the-robot-sees-a-line-1">
+<h3>1.2.2 Activity — how the robot sees a line 1<a class="headerlink" href="#activity-how-the-robot-sees-a-line-1" title="Permalink to this headline">¶</a></h3>
+<p>As a thought experiment, put yourself in the mind of the robot. What would the robot see if it veered off the right-hand side of the line?</p>
+<p><em>Write your answer here before revealing the answer.</em></p>
+<div class="section" id="example-discussion">
+<h4>Example discussion<a class="headerlink" href="#example-discussion" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example discussion.</em></p>
+<p>If the robot goes over the <em>right-hand</em> edge of the line, then the left-hand sensor will register black and the robot knows that it needs to turn to the left to move back over the line.</p>
+</div>
+</div>
+<div class="section" id="activity-how-the-robot-sees-a-line-2">
+<h3>1.2.3 Activity — how the robot sees a line 2<a class="headerlink" href="#activity-how-the-robot-sees-a-line-2" title="Permalink to this headline">¶</a></h3>
+<p>What would the robot do if the line started to curve to the left rather than continue in a straight line? Explain how it might stay on the line.</p>
+<p><em>Write your answer here before revealing the answer.</em></p>
+<div class="section" id="id1">
+<h4>Example discussion<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example discussion.</em></p>
+<p>If the line turned to the left and the robot was moving straight ahead, then the left-hand sensor would move over the line and see black. This would generate an error signal indicating that the robot should turn to the left to stay on the line and move the left-hand light sensor back over the white background.</p>
+</div>
+</div>
+<div class="section" id="activity-how-the-robot-sees-a-line-3">
+<h3>1.2.4 Activity — how the robot sees a line 3<a class="headerlink" href="#activity-how-the-robot-sees-a-line-3" title="Permalink to this headline">¶</a></h3>
+<p>Suppose that the two sensors are moved closer together, separated by a distance less than the width of the line to be followed, with one sensor still on either side of the centerline of the robot.</p>
+<p>Would the robot be able to identify its location relative to the line? Explain your reasoning.</p>
+<p><em>Write your answer here before revealing the answer.</em></p>
+<div class="section" id="id2">
+<h4>Example discussion<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example discussion.</em></p>
+<p>If the sensors are close together, separated by less than the width of the line, then they will both be over the line when the robot is on the line, and both see black. If the robot moves off the line to the left, then the left-hand sensor will detect white, an error signal can be generated, and the robot can be turned away from that direction and back onto the line.</p>
+</div>
+</div>
+<div class="section" id="activity-seeing-what-the-robot-actually-sees">
+<h3>1.2.5 Activity — Seeing what the robot actually sees<a class="headerlink" href="#activity-seeing-what-the-robot-actually-sees" title="Permalink to this headline">¶</a></h3>
+<p>Having done our thought experiment, let’s see what the robot actually sees when presented with a line with a width slightly less then the distance between the robot’s two light sensors.</p>
+<p>Load the <em>Line_Following_Test</em> background into the simulator, and display the <em>Sensor arrays</em> and <em>Instrumentation</em> panels, along with the <em>Position controls</em>.</p>
+<p>You should be able to use the up/down arrow buttons to fine turn the robot’s x and y position, as well as its orientation angle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -b Line_Following_Test -iAXH
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record your observations here about what the robot sees for the different situations in which it might encounter the line.</em></p>
+</div>
+</div>
+<div class="section" id="writing-a-line-follower-program">
+<h2>1.3 Writing a line-follower program<a class="headerlink" href="#writing-a-line-follower-program" title="Permalink to this headline">¶</a></h2>
+<p>The behaviour of the sensors and the interpretation of the data they provide is very important when creating line-following robots. We will start to look at these aspects in some detail in this activity and later ones.</p>
+<p>The challenge is to write a robot control program to make the robot follow the line.</p>
+<p>### 1.3.1 Calibrating the required sensor readings</p>
+<p>You first need to record the light sensor readings just to check that we know what reading the sensor gives when it is over the line, and off the line.</p>
+<p>Even if you <em>think</em> you know what the likely sensor readings are, it’s still worth checking.</p>
+<div class="section" id="taking-readings">
+<h3>1.3.2 Taking readings<a class="headerlink" href="#taking-readings" title="Permalink to this headline">¶</a></h3>
+<p>The light sensor defined by <code class="docutils literal notranslate"><span class="pre">ev3dev-py</span></code> as a <code class="docutils literal notranslate"><span class="pre">ColorSensor</span></code> object actually returns three RGB colour components: a <code class="docutils literal notranslate"><span class="pre">R</span></code> (red) value, a <code class="docutils literal notranslate"><span class="pre">G</span></code> green value and a <code class="docutils literal notranslate"><span class="pre">B</span></code> blue value, each in the range <code class="docutils literal notranslate"><span class="pre">0...255</span></code>. (The colour signal can also be mapped onto other representations, such as HSV – <em>Hue, saturation, value</em>.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">reflected_light_intensity</span></code> reading in the simulator is actually recorded as the value of the first RGB component: the <em>red</em> component in the range <code class="docutils literal notranslate"><span class="pre">0..255</span></code>. The <code class="docutils literal notranslate"><span class="pre">reflected_light_intensity_pc</span></code> value returns this as a percentage in the range <code class="docutils literal notranslate"><span class="pre">0..100</span></code>.</p>
+<p>Drag or otherwise move the robot around the screen, positioning it so the left-hand light sensor is directly over the area you want to record the sensor reading for. When you place the robot, the light sensor reading should be updated in the simulator sensor readings area.</p>
+<p>What readings do you obtain? Record your readings in the cell below:</p>
+<ul class="simple">
+<li><p><em>value over black:</em></p></li>
+<li><p><em>value over white:</em></p></li>
+<li><p><em>value over the edge (where the sensor sees black and white):</em></p></li>
+</ul>
+<div class="section" id="example-readings">
+<h4>Example readings<a class="headerlink" href="#example-readings" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal a set of example readings.</em></p>
+<p>The readings I got were as follows:</p>
+<ul class="simple">
+<li><p><em>value over black:</em> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><em>value over white:</em> <code class="docutils literal notranslate"><span class="pre">255</span></code></p></li>
+<li><p><em>value over the edge (where the sensor sees black and white):</em> varies between the black and white values, depending on how much of the line was in view of the sensor.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-line-follower-program">
+<h2>1.4 Creating a line-follower program<a class="headerlink" href="#creating-a-line-follower-program" title="Permalink to this headline">¶</a></h2>
+<p>In the following challenge, you will develop a program that will allow the robot to use two sensors to help it to follow a narrow line.</p>
+<p>A starting constraint is that the line is quite a narrow one that can be straddled by the robot, with a light sensor to either side of the line over the white background.</p>
+<p>As with many engineering problems, it is possible to consider the problem in different ways and decompose it in to different smaller sub-problems.</p>
+<p>At quite a high level of abstraction, we might simply ask:</p>
+<ul class="simple">
+<li><p><em>how can we get the robot follow a straight line?</em>, and</p></li>
+<li><p><em>how can we get the robot to follow a line that turns a corner?</em></p></li>
+</ul>
+<p>This then splits into a perception problem at a slightly lower level of abstraction:</p>
+<ul class="simple">
+<li><p>what do the sensors see when they straddle a straight line?</p></li>
+<li><p>what do the sensors see if the robot turns off the line to the left or to the right?</p></li>
+<li><p>what do the robot sees if the line curves to the left or to the right?</p></li>
+</ul>
+<p>We might then want to focus on what motor actions we should take when presented with different sensor perceptions. For example, here are some questions you might want to bear in mind as you develop your program:</p>
+<ul class="simple">
+<li><p>What should the robot do if both sensors see white?</p></li>
+<li><p>What should the robot do if the left-hand sensor sees white and the right-hand sensor sees black?</p></li>
+<li><p>What should the robot do if the left-hand sensor sees black and the right-hand sensor sees white?</p></li>
+<li><p>Could there be a situation where both sensors see black? What should the robot do in such a case?</p></li>
+</ul>
+<p>Note that there may be different possible answers to each question. Part of the challenge of the design task is to balance the various different potential solutions to each part of the problem that work together solve the problem as a whole.</p>
+<p>How might you need to modify the program if the robot is placed on a black line that is slightly wider than the distance between the sensors?</p>
+<p><em>Make your own notes on the design questions here.</em></p>
+<p><em>For example, how can the robot tell:</em></p>
+<ul class="simple">
+<li><p><em>if it is on the line?</em></p></li>
+<li><p><em>if it is starting to veer off the line?</em></p></li>
+<li><p><em>if the line is starting to curve one way or the other?</em></p></li>
+</ul>
+<p><em>And when it comes to controlling the robot:</em></p>
+<ul class="simple">
+<li><p><em>What should the robot do if both sensors see white?</em></p></li>
+<li><p><em>What should the robot do if the left-hand sensor sees white and the right-hand sensor sees black?</em></p></li>
+<li><p><em>What should the robot do if the left-hand sensor sees black and the right-hand sensor sees white?</em></p></li>
+<li><p><em>Could there be a situation where both sensors see black? What should the robot do in such a case?</em></p></li>
+</ul>
+<div class="section" id="challenge-writing-a-line-follower-program">
+<h3>Challenge — writing a line-follower program<a class="headerlink" href="#challenge-writing-a-line-follower-program" title="Permalink to this headline">¶</a></h3>
+<p>There are many strategies for writing a line follower program, so a key aim for this activity is to provide you with an opportunity for you to come up with your own strategy for solving the problem.</p>
+<p>If you get stuck, put yourself in the mind of the robot and talk aloud what steps you need to perform when different situations occur.</p>
+<p>To simplify the program, do not worry about a terminating condition for it. Instead let it run forever (or at least, until you force the execution to stop by clicking the simulator <em>Stop</em> button). Do this by placing the main logic for your code inside an infinite loop (a <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> block, which will loop forever).</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">Line_Following_Test</span></code> background and set the pen down option to create a trace showing where the robot travelled:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Line_Following_Test -p
+
+# Define any original variables first
+
+# Create an infinite control loop
+
+    # Within the control loop
+    #  - read sensor values
+    #  - use sensor values to make a decision about motor actions
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The following code cell contains my solution, although it’s not necessarily a very good one!</p>
+<p>My control strategy is to set the motor speed on each side to be proportional to the reflected light intensity. The more white the sensor sees, the faster that wheel travels. If the sensor sees black, then the motor stops.</p>
+<p>Also, the robot falls off the line quite easily if the speed is set too high.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Line_Following_Test -p
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+ 
+# Infinite loop
+while True:
+    
+    # Grab the light sensor readings
+    intensity_left = colorLeft.reflected_light_intensity_pc / 100
+    intensity_right = colorRight.reflected_light_intensity_pc / 100
+
+    # Display the light sensor readings
+    print(intensity_left, intensity_right)
+    
+    max_percent_speed = 20
+    
+    # It may be worth trying to tune the
+    # different speeds a bit more carefully.
+    # We might also have a minimum speed for
+    # each wheel by passing in a fixed positive
+    # bias value into the SpeedPercent calculation,
+    # whilst also remembering the SpeedPercent
+    # function expects a value in the range -100...100
+    left_motor_speed = SpeedPercent(max_percent_speed*intensity_left)
+    right_motor_speed = SpeedPercent(max_percent_speed*intensity_right)
+    
+    # Set the motors to the desired speeds.
+    tank_drive.on(left_motor_speed, right_motor_speed)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another approach might be to determine an error signal as the difference between the left-hand and right-hand sensor values and use that to set a steering value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Line_Following_Test -p -P green -C
+
+from time import sleep
+
+steering_drive = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+# The GAIN term &quot;amplifies&quot; the error signal
+GAIN = 0.5
+
+while True:
+    # Grab the light sensor readings
+    intensity_left = colorLeft.reflected_light_intensity_pc 
+    intensity_right = colorRight.reflected_light_intensity_pc
+
+    print(&#39;Left_light: &#39; + str(intensity_left ))
+    print(&#39;Right_light: &#39; + str(intensity_right ))
+    
+    # Calculate an error term
+    error = colorLeft.reflected_light_intensity - colorRight.reflected_light_intensity
+    
+    #Amplify the error to generate a steering correction value
+    correction = error * GAIN
+    
+    #Steer the robot accordingly
+    # Arguments: .on(steering, speed)
+    steering_drive.on(correction, 20)
+    # Note that this is blocking for a short period of time
+    # as we give the robot a change to turn
+    sleep(0.1)
+    # If instaed we use on_for_seonds,
+    # the robot motion is stuttery
+    # as the motors are turned on and off
+    #steering_drive.on_for_seconds(correction, 20, 0.1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-simple-edge-follower-using-a-single-sensor">
+<h2>2.4 A simple edge follower using a single sensor<a class="headerlink" href="#a-simple-edge-follower-using-a-single-sensor" title="Permalink to this headline">¶</a></h2>
+<p>In the line-follower program we used <em>two</em> light sensors to detect when the robot started to veer off the line, either to the left, or to the right.</p>
+<p>But what happens if the line is much wider than the distance between the two sensors?</p>
+<p>In that case, it might make more sense to follow a particular <em>edge</em> of the line. For example, if we follow the right-hand edge, then the robot is over the edge of the line when the left-hand sensor sees black and the right-hand sensor sees white. If both sensors see white, we have fallen off the line and so the robot needs to turn back to the left so the left-hand sensor can reacquire the black line.</p>
+<p>But for this edge following strategy, do we really need <em>two</em> sensors to follow the edge of a line? Or can we get away with using just a single sensor?</p>
+<div class="section" id="activity-following-a-single-edge">
+<h3>2.4.1 Activity – Following a single edge<a class="headerlink" href="#activity-following-a-single-edge" title="Permalink to this headline">¶</a></h3>
+<p>What strategy might you use to control a robot so that it can follow a line using just a single light sensor?</p>
+<p><em>Write your solution here.</em></p>
+<div class="section" id="id3">
+<h4>Example solution<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The basic idea is that, as the robot moves forwards, the light sensor tells it if it should move towards the edge or away from it.</p>
+<p>For example, if the light sensor picks up a light background then the robot needs to turn (say to the right) until it detects the dark line.</p>
+<p>Once the light sensor detects it is over the dark line, the robot should start moving forwards whilst also turning back to the left to find the edge of the line again.</p>
+<p>In this way, the robot would ‘edge’ forwards as it follows the <em>right-hand</em> edge of the black line.</p>
+</div>
+</div>
+<div class="section" id="turning-a-control-strategy-into-code">
+<h3>2.4.2 Turning a control strategy into code<a class="headerlink" href="#turning-a-control-strategy-into-code" title="Permalink to this headline">¶</a></h3>
+<p>Having a strategy for writing a robot control program that will allow a robot to follow a line using just a single sensor is one thing, but can you now turn that strategy into a working control program?</p>
+<p><em>Add any notes here about what you need to do to turn to convert your control strategy as described in words into actual code.</em></p>
+</div>
+<div class="section" id="challenge-an-edge-follower-using-a-single-sensor">
+<h3>2.4.3 Challenge – An edge follower using a single sensor<a class="headerlink" href="#challenge-an-edge-follower-using-a-single-sensor" title="Permalink to this headline">¶</a></h3>
+<p>Building on the control strategy you developed in the previous activity, see if you can implement that strategy by writing a program to follow the edge of a line using just a single light sensor.</p>
+<p>Download your program to the simulator and test it against various lines in the <em>Line_Following_Test</em> background.</p>
+<p>What happens if you start your robot on the other edge? How would you modify your program so that the robot could follow the other edge?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Line_Following_Test
+
+# Add your code here
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Record a description of how well your control program worked here.</em></p>
+<p>Were there any lines or line features it particularly struggled with?</p>
+<p>How did it compare in terms of performance to the line followers that used two light sensors?</p>
+<p><em>Record your observations and reflections here.</em></p>
+<p>What advantages and disadvantages might arise from using a single light sensor solution compared to a two-sensor solution?</p>
+<p><em>Record your thoughts here.</em></p>
+<div class="section" id="id4">
+<h4>Example solution<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>One possible solution program is shown below. It uses a <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True</span></code> to infinitely loop through a code block that checks to see whether the single sensor detects white or black; if it detects white then the robot turns about one wheel back onto the line, which eases it forwards on one side; if it detects black then it turns about one wheel away from the line, again edging it slightly forwards.</p>
+<p>In this manner the robot wiggles along the line. If we use the right-hand sensor rather than left-hand sensor to detect the edge, and enable the pen trace, we see the trace follows the first line reasonably well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Line_Following_Test -p -P red
+
+colorLeft = ColorSensor(INPUT_2)
+while True:
+    
+    intensity_left = colorLeft.reflected_light_intensity
+    
+    print(&quot;Left_light: &quot;+str(intensity_left))
+    
+    if intensity_left &lt; 50:
+        left_motor_speed = SpeedPercent(0)
+        right_motor_speed = SpeedPercent(20)
+    else:
+        left_motor_speed = SpeedPercent(20)
+        right_motor_speed = SpeedPercent(0)
+    tank_drive.on(left_motor_speed, right_motor_speed)
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<p>In terms of the relative trade off between one or two sensors, the single-sensor approach would likely be cheaper, but the two-sensor approach is more general: the two-sensor robot can follow the line or either edge, whereas the control program for the single-sensor solution confines the robot to following a specific edge.</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have explored two different strategies for getting a robot to follow a line, using thought experiments to put yourself into the mind of the robot and imagine what it could see in order to help you come up with a control strategy for it.</p>
+<p>The first strategy, to create a <em>line follower</em>, used two light sensors that straddled the line and identify whether the robot was straddling the line or was starting to veer over one side or the other of it. (Strictly, we would require a third sensor in the middle of the other two to confirm we were over the line. Or just slightly reduce the gap between the left and right sensors to give a low reading corresponding to seeing just a part of the line rather than the pure white background.)</p>
+<p>The second strategy only required a single light sensor, which the robot used to follow the <em>edge</em> of a specified side of the line, turning forwards and way from the line when it detected it and forwards and towards the line when it was off it.</p>
+<p>In each case, the sensor values we used were essentially free of noise. In the next notebook, you will start to learn how noise can get complicate simple control strategies and how we might start to accommodate it.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05. Experimenting with sensors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html" title="previous page">5 Reasoning with rule based systems — Durable Rules Engine</a>
+    <a class='right-next' id="next-link" href="05.2%20Sensor%20noise.html" title="next page">2 Sensor noise</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

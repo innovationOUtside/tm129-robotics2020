@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 Example robot control programs &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5 RoboLab challenges" href="03.5%20Some%20RoboLab%20challenges.html" />
+    <link rel="prev" title="3 Branches" href="03.3%20Program%20control%20flow%20using%20branches.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03. Controlling program execution flow/03.4 Example robot control programs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03. Controlling program execution flow/03.4 Example robot control programs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcing-bands-as-the-robot-encounters-them">
+   4.1 Announcing bands as the robot encounters them
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-announce-when-the-robot-has-left-a-band">
+     4.1.1 Activity — announce when the robot has left a band
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-challenge">
+     4.1.2 Optional Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-your-own-program">
+   4.2 Creating your own program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-count-the-bands">
+     4.2.1 Activity  — count the bands
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   4.3 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="example-robot-control-programs">
+<h1>4 Example robot control programs<a class="headerlink" href="#example-robot-control-programs" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we will see some more examples of using control flow operators to control the behaviour of a robot in various situations and you will have an opportunity to create a program of your own from scratch.</p>
+<p>In the normal way, load in the simulator and then we can get started…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="announcing-bands-as-the-robot-encounters-them">
+<h2>4.1 Announcing bands as the robot encounters them<a class="headerlink" href="#announcing-bands-as-the-robot-encounters-them" title="Permalink to this headline">¶</a></h2>
+<p>One of the ways we can use the <code class="docutils literal notranslate"><span class="pre">say()</span></code> function is to count out the bands as we come across them. To do this, we need to identify when we cross from the white background onto a band.</p>
+<p>We can detect the edge of a band by noticing when the sensor value goes from white (a reading of <span class="math notranslate nohighlight">\(100\)</span>) to a lower value. The following program will detect such a transition and say that it has crossed onto a band, also displaying a print message to announce the fact too.</p>
+<p>Reset the robot location in the simulator, run the following cell to download the program to the simulator, and then run it in the simulator. Does it behave as you expected?</p>
+<p><em>You will need to stop the program manually to terminate its execution.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Grey_bands
+# Onto a band...
+
+# Drive the robot slowly
+tank_drive.on(SpeedPercent(15), SpeedPercent(15))
+
+previous_value = colorLeft.reflected_light_intensity_pc
+
+while previous_value &gt; 0:
+    #Uncomment the following line if you want to see the trace of sensor values
+    #print(&#39;Colour: &#39; + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
+
+    if previous_value==100 and current_value &lt; 100:
+        say(&quot;New band&quot;)
+
+    # Set the current value from this iteration
+    # as the previous value we&#39;ll refer to in the next
+    previous_value = current_value
+</pre></div>
+</div>
+</div>
+</div>
+<p>The program starts by turning the motors on to drive the robot forward (<code class="docutils literal notranslate"><span class="pre">tank_drive.on(SpeedPercent(15),</span> <span class="pre">SpeedPercent(15))</span></code>) and then taking a sample of the light sensor reading (<code class="docutils literal notranslate"><span class="pre">previous_value</span> <span class="pre">=</span> <span class="pre">colorLeft.reflected_light_intensity_pc</span></code>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> statement creates a loop that repeats until the program in the simulator is manually stopped. Inside the loop, a new sample is taken of the light sensor reading (<code class="docutils literal notranslate"><span class="pre">current_value</span> <span class="pre">=</span> <span class="pre">colorLeft.reflected_light_intensity_pc</span></code>):</p>
+<p>If the robot was on the white background on the previous iteration (<code class="docutils literal notranslate"><span class="pre">previous_value==100</span></code>) <strong>and</strong> on a band in this iteration — that is,  <code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">(current_value</span> <span class="pre">&lt;</span> <span class="pre">100)</span></code> — then the robot has moved onto a band; declare this via the output display window (<code class="docutils literal notranslate"><span class="pre">print('Onto</span> <span class="pre">a</span> <span class="pre">band...')</span></code>) and audibly (<code class="docutils literal notranslate"><span class="pre">say(&quot;New</span> <span class="pre">band&quot;)</span></code>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">previous_value</span></code> variable is then updated to the current value (<code class="docutils literal notranslate"><span class="pre">previous_value</span> <span class="pre">=</span> <span class="pre">current_value</span></code>) and the program goes round the loop again.</p>
+<p>You may notice that there may be a slight delay between the robot encountering a band and saying that it has done so. This is because it takes some time to create the audio object inside the browser. If we were to speed up the robot’s forward motion, it is quite possible that the robot might leave one band and encounter the next before it had finished saying it had entered the first band.</p>
+<div class="section" id="activity-announce-when-the-robot-has-left-a-band">
+<h3>4.1.1 Activity — announce when the robot has left a band<a class="headerlink" href="#activity-announce-when-the-robot-has-left-a-band" title="Permalink to this headline">¶</a></h3>
+<p>In the code cell below, the previous robot control program has been modified so that the robot says “on” when it goes onto a band. Modify the program further so that it also says, “off” when it goes from a band and back onto the white background.</p>
+<p>Reset the robot location, download the program to the simulator and run it there. Does it behave as you expect?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Grey_bands
+# On and off band...
+
+# Drive the robot slowly
+tank_drive.on(SpeedPercent(15), SpeedPercent(15))
+
+previous_value = colorLeft.reflected_light_intensity_pc
+
+while True:
+    #Uncomment the following line if you want to see the trace of sensor values
+    #print(&#39;Colour: &#39; + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
+    if previous_value==100 and current_value &lt; 100:
+        print(&#39;Onto a band...&#39;)
+        say(&quot;On&quot;)
+    
+    #YOUR CODE HERE
+    
+    
+    previous_value = current_value
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>To detect when the robot has left a band, we can check to see if it was on a band on the previous iteration of the <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> loop (<code class="docutils literal notranslate"><span class="pre">previous_value</span> <span class="pre">&lt;</span> <span class="pre">100</span></code>) and back on the white background on the current iteration (<code class="docutils literal notranslate"><span class="pre">current_value</span> <span class="pre">==</span> <span class="pre">100</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Grey_bands -R
+# On and off band...
+
+# Drive the robot slowly
+tank_drive.on(SpeedPercent(15), SpeedPercent(15))
+
+previous_value = colorLeft.reflected_light_intensity_pc
+
+while True:
+    #Uncomment the following line if you want to see the trace of sensor values
+    #print(&#39;Colour: &#39; + str(colorLeft.reflected_light_intensity_pc ))
+    current_value = colorLeft.reflected_light_intensity_pc
+    if previous_value==100 and current_value &lt; 100:
+        print(&#39;Onto a band...&#39;)
+        say(&quot;On&quot;)
+    
+    if previous_value &lt; 100 and current_value == 100:
+        print(&#39;Off a band...&#39;)
+        say(&quot;Off&quot;)
+    
+    previous_value = current_value
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optional-challenge">
+<h3>4.1.2 Optional Challenge<a class="headerlink" href="#optional-challenge" title="Permalink to this headline">¶</a></h3>
+<p>Using the magic switch to set the original y-coordinate of the simulated robot to a value of <code class="docutils literal notranslate"><span class="pre">850</span></code> (<code class="docutils literal notranslate"><span class="pre">--ypos</span> <span class="pre">850</span></code>), see if you can program the robot to drive over all the bands and only stop when it sees the red circle.</p>
+</div>
+</div>
+<div class="section" id="creating-your-own-program">
+<h2>4.2 Creating your own program<a class="headerlink" href="#creating-your-own-program" title="Permalink to this headline">¶</a></h2>
+<p>You have already seen several robot control programs in this notebook, and you now you have an opportunity to create your own from scratch.</p>
+<p>The following activity includes the skeleton of a program based on descriptive, non-executed comments that describe what each line of the program should do.</p>
+<p>Using comments in this way provides one way of helping you plan or design a new program.</p>
+<p>As for the lines of code that you will need to write: you have already seen examples of similar lines in the programs you have already encountered.</p>
+<p>Reusing lines of code copied from programs that have used such lines successfully in previous programs is a completely valid way of writing your own programs.</p>
+<div class="section" id="activity-count-the-bands">
+<h3>4.2.1 Activity  — count the bands<a class="headerlink" href="#activity-count-the-bands" title="Permalink to this headline">¶</a></h3>
+<p>Using the previous programs as inspiration, see if you can write a program that counts each new line as it encounters it, displaying the count to the output window and speaking the count number aloud.</p>
+<p>Reset the location of the robot, download your program to the simulator and run it there. Does it work as you expected?</p>
+<p><em>Hint: you may find it useful to create a counter, initially set to 0, that you increment whenever you enter a band, and then display it and speak it aloud.</em></p>
+<p>How might you modify the program so that its execution stops once it has counted four lines?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Grey_bands
+# Program to count the bands aloud
+
+# Start the robot moving
+
+# Initial count value
+
+# Initial sensor reading
+
+# Create a loop
+
+    # Check current sensor reading
+    
+    # Test when the robot has entered a band
+
+        # When on a new band:
+        # - increase the count
+
+        # - display the count in the output window
+    
+        # - say the count aloud
+
+    # Update previous sensor reading
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>Example solution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>Using the comment skeleton as a plan for the program, we can reuse statements from the previous programs with just a few additions.</p>
+<p>In the first case, we need to add a counter (<code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">=</span> <span class="pre">0</span></code>). Inside the loop, when we detect we are on a new band, increase the counter (<code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">=</span> <span class="pre">count</span> <span class="pre">+</span> <span class="pre">1</span></code>), display it (<code class="docutils literal notranslate"><span class="pre">print(count)</span></code>) and after casting the count to string value, speak it aloud (<code class="docutils literal notranslate"><span class="pre">say(count)</span></code>).</p>
+<p>Note that we could make out output display message a little bit more elaborate by constructing an output message string, such as <code class="docutils literal notranslate"><span class="pre">print(&quot;Band</span> <span class="pre">count</span> <span class="pre">is&quot;</span> <span class="pre">+</span> <span class="pre">str(count))</span></code>. <em>(Unfortunately, the simulator does not support the rather more elaborate Python “f-string” formatting method that allows variable substitution within text strings.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Grey_bands -R
+# Program to count the bands aloud
+
+# Start the robot moving
+tank_drive.on(SpeedPercent(15), SpeedPercent(15))
+
+# Initial count value
+count = 0
+
+# Initial sensor reading
+previous_value = colorLeft.reflected_light_intensity_pc
+
+# Create a loop
+while True:
+
+    # Check current sensor reading
+    current_value = colorLeft.reflected_light_intensity_pc
+    
+    # Test when the robot has entered a band
+    if previous_value==100 and current_value &lt; 100:
+        # When on a new band:
+        # - increase the count
+        count = count + 1
+        # - display the count in the output window
+        print(count)
+        # - say the count aloud
+        say(str(count))
+        
+    # Update previous sensor reading
+    previous_value = current_value
+</pre></div>
+</div>
+</div>
+</div>
+<p>To stop the program when the robot has counted four lines, we could define the loop as <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">count</span> <span class="pre">&lt;4:</span></code>. This would keep looping until the count value reached four, at which point the while condition would fail and would no longer pass control into the body of the while loop, and control would pass from the while loop t the end of the program.</p>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>4.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen further examples of simple robot control programs and had an opportunity to create your own from scratch.</p>
+<p>In the next notebook, some challenges are defined that will exercise your newly learned programming skills a little bit more.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03. Controlling program execution flow"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="03.3%20Program%20control%20flow%20using%20branches.html" title="previous page">3 Branches</a>
+    <a class='right-next' id="next-link" href="03.5%20Some%20RoboLab%20challenges.html" title="next page">5 RoboLab challenges</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

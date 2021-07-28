@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.1 Constants and variables in programs &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4 Robot sensors and data logging" href="02.4%20Getting%20started%20with%20sensors.html" />
+    <link rel="prev" title="2 Creating your own robot programs" href="02.2%20Creating%20your%20own%20robot%20programs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02. Getting started with robot and Python programming/02.3 General programming concepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/02. Getting started with robot and Python programming/02.3 General programming concepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-introduction-to-constants-in-computer-programs">
+   3.1.1 An introduction to constants in computer programs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-interpreting-what-you-read">
+     3.1.2 Question — Interpreting what you read
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-observations">
+       Example observations
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#literals-can-make-program-updates-and-maintenance-difficult">
+     3.1.3 Literals can make program updates and maintenance difficult
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-activity">
+     3.1.4 Optional activity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-constants-and-variables">
+   3.2 Working with constants and variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-constants-in-robolab-programs">
+     3.2.1 Using constants in RoboLab programs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-changing-a-constant-to-tune-a-program">
+     3.2.2 Activity – Changing a constant to tune a program
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-robolab-challenge">
+     3.2.3 Activity – RoboLab challenge
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimising-parameter-values">
+     3.2.4 Optimising parameter values
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-variables">
+   3.3 Working with variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constant-or-variable">
+     3.3.1 Constant or variable?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-answer">
+       Example answer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-variables">
+     3.3.2 Using variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   3.5 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="constants-and-variables-in-programs">
+<h1>3.1 Constants and variables in programs<a class="headerlink" href="#constants-and-variables-in-programs" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, you will learn how to use constants and variables in a robot control program.</p>
+<p>Once again, you will be creating programs to run in the RoboLab simulator, so load the simulator by running the following code cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="an-introduction-to-constants-in-computer-programs">
+<h2>3.1.1 An introduction to constants in computer programs<a class="headerlink" href="#an-introduction-to-constants-in-computer-programs" title="Permalink to this headline">¶</a></h2>
+<p>Various elements of the code in the following code cell may be familiar to you from the previous notebook. Specifically, the code describes a program that is intended to cause the robot to traverse something approximating a square path in the simulator.</p>
+<p>Download the program in the following code cell to the notebook and run it with the robot in <em>pen down</em> mode so that you can see the path it follows.</p>
+<p><em>Note that we have used the <code class="docutils literal notranslate"><span class="pre">-R</span></code> magic switch to automatically run the program as soon as it has been downloaded.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --pendown --pencolor green -R
+
+# Try to draw a square
+
+#Go straight
+# Set the left and right motors
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(40),
+                            SpeedPercent(40), 1)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(40), 1.6)
+
+#Go straight
+# Set the left and right motors
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(40),
+                            SpeedPercent(40), 1)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(40), 1.6)
+
+#Go straight
+# Set the left and right motors 
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(40),
+                            SpeedPercent(40), 1)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(40), 1.6)
+
+#Go straight
+# Set the left and right motors 
+# in a forward direction
+# and run for 1 rotation
+tank_drive.on_for_rotations(SpeedPercent(40),
+                            SpeedPercent(40), 1)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(40), 1.6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Within the program, the explicit number <code class="docutils literal notranslate"><span class="pre">1.6</span></code> gives the number of rotations used when turning the robot. Several other numerical values are also evident; for example, the steering setting (<code class="docutils literal notranslate"><span class="pre">-100</span></code>) and the various speeds (<code class="docutils literal notranslate"><span class="pre">40</span></code>). These are all examples of a <em>literal value</em>, that is, values (numbers in this case) that are provided explicitly in the program at the point where they are referenced (which is to say, at the point in the program where they are meaningfully used).</p>
+<p>When writing computer programs it is bad practice to litter them with literal values like these. One reason is that the programmer may easily forget what the numbers mean, and if another programmer has to maintain the program, they will find it very hard to do so. Another reason is that using literal values can be inflexible, particularly if you need to use the same number at several points in the program, as we have done in the above example.</p>
+<p>You will see a better approach to referring to numbers in the next section.</p>
+<div class="section" id="question-interpreting-what-you-read">
+<h3>3.1.2 Question — Interpreting what you read<a class="headerlink" href="#question-interpreting-what-you-read" title="Permalink to this headline">¶</a></h3>
+<p>In the program above, there are multiple occurrences of the literally stated number <code class="docutils literal notranslate"><span class="pre">40</span></code>. Do they all mean the same thing?</p>
+<p><em>Record your answer here before revealing my answer.</em></p>
+<div class="section" id="example-observations">
+<h4>Example observations<a class="headerlink" href="#example-observations" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal my answer.</em></p>
+<p>To a certain extent, the various occurrences of the number <code class="docutils literal notranslate"><span class="pre">40</span></code>  do mean the same thing because they are all motor speed percentage values.</p>
+<p>However, in another sense, they are <em>not</em> the same at all: four of them refer to the speed of the left motor when driving forwards, four to the right motor speed for the same command, and four of them relate to the speed of both motors during the turn.</p>
+</div>
+</div>
+<div class="section" id="literals-can-make-program-updates-and-maintenance-difficult">
+<h3>3.1.3 Literals can make program updates and maintenance difficult<a class="headerlink" href="#literals-can-make-program-updates-and-maintenance-difficult" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you want the robot to turn more slowly than it currently does to see if this affects the rotation count value you need to set to turn the robot through a right angle.</p>
+<p>To do this, you would have to change the motor speed in each of the four turn instructions. You might then have to modify each of the four turn rotation count values so the robot itself continues to turn through roughly ninety degrees.</p>
+<p>And then suppose you wanted to see if doing the turn <em>faster</em> rather than slower made the robot more or less accurate when trying to set the turn rotation value.</p>
+<p>It could be a lot of work, couldn’t it? And possibly prone to error, making all those changes. So how might we improve things?</p>
+</div>
+<div class="section" id="optional-activity">
+<h3>3.1.4 Optional activity<a class="headerlink" href="#optional-activity" title="Permalink to this headline">¶</a></h3>
+<p>Try changing the turn speed in the program to see if it makes any difference to the precision with which the robot turns through ninety degrees. If it does, try setting the turn rotation count so that the robot draws something close to a square, if not an exact square, once again.</p>
+</div>
+</div>
+<div class="section" id="working-with-constants-and-variables">
+<h2>3.2 Working with constants and variables<a class="headerlink" href="#working-with-constants-and-variables" title="Permalink to this headline">¶</a></h2>
+<p>If you tried changing the motor speeds to a reduced level in the turn commands, then you may have found that the robot became more controllable. And you probably also discovered that changing each numerical constant individually can be quite time-consuming. How much better it would be if they could all be changed at the same time? This can be achieved by <em>declaring</em> a constant in your program.</p>
+<p>In some programming languages, <em>constants</em> are named items that are assigned a particular value once and once only in a program, and this value remains unchanged as the program executes. <em>Variables</em>, on the other hand, are named items whose value may be set at the start of a program but whose value may also change as the program executes.</p>
+<p><em>By convention</em>, in many Python programs, if we want to refer to an item with a value that is intended to be a fixed, <em>constant</em> value as the program runs, then we create a <em>variable</em> but with an UPPER-CASE name.</p>
+<div class="section" id="using-constants-in-robolab-programs">
+<h3>3.2.1 Using constants in RoboLab programs<a class="headerlink" href="#using-constants-in-robolab-programs" title="Permalink to this headline">¶</a></h3>
+<p>In the following code cell, I have replaced the literal values ‘inside’ the program with ‘constants’ that are defined at the start of the program.</p>
+<p>If you download and run the program, then you should find that it behaves as before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Empty_Map -R -p -C
+
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 1.6
+TURN_SPEED = 40
+
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 1
+
+#Go straight
+# Set the left and right motors in a
+# forward directionand run for 
+# STRAIGHT_ROTATIONS number of rotations
+tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                            STRAIGHT_SPEED_PC,
+                            STRAIGHT_ROTATIONS)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(STEERING,
+                           SpeedPercent(TURN_SPEED), TURN_ROTATIONS)
+
+#Go straight
+# Set the left and right motors in a
+# forward directionand run for 
+# STRAIGHT_ROTATIONS number of rotations
+tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                            STRAIGHT_SPEED_PC,
+                            STRAIGHT_ROTATIONS)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(STEERING,
+                           SpeedPercent(TURN_SPEED), TURN_ROTATIONS)
+
+#Go straight
+# Set the left and right motors in a
+# forward directionand run for 
+# STRAIGHT_ROTATIONS number of rotations
+tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                            STRAIGHT_SPEED_PC,
+                            STRAIGHT_ROTATIONS)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(STEERING,
+                           SpeedPercent(TURN_SPEED), TURN_ROTATIONS)
+
+#Go straight
+# Set the left and right motors in a
+# forward directionand run for 
+# STRAIGHT_ROTATIONS number of rotations
+tank_drive.on_for_rotations(STRAIGHT_SPEED_PC,
+                            STRAIGHT_SPEED_PC,
+                            STRAIGHT_ROTATIONS)
+
+#Turn
+# Set the robot to turn on the spot
+# and run for a certain number of rotations
+# *of the wheels*
+tank_turn.on_for_rotations(STEERING,
+                           SpeedPercent(TURN_SPEED), TURN_ROTATIONS)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that I have used two slightly different approaches to define the turn speed and the straight speed. In the case of the turn speed, I have defined <code class="docutils literal notranslate"><span class="pre">TURN_SPEED</span> <span class="pre">=</span> <span class="pre">40</span></code>, setting the constant to a value that is passed to the <code class="docutils literal notranslate"><span class="pre">SpeedPercent()</span></code> function. For the straight speed, <code class="docutils literal notranslate"><span class="pre">STRAIGHT_SPEED_PC</span> <span class="pre">=</span> <span class="pre">SpeedPercent(40)</span></code>, I used a slightly different naming convention and defined the constant as a <code class="docutils literal notranslate"><span class="pre">SpeedPercent()</span></code> value directly.</p>
+</div>
+<div class="section" id="activity-changing-a-constant-to-tune-a-program">
+<h3>3.2.2 Activity – Changing a constant to tune a program<a class="headerlink" href="#activity-changing-a-constant-to-tune-a-program" title="Permalink to this headline">¶</a></h3>
+<p>When the program is executed in the simulator, the value of the constant in the code is used in the same way as the literal value.</p>
+<p>However, if we want to try running the program using different robot speeds or turn rotation values, we can now do so very straightforwardly: we simply change the required values in a single place, once for each constant value, at the top of the program.</p>
+<p>Modify the above program using different values for the constants, then download and run the program in the simulator. How much easier is it to explore different values now?</p>
+<p><em>Record your own observations about how the use of variables influences the ease with which you can experiment with program settings here.</em></p>
+</div>
+<div class="section" id="activity-robolab-challenge">
+<h3>3.2.3 Activity – RoboLab challenge<a class="headerlink" href="#activity-robolab-challenge" title="Permalink to this headline">¶</a></h3>
+<p>In the simulator, load the <em>Square</em> background by selecting it from the drop-down list at the top of the simulator.</p>
+<p>See if you can create a program that causes the robot to go round the outside of the solid grey square and stay within the outer square boundary using the pen trace to mark out the path taken by the robot. The pen trace should not touch either the inner square or the outside square boundary. As an extension activity, try to get the robot to complete the task in the shortest time possible.</p>
+<p><em>Hint: you may find it useful to use the previous program for traversing a square.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Square -pC  -x 550 -y 300 -a -90
+
+# YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>I used the following parameter settings to create a square trace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STEERING</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+<span class="n">TURN_ROTATIONS</span> <span class="o">=</span> <span class="mf">1.6</span>
+<span class="n">TURN_SPEED</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="n">STRAIGHT_SPEED_PC</span> <span class="o">=</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">STRAIGHT_ROTATIONS</span> <span class="o">=</span> 
+</pre></div>
+</div>
+<p>I also tried to simplify the program by using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to generate each side and turn. You will meet <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in a later notebook. By inspection of my code, you might already be able to get a feeling for what they do, and how they might help simplify a program.</p>
+<p>As with the original square drawing program, I used constants to define the motor speeds and the number of wheel rotations required when driving in a straight line for the edges, and during the turns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Square -pCR -x 550 -y 300 -a -90
+
+SIDES = 4
+
+# Try to draw a square
+STEERING = -100
+TURN_ROTATIONS = 1.6
+TURN_SPEED = 40
+
+STRAIGHT_SPEED_PC = SpeedPercent(40)
+STRAIGHT_ROTATIONS = 6
+
+for side in range(SIDES):
+    #Go straight
+    # Set the left and right motors in a forward direction
+    # and run for STRAIGHT_ROTATIONS number of rotations
+    tank_drive.on_for_rotations(STRAIGHT_SPEED_PC, STRAIGHT_SPEED_PC, STRAIGHT_ROTATIONS)
+
+    #Turn
+    # Set the robot to turn on the spot
+    # and run for a certain number of rotations *of the wheels*
+    tank_turn.on_for_rotations(STEERING, SpeedPercent(TURN_SPEED), TURN_ROTATIONS)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optimising-parameter-values">
+<h3>3.2.4 Optimising parameter values<a class="headerlink" href="#optimising-parameter-values" title="Permalink to this headline">¶</a></h3>
+<p>If you have not already done so, try adjusting the values of <code class="docutils literal notranslate"><span class="pre">STRAIGHT_ROTATIONS</span></code> so that the robot goes as close as possible to the grey square without touching it. Don’t spend too long on this: the simulator might not provide you with the resolution you are reaching for.</p>
+</div>
+</div>
+<div class="section" id="working-with-variables">
+<h2>3.3 Working with variables<a class="headerlink" href="#working-with-variables" title="Permalink to this headline">¶</a></h2>
+<p>How many coins have you got on you? At the moment I have 12 coins in my pocket. (You might say: I have four tappable cards or phone payment devices!)</p>
+<p>I could write:</p>
+<p><code class="docutils literal notranslate"><span class="pre">number_of_coins_in_my_pocket</span> <span class="pre">=</span> <span class="pre">12</span></code></p>
+<p>If I buy lunch using five of these coins, then there are only seven left. So I could write:</p>
+<p><code class="docutils literal notranslate"><span class="pre">number_of_coins_in_my_pocket</span> <span class="pre">=</span> <span class="pre">7</span></code></p>
+<p>At any time the number of coins in my pocket may vary. The name <code class="docutils literal notranslate"><span class="pre">number_of_coins_in_my_pocket</span></code> is an example of what is called a <em>variable</em> when used in computer programs.</p>
+<p>The value of a variable can change as the program executes. Contrast this with a constant, which is intended to remain unchanged while the program executes.</p>
+<div class="section" id="constant-or-variable">
+<h3>3.3.1 Constant or variable?<a class="headerlink" href="#constant-or-variable" title="Permalink to this headline">¶</a></h3>
+<p>Which of the following are intended as constants (that is, things that aren’t intended to change) and which are variables (that is, they are quite likely to change)? Stylistically, how might we represent constants and variables in a Python program so that we can distinguish between them?</p>
+<p><code class="docutils literal notranslate"><span class="pre">number_of_coins_in_my_pocket</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_number_of_pennies_in_a_pound</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_diameter_of_robots_wheels</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_distance_robot_travels_in_a_second</span></code></p>
+<p>Write your answers here:</p>
+<p><code class="docutils literal notranslate"><span class="pre">number_of_coins_in_my_pocket</span></code>: <strong>variable or constant?</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_number_of_pennies_in_a_pound</span></code>: <strong>variable or constant?</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_diameter_of_robots_wheels</span></code>: <strong>variable or constant?</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">the_distance_robot_travels_in_a_second</span></code>: <strong>variable or constant?</strong></p>
+<p>My thoughts on how we might stylistically distinguish between them: …</p>
+<div class="section" id="example-answer">
+<h4>Example answer<a class="headerlink" href="#example-answer" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal the example answer.</em></p>
+<p>The amount of money in my pocket varies all the time, so if this were used in a computer program it would be a variable.</p>
+<p>The number of pennies in a pound is always a hundred, so this would be a constant.</p>
+<p>A robot’s wheels might be 50 mm in diameter and this would be a constant. (A different robot might have different size wheels, but their size will not vary while the program executes.)</p>
+<p>You may have wondered whether the distance a robot travels in a second is best represented as a constant or a variable. For a robot that could speed up or slow down its drive motors or change gear, and where this value may be used to report the speed of the robot, this would certainly be a variable. But for a simple robot (like the simulated one) with a fixed gear drive travelling at a constant speed we might used the value to <em>define</em> a fixed property of the robot, in which case it would make more sense to treat it as a constant, albeit one that we might wish to tweak or modify as we did in the programs above.</p>
+<p>Stylistically, by convention, we use upper-case characters to identify constants and lower-case characters to represent variables. So for example, we might define the constant values <code class="docutils literal notranslate"><span class="pre">PENNIES_IN_A_POUND</span></code> or <code class="docutils literal notranslate"><span class="pre">WHEEL_DIAMETER</span></code>.</p>
+</div>
+</div>
+<div class="section" id="using-variables">
+<h3>3.3.2 Using variables<a class="headerlink" href="#using-variables" title="Permalink to this headline">¶</a></h3>
+<p>Anything that will not change during the execution of the program should be defined as a constant, whereas anything that may change should be viewed as a variable.</p>
+<p>Variables are an essential ingredient of computer programs: they allow the computer to store the value of things at a given instant of time.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> extension, we can keep track of how specific variables can change their value as a program executes.</p>
+<p>First, load in the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> extension by running the following code cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> nbtutor
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>You may find you need to expand the width of this notebook column to see the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> display correctly. Click on the right hand edge of the notebook column to drag it and expand or reduce the column width.</em></p>
+<p>Now let’s use the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> visualisation to follow what happens to the values of the <code class="docutils literal notranslate"><span class="pre">counter</span></code> and <code class="docutils literal notranslate"><span class="pre">previous</span></code> variables as the following program executes.</p>
+<p>Run the code cell below, then step through each line of code one line at a time using the <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> <em>Next &gt;</em> button.</p>
+<p>As you do so, observe how the previously executed line, identified by the green arrow, modifies the value of the variables. Also note how the program flow progresses by comparing the location of the previously executed line with the next line (red arrow).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">nbtutor</span> --reset --force
+counter = 0
+
+while counter &lt; 5:
+    print(&quot;value&quot;,counter)
+    previous = counter
+    counter += 1
+
+counter, previous
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code> magic opens a toolbar above each cell in the notebook. When you have completed an <code class="docutils literal notranslate"><span class="pre">nbtutor</span></code> activity, you can close the notebook toolbar from the notebook <code class="docutils literal notranslate"><span class="pre">View</span></code> menu <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">menu</span></code>: selecting the <code class="docutils literal notranslate"><span class="pre">None</span></code> option will the cell toolbar.</em></p>
+<p><em>Note that after running an <code class="docutils literal notranslate"><span class="pre">%%nbtutor</span></code> activity, the ability to use simulator magic to download new programs to the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator seems to be broken.</em></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>3.5 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have seen how we can use constants and variables in a program to take literal values out of the body of a program and replace them by meaningfully named terms defined at the top of the program. This can improve readability of a program, as well as making it easier to maintain and update.</p>
+<p>Although Python doesn’t really do constants, by convention we can refer to terms we want to treat as constant values by using upper-case characters when naming them.</p>
+<p>When a program executes, the values of variables may be updated by program statements.</p>
+<p>In the next notebook, you will explore another way of using variables in a robot control program by associating them with things like particular sensors and using them to provide a means of referring to, and accessing, current sensor values.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./02. Getting started with robot and Python programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="02.2%20Creating%20your%20own%20robot%20programs.html" title="previous page">2 Creating your own robot programs</a>
+    <a class='right-next' id="next-link" href="02.4%20Getting%20started%20with%20sensors.html" title="next page">4 Robot sensors and data logging</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

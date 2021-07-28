@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1 An introduction to programming robots &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2 Creating your own robot programs" href="02.2%20Creating%20your%20own%20robot%20programs.html" />
+    <link rel="prev" title="6 Working With Simulators" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   1 An introduction to programming robots
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/02. Getting started with robot and Python programming/02.1 Robot programming constructs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/02. Getting started with robot and Python programming/02.1 Robot programming constructs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started-with-the-simulator">
+   1.1 Getting started with the simulator
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#passing-code-into-the-simulator">
+     1.1.1 Passing code into the simulator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging-error-messages-in-the-simulator">
+     1.1.2 Debugging error messages in the simulator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-introduction-to-sequential-programming">
+   1.2 An introduction to sequential programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-sequential-program">
+   1.2.1 A simple sequential program
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-predefined-components-from-python-packages">
+     1.2.2 Importing predefined components from Python packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-predefined-code-building-blocks">
+     1.2.3 Using predefined code building blocks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-the-simulated-robot-move">
+   1.3 Making the simulated robot move
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-driving-the-motors-at-different-speeds">
+     1.3.1 Activity – Driving the motors at different speeds
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turning-the-motors-on-for-a-specified-number-of-wheel-rotations">
+     1.3.2 Turning the motors on for a specified number of wheel rotations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#steering-the-robot-movesteering">
+     1.3.3 Steering the robot –
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MoveSteering
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-predicting-a-robot-s-behaviour-from-its-program">
+     1.3.4 Activity — Predicting a robot’s behaviour from its program
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recapping-simple-motor-control">
+     1.3.6 Recapping simple motor control
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-just-when-it-was-all-going-so-well">
+     1.4 And just when it was all going so well…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-sense-of-the-robot-s-behaviour">
+     1.4.1 Making sense of the robot’s behaviour
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#don-t-forget-the-physics">
+     1.4.2 Don’t forget the physics…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#it-doesn-t-get-harder-than-that">
+     1.4.3 It doesn’t get harder than that…
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   1.5 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="an-introduction-to-programming-robots">
+<h1>1 An introduction to programming robots<a class="headerlink" href="#an-introduction-to-programming-robots" title="Permalink to this headline">¶</a></h1>
+<p>In the first week’s activities, you were introduced to the basic anatomy of a Python program. You also saw how simple Python programs could be downloaded to, and run in, the RoboLab simulator. The objective of this RoboLab session is to explore in a little more detail some of the programming constructs that will allow you to control the simulated robot within the RoboLab simulator.</p>
+<p>It is assumed that you are completely new to computer programming and robotics. We’ll try to avoid jargon and go at a pace that makes it easy for you to understand what is going on. Feel free to experiment and and use the notebooks to take notes. If you wonder what running a particular line of code might do, try it and see.</p>
+<p><em>You are welcome to explore your own robot programs in this notebook BUT I recommend you work through the whole notebook before going off piste.</em></p>
+<p><em>There are some potentially confusing robot behavours out there and they may come out to bite and frustrate you if you aren’t aware they’re there….</em></p>
+<div class="section" id="getting-started-with-the-simulator">
+<h2>1.1 Getting started with the simulator<a class="headerlink" href="#getting-started-with-the-simulator" title="Permalink to this headline">¶</a></h2>
+<p>As you learned in last week’s notebooks, the simulator we will be using must be loaded into each notebook that wants to use it, once per notebook.</p>
+<p>Run the following code cell to load the simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the moment, there is no simple way of getting back the ‘Robot Simulator’ dialogue if you accidentally delete it or if you see an <em>Uninitialized Proxy Widget</em> message when you try to display it.</p>
+<p>Instead, you will have to go to the <em>Kernel</em> menu, select <em>Restart</em> and then rerun the notebook code cells.</p>
+<div class="section" id="passing-code-into-the-simulator">
+<h3>1.1.1 Passing code into the simulator<a class="headerlink" href="#passing-code-into-the-simulator" title="Permalink to this headline">¶</a></h3>
+<p>You should recall from the first week’s RoboLab activities that the program code intended for the simulator should be written in a code cell prefixed with some simulator magic. Running the magicked code cell downloads the program to the simulator. The downloaded program code can then be run in the simulator to control the simulated robot.</p>
+<p>Switches passed to the magic allow us to automate how the simulator is set up for any particular code experiment. The available switches can be previewed by running the following code cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --help
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, running the following cell will set up the simulator to display just the <em>Output</em> panel (<code class="docutils literal notranslate"><span class="pre">-O</span></code>), hiding the <em>Simulator world</em> (<code class="docutils literal notranslate"><span class="pre">-W</span></code>) and <em>Simulator controls</em> (<code class="docutils literal notranslate"><span class="pre">-H</span></code>) panels, which would otherwise be displayed by default, and then autorunning the program on download (`-R)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic</span> -OHW -R
+print(&#39;hello world&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="debugging-error-messages-in-the-simulator">
+<h3>1.1.2 Debugging error messages in the simulator<a class="headerlink" href="#debugging-error-messages-in-the-simulator" title="Permalink to this headline">¶</a></h3>
+<p>Further recapping the first week’s activities, you should also recall that if you make an error in a program sent to the simulator,  when you try to run the program in the simulator a message will be displayed in the simulator console.</p>
+<img src='../images/Section_00_01_Jupyter_Notebook_error.png' width=500 alt='' />
+<p>The line number specified relates to the line number of the program actually run by the simulated robot.</p>
+<p>You can see the full program listing <em>as loaded into the simulated robot</em> from the <em>Code display</em> panel in the simulator, which can be raised from the <em>Simulator controls</em> panel, the <code class="docutils literal notranslate"><span class="pre">D</span></code> simulator keyboard shortcut, or the <code class="docutils literal notranslate"><span class="pre">-D</span></code> magic switch:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -OHW --code -R
+print(&quot;This works&quot;)
+print This doesn&#39;t
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="an-introduction-to-sequential-programming">
+<h2>1.2 An introduction to sequential programming<a class="headerlink" href="#an-introduction-to-sequential-programming" title="Permalink to this headline">¶</a></h2>
+<p>For beginners, computer programming can appear to be a very mysterious process. Programming a robot may seem even more daunting, but I hope to show that the basics are quite straightforward.</p>
+<p>Throughout the practical activities associated with this block, you will have the opportunity to create and run your own code, as well as code provided for you. In some cases, the provided code may look quite complex. <em>You are not expected to be able to write programs as complex as some of the ones provided.</em> However, we have include some code in the notebooks, rather than hiding it elsewhere and referring to it via single line function calls, so that you can see how short programs or code blocks may be constructed in order to perform particular tasks.</p>
+<p>There are various ways of programming computers to control robots. One of these is the <em>sequential</em> approach, which is the main approach used in RoboLab. This method of writing computer programs, as lists or sequences of commands, produces what are called <em>sequential programs</em>.</p>
+<p>In the sequential program model, the computer executes commands in sequence.</p>
+<p>The program is structured in a particular way that allows it to operate correctly (a <em>necessary</em> requirement) as well as making it ‘readable’ (a <em>desirable</em> requirement).</p>
+<p>In terms of correctness, the program requires that we define things within our program before we try to call on them and make use of them within our program.</p>
+</div>
+<div class="section" id="a-simple-sequential-program">
+<h2>1.2.1 A simple sequential program<a class="headerlink" href="#a-simple-sequential-program" title="Permalink to this headline">¶</a></h2>
+<p>As you may have gleaned from last week’s overview activities, a <em>computer program</em> is a sequence of instructions or commands, written using words, symbols and numbers.</p>
+<p>For example, you might want a robot to go forwards for five seconds. If we control the motors separately, this involves turning each motor on separately, waiting for 5 seconds, and then terminating the program, at which point the motors in our robot simulation are automatically switched off.</p>
+<!-- #region tags=["alert-success"] -->
+<p>The <em>‘stop the motors at the end of the program’</em> behaviour is a specific feature of the simulator we are using. This behaviour is not guaranteed in other environments that can be used to program either simulated or real robots.</p>
+<p>To be safe, it’s often worth making sure you turn off the motors at the end of a program so you know for sure what state they are in when the program terminates.</p>
+<p>You may recall from the notebook <code class="docutils literal notranslate"><span class="pre">01.6</span> <span class="pre">Working</span> <span class="pre">With</span> <span class="pre">Simulators</span></code> that different sorts of time may are at work in the simulator. Natural wall clock time, for example, as well as the “clock time” given by the number of animation frame / event loop steps iterated through by the simulator.</p>
+<p>In this notebook, you will turn motors on and off for specified periods of time. Generally, is not encouraged. You may even see some examples of why!</p>
+<p>In our simulated robot environment, to drive a robot forwards for 5 seconds, we need to:</p>
+<ul class="simple">
+<li><p>turn each motor on with a particular <em>speed</em>, which also sets the <em>direction</em>: positive speed values are assumed to mean ‘go forwards’, negative ones ‘go backwards’</p></li>
+<li><p>wait for 5 seconds</p></li>
+<li><p>(program ends, motors turned off automatically).</p></li>
+</ul>
+<p>This could be <em>coded</em> in RoboLab using Python instructions of the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">left_motor</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+<span class="n">right_motor</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>for suitable configurations of <code class="docutils literal notranslate"><span class="pre">left_motor</span></code> and <code class="docutils literal notranslate"><span class="pre">right_motor</span></code>.</p>
+<p>Perhaps confusingly, the <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> command, rather than saying ‘do nothing for 5 seconds’, means ‘continue to do what you’re already doing for 5 seconds’. For our current example, this means ‘keep your motors on and running for 5 seconds’.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> command is known as a <em>blocking</em> operation. The way the program execution progresses is temporarily blocked by the <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> command until it has finished executing — in this case, for dawdling on the current line for a specified amount of time.</p>
+<p>Some of the motor commands are blocking in a similar way: if you tell the motors to turn on for a specified amount of time or a specified number of rotations, that’s exactly what the robot will do before moving on the to the next step of the program.</p>
+<p>Blocking commands can often have undesirable consequences if you want to be able to react to events in the world. They might be thought of as a bit like really obsessive behaviours, because you aren’t allowed to do anything else until the blocking action has completed.</p>
+<p>In the above example, we explicitly <em>import</em> the <code class="docutils literal notranslate"><span class="pre">time</span></code> package which provides access to the <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> command. But how does the program know what the <code class="docutils literal notranslate"><span class="pre">left_motor</span></code> and <code class="docutils literal notranslate"><span class="pre">right_motor</span></code> are? Our program requires that we have defined these items earlier in the program using things it <em>does</em> know about. In particular, we would need to use a construction of the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">OUTPUT_B</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">OUTPUT_C</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, the <code class="docutils literal notranslate"><span class="pre">Motor()</span></code>, <code class="docutils literal notranslate"><span class="pre">OUTPUT_B</span></code> and <code class="docutils literal notranslate"><span class="pre">OUTPUT_C</span></code> statements, as well as the previously seen <code class="docutils literal notranslate"><span class="pre">SpeedPercent</span></code>, are provided as predefined building blocks to use in our own simulated robot control programs.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Motor()</span></code> element refers to program elements elsewhere that define a <code class="docutils literal notranslate"><span class="pre">Motor</span></code> <em>object</em>. This computational object provides an abstract representation of a physical (or simulated) motor along with a set of operations or <em>methods</em> that can be enacted on it. For example, we may turn a motor <em>on</em> in a particular <em>direction</em> and with a particular <em>speed</em> for a particular <em>time</em> or for a specified number of <em>rotations</em>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Motor()</span></code> object is created with an <em>argument</em> that identifies an <em>output port</em> that the physical motor in a real robot, and the simulated motor in a simulated robot, would be connected to. Output ports are used to identify power and/or control lines that a software controller can use to control the behaviour of a physical (or simulated) device, such as a motor, LED display, or speaker. In our simulated robot case, two output ports are defined: <code class="docutils literal notranslate"><span class="pre">OUTPUT_B</span></code> and <code class="docutils literal notranslate"><span class="pre">OUTPUT_C</span></code>. By convention, we associate <code class="docutils literal notranslate"><span class="pre">OUTPUT_B</span></code> with the motor on the left-hand side of the robot as it travels in a forwards direction, and <code class="docutils literal notranslate"><span class="pre">OUTPUT_C</span></code> with the right-hand motor.</p>
+<p>To simplify matters, other ‘higher level’ <em>predefined</em> building blocks are also provided to make writing our programs simpler.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">MoveTank</span></code> building block allows us to create a ‘tank’ drive comprising a left motor and right motor. We can instruct the tank drive to turn each motor on with its own specified speed and direction, and for a certain amount of time, using a single command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span> <span class="o">=</span> <span class="n">MoveTank</span><span class="p">(</span><span class="n">OUTPUT_B</span><span class="p">,</span> <span class="n">OUTPUT_C</span><span class="p">)</span>
+<span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="importing-predefined-components-from-python-packages">
+<h3>1.2.2 Importing predefined components from Python packages<a class="headerlink" href="#importing-predefined-components-from-python-packages" title="Permalink to this headline">¶</a></h3>
+<p>One way of defining things is to <em>import</em> them from a Python package. A package is essentially a collection of predefined program elements that are useful for a particular programming task.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic</span>
+
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
+import time
+
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+
+# Program actions
+left_motor.on(SpeedPercent(75))
+right_motor.on(SpeedPercent(75))
+
+# Idle here for 1 second
+# with the motors still running
+time.sleep(1)
+
+# Program ends
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember, lines prefixed by a <code class="docutils literal notranslate"><span class="pre">#</span></code> are <em>comment</em> lines that are not executed as program code. Instead, they are intended as notes to human readers that can be used to help make a program more readable. Writing good comments can help others make sense of your program, and help you maintain and debug your own code in the future. (For an excellent guide to writing comments, see this blog post on <a class="reference external" href="http://antirez.com/news/124">Writing system software: code comments</a>.)</p>
+<!-- #endregion -->
+<p>The following program turns the left and right motors on at a quarter (25%) of their full speed, program control flow waits for a short period (3 seconds) with the motors continuing to run, then the program ends and the motors are automatically switched off.</p>
+<p><em>Note that turning motors on for fixed periods of time is not best practice and can lead to unwanted or unexpected robot behaviours. It is sometimes useful for simple test bench activities, such as the following where we are simply testing whether can we drive the robot forwards.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic</span> --background Empty_Map
+
+# Import statements
+from ev3dev2.motor import Motor, SpeedPercent, OUTPUT_B, OUTPUT_C
+import time
+
+# Definitions
+left_motor = Motor(OUTPUT_B)
+right_motor = Motor(OUTPUT_C)
+
+# Program actions
+left_motor.on(SpeedPercent(25))
+right_motor.on(SpeedPercent(25))
+
+# Wait here for 3 seconds...
+time.sleep(3)
+
+# Program ends
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Run the above code cell to download the code to the simulator, and then run the program using the simulator interface.</em></p>
+<p>When you run the program in the simulator, the robot should move forwards quickly for three seconds and then stop. Try increasing the ‘sleep’ time in seconds, re-run the code code cell to download the program to the simulator, and then re-run it in the simulator. Does the robot behave as you expect? What happens if you also change the <code class="docutils literal notranslate"><span class="pre">SpeedPercent(VALUE)</span></code>, where <code class="docutils literal notranslate"><span class="pre">VALUE</span></code> is a numerical value that can range from <code class="docutils literal notranslate"><span class="pre">-100</span></code> to <code class="docutils literal notranslate"><span class="pre">100</span></code>?</p>
+</div>
+<div class="section" id="using-predefined-code-building-blocks">
+<h3>1.2.3 Using predefined code building blocks<a class="headerlink" href="#using-predefined-code-building-blocks" title="Permalink to this headline">¶</a></h3>
+<p>Writing programs at such a low level is possible, but we often find it more convenient to program at a higher level of abstraction or generalisation. In the following example, we can configure and use a predefined motor drive that allows us to control both motors from a single command. The <code class="docutils literal notranslate"><span class="pre">%%sim_magic_preloaded</span></code> magic prepends our code with some common set up code that makes our programs easier to write.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic_preloaded</span> --preview
+</pre></div>
+</div>
+</div>
+</div>
+<p>In particular, the <code class="docutils literal notranslate"><span class="pre">MoveTank()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">ev3dev3.motor</span></code> Python package allows us to define a simple tank drive comprising two motors, one on the left-hand side of the robot and one on the right-hand side. The configuration associates a controllable motor output with a particular motor.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span> <span class="o">=</span> <span class="n">MoveTank</span><span class="p">(</span><span class="n">OUTPUT_B</span><span class="p">,</span> <span class="n">OUTPUT_C</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The tank drive is used to power two motors simultaneously in various ways. For example, we can turn the motors on at desired speeds:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">LEFT_SPEED</span><span class="p">,</span> <span class="n">RIGHT_SPEED</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also turn the motors on for a specified time and then automatically turn them off at the end of that period:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">LEFT_SPEED</span><span class="p">,</span> <span class="n">RIGHT_SPEED</span><span class="p">,</span> <span class="n">TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="making-the-simulated-robot-move">
+<h2>1.3 Making the simulated robot move<a class="headerlink" href="#making-the-simulated-robot-move" title="Permalink to this headline">¶</a></h2>
+<p>One of the defining characteristics of mobile robots is, trivially, that they move. So in the following set of activities, you will explore various ways of controlling just how the robot moves in the simulated environment, such as moving forwards and backwards for a specified distance or a particular duration, and turning in various ways.</p>
+<p><em>Remember, when a robot program running in the simulator completes or terminates, the robot’s motors are turned off by default.</em></p>
+<p><em>This means that if you have a one step program where you turn the motors on, and that’s all, they will turn on for a fraction of a second, the program will terminate, and the motors will turn off.</em></p>
+<p><em>On a real robot, when the program terminates, the motors may continue doing whatever they were doing at the end of the program. So best practice suggests making sure you turn the motors off as the last line of a program.</em></p>
+<div class="section" id="activity-driving-the-motors-at-different-speeds">
+<h3>1.3.1 Activity – Driving the motors at different speeds<a class="headerlink" href="#activity-driving-the-motors-at-different-speeds" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://learn2.open.ac.uk/mod/oucontent/olink.php?id=1704241&amp;targetdoc=TM129+ePortfolio"><em>You can complete and submit this activity as part of your ePortfolio.</em></a></p>
+<p>What do you think will happen if the motors are turning in the same direction but at different speeds?</p>
+<p>What will happen if the motors turn in <em>different</em> directions?</p>
+<p><em>Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds. To compare different configurations, use the Pen Down feature to leave a trace showing where the robot has been. Use the Clear Trace button to remove the trace and in the Positioning panel the Move button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.</em></p>
+<p><em>Note that the simulated robot may not behave as a real robot would. It all depends on how well the simulated robot and the simulator physics have been implemented.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Empty_Map -a 180
+
+TIME_IN_S = 2
+
+LEFT_MOTOR_SPEED_PC = -50
+RIGHT_MOTOR_SPEED_PC = -50
+
+tank_drive.on_for_seconds(SpeedPercent(LEFT_MOTOR_SPEED_PC),
+                          SpeedPercent(RIGHT_MOTOR_SPEED_PC),
+                          TIME_IN_S)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>With both motor speeds in reverse, the robot drives backwards.</p>
+<p>With both motor speeds set in the forward direction, if the left motor speed is slightly faster than the right motor speed, then the robot curves towards the right; if the right motor is slightly faster than the left motor, then the robot curves to the left. The greater difference between the speeds, the tighter the curve.</p>
+<p>If one of the motors is set at a forward speed and one is in reverse, then the robot turns in a tight circle centred on the reverse turning wheel.</p>
+</div>
+</div>
+<div class="section" id="turning-the-motors-on-for-a-specified-number-of-wheel-rotations">
+<h3>1.3.2 Turning the motors on for a specified number of wheel rotations<a class="headerlink" href="#turning-the-motors-on-for-a-specified-number-of-wheel-rotations" title="Permalink to this headline">¶</a></h3>
+<p>As well as turning the motors on for a specified period of time, we can also turn them on for a specified number of rotations of the wheels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_rotations</span><span class="p">(</span><span class="n">LEFT_SPEED</span><span class="p">,</span> <span class="n">RIGHT_SPEED</span><span class="p">,</span> <span class="n">ROTATIONS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is easy to imagine for the case where the wheels are turning at the same speed, but if one wheel turns faster than the other, then the robot will follow a curving path and the outside wheel will travel further than the inside wheel (assuming that the inside wheel doesn’t slip).</p>
+<p>From <a class="reference external" href="https://ev3dev-lang.readthedocs.io/projects/python-ev3dev/en/stable/motors.html#ev3dev2.motor.MoveTank.on_for_rotations">the documentation</a>, <em>‘if the left speed is not equal to the right speed (i.e., the robot will turn), the motor on the outside of the turn will rotate for the full rotations while the motor on the inside will have its requested distance calculated according to the expected turn.’</em></p>
+<p>The following code cell provides code for exploring the use of the <code class="docutils literal notranslate"><span class="pre">.on_for_rotations()</span></code> command.</p>
+<p><em>Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment using different values for the motor speeds and number of rotations. To compare different configurations, use the Pen Down feature to leave a trace showing where the robot has been. Use the Clear Trace button to remove the trace and the Move button to reset the starting position of the robot between each run. Remember to download updated configurations to the simulator by running the updated code cell before re-running the program in the simulator.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Empty_Map
+
+LEFT_MOTOR_SPEED = SpeedPercent(50)
+RIGHT_MOTOR_SPEED = SpeedPercent(55)
+
+ROTATIONS = 4
+
+tank_drive.on_for_rotations(LEFT_MOTOR_SPEED, RIGHT_MOTOR_SPEED,
+                          ROTATIONS)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="steering-the-robot-movesteering">
+<h3>1.3.3 Steering the robot – <code class="docutils literal notranslate"><span class="pre">MoveSteering</span></code><a class="headerlink" href="#steering-the-robot-movesteering" title="Permalink to this headline">¶</a></h3>
+<p>As well as the <code class="docutils literal notranslate"><span class="pre">MoveTank()</span></code> configuration, a <code class="docutils literal notranslate"><span class="pre">MoveSteering()</span></code> configuration is also available that again is based on the presence of two motors connected to the same controllable outputs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_turn</span> <span class="o">=</span> <span class="n">MoveSteering</span><span class="p">(</span><span class="n">OUTPUT_B</span><span class="p">,</span> <span class="n">OUTPUT_C</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">MoveSteering()</span></code> configuration again drives both motors simultaneously, although this time at the same speed but in different directions.</p>
+<p>To turn the robot, we use the command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_turn</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">STEERING</span><span class="p">,</span> <span class="n">SPEED</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">STEERING</span></code> is a numerical value between <code class="docutils literal notranslate"><span class="pre">-100</span></code> and <code class="docutils literal notranslate"><span class="pre">100</span></code> and where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-100</span></code> means turn left on the spot (right motor at 100% forward, left motor at 100% backward)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> means drive in a straight line</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code> means turn right on the spot (left motor at 100% forward, right motor at 100% backward).</p></li>
+</ul>
+<p>As well as turning the steering drive on, we can turn it on for a specified time using <code class="docutils literal notranslate"><span class="pre">.on_for_seconds(STEERING,</span> <span class="pre">SPEED,</span> <span class="pre">TIME)</span></code> as in the case of the tank drive.</p>
+<p>Alternatively, we can turn the steering drive on for a specified number of rotations of one of the wheels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">on_for_rotations</span><span class="p">(</span><span class="n">STEERING</span><span class="p">,</span> <span class="n">SPEED</span><span class="p">,</span> <span class="n">ROTATIONS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following program gives a simple example of how to turn the robot using the <code class="docutils literal notranslate"><span class="pre">MoveSteering()</span></code> motor configuration.</p>
+<p><em>Run the following code cell to download the program to the simulator and then run the program in the simulator. Experiment with various settings for the motor speeds to get a feel for how  the relative left and right motor speeds determine the robot’s behaviour.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Empty_Map
+
+# the first two parameters can be unit classes or percentages.
+tank_drive.on_for_rotations(SpeedPercent(50),
+                            SpeedPercent(50), 4)
+
+# drive in a turn for 2 rotations of the outer motor
+tank_turn = MoveSteering(OUTPUT_B, OUTPUT_C)
+
+tank_turn.on_for_rotations(-100,
+                           SpeedPercent(75), 2)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-predicting-a-robot-s-behaviour-from-its-program">
+<h3>1.3.4 Activity — Predicting a robot’s behaviour from its program<a class="headerlink" href="#activity-predicting-a-robot-s-behaviour-from-its-program" title="Permalink to this headline">¶</a></h3>
+<p>Suppose that a simulated robot starts pointing towards the top of the screen. If you download and run the program in the code cell below, will the robot turn towards the right or left while executing the sequence of commands shown?</p>
+<p><em>Before</em> you run the code, make a prediction about what you think the robot will do when the code is executed by the simulated robot.</p>
+<p><em>To monitor what the robot does, you may find it convenient to enable the Pen Down feature in the simulator that will trace out the path taken by the simulator robot as the program runs.</em></p>
+<p><em>Double-click this cell to edit it.</em></p>
+<p><em>When the following code is executed by the robot simulator, I predict …<strong>YOUR ANSWER HERE</strong>… .</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span>
+
+time_1s = 1
+
+# Set the left and right motors
+# in a forward direction and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(50),
+                          time_1s)
+
+
+# Set the left motor forwards
+# and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(-50),
+                          time_1s)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a simulated robot starts pointing towards the <em>right-hand side</em> of the screen, will it turn towards the top or bottom of the screen while executing the same sequence of commands?</p>
+<p><em>Double-click this cell to edit it.</em></p>
+<p><em>When the following code is executed by the robot simulator, I predict …<strong>YOUR ANSWER HERE</strong>… .</em></p>
+<div class="section" id="id1">
+<h4>Example solution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>When the program is run, the first <code class="docutils literal notranslate"><span class="pre">tank_drive</span></code> motor command moves the robot forwards for one second:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">time_1s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The next command turns the robot towards the right (the left wheel goes forwards and the right wheel goes backwards) for one second:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tank_drive</span><span class="o">.</span><span class="n">on_for_seconds</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">),</span> <span class="n">time_1s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The combined result is that the robot goes forwards for one second and turns for one second.</p>
+<p>The trace left as the robot turns on the spot does not appear to be center simulated robot doesn’t turn exactly on the spot because the robot is turning about one of the wheels.</p>
+</div>
+</div>
+<div class="section" id="recapping-simple-motor-control">
+<h3>1.3.6 Recapping simple motor control<a class="headerlink" href="#recapping-simple-motor-control" title="Permalink to this headline">¶</a></h3>
+<p>If a program end after a single step in which the motors on, as in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...boilerplate code...</span>
+<span class="c1"># Start the robot driving forwards</span>
+<span class="n">tank_drive</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+<span class="c1"># program end</span>
+</pre></div>
+</div>
+<p>the robot <em>will not</em> move forwards.</p>
+<p>If you reread the program aloud and put yourself in the robot’s shoes, you’ll get a more direct sense of what happens:</p>
+<ul class="simple">
+<li><p>the motors turn on</p></li>
+<li><p><em>fraction of a second to get to next step</em></p></li>
+<li><p>end of program and the motor is turned off by default;</p></li>
+</ul>
+<p>What you’ll observe is the robot not moving: the robot hasn’t had time to move between the motors turning on and the program ending and the motors being turned off by default. It’s like me giving you a box of chocolates and then immediately taking them back again before you have time to take one.</p>
+<p>If the next line of the program consumes time while it executes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the first line of the program would turn the motors on, and the robot would carry on what it was doing (driving forwards) before reaching the end of the program and by default turning the motors off. Running such a program, you’d observe the robot moving with motors on for 10 seconds.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.on_for_X()</span></code> commands (<code class="docutils literal notranslate"><span class="pre">.on_for_seconds()</span></code>, <code class="docutils literal notranslate"><span class="pre">.on_for_rotations()</span></code>) work differently: they turn the motors on and then stay <code class="docutils literal notranslate"><span class="pre">on_</span></code> at that command <code class="docutils literal notranslate"><span class="pre">_for_</span></code> a number of seconds or rotations, as specified.</p>
+</div>
+<div class="section" id="and-just-when-it-was-all-going-so-well">
+<h3>1.4 And just when it was all going so well…<a class="headerlink" href="#and-just-when-it-was-all-going-so-well" title="Permalink to this headline">¶</a></h3>
+<p>The following example looks as if it should let us drive the tank:</p>
+<ol class="simple">
+<li><p><em>forwards</em> in a straight line (both motors at the same speed) for a specified time using the tank drive</p></li>
+<li><p><em>turn on the spot</em> for the same period (one motor forwards, the other backwards, at the same speed)</p></li>
+<li><p><em>reverse</em> in a straight line for the same period of time (both motors backwards at the same speed.</p></li>
+</ol>
+<p><em>Run the following code cell to download the program to the simulator and then run the program in the simulator.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Empty_Map
+
+from time import sleep
+
+time_1s = 1
+
+# Go forwards...
+# Set the left and right motors in a
+# forward direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(50),
+                          time_1s)
+
+# Pause further program execution for a moment
+sleep(1)
+
+# Turn on the spot...
+# Set the left motor forwards
+# and the right motor backwards
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(-50),
+                          time_1s)
+
+# Pause further program execution for a moment
+sleep(1)
+
+# Go backwards...
+# Set the left and right motors in a
+# backwards direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(-50),
+                          SpeedPercent(-50),
+                          time_1s)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe how the robot behaves when you run the program. Does the sequence of program commands appear to match the sequence of the robot’s actions? Set the pen to be down to record the path.</p>
+<p>If things appear to behave oddly, <em>DON’T PANIC</em>, just try to describe what you see.</p>
+<p><em>Add your observations here about what the robot actually did.</em></p>
+<p><em>Did it match what you expected from how the program was written? If not, how did it differ from your expectations?</em></p>
+</div>
+<div class="section" id="making-sense-of-the-robot-s-behaviour">
+<h3>1.4.1 Making sense of the robot’s behaviour<a class="headerlink" href="#making-sense-of-the-robot-s-behaviour" title="Permalink to this headline">¶</a></h3>
+<p>From many years of working at the OU level 1 engineering residential school robotics activity, I have seen even (often!) the most capable students tell me forcefully and repeatedly that their robot is doing one thing when it very obviously isn’t. Saying what you see can be really hard particularly when it goes against expectations.</p>
+<p>When I ran the program, I saw the robot:</p>
+<ul class="simple">
+<li><p>go forwards;</p></li>
+<li><p>sit awhile;</p></li>
+<li><p>turn;</p></li>
+<li><p>sit awhile;</p></li>
+<li><p>turn again.</p></li>
+</ul>
+<p>It did not seem to go straight backwards.</p>
+<p>Try this simpler example which should just drive the robot forwards and then backwards, surely?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Empty_Map
+from time import sleep
+time_1s = 1
+# Go forwards...
+# Set the left and right motors in a
+# forward direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(50),
+                          SpeedPercent(50),
+                          time_1s)
+sleep(2)
+# Go backwards...
+# Set the left and right motors in a
+# backwards direction at the same speed
+# and run for 1 second
+tank_drive.on_for_seconds(SpeedPercent(-50),
+                          SpeedPercent(-50),
+                          time_1s)
+sleep(2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you download and run that code in the simulator, the robot:</p>
+<ul class="simple">
+<li><p>moves forwards for a second</p></li>
+<li><p>stops awhile</p></li>
+<li><p><em>moves forwards a small amount</em></p></li>
+<li><p>reverses.</p></li>
+</ul>
+<p>What’s going on? Why does the robot move forwards a small amount before going backwards?</p>
+<p><em>What do you think could possibly be going on?</em></p>
+</div>
+<div class="section" id="don-t-forget-the-physics">
+<h3>1.4.2 Don’t forget the physics…<a class="headerlink" href="#don-t-forget-the-physics" title="Permalink to this headline">¶</a></h3>
+<p>The motor physics actually explains the robot behaviour. When you set the motor speed, this is actually a speed request.</p>
+<p>As mentioned previously, the simulator runs a bit like a movie, at so many animation frames per second. At each animation frame, the state of the robot and the state of the world is updated. As far as the motors go, at each animation step, the acceleration model looks at the requested speed (set by the motor commands) and at the current motor speed, and if they aren’t equal updates the current speed closer to the desired speed.</p>
+<p>Elsewhere in the simulator, the current motor speed is multiplied by the frame duration to see how far the robot has traveled in that time step and the robot moved accordingly. (If we make the robot weightless, then the acceleration is infinite and speed should reach it’s new value in a single animation step.)</p>
+<p>Now let’s consider the first part of the program: the robot moves forward as the motors are accelerated up to the desired/requested speed; then the first <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> command pauses everything (time literally stops…). So far so good.</p>
+<p>After the pause, the next command requests the robot to go in reverse. But it moves forwards slightly before reversing. So what’s going on?</p>
+<p>The answer is that the motor speeds at the point the first <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> command was called were positive, so when the motor reverse command is issued, the robot must spend time decelerating from the positive motor values (still going forwards while they are still positive) before the motor value goes negative and actually puts the robot into moving in the backwards direction and reverses the robot’s direction of travel.</p>
+<p>The robot essentially had forwards momentum that was put into suspended animation at the point of the <code class="docutils literal notranslate"><span class="pre">sleep()</span></code> command.</p>
+<p>A significant part of the one second reverse time is actually spent decelerating (the robot still moves forwards as the motor speed values are positive) before the motor speed reaches the negative values, at which point the robot goes backwards.</p>
+<p>If you run the program and look at the motor speeds in the instrumentation panel (note that the ±% motor speed values map onto the actual motor speed values in the range ±1050), you can see this happening.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -iR
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you open the settings panel in the simulator, you will see an checkbox option that allows you to set the robot to <em>Weightless</em> which gives it an infinite acceleration rate up (or down) to the desired motor speed value.</p>
+<p>Set the robot to weightless and run the program again. What happens now?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -Z
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given the above explanation, can you now explain why the robot turned, rather than reversed, in the earlier program. (Think about the motor speeds…)</p>
+<p>What happens if you run that program with a weightless robot?</p>
+<p>Whenever you download a robot program to the simulator, the <em>Weightless</em> setting may be unchecked and the robot settings reverted to their default values for the selected robot configuration. If the behaviour of your program is likely to be affected by acceleration terms, or your robot appears to be behaving oddly, check the <em>Weightless</em> parameter setting.</p>
+</div>
+<div class="section" id="it-doesn-t-get-harder-than-that">
+<h3>1.4.3 It doesn’t get harder than that…<a class="headerlink" href="#it-doesn-t-get-harder-than-that" title="Permalink to this headline">¶</a></h3>
+<p>At this point you may think this is all just too confusing, but take heart: that was a really tricky problem, but now we understand it, we can move on with that knowledge in our toolkit.</p>
+<p>Writing effective robot programs, like many other engineering or mathematics problems, often boils down to finding simple solutions to simple problems whilst at the same time stopping yourself from attempting to create complicated and convoluted solutions to problems that appear incomprehensible and beyond explanation because you’re looking at them the wrong way.</p>
+<p>If you find yourself stuck on a robot program, go for a walk and let your subconscious churn on it for a bit while you think of other things. Banging your head against the keyboard and shouting “why doesn’t it work?” over and over again doesn’t help. I know. I’ve tried. Repeatedly.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>1.5 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In the notebook, you have seen how we can construct programs as a set of sequential operations that are followed in turn. Some operations are “blocking” in the sense that rather than being evaluated quickly and passing control on to the next line more or less immediately, they hog control until they have finished executing. If you turn the motors on for 15 seconds, control will remain at that line of the program for 15 seconds.</p>
+<p>You should also have started to get a feel for how we can drive the robot around, getting it to move forwards, backwards, turn and so on.</p>
+<p>In the next notebook, you’ll have a chance to create some of your own programs to get the robot to move in a particular way.</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./02. Getting started with robot and Python programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html" title="previous page">6 Working With Simulators</a>
+    <a class='right-next' id="next-link" href="02.2%20Creating%20your%20own%20robot%20programs.html" title="next page">2 Creating your own robot programs</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

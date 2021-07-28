@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 Emergent robot behaviour and simple data charts &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4 Reasoning with Eliza" href="04.4%20Reasoning%20with%20Eliza.html" />
+    <link rel="prev" title="2 Dead reckoning" href="04.2%20Robot%20navigation%20using%20dead%20reckoning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04. Not quite intelligent robots/04.3 Emergent robot behaviour and simple data charts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/04. Not quite intelligent robots/04.3 Emergent robot behaviour and simple data charts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#braitenbergs-vehicles">
+   3.1 Braitenberg’s vehicles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reconfiguring-the-robot">
+   3.2 Reconfiguring the robot
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manually-changing-the-robot-configuration-settings">
+     3.2.1 Manually changing the robot configuration settings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-the-radial-grey-world">
+     3.2.2 Exploring the
+     <em>
+      Radial_grey
+     </em>
+     world
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explaining-the-robot-s-behaviour">
+     3.2.4 Explaining the robot’s behaviour
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#looking-at-the-data">
+   3.2.5 Looking at the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-ultrasound">
+   3.3 Using ultrasound
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-using-ultrasound">
+     3.3.1 Activity — Using ultrasound
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   3.4 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="emergent-robot-behaviour-and-simple-data-charts">
+<h1>3 Emergent robot behaviour and simple data charts<a class="headerlink" href="#emergent-robot-behaviour-and-simple-data-charts" title="Permalink to this headline">¶</a></h1>
+<p>One of the things that you may be starting to realise about robot programming is that you don’t always know <em>exactly</em> what will happen when your introduce your robot into a particular environment.</p>
+<p>As the programmer, you may be quite confident that you know what the robot will do when presented with any particular situation, such as a particular sensor reading.</p>
+<p>Using a sense-act control strategy, the robot determines its actions in part based on its sensor readings. And those sensor readings are themselves are likely to be influenced by the behaviour of the robot as it acts in response to its sensor readings. Whilst the control strategy itself might be quite <em>simple</em>, the interaction between the robot and the world may be quite <em>complex</em> as a result of the feedback loop created by the robot changing its position in the environment as a result of a sensor reading made from that environment.</p>
+<p>When a robot is placed into an environment, which in the real world is likely to be a <em>dynamically changing environment</em> in addition to the robot changing its own situation in the environment, predicting the overall behaviour of the robot may prove even more challenging.</p>
+<p>And for a bystander observing the behaviour of the robot and no knowledge of the control strategy in place, their perception of what the robot is doing, and maybe even the beliefs, desires and intentions they ascribe to the robot, may be far distinct from what the robot is actually programmed to do at a low level.</p>
+<p>A good example of this can be illustrated using Braitenberg Vehicles, where it is easy for an observer to want to ascribe high level, human style (anthropomorphised) behaviours to the robot, even if it is hardwired to perform in a particular way to a very simple stimulus (which is to say, sensory input).</p>
+<p>In this notebook, you’ll have an opportunity to experiment with some simple Braitenberg style vehicles in the RoboLab simulator. In order to help make sense of what the vehicles are doing, you’ll also see how we can use the simulated robot to collect some sensor data logs that we can then visualise in order to see just what values the robot was responding to that caused it to behave as it did.</p>
+<div class="section" id="braitenbergs-vehicles">
+<h2>3.1 Braitenberg’s vehicles<a class="headerlink" href="#braitenbergs-vehicles" title="Permalink to this headline">¶</a></h2>
+<p>In the course of studying the TM129 Robotics block, you will already have been introduced to the Valentino Braitenberg’s ideas on the behaviour of robots <em>emerging</em> from the way they are wired up. The figure below shows two ways of connecting sensors to motors. In (a), the left sensor is connected to the left motor and the right sensor is connected to the right motor. In (b) these connections are reversed.</p>
+<p><img alt="Diagrams representing Braitenberg vehicles alongside simulated robots wired up in a similar fashion. A Braitenberg vehicle and our simulated robot are very similar: they have two wheels, one each side, and two light sensors, one on the left and one on the right of the front of the robot. A pair of Braitenberg vehicles are shown, one light avoiding and one light seeking. A light-avoiding vehicle has the left-hand light sensor connected to the left-hand motor and wheel, and the right-hand light sensor connected to the right-hand motor and wheel. A light-seeking vehicle has the left-hand light sensor connected to the right-hand motor and wheel, and the right-hand light sensor connected to the left-hand wheel. The simulated robots have wiring indicating identical connections. " src="../_images/tm129_rob_p4_f008.gif" /></p>
+<p>A ‘thought experiment’ suggests that the vehicle in figure (a) will move away from a light source.</p>
+<p>Similarly, another thought experiment suggests that the vehicle in figure (b) will move towards a light source.</p>
+<p>In the following activities you will test these predictions using an environment that models this set up, but uses downward-facing light sensors that take measurements from a ‘light gradient’ background, rather than forward-facing light sensors that look for a light source at ‘eye-level’ (that is, sensor-level!).</p>
+<p>To start with, let’s load in the simulator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+<span class="o">%</span><span class="k">load_ext</span> nbtutor
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reconfiguring-the-robot">
+<h2>3.2 Reconfiguring the robot<a class="headerlink" href="#reconfiguring-the-robot" title="Permalink to this headline">¶</a></h2>
+<p>In order to detect different values from the light sensors on the right- and left-hand sides of the robot, we need to reconfigure the robot so that the sensors are placed further apart than they are in the default robot configuration.</p>
+<p>In the simulator, or via the following line magic, select the <em>Radial_grey</em> background and tick the <em>Pen Down</em> checkbox.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -p -b Radial_grey
+</pre></div>
+</div>
+</div>
+</div>
+<p>You may notice that the simulator’s left and right light sensors appear to be further apart than they have been previously. This has been done via a change to the robot configuration setting that is applied automatically when the <em>Radial_grey</em> background is loaded.</p>
+<div class="section" id="manually-changing-the-robot-configuration-settings">
+<h3>3.2.1 Manually changing the robot configuration settings<a class="headerlink" href="#manually-changing-the-robot-configuration-settings" title="Permalink to this headline">¶</a></h3>
+<p>You can manually increase the spacing between the sensors by:</p>
+<ul class="simple">
+<li><p>clicking the <em>Settings</em> button in the simulator, and then selecting the <em>Robot config</em> button</p></li>
+<li><p>in the robot configuration settings window, scroll down to the <code class="docutils literal notranslate"><span class="pre">&quot;sensor1&quot;</span></code> parameters and change the <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code> value from the default value of <code class="docutils literal notranslate"><span class="pre">-20</span></code> to the new value <code class="docutils literal notranslate"><span class="pre">-60</span></code></p></li>
+<li><p>for <code class="docutils literal notranslate"><span class="pre">&quot;sensor2&quot;</span></code>, change the <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code> value from its default value of <code class="docutils literal notranslate"><span class="pre">20</span></code> the new value <code class="docutils literal notranslate"><span class="pre">60</span></code></p></li>
+<li><p>click the <em>Apply</em> button.</p></li>
+</ul>
+<p>If you look at the robot in the simulator then you should notice that the two light sensors are now located nearer the sides of the robot and are no longer located close to the centerline.</p>
+</div>
+<div class="section" id="exploring-the-radial-grey-world">
+<h3>3.2.2 Exploring the <em>Radial_grey</em> world<a class="headerlink" href="#exploring-the-radial-grey-world" title="Permalink to this headline">¶</a></h3>
+<p>Run the following code cell to download the program to the simulator and then run it in the simulator. For now, don’t pay too much attention to the code: our initial focus is purely on what we can observe about the behaviour of the robot.</p>
+<p>Observe what happens paying particularly close attention to the trajectory the robot follows.</p>
+<p>Using the <em>Positioning</em> panel, create a new starting location in the simulator, changing the original Y value from <code class="docutils literal notranslate"><span class="pre">400</span></code> to the new value <code class="docutils literal notranslate"><span class="pre">600</span></code>. How does the robot move this time?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -p -b Radial_grey -y 400
+
+counter = 0
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity_pc &gt; 5) 
+       and (colorRight.reflected_light_intensity_pc &gt; 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    if not (counter % 10):
+        print(intensity_left, intensity_right)
+    counter = counter + 1
+    
+    left_motor_speed = SpeedPercent(intensity_left)
+    right_motor_speed = SpeedPercent(intensity_right)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the robot starting just <em>below</em> the centerline on the radial grey background, you should notice that as it moves across the background it veers away from the light on a path that curves towards the bottom right of the simulator screen, steering to the right from the robot’s perspective.</p>
+<p>When the robot starts <em>above</em> the centerline, it veers away on the left-hand side of the central bright point (that is, the robot steers to its left).</p>
+<p>If the robot starts on the centerline then it continues on a straight path.</p>
+<p>So how does the program work?</p>
+<p>If you inspect it closely, you will see it is split into several parts.</p>
+<p>The first part just clarifies the sensor configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colorLeft</span> <span class="o">=</span> <span class="n">ColorSensor</span><span class="p">(</span><span class="n">INPUT_2</span><span class="p">)</span>
+<span class="n">colorRight</span> <span class="o">=</span> <span class="n">ColorSensor</span><span class="p">(</span><span class="n">INPUT_3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we have a <code class="docutils literal notranslate"><span class="pre">while...</span></code> loop that ensures the program keeps running until either the left or the right sensor value sees a particularly dark value:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">((</span><span class="n">colorLeft</span><span class="o">.</span><span class="n">reflected_light_intensity_pc</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> 
+       <span class="ow">and</span> <span class="p">(</span><span class="n">colorLeft</span><span class="o">.</span><span class="n">reflected_light_intensity_pc</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)):</span>
+</pre></div>
+</div>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">while...</span></code> block is the ‘intelligence’ of the program.</p>
+<p>The values are displayed in the simulator output window using a <code class="docutils literal notranslate"><span class="pre">print()</span></code> statement. The lines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">intensity_left</span><span class="p">,</span> <span class="n">intensity_right</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>may confuse you first, but they are there to limit the display of the sensor readings to every tenth iteration around the loop. The <code class="docutils literal notranslate"><span class="pre">counter</span> <span class="pre">%</span> <span class="pre">10</span></code> finds the remainder of dividing the value of the <code class="docutils literal notranslate"><span class="pre">counter</span></code> by 10; the expression <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">(counter</span> <span class="pre">%</span> <span class="pre">10)</span></code> this evaluates <code class="docutils literal notranslate"><span class="pre">True</span></code> every tenth iteration because the boolean value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, and for every other positive integer is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>The sensor values are then used to set the motor speeds:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">left_motor_speed</span> <span class="o">=</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="n">intensity_left</span><span class="p">)</span>
+    <span class="n">right_motor_speed</span> <span class="o">=</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="n">intensity_right</span><span class="p">)</span>
+    
+    <span class="n">tank_drive</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">left_motor_speed</span><span class="p">,</span> <span class="n">right_motor_speed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this configuration:</p>
+<ul class="simple">
+<li><p>the percentage-scaled <em>left</em> sensor value determines the speed value applied to the <em>left</em> motor</p></li>
+<li><p>the percentage-scaled <em>right</em> sensor value determines the <em>right</em> motor speed.</p></li>
+</ul>
+<p>The sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. As described by the program, the left motor thus turns more quickly than the right motor, and so the robot turns toward its right-hand side and veers away from the light source.</p>
+<p>### 3.2.3 Crossing the wires</p>
+<p>Now let’s see what happens if we run the following program which uses:</p>
+<ul class="simple">
+<li><p>the <em>left</em> light sensor to control the speed of the <em>right</em> motor</p></li>
+<li><p>the <em>right</em> light sensor to control the speed of the <em>left</em> motor.</p></li>
+</ul>
+<p>Still using the <em>Radial_grey</em> background, clear the traces in the simulator.</p>
+<p>Run the following code cell to download the program to the simulator and then run it in the simulator.</p>
+<p>Move the robot to the starting location <code class="docutils literal notranslate"><span class="pre">X=100,</span> <span class="pre">Y=700</span></code> and run the program again.</p>
+<p>How does the robot’s behaviour with the “cross-wired” sensors and motors compare with the “direct”, same-side wiring?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Radial_grey
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+while ((colorLeft.reflected_light_intensity_pc &gt; 5) 
+       and (colorRight.reflected_light_intensity_pc &gt; 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    print(intensity_left, intensity_right)
+    
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<p>When the program runs this time, the robot arcs <em>towards</em> the light: if it starts below the centerline, then the robot turns to its left and up towards the light; if it starts above the centerline, then the robot turns to its right, and curves down towards the light.</p>
+</div>
+<div class="section" id="explaining-the-robot-s-behaviour">
+<h3>3.2.4 Explaining the robot’s behaviour<a class="headerlink" href="#explaining-the-robot-s-behaviour" title="Permalink to this headline">¶</a></h3>
+<p>How is the robot’s behaviour explained by the program this time?</p>
+<p><em>Double-click this cell to edit it and enter your explanation of why the robot behaves as it does.</em></p>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The sensor values are mapped onto motor speeds with the following lines of code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">left_motor_speed</span> <span class="o">=</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="n">intensity_right</span><span class="p">)</span>
+    <span class="n">right_motor_speed</span> <span class="o">=</span> <span class="n">SpeedPercent</span><span class="p">(</span><span class="n">intensity_left</span><span class="p">)</span>
+    
+    <span class="n">tank_drive</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">left_motor_speed</span><span class="p">,</span> <span class="n">right_motor_speed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this configuration, the percentage-scaled <em>right sensor</em> value determines the speed value applied to the <em>left motor</em>, and the percentage-scaled <em>left sensor</em> value sets the <em>right motor</em> speed.</p>
+<p>As before, the sensor value reports a higher reading the brighter the background. As the robot approaches the light source from below the centerline, the left sensor reads a higher value than the right sensor. This results in the right-hand motor turning more quickly than the left motor. As a result, the robot turns toward its left-hand side and turns towards the light source.</p>
+</div>
+</div>
+</div>
+<div class="section" id="looking-at-the-data">
+<h2>3.2.5 Looking at the data<a class="headerlink" href="#looking-at-the-data" title="Permalink to this headline">¶</a></h2>
+<p>To understand a little more closely what the sensors are seeing, click the <em>Chart</em> toggle display button in the simulator to open the chart and then select the <em>Left light</em> and <em>Right light</em> traces.</p>
+<p>To start with, let’s just make sure the datalog is empty:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clear the datalog</span>
+<span class="o">%</span><span class="k">sim_data</span> --clear
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following program streams the necessary data elements to the simulator output window.</p>
+<p>Run the program and observe the behaviour of the traces.</p>
+<p>How do the traces differ in value?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -c -b Radial_grey
+
+colorLeft = ColorSensor(INPUT_2)
+colorRight = ColorSensor(INPUT_3)
+
+count = 1
+
+while ((colorLeft.reflected_light_intensity_pc &gt; 5) 
+       and (colorLeft.reflected_light_intensity_pc &gt; 5)):
+    
+    intensity_left = colorLeft.reflected_light_intensity_pc
+    intensity_right = colorRight.reflected_light_intensity_pc
+    
+    # Sample very fifth pass of the loop
+    if not (count % 5):
+        print(&#39;Light_left: &#39; + str(intensity_left))
+        print(&#39;Light_right: &#39; + str(intensity_right))
+    count = count + 1
+    
+    left_motor_speed = SpeedPercent(intensity_right)
+    right_motor_speed = SpeedPercent(intensity_left)
+   
+    tank_drive.on(left_motor_speed, right_motor_speed)
+</pre></div>
+</div>
+</div>
+</div>
+<p>By inspection of the traces, you should notice that one of them is always slightly higher than the other.}}</p>
+<p>As the robot get closer to the light source, and the light “gradient” increases, the difference between the left and right sensor readings increases and the gap between the lines increases. As the robot them moves further away from the light source, the readings get closer together again.</p>
+<p>We can also inspect the data in the notebook directly by looking at the data returned in the notebook synchronised datalog.</p>
+<p>Run the following code cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Grab the logged data into a pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="o">%</span><span class="k">sim_data</span>
+
+<span class="c1">#Preview the first few rows of the dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the following code cell to plot the data using the <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> scientific charting package:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># A line plot is a sensible chart type to use</span>
+<span class="c1"># to plot the time series data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+                  <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                  <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+                  <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-ultrasound">
+<h2>3.3 Using ultrasound<a class="headerlink" href="#using-ultrasound" title="Permalink to this headline">¶</a></h2>
+<p>As well as a Braitenberg vehicle that uses two light sensors to activate the motor controls for the robot’s two wheels, we can also create a Braitenberg vehicle that uses a single distance sensor to moderate its behaviour, for example to try to avoid obstacles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -b Obstacles_Test -u -x 120 -y 120 -a 90
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-using-ultrasound">
+<h3>3.3.1 Activity — Using ultrasound<a class="headerlink" href="#activity-using-ultrasound" title="Permalink to this headline">¶</a></h3>
+<p>Load in the <em>Obstacles_Test</em> background and run the following code cell to download the program to the simulator. Ensure that the background is loaded and that the ultrasound rays are enabled, and then run the program in the simulator.</p>
+<p><em>You can enable the ultrasound sensor rays by passing the <code class="docutils literal notranslate"><span class="pre">-u</span></code> switch in the simulator magic or via the Obstacles popup in the simulator itself.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> -u
+</pre></div>
+</div>
+</div>
+</div>
+<p>Record your observations of the behaviour of the robot when the program is run in the simulator with the robot starting in different positions (for example, for combinations of <code class="docutils literal notranslate"><span class="pre">(X,</span> <span class="pre">Y,</span> <span class="pre">Angle)</span></code> of <code class="docutils literal notranslate"><span class="pre">(120,</span> <span class="pre">120,</span> <span class="pre">90)</span></code>, <code class="docutils literal notranslate"><span class="pre">(210,</span> <span class="pre">120,</span> <span class="pre">90)</span></code>, <code class="docutils literal notranslate"><span class="pre">(500,</span> <span class="pre">170,</span> <span class="pre">145)</span></code> and <code class="docutils literal notranslate"><span class="pre">(500,</span> <span class="pre">370,</span> <span class="pre">75)</span></code>. Based on your observations, what sort of behaviour does the robot appear to be exhibiting?</p>
+<p><em>Record your observations here about what the robot appears to be doing when the program is run in the simulator with the robot starting in different positions.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Obstacles_Test -u -x 120 -y 120 -a 90
+
+import time
+ultrasonic = UltrasonicSensor(INPUT_1)
+
+u = ultrasonic.distance_centimeters
+print(&#39;Ultrasonic: &#39; + str(u))
+
+time.sleep(1)
+
+while  u &gt; 1:
+    u = ultrasonic.distance_centimeters
+    
+    print(&#39;Ultrasonic: &#39; + str(u))
+    
+    speed = min(100, u)
+    
+    left_motor_speed = SpeedPercent(speed)
+    right_motor_speed = SpeedPercent(speed)
+    
+    tank_drive.on(left_motor_speed, right_motor_speed)
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Based solely on your observations, what sort of behaviour does the robot appear to be performing?</em></p>
+<p><em>With reference to the program, what actions is the robot actually performing? Annotate the program with comments that describe the behaviour each step is intended to produce.</em></p>
+<div class="section" id="id1">
+<h4>Example solution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>When the program is run in the simulator, the robot moves forwards but then slows down as it approaches the obstacle as if it was a bit wary of it. The robot eventually stops as it reaches the obstacle <em>if</em> the obstacle is directly in front of the centerline of the robot. Otherwise, the robot inches up the obstacle, moves with its wheels over it, and then accelerates away once it is clear of the obstacle.</p>
+<p>I have commented to the program to explain how I think it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> -b Obstacles_Test -u -x 120 -y 120 -a 90
+
+import time
+ultrasonic = UltrasonicSensor(INPUT_1)
+
+# Wait for a moment:
+# ultrasound sensors can take a moment or two to
+# start working as they take soundings on the environment
+time.sleep(1)
+
+# Grab the sensor reading
+# as a distance in cm
+u = ultrasonic.distance_centimeters
+
+print(&#39;Ultrasonic: &#39; + str(u))
+
+# Check the distance to an obstacle
+# Loop whilst the distance is greater than 1cm
+# Note that from the ray trace, the sensor 
+# appears to be mounted a little way in
+# from the front edge of the robot.
+while  u &gt; 1:
+    # Resample the ultrasonic sensor reading
+    u = ultrasonic.distance_centimeters
+    print(&#39;Ultrasonic: &#39; + str(u))
+    
+    # Set a speed limit to the lesser of
+    # 100 and the obstacle distance in cm
+    speed = min(100, u)
+    
+    # Set the motor speeds based on the distance
+    # to the nearest obstacle
+    left_motor_speed = SpeedPercent(speed)
+    right_motor_speed = SpeedPercent(speed)
+    tank_drive.on(left_motor_speed, right_motor_speed)
+    
+# The distance must be less than 1cm
+# so end the program and implicitly turn the motors off
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>3.4 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook you have experimented with some simple Braitenberg vehicles, seeing how a reactive control strategy based on some simple sensor inputs can lead to different emergent behaviours in the robot.</p>
+<p>In one example you used simple “direct connection” between light sensors and motor speeds; in another, you explored how an ultrasound sound sensor could act as a “virtual bumper” to identify when the robot was getting close to an obstacle.</p>
+<p>In some cases, we might be tempted to call the behaviours that emerge from the interaction of the control strategy with the environment as ‘intelligent’, or even to ascribe certain <em>desires</em> to the robot (such as ‘<em>it <strong>wants</strong> to this</em>’). But that is not really what is happening: the robot is simply reacting to particular inputs in a particular way.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04. Not quite intelligent robots"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="04.2%20Robot%20navigation%20using%20dead%20reckoning.html" title="previous page">2 Dead reckoning</a>
+    <a class='right-next' id="next-link" href="04.4%20Reasoning%20with%20Eliza.html" title="next page">4 Reasoning with Eliza</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

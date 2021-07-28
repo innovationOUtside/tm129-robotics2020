@@ -1,0 +1,1215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2 Multidimensional data and the MLP &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Training an MLP using MNIST handwritten digit data" href="07.3%20Training%20an%20MLP%20using%20MNIST%20handwritten%20digit%20data.html" />
+    <link rel="prev" title="1 Introducing neural networks" href="07.1%20Introducing%20neural%20networks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/07. Neural networks/07.2 Multidimensional data and the MLP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/07. Neural networks/07.2 Multidimensional data and the MLP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fruit-recognition-task">
+   2.1 Fruit recognition task
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-a-simple-classification-task">
+     2.1.1 Activity — A simple classification task
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-fruit-classification-task">
+     2.1.2 The fruit classification task
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-neural-network-model-a-multi-layer-perceptron-mlp">
+   2.2 A simple neural network model – a multi-layer perceptron (MLP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-classifier-training-pipeline">
+   2.3 The classifier training pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-simple-mlp-using-sklearn">
+   2.4 Training a simple MLP using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-training-dataset">
+     2.4.1 Creating a training dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialising-the-network-structure">
+   2.4.2 Initialising the network structure
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialising-and-training-the-network">
+     2.4.3 Initialising and training the network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#network-convergence">
+     2.4.4 Network convergence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-the-network">
+     2.4.5 Testing the network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-closer-look-at-how-well-the-network-performed-precision-recall-and-the-confusion-matrix">
+     2.4.6 A closer look at how well the network performed —
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       precision
+      </span>
+     </code>
+     ,
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       recall
+      </span>
+     </code>
+     and the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       confusion
+      </span>
+      <span class="pre">
+       matrix
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improving-the-performance-of-the-network">
+   2.5 Improving the performance of the network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-interactively-training-the-network">
+     2.5.1 Activity — Interactively training the network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualising-the-network-structure">
+   2.5 Visualising the network structure
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualising-network-weights">
+     2.5.1 Visualising network weights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-visualising-boundaries">
+     2.5.2 Activity — Visualising boundaries
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-observations">
+       Example observations
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partially-training-the-network">
+   2.6 Partially training the network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#animating-the-boundary-line-evolution">
+     2.6.1 Animating the boundary line evolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.7 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="multidimensional-data-and-the-mlp">
+<h1>2 Multidimensional data and the MLP<a class="headerlink" href="#multidimensional-data-and-the-mlp" title="Permalink to this headline">¶</a></h1>
+<p>The neural network examples in the previous notebook were very impressive, but how do they work?</p>
+<p>In this notebook we’ll make a start by looking at a classification task that attempts to identify various pieces of fruit. The activity is a simplified, stylised one, but it demonstrates several of the features (pun intended, as you may see!) that more complex neural network models employ when performing their recognition tasks.</p>
+<div class="section" id="fruit-recognition-task">
+<h2>2.1 Fruit recognition task<a class="headerlink" href="#fruit-recognition-task" title="Permalink to this headline">¶</a></h2>
+<p>Consider four classes of fruit: pears, bananas, strawberries and oranges. How might a robot recognise and distinguish between them?</p>
+<p>Let’s suppose that a robot’s vision system can isolate the fruit objects and make two measurements. The first is the length of the ‘long axis’. This is called the <em>long measurement</em>. The second measurement is taken at right angles to the long axis, halfway along it. This is called the <em>short measurement</em>. Oranges are approximately spherical in shape, which means that their long and short measurements are nearly the same. Bananas, on the other hand, are long and thin, so their long measurements are larger than their short measurements.</p>
+<p>Note that we are also making an assumption that the fruits are all presented to the same scale. This is fine if we are using a fixed camera and the fruit is passing underneath on a conveyor belt, but in a more general photograph that information may not be so easy to discern. The approach we’re taking also suggests we can segment the photographic image to just give us the fruit object within it. Again, in an industrial setting, we may be able to control for this (only one object in view, on a clean white conveyor background, for example).</p>
+<p>Let’s assume we have got the images in the form that is required.</p>
+<p><img alt="Pictures of various pieces of fruit on a grid showing their long and short axis measurements: pears medium sized and longer than they are wide; bananas are long and narrow; oranges are medium sized and as wide as they are long; strawberries are small and as wide as they are long." src="../_images/tm129_rob_p8_f002.jpg" /></p>
+<p>The table below records the measurements listed for the fruit shown in the diagram calculated according to the method described above. The long measurement is given first, followed by the short measurement.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>pears</p></th>
+<th class="head"><p>bananas</p></th>
+<th class="head"><p>strawberries</p></th>
+<th class="head"><p>oranges</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(5.2, 3.1)</p></td>
+<td><p>(8.5, 1.9)</p></td>
+<td><p>(2.1, 1.4)</p></td>
+<td><p>(4.7, 4.5)</p></td>
+</tr>
+<tr class="row-odd"><td><p>(6.3, 2.4)</p></td>
+<td><p>(8.3, 1.6)</p></td>
+<td><p>(2.8, 1.8)</p></td>
+<td><p>(4.6, 4.2)</p></td>
+</tr>
+<tr class="row-even"><td><p>(6.7, 1.8)</p></td>
+<td><p>(9.7, 2.0)</p></td>
+<td><p>(2.0, 1.8)</p></td>
+<td><p>(4.6, 4.1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>(5.3, 2.9)</p></td>
+<td><p>(7.5, 1.7)</p></td>
+<td><p>(2.2, 2.0)</p></td>
+<td><p>(4.0, 3.7)</p></td>
+</tr>
+</tbody>
+</table>
+<p>These measurements can be plotted on a grid. The longest measurement is plotted on the horizontal axis, and the shorter measurement is plotted on the vertical axis.</p>
+<p><img alt="A graph showing clusters of different fruits. The fruit short-axis measurement is plotted on the vertical axis which runs from 0 to 5. The fruit long-axis measurement is plotted on the horizontal axis which runs from 0 to 10. Each individual fruit is plotted at its long and short axis measurements, and each cluster of fruit is enclosed by a circle or ellipse. The four strawberries form a cluster centred around (2.2, 1.7). The four oranges cluster around (4.4, 4.1). The pears form a slightly looser cluster around (5.7, 2.5). The bananas form an oval around (8.8, 1.8). Each cluster is distinct. The strawberry cluster is well separated from all the others, but the others touch although they do not overlap. The short-axis measurements of the pears and bananas overlap considerably, but the long-axis measurements for pears and bananas do not overlap. Both long- and short-axis measurements for pears and oranges overlap somewhat when considered on their own, but the clusters remain distinct because combinations of short and long measurements don’t overlap." src="../_images/tm129_rob_p8_f003.jpg" /></p>
+<p>As the diagram shows, when we plot the objects on a grid using the long measurement on the horizontal *x-*axis and the short measurement on the vertical <em>y</em>-axis, the similar sorts of fruits are arranged close to each other. These sorts of grouping are typically referred to as <em>clusters</em>.</p>
+<p>When data are grouped like this, we can use various techniques to learn about the clusters, as well as identifying which cluster a newly presented object is likely to correspond to. Neural networks provide a powerful method for working with such data.</p>
+<div class="section" id="activity-a-simple-classification-task">
+<h3>2.1.1 Activity — A simple classification task<a class="headerlink" href="#activity-a-simple-classification-task" title="Permalink to this headline">¶</a></h3>
+<p>Let’s suppose that a robot has the data above in its memory, and it comes across (as yet) unclassified fruit with the pairs of measurements shown in the table below.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Features</p></th>
+<th class="head"><p>Label</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(2.5, 2.1)</p></td>
+<td><p>strawberry</p></td>
+</tr>
+<tr class="row-odd"><td><p>(4.6, 4.5)</p></td>
+<td><p>orange</p></td>
+</tr>
+<tr class="row-even"><td><p>(6.3, 2.9)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>(9.5, 1.9)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>(1.8, 1.5)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>(5.1, 2.1)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>(4.5, 4.1)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Double-click on this cell and complete the table, identifying the class of fruit the robot should associate each measurement pair with.</em></p>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The answers I got were as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Features</p></th>
+<th class="head"><p>Label</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(2.5, 2.1)</p></td>
+<td><p>strawberry</p></td>
+</tr>
+<tr class="row-odd"><td><p>(4.6, 4.5)</p></td>
+<td><p>orange</p></td>
+</tr>
+<tr class="row-even"><td><p>(6.3, 2.9)</p></td>
+<td><p>PEAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>(9.5, 1.9)</p></td>
+<td><p>BANANA</p></td>
+</tr>
+<tr class="row-even"><td><p>(1.8, 1.5)</p></td>
+<td><p>STRAWBERRY</p></td>
+</tr>
+<tr class="row-odd"><td><p>(5.1, 2.1)</p></td>
+<td><p>PEAR</p></td>
+</tr>
+<tr class="row-even"><td><p>(4.5, 4.1)</p></td>
+<td><p>ORANGE</p></td>
+</tr>
+</tbody>
+</table>
+<p>You probably found this quite easy. Arranging data points like this on a grid is a simple idea, and there are many techniques that use it to enable automatic classification.</p>
+<p>In many cases, however, rather than imagining the points in a 2-dimensional grid, the network may be partitioning them over a 20-dimensional grid, or a 200-dimensional grid. This is quite a bit harder for us to visualise!</p>
+</div>
+</div>
+<div class="section" id="the-fruit-classification-task">
+<h3>2.1.2 The fruit classification task<a class="headerlink" href="#the-fruit-classification-task" title="Permalink to this headline">¶</a></h3>
+<p>The general idea behind classification using neural networks as classifiers is that data are fed into the network and one of the outputs ‘fires’, signifying that the class associated with this output has been recognised.</p>
+<p>For example, in the figure below, a neural network that classifies fruit is shown diagrammatically. On the left are inputs, long measurement (<code class="docutils literal notranslate"><span class="pre">9.5</span></code>) and short measurement (<code class="docutils literal notranslate"><span class="pre">1.9</span></code>). On the right are outputs: <code class="docutils literal notranslate"><span class="pre">pear</span></code>, <code class="docutils literal notranslate"><span class="pre">banana</span></code>, <code class="docutils literal notranslate"><span class="pre">strawberry</span></code> and <code class="docutils literal notranslate"><span class="pre">orange</span></code>. Between are represented three layers of neurons – two input neurons, three intermediate neurons and four output neurons – and their interconnections. In this case, the measurements <code class="docutils literal notranslate"><span class="pre">(9.5, 1.9)</span></code> are fed into the network and the output corresponding to ‘banana’ fires.</p>
+<p><img alt="A neural network that classifies fruit is shown diagrammatically. On the left are inputs, long measurement (9.5) and short measurement (1.9). On the right are outputs: pear, banana, strawberry and orange. Between are represented three layers of neurons – two input neurons, three intermediate neurons and four output neurons – and their interconnections. In this case, the output neuron that represents banana has fired." src="../_images/tm129_rob_p8_f004.jpg" /></p>
+</div>
+</div>
+<div class="section" id="a-simple-neural-network-model-a-multi-layer-perceptron-mlp">
+<h2>2.2 A simple neural network model – a multi-layer perceptron (MLP)<a class="headerlink" href="#a-simple-neural-network-model-a-multi-layer-perceptron-mlp" title="Permalink to this headline">¶</a></h2>
+<p>One of the original neural network models, but one that is still relevant today, is known as a multi-layer perceptron or MLP network.</p>
+<p>The Python <em>scikit-learn</em> (<code class="docutils literal notranslate"><span class="pre">sklearn</span></code>) package supports a range of techniques for creating learned models, including an MLP. We will find it convenient to use this  package to train a fruit-discriminating network for us.</p>
+<p>The multi-layer perceptron (MLP) network model has a certain number of input-layer nodes, or <em>neurons</em>, that accept the input data, and some output-layer neurons that are used to represent output classes. Connecting the input and output layers are one or more layers of inner <em>hidden</em> neurons.</p>
+<p>Let’s consider how we might configure such a network that will hopefully be able to recognise, and discriminate between, our fruit examples.</p>
+<p>On the input side, we need <em>two</em> nodes to represent the <em>long measurement</em> and the <em>short measurement</em>.</p>
+<p>On the output side, in order to identify which category of fruit a set of input measurements corresponded to, we need… what?</p>
+<p>In order to train the network, we need to encode the desired response in a way that the network can represent, and present that as our training value rather than the human-understandable label.</p>
+<p>The network only deals with numbers, not categorical labels (such as <em>banana</em>, <em>pear</em>, <em>orange</em>, <em>strawberry</em>) so we need to encode these values numerically. In an MLP classifier – that is, an MLP that we want to perform a classification task that assigns each set of inputs to one or more different <em>categorical</em> groups, or <em>classes</em> – we use one output to represent each separate category.</p>
+<p>For our MLP, we will need <em>four</em> outputs, one for each class of fruit. The numbers on the output neurons range from 0 to 1. By convention, we interpret 0 to mean <em>not recognised</em> and 1 to mean <em>recognised</em>.</p>
+<p>So our network will need to have a structure that looks something like the following:</p>
+<p><img alt="Simple MLP show x and y inputs connected by a line to their own input layer circle nodes, each input node connected by an arrow to each of three circular hidden input layer nodes, each hidden layer node connected by an each to each of four circular output nodes; each out node connected by a line to its own label, ordered as: pear, banana, strawberry, orange" src="../_images/fruit_MLP.png" /></p>
+<p>In many cases, each of the actual values of the four outputs are likely to be in the range 0…1, for example <code class="docutils literal notranslate"><span class="pre">(0.1, 0.9, 0.2, 0.1)</span></code>.</p>
+<p>Visualising these values makes it clear which output class dominates:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Create a simple dataframe containing</span>
+<span class="c1"># the example output values</span>
+<span class="n">outputs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;outputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]})</span>
+<span class="c1"># and generate a bar chart from it</span>
+<span class="n">outputs_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Example outputs&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In these cases, the MLP uses a <em>winner-takes-all</em> strategy in which the largest value is rounded up to 1 and the other values are reduced to zero.</p>
+<p>In our example of outputs <code class="docutils literal notranslate"><span class="pre">(0.1, 0.9, 0.2, 0.1)</span></code>, the second output would be rounded up to 1, whilst the other three outputs are reduced to 0, giving the output classification <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0)</span></code>. The second neuron is said to have ‘fired’ as a result, and the network recognises that input as being associated with the class represented by the second output neuron.</p>
+<p>If the second output identifies the <em>banana</em> class, then for the input <code class="docutils literal notranslate"><span class="pre">(9.5, 1.9)</span></code> the desired output would be <code class="docutils literal notranslate"><span class="pre">(0, 1, 0, 0)</span></code>. The values <code class="docutils literal notranslate"><span class="pre">(9.5, 1.9)</span></code> and <code class="docutils literal notranslate"><span class="pre">(0, 1, 0, 0)</span></code> could then be used as a ‘training pair’ of known inputs and outputs.</p>
+</div>
+<div class="section" id="the-classifier-training-pipeline">
+<h2>2.3 The classifier training pipeline<a class="headerlink" href="#the-classifier-training-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Trying to keep track of which outputs correspond to which categorical label can be a bit fiddly, particularly with large numbers of categories, so it’s rather handy that the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> MLP function just lets us pass in the categorical label values and it works out the output layer mappings for us.</p>
+<p>For this reason, as well as the need to generate features derived from the original input image that can be fed into the network, we typically think of the network as part of a wider system. This system takes the original input, passes it thorough a <em>pre-processor</em> that transforms the input into a form that can be fed into the network, runs it through the network, and then passes the output through a <em>post-processor</em> that turns the output into something human readable. Run the following code blocks to see a diagram that illustrates this.</p>
+<p><em>A wide range of tools are available that support the automated generation of a wide variety of diagram types from text-based descriptions.</em></p>
+<p><em>The <code class="docutils literal notranslate"><span class="pre">blockdiag_magic</span></code> magic allows us to generate simple block diagrams from text descriptions written in appropriately magicked code cells. (Based on <a class="reference external" href="http://blockdiag.com/en/"><code class="docutils literal notranslate"><span class="pre">blockdiag.com</span></code></a>.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> blockdiag_magic
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the following code cell to generate a simple block diagram that depicts how the output from a pre-processor operation can feed into a neural network and from there to a post-processor operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">blockdiag</span>
+
+A [label = &quot;Pre-processor&quot;];
+B [label = &quot;Neural Network&quot;];
+C [label = &quot;Post-processor&quot;];
+
+A -&gt; B -&gt; C;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-a-simple-mlp-using-sklearn">
+<h2>2.4 Training a simple MLP using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code><a class="headerlink" href="#training-a-simple-mlp-using-sklearn" title="Permalink to this headline">¶</a></h2>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> package provides a range of tools for creating different sorts of machine classifier, including multi-layer perceptrons.</p>
+<p>You aren’t expected to learn how to write this sort of code for yourself. Instead, regard the following as a demonstration of how we can use the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> package to create and train an MLP, illustrating exactly what steps are involved in the process and how much code it takes.</p>
+<p>So let’s see how it works…</p>
+<div class="section" id="creating-a-training-dataset">
+<h3>2.4.1 Creating a training dataset<a class="headerlink" href="#creating-a-training-dataset" title="Permalink to this headline">¶</a></h3>
+<p>The code below will load a set of training pairs of data based on the fruit measurement data into a <em>pandas</em> dataframe.</p>
+<p>Run the cell to load the values into the dataframe and preview the result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;Pear&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">5.2</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Pear&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">6.3</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Pear&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">6.7</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Pear&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">5.3</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">8.3</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.7</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Strawberry&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Strawberry&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Strawberry&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Strawberry&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">]],</span>
+                   <span class="p">[</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.6</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">]],</span> <span class="p">[</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">]]</span>
+                  <span class="p">],</span>
+                 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">,</span> <span class="s1">&#39;Input&#39;</span><span class="p">])</span>
+
+<span class="c1">#Preview the first six rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These measurement-label pairs are called the <em>training data</em>.</p>
+<p>Once a system has been trained, it can be tested using previously <em>unseen</em> data of a similar form to the training data. In this case, given the input features (the <em>x</em> and <em>y</em> bounding box measurements), the network will generate a <em>prediction</em> of which class the network “thinks” the measurements are associated with and can then check this prediction against the supplied category.</p>
+<p>The network can also be tested using just the bounding box measurements, in which case the prediction cannot be automatically checked, but does mean we can test data that has never been seen or previously categorised and labelled before.</p>
+</div>
+</div>
+<div class="section" id="initialising-the-network-structure">
+<h2>2.4.2 Initialising the network structure<a class="headerlink" href="#initialising-the-network-structure" title="Permalink to this headline">¶</a></h2>
+<p>With the data in place, let’s start to prepare things for our network. We don’t actually need to define the number of input and output nodes, because they can be calculated from the number of provided output categories), but let’s make a note of the number we think there are anyway.</p>
+<p>For example, we expect the number of input nodes to be two, one for the <em>x</em> value and one for the <em>y</em> value; the number of output nodes should be four, one for each fruit category.</p>
+<p>We do need to specify the number of hidden neurons though, so let’s have two layers with six nodes in each.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_nodes</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="initialising-and-training-the-network">
+<h3>2.4.3 Initialising and training the network<a class="headerlink" href="#initialising-and-training-the-network" title="Permalink to this headline">¶</a></h3>
+<p>Run the following code cell to create the initial neural network with the required number of hidden nodes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="n">fruit</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="n">hidden_nodes</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> set to the low value of 20, this means that we will show the network twenty inputs, and update its weights just twenty times.</p>
+<p>We would not really expect such a network to learn very much at all using this strategy, but let’s try it anyway.</p>
+<p>Run the following code cell to train the network, or ‘fit the model’, and then check to see how well it performs against each item in the dataframe.</p>
+<p>Note that by fitting the data to the model, the number of inputs and outputs are automatically determined from the input data.</p>
+<p><em>Ignore any <code class="docutils literal notranslate"><span class="pre">ConvergenceWarning</span></code> warning.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model</span>
+<span class="c1"># The first argument is a list of feature lists</span>
+<span class="n">fruit</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now preview the size of the network that has been created:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span><span class="o">.</span><span class="n">n_features_in_</span><span class="p">,</span>  <span class="n">fruit</span><span class="o">.</span><span class="n">n_layers_</span><span class="p">,</span> <span class="n">fruit</span><span class="o">.</span><span class="n">n_outputs_</span><span class="p">,</span> <span class="n">fruit</span><span class="o">.</span><span class="n">hidden_layer_sizes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can import a convenience function that will present this as a simple report:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">network_structure</span>
+<span class="n">network_structure</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One of the defining features of an MLP network is that it is <em>fully connected</em>, which is to say that all the input nodes are connected to all the nodes in the first hidden layer; all the nodes in the first hidden layer are connected to all the nodes in the second hidden layer; and all the nodes in the second hidden layer are connected to all the nodes in the output layer.</p>
+<p>We can visualise the basic (unweighted) network structure by passing the <code class="docutils literal notranslate"><span class="pre">show=True</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">network_structure()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">network_structure</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When the network was initialised at the start of the training run (the <code class="docutils literal notranslate"><span class="pre">fruit.fit()</span></code> operation), the number of input and output nodes was determined from the training data and the complete network structure was initialised. The lines connecting the nodes, which are referred to as <em>weights</em>, were initially set to random values.</p>
+<p>The way the network is then trained (that is, the way the model is fitted) is as follows:</p>
+<ul class="simple">
+<li><p>the <em>inputs</em> to each node in the first hidden layer are calculated by multiplying each input value to a first hidden layer node by its corresponding connection weight, then adding together (“finding the sum of”) the weighted values incoming to each node. An additional ‘bias’ term may also be added. Each node then looks at the summed input value and outputs a value either in the range -1…1 or 0…1 for different types of MLP, based on the input;</p></li>
+<li><p>the same sort of calculation repeats at the next layer, using weighted input from the previous layer;</p></li>
+<li><p>at the output layer, the winner-takes-all decision is applied and an output class is identified:</p>
+<ul>
+<li><p>if the output class is <em>correctly</em> identified, then the weights connected to input nodes that fired are rewarded and their values are increased;</p></li>
+<li><p>if the output class is <em>incorrectly</em> identified, then the weights connected to input nodes that fired are punished and their values are decreased.</p></li>
+</ul>
+</li>
+</ul>
+<p>Over time, the network learns to associate particular outputs with particular inputs.</p>
+</div>
+<div class="section" id="network-convergence">
+<h3>2.4.4 Network convergence<a class="headerlink" href="#network-convergence" title="Permalink to this headline">¶</a></h3>
+<p>When you ran the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Fit</span> <span class="pre">the</span> <span class="pre">model</span></code> code cell, it probably displayed a ‘<em>ConvergenceWarning</em>’ message declaring that the complicated-sounding <em>Stochastic Optimizer</em> had reached the <em>Maximum iterations (20)</em>, (which was the maximum value we set in the original setup), but ‘<em>the optimization hasn’t converged yet</em>’.</p>
+<p>In other words, the MLP perhaps hasn’t been trained as effectively as we might have hoped.</p>
+<p>A “loss curve” shows the change in “error” at each iteration. The optimisation has converged when the curve starts to flatten off, showing that the “loss” is unchanging and there is no improvement in how the network performs from one iteration to the next.</p>
+<p>If we look at the loss curve for our network, we see that it is far from flat at the end of the training run: this network still has some way to go to be properly trained:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fruit</span><span class="o">.</span><span class="n">loss_curve_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Loss curve whilst training MLP.&quot;</span><span class="p">);</span>
+
+<span class="c1"># This is also available as: </span>
+<span class="c1"># nn_tools.network_views.show_loss(MLP)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-the-network">
+<h3>2.4.5 Testing the network<a class="headerlink" href="#testing-the-network" title="Permalink to this headline">¶</a></h3>
+<p>We can present the original training inputs to the network to see what classes it predicted in each case:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Check the prediction for each input</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">fruit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+<span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s a little hard to make sense of, particular for larger training sets, so let’s use another simple helper function to compare the expected outputs with the actual ones:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.network_views</span> <span class="kn">import</span> <span class="n">how_did_I_do</span>
+
+<span class="c1"># Pass in the MLP, training dataframe,</span>
+<span class="c1"># input data and class column names</span>
+<span class="n">how_did_I_do</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Input&quot;</span><span class="p">,</span> <span class="s2">&quot;Fruit&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at these prediction results, we see that they’re not very good.</p>
+</div>
+<div class="section" id="a-closer-look-at-how-well-the-network-performed-precision-recall-and-the-confusion-matrix">
+<h3>2.4.6 A closer look at how well the network performed — <code class="docutils literal notranslate"><span class="pre">precision</span></code>,  <code class="docutils literal notranslate"><span class="pre">recall</span></code> and the <code class="docutils literal notranslate"><span class="pre">confusion</span> <span class="pre">matrix</span></code><a class="headerlink" href="#a-closer-look-at-how-well-the-network-performed-precision-recall-and-the-confusion-matrix" title="Permalink to this headline">¶</a></h3>
+<p>There are actually a couple of other tools we can use to see just how well (or badly) the network is performing in a more formal way. The first is a <em>classification report</em>; this tells us, for each output category, several useful things, including the following.</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html"><strong>precision</strong></a> is a metric that captures a sense of whether the classifier doesn’t ever claim that something is what it isn’t. Formally, it relates the number of <em>true positives</em> (the classifier said it was a banana and it was a banana) and <em>false positives</em> (the classifier said it was a banana but it wasn’t a banana); the best value is 1, and the worst value is 0.</p></li>
+<li><p>The <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html"><strong>recall</strong></a> gives a sense of how well the classifier recognises every instance of a particular category, by relating the number of <em>true positives</em>  and the number of <em>false negatives</em> (for example, the classifier said it wasn’t a banana, but it was). Again, 1 is good, 0 is bad.</p></li>
+<li><p>The <em>support</em> is the number of training patterns in the class used as the basis of that line of the report.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># The zero_division parameter suppresses a divide by zero warning when using zeroed parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second tool is called a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html">confusion matrix</a>. The rows define each of the actual known categories and the categories across the top identify the classes each of those items were predicted as being in when tested. If the classifier is working perfectly, then the confusion matrix is a diagonal matrix, with zeros everywhere other than down the top-left to bottom-right diagonal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our network really isn’t very good, is it?!</p>
+</div>
+</div>
+<div class="section" id="improving-the-performance-of-the-network">
+<h2>2.5 Improving the performance of the network<a class="headerlink" href="#improving-the-performance-of-the-network" title="Permalink to this headline">¶</a></h2>
+<p>Let’s see if we can improve things by tweaking the network parameters, such as the hidden layer sizes (<code class="docutils literal notranslate"><span class="pre">h1</span></code> and <code class="docutils literal notranslate"><span class="pre">h2</span></code>) and the maximum number of training iterations.</p>
+<div class="section" id="activity-interactively-training-the-network">
+<h3>2.5.1 Activity — Interactively training the network<a class="headerlink" href="#activity-interactively-training-the-network" title="Permalink to this headline">¶</a></h3>
+<p>Run the following cell to create a simple interactive application that lets you use sliders to set the parameter values and displays the classification report and confusion matrix as you do so.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact_manual</span>
+
+<span class="n">fruit</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nd">@interact_manual</span><span class="p">(</span><span class="n">iterations</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">h1</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">h2</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">trainer</span><span class="p">(</span><span class="n">iterations</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">h1</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">h2</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">fruit</span>
+    <span class="n">fruit</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">),</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">iterations</span><span class="p">)</span>
+    
+    <span class="c1"># Fit the model</span>
+    <span class="n">fruit</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">])</span>
+    
+    <span class="c1">#Check the prediction for each input</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">fruit</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+    
+    <span class="c1"># Display the loss curve</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fruit</span><span class="o">.</span><span class="n">loss_curve_</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Loss curve whilst training MLP.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you think you have trained your network well, let’s see how it does with some new examples. Run the following code cell to test the network on some previously unseen examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How did your network do? (I’m hoping that you could work out which fruit was which from the numbers!)</p>
+<p><em>Record your observations about how effectively the network worked here, as well as any other reflections you have about how the parameter changes affect the performance of the network.</em></p>
+</div>
+</div>
+<div class="section" id="visualising-the-network-structure">
+<h2>2.5 Visualising the network structure<a class="headerlink" href="#visualising-the-network-structure" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes, it can be quite instructive to look at the neural network weights. If you see that all the weights coming into a particular node are close to zero, then that node isn’t really contributing much to the decision-making in the next layer, so you might consider reducing the size of the layer with the redundant neuron(s).</p>
+<div class="section" id="visualising-network-weights">
+<h3>2.5.1 Visualising network weights<a class="headerlink" href="#visualising-network-weights" title="Permalink to this headline">¶</a></h3>
+<p>You have already seen how we can use the <code class="docutils literal notranslate"><span class="pre">network_structure()</span></code> function to visualise the structure of a trained network. If we pass the <code class="docutils literal notranslate"><span class="pre">weights=True</span></code> parameter into the function, we can also visualise the weights used in the network: colour indicates sign (positive or negative) and thickness increases with magnitude (absolute value).</p>
+<p>Run the following cell to view the weights of your trained network; the blue lines are positive weights and the orange lines are negative weights. The thickness of the lines is proportional to their value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">network_structure</span><span class="p">(</span><span class="n">fruit</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the structure of the weights, does it look like there may be any redundant or unused neurons in there? If so, try reducing the size of that layer and retrain the network. Can you reduce the size of the network whilst still retaining its performance level? (Reducing the network size should also speed up the training because there are fewer sums to do on each iteration…)</p>
+<p>Note that each time you train the network from scratch, the initial network weights and the selected training patterns are determined randomly, so even with a fixed architecture you may find that some times it reaches a good solution, but other times it doesn’t.</p>
+</div>
+<div class="section" id="activity-visualising-boundaries">
+<h3>2.5.2 Activity — Visualising boundaries<a class="headerlink" href="#activity-visualising-boundaries" title="Permalink to this headline">¶</a></h3>
+<p>The way the MLP works is to try to draw ‘decision lines’ or ‘boundary lines’ that separate each clustered group of values associated with one class from the values associated with other categories.</p>
+<p>For a two-dimensional feature space as the one we have (the long and the short measurements each represent a separate ‘feature’ of the input training space) we can plot how every point in the plane (within specified bounds) is categorised, and colour it accordingly.</p>
+<p>The code I have available for this doesn’t (yet!) work with categorical labels used to name the separate categories – it expects numbers instead – so let’s create a new network trained on numerical values used to identify the fruits, rather than their names.</p>
+<p>Let’s prepare the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fruit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Strawberry&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Pear&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Orange&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Banana&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then create and train a model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2500</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now visualise that to see where the decision boundaries are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.boundary_models</span> <span class="kn">import</span> <span class="n">plot_boundaries</span>
+
+<span class="n">plot_boundaries</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Well-trained model</strong></p>
+<p><em>Record your observations about what you see in the visualisation of the boundaries here.</em></p>
+<p>How does the visualisation look if you change the model parameters so that the network doesn’t perform so well? What differences are there compared to the well-trained model?</p>
+<p><strong>Poorly trained model</strong></p>
+<p><em>Record your observations about what you see in the visualisation of the boundaries here.</em></p>
+<div class="section" id="example-observations">
+<h4>Example observations<a class="headerlink" href="#example-observations" title="Permalink to this headline">¶</a></h4>
+<p><em>Click the arrow in the sidebar or run this cell to reveal some example observations.</em></p>
+<p>For the well-trained model, I see something like the following (the actual boundaries move each time I retrain the network as a result of the initial random starting condition):</p>
+<p><img alt="" src="../_images/MLP_good_classifier.png" /></p>
+<p>The different fruit clusters are clearly separated into different coloured areas, with decision boundaries separating the different classes of fruit.</p>
+<p>In the poorly trained model, the decision lines do not properly separate the different classes of fruit, with many items falling into the wrong grouping.</p>
+<p><img alt="" src="../_images/MLP_poor_classifier.png" /></p>
+<p>Further observations: for a two-dimensional model this sort of visualisation works well, and could even work for a three-dimensional model. But with 10, 100 or 1000 input dimensions it would be rather hard to visualise. As a mind’s-eye visualisation tool, however, you may get a ‘feeling’ about what separation in high-dimensional space might be like.</p>
+</div>
+</div>
+</div>
+<div class="section" id="partially-training-the-network">
+<h2>2.6 Partially training the network<a class="headerlink" href="#partially-training-the-network" title="Permalink to this headline">¶</a></h2>
+<p>As well as training a network until it converges, or until the maximum number of iterations is reached, we can also train the network an iteration at a time, and review the performance of the network at the end of each iteration.</p>
+<p>To do this, we need to use the <code class="docutils literal notranslate"><span class="pre">.partial_fit()</span></code>, rather than the <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> training function.</p>
+<p>We also use the <code class="docutils literal notranslate"><span class="pre">tqdm.trange()</span></code> function, rather than a simple <code class="docutils literal notranslate"><span class="pre">range()</span></code> function, to add a dynamic progress bar to show the progress of the training procedure.</p>
+<p>The following code cell runs 1000 iterations, showing the confusion matrix after every 100 iterations (you will need to scroll down the cell):</p>
+<p><em>Once again, you are not expected to be able to create, or even to necessarily understand, the following code. Rather, it is shown simply to illustrate that we can create our own tools, and how much code is involved in creating them, as well as the sorts of steps required in order to perform the desired behaviour.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">trange</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Get a list of all the classes</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+    <span class="c1"># In the partial_fit(), we need to declare up front what all the possible classes are</span>
+    <span class="c1"># This is because we could present different training classes at each step</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">],</span> <span class="n">classes</span><span class="p">)</span>
+
+    <span class="c1"># for every 100 iterations, display the result</span>
+    <span class="c1"># A simple way to do this is to divide the iteration count by 100</span>
+    <span class="c1">#  and see if there&#39;s a remainder...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">At iteration </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1">#print(classification_report(df[&#39;FruitNum&#39;], predictions))</span>
+        
+        <span class="c1"># Generate the boundary plot</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_boundaries</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        
+        
+        <span class="c1"># And display it</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="c1"># Prevent the repeated display of the figure at the end</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        
+        <span class="c1"># Also display the loss evolution</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">loss_curve_</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Loss curve for MLP.&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        
+        <span class="c1"># Also show the confusion matrix</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FruitNum&#39;</span><span class="p">],</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Did the network get a reasonable solution? Run the cell several times again, reviewing the confusion matrices produced each time. You should see how the network may come to a reasonable solution quite quickly on some runs, but not achieve a particularly good result even after 1000 iterations on other runs.</p>
+<div class="section" id="animating-the-boundary-line-evolution">
+<h3>2.6.1 Animating the boundary line evolution<a class="headerlink" href="#animating-the-boundary-line-evolution" title="Permalink to this headline">¶</a></h3>
+<p>Finally, it’s worth noting that we can also generate animations to show how the boundaries evolve over a specified number of iterations. In the following cell, the <code class="docutils literal notranslate"><span class="pre">mlp_boundary_animate</span></code> function reuses the routine from the previous code cell to train the network, but also grabs the boundary plot every 10 iterations (as defined by the <code class="docutils literal notranslate"><span class="pre">every</span></code> parameter) and uses it as an animation frame.</p>
+<p><em>Note that this may take some time to produce the animation if you set the <code class="docutils literal notranslate"><span class="pre">every</span></code> parameter too low. Changing it to every 100 iterations should speed things up but the animation will not be so smooth.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.boundary_models</span> <span class="kn">import</span> <span class="n">mlp_boundary_animate</span>
+
+<span class="n">mlp_boundary_animate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">every</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s1">&#39;animation.gif&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The animation function may take some time to run, so here is an example of the sort of thing it can create, showing how the decision boundaries evolve as an MLP is trained:</p>
+<p><img alt="" src="../_images/MLP_animation.gif" /></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>2.7 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook you have seen how we can describe some real-world items in a way that allows us to train a particular sort of fully connected neural network known as a multi-layer perceptron (MLP) to distinguish between the items and correctly classify them (or not!).</p>
+<p>Metrics such as <em>precision</em> and <em>recall</em> scores, and tools like the confusion matrix and boundary visualiser, allow us to get a feel for how accurate the model is and the extent to which we can trust it.</p>
+<p>By visualising the network weights, and looking for nodes that appear to only every make a small contribution, if any, to the activation of nodes in later layers, we can sometimes get a feel for whether we have created a network that is perhaps larger than it needs to be to perform a particular task.</p>
+<p>In the next notebook, you will have an opportunity to explore a little more the inner workings of a neural network where the categories are perhaps not so easy to separate.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07. Neural networks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="07.1%20Introducing%20neural%20networks.html" title="previous page">1 Introducing neural networks</a>
+    <a class='right-next' id="next-link" href="07.3%20Training%20an%20MLP%20using%20MNIST%20handwritten%20digit%20data.html" title="next page">3. Training an MLP using MNIST handwritten digit data</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

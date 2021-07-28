@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2 Sensor noise &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3 The design engineer as detective" href="05.3%20The%20design%20engineer%20as%20detective.html" />
+    <link rel="prev" title="1. Introduction to sensor based control" href="05.1%20Introducing%20sensor%20based%20control.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.3%20Introducing%20nbev3devsim.html">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01.%20Introducing%20notebooks%20and%20the%20RoboLab%20environment/01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/05. Experimenting with sensors/05.2 Sensor noise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05. Experimenting with sensors/05.2 Sensor noise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-closer-look-at-the-colorsensor">
+   2.1 A closer look at the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColorSensor
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experimenting-with-colour-sensing">
+   2.2 Experimenting with colour sensing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calibrating-the-sensors">
+   2.3.1 Calibrating the sensors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling-the-required-sensor-readings">
+     2.31 Sampling the required sensor readings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-readings">
+       Example readings
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#challenge-an-edge-follower-for-the-lollipop">
+     2.4 Challenge – An edge-follower for the lollipop
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-solution">
+       Example solution
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trying-to-distinguish-what-the-robot-can-see">
+   2.5 Trying to distinguish what the robot can see
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coping-with-noise">
+   2.6 Coping with noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#noise-from-sensors">
+     2.6.1 Noise from sensors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-light-sensors-pixelated-view-of-the-world">
+     2.6.2 The light sensor’s pixelated view of the world
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-sensor-noise">
+     2.6.3 Adding sensor noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-following-the-edge-of-a-line-in-the-presence-of-sensor-noise">
+     2.6.4 Activity — Following the edge of a line in the presence of sensor noise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.8 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sensor-noise">
+<h1>2 Sensor noise<a class="headerlink" href="#sensor-noise" title="Permalink to this headline">¶</a></h1>
+<p>My line-following program in the previous notebook seems to work reasonably well, as long as the line is not too wiggly. But it operates in a binary world with clearly defined, and very distinct, features in the sense of the white background and black line.</p>
+<p>Suppose we have a slightly more complex environment, as depicted by the <code class="docutils literal notranslate"><span class="pre">Lollipop</span></code> background in the simulator.</p>
+<p><img alt="The lollipop image used as a background for the modified edge-follower program. This has a grey background on which is a lollipop shape, drawn sideways as a black outline. The robot starts at the stick, must follow the line across the screen to the left, around the head of the lollipop and back up the stick. The start/end is marked by a transverse broad red line; a transverse yellow line occurs midway along the straight path. The yellow line is drawn behind the black lollipop so the black line is unbroken at this point; the red line is drawn across the end of the black line." src="../_images/lollipop_sim.png" /></p>
+<p>This environment has grey background, with a lollipop-shaped black line. At the end of the lollipop ‘stick’, a red rectangle is laid over the line. A little way before the end of the ‘stick’ is a yellow rectangular shape placed underneath the line. You might also notice that the robot is slightly smaller than we have used previously.</p>
+<p>In this notebook, you will start to work on the challenge of programming the simulated robot to use a single light sensor to follow the line from its default starting point in the environment, go round the lollipop, up the stick, over the yellow rectangle and stop when it reaches the red rectangle.</p>
+<p>Let’s get started by loading the simulator in the normal way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="a-closer-look-at-the-colorsensor">
+<h2>2.1 A closer look at the <code class="docutils literal notranslate"><span class="pre">ColorSensor</span></code><a class="headerlink" href="#a-closer-look-at-the-colorsensor" title="Permalink to this headline">¶</a></h2>
+<p>In order to complete this challenge, you will need to calibrate the robot’s sensor readings so that you can work out a strategy for identifying what the robot can see at any particular time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --background Lollipop -HAi -x 1710 -y 615 -a 180
+</pre></div>
+</div>
+</div>
+</div>
+<p>When a light sensor is placed over an object, the sensor display areas shows the light sensor reading for that object in various ways:</p>
+<p><img alt="VIew of simulator screenshot, described in body of text." src="../_images/sensor_display_annotated.png" /></p>
+<ul class="simple">
+<li><p>the <em>sensor arrays</em> display shows the area of the background that is under each sensor (without the addition of any sensor noise)</p></li>
+<li><p>the <em>sensor readings</em> display shows three different readings:</p>
+<ul>
+<li><p>the reflected light intensity as a percentage</p></li>
+<li><p>the ‘full’ reflected light intensity as a percentage</p></li>
+<li><p>the red, green and blue colour components, each in the range <code class="docutils literal notranslate"><span class="pre">0...255</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p>In order to access these values in a program, use the following.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ev3dev2.sensor</span> <span class="kn">import</span> <span class="n">INPUT_2</span> <span class="c1"># Or INPUT_3</span>
+<span class="kn">from</span> <span class="nn">ev3dev2.sensor.lego</span> <span class="kn">import</span> <span class="n">ColorSensor</span>
+
+<span class="n">color_sensor</span> <span class="o">=</span> <span class="n">ColorSensor</span><span class="p">(</span><span class="n">INPUT_2</span><span class="p">)</span>
+
+<span class="c1"># Reflected light intensity</span>
+<span class="c1"># This is actually the R (red) component</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">reflected_light_intensity</span>
+
+<span class="c1"># Reflected light intensity as a percentage</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">reflected_light_intensity_pc</span>
+
+<span class="c1"># &#39;Full&#39; reflected light intensity</span>
+<span class="c1"># This is the simple average (mean) of all three</span>
+<span class="c1"># RGB components, as a percentage</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">full_reflected_light_intensity</span>
+</pre></div>
+</div>
+<p>The colour value readings are made up of different amounts of red (R), blue (B) and green (B) – so-called RGB values. Each value varies between decimal (base 10) values 0 and 255.</p>
+<p>The raw RGB values are returned as a list and can be accessed in a simulated robot program as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of RGB values: [red, green, blue]</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">rgb</span>
+
+<span class="c1"># Index in to get the separate components</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># red</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># green</span>
+<span class="n">color_sensor</span><span class="o">.</span><span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># blue</span>
+</pre></div>
+</div>
+<p>Note that it is not uncommon to see individual colour component values represented as hexadecimal numbers in the range <code class="docutils literal notranslate"><span class="pre">00</span></code> to <code class="docutils literal notranslate"><span class="pre">FF</span></code>. So a pure red would be <code class="docutils literal notranslate"><span class="pre">(FF,</span> <span class="pre">00,</span> <span class="pre">00)</span></code>, <code class="docutils literal notranslate"><span class="pre">(#FF,</span> <span class="pre">#00,</span> <span class="pre">#00)</span></code> or <code class="docutils literal notranslate"><span class="pre">(0xFF,</span> <span class="pre">0x00,</span> <span class="pre">0x00)</span></code>.</p>
+</div>
+<div class="section" id="experimenting-with-colour-sensing">
+<h2>2.2 Experimenting with colour sensing<a class="headerlink" href="#experimenting-with-colour-sensing" title="Permalink to this headline">¶</a></h2>
+<p>Run the following code cell to create a simple interactive colour explorer that lets you change the values of the R (red), G (green) and B (blue) components of a colour signal to create a particular colour.</p>
+<p>A pure red colour is represented by an RGB value <code class="docutils literal notranslate"><span class="pre">(255,</span> <span class="pre">0,</span> <span class="pre">0)</span></code>: ‘all red, no green, no blue’. Black is an absence of colour: <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></code> and white the presence of all colours, <code class="docutils literal notranslate"><span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255)</span></code>.</p>
+<p>As well as changing the values using the sliders, you can also double-click in the number label, change it to the desired value (an integer in the range 0..255) and hit return to update the value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+
+
+<span class="n">HEIGHT</span> <span class="o">=</span> <span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># The ipywidgets framework provides us with </span>
+<span class="c1"># a powerful toolkit for creating</span>
+<span class="c1"># simple interactive displays from a function </span>
+<span class="c1"># using a simple function decorator</span>
+<span class="c1"># https://ipywidgets.readthedocs.io/en/stable/examples/Using%20Interact.html</span>
+<span class="nd">@interact</span><span class="p">(</span><span class="n">red</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1">#min, max, step</span>
+          <span class="n">green</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+          <span class="n">blue</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">showColour</span><span class="p">(</span><span class="n">red</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">green</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">blue</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a simple solid colour display</span>
+<span class="sd">       based on provided RGB components.&quot;&quot;&quot;</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">),</span>
+                      <span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calibrating-the-sensors">
+<h2>2.3.1 Calibrating the sensors<a class="headerlink" href="#calibrating-the-sensors" title="Permalink to this headline">¶</a></h2>
+<p>So that we know what sorts of sensor values to associate with different features of the <em>Lollipop</em> background, we need to calibrate our sensors by inspecting the sorts of sensor readings to expect when the sensor is positioned over different parts of the background.</p>
+<div class="section" id="sampling-the-required-sensor-readings">
+<h3>2.31 Sampling the required sensor readings<a class="headerlink" href="#sampling-the-required-sensor-readings" title="Permalink to this headline">¶</a></h3>
+<p>You first need to record the light sensor readings associated with each of the coloured bands on the lollipop image, as well as for the black line and the grey background.</p>
+<p>Move the robot around the screen, either by dragging and dropping it or by using the <em>Position controls</em> (simulator keyboard shortcut <code class="docutils literal notranslate"><span class="pre">X</span></code>, magic switch <code class="docutils literal notranslate"><span class="pre">-X</span> <span class="pre">/</span> <span class="pre">--positioning</span></code>), locating it so that the left-hand light sensor is directly over the area you want to record the sensor reading for. When you position the robot, the light sensor reading should be updated in the simulator sensor readings area.</p>
+<p>For each colour area, record the RGB values, the reflected light intensity percentage and the full reflected light percentage.</p>
+<p>What happens to the readings if the sensor is now completely over a single solid block of colour?</p>
+<ul class="simple">
+<li><p>Black: <em>YOUR VALUES HERE</em></p></li>
+<li><p>Grey: <em>YOUR VALUES HERE</em></p></li>
+<li><p>Yellow: <em>YOUR VALUES HERE</em></p></li>
+<li><p>Red: <em>YOUR VALUES HERE</em></p></li>
+</ul>
+<p><em>Also record your observations about what happens if the sensor is not wholly over a single solid block of colour.</em></p>
+<div class="section" id="example-readings">
+<h4>Example readings<a class="headerlink" href="#example-readings" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal a set of example readings.</em></p>
+<p>Here are the readings I got when I placed the robot sensor fully over each colour:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Colour</p></th>
+<th class="head"><p>RGB</p></th>
+<th class="head"><p>Reflected light (%)</p></th>
+<th class="head"><p>Full reflected light (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Black</p></td>
+<td><p>(0, 0, 0)</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grey</p></td>
+<td><p>(211, 211, 211)</p></td>
+<td><p>82.75</p></td>
+<td><p>82.75</p></td>
+</tr>
+<tr class="row-even"><td><p>Yellow</p></td>
+<td><p>(255, 255, 0)</p></td>
+<td><p>100</p></td>
+<td><p>66.67</p></td>
+</tr>
+<tr class="row-odd"><td><p>Red</p></td>
+<td><p>(255, 0, 0)</p></td>
+<td><p>100</p></td>
+<td><p>33.33</p></td>
+</tr>
+</tbody>
+</table>
+<p>If the sensor was not completely over a single block of colour, then the values were not so clear-cut and changed depending on how much of each colour was in view.</p>
+<p>3.3.2 Previewing snapshots of sensor values in the notebook</p>
+<p>Reusing ideas from an earlier notebook, we can grab a snapshot of the state of the robot from the simulator into the notebook and then review the values of various components of that robot state:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">robotState</span> <span class="o">=</span> <span class="o">%</span><span class="k">sim_robot_state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A predefined function allows us to view a summary report of some of the sensor values inside the notebook. For example, let’s look at the values return from the left sensor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">report_light_sensor</span>
+
+<span class="n">report_light_sensor</span><span class="p">(</span><span class="n">robotState</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also generate an image from the raw sensor array data (either <code class="docutils literal notranslate"><span class="pre">sensor1dataArray</span></code> or <code class="docutils literal notranslate"><span class="pre">sensor2dataArray</span></code> for the left and right sensors respectively) and the preview a zoomed version of it in the notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nn_tools.sensor_data</span> <span class="kn">import</span> <span class="n">get_image_from_state</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">get_image_from_state</span><span class="p">(</span><span class="n">robotState</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;sensor1dataArray&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="challenge-an-edge-follower-for-the-lollipop">
+<h3>2.4 Challenge – An edge-follower for the lollipop<a class="headerlink" href="#challenge-an-edge-follower-for-the-lollipop" title="Permalink to this headline">¶</a></h3>
+<p>Write an edge-follower program using a single light sensor that will cause the robot to follow the line from its default starting point in the environment, go round the lollipop, up the stick, over the yellow rectangle and stop when it reaches the red rectangle.</p>
+<p>You are encouraged to use the edge-follower code from the previous notebook as the basis for your program.</p>
+<p>You may find it convenient to consider your program in two or three parts. For example:</p>
+<ul class="simple">
+<li><p>following the line over the grey background</p></li>
+<li><p>following the line over the yellow bar</p></li>
+<li><p>stopping on the red bar.</p></li>
+</ul>
+<p>Spend five to ten minutes developing your program. Good luck!</p>
+<p><em>If you cannot get your program to work properly – or even at all – don’t panic. My program didn’t work at all well at first! In later activities we will be reviewing several aspects of this program, including how to apply a design-cycle approach to fix it when it doesn’t at first work, as well as looking at how to make it more robust and reliable when it does seem to work.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Lollipop -p
+
+# YOUR CODE HERE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-solution">
+<h4>Example solution<a class="headerlink" href="#example-solution" title="Permalink to this headline">¶</a></h4>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal an example solution.</em></p>
+<p>The following program represents my final attempt at the edge follower that stops on the red line.</p>
+<p>My original attempt did not work so well, as you will find out in the next notebook. But after a bit of investigative work I managed to find out why it wasn’t working as I’d anticipated and how I then fixed the problem.</p>
+<p>A key consideration in the following program is the stopping condition; in this iteration of the program, I explicitly try to detect pure red. As you will see later, my first attempt used a different, and far less successful, approach to try to identify when the robot should stop.</p>
+<p>There could still be a problem with this approach, though: if the red is not a pure red, or there is a non-zero green component, or the robot does not get a clear view of just the red bar, then the condition will not evaluate as true and the robot won’t stop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span> --background Lollipop
+
+colorLeft = ColorSensor(INPUT_2)
+print(colorLeft.reflected_light_intensity)
+while True:
+    
+    intensity_left = colorLeft.reflected_light_intensity
+    
+    print(intensity_left)
+
+    if intensity_left &lt; 50:
+        left_motor_speed = SpeedPercent(0)
+        right_motor_speed = SpeedPercent(20)
+    else:
+        left_motor_speed = SpeedPercent(20)
+        right_motor_speed = SpeedPercent(0)
+    tank_drive.on(left_motor_speed, right_motor_speed)
+    
+    # If we see red, quit the loop
+    if (colorLeft.rgb[0]==255 and colorLeft.rgb[1]==0):
+        break
+        
+say(&quot;Arrived...&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="trying-to-distinguish-what-the-robot-can-see">
+<h2>2.5 Trying to distinguish what the robot can see<a class="headerlink" href="#trying-to-distinguish-what-the-robot-can-see" title="Permalink to this headline">¶</a></h2>
+<p>The way I designed my program was based on various logical distinctions that I made and that I tried to put into the program. In particular, I tried to identify whether the robot could see:</p>
+<ul class="simple">
+<li><p>the black line as distinct from the grey background or yellow bar</p></li>
+<li><p>the red bar.</p></li>
+</ul>
+<p>The light sensor values identified during the calibration phase helped me decide what sensor readings would allow me to distinguish each of those cases. I also had to bear in mind that the calibration values were based on ideal values when the sensor could only see a ‘pure’ block of colour and that the actual values seen by the robot would be determined by the area of the background it could actually see.</p>
+</div>
+<div class="section" id="coping-with-noise">
+<h2>2.6 Coping with noise<a class="headerlink" href="#coping-with-noise" title="Permalink to this headline">¶</a></h2>
+<p>The <em>Lollipop</em> background image used for the line-following activity was made with a Python drawing package (see the <code class="docutils literal notranslate"><span class="pre">backgrounds/Background</span> <span class="pre">Image</span> <span class="pre">Generator.ipynb</span></code> notebook), and the colours are all very precise, with no variation. Many real images are not like this.</p>
+<p>For example, if we scanned the background image using a cheap scanner and you zoomed in to look at a highly magnified view of it, then you might see something like the following:</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p6_f009.jpg" src="../_images/tm129_rob_p6_f009.jpg" /></p>
+<p>Each pixel is visible, but there is considerable variation in colour, for example a black line may appear as many shades of dark grey, and some pixels of the pale grey background may have a noticeable pink, green or blue distortion.</p>
+<p>Human vision is very adaptable and can usually overcome these irregularities. If you have normal colour vision then you should be able to pick out the red, yellow, black and grey areas in this image easily, but it is much more difficult for a machine to do this. Poor machine vision is a major problem in the development of robots.</p>
+<div class="section" id="noise-from-sensors">
+<h3>2.6.1 Noise from sensors<a class="headerlink" href="#noise-from-sensors" title="Permalink to this headline">¶</a></h3>
+<p>In many respects, what the robot sees is like the view a scanner has of the image, except that the robot sensor sees only a tiny part of the image at any particular time.</p>
+<p>Even if the background is a ‘crisp’ high-resolution, low-noise one, such as the original, the sensor itself may perceive something more like the noisy scanned image.</p>
+<p>There are several various possible sources of such noise, including electrical noise or a fault in the sensor itself, or ‘optical noise’ arising from shadows, or dust on the sensor. Different random amounts of noise might be added separately to each of the sensor’s pixel detectors which means that even if the robot is stationary, the values returned by the sensor may vary each time we sample them.</p>
+<p>Where the noise is added may be largely irrelevant, for example whether it’s noise ‘in the background’ or noise added by the sensor. If the value returned by the sensor is affected by noise, and we can’t reduce that noise, then our control strategy needs to be able to cope with it.</p>
+</div>
+<div class="section" id="the-light-sensors-pixelated-view-of-the-world">
+<h3>2.6.2 The light sensor’s pixelated view of the world<a class="headerlink" href="#the-light-sensors-pixelated-view-of-the-world" title="Permalink to this headline">¶</a></h3>
+<p>The images that form the different backgrounds in the simulator window are made up grids of coloured squares called <em>pixels</em>. The sensor array view on the simulator shows the pixel values detected by the sensor as coloured squares of various intensities. The colour value of each pixel is represented by an RGB value. The light sensor view is as circular as it can be given that it’s made from squares!</p>
+<p>The single value returned by the light sensor is an average of the pixel values captured by the sensor. In the simulator we’re using, the final sensor value is formed from the simple average taken over all the pixels in view. In other simulators, or other sensor models, a <em>weighted sum</em> may be used where we weight the contribution of the pixels nearer the centre of the sensor more highly than we do the pixels on the edges.</p>
+<p>We can increase the number of pixels read by the sensor by tuning the <em>diameter</em> of the area sensed. This is analogous to increasing the height off the ground of the light sensor on a real robot.</p>
+</div>
+<div class="section" id="adding-sensor-noise">
+<h3>2.6.3 Adding sensor noise<a class="headerlink" href="#adding-sensor-noise" title="Permalink to this headline">¶</a></h3>
+<p>We can model the addition of sensor noise by using the <em>Light sensor noise</em> slider in the simulator (access the <em>Noise controls</em> from the simulator toggle display buttons or the <code class="docutils literal notranslate"><span class="pre">--noisecontrols</span> <span class="pre">/</span> <span class="pre">-z</span></code> magic flag).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --background Lollipop -HAi --noisecontrols -x 1710 -y 615 -a 180
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you add noise using the light sensor noise slider, then you should see ‘speckles’ appearing in the sensor array view in the simulator:</p>
+<p><img alt="Screenshot of the simulator showing that the light sensor noise slider has been increased to a high value; the sensor array displays show lots of differently coloured pixels as a result of noise being added. Reducing the sensor noise level allows the pixel colour values to return the values detected from the background image." src="../_images/sim_sensor_noise.png" /></p>
+<p>Sensor noise can also be applied using the <code class="docutils literal notranslate"><span class="pre">--sensornoise</span></code> / <code class="docutils literal notranslate"><span class="pre">-N</span></code> magic switch, accepting a noise level in the range <code class="docutils literal notranslate"><span class="pre">0..128</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sim_magic</span> --sensornoise 10 -HAi -x 1710 -y 615 -a 180
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="activity-following-the-edge-of-a-line-in-the-presence-of-sensor-noise">
+<h3>2.6.4 Activity — Following the edge of a line in the presence of sensor noise<a class="headerlink" href="#activity-following-the-edge-of-a-line-in-the-presence-of-sensor-noise" title="Permalink to this headline">¶</a></h3>
+<p>Try re-running your edge-follower program in the presence of sensor noise.</p>
+<p>Make some notes on what the effect (if any) is on the behaviour of your program for increasing levels of sensor noise.</p>
+<p><em>Sometimes the addition of small amounts of noise can, perhaps surprisingly, improve the behaviour of a robot…</em></p>
+<p><em>Record your observations here describing how the addition of sensor noise affects the performance of your edge-follower program.</em></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>2.8 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have had the opportunity to explore in a little bit more detail the behaviour of the light sensor.</p>
+<p>You have also seen how it can be important to calibrate and understand the behaviour of your sensors if you are using particular sensor values as the basis for decisions that the simulated robot makes about what it can see at any particular time, and as a result, what action it should take.</p>
+<p>In the presence of increasing levels of noise, a performance of a program that was working in a noise free environment may start to degrade, or even stop working at all.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05. Experimenting with sensors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="05.1%20Introducing%20sensor%20based%20control.html" title="previous page">1. Introduction to sensor based control</a>
+    <a class='right-next' id="next-link" href="05.3%20The%20design%20engineer%20as%20detective.html" title="next page">3 The design engineer as detective</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

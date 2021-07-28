@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 The RoboLab simulated on-screen robot (nbev3devsim) &#8212; TM129 Robotics Practical Activities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4 Exploring the nbev3devsim simulator" href="01.4%20Exploring%20nbev3devsim.html" />
+    <link rel="prev" title="2 The interactive read-writable notebook environment" href="01.2%20Exploring%20the%20notebook%20environment.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">TM129 Robotics Practical Activities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README_FIRST.html">
+   Welcome to the TM129 Robotics Block
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_FOR_VLE/Section_00_01_Introduction.html">
+   1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_NOTES_FOR_TUTORS/GETTING_STARTED.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="01.1%20Jupyter%20environment.html">
+   1 Introduction to the TM129 Jupyter notebook environment
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01.2%20Exploring%20the%20notebook%20environment.html">
+     2 The interactive read-writable notebook environment
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3 The RoboLab simulated on-screen robot (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01.4%20Exploring%20nbev3devsim.html">
+     4 Exploring the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01.5%20Example%20robot%20program.html">
+     5 An example robot program
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01.6%20Working%20With%20Simulators.html">
+     6 Working With Simulators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.1%20Robot%20programming%20constructs.html">
+   1 An introduction to programming robots
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.2%20Creating%20your%20own%20robot%20programs.html">
+     2 Creating your own robot programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.3%20General%20programming%20concepts.html">
+     3.1 Constants and variables in programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02.%20Getting%20started%20with%20robot%20and%20Python%20programming/02.4%20Getting%20started%20with%20sensors.html">
+     4 Robot sensors and data logging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.1%20Program%20control%20using%20for%20loops.html">
+   1. Introduction to program control flow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.2%20Program%20control%20using%20while%20loops%20and%20blocking.html">
+     2. Program control flow using a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       while...
+      </span>
+     </code>
+     loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.3%20Program%20control%20flow%20using%20branches.html">
+     3 Branches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.4%20Example%20robot%20control%20programs.html">
+     4 Example robot control programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.5%20Some%20RoboLab%20challenges.html">
+     5 RoboLab challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.%20Controlling%20program%20execution%20flow/03.6%20Optional%20RoboLab%20challenges.html">
+     6 Optional challenges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.1%20Introducing%20program%20functions.html">
+   1. Introduction to functions and robot control strategies
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.2%20Robot%20navigation%20using%20dead%20reckoning.html">
+     2 Dead reckoning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.3%20Emergent%20robot%20behaviour%20and%20simple%20data%20charts.html">
+     3 Emergent robot behaviour and simple data charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.4%20Reasoning%20with%20Eliza.html">
+     4 Reasoning with Eliza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04.%20Not%20quite%20intelligent%20robots/04.5%20Reasoning%20with%20rule%20based%20systems.html">
+     5 Reasoning with rule based systems — Durable Rules Engine
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.1%20Introducing%20sensor%20based%20control.html">
+   1. Introduction to sensor based control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.2%20Sensor%20noise.html">
+     2 Sensor noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.3%20The%20design%20engineer%20as%20detective.html">
+     3 The design engineer as detective
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.4%20Challenge%20-%20coping%20with%20noise.html">
+     4 Challenge – Coping with noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.5%20Experimenting%20with%20sensor%20settings.html">
+     5 Experimenting with sensor settings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.%20Experimenting%20with%20sensors/05.6%20The%20RoboLab%20Grand%20Prix%20challenge.html">
+     6 The RoboLab Grand Prix Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06.%20Where%20in%20the%20world%20are%20we/06.1%20Introducing%20sensor%20based%20navigation.html">
+   Introducing sensor based navigation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07.%20Neural%20networks/07.1%20Introducing%20neural%20networks.html">
+   1 Introducing neural networks
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.1%20Introducing%20remote%20services%20and%20multi-agent%20systems.html">
+   1 An introduction to remote services and multi-agent systems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.2%20Collecting%20digit%20image%20and%20class%20data%20from%20the%20simulator.html">
+     2.3.1 Activity — Testing the ability to recognise images slight off-centre in the image array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.3%20Recognising%20digits%20using%20a%20convolutional%20neural%20network%20%28optional%29.html">
+     3 Recognising digits using a convolutional neural network (optional)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.4%20Recognising%20patterns%20on%20the%20move.html">
+     4 Recognising patterns on the move
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.5%20Messaging%20in%20multi-agent%20systems.html">
+     5 Messaging in multi-agent systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08.%20Remote%20services%20and%20multi-agent%20systems/08.6%20Conclusion.html">
+     6 Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/01. Introducing notebooks and the RoboLab environment/01.3 Introducing nbev3devsim.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/01. Introducing notebooks and the RoboLab environment/01.3 Introducing nbev3devsim.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-nbev3devsim-simulator">
+   3.1 The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     nbev3devsim
+    </span>
+   </code>
+   simulator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-ev3-brick">
+   3.2 The EV3 “brick”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background-ev3dev-and-the-original-ev3devsim-simulator-optional">
+   3.3 Background —
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ev3dev
+    </span>
+   </code>
+   and the original
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ev3devsim
+    </span>
+   </code>
+   simulator (optional)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-the-simulator-relates-to-the-notebooks">
+   3.4 How the simulator relates to the notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-load-the-nbev3devsim-simulator-into-the-notebook-environment">
+     3.4.1 Activity — Load the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       nbev3devsim
+      </span>
+     </code>
+     simulator into the notebook environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-downloading-code-to-the-simulator-and-running-it-there">
+     3.4.2 Activity — Downloading code to the simulator and running it there
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuring-the-simulator-layout">
+     3.4.3 Configuring the simulator layout
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-and-saving-your-own-robot-program-code">
+     3.4.4 Creating and saving your own robot program code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   3.5 Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-robolab-simulated-on-screen-robot-nbev3devsim">
+<h1>3 The RoboLab simulated on-screen robot (<code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>)<a class="headerlink" href="#the-robolab-simulated-on-screen-robot-nbev3devsim" title="Permalink to this headline">¶</a></h1>
+<p>Within the Jupyter notebook environment, you will be making use of a simple two dimensional robot simulator, <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>. At times, we will refer the Jupyter notebook + <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator, or just the simulator itself, as <em>RoboLab</em> (it’s somewhat easier to say than <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code>!)</p>
+<div class="section" id="the-nbev3devsim-simulator">
+<h2>3.1 The <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator<a class="headerlink" href="#the-nbev3devsim-simulator" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator, will be the focus of many of the programming activities in this block, is derived from a simpler web based simulator, the <a class="reference external" href="https://github.com/QuirkyCort/ev3dev-sim"><code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> robot simulator</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> itself was inspired by the need to create a simulator for testing Python programs written for <a class="reference external" href="https://www.ev3dev.org/"><code class="docutils literal notranslate"><span class="pre">ev3dev</span></code></a>, <em>“a Debian Linux-based operating system that runs on several LEGO® MINDSTORMS compatible platforms including the LEGO® MINDSTORMS EV3 and Raspberry Pi-powered BrickPi.”</em></p>
+<p>Rather than saving programs to separate files, each individual robot simulator program is defined within its own notebook code cell, and can then be “downloaded” to the simulated robot. This means you can keep track of a how a program develops by writing each version of a program in its own code cell.</p>
+<p><img alt="Screenshot of nbev3devsim simulator showing panel display toggle buttons (simulator, settings, output, noise controls, instrumentation, sensor arrays and chart), the simulator controls panel (showing world , positioning and code display toggle buttons), a pen up/pen down and pen color selector, a clear trace button and s sim run / stop control, with indicator light and the simulator world panel with a selected background and the simulated robot displayed). The simulator and world toggle buttons are shown as selected. " src="../_images/Section_00_02-nb3devsim_-_Jupyter_Notebook.png" /></p>
+<p>A wide range of predefined worlds is available that can be loaded into the simulator, as image files, from a drop down menu. (Source code for generating the background image files is also available in a notebook in the <code class="docutils literal notranslate"><span class="pre">backgrounds/</span></code> directory.) When some worlds are loaded in, the robot’s initial (default) location in that world is also specified; other robot settings, such as the positioning of the sensors, may also be initialised when a particular background is loaded.</p>
+<p>Obstacles can be added to a world using a configuration file opened by clicking the <em>Obstacles config</em> button in the simulator <em>Settings</em> panel. The simulated robot is also still configured via a configuration panel.</p>
+<p>The simulated robot can be dragged and placed on the simulated background or moved over and rotated within the simulator world using slider widgets. The <code class="docutils literal notranslate"><span class="pre">Reset</span></code> button will move the robot back to it’s default location in the world.</p>
+</div>
+<div class="section" id="the-ev3-brick">
+<h2>3.2 The EV3 “brick”<a class="headerlink" href="#the-ev3-brick" title="Permalink to this headline">¶</a></h2>
+<p>The Lego Mindstorms EV3 robots that inspired <code class="docutils literal notranslate"><span class="pre">ev3dev</span></code>, <code class="docutils literal notranslate"><span class="pre">ev2devsim</span></code> and <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> are based around a physical EV3 controller with a 300 MHz ARM9 processor, 16 MB of Flash memory, 64 MB RAM and a Linux based operating system.</p>
+<p><img alt="figure ../tm129-19J-images/tm129_rob_p1_f005.jpg" src="../_images/nogbad_ev3.jpg" /></p>
+<p><em>Photo credit: Nigel Gibson, OU residential school tutor</em></p>
+<p>The controller is capable of supporting four motor outputs referred to as <code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">D</span></code>. In the simulator, we define a simple two wheeled differential drive robot using two motors configured as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">B</span></code>: left motor;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OUTPUT</span> <span class="pre">C</span></code>: right motor.</p></li>
+</ul>
+<p>The EV3 brick also support four input ports to which four different, independent sensors can be attached. These range from touch sensors, to light sensors, infrared sensors, ultrasonic sensors and even gyroscopes.</p>
+<p><em>Ports</em> are interfaces to the external world. Input <em>sensors</em> can be attached to the <em>input ports</em>, allowing information about the environment to enter the computer. Output <em>effectors</em>, such as <em>motors</em> and other actuators, can be attached to the output ports. The brick can switch such effectors on and off and control their direction and power.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator is capable of simulating simple robots such as the ones that can be built with LEGO Mindstorms. The simulator assumes that the simulated robot works like an EV3 brick. This means that the simulator needs to know what kinds of sensors and actuators are being used, and how the (simulated) EV3 robot is configured. You will see how this is done later.</p>
+<p>Although I have described the simulated robot in terms of a simple Lego robot, similar considerations would apply to other robotics systems. The control subsystem of any robot is usually flexible and designed to be configured with a variety of sensors and actuators.</p>
+</div>
+<div class="section" id="background-ev3dev-and-the-original-ev3devsim-simulator-optional">
+<h2>3.3 Background — <code class="docutils literal notranslate"><span class="pre">ev3dev</span></code> and the original <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> simulator (optional)<a class="headerlink" href="#background-ev3dev-and-the-original-ev3devsim-simulator-optional" title="Permalink to this headline">¶</a></h2>
+<p><em>Click on the arrow in the sidebar or run this cell to reveal the optional material.</em></p>
+<p>Lego EV3 educational robots are widely used in all levels of education, including the Open University residential school course <em>T176 Engineering: professions, practice and skills 1</em>.</p>
+<p>Low level functions provided by the <code class="docutils literal notranslate"><span class="pre">ev3dev</span></code> operating system are “wrapped” by the <a class="reference external" href="https://github.com/ev3dev/ev3dev-lang-python">ev3dev-lang-python</a> Python 3 package. This means that a LEGO EV3 robot running the <code class="docutils literal notranslate"><span class="pre">ev3dev</span></code> operating system can be programmed using Python code.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> package implements a cut down version of the [<code class="docutils literal notranslate"><span class="pre">ev3dev-lang-python</span></code>] library to control a browser based, 2D-simulated robot. The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> Python code runs in a Skulpt interpreter (a browser based Python interpreter) to control a Javascript powered robot simulator.</p>
+<p>The original <a class="reference external" href="https://github.com/QuirkyCort/ev3dev-sim"><code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code></a> simulator ran as a <a class="reference external" href="https://www.aposteriori.com.sg/Ev3devSim/index.html">standalone web application</a> that could be run, even in an offline mode, using just a web browser.</p>
+<p>[<img alt="Screenshot of original ev3devsim simulator showing robot simulator canvas with simulated robot on a line following test track, the program editor containing a sample program, simulator program run controls (Run and Stop buttons) and a sensor data output window with example sensor output readings." src="../_images/EV3DEV_Python_Simulator.png" /></p>
+<p>Program code is entered into the editor window and run by clicking the simulator <em>Run</em> button.  Program files can be saved from, and loaded into the program editor. An output window display messages sent from the program, such as sensor log values, as well as error messages if the program throws an error when it is run. A range of predefined worlds can be loaded into the simulator, as image files, from a drop down menu. Obstacles can be added to a world using a configuration file. The robot can be configured via a configuration menu and if required moved to a specified location.</p>
+<p>The <a class="reference external" href="https://github.com/innovationOUtside/nbev3devsim"><code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code></a> package builds on the original <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> to provide an <code class="docutils literal notranslate"><span class="pre">ipywidget</span></code> that embeds the simulator in a Jupyter notebook. The simulated robot can be programmed using code downloaded from notebook code cells. Sensor data logged within the simulator can be exported to the notebook’s own Python environment and analysed using the full power of Python’s wide range of charting and data analysis packages.</p>
+<p>Whilst the original <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> simulator runs without any software requirements other than a modern web browser, the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> approach does require the availability of a Jupyter notebook environment. Although this increases the complexity of the software environment, it does provide several benefits:</p>
+<ol class="simple">
+<li><p>instructional material can be provided within a notebook to support each programming activity;</p></li>
+<li><p>data retrieved from the simulator can be analysed and charted in the notebook kernel context (for example, using Python or R);</p></li>
+<li><p>the notebook environment provides a read / write environment within which you can make your own notes and annotations, as well as keep a record of the various steps taken to develop any particular robot control program.</p></li>
+</ol>
+</div>
+<div class="section" id="how-the-simulator-relates-to-the-notebooks">
+<h2>3.4 How the simulator relates to the notebooks<a class="headerlink" href="#how-the-simulator-relates-to-the-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>The simulator we are using is created as an interactive <code class="docutils literal notranslate"><span class="pre">ipywidget</span></code> that is embedded within a Jupyter notebook.</p>
+<p>The simulator runs as a Javascript program in the browser tab associated with the notebook the simulator is embedded in. The simulator has various settings that can be configured within the simulator UI, or from the notebook commands that invoke it.</p>
+<p><em>For more technical details (optional), see the <code class="docutils literal notranslate"><span class="pre">99.1</span> <span class="pre">nbev3devsim</span> <span class="pre">notebook</span> <span class="pre">architecture</span></code> notebook in the <code class="docutils literal notranslate"><span class="pre">99.</span> <span class="pre">Technical</span> <span class="pre">appendices</span></code> notebook directory.</em></p>
+<p>The simulator can be loaded into the notebook environment with the following code commands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>When the simulator is loaded, the presentation of the notebook is adjusted to shift the notebook content to a column at the left of the screen, with the simulator in a resizable, draggable widget that pops up on the right hand side of the screen.</p>
+<p>You can click on the right hand edge of the notebook column and drag it to the right or left to make the column wider or narrower respectively.</p>
+<div class="section" id="activity-load-the-nbev3devsim-simulator-into-the-notebook-environment">
+<h3>3.4.1 Activity — Load the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator into the notebook environment<a class="headerlink" href="#activity-load-the-nbev3devsim-simulator-into-the-notebook-environment" title="Permalink to this headline">¶</a></h3>
+<p>Run the code cell below to load in the simulator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbev3devsim.load_nbev3devwidget</span> <span class="kn">import</span> <span class="n">roboSim</span><span class="p">,</span> <span class="n">eds</span>
+
+<span class="o">%</span><span class="k">load_ext</span> nbev3devsim
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code is “downloaded” from a code cell in the notebook to the simulator by running the code cell with some special IPython <em>magic</em> in the first line of the cell.</p>
+<p>You can also get code into the simulator by highlighting and copying the code (without the IPython magic line) and then clicking the <em>Paste</em> button in the <em>Code display</em> panel in the simulator.</p>
+</div>
+<div class="section" id="activity-downloading-code-to-the-simulator-and-running-it-there">
+<h3>3.4.2 Activity — Downloading code to the simulator and running it there<a class="headerlink" href="#activity-downloading-code-to-the-simulator-and-running-it-there" title="Permalink to this headline">¶</a></h3>
+<p>Run the following code cell to download the code to the simulator. You may need to reposition and resize the widget to see the simulated robot in the simulator world view at the bottom of the widget.</p>
+<p><strong>Note that a cell block magic identified by a double percent sign (<code class="docutils literal notranslate"><span class="pre">%%</span></code>) MUST be placed on the first line of the code cell.</strong></p>
+<p>Click the <em>Run</em> button in the simulator to run the downloaded code there. The robot should drive forwards a short distance and then stop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sim_magic_preloaded</span>
+
+# Drive the robot forwards a short distance
+tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(50), 2)
+tank_turn.on_for_rotations(-100, SpeedPercent(75), 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will have an opportunity to explore the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator in a bit more detail in the next notebook.</p>
+</div>
+<div class="section" id="configuring-the-simulator-layout">
+<h3>3.4.3 Configuring the simulator layout<a class="headerlink" href="#configuring-the-simulator-layout" title="Permalink to this headline">¶</a></h3>
+<p>The simulator environment includes a range of user controls that can be used to configure the layout and view of the simulator user interface, as well as controlling operations performed within it. These include positioning the simulated robot, loading in different simulator backgrounds, loading obstacles into the simulated world, displaying status messages from the robot and dynamically charting logged sensor readings, as well as many other features.</p>
+<p>You will be introduced to these in more detail as and when they are required.</p>
+<p>A reference guide to the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> user interface is also provided in the <em>99.2 nbev3devsim_user_interface</em> notebook in the <code class="docutils literal notranslate"><span class="pre">99.</span> <span class="pre">Technical</span> <span class="pre">appendices</span></code> notebook directory.</p>
+</div>
+<div class="section" id="creating-and-saving-your-own-robot-program-code">
+<h3>3.4.4 Creating and saving your own robot program code<a class="headerlink" href="#creating-and-saving-your-own-robot-program-code" title="Permalink to this headline">¶</a></h3>
+<p>The activities have been created within Jupyter notebooks using the embedded simulator widget. In many activities, you will have the opportunity to create and run your own programs to run within the simulator, as well as within the notebook’s own Python coding environment.</p>
+<p>Whilst it is possible to download and save code files loaded into the simulator, and load code back into the simulator from a saved file, we will generally download code from within a code cell to the simulator.</p>
+<p>Saving the notebook will this keep a record of the code you have downloaded and run in the simulator, although as with the state of the notebook Python environment, the internal state of the simulator is not saved when you save the notebook.</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>3.5 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, you have been introduced to the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator and its predecessor, the <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> simulator. The <code class="docutils literal notranslate"><span class="pre">ev3devsim</span></code> simulator was itself inspired by <code class="docutils literal notranslate"><span class="pre">ev3dev</span></code>, a Linux based operating system for the Lego Mindstorms EV3 computer brick.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator thus represents a simple simulator environment that can be used to model the behaviour of real world EV3 controlled mobile robots, such as the ones used in Open University engineering residential schools.</p>
+<p>In the next notebook, you will have an opportunity to explore how to configure and use the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator.</p>
+<p><em>But first: would you like to create your own summary cell for this notebook, and colour it to highlight it as your own work?</em></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01. Introducing notebooks and the RoboLab environment"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="01.2%20Exploring%20the%20notebook%20environment.html" title="previous page">2 The interactive read-writable notebook environment</a>
+    <a class='right-next' id="next-link" href="01.4%20Exploring%20nbev3devsim.html" title="next page">4 Exploring the <code class="docutils literal notranslate"><span class="pre">nbev3devsim</span></code> simulator</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
