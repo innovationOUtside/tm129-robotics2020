@@ -1,0 +1,85 @@
+root: README_FIRST
+entries:
+- file: 00_FOR_VLE/Section_00_01_Introduction
+- file: 00_NOTES_FOR_TUTORS/GETTING_STARTED
+- file: 01. Introducing notebooks and the RoboLab environment/01.1 Jupyter environment
+  entries:
+  - file: 01. Introducing notebooks and the RoboLab environment/01.2 Exploring the
+      notebook environment
+  - file: 01. Introducing notebooks and the RoboLab environment/01.3 Introducing nbev3devsim
+  - file: 01. Introducing notebooks and the RoboLab environment/01.4 Exploring nbev3devsim
+  - file: 01. Introducing notebooks and the RoboLab environment/01.5 Example robot
+      program
+  - file: 01. Introducing notebooks and the RoboLab environment/01.6 Working With
+      Simulators
+- file: 02. Getting started with robot and Python programming/02.1 Robot programming
+    constructs
+  entries:
+  - file: 02. Getting started with robot and Python programming/02.2 Creating your
+      own robot programs
+  - file: 02. Getting started with robot and Python programming/02.3 General programming
+      concepts
+  - file: 02. Getting started with robot and Python programming/02.4 Getting started
+      with sensors
+- file: 03. Controlling program execution flow/03.1 Program control using for loops
+  entries:
+  - file: 03. Controlling program execution flow/03.2 Program control using while
+      loops and blocking
+  - file: 03. Controlling program execution flow/03.3 Program control flow using branches
+  - file: 03. Controlling program execution flow/03.4 Example robot control programs
+  - file: 03. Controlling program execution flow/03.5 Some RoboLab challenges
+  - file: 03. Controlling program execution flow/03.6 Optional RoboLab challenges
+- file: 04. Not quite intelligent robots/04.1 Introducing program functions
+  entries:
+  - file: 04. Not quite intelligent robots/04.2 Robot navigation using dead reckoning
+  - file: 04. Not quite intelligent robots/04.3 Emergent robot behaviour and simple
+      data charts
+  - file: 04. Not quite intelligent robots/04.4 Reasoning with Eliza
+  - file: 04. Not quite intelligent robots/04.5 Reasoning with rule based systems
+- file: 05. Experimenting with sensors/05.1 Introducing sensor based control
+  entries:
+  - file: 05. Experimenting with sensors/05.2 Sensor noise
+  - file: 05. Experimenting with sensors/05.3 The design engineer as detective
+  - file: 05. Experimenting with sensors/05.4 Challenge - coping with noise
+  - file: 05. Experimenting with sensors/05.5 Experimenting with sensor settings
+  - file: 05. Experimenting with sensors/05.6 The RoboLab Grand Prix challenge
+- file: 06. Where in the world are we/06.1 Introducing sensor based navigation
+  entries:
+  - file: 06. Where in the world are we/06.2 Runaround
+  - file: 06. Where in the world are we/06.3 Keeping track of distance
+  - file: 06. Where in the world are we/06.4 Keeping track of direction
+- file: 07. Neural networks/07.1 Introducing neural networks
+  entries:
+  - file: 07. Neural networks/07.2 Multidimensional data and the MLP
+  - file: 07. Neural networks/07.3 Training an MLP using MNIST handwritten digit data
+  - file: 07. Neural networks/07.4 Testing a network against synthetic data (optional)
+  - file: 07. Neural networks/07.5 Feature engineering (optional)
+  - file: 07. Neural networks/07.6 Inside the mind of a neural network
+  - file: 07. Neural networks/07.7 Convolutional neural networks (optional)
+  - file: 07. Neural networks/possible_extras
+- file: 08. Remote services and multi-agent systems/08.1 Introducing remote services
+    and multi-agent systems
+  entries:
+  - file: 08. Remote services and multi-agent systems/08.2 Collecting digit image
+      and class data from the simulator
+  - file: 08. Remote services and multi-agent systems/08.3 Recognising digits using
+      a convolutional neural network (optional)
+  - file: 08. Remote services and multi-agent systems/08.4 Recognising patterns on
+      the move
+  - file: 08. Remote services and multi-agent systems/08.5 Messaging in multi-agent
+      systems
+  - file: 08. Remote services and multi-agent systems/08.6 Conclusion
+- file: 99. Technical appendices/99.1 nbev3devsim notebook architecture
+  entries:
+  - file: 99. Technical appendices/99.2 nbev3devsim user interface
+  - file: 99. Technical appendices/99.3 nb3ev3devsim robot config
+  - file: 99. Technical appendices/99.4 Speaking in Python
+  - file: 99. Technical appendices/99.5 Handling images
+  - file: 99. Technical appendices/99.6 Controlling the robot
+- file: backgrounds/Background Image Generator-Extra sketches
+  entries:
+  - file: backgrounds/Background Image Generator
+  - file: backgrounds/Flowchart Generator
+  - file: backgrounds/TreasureMap
+- file: images/PIL image text
+
