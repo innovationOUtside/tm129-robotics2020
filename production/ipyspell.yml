@@ -1,0 +1,48 @@
+# pyspelling -c ipyspell.yml > typos.txt
+# See also: https://github.com/innovationOUtside/nb_spellchecker
+matrix:
+- name: Markdown
+  aspell:
+    lang: en
+  dictionary:
+    wordlists:
+    - .wordlist.txt
+    encoding: utf-8
+  pipeline:
+  - pyspelling.filters.ipynb:
+      cell_type: markdown
+  - pyspelling.filters.url:
+  - pyspelling.filters.markdown:
+      markdown_extensions:
+        - pymdownx.superfences:
+  - pyspelling.filters.html:
+      comments: false
+      # https://github.com/facelessuser/pyspelling/issues/110#issuecomment-800619907
+      #captures:
+      #  - '*|*:not(script,style,code)'
+      #ignores:
+      #  - 'code > *:not(.c1)'
+      ignores:
+        - code
+        - pre
+        - tt
+  sources:
+    - 'content/*/*.ipynb'
+    #- '**/.md/*.md'
+  default_encoding: utf-8
+- name: Python
+  aspell:
+    lang: en
+  dictionary:
+    wordlists:
+    - .wordlist.txt
+    encoding: utf-8
+  pipeline:
+  - pyspelling.filters.ipynb:
+      cell_type: code
+  - pyspelling.filters.url:
+  - pyspelling.filters.python:
+  sources:
+    - 'content/*/*.ipynb'
+    #- '**/.md/*.md'
+  default_encoding: utf-8
