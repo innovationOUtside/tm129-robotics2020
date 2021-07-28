@@ -5,6 +5,14 @@ on:
   push:
     paths:
       - 'content/**'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+       
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
