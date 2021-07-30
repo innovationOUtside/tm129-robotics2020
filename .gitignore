@@ -1,4 +1,6 @@
 .DS_Store
+_build
+production/.vagrant
 0*.html
 notebooks/
 content/.old

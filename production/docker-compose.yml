@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  tm129vce:
+    image: ousefulcoursecontainers/ou-tm129:current
+    environment:
+      JUPYTER_TOKEN: "letmein"
+    volumes:
+      - "./TM129VCE:/home/jovyan/shared"
+    ports:
+      - 8129:8888
+
