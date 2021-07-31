@@ -1,0 +1,59 @@
+module:
+  code: TM129-Robotics
+  presentation: 21J
+type: jupyter-notebook
+base: "3.7"
+packages:
+  apt:
+    - build-essential
+    - zip
+    - unzip
+    - libcairo2
+    - aspell
+    - hunspell
+    - fonts-humor-sans
+  pip:
+    - nbev3devsim>=0.0.9
+    - ou-tm129-py>=0.0.8
+    - git+https://github.com/ouseful-PR/Hand-Written-Digit-Recognition.git
+    - git+https://github.com/innovationOUtside/nb_tensorflow_playground_serverproxy.git
+    - git+https://github.com/innovationOUtside/nb_tensorspace_server_proxy.git
+    - git+https://github.com/innovationOUtside/serverproxy_convnet_mnist.git
+    - git+https://github.com/innovationOUtside/serverproxy_tfjs_demos.git
+    - git+https://github.com/innovationOUtside/nb_cell_diff.git
+    - git+https://github.com/innovationOUtside/nb_cell_dialog.git
+    - git+https://github.com/innovationOUtside/durable_rules_magic.git
+content:
+  - source: content
+    target: content
+    overwrite: never
+  - source: .jupyter
+    target: .jupyter
+    overwrite: always
+scripts:
+  build:
+    - commands: |
+        pip3 install --index-url https://google-coral.github.io/py-repo/ tflite_runtime
+    - commands: |
+        jupyter contrib nbextension install
+        jupyter nbextensions_configurator enable
+
+        jupyter nbextension enable --sys-prefix skip-traceback/main
+        jupyter nbextension enable --sys-prefix collapsible_headings/main
+        jupyter nbextension enable --sys-prefix highlighter/highlighter
+        jupyter nbextension enable --sys-prefix spellchecker/main
+
+        git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
+        jupyter nbextension install accessibility_toolbar
+        jupyter nbextension enable --sys-prefix accessibility_toolbar/main
+        rm -rf accessibility_toolbar
+
+        jupyter serverextension enable --py --sys-prefix nbzip
+        jupyter nbextension install --py --sys-prefix nbzip
+        jupyter nbextension enable --py --sys-prefix nbzip
+
+        jupyter nbextension install --py --sys-prefix nbtutor
+        jupyter nbextension enable --py --sys-prefix nbtutor
+
+        jupyter nbextension install --py --sys-prefix jupyter_wysiwyg
+        jupyter nbextension enable --py --sys-prefix jupyter_wysiwyg
