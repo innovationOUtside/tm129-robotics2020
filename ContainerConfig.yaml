@@ -12,6 +12,8 @@ packages:
     - aspell
     - hunspell
     - fonts-humor-sans
+    - libjpeg62
+    - libatlas-base-dev
   pip:
     - nbev3devsim>=0.0.9
     - ou-tm129-py>=0.0.8
