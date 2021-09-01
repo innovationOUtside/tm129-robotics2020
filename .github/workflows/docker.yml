@@ -32,7 +32,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v3
       with:
-        images: mmh352/tm129-robotics-21j
+        images: mmh352/tm129-robotics
         tags: |
           type=match,pattern=v(.*),group=1
           type=sha
