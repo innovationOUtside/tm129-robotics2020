@@ -16,6 +16,7 @@ packages:
     - libatlas-base-dev
     - libopenjp2-7
     - libtiff5
+    - git
   pip:
     - nbev3devsim>=0.0.9
     - ou-tm129-py>=0.0.8
