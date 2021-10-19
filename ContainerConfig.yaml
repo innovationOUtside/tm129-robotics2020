@@ -34,7 +34,7 @@ content:
     overwrite: never
   - source: .jupyter
     target: .jupyter
-    overwrite: always
+    overwrite: never
 scripts:
   build:
     - commands: |
@@ -61,3 +61,5 @@ scripts:
 
         jupyter nbextension install --py --sys-prefix jupyter_wysiwyg
         jupyter nbextension enable --py --sys-prefix jupyter_wysiwyg
+
+        jupyter nbextension disable --py --sys-prefix jupytext
