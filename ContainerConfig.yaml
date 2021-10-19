@@ -35,6 +35,9 @@ content:
   - source: .jupyter
     target: .jupyter
     overwrite: never
+  - source: .jupyter/custom
+    target: .jupyter/custom
+    overwrite: always
 scripts:
   build:
     - commands: |
