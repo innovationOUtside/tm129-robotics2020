@@ -63,3 +63,4 @@ scripts:
         jupyter nbextension enable --py --sys-prefix jupyter_wysiwyg
 
         jupyter nbextension disable --py --sys-prefix jupytext
+        jupyter serverextension disable jupytext
