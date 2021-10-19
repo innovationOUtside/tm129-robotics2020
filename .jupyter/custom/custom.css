@@ -21,7 +21,8 @@ OU logo available to stylesheet at url('oulogo-56.jpg')
 	display:block;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	background: url(ou_master_logo_dark_blue_44mm) no-repeat;
+	background: url(ou_master_logo_dark_blue_44mm.png) no-repeat;
+	background-size: contain;
   	width: 83px; /* Width of new image */
   	height: 65px; /* Height of new image */
   	padding-left: 83px; /* Equal to width of new image */
