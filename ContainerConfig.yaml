@@ -12,6 +12,11 @@ packages:
     - aspell
     - hunspell
     - fonts-humor-sans
+    - libjpeg62
+    - libatlas-base-dev
+    - libopenjp2-7
+    - libtiff5
+    - git
   pip:
     - nbev3devsim>=0.0.9
     - ou-tm129-py>=0.0.8
@@ -23,12 +28,16 @@ packages:
     - git+https://github.com/innovationOUtside/nb_cell_diff.git
     - git+https://github.com/innovationOUtside/nb_cell_dialog.git
     - git+https://github.com/innovationOUtside/durable_rules_magic.git
+    - cryptography<35.0.0
 content:
   - source: content
     target: content
     overwrite: never
   - source: .jupyter
     target: .jupyter
+    overwrite: never
+  - source: .jupyter/custom
+    target: .jupyter/custom
     overwrite: always
 scripts:
   build:
@@ -45,7 +54,6 @@ scripts:
 
         git clone https://github.com/uclixnjupyternbaccessibility/accessibility_toolbar.git
         jupyter nbextension install accessibility_toolbar
-        jupyter nbextension enable --sys-prefix accessibility_toolbar/main
         rm -rf accessibility_toolbar
 
         jupyter serverextension enable --py --sys-prefix nbzip
@@ -57,3 +65,6 @@ scripts:
 
         jupyter nbextension install --py --sys-prefix jupyter_wysiwyg
         jupyter nbextension enable --py --sys-prefix jupyter_wysiwyg
+
+        jupyter nbextension disable --py --sys-prefix jupytext
+        jupyter serverextension disable jupytext
