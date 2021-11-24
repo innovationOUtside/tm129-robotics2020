@@ -28,7 +28,7 @@ packages:
     - git+https://github.com/innovationOUtside/nb_cell_diff.git
     - git+https://github.com/innovationOUtside/nb_cell_dialog.git
     - git+https://github.com/innovationOUtside/durable_rules_magic.git
-    - cryptography>=35.0.0<36.0.0
+    - cryptography<35.0.0
 content:
   - source: content
     target: content
